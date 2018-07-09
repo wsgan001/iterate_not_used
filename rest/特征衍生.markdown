@@ -1,0 +1,105 @@
+---
+author: evo
+comments: true
+date: 2018-04-29 05:39:47+00:00
+layout: post
+link: http://106.15.37.116/2018/04/29/characteristics-derived/
+slug: characteristics-derived
+title: 特征衍生
+wordpress_id: 4564
+categories:
+- 随想与反思
+tags:
+- '@NULL'
+- '@todo'
+---
+
+<!-- more -->
+
+[mathjax]
+
+
+# REF
+
+
+
+
+
+ 	
+  1. 《机器学习 实践应用》
+
+ 	
+  2. [机器学习-特征衍生](https://blog.csdn.net/xinzhi8/article/details/77515876)
+
+ 	
+  3. [[特征工程系列三]显性特征的衍生](https://blog.csdn.net/buptgshengod/article/details/79312268)
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * **好像只有这本书用特征衍生这种说法，是不是有别的说法？比如特征整合之类的？ **
+
+ 	
+  * **没有写，需要补充**
+
+
+
+
+# MOTIVE
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

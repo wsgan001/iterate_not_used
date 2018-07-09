@@ -1,0 +1,305 @@
+---
+author: evo
+comments: true
+date: 2018-05-15 07:14:29+00:00
+layout: post
+link: http://106.15.37.116/2018/05/15/%e7%ae%97%e6%b3%95%ef%bc%9a%e9%9d%92%e8%9b%99%e8%b7%b3%e5%8f%b0%e9%98%b6/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e9%9d%92%e8%9b%99%e8%b7%b3%e5%8f%b0%e9%98%b6'
+title: 算法：青蛙跳台阶
+wordpress_id: 5780
+categories:
+- 基础程序设计
+tags:
+- NOT_ADD
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * 青蛙跳台阶实际上是斐波那契额数列的一个变种。
+
+
+
+
+
+# 题目
+
+
+
+
+## 题目 1 描述
+
+
+一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
+
+
+## 题目 2 描述
+
+
+一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
+
+
+# [](https://github.com/gatieme/CodingInterviews/tree/master/009-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97#%E5%88%86%E6%9E%90)题目 1 解答
+
+
+我们先分析这道题：
+
+青蛙每次只能跳一级或者跳两级，那么跳 N 个台阶就可以分解为
+
+
+
+ 	
+  * 先跳1级，然后剩余的是跳一个 N - 1 级的台阶
+
+ 	
+  * 先跳2级，然后剩余的是跳一个 N - 2 级的台阶
+
+
+嗯，使得，写成公式为：
+
+那么它的递推公式为
+
+ 	
+  * f(0)=0
+
+ 	
+  * f(1)=1
+
+ 	
+  * f(2)=2
+
+ 	
+  * f(n)=f(n-1)+f(n-2)
+
+
+可见，的确是与斐波那契数列是一样的。
+
+因此，我们可以使用斐波那契数列的第二种方法来计算：
+
+    
+    #include <iostream>
+    using namespace std;
+    
+    
+    class Solution {
+    public:
+    	int jumpFloor(int n) {
+    		if (n <= 2) {
+    			return n;
+    		}
+    		long one = 1;
+    		long two = 2;;
+    		long res = 0;
+    
+    		for (int i = 3; i <= n; i++) {
+    			res = one + two;
+    			one = two;
+    			two = res;
+    		}
+    		return res;
+    	}
+    
+    
+    };
+    
+    int main() {
+    	Solution solu;
+    	cout << solu.jumpFloor(10) << endl;;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    89
+
+
+还是很快的。
+
+
+# 题目 2 解答
+
+
+**这种没有仔细看**
+
+关于本题，前提是n个台阶会有一次n阶的跳法。分析如下:
+
+
+
+ 	
+  * f(1) = 1
+
+ 	
+  * f(2) = f(2-1) + f(2-2) //f(2-2) 表示2阶一次跳2阶的次数。
+
+ 	
+  * f(3) = f(3-1) + f(3-2) + f(3-3)
+
+ 	
+  * ...
+
+ 	
+  * f(n) = f(n-1) + f(n-2) + f(n-3) + ... + f(n-(n-1)) + f(n-n)
+
+
+对上面式子的说明：
+
+ 	
+  * 这里的f(n) 代表的是n个台阶有一次 1,2,...n 阶的 跳法数。
+
+ 	
+  * n = 1时，只有1种跳法，f(1) = 1
+
+ 	
+  * n = 2时，会有两个跳得方式，一次1阶或者2阶，这回归到了问题（1） ，f(2) = f(2-1) + f(2-2)
+
+ 	
+  * n = 3时，会有三种跳得方式，1阶、2阶、3阶， 那么就是第一次跳出1阶后面剩下：f(3-1);第一次跳出2阶，剩下f(3-2)；第一次3阶，那么剩下f(3-3) 因此结论是f(3) = f(3-1)+f(3-2)+f(3-3)
+
+ 	
+  * n = n时，会有n中跳的方式，1阶、2阶...n阶，得出结论： f(n) = f(n-1)+f(n-2)+...+f(n-(n-1)) + f(n-n) => f(0) + f(1) + f(2) + f(3) + ... + f(n-1)
+
+
+由以上已经是一种结论，但是为了简单，我们可以继续简化： f(n-1) = f(0) + f(1)+f(2)+f(3) + ... + f((n-1)-1) = f(0) + f(1) + f(2) + f(3) + ... + f(n-2) f(n) = f(0) + f(1) + f(2) + f(3) + ... + f(n-2) + f(n-1) = f(n-1) + f(n-1) 可以得出：  f(n) = 2*f(n-1)
+
+也就是说，总得跳法为：
+
+ 	
+  * f(0)=0
+
+ 	
+  * f(1)=1
+
+ 	
+  * f(n)=2*f(n-1) , (n>=2)
+
+
+OK，到这里，就比较简单了，大部分的计算就是求 2 的次方，有三种计算的方法：
+
+    
+    #include <iostream>
+    using namespace std;
+    
+    
+    class Solution {
+    public:
+    	int jumpFloor1(int target) {
+    		if (target <= 0) {
+    			return -1;
+    		}
+    		else if (target == 1) {
+    			return 1;
+    		}
+    		else {
+    			return 2 * jumpFloor1(target - 1);
+    		}
+    	}
+    
+    	int jumpFloor2(int target) {
+    		if (target <= 0) {
+    			return -1;
+    		}
+    		else {
+    			return pow(2, target - 1);
+    		}
+    	}
+    	int jumpFloor3(int target) {
+    		long long ret;
+    		if (target >= 32) {
+    			//大于8字节后，需要分两次移位，否则出错
+    			ret = 1 << 30;
+    			ret = ret << (target - 31);
+    		}
+    		else {
+    			ret = 1 << (target - 1);
+    		}
+    		return ret;
+    	}
+    };
+    
+    
+    
+    int main() {
+    	Solution solu;
+    	cout << solu.jumpFloor1(20) << endl;;
+    	cout << solu.jumpFloor2(20) << endl;;
+    	cout << solu.jumpFloor3(20) << endl;;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    524288
+    524288
+    524288
+
+
+可见，还是很厉害的。
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

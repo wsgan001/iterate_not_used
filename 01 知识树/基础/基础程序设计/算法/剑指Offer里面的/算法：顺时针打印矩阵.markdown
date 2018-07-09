@@ -1,0 +1,348 @@
+---
+author: evo
+comments: true
+date: 2018-05-16 10:02:30+00:00
+layout: post
+link: http://106.15.37.116/2018/05/16/%e7%ae%97%e6%b3%95%ef%bc%9a%e9%a1%ba%e6%97%b6%e9%92%88%e6%89%93%e5%8d%b0%e7%9f%a9%e9%98%b5/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e9%a1%ba%e6%97%b6%e9%92%88%e6%89%93%e5%8d%b0%e7%9f%a9%e9%98%b5'
+title: 算法：顺时针打印矩阵
+wordpress_id: 5834
+categories:
+- 随想与反思
+tags:
+- NOT_ADD
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+# 题目
+
+
+
+
+## 题目描述
+
+
+输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，
+
+例如， 如果输入如下矩阵：
+
+    
+    1   2   3   4
+    5   6   7   8 
+    9   10  11  12
+    13  14  15  16
+
+
+则依次打印出数字
+
+1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10
+
+
+# 题目解答
+
+
+
+
+## 直接按照题意进行旋转
+
+
+OK，直接这么按照题意绕着：
+
+    
+    #include <iostream>
+    #include <vector>
+    #include <cassert>
+    using namespace std;
+    
+    
+    
+    class Solution {
+    
+    public:
+    	vector<int> printMatrix(vector<vector<int> > matrix) {
+    
+    		int row = matrix.size();
+    		int col = matrix[0].size();
+    
+    		//限制当前遍历的数的范围边界，    行ROW[left, right), COL[left, right)
+    		int left = 0, right = col;
+    		int up = 0, down = row;
+    
+    		int x = 0, y = 0;                                   //  当前遍历的下标
+    		int count = 0, max_count = row * col;               //  当前遍历的数据的个数
+    
+    		vector<int> res;
+    		res.push_back(matrix[x][y]);
+    
+    		for (count = 1; count < max_count;) {
+    			//向右走
+    			for (y++; y < right && count < max_count; y++) { //看到初始就是y++还是有些新奇的。
+    				res.push_back(matrix[x][y]);
+    				cout << "right-[" << x << ", " << y << "] = " << matrix[x][y]<< ", count = " << count << endl;
+    				count++;
+    			}
+    			//右边到头了，把参数调整下
+    			y--;        //  y++ 的时候超出了 right ，需要减1
+    			up++;    //  向右走完了，因此这一行结束了  up++
+    
+    			//向下走
+    			for (x++; x < down && count < max_count; x++) {
+    				res.push_back(matrix[x][y]);
+    				cout << "right-[" << x << ", " << y << "] = " << matrix[x][y] << ", count = " << count << endl;
+    				count++;
+    			}
+    			x--;           
+    			right--;     
+    
+    
+    			// 向左走
+    			for (y--; y >= left && count < max_count; y--) {
+    				res.push_back(matrix[x][y]);
+    				cout << "right-[" << x << ", " << y << "] = " << matrix[x][y] << ", count = " << count << endl;
+    				count++;
+    			}
+    			y++;           
+    			down--;       
+    
+    
+    			// 向上走
+    			for (x--; x >= up && count < max_count; x--) {
+    				res.push_back(matrix[x][y]);
+    				cout << "right-[" << x << ", " << y << "] = " << matrix[x][y] << ", count = " << count << endl;
+    				count++;
+    			}
+    			x++;        
+    			left++;      
+    		}
+    
+    		return res;
+    	}
+    };
+    
+    
+    int main() {
+    	int a1[] = { 1, 2, 3, 4 };
+    	int a2[] = { 5, 6, 7, 8 };
+    	int a3[] = { 9, 10, 11, 12 };
+    	int a4[] = { 13, 14, 15, 16 };
+    
+    	vector<int> vec1(a1, a1 + 4);
+    	vector<int> vec2(a2, a2 + 4);
+    	vector<int> vec3(a3, a3 + 4);
+    	vector<int> vec4(a4, a4 + 4);
+    
+    	vector< vector<int> > vec;
+    	vec.push_back(vec1);
+    	vec.push_back(vec2);
+    	vec.push_back(vec3);
+    	vec.push_back(vec4);
+    
+    	Solution solu;
+    	vector<int> res = solu.printMatrix(vec);
+    	for (int i = 0; i < res.size(); i++) {
+    		cout << res[i] << " ";
+    	}
+    	return 0;
+    }
+
+
+输出：
+
+    
+    right-[0, 1] = 2, count = 1
+    right-[0, 2] = 3, count = 2
+    right-[0, 3] = 4, count = 3
+    right-[1, 3] = 8, count = 4
+    right-[2, 3] = 12, count = 5
+    right-[3, 3] = 16, count = 6
+    right-[3, 2] = 15, count = 7
+    right-[3, 1] = 14, count = 8
+    right-[3, 0] = 13, count = 9
+    right-[2, 0] = 9, count = 10
+    right-[1, 0] = 5, count = 11
+    right-[1, 1] = 6, count = 12
+    right-[1, 2] = 7, count = 13
+    right-[2, 2] = 11, count = 14
+    right-[2, 1] = 10, count = 15
+    1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10
+
+
+上面也叫做蛇形填数方法。
+
+
+## 上面的代码看起来还是有些冗余的，OK，我们可以进行重构
+
+
+由于蛇形填数的方法，本质就是一次遍历，转向和前进都包括在这个遍历中，因此我们也可以用一层循环来实现，如下：
+
+    
+    #include <iostream>
+    #include <vector>
+    #include <cassert>
+    using namespace std;
+    
+    
+    class Solution {
+    
+    private:
+    	int n;//行数
+    	int m;//列数
+    	vector<vector<bool> > v;//用于存放是否数字已经被遍历过的标识
+    
+    private:
+    	//对于坐标为i,j的这个数字
+    	//如果i在矩阵之内，j在矩阵之内，而且这个数字之前没有遍历过的话，就返回true
+    	bool judge(int i, int j) {
+    		return 0 <= i && i < n
+    			&& 0 <= j && j < m
+    			&& !v[i][j];
+    	}
+    public:
+    	vector<int> printMatrix(vector<vector<int> > a) {
+    		vector<int> r;
+    		n = a.size();//行数
+    		m = a[0].size();//列数
+    		if (n == 0 || m == 0) {
+    			return r;
+    		}
+    
+    		v = vector<vector<bool> >(n, vector<bool>(m, false));//创建一个全是false的n行m列矩阵
+    
+    		//D 对应的是在每个方向前进时候，所试探的下一个位置相对当前位置的关系。
+    		//比如说，我向右运动，那么每次运动之后，就试探一下 x+0 , y+1 的这个位置是不是 OK 的，如果OK，我就前进不然就转向。
+    		const int D[4][2] = { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };
+    
+    		int i = 0, j = 0;
+    		int d = 0;
+    		int count = m * n;
+    		while (count--) {
+    			r.push_back(a[i][j]);//存储当前的数字
+    			v[i][j] = true;//表示已经存储了
+    			//如果加上D的数字已经超过范围了，或者这个数字已经被遍历过了，那么就进行转弯
+    			if (!judge(i + D[d][0], j + D[d][1])) {
+    				(++d) %= 4; //进行转弯
+    			}
+    			//转向后d已经更新了，开始前进，不用转向的话也会在正确的方向上前进
+    			i += D[d][0];
+    			j += D[d][1];
+    		}
+    		return r;
+    	}
+    };
+    
+    int main() {
+    	int a1[] = { 1, 2, 3, 4 };
+    	int a2[] = { 5, 6, 7, 8 };
+    	int a3[] = { 9, 10, 11, 12 };
+    	int a4[] = { 13, 14, 15, 16 };
+    
+    	vector<int> vec1(a1, a1 + 4);
+    	vector<int> vec2(a2, a2 + 4);
+    	vector<int> vec3(a3, a3 + 4);
+    	vector<int> vec4(a4, a4 + 4);
+    
+    	vector< vector<int> > vec;
+    	vec.push_back(vec1);
+    	vec.push_back(vec2);
+    	vec.push_back(vec3);
+    	vec.push_back(vec4);
+    
+    	Solution solu;
+    	vector<int> res = solu.printMatrix(vec);
+    	for (int i = 0; i < res.size(); i++) {
+    		cout << res[i] << " ";
+    	}
+    	return 0;
+    }
+
+
+输出：
+
+    
+    1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10
+
+
+OK，上面的对于转向的操作还是很厉害的，不知道一开始的人是怎么想出来的。
+
+解释一下：
+
+const int D[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};   对应的是在每个方向前进时候，所试探的下一个位置相对当前位置的关系。
+
+比如说，我向右运动，对应{0, 1} ，那么每次运动之后，就试探一下 x+0 , y+1 的这个位置是不是 OK 的，如果OK，我就前进，如果不OK，我就转向下，对应 {1, 0}，此时转向之后，我就向 x+1,y+0 的方向前进了。
+
+嗯，整体的东西还是非常 nice 的。**这种将转向化到数组中的方法还有在别的场景中有应用吗？它的本质是什么？**
+
+**不过，我感觉，这个应该是某个人写出了第一种方法，然后觉得重复的地方太多，然后重构出来的，不是一次性写出来的。**
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

@@ -1,0 +1,149 @@
+---
+author: evo
+comments: true
+date: 2018-05-31 23:38:11+00:00
+layout: post
+link: http://106.15.37.116/2018/06/01/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-%e7%bb%93%e6%9e%84%e5%9e%8b/
+slug: '%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-%e7%bb%93%e6%9e%84%e5%9e%8b'
+title: 设计模式 结构型
+wordpress_id: 7160
+categories:
+- 基础程序设计
+tags:
+- Design Patterns
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，所有版权属于原作者，原文已列在 ORIGINAL 中。为了方便个人学习做了整合、修改，仅供个人学习使用。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
+
+ 	
+  2. 《大话设计模式》作者 程杰
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+
+
+
+
+
+GoF的23种设计模式中，结构型模式是从程序的结构上解决模块之间的耦合问题，共7种：
+
+ 	
+  * 代理模式
+
+ 	
+  * 适配器模式
+
+ 	
+  * 外观模式
+
+ 	
+  * 装饰模式
+
+ 	
+  * 桥接模式
+
+ 	
+  * 享元模式
+
+ 	
+  * 组合模式
+
+
+
+
+
+# 对比总结
+
+
+
+
+
+ 	
+  * 代理模式：控制访问；
+
+ 	
+  * 适配器模式：将接口转换为客户端期望的形式；
+
+ 	
+  * 外观模式：整理出一套可用接口；
+
+ 	
+  * 装饰模式：动态修改类的职能；
+
+ 	
+  * 桥接模式：将多角度分类分离独立；
+
+ 	
+  * 享元模式：共享实例；
+
+ 	
+  * 组合模式：递归生成树形结构的组合对象。
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

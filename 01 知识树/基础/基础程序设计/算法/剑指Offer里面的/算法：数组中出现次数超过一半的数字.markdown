@@ -1,0 +1,775 @@
+---
+author: evo
+comments: true
+date: 2018-05-19 06:51:47+00:00
+layout: post
+link: http://106.15.37.116/2018/05/19/%e7%ae%97%e6%b3%95%ef%bc%9a%e6%95%b0%e7%bb%84%e4%b8%ad%e5%87%ba%e7%8e%b0%e6%ac%a1%e6%95%b0%e8%b6%85%e8%bf%87%e4%b8%80%e5%8d%8a%e7%9a%84%e6%95%b0%e5%ad%97/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e6%95%b0%e7%bb%84%e4%b8%ad%e5%87%ba%e7%8e%b0%e6%ac%a1%e6%95%b0%e8%b6%85%e8%bf%87%e4%b8%80%e5%8d%8a%e7%9a%84%e6%95%b0%e5%ad%97'
+title: 算法：数组中出现次数超过一半的数字
+wordpress_id: 6022
+categories:
+- 随想与反思
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。
+
+例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。
+
+
+## **样例输入**
+
+
+1 2 3 2 2 2 5 4 2
+
+
+## **样例输出**
+
+
+2
+
+
+
+
+# 题目解答
+
+
+
+
+## 可以先排序然后再统计个数
+
+
+如果是一个排序好的数组，那么我们就很容易统计每个数组出现的次数，而题目中并没有说数组是排序好的，因此我们需要先排序（最好的情况下\(O(nlogn)\)），后统计（一次遍历即可\(O(n)\)）,因此这种方法的时间复杂度为 \(O(nlogn)\) 。
+
+代码如下：
+
+    
+    #include <iostream>
+    #include <vector>
+    #include <algorithm>
+    
+    using namespace std;
+    
+    
+    class Solution {
+    public:
+    	int MoreThanHalfNum_Solution(vector<int> numbers) {
+    		if (numbers.size() == 0) {
+    			return 0;
+    		}
+    		else if (numbers.size() == 1) {
+    			return numbers[0];
+    		}
+    		//先进行排序
+    		sort(numbers.begin(), numbers.end());
+    
+    		//遍历，并计数
+    		int res = 0;
+    		int count = 1;
+    		for (int i = 0; i < numbers.size() - 1; i++) {
+    			if (numbers[i] == numbers[i + 1]) {
+    				count++;
+    			}
+    			else {
+    				cout << numbers[i] << ", count = " << count << endl;
+    				count = 1;
+    			}
+    			//这里厉害了，当 i=  numbers.size() - 2 的时候，即倒数第二个数的时候，如果是跟倒数第一个数一样，
+    			//那么上面就会count++，这里就会输出这个count，
+    			//如果跟倒数第一个数不一样，那么上面就会先cout当前这个数，然后count=1，然后这里会把最后这个数数出来。
+    			//很周密啊。
+    			if (i == numbers.size() - 2) {
+    				cout << numbers[i + 1] << ", count = " << count << endl;
+    			}
+    			// 个数超过数组的一半时候说明已经找到了，就终止
+    			if (count > numbers.size() / 2) {
+    				res = numbers[i];
+    				break;
+    			}
+    		}
+    		return res;
+    	}
+    };
+    
+    
+    int main() {
+    	int arr1[] = { 5, 5, 2, 2, 3, 3, 5, 5, 5 };
+    	vector<int> vec1(arr1, arr1 + 9);
+    	Solution solu;
+    	cout << solu.MoreThanHalfNum_Solution(vec1) << endl;
+    
+    	int arr2[] = { 1, 2 };
+    	vector<int> vec2(arr2, arr2 + 2);
+    	cout << solu.MoreThanHalfNum_Solution(vec2) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    2, count = 2
+    3, count = 2
+    5, count = 5
+    5
+    1, count = 1
+    2, count = 1
+    0
+
+
+虽然上面用的方法感觉是普通的方法，但是还是感觉写的很厉害。
+
+事实上我感觉这个方法已经很好了。
+
+那么除了这种方法还有什么别的方法吗？
+
+
+
+
+## 基于Partition函数的 \(O(n)\) 的查找第K大的数
+
+
+**这个没看懂**
+
+上面基于排序的算法比较保守，因为它没有充分利用 **出现次数超过一半 **这个条件。
+
+数组中有一个数字出现的次数超过了数组长度的一半，那么**如果我们把这个数组排序，那么排序之后位于数组中间的那个数字一定就是那个出现次数超过数组长度一半的数字。 厉害了。**
+
+也就是说这个数字其实就是统计学上的中位数，即长度为 N 的数组中的 \(N/2\) 大的元素，因此我们的题目最后成为返回数组中第 K（\(K=Len/2\)）大的数。
+
+因此我们的问题成为**查找一个数组中的第 K 大的元素。**
+
+没想到啊。
+
+OK，那么具体怎么办呢？
+
+查找一个数组中的第 K 大的元素还是有很多种方法的，具体可以看下 [算法：寻找最大的 K 个数](http://106.15.37.116/2018/05/19/%e7%ae%97%e6%b3%95%ef%bc%9a%e5%af%bb%e6%89%be%e6%9c%80%e5%a4%a7%e7%9a%84-k-%e4%b8%aa%e6%95%b0/) ，这里我们介绍其中一种分治划分的方法，是基于快速排序算法的：
+
+在快速排序算法中，Partition() 方法会返回一个index，能够保证 index 位置的数是已排序完成的，在index 左边的数都比 index 所在的数小，在 index 右边的数都比 index 所在的数大。
+
+那么本题就可以利用这样的思路来解：
+
+
+
+ 	
+  1. 我们先通过 Partition() 返回index，如果 index==mid，那么就表明找到了数组的中位数；如果index<mid，表明中位数在[index+1,end]之间；如果index>mid，表明中位数在[start,index-1]之间。直到最后求得index==mid循环结束。
+
+ 	
+  2. 根据求得的index，遍历一遍数组，每当出现一个等于index所指向的数时time++，最后判断time是否大于数组长度的一半，如果大于则表明index所指向的数就是所求的数，如果不是，则表明不存在一个数出现的次数超过数组长度的一半。
+
+
+代码如下：
+
+    
+    #include <iostream>
+    #include <vector>
+    #include <algorithm>
+    
+    using namespace std;
+    
+    
+    
+    
+    class Solution {
+    public:
+    	int MoreThanHalfNum_Solution(vector<int> numbers) {
+    		if (numbers.size() == 0) {
+    			return 0;
+    		}
+    		else if (numbers.size() == 1) {
+    			return numbers[0];
+    		}
+    		//找到第k个数
+    		int num = FindKth(numbers, 0, numbers.size() - 1, numbers.size() / 2);
+    
+    		//检查个数是不是大于一半
+    		if (CheckMoerThanHalf(numbers, num) == true) {
+    			return num;
+    		}
+    		else {
+    			return 0;
+    		}
+    	}
+    
+    	//数组中第K大的元素的值
+    	//left 数据起始元素的位置  right  数据终止元素的位置   k   第K大的元素
+    	int FindKth(vector<int> &numbers, int left, int right, int k) {
+    		int res;
+    		int pivotIndex = left + 1;
+    
+    		if (left == right) {
+    			cout << "left == right" << numbers[left] << endl;
+    			return numbers[left];
+    		}
+    
+    		pivotIndex = Partition(numbers, left, right);
+    
+    
+    		if (pivotIndex < k)          //  当前查找到的比第K个数小
+    		{
+    			// 第K大的的在pivot之前, 在[pivotIndex + 1, right]之间查找
+    			cout << "K is in [" << pivotIndex + 1 << ", " << right << "]" << endl;
+    			return FindKth(numbers, pivotIndex + 1, right, k);
+    		}
+    		else if (pivotIndex > k)     //  当前查找到的比第K个数大
+    		{
+    			// 第K小的在pivot之前, 在[left, pivotIndex - 1]之间查找
+    			cout << "K is in [" << left << ", " << pivotIndex - 1 << "]" << endl;
+    			return FindKth(numbers, left, pivotIndex - 1, k);
+    		}
+    		else      //  这里返回的是其位置
+    		{
+    			/// return pivotIndex; ///  error
+    			cout << "pivotIndex == k, " << numbers[pivotIndex] << endl;
+    			return numbers[pivotIndex];
+    		}
+    	}
+    
+    
+    
+    	//快速排序的划分函数, 返回枢轴(left下标元素)在排序的数组中应该所处的位置,即下标为left的元素是第几大的元素
+    	//返回枢轴在排序后数组中应该在的位置
+    	int Partition(vector<int> &numbers, int left, int right) {
+    		int i = left, j = right;
+    
+    		///  我们选择第一个元素作为基准
+    		///  这个也可以随机选择
+    		int pivotIndex = left;
+    		int pivotNum = numbers[pivotIndex];
+    
+    		cout << "pivotNum = " << pivotNum << endl;
+    		while (i < j) {
+    			while (i < j && numbers[j] >= pivotNum) {
+    				cout << "[" << i << ", " << j << "] " << numbers[j] << " >= " << pivotNum << endl;
+    				j--;
+    			}
+    			cout << "now we find i = " << i << ", posJ = " << j << ", num = " << numbers[j] << " < " << pivotNum << endl;;
+    			numbers[i] = numbers[j];        // 将找到的那个比枢轴小的数，放在枢轴左侧I的位置
+    			//swap(numbers[i], numbers[j]); // 也可以使用交换, 但是没有必要, 因为枢轴的位置并没有最后确定
+    
+    			while (i < j && numbers[i] <= pivotNum) {
+    				cout << "[" << i << ", " << j << "] " << numbers[i] << " <= " << pivotNum << endl;
+    				i++;
+    			}
+    
+    			cout << "now we find j = " << i << ", posI = " << j << ", num = " << numbers[i] << " > " << pivotNum << endl;;
+    			numbers[j] = numbers[i];        // 将找到的那个比枢轴大的数，放在枢轴右侧J的位置
+    			//swap(numbers[i], numbers[j]); // 也可以使用交换, 但是没有必要, 因为枢轴的位置并没有最后确定
+    		}
+    
+    		numbers[i] = pivotNum;              //  最后的位置 i == j 就是枢轴的位置
+    
+    		cout << pivotNum << " 's post is" << i << endl;
+    		for (int pos = left; pos <= right; pos++) {
+    			cout << numbers[pos] << " ";
+    		}
+    		cout << endl;
+    
+    		return i;
+    	}
+    
+    
+    	//检查num元素在数组numbers中出现的次数是否超过一半
+    	bool CheckMoerThanHalf(vector<int> numbers, int num) {
+    		int count = 0;
+    		for (int i = 0; i < numbers.size(); i++) {
+    			if (numbers[i] == num) {
+    				count++;
+    			}
+    		}
+    		cout << "num = " << num << ", count = " << count << endl;
+    
+    		if (count > numbers.size() / 2) {
+    			return true;
+    		}
+    		else {
+    			return false;
+    		}
+    	}
+    };
+    
+    int main() {
+    	int arr1[] = { 5, 5, 2, 2, 3, 3, 5, 5, 5 };
+    	vector<int> vec1(arr1, arr1 + 9);
+    	Solution solu;
+    	cout << solu.MoreThanHalfNum_Solution(vec1) << endl;
+    	cout << endl;
+    
+    	int arr2[] = { 1, 2 };
+    	vector<int> vec2(arr2, arr2 + 2);
+    	cout << solu.MoreThanHalfNum_Solution(vec2) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    pivotNum = 5
+    [0, 8] 5 >= 5
+    [0, 7] 5 >= 5
+    [0, 6] 5 >= 5
+    now we find i = 0, posJ = 5, num = 3 < 5
+    [0, 5] 3 <= 5
+    [1, 5] 5 <= 5
+    [2, 5] 2 <= 5
+    [3, 5] 2 <= 5
+    [4, 5] 3 <= 5
+    now we find j = 5, posI = 5, num = 3 > 5
+    5 's post is5
+    3 5 2 2 3 5 5 5 5
+    K is in [0, 4]
+    pivotNum = 3
+    [0, 4] 3 >= 3
+    now we find i = 0, posJ = 3, num = 2 < 3
+    [0, 3] 2 <= 3
+    now we find j = 1, posI = 3, num = 5 > 3
+    [1, 3] 5 >= 3
+    now we find i = 1, posJ = 2, num = 2 < 3
+    [1, 2] 2 <= 3
+    now we find j = 2, posI = 2, num = 2 > 3
+    3 's post is2
+    2 2 3 5 3
+    K is in [3, 4]
+    pivotNum = 5
+    now we find i = 3, posJ = 4, num = 3 < 5
+    [3, 4] 3 <= 5
+    now we find j = 4, posI = 4, num = 3 > 5
+    5 's post is4
+    3 5
+    pivotIndex == k, 5
+    num = 5, count = 5
+    5
+    
+    pivotNum = 1
+    [0, 1] 2 >= 1
+    now we find i = 0, posJ = 0, num = 1 < 1
+    now we find j = 0, posI = 0, num = 1 > 1
+    1 's post is0
+    1 2
+    K is in [1, 1]
+    left == right2
+    num = 2, count = 1
+    0
+
+
+
+
+
+## 它出现的次数比其他所有的数组出现的次数之和还要多，因此可以用阵地攻守的思想
+
+
+还是要充分利用 **出现次数超过一半 **这个条件：
+
+数组中有一个数字出现的次数超过数组长度的一半，也就是说它出现的次数比其他所有数字出现的次数之和还要多，嗯，是的。
+
+所以，我们可以这样：从第一个数开始，遇见一个友军就抱成团，遇见一个敌军就同归于尽，那么最后战场上剩余的这个数，才 **有可能 **是人数数目最多的那个队伍（数字）**。是的，厉害呀。**
+
+OK，我们就按照这个阵地攻守的思想，具体如下：
+
+
+
+ 	
+  * 第一个数字作为第一个士兵，守阵地；count = 1；
+
+ 	
+  * 遇到相同元素，count++; 遇到不相同元素，即为敌人，同归于尽,count--；
+
+ 	
+  * 当遇到count为0的情况，又以新的i值作为守阵地的士兵，继续下去，到最后还留在阵地上的士兵，有可能是主元素。
+
+ 	
+  * 再加一次循环，记录这个士兵的个数看是否大于数组一般即可。**厉害呀。**
+
+
+代码如下：
+
+    
+    #include <iostream>
+    #include <vector>
+    #include <algorithm>
+    
+    using namespace std;
+    
+    
+    
+    class Solution {
+    public:
+    	int MoreThanHalfNum_Solution(vector<int> numbers) {
+    		if (numbers.size() == 0) {
+    			return 0;
+    		}
+    		else if (numbers.size() == 1) {
+    			return numbers[0];
+    		}
+    
+    		//初始化这个数字，以及在阵地上存活的个数
+    		int num = numbers[0], count = 1;
+    		//阵地攻守
+    		for (int i = 1; i < numbers.size(); i++) {
+    			if (numbers[i] == num) {
+    				//友军, 计数器增加
+    				count++;
+    			}
+    			else {
+    				// 敌军, 一个士兵同归于尽
+    				count--;
+    			}
+    			cout << "numbers[i] = " << numbers[i] << ", count = " << count << endl;
+    			//如果所有的士兵都阵亡，就把新的士兵作为镇守阵地的士兵
+    			if (count == 0) {
+    				num = numbers[i];
+    				count = 1;
+    			}
+    		}
+    		//到这里，我们就已经找到了这个可能是占据总数一半以上的数。
+    		cout << "find num = " << num << endl;
+    
+    		// 循环，查看这个数的个数是否大于数组一半
+    		count = 0;
+    		for (int i = 0; i < numbers.size(); i++) {
+    			if (numbers[i] == num) {
+    				count++;
+    			}
+    		}
+    		if (count > numbers.size() / 2) {
+    			cout << "num = " << num << ", count = " << count << endl;
+    			return num;
+    		}
+    		else {
+    			return 0;
+    		}
+    	}
+    };
+    
+    int main() {
+    	int arr1[] = { 5, 5, 2, 2, 3, 3, 5, 5, 5 };
+    	vector<int> vec1(arr1, arr1 + 9);
+    	Solution solu;
+    	cout << solu.MoreThanHalfNum_Solution(vec1) << endl;
+    	cout << endl;
+    
+    	int arr2[] = { 1, 2 };
+    	vector<int> vec2(arr2, arr2 + 2);
+    	cout << solu.MoreThanHalfNum_Solution(vec2) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    numbers[i] = 5, count = 2
+    numbers[i] = 2, count = 1
+    numbers[i] = 2, count = 0
+    numbers[i] = 3, count = 0
+    numbers[i] = 3, count = 2
+    numbers[i] = 5, count = 1
+    numbers[i] = 5, count = 0
+    numbers[i] = 5, count = 2
+    find num = 5
+    num = 5, count = 5
+    5
+    
+    numbers[i] = 2, count = 0
+    find num = 2
+    0
+
+
+令人难以想象的方便。利害。
+
+这个思想有一个简单的实现变种，就是现的次数超过数组长度的一半，表明这个数字出现的次数比其他数字出现的次数的总和还多。所以我们可以考虑每次删除两个不同的数，那么在剩下的数中，出现的次数仍然超过总数的一半。通过不断重复这个过程，不断排除掉其它的数，最终找到那个出现次数超过一半的数字。厉害啊：
+
+例如：数组 a[5]={0,1,2,1,1}，我们要查找的数字为1，操作步骤为：遍历整个数组，然后每次删除不同的两个数字，过程如下： 0 1 2 1 1 =>2 1 1=>1
+
+具体实现：
+
+我们在考虑删除两个不同的数字的时候，实际上可以同过计数来实现，而不是物理上真正的删除。 在遍历数组的时候我们可以保存两个值：一个是数组中的一个数字，一个是次数。当我们遍历到下一个数字的时候，如果下一个数字和我们之前保存的数字相同，则次数加1。如果下一个数字和我们之前保存的数字不同，则次数减1。如果次数为零，我们需要保存下一个数字，并把次数设为1。由于我们要找的数字出现的次数比其他所有数字出现的次数之和还要多，那么要找的数字肯定是最后一次把次数设为1时对应的数字。 **感觉这个实现与第二种方法没有区别吧？确认下。**
+
+
+## 使用 STL 的 count 函数统计某个值出现的次数
+
+
+**代码没看懂。要整理下，再理解下。**
+
+STL 的 count 函数原型如下
+
+    
+    template<class InputIterator, class T> inline
+       size_t count(
+          InputIterator First,
+          InputIterator Last,
+          const T& Value
+    )
+
+
+algorithm 头文件定义了一个 count 的函数，其功能类似于 find 。 这个函数使用一对迭代器和一个值做参数，返回这个值出现次数的统计结果。 count 只能统计某个特定元素出现的次数，不够灵活，因此 STL 提供了 count_if，前两个参数是iterator(迭代器)，表示查找半闭合区间的前后两个位置，第三个参数为一个用户定义的predicate function object，而 predicate 意思就是说是一个返回值是bool型的仿函数 (function object，也称functor)。**没看懂，要总结一下，这个algorithm里面的函数，count_if 和 count 和仿函数。**
+
+    
+    template<class _InIt, class _Pr> inline
+    typename iterator_traits<_InIt>::difference_type
+    count_if(_InIt _First, _InIt _Last, _Pr _Pred);
+
+
+代码如下：
+
+    
+    #include <iostream>
+    #include <vector>
+    #include <algorithm>
+    
+    using namespace std;
+    
+    class Solution {
+    public:
+    	int MoreThanHalfNum_Solution(vector<int> numbers) {
+    // 		return numbers.empty() ? 0 : *find_if(numbers.begin(), numbers.end(), [numbers](int x) {
+    // 			return (count(numbers.begin(), numbers.end(), x) * 2) > numbers.size();
+    // 		});
+    // 
+    		if (numbers.size() == 0) {
+    			return 0;
+    		}
+    		for (int i = 0; i < numbers.size(); i++) {
+    			cout << "num = " << numbers[i] 
+    				<< ", count = " << count(numbers.begin(), numbers.end(), numbers[i]) << endl;
+    			if (count(numbers.begin(), numbers.end(), numbers[i]) * 2 > numbers.size()) {
+    				return numbers[i];
+    			}
+    		}
+    		return 0;
+    	}
+    };
+    
+    int main() {
+    	int arr1[] = { 5, 5, 2, 2, 3, 3, 5, 5, 5 };
+    	vector<int> vec1(arr1, arr1 + 9);
+    	Solution solu;
+    	cout << solu.MoreThanHalfNum_Solution(vec1) << endl;
+    	cout << endl;
+    
+    	int arr2[] = { 1, 2 };
+    	vector<int> vec2(arr2, arr2 + 2);
+    	cout << solu.MoreThanHalfNum_Solution(vec2) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    num = 5, count = 5
+    5
+    
+    num = 1, count = 1
+    num = 2, count = 1
+    0
+
+
+上面的代码，为什么运行被注释掉的那个会报错？而且，运行一个solu.MoreThanHalfNum_Solution 的时候是可以的，运行两个的时候就出错了，错误如下：
+
+    
+    Program: C:\Windows\SYSTEM32\MSVCP120D.dll
+    File: e:\11.programfiles\vs\vc\include\vector
+    Line: 72
+    
+    Expression: vector iterator not dereferencable
+
+
+
+
+## 使用 map 来建立数字到出现次数的映射
+
+
+我们可以使用一个map来建立数字到出现次数的一个映射，这样最后遍历找到出现次数大于数组长度一半的那个元素即可。嗯，这个还比较简单。
+
+代码如下：
+
+    
+    #include <iostream>
+    #include <vector>
+    #include <algorithm>
+    #include <map>
+    
+    using namespace std;
+    
+    
+    class Solution {
+    public:
+    	int MoreThanHalfNum_Solution(vector<int> numbers) {
+    		map<int, int> hmap; //数字与出现次数的映射
+    		int nsize = numbers.size();
+    
+    		//进行统计
+    		for (int i = 0; i < nsize; i++) {
+    			if (hmap.find(numbers[i]) != hmap.end()) {
+    				hmap[numbers[i]] += 1;
+    			}
+    			else {
+    				hmap[numbers[i]] = 1;
+    			}
+    		}
+    
+    
+    
+    		//  查找到出现次数最多的那个元素
+    		for (map<int, int>::iterator it = hmap.begin();it != hmap.end();++it) {
+    			if (it->second * 2 > nsize) {
+    				cout << it->first << ", " << it->second << endl;
+    				return it->first;
+    			}
+    		}
+    		return 0;
+    	}
+    };
+    
+    int main() {
+    	int arr1[] = { 5, 5, 2, 2, 3, 3, 5, 5, 5 };
+    	vector<int> vec1(arr1, arr1 + 9);
+    	Solution solu;
+    	cout << solu.MoreThanHalfNum_Solution(vec1) << endl;
+    	cout << endl;
+    
+    	int arr2[] = { 1, 2 };
+    	vector<int> vec2(arr2, arr2 + 2);
+    	cout << solu.MoreThanHalfNum_Solution(vec2) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    5, 5
+    5
+    
+    0
+
+
+
+
+
+
+
+## 变种以及扩展 （**未总结**）
+
+
+昨天看到了扩展问题：
+
+**如果有且只有一个的出现最多的那个数字出现的次数是数组长度的一半呢？又或者是一半减1？**
+
+我们还是继续从我们之前的那道超过一半的数来入手，我们的"阵地攻守"的解法是每遇到2个不同的数，就删除，剩下的就是那个出现次数超过一半的数字。
+
+这个方法对于超过一半的情况可以成立，对于扩展问题就不再行得通了。
+
+但是他们的本质是相同的：**为什么是这个本质呢？**
+
+
+
+ 	
+  * 对于一个长度为 2n 的数组，如果有个数出现次数超过 n，那么至少有 1 组，连续 2 个数是重复的相应的，于是 "阵地攻守" 中每次不同的元素就删除（同归于尽）就可以找到那个元素
+
+ 	
+  * 如果出现的次数为 n，那么至少有一组连续 3 个数是重复。每 3 个不重复的数删除一次
+
+ 	
+  * 如果是 n-1， 就是一组至少有连续 4 个数重复。每 4 个不重复的数删除一次
+
+
+这两种变种可以参考：**后续****还是要总结下的。**
+
+
+
+ 	
+  * [编程之美系列之二——寻找出现频率超过一半的数](http://www.cnblogs.com/jy02414216/archive/2011/03/04/1970497.html)
+
+ 	
+  * [微软面试100题(74):数组中出现次数超过长度的一半/一半减一的元素](http://blog.chinaunix.net/uid-26456800-id-3383003.html)
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

@@ -1,0 +1,292 @@
+
+
+# REF
+- [CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+
+  * aaa
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+输入一个链表，反转链表后，输出链表的所有元素。
+
+链表的node是这样的：
+
+
+    struct ListNode
+    {
+    public :
+    	int val;
+    	struct ListNode *next;
+    };
+
+
+
+
+# 题目解答
+
+
+
+
+## 三指针滑动 pPrev  pNode  pNext
+
+
+其实我们看到这个题目，首先想到的就是是不是可以用三个指针同时滑动，然后操作指针的指向来完成反转？ 比如 pPrev  pNode  pNext ：
+
+
+
+
+  * 我们先将 pPrev 指向当前结点之前的结点，把 pNode 指向当前结点。嗯，准备条件已经做好了。
+
+
+  * 然后用 pNext 指向当前结点的下一个结点：pNext = pNode->next，OK这个时候下一个结点就不会丢失了，我们开始集中精力处理当前这个结点的反转。
+
+
+  * 我们把当前结点的 next 指向它之前的结点：pNode->next = pPrev，OK，就这样，这个结点我们就已经处理好了。
+
+
+  * 下面就开始依次处理下一个结点：把pPrev指向当前结点：pPrev = pNode ，把pNode指向之前保存的下一个结点：pNode = pNext。
+
+
+  * OK，不断循环就行。
+
+
+代码如下：
+
+
+    #include <iostream>
+    using namespace std;
+
+
+    struct ListNode {
+    public:
+    	int val;
+    	struct ListNode *next;
+    };
+
+
+    class Solution {
+    public:
+    	ListNode* ReverseList(ListNode* pHead) {
+
+    		ListNode *pReversedHead = NULL;
+
+    		ListNode *pNode = pHead;
+    		ListNode *pPrev = NULL;
+    		ListNode *pNext = NULL;
+
+    		while (pNode != NULL) {
+    			pNext = pNode->next;        //  首先保存其下一个节点
+    			pNode->next = pPrev;        //  然后把当前的node 的next 指针指向之前的node
+    			pPrev = pNode;              //  准备处理下一个node，把pPrev指向当前的 node
+    			pNode = pNext;              //  准备处理下一个node，把pNode指向下一个node
+    		}
+    		return pPrev;           //  最后pPrev指针指向的那个节点就是原来的未指针，新的头指针 是的
+    	}
+    };
+
+
+    int main() {
+    	//建立链表
+    	ListNode list[5];
+    	list[0].val = 1;
+    	list[0].next = &list[1];
+    	list[1].val = 2;
+    	list[1].next = &list[2];
+    	list[2].val = 3;
+    	list[2].next = &list[3];
+    	list[3].val = 4;
+    	list[3].next = &list[4];
+    	list[4].val = 5;
+    	list[4].next = NULL;
+    	//输出当前的情况
+    	ListNode *node = list;
+    	while (node != NULL) {
+    		cout << node->val;
+    		node = node->next;
+    	}
+    	cout << endl;
+    	//进行反转
+    	Solution solu;
+    	node = solu.ReverseList(list);
+    	while (node != NULL) {
+    		cout << node->val;
+    		node = node->next;
+    	}
+    	cout << endl;
+
+    	return 0;
+    }
+
+
+输出：
+
+
+    12345
+    54321
+
+
+OK，上面的方法还是很厉害的，而且原地反转，很 nice。
+
+
+## 那么如果可以建立新链表呢？
+
+
+如果允许你建立新链表呢？
+
+比如说我们可以建立一个新链表，每次插入元素的时候都是在头结点的前一个位置插入，那么这个链表元素的顺序就正好跟插入的顺序相反
+
+这个思路也很好，因为他的过程其实就是构建一个每次插入只是在头结点前面的链表的过程。
+
+当然，这过程中也要注意保存原来链表中的 node 的 next 防止丢失。
+
+
+    #include <iostream>
+    using namespace std;
+
+
+    struct ListNode {
+    public:
+    	int val;
+    	struct ListNode *next;
+
+    };
+
+
+    class Solution {
+    public:
+    	ListNode* ReverseList(ListNode* pHead) {
+    		if (pHead == NULL) {
+    			return NULL;
+    		}
+
+    		ListNode *pNewNode = NULL;
+
+    		ListNode *pNode = pHead;
+    		ListNode *pNext = NULL; //用来保存旧链表里面的node的next指针
+
+    		// 对于新链表的头进行处理
+    		pNewNode = pNode;
+    		pNode = pNode->next;           //  移动到下一个node
+    		pNewNode->next = NULL;
+    		cout << pNewNode->val << " 已被作为表头加入链表 " << endl;
+
+    		//  循环将node放到新链表中
+    		while (pNode != NULL) {
+    			pNext = pNode->next;				//  保存next指向，防止丢失
+    			pNode->next = pNewNode;		//将pNode节点插入到nNode链表的头部
+    			pNewNode = pNode;				//把pNewNode的指针重新指向链表头
+    			cout << pNewNode->val << " 已被作为表头加入链表 " << endl;
+    			pNode = pNext;          //  移动指针 开始处理下一个 node
+    		}
+    		return pNewNode;
+    	}
+    };
+
+
+    int main() {
+    	//初始化数据
+    	ListNode list[5];
+    	list[0].val = 1;
+    	list[0].next = &list[1];
+    	list[1].val = 2;
+    	list[1].next = &list[2];
+    	list[2].val = 3;
+    	list[2].next = &list[3];
+    	list[3].val = 4;
+    	list[3].next = &list[4];
+    	list[4].val = 5;
+    	list[4].next = NULL;
+
+    	//打印原始序列
+    	ListNode *node = list;
+    	while (node != NULL) {
+    		cout << node->val;
+    		node = node->next;
+    	}
+    	cout << endl;
+
+    	//反转
+    	Solution solu;
+    	node = solu.ReverseList(list);
+    	while (node != NULL) {
+    		cout << node->val;
+    		node = node->next;
+    	}
+    	cout << endl;
+
+    	return 0;
+    }
+
+
+输出：
+
+
+    12345
+    1 已被作为表头加入链表
+    2 已被作为表头加入链表
+    3 已被作为表头加入链表
+    4 已被作为表头加入链表
+    5 已被作为表头加入链表
+    54321
+
+
+可见，这个还是很方便的。比上面的三指针的方法稍微方便了点。
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT

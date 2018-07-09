@@ -1,0 +1,302 @@
+
+# REF
+- [CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+
+  * aaa
+
+
+
+
+# MOTIVE
+
+
+
+
+
+
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# 题目
+
+
+
+
+## 题目描述
+
+
+输入一个链表，从尾到头打印链表每个节点的值。
+
+
+## 输入描述
+
+
+输入为链表的表头
+
+
+## 输出描述
+
+
+输出为需要打印的“新链表”的表头
+
+
+# 问题解决
+
+
+
+
+## 首先我们想到的就是**反转链表**
+
+
+首先我们想到的就是**反转链表**了，如果把链表反转了，然后再返回头，这样再次遍历的时候就相当于从尾到头打印了。嗯，是这样，但是有个问题：
+
+修改输入数据真的可行么？
+
+在面试时候，如果我们打算修改输入的数据，最好先问问面试官是不是允许修改
+
+因为这里的打印通常只是一个只读操作，因此我们实际上肯定不希望输入时候修改链表的内容的。
+
+
+## 然后我们想到，是不是可以用栈呢？先进后出
+
+
+看到题目中的要求：从尾往头输出，好像可以把链表结点先放在栈里，然后再读出来。如下：
+
+每经过一个结点的时候，把该结点放到一个栈中。当遍历完整个链表后，再从栈顶开始逐个输出结点的值，此时输出的结点的顺序已经反转过来了。嗯，也是个不错的方法
+
+代码如下：
+
+
+    #include <iostream>
+
+    #include <stack>
+    #include <vector>
+
+    using namespace std;
+
+
+    struct ListNode
+    {
+    public:
+    	int val;
+    	struct ListNode *next;
+
+    	/*ListNode(int x) :
+    	val(x), next(NULL)
+    	{
+    	}*/
+    };
+
+
+    class Solution
+    {
+    public:
+    	vector<int> printListFromTailToHead(struct ListNode* head)
+    	{
+    		ListNode *node = head;
+    		stack<int> st;
+    		int count = 0;
+    		//将值放在stack中
+    		while (node != NULL)
+    		{
+    			cout << node->val << "in stack" << endl;
+    			st.push(node->val);
+    			count++;
+    			node = node->next;
+    		}
+
+    		//  为了效率我们静态vector开辟空间
+    		vector<int> res(count);
+    		cout << "count = " << count << endl;
+    		for (int i = 0; i < count && st.empty() != true; i++)
+    		{
+    			cout << st.top() << "in vector" << endl;
+    			// 如果静态开辟vector不能使用push_back 否则会在原来数据的基础上增加。的确的，看来vector还是需要总结下
+    			// res.push_back(st.top( ));
+    			res[i] = st.top();
+    			st.pop();
+    		}
+    		return res;
+    	}
+    };
+
+
+
+
+
+    int main()
+    {
+    	//初始化listNode
+    	ListNode list[4];
+    	list[0].val = 1;
+    	list[0].next = &list[1];
+    	list[1].val = 2;
+    	list[1].next = &list[2];
+    	list[2].val = 3;
+    	list[2].next = &list[3];
+    	list[3].val = 4;
+    	list[3].next = NULL;
+
+    	Solution solu;
+    	vector<int> res = solu.printListFromTailToHead(list);
+    	//打印排序结果
+    	cout << "there are " << res.size() << "datas in vector" << endl;
+    	for (size_t i = 0; i < res.size(); i++)
+    	{
+    		cout << res[i] << endl;
+    	}
+    	return 0;
+    }
+
+
+输出：
+
+
+    1in stack
+    2in stack
+    3in stack
+    4in stack
+    count = 4
+    4in vector
+    3in vector
+    2in vector
+    1in vector
+    there are 4datas in vector
+    4
+    3
+    2
+    1
+
+
+
+
+## 既然用栈，那么可不可以递归呢？
+
+
+递归在本质上就是一个栈结构，一般用栈可以解决的，也可以尝试使用递归，于是很自然地想到用递归来实现。因此我们可以这样：
+
+每访问到一个结点的时候，先递归输出它后面的结点，再输出该结点自身，这样链表的输出结构就反过来了。嗯
+
+算法流程如下
+
+
+
+
+  * 只要当前节点不为NULL，也就是链表没到头，就一直递归
+
+
+  * 在递归结束时，将元素压入
+
+
+这样当递归结束进行返回时，会将递归栈中的数据依次压入 vector 中，而压入的顺序就是栈中的顺序，即从尾到头。
+
+代码如下：
+
+
+    #include <iostream>
+
+    #include <stack>
+    #include <vector>
+
+    using namespace std;
+
+
+    struct ListNode
+    {
+    public:
+    	int val;
+    	struct ListNode *next;
+
+    	/*ListNode(int x) :
+    	val(x), next(NULL)
+    	{
+    	}*/
+    };
+
+    class Solution
+    {
+    public:
+    	vector<int> res;
+    	vector<int> printListFromTailToHead(struct ListNode* head)
+    	{
+    		if (head != NULL)
+    		{
+    			printListFromTailToHead(head->next);
+    			res.push_back(head->val);
+    		}
+    		return res;
+    	}
+    };
+
+
+
+    int main()
+    {
+    	//初始化listNode
+    	ListNode list[4];
+    	list[0].val = 1;
+    	list[0].next = &list[1];
+    	list[1].val = 2;
+    	list[1].next = &list[2];
+    	list[2].val = 3;
+    	list[2].next = &list[3];
+    	list[3].val = 4;
+    	list[3].next = NULL;
+
+    	Solution solu;
+    	vector<int> res = solu.printListFromTailToHead(list);
+    	//打印排序结果
+    	cout << "there are " << res.size() << "datas in vector" << endl;
+    	for (size_t i = 0; i < res.size(); i++)
+    	{
+    		cout << res[i] << endl;
+    	}
+    	return 0;
+    }
+
+
+输出：
+
+
+    there are 4datas in vector
+    4
+    3
+    2
+    1
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT

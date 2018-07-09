@@ -1,0 +1,259 @@
+---
+author: evo
+comments: true
+date: 2018-05-16 04:30:33+00:00
+layout: post
+link: http://106.15.37.116/2018/05/16/%e7%ae%97%e6%b3%95%ef%bc%9a%e6%a0%91%e7%9a%84%e5%ad%90%e7%bb%93%e6%9e%84/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e6%a0%91%e7%9a%84%e5%ad%90%e7%bb%93%e6%9e%84'
+title: 算法：树的子结构
+wordpress_id: 5822
+categories:
+- 随想与反思
+tags:
+- NOT_ADD
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+输入两颗二叉树 A，B，判断 B 是不是 A 的子结构。
+
+![](http://106.15.37.116/wp-content/uploads/2018/05/img_5afbade1894f8.png)
+
+
+## 数据格式
+
+
+二叉树Node如下：
+
+    
+    struct TreeNode {
+    	int val;
+    	struct TreeNode *left;
+    	struct TreeNode *right;
+    };
+
+
+
+
+# 题目解答
+
+
+首先，我们明确几个东西：
+
+题目中说输入两个二叉树，怎么输入的？我之前以为是 json 文件那种格式的，还需要解析什么的，看了这个代码之后，才发现就是用 TreeNode 拼出来的。
+
+然后，什么是子结构？子结构与子树是同一个概念吗？子树应该是树的一个分支，子结构是树的连在一起的一部分，并不一定是子树，也可能比子树少一些分支。**确认下。**
+
+OK，明确这两点之后，我们来看看到底怎么从 A 中发现 B 相同结构的子树。
+
+其实主要分为两部分：
+
+
+
+ 	
+  * 第一步，在树 A 中找到和 B 的根节点的值一样的结点。 这实际上就是树的遍历。可以用递归实现。
+
+ 	
+  * 第二步，如果 1 找到了，那么就判断树 A 中以 R 为根结点的子树是不是包含和树 B 一样的结构。 可以对每个结点进行递归比较，如果每个结点都相同，而且 B 中还有一些 A 中没有的，那么 B 就包含了 A 。
+
+
+OK，主要就是这两步。
+
+
+
+代码如下：
+
+    
+    #include <iostream>
+    #include <string>
+    using namespace std;
+    
+    
+    struct TreeNode {
+    	int val;
+    	struct TreeNode *left;
+    	struct TreeNode *right;
+    };
+    
+    class Solution {
+    public:
+    	//树中是否有这个小树的根结点
+    	bool HasSubtree(TreeNode* parent, TreeNode* child) {
+    		if (child == NULL || parent == NULL) {
+    			return false;
+    		}
+    		bool result;
+    		//  如果当前父树的节点与子树的根节点相同，则直接从父树的当前位置开始判定
+    		if (parent->val == child->val) {
+    			result = DoesParentHaveChild(parent, child);
+    		}
+    		if (result != true) {
+    			return HasSubtree(parent->left, child)      //  从左子树查找
+    				|| HasSubtree(parent->right, child);        //  从右子树中查找
+    		}
+    		else {
+    			return true;
+    		}
+    	}
+    
+    	//这个结点对应的子树是不是包含这个小树
+    	bool DoesParentHaveChild(TreeNode *parent, TreeNode *child) {
+    
+    		if (child == NULL) { //  子树为NULL，那么必然是子树
+    			return true;
+    		}
+    		else if (parent == NULL) { //子树不是NULL, 但是父亲树是NULL，那么肯定不是子树
+    			return false;
+    		}
+    
+    		//  两个节点的值不相等，那么两个树必然不是父子关系
+    		if (parent->val != child->val) {
+    			return false;
+    		}
+    		else {     // 否则当前节点当前相等，则递归的判断左子树和右子树对应节点是否相同
+    			return DoesParentHaveChild(parent->left, child->left)
+    				&& DoesParentHaveChild(parent->right, child->right);
+    		}
+    	}
+    };
+    
+    
+    
+    int main() {
+    
+    	//准备两个树
+    	TreeNode tree_big[8];
+    	tree_big[0].val = 8;
+    	tree_big[0].left = &tree_big[1];
+    	tree_big[0].right = &tree_big[2];
+    	tree_big[1].val = 8;
+    	tree_big[1].left = &tree_big[3];
+    	tree_big[1].right = &tree_big[4];
+    	tree_big[2].val = 7;
+    	tree_big[2].left = NULL;
+    	tree_big[2].right = NULL;
+    	tree_big[3].val = 9;
+    	tree_big[3].left = NULL;
+    	tree_big[3].right = NULL;
+    	tree_big[4].val = 2;
+    	tree_big[4].left = &tree_big[5];
+    	tree_big[4].right = &tree_big[6];
+    	tree_big[5].val = 4;
+    	tree_big[5].left = NULL;
+    	tree_big[5].right = NULL;
+    	tree_big[6].val = 7;
+    	tree_big[6].left = NULL;
+    	tree_big[6].right = NULL;
+    
+    	TreeNode tree_small[3];
+    	tree_small[0].val = 8;
+    	tree_small[0].left = &tree_small[1];
+    	tree_small[0].right = &tree_small[2];
+    	tree_small[1].val = 9;
+    	tree_small[1].left = NULL;
+    	tree_small[1].right = NULL;
+    	tree_small[2].val = 2;
+    	tree_small[2].left = NULL;
+    	tree_small[2].right = NULL;
+    
+    	Solution solu;
+    	bool is_has = solu.HasSubtree(tree_big, tree_small);
+    	string res = is_has ? "has subtrue" : "not has subtrue";
+    	cout << "result: " << res << endl;
+    
+    	return 0;
+    }
+
+
+输出：
+
+    
+    result: has subtrue
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

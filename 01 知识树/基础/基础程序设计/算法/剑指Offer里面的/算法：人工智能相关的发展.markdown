@@ -1,0 +1,23 @@
+---
+author: evo
+comments: true
+date: 2018-03-23 12:13:44+00:00
+layout: post
+link: http://106.15.37.116/2018/03/23/ai-develop/
+slug: ai-develop
+title: 人工智能相关的发展
+wordpress_id: 698
+categories:
+- 随想与反思
+---
+
+<!-- more -->
+
+
+## 缘由：
+
+
+知道历史的发展之后，对应的技术会与那个时代联系起来，知识会更加又触感
+
+
+## 要点：

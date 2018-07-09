@@ -1,0 +1,16 @@
+---
+author: evo
+comments: true
+date: 2018-02-25 06:06:50+00:00
+layout: post
+link: http://106.15.37.116/2018/02/25/random_thoughts-2/
+slug: random_thoughts-2
+title: 随想
+wordpress_id: 158
+categories:
+- 随想与反思
+post_format:
+- 日志
+---
+
+只有学习与训练才能让我心安

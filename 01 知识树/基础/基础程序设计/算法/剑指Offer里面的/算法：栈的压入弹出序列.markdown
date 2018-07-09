@@ -1,0 +1,419 @@
+---
+author: evo
+comments: true
+date: 2018-05-18 06:09:02+00:00
+layout: post
+link: http://106.15.37.116/2018/05/18/%e7%ae%97%e6%b3%95%ef%bc%9a%e6%a0%88%e7%9a%84%e5%8e%8b%e5%85%a5%e5%bc%b9%e5%87%ba%e5%ba%8f%e5%88%97/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e6%a0%88%e7%9a%84%e5%8e%8b%e5%85%a5%e5%bc%b9%e5%87%ba%e5%ba%8f%e5%88%97'
+title: 算法：栈的压入弹出序列
+wordpress_id: 5972
+categories:
+- 随想与反思
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否为该栈的弹出顺序。
+
+假设压入栈的所有数字均不相等。
+
+
+## 样例
+
+
+例如序列 1,2,3,4,5是某栈的压入顺序，
+
+序列 4,5,3,2,1 是该压栈序列对应的一个弹出序列，
+
+但 4,3,5,1,2 就不可能是该压栈序列的弹出序列。
+
+
+## 
+
+
+
+
+# 题目解答
+
+
+
+
+## 开一个辅助栈来模拟入栈出栈过程
+
+
+我们第一个想到的就是，直接模拟入栈出栈的过程 。
+
+假设 pa 为入栈序列，pb 为出战序列，辅助栈 st：我们每次试图从 st 中取出 pb 的栈底元素，如果有，就取出，如果没有，就把 pa 的一个元素入栈。
+
+如果最后，输入队列已经输入完了，而且辅助栈为空，说明是可以输出这个队列的。
+
+完整代码如下：
+
+    
+    #include <iostream>
+    #include <stack>
+    #include <vector>
+    
+    using namespace std;
+    
+    class Solution {
+    public:
+    	bool IsPopOrder(vector<int> pushV, vector<int> popV) {
+    		//检查是不是空的
+    		if (pushV.size() == 0 || popV.size() == 0) {
+    			return false;
+    		}
+    
+    		//先放一个进辅助栈
+    		stack<int> sTemp;//用来临时存放的栈
+    
+    
+    		int push_times = 0;
+    		int pop_times = 0;
+    		while (true) {
+    			//如果 pop序列已经被全部输出了，OK
+    			if (pop_times == popV.size() ) {
+    				return true;
+    			}
+    			//说明这个时候push已经结束了，但是pop还没有找到需要的，还想要再push
+    			if (push_times == pushV.size() + 1) {
+    				return false;
+    			}
+    
+    			//  试着去pop
+    			if (sTemp.empty() != true && sTemp.top() == popV[pop_times]) {
+    				//满足条件 就pop
+    				cout << "pop  " << pop_times << "  " << popV[pop_times] << endl;
+    				sTemp.pop();
+    				pop_times++;
+    			}
+    			else {
+    				//不满足条件就继续push
+    				if (push_times < pushV.size()) {
+    					sTemp.push(pushV[push_times]);
+    					cout << "push  " << push_times << "  " << pushV[push_times] << endl;
+    				}
+    				push_times++;
+    			}
+    		}
+    	}
+    };
+    
+    int main() {
+    	int nPush[5] = { 1, 2, 3, 4, 5 };//输入序列
+    
+    	int nPop1[5] = { 4, 5, 3, 2, 1 };//用来测试的序列
+    	int nPop2[5] = { 4, 3, 5, 1, 2 };
+    	int nPop3[5] = { 5, 4, 3, 2, 1 };
+    	int nPop4[5] = { 4, 5, 2, 3, 1 };
+    
+    	Solution solu;
+    
+    	cout << solu.IsPopOrder(vector<int>(nPush, nPush + 5), vector<int>(nPop1, nPop1 + 5)) << endl;
+    	cout << solu.IsPopOrder(vector<int>(nPush, nPush + 5), vector<int>(nPop2, nPop2 + 5)) << endl;
+    	cout << solu.IsPopOrder(vector<int>(nPush, nPush + 5), vector<int>(nPop3, nPop3 + 5)) << endl;
+    	cout << solu.IsPopOrder(vector<int>(nPush, nPush + 5), vector<int>(nPop4, nPop4 + 5)) << endl;
+    
+    	return 0;
+    }
+
+
+输出：
+
+    
+    push  0  1
+    push  1  2
+    push  2  3
+    push  3  4
+    pop  0  4
+    push  4  5
+    pop  1  5
+    pop  2  3
+    pop  3  2
+    pop  4  1
+    1
+    push  0  1
+    push  1  2
+    push  2  3
+    push  3  4
+    pop  0  4
+    pop  1  3
+    push  4  5
+    pop  2  5
+    0
+    push  0  1
+    push  1  2
+    push  2  3
+    push  3  4
+    push  4  5
+    pop  0  5
+    pop  1  4
+    pop  2  3
+    pop  3  2
+    pop  4  1
+    1
+    push  0  1
+    push  1  2
+    push  2  3
+    push  3  4
+    pop  0  4
+    push  4  5
+    pop  1  5
+    0
+
+
+思路还是很简单清晰的，那么有没有什么可以优化的呢？
+
+
+## 不用辅助栈，但是还是模拟栈的操作
+
+
+我们不用辅助栈了，而直接用 pushV 这个入栈序列作为我们的模拟栈，而用 top 去维护入栈出栈的操作。
+
+这种方法时间复杂度 \(O(n)\) ，空间复杂度 \(O(1)\) 。
+
+但是有个缺陷，会修改输入参数 pushV 的值。
+
+    
+    #include <iostream>
+    #include <stack>
+    #include <vector>
+    
+    using namespace std;
+    
+    
+    class Solution {
+    public:
+    	bool IsPopOrder(vector<int> pushV, vector<int> popV) {
+    		if (pushV.size() == 0 || popV.size() == 0) {
+    			return false;
+    		}
+    
+    		int top = -1;
+    		++top;
+    		cout << "push" << pushV[top] << endl;
+    
+    
+    		int pushPoint = 0, popPoint = 0;
+    		while (pushPoint < pushV.size() && popPoint < popV.size()) {
+    			//  当前栈顶元素正好是出栈序列中的元素
+    			if (top != -1 && pushV[top] == popV[popPoint]) {
+    				cout << "pop" << popV[popPoint] << endl;
+    				// 模拟出栈的过程
+    				top--;
+    				popPoint++;
+    			}
+    			else {
+    				//  模拟入栈的过程，每次入栈push都增加，然后把push的地方的值拷贝到top的地方
+    				if (pushPoint < (pushV.size()-1)) {
+    					pushV[++top] = pushV[++pushPoint];
+    					cout << "push" << pushV[pushPoint] << endl;
+    				}
+    				else {
+    					pushPoint++;
+    				}
+    			}
+    		}
+    		cout << top << "	 " << pushPoint << "	 " << popPoint << endl;
+    		return (top == -1);
+    	}
+    };
+    
+    int main() {
+    	int nPush[5] = { 1, 2, 3, 4, 5 };//输入序列
+    
+    	int nPop1[5] = { 4, 5, 3, 2, 1 };//用来测试的序列
+    	int nPop2[5] = { 4, 3, 5, 1, 2 };
+    	int nPop3[5] = { 5, 4, 3, 2, 1 };
+    	int nPop4[5] = { 4, 5, 2, 3, 1 };
+    
+    	Solution solu;
+    
+    	cout << solu.IsPopOrder(vector<int>(nPush, nPush + 5), vector<int>(nPop1, nPop1 + 5)) << endl;
+    	cout << solu.IsPopOrder(vector<int>(nPush, nPush + 5), vector<int>(nPop2, nPop2 + 5)) << endl;
+    	cout << solu.IsPopOrder(vector<int>(nPush, nPush + 5), vector<int>(nPop3, nPop3 + 5)) << endl;
+    	cout << solu.IsPopOrder(vector<int>(nPush, nPush + 5), vector<int>(nPop4, nPop4 + 5)) << endl;
+    
+    	return 0;
+    }
+
+
+输出：
+
+    
+    push1
+    push2
+    push3
+    push4
+    pop4
+    push5
+    pop5
+    pop3
+    pop2
+    pop1
+    -1       4       5
+    1
+    push1
+    push2
+    push3
+    push4
+    pop4
+    pop3
+    push5
+    pop5
+    1        5       3
+    0
+    push1
+    push2
+    push3
+    push4
+    push5
+    pop5
+    pop4
+    pop3
+    pop2
+    pop1
+    -1       4       5
+    1
+    push1
+    push2
+    push3
+    push4
+    pop4
+    push5
+    pop5
+    2        5       2
+    0
+
+
+可见，这种方法其实与第一种方法本质上是一致的，只是用 top 模拟了栈的操作而已。
+
+那么还有什么特别的方法吗？
+
+
+## 发现规律
+
+
+其实我们可以看到：
+
+对于 pop [3,2,4,5,1] 中的3来说，我后面要 pop 的数字 2 必然是 push [1,2,3,4,5] 中的 3 的前一个数字，或者后面的数字。
+
+以此类推。当我们看 2 后面的 4 的时候，这时候的 push 就是 [1,2,4,5]。
+
+OK，因此，我就可以遍历pop中的数字，然后就能得出这个序列是不是由 push 出栈得到。
+
+    
+    # -*- coding:utf-8-*-
+    class Solution:
+        def IsPopOrder(self, pushV, popV):
+            # write code here
+            if len(pushV) != len(popV):
+                return False
+            elif len(pushV) == 0:
+                return False
+            x = popV[0]
+            if x not in pushV:
+                return False
+            for i in range(len(popV)):
+                position = pushV.index(popV[i])
+                if len(pushV) == 1:
+                    if pushV[0] == popV[i]:
+                        return True
+                try:
+                    if popV[i + 1] == pushV[position - 1]:
+                        pushV.remove(pushV[position])
+                    elif popV[i + 1] in pushV[position:]:
+                        pushV.remove(pushV[position])
+                    else:
+                        return False
+                except IndexError:
+                    return False
+            else:
+                return True
+
+
+**这个是 python 代码，c++ 代码怎么写？要自己写下。**
+
+**对于 vector 的应用，其中的erase、remove 什么的要好好总结下，**
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

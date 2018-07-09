@@ -1,0 +1,80 @@
+
+
+
+
+
+嵌入式选择与k正则化
+
+
+在过滤式和包裹式特征选择方法中，特征选择过程与学习器训练过程有明显的分别;与此不同，嵌入式特征选择是将特征选择过程与学习器训练过程融 为一体，两者在同一个优化过程中完成，即在学习器训练过程中自动地进行了特征选择.
+
+给定数据集 $D=\{(x_1,y_1),(x_2,y_2),\cdots ,(x_m,y_m)\}$ ,其中 $x\in \mathbb{R}^d$ ，$y\in \mathbb{R}$ .我们考虑最简单的线性回归模型，以平方误差为损失函数，则优化目标为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/b6IKe6GdcI.png?imageslim)
+
+
+当样本特征很多，而样本数相对较少时，式(11.5)很容易陷入过拟合.为了 缓解过拟合问题，可对式(11.5)引入正则化项.若使用L2范数正则化，则有
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/CmKAa8BfGG.png?imageslim)
+
+
+其中正则化参数 $\lambda>0$ .式(11.6)称为“岭回归” (ridge regression) ,通过引入 $L_2$ 范数正则化，确能显著降低过拟合的风险.
+
+那么，能否将正则化项中的 $L_2$ 范数替换为 $L_p$ 范数呢？答案是肯定的.若令 $p=1$ ,即采用 $L_1$ 范数，则有
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/iajBB23D1H.png?imageslim)
+
+其中正则化参数  $\lambda>0$ 。式(11.7)称为 LASSO (Least Absolute Shrinkage and Selection Operator).
+
+
+
+ $L_1$ 范数和 $L_2$ 范数正则化都有助于降低过拟合风险，但前者还会带来一个 额外的好处：它比后者更易于获得“稀疏”(sparse)解，即它求得的 w 会有更少的非零分量.
+
+为了理解这一点，我们来看一个直观的例子：假定 x 仅有两个属性，于是 无论式(11.6)还是(11.7)解出的 w 都只有两个分量，即 $w_1$,$w_2$,我们将其作为两个坐标轴，然后在图中绘制出式(11.6)与(11.7)的第一项的“等值线”，即在 $(w_1,w_2)$ 空间中平方误差项取值相同的点的连线，再分别绘制出 $L_1$ 范数与 $L_2$ 范数的等值线，即在$(w_1,w_2)$ 空间中 $L_1$ 范数取值相同的点的连线，以及 $L_2$ 范数取值相同的点的连线，
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/943jCmBh5K.png?imageslim)
+
+如图11.2所示.式(11.6)与(11.7)的解要在平方误差项与正则化项之间折中，即出现在图中平方误差项等值线与正则化项等值线相交处.由图11.2可看出，采用 $L_1$ 范数时平方误差项等值线与正则化项等值线的交点常出现在坐标轴上，即 $w_1$ 或 $w_2$ 为0,而在采用 $L_2$ 范数时，两者的交点常出现在某个象限中，即$w_1$ 或 $w_2$ 均非0;换言之，采用范数 $L_1$ 比 $L_2$ 范数更易于 得到稀疏解。
+
+
+注意到 $w$ 取得稀疏解意味着初始的 d 个特征中仅有对应着 $w$ 的非零分量 的特征才会出现在最终模型中，于是，求解 $L_1$ 范数正则化的结果是得到了仅采用一部分初始特征的模型；换言之，基于 $L_1$ 正则化的学习方法就是一种嵌入式特征选择方法，其特征选择过程与学习器训练过程融为一体，同时完成.<span style="color:red;">厉害</span>
+
+ $L_1$ 正则化问题的求解可使用近端梯度下降(Proximal Gradient Descent, 简称PGD).具体来说，令 $\triangledown$ 表示微分算子，对优化目标
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/9caEEGll0A.png?imageslim)
+
+若 $f(x)$ 可导，且 $\triangledown f$ 满足 L-Lipschitz 条件，即存在常数 $L>0$ 使得
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/0Gb7hBcdFD.png?imageslim)
+
+则在 $x_k$ 附近可将 $f(x)$ 通过二阶泰勒展式近似为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/kCKh8f975D.png?imageslim)
+
+其中 const 是与 $x$ 无关的常数，$\langle \cdot,\cdot\rangle$ 表示内积.显然，式(11.10)的最小值在如下 $x_{k+1}$ 获得：
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/Jjh2c8cFkK.png?imageslim)
+
+于是，若通过梯度下降法对 $f(x)$ 进行最小化，则每一步梯度下降迭代实际 上等价于最小化二次函数 $\hat{f}(x)$ .将这个思想推广到式(11.8)，则能类似地得到 其每一步迭代应为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/BG7I4KKF84.png?imageslim)
+
+即在每一步对 $f(x)$ 进行梯度下降迭代的同时考虑 $L_1$ 范数最小化.
+
+对于式(11.12),可先计算 $z=x_k-\frac{1}{L}\triangledown f(x_k)$ ，然后求解
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/mm8Am7E5D2.png?imageslim)
+
+
+令 $x^i$ 表示 x 的第 i 个分量，将式(11.13)按分量展开可看出，其中不存在 $x^ix^j(i\neq j)$ 这样的项，即 $x$ 的各分量互不影响，于是式(11.13)有闭式解
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/2GfAk2mmjE.png?imageslim)
+
+
+其中 $x_{k+1}^i$ 与 $z^i$ 分别是 $x_{k+1}$ 与 $z$ 的第 i 个分量.因此，通过 PGD 能使 LASSO 和其他基于 $L_1$ 范数最小化的方法得以快速求解。
+
+
+
+
+# REF
+1. 《机器学习》周志华

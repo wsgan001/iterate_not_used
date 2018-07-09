@@ -1,0 +1,409 @@
+---
+author: evo
+comments: true
+date: 2018-05-30 00:12:51+00:00
+layout: post
+link: http://106.15.37.116/2018/05/30/%e7%ae%97%e6%b3%95%ef%bc%9a%e6%8a%8a%e4%ba%8c%e5%8f%89%e6%a0%91%e6%89%93%e5%8d%b0%e6%88%90%e5%a4%9a%e8%a1%8c/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e6%8a%8a%e4%ba%8c%e5%8f%89%e6%a0%91%e6%89%93%e5%8d%b0%e6%88%90%e5%a4%9a%e8%a1%8c'
+title: 算法：把二叉树打印成多行
+wordpress_id: 7004
+categories:
+- 基础程序设计
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，所有版权属于原作者，原文已列在 ORIGINAL 中。为了方便个人学习做了整合、修改，仅供个人学习使用。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * 没怎么看，里面写了好几种方法。都要掌握。
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行。
+
+
+## 
+
+
+
+
+# 题目解答
+
+
+直接贴代码，只需要直接将我们层次遍历输出过程，变成将输入压入vector中即可
+
+    
+    #include <iostream>
+    #include <vector>
+    #include <deque>
+    #include <queue>
+    using namespace std;
+    
+    struct TreeNode {
+        int val;
+        struct TreeNode *left;
+        struct TreeNode *right;
+        TreeNode(int x = 0)
+            :val(x), left(NULL), right(NULL) {
+        }
+    };
+    
+    class Solution {
+        vector< vector<int> >   res;
+        vector<int>             curr;
+    public:
+        vector< vector<int> > Print(TreeNode *root) {
+            LevelOrder(root);
+            cout << endl;
+            LevelOrderDev(root);
+            cout << endl;
+            LevelOrderUsePoint(root);
+            cout << endl;
+            LevelOrderUseSize(root);
+            cout << endl;
+            LevelOrderUseEnd(root);
+            return this->res;
+        }
+    
+        int PrintLevel(TreeNode *root, int level) {
+            if (root == NULL || level < 0) {
+                return 0;
+            }
+            else if (level == 0) {
+                cout << root->val;
+                curr.push_back(root->val);        /// add for currult in vector
+    
+                return 1;
+            }
+            else {
+                return PrintLevel(root->left, level - 1) + PrintLevel(root->right, level - 1);
+            }
+        }
+    
+        void LevelOrder(TreeNode *root) {
+            curr.clear();           /// add for currult in vector
+            res.clear();
+            if (root == NULL) {
+                return;
+            }
+            for (int level = 0;; level++) {
+                if (PrintLevel(root, level) == 0) {
+                    break;
+                }
+                res.push_back(curr);
+                curr.clear();
+                cout << endl;
+            }
+        }
+    
+        //////////////////////////
+        //////////////////////////
+        void LevelOrderDev(TreeNode *root) {
+            curr.clear();           /// add for currult in vector
+            res.clear();
+    
+            if (root == NULL) {
+                return;
+            }
+            deque<TreeNode *> qFirst, qSecond;
+            qFirst.push_back(root);
+    
+            while (qFirst.empty() != true) {
+                while (qFirst.empty() != true) {
+                    TreeNode *temp = qFirst.front();
+                    qFirst.pop_front();
+    
+                    cout << temp->val;
+                    curr.push_back(temp->val);        /// add for currult in vector
+    
+                    if (temp->left != NULL) {
+                        qSecond.push_back(temp->left);
+                    }
+                    if (temp->right != NULL) {
+                        qSecond.push_back(temp->right);
+                    }
+                }
+                cout << endl;
+                res.push_back(curr);
+                curr.clear();
+    
+                qFirst.swap(qSecond);
+            }
+        }
+    
+    
+        //////////////////////////
+        //////////////////////////
+        void LevelOrderUsePoint(TreeNode *root) {
+            curr.clear();           /// add for currult in vector
+            res.clear();
+            if (root == NULL) {
+                return;
+            }
+    
+            vector<TreeNode*> vec;
+            vec.push_back(root);
+    
+            int cur = 0;
+            int end = 1;
+    
+            while (cur < vec.size()) {
+                end = vec.size();
+    
+                while (cur < end) {
+                    cout << vec[cur]->val;
+                    curr.push_back(vec[cur]->val);        /// add for currult in vector
+    
+                    if (vec[cur]->left != NULL) {
+                        vec.push_back(vec[cur]->left);
+    
+                    }
+                    if (vec[cur]->right != NULL) {
+                        vec.push_back(vec[cur]->right);
+                    }
+                    cur++;
+                }
+                res.push_back(curr);
+                curr.clear();
+                cout << endl;
+            }
+        }
+    
+    
+    
+        void LevelOrderUseSize(TreeNode *root) {
+            curr.clear();           /// add for currult in vector
+            res.clear();
+            if (root == NULL) {
+                return;
+            }
+    
+            int parentSize = 1, childSize = 0;
+            TreeNode *temp = NULL;
+    
+            queue<TreeNode *> q;
+            q.push(root);
+            while (q.empty() != true) {
+                temp = q.front();
+                cout << temp->val;
+                curr.push_back(temp->val);        /// add for currult in vector
+    
+                q.pop();
+    
+                if (temp->left != NULL) {
+                    q.push(temp->left);
+    
+                    childSize++;
+                }
+                if (temp->right != NULL) {
+                    q.push(temp->right);
+                    childSize++;
+                }
+    
+                parentSize--;
+                if (parentSize == 0) {
+                    parentSize = childSize;
+                    childSize = 0;
+                    res.push_back(curr);
+                    curr.clear();
+                    cout << endl;
+                }
+    
+            }
+        }
+    
+    
+        void LevelOrderUseEnd(TreeNode *root) {
+            curr.clear();           /// add for currult in vector
+            res.clear();
+            if (root == NULL) {
+                return;
+            }
+    
+            queue<TreeNode *> q;
+    
+            q.push(root);
+            q.push(NULL);
+    
+            while (q.empty() != true) {
+                TreeNode* node = q.front();
+                q.pop();
+    
+                if (node) {
+                    cout << node->val;
+                    curr.push_back(node->val);        /// add for currult in vector
+    
+                    if (node->left != NULL) {
+                        q.push(node->left);
+                    }
+                    if (node->right != NULL) {
+                        q.push(node->right);
+                    }
+                }
+                else if (q.empty() != true) {
+                    q.push(NULL);
+    
+                    res.push_back(curr);
+                    curr.clear();
+                    cout << endl;
+                }
+            }
+            if (curr.size() != 0) {
+                res.push_back(curr);
+                curr.clear();
+                cout << endl;
+            }
+        }
+    };
+    
+    int main() {
+        TreeNode tree[7];
+        tree[0].val = 8;
+        tree[0].left = &tree[1];
+        tree[0].right = &tree[2];
+        tree[1].val = 6;
+        tree[1].left = &tree[3];
+        tree[1].right = &tree[4];
+        tree[2].val = 6;
+        tree[2].left = &tree[5];
+        tree[2].right = &tree[6];
+        tree[3].val = 5;
+        tree[3].left = NULL;
+        tree[3].right = NULL;
+        tree[4].val = 7;
+        tree[4].left = NULL;
+        tree[4].right = NULL;
+        tree[5].val = 7;
+        tree[5].left = NULL;
+        tree[5].right = NULL;
+        tree[6].val = 5;
+        tree[6].left = NULL;
+        tree[6].right = NULL;
+    
+        Solution solu;
+        vector< vector<int> > res = solu.Print(tree);
+        for (int i = 0; i < res.size(); i++) {
+            for (int j = 0; j < res[i].size(); j++) {
+                cout << res[i][j];
+            }
+            cout << endl;
+        }
+        return 0;
+    }
+
+
+输出：
+
+    
+    8
+    66
+    5775
+    
+    8
+    66
+    5775
+    
+    8
+    66
+    5775
+    
+    8
+    66
+    5775
+    
+    8
+    66
+    5775
+    8
+    66
+    5775
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

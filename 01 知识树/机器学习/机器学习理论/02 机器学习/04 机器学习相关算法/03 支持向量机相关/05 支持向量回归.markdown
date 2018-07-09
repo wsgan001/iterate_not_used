@@ -1,0 +1,73 @@
+
+
+支持向量回归
+
+现在我们来考虑回归问题.给定训练样本$D=\{(x_1,y_1),(x_2,y_2),\cdots (x_m,y_m)\}，$y_i\in \mathbb{R}$ 。希望学得一个形如式(6.7)的回归模型，使得$f(x)$ 与 $y$ 尽可能接近，w 和 b 是待确定的模型参数.
+
+对样本$(x,y)$ ，传统回归模型通常直接基于模型输出$f(x) 与真实输出 $y$ 之间的差别来计算损失，当且仅当 $f(x)$ 与 $y$ 完全相同时，损失才为零。与此不同，支持向量回归(Support Vector Regression,简称SVR)假设我们能容忍 $f(x)$ 与 $y$ 之间最多有 $\epsilon$ 的偏差，即仅当 $f(x)$ 与 $y$ 之间的差别绝对值大于 $\epsilon$ 时才计算损失.如图6.6所示，这相当于以为 $f(x)$ 中心，构建了一个宽度为 $2\epsilon$ 的间隔带，若训练样本落入此间隔带，则认为是被预测正确的.
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/eAKlA3BEmJ.png?imageslim)
+
+于是，SVR问题可形式化为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/mjb41Hl5EL.png?imageslim)
+
+其中 C 为正则化常数，$\ell_{\epsilon}$ 是图6.7所示的 $\epsilon$-不敏感损失($\epsilon$-insensitive loss)函数
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/kDk2bEG74F.png?imageslim)
+
+引入松弛变量 $\xi_i$ 和 $\hat{\xi}_i$ 可将式(6.43)重写为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/HFJ5CHjhe4.png?imageslim)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/fLd8e3l8bE.png?imageslim)
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/Ke2LHdHL6D.png?imageslim)
+
+类似式 (6.36)，通过引入拉格朗日乘子 $\mu_i\geq 0$，$\hat{\mu}_i\geq 0$ ,$\alpha_i\geq 0$，$\hat{\alpha}_i\geq 0$ ，友拉格朗日乘子法可得到式子 (6.45) 的拉格朗日函数：
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/77Hh7b3l49.png?imageslim)
+
+将式(6.7)代入，再令 $L(w,b,\alpha,\hat{\alpha},\xi,\hat{\xi},\mu,\hat{\mu}) 对 $w$，$b$ ，$\xi_i$， $\hat{\xi}_i$ 的偏导为零可得：
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/5E2k8e8I03.png?imageslim)
+
+将式(6.47)-(6.S0)代入式(6.46)，即可得到 SVR 的对偶问题
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/73IKjl7d18.png?imageslim)
+
+上述过程中需满足 KKT 条件，即要求
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/jgdG9i32m7.png?imageslim)
+
+可以看出，当且仅当 $f(x_i)-y_i-\epsilon-\xi_i=0$ 时 $\alpha_i$ 能取非零值，当且仅当$y_i-f(x_i)-\epsilon-\hat{\xi}_i=0$ 时 $\hat{\alpha}_i$ 能取非零值。换言之，仅当样本 $(x_i,y_i)$ 不落入 $\epsilon$-间隔带中，相应的 $\alpha_i$ 和 $\hat{\alpha}_i$ 才能取非零值。
+
+此外，约束 $f(x_i)-y_i-\epsilon-\xi_i=0$ 和  $y_i-f(x_i)-\epsilon-\hat{\xi}_i=0$ 不能同时成立，因此 $\alpha_i$ 和 $\hat{\alpha}_i$ 中至少有一个为零。
+
+将式(6.47)代入(6.7),则SVR的解形如：
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/3E8DJfH8k2.png?imageslim)
+
+能使式(6.53)中的 $(\hat{\alpha}_i-\alpha_i)\neq 0$ 的样本即为 SVR 的支持向量，它们必落在 $\epsilon$-间隔带之外.显然，SVR的支持向量仅是训练样本的一部分，即其解仍具有稀疏性。
+
+由 KKT 条件(6.52)可看出，对每个样本 $(x_i,y_i)$ 都有 $(C-\alpha_i)\xi_i=0$ 且$\alpha_i(f(x_i)-y_i-\epsilon-\xi_i)=0$ 。于是。于是，在得到 $\alpha_i$ 后，若 $0<\alpha_i<C$ ，则必有 $\xi_i=0$ ，进而有：
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/B8230JIEgh.png?imageslim)
+
+
+因此，在求解式(6.51)得到 $\alpha_i$ 后，理论上来说，可任意选取满足 $0<\alpha_i<C$ 的样本通过式(6.54)求得 b。实践中常采用一种更鲁棒的办法：选取多个(或所有)满足条件  $0<\alpha_i<C$  的样本求解 b 后取平均值.
+
+若考虑特征映射形式(6.19)，则相应的，式(6.47)将形如
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/6ELkmDE3kA.png?imageslim)
+
+将式(6.55)代入(6.19)，则SVR可表示为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/GH49fiheL7.png?imageslim)
+
+其中 $\kappa(x_i,y_i)=\phi (x_i)^T\phi(x_j)$ 为核函数。
+
+
+
+
+# REF
+- 《机器学习》

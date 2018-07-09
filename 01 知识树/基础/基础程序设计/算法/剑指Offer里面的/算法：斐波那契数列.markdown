@@ -1,0 +1,56 @@
+---
+author: evo
+comments: true
+date: 2018-03-19 15:10:09+00:00
+layout: post
+link: http://106.15.37.116/2018/03/19/fib/
+slug: fib
+title: 斐波那契数列
+wordpress_id: 438
+categories:
+- 随想与反思
+tags:
+- '@todo'
+---
+
+<!-- more -->
+
+
+## 题目：
+
+
+打印出斐波那契数列。
+
+f(n)=f(n-1)+f(n-2)
+
+
+## 解答：
+
+
+普通的方法：
+
+    
+    def fib(n):
+        if n < 1:
+            raise ValueError
+        elif n <= 2:
+            return 1
+        else:
+            return fib(n - 1) + fib(n - 2)
+
+
+评价：
+
+在fib(100)的时候已经很慢了，因为重复的计算太多
+
+**好的方法要补充下**
+
+
+
+
+
+
+
+
+
+

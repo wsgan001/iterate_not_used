@@ -1,0 +1,106 @@
+---
+author: evo
+comments: true
+date: 2018-05-07 14:03:50+00:00
+layout: post
+link: http://106.15.37.116/2018/05/07/%e4%bb%80%e4%b9%88%e6%98%af%e8%bf%91%e4%bc%bc%e8%af%af%e5%b7%ae%e5%92%8c%e4%bc%b0%e8%ae%a1%e8%af%af%e5%b7%ae%ef%bc%9f/
+slug: '%e4%bb%80%e4%b9%88%e6%98%af%e8%bf%91%e4%bc%bc%e8%af%af%e5%b7%ae%e5%92%8c%e4%bc%b0%e8%ae%a1%e8%af%af%e5%b7%ae%ef%bc%9f'
+title: 什么是近似误差和估计误差？
+wordpress_id: 5411
+categories:
+- 随想与反思
+tags:
+- '@NULL'
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，推荐直接看原文**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[如何理解和区分近似误差和估计误差?](https://www.zhihu.com/question/60793482)  没有整理
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * **有人提到这个是PAC learning theory里的一个结论，这个于PCA是什么关系？ 如果是的话合并到PCA里面**
+
+ 	
+  * 要看下权威的资料是怎么说的。
+
+
+
+
+# MOTIVE
+
+
+
+
+
+ 	
+  * 在看knn相关的内容时候，提到了，k值越小，近似误差越小，估计误差越大，k值越大，近似误差越大，估计误差越小，什么是近似误差？什么是估计误差？
+
+
+
+
+
+* * *
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

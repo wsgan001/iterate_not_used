@@ -1,0 +1,105 @@
+---
+author: evo
+comments: true
+date: 2018-05-30 23:44:39+00:00
+layout: post
+link: http://106.15.37.116/2018/05/31/linux-source-%e7%94%a8%e6%b3%95/
+slug: linux-source-%e7%94%a8%e6%b3%95
+title: Linux source 用法
+wordpress_id: 7061
+categories:
+- 基础工具使用
+tags:
+- linux
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，所有版权属于原作者，原文已列在 ORIGINAL 中。为了方便个人学习做了整合、修改，仅供个人学习使用。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. [Linux中source命令的用法](https://blog.csdn.net/simon_dong618/article/details/1581132)
+
+ 	
+  2. [我使用过的Linux命令之source - 在当前shell环境中执行指定文件中的命令](http://codingstandards.iteye.com/blog/837935)
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+# 缘由
+
+
+在安装 django 的时候，教程上提了一句 source ~/venv/bin/activate   因此，想知道 source 是什么作用。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

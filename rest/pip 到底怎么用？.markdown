@@ -1,0 +1,74 @@
+---
+author: evo
+comments: true
+date: 2018-03-06 14:44:02+00:00
+layout: post
+link: http://106.15.37.116/2018/03/06/how-to-use-pip-finally__trashed/
+published: false
+slug: how-to-use-pip-finally__trashed
+title: pip 到底怎么用？
+wordpress_id: 253
+categories:
+- 随想与反思
+tags:
+- '@NULL'
+- '@todo'
+- '@want_to_know'
+- pip
+- python
+---
+
+<!-- more -->
+
+
+# 缘由：
+
+
+关于pip 一直心里有几个问题，一直不清楚，因此记下。后面要仔细解决。
+
+
+# 问题：
+
+
+
+
+## 1.对于python2与3而言，pip到底有什么区别？电脑上同时安装python2.3 怎么进行区分？
+
+
+
+
+## 2.pip管理与viturenv 管理有什么区别？一般用什么？哪个好？
+
+
+
+
+## 3.pip管理与conda管理有什么区别？conda可以代替pip吗？
+
+
+
+
+## 4.pip的管理与linux自己的安装指令优先用那个？
+
+
+
+
+
+## 5.pip 安装的环境到底是在哪里？要不要给一个项目单独创造一个pip的环境，这样大家用的时候可以通用？还是说电脑上只有一个pip的环境，每个人的pip环境都要自己配置？
+
+
+
+
+## 6.requirements.txt 一般什么时候用到？这个txt文档一般放在项目的那个地方，那个文件夹里面？在什么文档中要提到这个txt？README.md里面吗？
+
+
+
+
+
+
+
+# COMMENT：
+
+
+
+
+# REF：

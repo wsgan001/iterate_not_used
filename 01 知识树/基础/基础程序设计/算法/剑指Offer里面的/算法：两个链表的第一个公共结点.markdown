@@ -1,0 +1,603 @@
+---
+author: evo
+comments: true
+date: 2018-05-27 00:56:21+00:00
+layout: post
+link: http://106.15.37.116/2018/05/27/%e7%ae%97%e6%b3%95%ef%bc%9a%e4%b8%a4%e4%b8%aa%e9%93%be%e8%a1%a8%e7%9a%84%e7%ac%ac%e4%b8%80%e4%b8%aa%e5%85%ac%e5%85%b1%e7%bb%93%e7%82%b9/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e4%b8%a4%e4%b8%aa%e9%93%be%e8%a1%a8%e7%9a%84%e7%ac%ac%e4%b8%80%e4%b8%aa%e5%85%ac%e5%85%b1%e7%bb%93%e7%82%b9'
+title: 算法：两个链表的第一个公共结点
+wordpress_id: 6785
+categories:
+- 基础程序设计
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+输入两个链表，找出它们的第一个公共结点。
+
+注意：公共结点是指同一个结点，而不仅仅是值相同的结点。当有第一个公共结点之后，后面的结点也必然是公共的。
+
+
+
+
+# 题目解答
+
+
+
+
+## 暴力方法
+
+
+最简单直接的方法就是，对于第一个链表的每个节点，我们依次判断其是不是第二条链表的结点。
+
+    
+    #include <iostream>
+    
+    using namespace std;
+    
+    
+    struct ListNode {
+    public:
+    	int val;
+    	struct ListNode *next;
+    };
+    
+    
+    class Solution {
+    public:
+    	ListNode* FindFirstCommonNode(ListNode *leftHead, ListNode *rightHead) {
+    		ListNode *left = NULL;
+    		ListNode *right = NULL;
+    		//  循环第一个链表的每个结点
+    		for (left = leftHead;left != NULL;left = left->next) {
+    			cout << endl << left->val << " : ";
+    			//  依次判断其在不在第二条链表中
+    			for (right = rightHead;right != NULL;right = right->next) {
+    				cout << right->val << ", ";
+    				if (left == right) {
+    					break;
+    				}
+    			}
+    			if (left == right) {
+    				break;
+    			}
+    		}
+    		return left;
+    	}
+    };
+    
+    int main() {
+    	ListNode common[2];
+    	common[0].val = 6;
+    	common[0].next = &common[1];
+    	common[1].val = 7;
+    	common[1].next = NULL;
+    
+    	ListNode left[3];
+    	left[0].val = 1;
+    	left[0].next = &left[1];
+    	left[1].val = 2;
+    	left[1].next = &left[2];
+    	left[2].val = 3;
+    	left[2].next = &common[0];
+    
+    	ListNode right[2];
+    	right[0].val = 4;
+    	right[0].next = &right[1];
+    	right[1].val = 5;
+    	right[1].next = &common[0];
+    
+    	Solution solu;
+    	ListNode *node = solu.FindFirstCommonNode(left, right);
+    	cout << endl;
+    	while (node != NULL) {
+    		cout << node->val << " ";
+    		node = node->next;
+    	}
+    	cout << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    1 : 4, 5, 6, 7,
+    2 : 4, 5, 6, 7,
+    3 : 4, 5, 6, 7,
+    6 : 4, 5, 6,
+    6 7
+
+
+
+
+## 右对齐两个链表
+
+
+实际上，如果两个链表有公共节点，那么它们的形状必然是一个Y字形。
+
+也就是说，如果这两个链表的长度相等，则我们就可以直接同步遍历这两个链表，找能到公共节点。
+
+OK，那么对于现在这两个不知道长度是否相等的链表怎么办呢？
+
+
+### 长链表先走，实现右对齐
+
+
+OK，我们可以先分别遍历求出这两个链表的长度，然后得到长度差 n，然后我们再遍历那个长的链表 n 个节点，这样两个链表长度就想通了，这时候，我们再同步遍历这两个链表就可以了。
+
+代码如下：
+
+    
+    #include <iostream>
+    
+    using namespace std;
+    
+    
+    struct ListNode {
+    public:
+    	int val;
+    	struct ListNode *next;
+    };
+    
+    class Solution {
+    public:
+    	ListNode* FindFirstCommonNode(ListNode *leftHead, ListNode *rightHead) {
+    		ListNode *left = leftHead;
+    		ListNode *right = rightHead;
+    		int leftLength = 0;
+    		int rightLength = 0;
+    
+    		// 首先计算两个链表的长度
+    		leftLength = GetListLength(left);
+    		rightLength = GetListLength(right);
+    
+    		// 对齐两个链表
+    		int length = 0;
+    
+    		if (leftLength < rightLength) {
+    			// 右链表长
+    			length = rightLength - leftLength;
+    			while (right != NULL && length > 0) {
+    				right = right->next;
+    				length--;
+    			}
+    		}
+    		else {
+    			// 左链表长
+    			length = leftLength - rightLength;
+    			while (left != NULL && length > 0) {
+    				left = left->next;
+    				length--;
+    			}
+    		}
+    
+    		//  两个指针同步移动即可找到共同的结点
+    		while (left != NULL && right != NULL) {
+    			if (left == right) {
+    				break;
+    			}
+    			left = left->next;
+    			right = right->next;
+    		}
+    
+    		return ((left == right) ? left : NULL);
+    	}
+    
+    	int GetListLength(ListNode *head) {
+    		ListNode *node = head;
+    		int length = 0;
+    		while (node != NULL) {
+    			length++;
+    			node = node->next;
+    		}
+    		return length;
+    	}
+    };
+    
+    int main() {
+    	ListNode common[2];
+    	common[0].val = 6;
+    	common[0].next = &common[1];
+    	common[1].val = 7;
+    	common[1].next = NULL;
+    
+    	ListNode left[3];
+    	left[0].val = 1;
+    	left[0].next = &left[1];
+    	left[1].val = 2;
+    	left[1].next = &left[2];
+    	left[2].val = 3;
+    	left[2].next = &common[0];
+    
+    	ListNode right[2];
+    	right[0].val = 4;
+    	right[0].next = &right[1];
+    	right[1].val = 5;
+    	right[1].next = &common[0];
+    
+    	Solution solu;
+    	ListNode *node = solu.FindFirstCommonNode(left, right);
+    	cout << endl;
+    	while (node != NULL) {
+    		cout << node->val << " ";
+    		node = node->next;
+    	}
+    	cout << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    6 7
+
+
+嗯，还是很清晰的。
+
+
+### 将两个链表拼接起来实现右对齐
+
+
+前面那个思路中，长的链表先走一个长度差来保证两个链表是右对齐的，这种是可以的，但是我们需要多次扫描这两个链表，因为我们要通过扫描来获取链表的长度。
+
+那么有没有不需要多次扫描就可将两个链表对齐的方法呢？
+
+其实我们可以将两个链表拼接在一起来实现：
+
+
+
+ 	
+  * newleft : left -> right  即：直接把right链表接在left链表后面
+
+ 	
+  * newright : right -> left
+
+
+OK，这样结出来的两个链表都是长度为 M+N 的，而且，关键的是，这时候的公共部分虽然中间都有一节，但是最后也都有一节，而且这时候的两个链表是对齐的。
+
+嗯，挺利害的。
+
+    
+    #include <iostream>
+    
+    using namespace std;
+    
+    
+    struct ListNode {
+    public:
+    	int val;
+    	struct ListNode *next;
+    };
+    
+    class Solution {
+    public:
+    	ListNode* FindFirstCommonNode(ListNode *leftHead, ListNode *rightHead) {
+    		ListNode *left = leftHead;
+    		ListNode *right = rightHead;
+    
+    		while (left != right) {
+    			left = (left == NULL ? rightHead : left->next);//厉害了，通过这种来模仿拼接的操作
+    			right = (right == NULL ? leftHead : right->next);
+    			cout << (left == NULL ? -1 : left->val) << ", ";
+    			cout << (right == NULL ? -1 : right->val) << endl;
+    		}
+    		return left;
+    	}
+    };
+    
+    int main() {
+    	ListNode common[2];
+    	common[0].val = 6;
+    	common[0].next = &common[1];
+    	common[1].val = 7;
+    	common[1].next = NULL;
+    
+    	ListNode left[3];
+    	left[0].val = 1;
+    	left[0].next = &left[1];
+    	left[1].val = 2;
+    	left[1].next = &left[2];
+    	left[2].val = 3;
+    	left[2].next = &common[0];
+    
+    	ListNode right[2];
+    	right[0].val = 4;
+    	right[0].next = &right[1];
+    	right[1].val = 5;
+    	right[1].next = &common[0];
+    
+    	Solution solu;
+    	ListNode *node = solu.FindFirstCommonNode(left, right);
+    	cout << endl;
+    	while (node != NULL) {
+    		cout << node->val << " ";
+    		node = node->next;
+    	}
+    	cout << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    2, 5
+    3, 6
+    6, 7
+    7, -1
+    -1, 1
+    4, 2
+    5, 3
+    6, 6
+    
+    6 7
+
+
+代码中，是通过切换链表来模仿拼接的操作的。嗯。
+
+
+### 栈的后进先出实现右对齐
+
+
+由于栈是后进先出的，因此我们将两个链表分别入栈，那么栈顶的元素一定是最后一个元素。从而两个链表是右对齐的，那么我们将两个栈同步弹出，当两个栈顶的节点不相同时候，即是开始合并的前一个节点。嗯利害的。
+
+    
+    #include <iostream>
+    #include <stack>
+    
+    using namespace std;
+    
+    
+    struct ListNode {
+    public:
+    	int val;
+    	struct ListNode *next;
+    };
+    
+    class Solution {
+    public:
+    	ListNode* FindFirstCommonNode(ListNode *leftHead, ListNode *rightHead) {
+    		ListNode *left = leftHead;
+    		ListNode *right = rightHead;
+    
+    		stack<ListNode *> leftStack;
+    		stack<ListNode *> rightStack;
+    
+    		// 结点依次入栈
+    		while (left != NULL) {
+    			leftStack.push(left);
+    			left = left->next;
+    		}
+    		while (right != NULL) {
+    			rightStack.push(right);
+    			right = right->next;
+    		}
+    
+    		// 开始同步弹出元素
+    		while (leftStack.empty() != true && rightStack.empty() != true) {
+    			left = leftStack.top();
+    			right = rightStack.top();
+    			if (left != right) {
+    				break;
+    			}
+    			leftStack.pop();
+    			rightStack.pop();
+    		}
+    
+    		// 不相同元素的下一个结点就是共同结点
+    		if (left != right) {
+    			return left->next;
+    		}
+    		else {
+    			return NULL;
+    		}
+    	}
+    };
+    
+    int main() {
+    	ListNode common[2];
+    	common[0].val = 6;
+    	common[0].next = &common[1];
+    	common[1].val = 7;
+    	common[1].next = NULL;
+    
+    	ListNode left[3];
+    	left[0].val = 1;
+    	left[0].next = &left[1];
+    	left[1].val = 2;
+    	left[1].next = &left[2];
+    	left[2].val = 3;
+    	left[2].next = &common[0];
+    
+    	ListNode right[2];
+    	right[0].val = 4;
+    	right[0].next = &right[1];
+    	right[1].val = 5;
+    	right[1].next = &common[0];
+    
+    	Solution solu;
+    	ListNode *node = solu.FindFirstCommonNode(left, right);
+    	cout << endl;
+    	while (node != NULL) {
+    		cout << node->val << " ";
+    		node = node->next;
+    	}
+    	cout << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    6 7
+
+
+
+
+### 利用高效的数据结构实现查找结点
+
+
+我们先将第一个链表插入到 hash 或者 map 里，然后依次判断第二个链表的节点在不在map中，即可查找到第一个共同结点。
+
+我们可以利用 unordered_map，这个模板类是基于 hash 表实现的，速度与 map 、hashmap 相比较快。
+
+    
+    #include <iostream>
+    #include <stack>
+    #include <unordered_map>
+    
+    using namespace std;
+    
+    
+    struct ListNode {
+    public:
+    	int val;
+    	struct ListNode *next;
+    };
+    
+    class Solution {
+    public:
+    	ListNode* FindFirstCommonNode(ListNode *leftHead, ListNode *rightHead) {
+    		unordered_map<ListNode*, bool> umap;
+    		ListNode* left = leftHead;
+    		//将左链表放到 map 里
+    		while (left != NULL) {
+    			umap.insert(make_pair(left, 1));
+    			left = left->next;
+    		}
+    
+    		//确认map里是不是有右链表的某个 node
+    		ListNode* right = rightHead;
+    		while (right) {
+    			if (umap.count(right) > 0) {
+    				return right;
+    			}
+    			right = right->next;
+    		}
+    		return NULL;
+    	}
+    };
+    
+    int main() {
+    	ListNode common[2];
+    	common[0].val = 6;
+    	common[0].next = &common[1];
+    	common[1].val = 7;
+    	common[1].next = NULL;
+    
+    	ListNode left[3];
+    	left[0].val = 1;
+    	left[0].next = &left[1];
+    	left[1].val = 2;
+    	left[1].next = &left[2];
+    	left[2].val = 3;
+    	left[2].next = &common[0];
+    
+    	ListNode right[2];
+    	right[0].val = 4;
+    	right[0].next = &right[1];
+    	right[1].val = 5;
+    	right[1].next = &common[0];
+    
+    	Solution solu;
+    	ListNode *node = solu.FindFirstCommonNode(left, right);
+    	cout << endl;
+    	while (node != NULL) {
+    		cout << node->val << " ";
+    		node = node->next;
+    	}
+    	cout << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    6 7
+
+
+嗯，也是利害的方法。
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

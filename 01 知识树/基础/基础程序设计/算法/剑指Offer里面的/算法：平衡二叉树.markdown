@@ -1,0 +1,282 @@
+---
+author: evo
+comments: true
+date: 2018-05-27 04:19:37+00:00
+layout: post
+link: http://106.15.37.116/2018/05/27/%e7%ae%97%e6%b3%95%ef%bc%9a%e5%b9%b3%e8%a1%a1%e4%ba%8c%e5%8f%89%e6%a0%91/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e5%b9%b3%e8%a1%a1%e4%ba%8c%e5%8f%89%e6%a0%91'
+title: 算法：平衡二叉树
+wordpress_id: 6811
+categories:
+- 基础程序设计
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+输入一棵二叉树，判断该二叉树是否是平衡二叉树。
+
+平衡二叉树要求对于每一个节点来说，它的左右子树的高度之差不能超过 1 。
+
+
+
+
+# 题目解答
+
+
+
+
+## 递归法
+
+
+我们先递归的得到树的深度，然后再递归的判断左右子树是否满足平衡条件。
+
+    
+    #include <iostream>
+    #include <algorithm>
+    #include <math.h>       /* fabs */
+    using namespace std;
+    
+    
+    struct TreeNode {
+    	int val;
+    	struct TreeNode *left;
+    	struct TreeNode *right;
+    };
+    
+    
+    class Solution {
+    public:
+    	//这样的递归是有很多的重复的操作的，对于TreeDepth来说
+    	bool IsBalanced_Solution(TreeNode* root) {
+    		if (root == NULL) {
+    			return true;
+    		}
+    		int leftDepth = TreeDepth(root->left);
+    		int rightDepth = TreeDepth(root->right);
+    
+    		if (fabs(double(leftDepth - rightDepth)) <= 1) {
+    			return IsBalanced_Solution(root->left) && IsBalanced_Solution(root->right);
+    		}
+    		else {
+    			return false;
+    		}
+    	}
+    
+    	int TreeDepth(TreeNode *root) {
+    		if (root == NULL) {
+    			return 0;
+    		}
+    		int leftDepth = TreeDepth(root->left);
+    		int rightDepth = TreeDepth(root->right);
+    		//  返回左右子树中深度最深的
+    		return max(leftDepth, rightDepth) + 1;
+    	}
+    };
+    
+    
+    int main() {
+    	//     0
+    	//   1   2
+    	// 3   
+    	TreeNode tree[4];
+    	tree[0].val = 0;
+    	tree[0].left = &tree[1];
+    	tree[0].right = &tree[2];
+    	tree[1].val = 1;
+    	tree[1].left = &tree[3];
+    	tree[1].right = NULL;
+    	tree[2].val = 2;
+    	tree[2].left = NULL;
+    	tree[2].right = NULL;
+    	tree[3].val = 3;
+    	tree[3].left = NULL;
+    	tree[3].right = NULL;
+    
+    	Solution solu;
+    	cout << solu.IsBalanced_Solution(tree) << endl;
+    
+    	return 0;
+    }
+
+
+输出：
+
+    
+    1
+
+
+可以看到，求树的深度的遍历实际上有很多都重复了。那么有没有什么方法可以一边遍历树一边判断每个结点是否具有平衡性呢？
+
+
+## [](https://github.com/gatieme/CodingInterviews/tree/master/039-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%5B%E9%99%84%E5%8A%A0%5D#%E9%80%92%E5%BD%92%E6%94%B9%E8%BF%9B%E8%BE%B9%E9%81%8D%E5%8E%86%E8%BE%B9%E5%88%A4%E6%96%AD)递归改进（边遍历边判断）
+
+
+我们在递归的过程中用depth来保存层数，然后递归的过程中同步遍历。
+
+    
+    #include <iostream>
+    #include <algorithm>
+    #include <math.h>       /* fabs */
+    using namespace std;
+    
+    
+    struct TreeNode {
+    	int val;
+    	struct TreeNode *left;
+    	struct TreeNode *right;
+    };
+    
+    class Solution {
+    public:
+    	bool IsBalanced_Solution(TreeNode* root) {
+    		if (root == NULL) {
+    			return true;
+    		}
+    		int depth = 0;
+    		return IsVALWithDepth(root, &depth);
+    	}
+    
+    	///  递归的过程中同步判断平衡性
+    	bool IsVALWithDepth(TreeNode *root, int *depth) {
+    		if (root == NULL) {
+    			*depth = 0;
+    			return true;
+    		}
+    		int leftDepth, rightDepth;
+    		bool left = IsVALWithDepth(root->left, &leftDepth);
+    		bool right = IsVALWithDepth(root->right, &rightDepth);
+    		//如果右子树都是是平衡二叉树
+    		if (left == true && right == true) {
+    			//判断二者的深度
+    			if (fabs(double(leftDepth - rightDepth)) <= 1) {
+    				*depth = max(leftDepth, rightDepth) + 1;//这个深度会一层层传上来的。
+    				cout << "depth = " << *depth << endl;
+    				return true;
+    			}
+    		}
+    		return false;
+    	}
+    };
+    
+    
+    int main() {
+    	//     0
+    	//   1   2
+    	// 3   
+    	TreeNode tree[4];
+    	tree[0].val = 0;
+    	tree[0].left = &tree[1];
+    	tree[0].right = &tree[2];
+    	tree[1].val = 1;
+    	tree[1].left = &tree[3];
+    	tree[1].right = NULL;
+    	tree[2].val = 2;
+    	tree[2].left = NULL;
+    	tree[2].right = NULL;
+    	tree[3].val = 3;
+    	tree[3].left = NULL;
+    	tree[3].right = NULL;
+    
+    	Solution solu;
+    	cout << solu.IsBalanced_Solution(tree) << endl;
+    
+    	return 0;
+    }
+
+
+输出：
+
+    
+    depth = 1
+    depth = 2
+    depth = 1
+    depth = 3
+    1
+
+
+**没有特别理解。要再看下。**
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

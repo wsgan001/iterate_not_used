@@ -1,0 +1,412 @@
+---
+author: evo
+comments: true
+date: 2018-05-18 08:32:50+00:00
+layout: post
+link: http://106.15.37.116/2018/05/18/%e7%ae%97%e6%b3%95%ef%bc%9a%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91%e7%9a%84%e5%90%8e%e5%ba%8f%e9%81%8d%e5%8e%86%e5%ba%8f%e5%88%97/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91%e7%9a%84%e5%90%8e%e5%ba%8f%e9%81%8d%e5%8e%86%e5%ba%8f%e5%88%97'
+title: 算法：二叉搜索树的后序遍历序列
+wordpress_id: 5986
+categories:
+- 随想与反思
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * **第二个方法没看明白**
+
+ 	
+  * **第三个方法没怎么看 都要看下**
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。假设输入的数组的任意两个数字都互不相同。
+
+
+
+
+# 题目解答
+
+
+什么是二插排序树（二插搜索树）？以前看过又忘记了：
+
+二叉排序树，或者是一棵空树，或者是具有下列性质的二叉树：
+
+
+
+ 	
+  1. 若左子树不空，则左子树上所有结点的值均小于它的根结点的值；
+
+ 	
+  2. 若右子树不空，则右子树上所有结点的值均大于或等于它的根结点的值；
+
+ 	
+  3. 左、右子树也分别为二叉排序树；
+
+ 	
+  4. 没有键值相等的节点。
+
+
+由于左子树上所有结点的值均小于它的根结点的值，因此，**对一棵二叉搜索树进行中序遍历（左根右）可得到一个关键字递增有序序列。**
+
+那么二叉搜索树的后序序列（左右根）又有什么特征呢？
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/05/img_5afe81bb1dfa6.png)
+
+
+
+
+比如我们的这个二叉排序树：
+
+
+
+ 	
+  * 中序序列 2, 5, 9, 12, 15, 16, 17, 18, 19
+
+ 	
+  * 后序序列 2, 9, 5, 16, 17, 15, 19, 18, 12
+
+
+当我们按照后序序列来遍历的时候，可以看出：数组的最后一个元素肯定是自己（父节点），然后剩余的部分分成两个部分，第一部分都比自己小（左子树部分），第二部分都比自己大（右子树部分），这两部分又可分别遍历，以此类推。
+
+因此，这样，我们就可以循环检验出一个序列是不是二叉搜索树的后序遍历了。
+
+
+## 直接按照上面的规则进行实现
+
+
+OK，我们直接按照上面的思路进行递归实现：
+
+    
+    #include <iostream>
+    #include <vector>
+    using namespace std;
+    
+    
+    
+    class Solution {
+    public:
+    	bool VerifySquenceOfBST(vector<int> sequence) {
+    		if (sequence.size() == 0) {
+    			return false;
+    		}
+    		return judge(sequence, 0, sequence.size() - 1);
+    	}
+    
+    	bool judge(vector<int>  &sequence, int left_index, int right_index) {
+    		if (left_index >= right_index) {
+    			return true;
+    		}
+    
+    		// 根据后一半的元素要比根元素大，找到分解的地方
+    		int mid = right_index - 1;
+    		while (sequence[mid] > sequence[right_index]) {
+    			mid--;
+    		}
+    		// 确认分界的前面的元素都比根小
+    		int i = left_index;
+    		while (i < mid) {
+    			if (sequence[i] < sequence[right_index]) {
+    				i++;
+    			}
+    			else {
+    				return  false;
+    			}
+    		}
+    		//开始打印出左侧的序列和右侧的序列
+    		printf("left : ");
+    		for (int i = left_index; i <= mid; i++) {
+    			cout << sequence[i] << " ";
+    		}
+    		cout << endl;
+    		printf("right : ");
+    		for (int i = mid + 1; i < right_index; i++) {
+    			cout << sequence[i] << " ";
+    		}
+    		cout << endl;
+    		cout << "root : " << sequence[right_index] << endl;
+    		cout << endl;
+    
+    		// 继续划分  [left, mid] 是左子树    [mid + 1, right - 1] 是右子树
+    		return judge(sequence, left_index, mid) && judge(sequence, mid + 1, right_index - 1);
+    	}
+    };
+    
+    
+    int main() {
+    	int a[] = { 2, 9, 5, 16, 17, 15, 19, 18, 12, };
+    	vector<int> vec(a, a + 9);
+    
+    	Solution solu;
+    	cout << solu.VerifySquenceOfBST(vec) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    left : 2 9 5
+    right : 16 17 15 19 18
+    root : 12
+    
+    left : 2
+    right : 9
+    root : 5
+    
+    left : 16 17 15
+    right : 19
+    root : 18
+    
+    left :
+    right : 16 17
+    root : 15
+    
+    left : 16
+    right :
+    root : 17
+    
+    1
+
+
+
+
+# 维护最大值
+
+
+**这里程序没看懂，而且为什么要维护最大值？**
+
+    
+    #include <iostream>
+    #include <vector>
+    #include <stack>
+    using namespace std;
+    
+    
+    class Solution {
+    public:
+    	///  后序是 左右根
+    	///  那么我们的节点
+    	bool VerifySquenceOfBST(vector<int> sequence) {
+    		if (sequence.size() == 0) {
+    			return false;
+    		}
+    
+    		int max = 0;
+    		//这个是要做什么？
+    		stack<int> s;
+    		int it = sequence.size() - 1;
+    		do {
+    			s.push(sequence[it]);
+    			it--;
+    			cout << sequence[it]<<endl;
+    		} while (it >= 0 && sequence[it] > sequence[it + 1]);
+    		//取得最后一个压入栈的数字
+    		max = s.top();
+    		cout << 'max' << max << endl;//这里为什么是716837619？
+    
+    		//继续循环
+    		for (; it >= 0; it--) {
+    			cout << "curr = " << sequence[it] << ", max = " << max << endl;
+    			//  前面有元素比最大值还大，肯定不满足要求
+    			if (max < sequence[it]) {
+    				return false;
+    			}
+    			//当stack没空，而且最上面的值大于序列的值的时候
+    			while (s.empty() != true && s.top() > sequence[it]) {
+    				max = s.top();
+    				cout << "max = " << max << endl;
+    				s.pop();
+    			}
+    			s.push(sequence[it]);
+    		}
+    		return true;
+    	}
+    };
+    
+    
+    int main() {
+    	int a[] = { 2, 9, 5, 16, 17, 15, 19, 18, 12, };
+    	vector<int> vec(a, a + 9);
+    
+    	Solution solu;
+    	cout << solu.VerifySquenceOfBST(vec) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    18
+    19
+    15
+    716837619
+    curr = 15, max = 19
+    max = 19
+    max = 18
+    curr = 17, max = 18
+    curr = 16, max = 18
+    max = 17
+    curr = 5, max = 17
+    max = 16
+    max = 15
+    max = 12
+    curr = 9, max = 12
+    curr = 2, max = 12
+    max = 9
+    max = 5
+    1
+
+
+
+
+
+## 判断左右子树
+
+
+**没怎么看，仔细看下，这个好像作者不是很确定**
+
+    
+    #include <iostream>
+    #include <vector>
+    #include <stack>
+    using namespace std;
+    
+    
+    
+    class Solution {
+    public:
+    	/*
+    	step1：最后一个为根节点；
+    	step2：从根节点的左边开始往前遍历，找到第一个比它大的节点作为右子树，记为 right
+    	step3：从右子树的左边开始往前遍历，找到第一个比它小的节点作为左子树，记为 left
+    	step4：判断( left, right )中的值是否都比根节点大，如果有比根节点小的则返回false
+    	step5: 判断( 0, left )中的值是否都比根节点小，如果有比根节点大的则返回false
+    	step6: 返回true
+    
+    	时间复杂度：O(n), 空间复杂度: O(1)
+    	*/
+    	bool VerifySquenceOfBST(vector<int> sequence) {
+    		if (sequence.empty()) 
+    			return true;
+    
+    		int len = sequence.size();
+    		int left = -1, right = -1;
+    		for (int i = len - 2; i >= 0; --i) {
+    			if (right == -1 && sequence[i] > sequence[len - 1])
+    				right = i;
+    			if (left == -1 && sequence[i] < sequence[len - 1])
+    				left = i;
+    		}
+    		cout << "left = " << left << ", right = " << right << endl;
+    		for (int i = right - 1; i > left; --i) {
+    			if (sequence[i] < sequence[len - 1]) {
+    				return false;
+    			}
+    		}
+    		for (int i = left - 1; i > 0; --i) {
+    			if (sequence[i] > sequence[len - 1]) {
+    				return false;
+    			}
+    		}
+    		return true;
+    	}
+    };
+    
+    int main() {
+    	int a[] = { 2, 9, 5, 16, 17, 15, 19, 18, 12, };
+    	vector<int> vec(a, a + 9);
+    	Solution solu;
+    	cout << solu.VerifySquenceOfBST(vec) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    left = 2, right = 7
+    1
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

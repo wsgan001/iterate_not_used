@@ -1,0 +1,106 @@
+---
+author: evo
+comments: true
+date: 2018-05-30 03:27:00+00:00
+layout: post
+link: http://106.15.37.116/2018/05/30/%e5%9c%a8%e7%ba%bf%e7%ae%97%e6%b3%95/
+slug: '%e5%9c%a8%e7%ba%bf%e7%ae%97%e6%b3%95'
+title: 在线算法
+wordpress_id: 7023
+categories:
+- 基础程序设计
+tags:
+- '@NULL'
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，所有版权属于原作者，原文已列在 ORIGINAL 中。为了方便个人学习做了整合、修改，仅供个人学习使用。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. [在线算法 wiki](https://zh.wikipedia.org/wiki/%E7%B7%9A%E4%B8%8A%E6%BC%94%E7%AE%97%E6%B3%95)
+
+ 	
+  2. [请问半在线调度算法是什么意思，和在线算法有什么区别？](https://www.zhihu.com/question/20142996)
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * **要好好总结下**
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+# 缘由
+
+
+今天看一道算法题，提到了 在线算法。查了一下才发现，有在线算法（Online Algorithm），离线算法（Offline Algorithm）和半在线算法（Semi-Online Algorithm），因此要总结下。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

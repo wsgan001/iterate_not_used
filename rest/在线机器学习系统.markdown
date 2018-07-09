@@ -1,0 +1,96 @@
+---
+author: evo
+comments: true
+date: 2018-04-29 01:07:04+00:00
+layout: post
+link: http://106.15.37.116/2018/04/29/online-ml/
+slug: online-ml
+title: 在线机器学习系统
+wordpress_id: 4532
+categories:
+- 随想与反思
+tags:
+- '@NULL'
+- '@todo'
+---
+
+<!-- more -->
+
+[mathjax]
+
+
+# REF
+
+
+
+
+
+ 	
+  1. aaa
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+# MOTIVE
+
+
+
+
+
+ 	
+  * **对在线的机器学习系统的搭建进行总结**
+
+
+
+
+
+* * *
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

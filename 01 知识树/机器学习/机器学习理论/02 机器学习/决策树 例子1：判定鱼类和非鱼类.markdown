@@ -1,0 +1,444 @@
+---
+author: evo
+comments: true
+date: 2018-05-08 04:35:21+00:00
+layout: post
+link: http://106.15.37.116/2018/05/08/decision-tree-sample1/
+slug: decision-tree-sample1
+title: 
+wordpress_id: 5421
+categories:
+- 随想与反思
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，推荐直接看原文**
+
+
+# ORIGINAL
+
+
+
+
+
+
+  1. [第3章 决策树](http://ml.apachecn.org/mlia/)
+
+
+
+
+# TODO
+
+
+
+
+
+
+  * **没有进行树的剪枝，要怎么进行剪枝？**
+
+  * **使用tensorflow怎么进行决策树？**
+
+  * **而且，这个例子中的特征值只有这几种，他直接使用的这个特征值来进行split的，没有大于和小于的split。要补充。**
+
+  * **画图的代码还是要好好看下的，看看是怎么画出来的。**
+
+
+
+
+# MOTIVE
+
+
+
+
+
+
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# 项目说明
+
+
+准备将动物分成两类：鱼类和非鱼类。
+
+现在有一下两个特征：
+
+
+
+
+  * 不浮出水面时是否可以生存
+
+  * 是否有脚蹼
+
+
+
+
+# 项目数据
+
+
+这次我们的数据只有下面这5个：
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af062da5b774.png)
+
+
+
+
+
+# 代码如下
+
+
+main.py：
+
+
+    from math import log
+    import operator
+
+
+​    
+    # 创建数据列表
+    def create_data_set():
+        data_set = [[1, 1, 'yes'],
+                    [1, 1, 'yes'],
+                    [1, 0, 'no'],
+                    [0, 1, 'no'],
+                    [0, 1, 'no']]
+        # 树构造算法只适用于标称型数据，因此数值型数据必须离散化
+        # 由于我们输入的数据本身就是离散化数据，所以这一步就省略了
+        features = ['no surfacing', 'flippers']
+        return data_set, features
+
+
+​    
+    # 计算这个data_set的信息熵
+    def calc_shannon_ent(data_set):
+        num_data = len(data_set)
+        label_counts = {}
+        # 统计出样本的每种标签的个数
+        for data in data_set:  # the the number of unique elements and their occurance
+            label = data[-1]  # 取出当前的样本的标签
+            if label not in label_counts.keys():
+                label_counts[label] = 0
+            label_counts[label] += 1
+        # 计算标签的信息熵
+        shannon_ent = 0.0
+        for key in label_counts:
+            prob = float(label_counts[key]) / num_data
+            shannon_ent -= prob * log(prob, 2)  # log base 2
+        return shannon_ent
+
+
+​    
+    # 从原来的data_set中根据某个特征的某个值获得一个子集
+    def get_data_with_feature_value(data_set, feature, value):
+        sub_data_set = []
+        for data in data_set:
+            # 如果这个样本的这个特征值等于value，
+            # 那么我就将这个样本的这个特征去掉，然后加入到我的这个子集里面
+            if data[feature] == value:
+                new_data = data[:feature]
+                new_data.extend(data[feature + 1:])
+                sub_data_set.append(new_data)
+        # 这个 new_data_set 里面就是我从 data_set 中挑出的特征值等于value的样本，
+        # 并且我还把这个样本的这个 feature 去掉了
+        return sub_data_set
+
+
+​    
+    # 选择最好的数据集划分方式
+    def get_best_feature_for_split(data_set):
+        # 计算还没有划分之前的这个data_set的信息熵
+        base_entropy = calc_shannon_ent(data_set)
+        # 获得当前这个data_set的特征的个数
+        num_features = len(data_set[0]) - 1  # 最后一列时对应的label列，因此去掉
+        best_info_gain = 0.0;
+        best_feature = -1
+        # 遍历这个数据集的特征
+        for i in range(num_features):  # iterate over all the features
+            one_feature_data = [example[i] for example in data_set]  # 将某一个特征的data拿出来
+            unique_values = set(one_feature_data)  # 得到这个特征的值的不重复的集合
+            # 计算出这个特征的信息增益
+            new_entropy = 0.0
+            for value in unique_values:
+                sub_data_set = get_data_with_feature_value(data_set, i, value)  # 尝试将这个数据集的这个特征在某一个 value 上进行分割
+                prob = len(sub_data_set) / float(len(data_set))  # 看看根据这个值进行分割之后的样本数量占data_set的比重
+                ent = prob * calc_shannon_ent(sub_data_set)  # 计算出这个子集的加权信息熵
+                new_entropy += ent
+            info_gain = base_entropy - new_entropy
+            # 看看用哪个特征可以得到最大的信息增益
+            if (info_gain > best_info_gain):
+                best_info_gain = info_gain  # if better than current best, set to best
+                best_feature = i
+        # 返回这个最好的特征的index
+        return best_feature
+
+
+​    
+    # 返回数目最多的label
+    def majority_count(labels):
+        # 统计出不同的label的数量
+        label_count = {}
+        for label in labels:
+            if label not in label_count.keys():
+                label_count[label] = 0
+            label_count[label] += 1
+        # 排序
+        sorted_class_count = sorted(label_count.iteritems(),
+                                    key=operator.itemgetter(1),
+                                    reverse=True)
+        # 返回label数量最多的哪个label
+        return sorted_class_count[0][0]
+
+
+​    
+    # 创造一棵树
+    def create_tree(data_set, features):
+        # 获得所有的标签
+        labels = [example[-1] for example in data_set]
+        if labels.count(labels[0]) == len(labels):
+            # 这个时候，所有的标签都是相同的，不用划分了，直接返回这个标签
+            return labels[0]
+        if len(data_set[0]) == 1:
+            # 这个时候，只剩下一个样本了，也不用划分了
+            return majority_count(labels)
+        # OK，下面才是关键的地方：
+        best_feature_index = get_best_feature_for_split(data_set)  # 找到了用来分割这个data_set的最好的特征的index
+        best_feature = features[best_feature_index]
+        my_tree = {best_feature: {}}  # 开始构建树
+        del (features[best_feature_index])  # 删除这个特征
+        # 将这个特征除了这个特征值之外的别的值也进行划分
+        feature_values = [example[best_feature_index] for example in data_set]
+        unique_values = set(feature_values)
+        for value in unique_values:
+            sub_labels = features[:]  # copy all of labels, so trees don't mess up existing labels
+            sub_data_set = get_data_with_feature_value(data_set, best_feature_index, value)
+            my_tree[best_feature][value] = create_tree(sub_data_set, sub_labels)
+        return my_tree
+
+
+​    
+    # 使用决策树执行分类
+    # 这个没有仔细看，没有看明白？
+    def classify(tree, features, test_data):
+        first_str = list(tree.keys())[0]
+        second_dict = tree[first_str]
+        feature_index = features.index(first_str)
+        key = test_data[feature_index]
+        value_of_feature = second_dict[key]
+        if isinstance(value_of_feature, dict):
+            class_label = classify(value_of_feature, features, test_data)
+        else:
+            class_label = value_of_feature
+        return class_label
+
+
+​    
+    # 将树存起来
+    def store_tree(input_tree, file_name):
+        import pickle
+        fw = open(file_name, 'wb')
+        pickle.dump(input_tree, fw)
+        fw.close()
+
+
+​    
+    # 将树加载进来
+    def grab_tree(file_name):
+        import pickle
+        fr = open(file_name)
+        return pickle.load(fr)
+
+
+​    
+    # 这个例子好像只是对某个特征的某个值进行split，而没有包含大于这个值，小于这个值的时候的一些split，确认下是不是
+    if __name__ == "__main__":
+        data_set, features = create_data_set()
+        my_tree = create_tree(data_set, features)
+        store_tree(my_tree, 'tree.txt')
+        print(my_tree)
+        #使用这个树对一个样本进行判断
+        features = ['no surfacing', 'flippers']
+        test_data=[1, 0]
+        res=classify(my_tree,features,test_data)
+        print(res)
+
+
+运行之后，就生成了这么一个 tree.txt 文档，同时输出如下：
+
+
+    {'no surfacing': {0: 'no', 1: {'flippers': {0: 'no', 1: 'yes'}}}}
+    no
+
+
+然后，我们还可以把这个树画出来：**这个没有怎么看，要仔细看下**
+
+tree_plotter.py ：
+
+
+    import matplotlib.pyplot as plt
+    
+    decisionNode = dict(boxstyle="sawtooth", fc="0.8")
+    leafNode = dict(boxstyle="round4", fc="0.8")
+    arrow_args = dict(arrowstyle="<-")
+
+
+​    
+    def get_num_leafs(myTree):
+        numLeafs = 0
+        firstStr = list(myTree.keys())[0]
+        secondDict = myTree[firstStr]
+        for key in secondDict.keys():
+            # test to see if the nodes are dictonaires, if not they are leaf nodes
+            if type(secondDict[key]).__name__ == 'dict':
+                numLeafs += get_num_leafs(secondDict[key])
+            else:
+                numLeafs += 1
+        return numLeafs
+
+
+​    
+    def get_tree_depth(myTree):
+        maxDepth = 0
+        firstStr = list(myTree.keys())[0]
+        secondDict = myTree[firstStr]
+        for key in secondDict.keys():
+            # test to see if the nodes are dictonaires, if not they are leaf nodes
+            if type(secondDict[key]).__name__ == 'dict':
+                thisDepth = 1 + get_tree_depth(secondDict[key])
+            else:
+                thisDepth = 1
+            if thisDepth > maxDepth:
+                maxDepth = thisDepth
+        return maxDepth
+
+
+​    
+    def plot_node(nodeTxt, centerPt, parentPt, nodeType):
+        plot_demo.ax1.annotate(nodeTxt,
+                               xy=parentPt,
+                               xycoords='axes fraction',
+                               xytext=centerPt,
+                               textcoords='axes fraction',
+                               va="center", ha="center",
+                               bbox=nodeType,
+                               arrowprops=arrow_args)
+
+
+​    
+    def plot_mid_text(cntrPt, parentPt, txtString):
+        xMid = (parentPt[0] - cntrPt[0]) / 2.0 + cntrPt[0]
+        yMid = (parentPt[1] - cntrPt[1]) / 2.0 + cntrPt[1]
+        plot_demo.ax1.text(xMid, yMid,
+                           txtString,
+                           va="center", ha="center",
+                           rotation=30)
+
+
+​    
+     # if the first key tells you what feat was split on
+    def plot_tree(myTree, parentPt, nodeTxt):
+        # this determines the x width of this tree
+        numLeafs = get_num_leafs(myTree)
+        depth = get_tree_depth(myTree)
+        # the text label for this node should be this
+        firstStr = list(myTree.keys())[0]
+        cntrPt = (plot_tree.xOff + (1.0 + float(numLeafs)) / 2.0 / plot_tree.totalW, plot_tree.yOff)
+        plot_mid_text(cntrPt, parentPt, nodeTxt)
+        plot_node(firstStr, cntrPt, parentPt, decisionNode)
+        secondDict = myTree[firstStr]
+        plot_tree.yOff = plot_tree.yOff - 1.0 / plot_tree.totalD
+        for key in secondDict.keys():
+            # test to see if the nodes are dictonaires, if not they are leaf nodes
+            if type(secondDict[key]).__name__ == 'dict':
+                plot_tree(secondDict[key], cntrPt, str(key))  # recursion
+            else:  # it's a leaf node print the leaf node
+                plot_tree.xOff = plot_tree.xOff + 1.0 / plot_tree.totalW
+                plot_node(secondDict[key], (plot_tree.xOff, plot_tree.yOff), cntrPt, leafNode)
+                plot_mid_text((plot_tree.xOff, plot_tree.yOff), cntrPt, str(key))
+        plot_tree.yOff = plot_tree.yOff + 1.0 / plot_tree.totalD
+
+
+​    
+    # if you do get a dictonary you know it's a tree,
+    # and the first element will be another dict
+    
+    def try_plot_tree(inTree):
+        fig = plt.figure(1, facecolor='white')
+        fig.clf()
+        axprops = dict(xticks=[], yticks=[])
+        plot_demo.ax1 = plt.subplot(111, frameon=False, **axprops)  # no ticks
+        # createPlot.ax1 = plt.subplot(111, frameon=False) #ticks for demo puropses
+        plot_tree.totalW = float(get_num_leafs(inTree))
+        plot_tree.totalD = float(get_tree_depth(inTree))
+        plot_tree.xOff = -0.5 / plot_tree.totalW
+        plot_tree.yOff = 1.0
+        plot_tree(inTree, (0.5, 1.0), '')
+        plt.show()
+
+
+​    
+    # 画出几个结点的demo
+    def plot_demo():
+        fig = plt.figure(1, facecolor='white')
+        fig.clf()
+        plot_demo.ax1 = plt.subplot(111, frameon=False)  # ticks for demo puropses
+        plot_node('a decision node', (0.5, 0.1), (0.1, 0.5), decisionNode)
+        plot_node('a leaf node', (0.8, 0.1), (0.3, 0.8), leafNode)
+        plt.show()
+
+
+​    
+    # 将树加载进来
+    def grab_tree(file_name):
+        import pickle
+        fr = open(file_name, 'rb')
+        return pickle.load(fr)
+
+
+​    
+    if __name__ == "__main__":
+        plot_demo()
+        my_tree = grab_tree("tree.txt")
+        try_plot_tree(my_tree)
+
+
+首先画出的是一个demo：
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af126c02dd11.png)
+
+
+然后，画出的是 tree.txt 文档中的树：
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af126e349d65.png)
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

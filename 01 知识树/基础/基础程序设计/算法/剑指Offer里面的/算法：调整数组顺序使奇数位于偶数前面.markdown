@@ -1,0 +1,375 @@
+---
+author: evo
+comments: true
+date: 2018-05-16 00:49:33+00:00
+layout: post
+link: http://106.15.37.116/2018/05/16/%e7%ae%97%e6%b3%95%ef%bc%9a%e8%b0%83%e6%95%b4%e6%95%b0%e7%bb%84%e9%a1%ba%e5%ba%8f%e4%bd%bf%e5%a5%87%e6%95%b0%e4%bd%8d%e4%ba%8e%e5%81%b6%e6%95%b0%e5%89%8d%e9%9d%a2/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e8%b0%83%e6%95%b4%e6%95%b0%e7%bb%84%e9%a1%ba%e5%ba%8f%e4%bd%bf%e5%a5%87%e6%95%b0%e4%bd%8d%e4%ba%8e%e5%81%b6%e6%95%b0%e5%89%8d%e9%9d%a2'
+title: 算法：调整数组顺序使奇数位于偶数前面
+wordpress_id: 5811
+categories:
+- 随想与反思
+tags:
+- NOT_ADD
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+# 题目
+
+
+
+
+## 题目描述
+
+
+输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。嗯。
+
+
+## 样例输入
+
+
+5 1 2 3 4 5
+
+
+## 样例输出
+
+
+1 3 5 2 4
+
+下面我们考虑算法复杂度的同时还会考虑其稳定性，（**排序的稳定型则是指相同元素在数组中的相对位置是否发生变化**），这里的稳定性我们理解为，顺序交换后，各个奇数（或者偶数）在数组中的相对位置是否发生变化
+
+
+# 题目解答
+
+
+
+
+## 暴力解法
+
+
+OK，看到这个题，最简单的就是从头到尾扫描一遍数组，每遇见一个偶数时，就拿出这个数字，并把位于这个数字之后的所有数字往前挪动一位,然后把当前这个偶数放到最后。
+
+这样每次遇到一个偶数就要挪动 \(O(n)\) 个数字，因此总的时间复杂度是 \(O(n^2)\)
+
+这种方法可行，但是需要复杂的挪动工作。
+
+
+## 冒泡解法
+
+
+OK，我们看一下冒泡排序，每次循环时，如果遇到前偶后奇就进行交换。如果某次循环时没有发现要交换的数据，这说明数组已经符合要求。
+
+    
+    #include <iostream>
+    #include <vector>
+    
+    using namespace std;
+    
+    
+    class Solution {
+    public:
+    	void reOrderArray(vector<int> &array) {
+    		if (array.size() <= 1) {
+    			return;
+    		}
+    		bool isSwap = false;
+    		for (int i = 0; i < array.size(); i++) {
+    			isSwap = false;
+    			//对于冒泡算法理解的不深入，为什么这里时从高到低呢？而且下限是 i？
+    			for (int j = array.size() - 1; j > i; j--) {
+    				if (array[j] % 2 == 1 && array[j - 1] % 2 == 0) //前偶后奇就交换
+    				{
+    					swap(array[j], array[j - 1]);
+    					isSwap = true;
+    				}
+    			}
+    			if (isSwap == false) {
+    				break;
+    			}
+    		}
+    	}
+    };
+    
+    
+    
+    int main() {
+    	//准备一些数
+    	int array[] = { 1, 2, 3, 4, 5, 6, 7 };
+    	vector<int> vec(array, array + 7);
+    	for (int i = 0; i < 7; i++) {
+    		cout << vec[i] << " ";
+    	}
+    	cout << endl;
+    	//进行排序
+    	Solution solu;
+    	solu.reOrderArray(vec);
+    	for (int i = 0; i < 7; i++) {
+    		cout << vec[i] << " ";
+    	}
+    	cout << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    1 2 3 4 5 6 7
+    1 3 5 7 2 4 6
+
+
+由于冒泡法是比较相邻的两个元素，因此奇数或者偶数的相对顺序不会改变，因此是稳定的。
+
+
+## 辅助数组完成
+
+
+如果我们有一个辅助空间，那么就会比较简单了：
+
+在原来的数组中遇到偶数就放进新数组中，然后将该偶数从原来数组中删除，当整个遍历结束后，原来数组中只剩下奇数，新的数组中只剩下偶数，最后我们将新的数组追加在原来数组的末尾即可。
+
+代码如下：
+
+    
+    #include <iostream>
+    #include <vector>
+    
+    using namespace std;
+    
+    
+    class Solution {
+    public:
+    	void reOrderArray(vector<int> &arr_origin) {
+    
+    		if (arr_origin.size() <= 1) {
+    			return;
+    		}
+    
+    		//遇见偶数，就保存到新数组，同时从原数组中删除
+    		vector<int>::iterator ib_origin;
+    		ib_origin = arr_origin.begin();
+    		vector<int> array_temp;
+    		for (; ib_origin != arr_origin.end();) {
+    			if (*ib_origin % 2 == 0) {
+    				array_temp.push_back(*ib_origin);
+    				ib_origin = arr_origin.erase(ib_origin);
+    			}
+    			else {
+    				ib_origin++;
+    			}
+    		}
+    
+    		//将新数组的数添加到老数组
+    		vector<int>::iterator ib_temp, ie_temp;
+    		ib_temp = array_temp.begin();
+    		ie_temp = array_temp.end();
+    		for (; ib_temp != ie_temp; ib_temp++) {
+    			arr_origin.push_back(*ib_temp);
+    		}
+    	}
+    };
+    
+    
+    
+    int main() {
+    	//准备一些数
+    	int array[] = { 1, 2, 3, 4, 5, 6, 7 };
+    	vector<int> vec(array, array + 7);
+    	for (int i = 0; i < 7; i++) {
+    		cout << vec[i] << " ";
+    	}
+    	cout << endl;
+    	//进行排序
+    	Solution solu;
+    	solu.reOrderArray(vec);
+    	for (int i = 0; i < 7; i++) {
+    		cout << vec[i] << " ";
+    	}
+    	cout << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    1 2 3 4 5 6 7
+    1 3 5 7 2 4 6
+
+
+这种算法也是稳定的。
+
+
+## 如果不要求相对位置不变，那么有一种高效的方法
+
+
+如果题目中只要求记奇数在偶数之前，而不需要保持相对位置不变，那么我们就可以：
+
+
+
+ 	
+  * 维护两个索引或者指针，一个指向数组的第一个元素，并向后移动，一个指向数组的最后一个元素，并向前移动。
+
+ 	
+  * 如果第一个指针指向的元素是偶数，而第二个指针指向的元素是奇数，说明偶数在奇数前面，那么就交换这两个数。
+
+ 	
+  * 直到两个指针相遇为止
+
+
+这样一趟后就满足要求了。
+
+    
+    #include <iostream>
+    #include <vector>
+    
+    using namespace std;
+    
+    
+    class Solution {
+    public:
+    	void reOrderArray(vector<int> &array) {
+    		if (array.size() <= 1) {
+    			return;
+    		}
+    		//两个指针
+    		vector<int>::iterator left = array.begin();
+    		vector<int>::iterator right = array.end() - 1;
+    
+    		// 三种顺序容器中只有deque和vector容器的迭代器支持大小的比较和算术运算。
+    		while (left < right) {
+    			//  left向后移动指向第一个偶数
+    			while (left < right && (*left & 0x01) == 1) {//这个(*left & 0x01) == 1 是什么意思？找偶数的意思。利害了
+    				left++;
+    			}
+    
+    			// right向前移动指向第一个奇数
+    			while (left < right && (*right & 0x01) == 0) {
+    				right--;
+    			}
+    			cout << "left = " << *left << ", right = " << *right << endl;
+    
+    			if (left < right) {
+    				swap(*left, *right);
+    			}
+    		}
+    	}
+    };
+    
+    
+    int main() {
+    	//准备数据
+    	int array[] = { 1, 2, 3, 4, 5, 6, 7 };
+    	vector<int> vec(array, array + 7);
+    	for (int i = 0; i < 7; i++) {
+    		cout << vec[i] << " ";
+    	}
+    	cout << endl;
+    	//进行排序
+    	Solution solu;
+    	solu.reOrderArray(vec);
+    	//打印结果
+    	for (int i = 0; i < 7; i++) {
+    		cout << vec[i] << " ";
+    	}
+    	cout << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    1 2 3 4 5 6 7
+    left = 2, right = 7
+    left = 4, right = 5
+    left = 4, right = 4
+    1 7 3 5 4 6 2
+
+
+很明显，这种算法不能保证相同类型数据的相对位置不变，因此不稳定。比如：
+
+
+
+ 	
+  * 测试用例：[1,2,3,4,5,6,7]
+
+ 	
+  * 对应的稳定输出：[1,3,5,7,2,4,6]
+
+ 	
+  * 我们算法的输出：[1,7,3,5,4,6,2]
+
+
+**这种解法的代码中，提到了 三种顺序容器中只有deque和vector容器的迭代器支持大小的比较和算术运算。看来deque和vector还是要好好总结一下的。而且用 (*left & 0x01) == 1 来判断是不是偶数也有些厉害。**
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

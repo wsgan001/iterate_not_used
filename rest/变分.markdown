@@ -1,0 +1,343 @@
+---
+author: evo
+comments: true
+date: 2018-04-27 23:05:22+00:00
+layout: post
+link: http://106.15.37.116/2018/04/28/variational-inference/
+slug: variational-inference
+title: 变分
+wordpress_id: 4272
+categories:
+- 随想与反思
+tags:
+- '@todo'
+---
+
+<!-- more -->
+
+[mathjax]
+
+
+# REF
+
+
+
+
+
+ 	
+  1. [该怎么理解泛函以及变分？](https://www.zhihu.com/question/26527625)
+
+ 	
+  2. [变分法 wiki](https://zh.wikipedia.org/wiki/%E5%8F%98%E5%88%86%E6%B3%95)
+
+ 	
+  3. [变分算法](https://blog.csdn.net/u012771351/article/details/53095658)
+
+ 	
+  4. [变分推断(variational inference)学习笔记(1)——概念介绍](https://blog.csdn.net/AiTODD1/article/details/41088131)
+
+
+********************************************************************************
+
+
+# TODO
+
+
+
+
+
+ 	
+  * 泛函要不要单独拿出来讲？
+
+
+
+
+# MOTIVE
+
+
+********************************************************************************
+
+
+
+
+# 变分 没讲
+
+
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdef4f41cab.png)
+
+
+另一个思路
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdef59194ab.png)
+
+
+变分的提法
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdef6409ec3.png)
+
+
+变分目标函数分析
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdef78d9ddb.png)
+
+
+新目标函数的可行性
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdef84868f1.png)
+
+
+变分和EM的联系
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdef8ef2986.png)
+
+
+思考：目标函数的物理含义
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdef99e7785.png)
+
+
+思考：似然函数期望与目标函数
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdefa604e69.png)
+
+
+两个KL散度的区别
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdefb1f10bf.png)
+
+
+
+
+
+### 两个KL散度的区别
+
+
+绿色曲线是真实分布p的等高线；红色曲线
+是使用近似\(p(z_1,z_2)=p(z_1)p(z_2))得到的等高线
+
+
+
+ 	
+  * 左：KL(p||q)：zero avoiding
+
+ 	
+  * 右：KL(q||p)：zero forcing
+
+
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdefc34114b.png)
+
+
+两个KL散度的区别
+
+色曲线是真实分布p的等高线；红色曲线是单模型近似分布q的等高线。
+
+
+
+ 	
+  * 左：KL(p||q)：q趋向于覆盖p
+
+ 	
+  * 中、右：KL(q||p)：q能够锁定某一个峰值
+
+
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdefde56f5d.png)
+
+
+
+
+
+### 两个KL散度之间的联系
+
+
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf01ccbb44.png)
+
+
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf02768479.png)
+
+
+Hellinger distance
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf039b0326.png)
+
+
+该距离满足三角不等式，是对称、非负距离
+
+
+### 平均场方法(Mean field method)
+
+
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf04d99b5a.png)
+
+
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf05a35092.png)
+
+
+变分推导/似然下界L
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf06b57bb7.png)
+
+
+变分推导最终结论
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf075d52e2.png)
+
+
+Ising model
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf08716c26.png)
+
+
+势函数的系数
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf09a592d1.png)
+
+
+使用变分做图像去噪
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf0ae968f8.png)
+
+
+后验概率
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf0bd58b5c.png)
+
+
+近似概率
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf0ca28fb1.png)
+
+
+根据公式：
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf0d4ef0bc.png)
+
+
+更新方程：
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf0e2d1c3e.png)
+
+
+迭代方程：
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf0f18ade3.png)
+
+
+实际效果：
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf0fd872b2.png)
+
+
+变分贝叶斯(Variational Bayes,VB)
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf10981581.png)
+
+
+高斯分布的变分贝叶斯 Variational Bayes
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf1250b8fe.png)
+
+
+未正则化的对数后验
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf13076358.png)
+
+
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf139f3275.png)
+
+
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf143a7f82.png)
+
+
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf14e870da.png)
+
+
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf1568601f.png)
+
+
+变分参数估计实例
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf165d7fe9.png)
+
+
+变分总结
+
+
+
+ 	
+  * 变分既能够推断隐变量的分布，也能推断未知参数的分布，是非常有力的参数学习工具。其难点在于公式演算略显复杂，和采样相对：一个容易计算但速度慢，一个不容易计算但运行效率高
+
+ 	
+  * 平均场方法的变分推导，对离散和连续的隐变量都适用。在平均场方法的框架下，变分推导一次更新一个分布，其本质为坐标上升。可以使用模式搜索(pattern search)、基于参数的扩展(parameter expansion)等方案加速。
+
+ 	
+  * 有时候，假定所有变量都是独立是不符合实际的，可以使用结构化平均场(structured mean field)，将变量分成若干组，每组之间是独立的。
+
+ 	
+  * 变分除了能够和贝叶斯理论相配合得到VB，还能进一步与EM算法结合，得到VBEM，用于带隐变量和未知参数的推断。
+
+ 	
+    * 如GMM、LDA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# COMMENT
+
+
+

@@ -1,0 +1,124 @@
+---
+author: evo
+comments: true
+date: 2018-05-04 11:12:01+00:00
+layout: post
+link: http://106.15.37.116/2018/05/04/linux-%e5%ae%89%e8%a3%85/
+slug: linux-%e5%ae%89%e8%a3%85
+title: Linux 安装
+wordpress_id: 5084
+categories:
+- 随想与反思
+tags:
+- linux
+---
+
+<!-- more -->
+
+[mathjax]
+
+
+# REFERENCE
+
+
+
+
+
+ 	
+  1. [Linux教程](https://www.w3cschool.cn/linux/)
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * 这部分没有看，不知道是不是可以这样安装，以后自己安装的时候要记录一下
+
+ 	
+  * 怎么做U盘启动盘的？
+
+ 	
+  * 
+
+
+
+# MOTIVE
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+## Linux 安装
+
+
+本章节我们将为大家介绍Linux的安装。
+
+本章节以 centos6.4 为例。
+
+centos6.4 下载地址：
+
+
+
+ 	
+  * 网易镜像：[http://mirrors.163.com/centos/6/isos/](https://mirrors.sohu.com/centos/6/isos/)
+
+ 	
+  * 搜狐镜像：[http://mirrors.sohu.com/centos/6/isos/](https://mirrors.sohu.com/centos/6/isos/)
+
+
+**注：**建议安装64位Linux系统。
+
+接下来你需要将下载的Linux系统刻录成光盘或U盘。
+
+**注：**你也可以在Window上安装VMware虚拟机来安装Linux系统。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

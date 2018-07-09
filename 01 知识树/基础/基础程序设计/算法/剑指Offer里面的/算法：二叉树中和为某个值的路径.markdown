@@ -1,0 +1,490 @@
+---
+author: evo
+comments: true
+date: 2018-05-18 09:07:36+00:00
+layout: post
+link: http://106.15.37.116/2018/05/18/%e7%ae%97%e6%b3%95%ef%bc%9a%e4%ba%8c%e5%8f%89%e6%a0%91%e4%b8%ad%e5%92%8c%e4%b8%ba%e6%9f%90%e4%b8%aa%e5%80%bc%e7%9a%84%e8%b7%af%e5%be%84/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e4%ba%8c%e5%8f%89%e6%a0%91%e4%b8%ad%e5%92%8c%e4%b8%ba%e6%9f%90%e4%b8%aa%e5%80%bc%e7%9a%84%e8%b7%af%e5%be%84'
+title: 算法：二叉树中和为某个值的路径
+wordpress_id: 5994
+categories:
+- 基础程序设计
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+输入一颗二叉树和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。
+
+路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。**路径一定是到从根结点到叶节点的吗？**
+
+
+## 
+
+
+
+
+
+# 题目解答
+
+
+
+
+## 暴力的直接遍历，求遍历到的结点的和
+
+
+直接进行遍历，找到path就存放起来。
+
+    
+    #include <iostream>
+    #include <vector>
+    using namespace std;
+    
+    
+    
+    struct TreeNode {
+    	int val;
+    	struct TreeNode *left;
+    	struct TreeNode *right;
+    };
+    
+    class Solution {
+    public:
+    	vector< vector<int> > m_res;
+    
+    public:
+    	vector<vector<int> > FindPath(TreeNode* root, int expectNumber) {
+    		if (root == NULL) {
+    			return m_res;
+    		}
+    		vector<int> path;
+    		FindPath(root, expectNumber, path, 0);
+    
+    		return m_res;
+    	}
+    
+    	void FindPath(TreeNode* root, int expectNumber, vector<int> path, int currentSum) {
+    		currentSum += root->val;
+    		path.push_back(root->val);
+    
+    		//找到一条路径
+    		if (currentSum == expectNumber&& ((root->left == NULL && root->right == NULL))) {
+    			cout << "find a path" << endl;
+    			for (int i = 0; i < path.size(); i++) {
+    				cout << path[i] << " ";
+    			}
+    			cout << endl;
+    			m_res.push_back(path);
+    		}
+    		//左边不是NULL，向左找
+    		if (root->left != NULL) {
+    			FindPath(root->left, expectNumber, path, currentSum);
+    		}
+    		//右边不是NULL，向右找
+    		if (root->right != NULL) {
+    			FindPath(root->right, expectNumber, path, currentSum);
+    		}
+    
+    
+    		//这里注意一下，因为我们使用的是传值，因此currentSum和path不用恢复
+    		//因为currentSum作为参数在函数递归调用返回时会自动恢复                 
+    		//但是如果作为静态局部变量存储则需要进行恢复                             
+    		//currentSum -= root->val;                                               
+    		//path.pop_back( );      
+    	}
+    };
+    
+    int main() {
+    	//10
+    	//5   12
+    	//4  7  N  N
+    	TreeNode tree[5];
+    	tree[0].val = 10;
+    	tree[0].left = &tree[1];
+    	tree[0].right = &tree[2];
+    
+    	tree[1].val = 5;
+    	tree[1].left = &tree[3];
+    	tree[1].right = &tree[4];
+    
+    	tree[2].val = 12;
+    	tree[2].left = NULL;
+    	tree[2].right = NULL;
+    
+    	tree[3].val = 4;
+    	tree[3].left = NULL;
+    	tree[3].right = NULL;
+    
+    	tree[4].val = 7;
+    	tree[4].left = NULL;
+    	tree[4].right = NULL;
+    
+    	Solution solu;
+    	vector< vector<int> > res = solu.FindPath(&tree[0], 22);
+    	cout << "路径数量为：" << res.size() << endl;
+    	for (int i = 0; i < res.size(); i++) {
+    		for (int j = 0; j < res[i].size(); j++) {
+    			cout << res[i][j] << " ";
+    		}
+    		cout << endl;
+    	}
+    	return 0;
+    }
+
+
+输出：
+
+    
+    find a path
+    10 5 7
+    find a path
+    10 12
+    路径数量为：2
+    10 5 7
+    10 12
+
+
+上面的代码中的 currentSum 和 path 都是保存在递归栈中的，因此递归推出的时候会恢复。如果这两个是静态常量的话，代码如下：
+
+    
+    #include <iostream>
+    #include <vector>
+    using namespace std;
+    
+    
+    
+    struct TreeNode {
+    	int val;
+    	struct TreeNode *left;
+    	struct TreeNode *right;
+    };
+    
+    
+    
+    
+    class Solution {
+    public:
+    	vector< vector<int> > m_res;
+    public:
+    	vector< vector<int> > FindPath(TreeNode* root, int expectNumber) {
+    		if (root == NULL) {
+    			return m_res;
+    		}
+    		vector<int> path;
+    		FindPathRecursion(root, expectNumber);
+    		return m_res;
+    	}
+    
+    	void FindPathRecursion(TreeNode* root, int expectNumber) {
+    		static int currentSum = 0;//静态常量
+    		static vector<int> path;
+    
+    		currentSum += root->val;
+    		path.push_back(root->val);
+    		cout << "currentSum = " << currentSum - root->val 
+    			<< ", now get " << root->val 
+    			<< ", currentSum = " << currentSum << endl;
+    
+    		if (currentSum == expectNumber
+    			&& ((root->left == NULL && root->right == NULL))) {
+    			cout << "find a path" << endl;
+    			for (int i = 0; i < path.size(); i++) {
+    				cout << path[i] << " ";
+    			}
+    			cout << endl;
+    			m_res.push_back(path);
+    		}
+    
+    		if (root->left != NULL) {
+    			FindPathRecursion(root->left, expectNumber);
+    		}
+    		if (root->right != NULL) {
+    			FindPathRecursion(root->right, expectNumber);
+    		}
+    
+    		cout << "currentSum = " << currentSum 
+    			<< ", now pop " << *(path.end() - 1) 
+    			<< ", currentSum = " << currentSum - root->val << endl;
+    
+    		//  作为静态变量存储需要恢复现场
+    		currentSum -= root->val;
+    		path.pop_back();
+    	}
+    
+    };
+    int main() {
+    	//10
+    	//5   12
+    	//4  7  N  N
+    	TreeNode tree[5];
+    	tree[0].val = 10;
+    	tree[0].left = &tree[1];
+    	tree[0].right = &tree[2];
+    
+    	tree[1].val = 5;
+    	tree[1].left = &tree[3];
+    	tree[1].right = &tree[4];
+    
+    	tree[2].val = 12;
+    	tree[2].left = NULL;
+    	tree[2].right = NULL;
+    
+    	tree[3].val = 4;
+    	tree[3].left = NULL;
+    	tree[3].right = NULL;
+    
+    	tree[4].val = 7;
+    	tree[4].left = NULL;
+    	tree[4].right = NULL;
+    
+    	Solution solu;
+    	vector< vector<int> > res = solu.FindPath(&tree[0], 22);
+    	cout << "路径数量为：" << res.size() << endl;
+    	for (int i = 0; i < res.size(); i++) {
+    		for (int j = 0; j < res[i].size(); j++) {
+    			cout << res[i][j] << " ";
+    		}
+    		cout << endl;
+    	}
+    	return 0;
+    }
+
+
+输出：
+
+    
+    currentSum = 0, now get 10, currentSum = 10
+    currentSum = 10, now get 5, currentSum = 15
+    currentSum = 15, now get 4, currentSum = 19
+    currentSum = 19, now pop 4, currentSum = 15
+    currentSum = 15, now get 7, currentSum = 22
+    find a path
+    10 5 7
+    currentSum = 22, now pop 7, currentSum = 15
+    currentSum = 15, now pop 5, currentSum = 10
+    currentSum = 10, now get 12, currentSum = 22
+    find a path
+    10 12
+    currentSum = 22, now pop 12, currentSum = 10
+    currentSum = 10, now pop 10, currentSum = 0
+    路径数量为：2
+    10 5 7
+    10 12
+
+
+
+
+
+## 上面是用求和的时候遍历的，那么我们也可以用递减的方式遍历
+
+
+上面是用求和的时候遍历的，那么我们也可以用递减的方式遍历。而且上面的结果我们是保存在数据成员里面，我们这次使用传参的方式实现。
+
+    
+    #include <iostream>
+    #include <vector>
+    using namespace std;
+    
+    
+    
+    struct TreeNode {
+    	int val;
+    	struct TreeNode *left;
+    	struct TreeNode *right;
+    };
+    
+    
+    
+    class Solution {
+    public:
+    
+    	vector< vector<int> > FindPath(TreeNode* root, int expectNumber) {
+    		vector< vector<int> > res;
+    		if (root == NULL) {
+    			return res;
+    		}
+    		FindPath(root, expectNumber, res);
+    		return res;
+    	}
+    
+    protected:
+    	void FindPath(TreeNode* root, int leftSum, vector< vector<int> > &res) {
+    		if (root == NULL) {
+    			return;
+    		}
+    		//用一个静态的变量来存储路径
+    		static vector<int> path;
+    
+    		leftSum -= root->val;
+    		path.push_back(root->val);
+    
+    		if (leftSum == 0&& ((root->left == NULL && root->right == NULL))) {
+    			cout << "find a path" << endl;
+    			for (int i = 0; i < path.size(); i++) {
+    				cout << path[i] << " ";
+    			}
+    			cout << endl;
+    			res.push_back(path);//很想知道，res.push_back(path)之后，path修改的话 res里面会变吗？
+    			cout << "size = " << res.size() << endl;
+    		}
+    		else {
+    			if (root->left != NULL) {
+    				FindPath(root->left, leftSum, res);
+    			}
+    			if (root->right != NULL) {
+    				FindPath(root->right, leftSum, res);
+    			}
+    		}
+    		path.pop_back();//是static 因此还要还原回来
+    	}
+    };
+    
+    int main() {
+    	//10
+    	//5   12
+    	//4  7  N  N
+    	TreeNode tree[5];
+    	tree[0].val = 10;
+    	tree[0].left = &tree[1];
+    	tree[0].right = &tree[2];
+    
+    	tree[1].val = 5;
+    	tree[1].left = &tree[3];
+    	tree[1].right = &tree[4];
+    
+    	tree[2].val = 12;
+    	tree[2].left = NULL;
+    	tree[2].right = NULL;
+    
+    	tree[3].val = 4;
+    	tree[3].left = NULL;
+    	tree[3].right = NULL;
+    
+    	tree[4].val = 7;
+    	tree[4].left = NULL;
+    	tree[4].right = NULL;
+    
+    	Solution solu;
+    	vector< vector<int> > res = solu.FindPath(&tree[0], 22);
+    	cout << "路径数量为：" << res.size() << endl;
+    	for (int i = 0; i < res.size(); i++) {
+    		for (int j = 0; j < res[i].size(); j++) {
+    			cout << res[i][j] << " ";
+    		}
+    		cout << endl;
+    	}
+    	return 0;
+    }
+
+
+输出：
+
+    
+    find a path
+    10 5 7
+    size = 1
+    find a path
+    10 12
+    size = 2
+    路径数量为：2
+    10 5 7
+    10 12
+
+
+在上面的递归的过程中，我们用 static 变量来保存 path 参数的信息，因为这个变量在函数的静态生存周期内部，因此这种方法有个致命的缺点：
+
+
+
+ 	
+  * 所有的对象共享这个函数，当多个对象同时操作的时候，path变量只有一个副本，因此线程不安全。**是的，多个对象同时操作的时候，肯定是线程不安全的。一个的话还是安全的。对于 static 还是要总结下。**
+
+ 	
+  * 如果在函数结束的时候，path变量没有被清空，那么即使不是多线程共享访问，两个对象顺序的访问这个对象，依然会造成根共享访问同样的问题。**是的。**
+
+
+**所以，多线程的时候，尽量不要使用static。确认下，看看是怎么解决的。**
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

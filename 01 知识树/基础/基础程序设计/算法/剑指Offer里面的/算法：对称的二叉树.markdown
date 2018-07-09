@@ -1,0 +1,310 @@
+---
+author: evo
+comments: true
+date: 2018-05-30 00:01:12+00:00
+layout: post
+link: http://106.15.37.116/2018/05/30/%e7%ae%97%e6%b3%95%ef%bc%9a%e5%af%b9%e7%a7%b0%e7%9a%84%e4%ba%8c%e5%8f%89%e6%a0%91/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e5%af%b9%e7%a7%b0%e7%9a%84%e4%ba%8c%e5%8f%89%e6%a0%91'
+title: 算法：对称的二叉树
+wordpress_id: 7003
+categories:
+- 基础程序设计
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，所有版权属于原作者，原文已列在 ORIGINAL 中。为了方便个人学习做了整合、修改，仅供个人学习使用。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+请实现一个函数，用来判断一颗二叉树是不是对称的。
+
+注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的
+
+
+## 
+
+
+
+
+# 题目解答
+
+
+左右子树同时遍历，若出现不一致，则说明不对称。二叉树是否对称的本质，其实就是判定两棵树是否镜像，即相对应的位置的节点是否对应相等。
+
+
+## 递归实现
+
+
+
+    
+    #include <iostream>
+    
+    using namespace std;
+    
+    
+    struct TreeNode {
+        int                 val;
+        struct TreeNode     *left;
+        struct TreeNode     *right;
+        TreeNode(int x = 0)
+            :val(x), left(NULL), right(NULL) {
+        }
+    };
+    
+    
+    
+    class Solution {
+    public:
+        bool isSymmetrical(TreeNode* pRoot) {
+            if (pRoot == NULL) {
+                return true;
+            }
+            return isSymmetricalRecursion(pRoot->left, pRoot->right);
+        }
+        bool isSymmetricalRecursion(TreeNode *pLeft, TreeNode *pRight) {
+            if (pLeft == NULL && pRight == NULL) {
+                return true;
+            }
+            if (pLeft == NULL || pRight == NULL) {
+                return false;
+            }
+            if (pLeft->val != pRight->val) {
+                return false;//两边的值要相等
+            }
+            //  嗯，这里要注意下
+            //  左子树的左与右子树的右对称
+            //  左子树的右与右子树的左对称
+            return isSymmetricalRecursion(pLeft->left, pRight->right)
+                && isSymmetricalRecursion(pLeft->right, pRight->left);
+        }
+    };
+    
+    int main() {
+        TreeNode tree[7];
+        tree[0].val = 8;
+        tree[0].left = &tree[1];
+        tree[0].right = &tree[2];
+        tree[1].val = 6;
+        tree[1].left = &tree[3];
+        tree[1].right = &tree[4];
+        tree[2].val = 6;
+        tree[2].left = &tree[5];
+        tree[2].right = &tree[6];
+        tree[3].val = 5;
+        tree[3].left = NULL;
+        tree[3].right = NULL;
+        tree[4].val = 7;
+        tree[4].left = NULL;
+        tree[4].right = NULL;
+        tree[5].val = 7;
+        tree[5].left = NULL;
+        tree[5].right = NULL;
+        tree[6].val = 5;
+        tree[6].left = NULL;
+        tree[6].right = NULL;
+    
+        Solution solu;
+        cout << solu.isSymmetrical(tree) << endl;
+        return 0;
+    }
+
+
+输出：
+
+    
+    1
+
+
+
+
+## 非递归实现
+
+
+递归是可以用栈来代替的，因为要对称比较，所以要两个栈，一个用来放左子树的node，一个用来放右子树的node，拿出来对比的时候一起拿。
+
+这样的话，其实我们可以用一个双端队列 deque 来实现，这样左子树的 node 从 front push 进去，右子树的 node 从 back push 进去，取出的时候，也是 front 和 back  一起 pop 。
+
+    
+    #include <iostream>
+    #include <deque>
+    using namespace std;
+    
+    
+    struct TreeNode {
+        int                 val;
+        struct TreeNode     *left;
+        struct TreeNode     *right;
+        TreeNode(int x = 0)
+            :val(x), left(NULL), right(NULL) {
+        }
+    };
+    
+    
+    
+    class Solution {
+    public:
+        bool isSymmetrical(TreeNode *root) {
+            if (root == NULL) {
+                return true;
+            }
+    
+            if (root->left == NULL&& root->right == NULL) {
+                return true;
+            }
+            if ((root->left == NULL && root->right != NULL)
+                || (root->left != NULL && root->right == NULL)) {
+                return false;
+            }
+    
+            deque< TreeNode * > dq;
+            dq.push_front(root->left);
+            dq.push_back(root->right);
+    
+            while (dq.empty() != true) {
+                //从deque中取出进行比较
+                TreeNode* lroot = dq.front();
+                TreeNode* rroot = dq.back();
+                dq.pop_front();
+                dq.pop_back();
+                if (lroot->val != rroot->val) {
+                    return false;
+                }
+    
+                //检查左子树的右和右子树的左
+                if ((lroot->right == NULL && rroot->left != NULL)
+                    || (lroot->right != NULL && rroot->left == NULL)) {
+                    return false;
+                }
+                if (lroot->right != NULL) {
+                    dq.push_front(lroot->right);
+                    dq.push_back(rroot->left);
+                }
+    
+                //检查左子树的左 和右子树的右
+                if ((lroot->left == NULL && rroot->right != NULL)
+                    || (lroot->left != NULL && rroot->right == NULL)) {
+                    return false;
+                }
+                if (lroot->left != NULL) {
+                    dq.push_front(lroot->left);
+                    dq.push_back(rroot->right);
+                }
+            }
+            return true;
+        }
+    };
+    
+    int main() {
+        TreeNode tree[7];
+        tree[0].val = 8;
+        tree[0].left = &tree[1];
+        tree[0].right = &tree[2];
+        tree[1].val = 6;
+        tree[1].left = &tree[3];
+        tree[1].right = &tree[4];
+        tree[2].val = 6;
+        tree[2].left = &tree[5];
+        tree[2].right = &tree[6];
+        tree[3].val = 5;
+        tree[3].left = NULL;
+        tree[3].right = NULL;
+        tree[4].val = 7;
+        tree[4].left = NULL;
+        tree[4].right = NULL;
+        tree[5].val = 7;
+        tree[5].left = NULL;
+        tree[5].right = NULL;
+        tree[6].val = 5;
+        tree[6].left = NULL;
+        tree[6].right = NULL;
+    
+        Solution solu;
+        cout << solu.isSymmetrical(tree) << endl;
+        return 0;
+    }
+
+
+输出：
+
+    
+    1
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

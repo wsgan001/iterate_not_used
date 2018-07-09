@@ -1,0 +1,487 @@
+---
+author: evo
+comments: true
+date: 2018-05-16 04:56:46+00:00
+layout: post
+link: http://106.15.37.116/2018/05/16/%e7%ae%97%e6%b3%95%ef%bc%9a%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e9%95%9c%e5%83%8f/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e9%95%9c%e5%83%8f'
+title: 算法：二叉树的镜像
+wordpress_id: 5820
+categories:
+- 随想与反思
+tags:
+- NOT_ADD
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+操作给定的二叉树，将其变换为源二叉树的镜像。
+
+
+## **输入描述**
+
+
+二叉树的镜像定义：源二叉树
+
+
+8
+6  10
+5  7  9  11
+
+
+镜像二叉树
+
+
+8
+10  6
+11  9  7  5
+
+
+需要注意的是，Mirror的时候，不是node里的值发生了变化，而是指向node的指针发生了变化，比如，对于根节点来说，它原先的左指针指向的 node 的 val 是 10，现在我这个左指针指向了之前的右边的 node，val 是10 。这个过程中 node本身的 val 并没有变，
+
+
+# 题目解答
+
+
+通过画图，可知二叉树的镜像如下图所示：
+
+![二叉树的镜像](https://camo.githubusercontent.com/1716e6220253c78dbc4e9b6e3d1f57cd3ba5d9e5/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630343137323134343534353338)
+
+中间像放置了一面镜子，将源二叉树投射在镜子中。
+
+OK，我们立马想到，只要遍历二叉树，交换每个节点的左右孩子就行了。
+
+
+## 遍历二叉树，交换每个结点的左右孩子
+
+
+
+
+### 递归写法
+
+
+OK，递归方法如下：
+
+    
+    #include <iostream>
+    #include <string>
+    using namespace std;
+    
+    
+    struct TreeNode {
+    	int val;
+    	struct TreeNode *left;
+    	struct TreeNode *right;
+    };
+    
+    
+    class Solution {
+    public:
+    	//注意，交换的是node，而不是交换node里面的值，这意味着只是node之间的指针发生了变化
+    	void Mirror(TreeNode *pRoot) {
+    		if (pRoot == NULL) {
+    			return;
+    		}
+    		swap(pRoot->left, pRoot->right);
+    		Mirror(pRoot->left);
+    		Mirror(pRoot->right);
+    	}
+    };
+    
+    
+    
+    int main() {
+    
+    	//准备两个树
+    	TreeNode tree[8];
+    	tree[0].val = 8;
+    	tree[0].left = &tree[1];
+    	tree[0].right = &tree[2];
+    	tree[1].val = 6;
+    	tree[1].left = &tree[3];
+    	tree[1].right = &tree[4];
+    	tree[2].val = 10;
+    	tree[2].left = &tree[5];
+    	tree[2].right = &tree[6];
+    	tree[3].val = 5;
+    	tree[3].left = NULL;
+    	tree[3].right = NULL;
+    	tree[4].val = 7;
+    	tree[4].left = NULL;
+    	tree[4].right = NULL;
+    	tree[5].val = 9;
+    	tree[5].left = NULL;
+    	tree[5].right = NULL;
+    	tree[6].val = 11;
+    	tree[6].left = NULL;
+    	tree[6].right = NULL;
+    
+    	//打印出二叉树
+    	cout << "原始二叉树" << endl;
+    	cout << tree[0].val << endl;
+    	cout << tree[0].left->val << "  " << tree[0].right->val << endl;
+    	cout << tree[0].left->left->val << "  " << tree[0].left->right->val << "  "
+    		<< tree[0].right->left->val << "  " << tree[0].right->right->val << endl;
+    
+    
+    
+    	Solution solu;
+    	solu.Mirror(tree);//比如，原来的tree[0].left 指向的是tree[1]，但是现在已经指向了tree[2]了。
+    	cout << "Mirror 二叉树 " << endl;
+    	cout << tree[0].val << endl;
+    	cout << tree[0].left->val << "  " << tree[0].right->val << endl;
+    	cout << tree[0].left->left->val << "  " << tree[0].left->right->val << "  "
+    		<< tree[0].right->left->val << "  " << tree[0].right->right->val << endl;
+    
+    	return 0;
+    }
+
+
+输出如下：
+
+    
+    原始二叉树
+    8
+    6  10
+    5  7  9  11
+    Mirror 二叉树
+    8
+    10  6
+    11  9  7  5
+
+
+注：上面的代码，在打印tree的时候，不能再用tree[1]、tree[2] 等了，因为tree[0]指向的node已经不再是之前的node了，因此要通过->right ->left 来输出。
+
+可见递归的版本还是很方便的。
+
+OK，我们再看下一些非递归的版本：
+
+
+
+于是我们实现了下面的递归，非递归的函数版本，其本质是相同的，就是把前序中序，后序遍历中的打印节点的过程，编程交换左右子树的过程，其中需要注意一点，就是交换后左右子树进行了交换，再往下走的时候，往左走往右走的过程需改变，原来的向右走，现在应该是向左走，
+
+
+### 非递归写法
+
+
+非递归的话，就是要自己遍历，有前序、中序、后续 三种，而且有广度优先和深度优先。
+
+代码如下：
+
+    
+    #include <iostream>
+    #include <string>
+    #include <stack>
+    using namespace std;
+    
+    
+    struct TreeNode {
+    	int val;
+    	struct TreeNode *left;
+    	struct TreeNode *right;
+    };
+    
+    
+    class Solution {
+    public:
+    
+    	//前序遍历 根左右
+    	//注意：由于根后面才对左右子树进行访问，因此我们访问的是根左右，但是对应原来的tree的根右左
+    	void MirrorPre(TreeNode *root) {
+    		if (root == NULL) {
+    			return;
+    		}
+    
+    		stack<TreeNode *> nstack;
+    		TreeNode *node = root;
+    		while (node != NULL || nstack.empty() != true) {
+    			while (node != NULL) {
+    				//处理根结点
+    				if (node->left != NULL || node->right != NULL) {
+    					swap(node->left, node->right);
+    				}
+    				//注意，上面这个时候已经把左右调换了，所以下面这个left，实际上是对应原始tree的right
+    				//实际上，我们不用管它对应的原始的tree的left还是right，因为对于新的tree来说的确是left。
+    				nstack.push(node);//把根结点放到stack里面
+    				node = node->left;//往左走
+    			}
+    			//已经往左走到头了，开始看看stack的最后一个的右。
+    			if (nstack.empty() != true) {
+    				node = nstack.top();
+    				nstack.pop();
+    				node = node->right;
+    			}
+    		}
+    	}
+    	//前序遍历 根左右 广度优先方法
+    	void MirrorPreBFS(TreeNode *root) {
+    		if (root == NULL) {
+    			return;
+    		}
+    
+    		stack<TreeNode *> nstack;
+    		nstack.push(root);
+    		//这样的话实际上从stack取出来的时候是根右左吧？对应原始的tree的根左右？
+    		TreeNode *node = root;
+    		while (nstack.empty() != true) {
+    			node = nstack.top();
+    			nstack.pop();
+    			//  先交换, 然后递归左，接着递归右
+    			//  相当与一次前序遍历
+    			if (node->left != NULL || node->right != NULL) {
+    				swap(node->left, node->right);
+    			}
+    			if (node->left != NULL) {
+    				nstack.push(node->left);
+    			}
+    			if (node->right != NULL) {
+    				nstack.push(node->right);
+    			}
+    		}
+    	}
+    
+    
+    	//中序遍历 左根右
+    	//注意：由于访问后，依然要向右走，所以交换后，变成了向左走
+    	void MirrorIn(TreeNode *root) {
+    		if (root == NULL) {
+    			cout << "The tree is NULL..." << endl;
+    			return;
+    		}
+    
+    		stack<TreeNode *> nstack;
+    		TreeNode *node = root;
+    
+    		while (node != NULL || nstack.empty() != true) {
+    			// 不输出当前根节点，但是递归直至当前根节点node的最左端
+    			while (node != NULL) {
+    				nstack.push(node);
+    				node = node->left;
+    			}
+    
+    			if (nstack.empty() != true) {
+    				node = nstack.top();
+    				if (node->left != NULL || node->right != NULL) {
+    					swap(node->left, node->right);
+    				}
+    
+    				nstack.pop();
+    				//  中序遍历输出根后，向右转向
+    				//  但是，由于左右子树交换，因此原来的右子树是其左子树，向左转向
+    				node = node->left;
+    			}
+    		}
+    	}
+    
+    	//后序遍历 左右根
+    	void MirrorPost(TreeNode *root) {
+    
+    		if (root == NULL) {
+    			cout << "The tree is NULL..." << endl;
+    			return;
+    		}
+    		stack<TreeNode *> nstack;
+    
+    		TreeNode *cur;                      //当前结点
+    		TreeNode *pre = NULL;                 //前一次访问的结点
+    		nstack.push(root);
+    
+    		while (nstack.empty() != true) {
+    			cur = nstack.top();
+    
+    			// 如果左右结点均是 NULL，说明这个结点是根结点，直接把它pop出去
+    			// 如果之前的结点不是NULL，而且之前的结点就是现在这个结点的左节点或者右结点，那么说明这个节点也是根结点，所以，先交换，然后再 pop 出去。
+    			if ((cur->left == NULL && cur->right == NULL)
+    				|| (pre != NULL && ((pre == cur->left) || pre == cur->right)))
+    
+    			{
+    				if (cur->left != NULL || cur->right != NULL) {
+    					swap(cur->left, cur->right);
+    				}
+    				nstack.pop();
+    				pre = cur;
+    			}
+    			else {
+    				// 由于栈是先进后出，因此先入右孩子, 再左孩子可以保证递归返回时先遍历左孩子
+    				if (cur->right != NULL) {
+    					nstack.push(cur->right);
+    				}
+    				if (cur->left != NULL) {
+    					nstack.push(cur->left);
+    				}
+    			}
+    		}
+    	}
+    
+    };
+    
+    
+    void PrintTree(string treeName, TreeNode *tree) {
+    	cout << treeName << endl;
+    	cout << tree[0].val << endl;
+    	cout << tree[0].left->val << "  " << tree[0].right->val << endl;
+    	cout << tree[0].left->left->val << "  " << tree[0].left->right->val << "  "
+    		<< tree[0].right->left->val << "  " << tree[0].right->right->val << endl;
+    	cout << endl;
+    }
+    
+    int main() {
+    
+    	//准备两个树
+    	TreeNode tree[8];
+    	tree[0].val = 8;
+    	tree[0].left = &tree[1];
+    	tree[0].right = &tree[2];
+    	tree[1].val = 6;
+    	tree[1].left = &tree[3];
+    	tree[1].right = &tree[4];
+    	tree[2].val = 10;
+    	tree[2].left = &tree[5];
+    	tree[2].right = &tree[6];
+    	tree[3].val = 5;
+    	tree[3].left = NULL;
+    	tree[3].right = NULL;
+    	tree[4].val = 7;
+    	tree[4].left = NULL;
+    	tree[4].right = NULL;
+    	tree[5].val = 9;
+    	tree[5].left = NULL;
+    	tree[5].right = NULL;
+    	tree[6].val = 11;
+    	tree[6].left = NULL;
+    	tree[6].right = NULL;
+    
+    	//打印出二叉树
+    
+    	PrintTree("原始树", tree);
+    
+    
+    	Solution solu;
+    	solu.MirrorPre(tree);//比如，原来的tree[0].left 指向的是tree[1]，但是现在已经指向了tree[2]了。
+    	PrintTree("交换1次，使用 MirrorPre", tree);
+    	solu.MirrorPreBFS(tree);
+    	PrintTree("交换2次，使用 MirrorPreBFS", tree);
+    	solu.MirrorIn(tree);
+    	PrintTree("交换3次，使用 MirrorIn", tree);
+    	solu.MirrorPost(tree);
+    	PrintTree("交换4次，使用 MirrorPost", tree);
+    
+    	return 0;
+    }
+
+
+输出：
+
+    
+    原始树
+    8
+    6  10
+    5  7  9  11
+    
+    交换1次，使用 MirrorPre
+    8
+    10  6
+    11  9  7  5
+    
+    交换2次，使用 MirrorPreBFS
+    8
+    6  10
+    5  7  9  11
+    
+    交换3次，使用 MirrorIn
+    8
+    10  6
+    11  9  7  5
+    
+    交换4次，使用 MirrorPost
+    8
+    6  10
+    5  7  9  11
+
+
+**还是需要再看下。感觉还有些不是很明确。**
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

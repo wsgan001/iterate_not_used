@@ -1,0 +1,107 @@
+---
+author: evo
+comments: true
+date: 2018-05-06 13:48:14+00:00
+layout: post
+link: http://106.15.37.116/2018/05/06/grid-clustering/
+slug: grid-clustering
+title: 网格聚类
+wordpress_id: 5364
+categories:
+- 随想与反思
+tags:
+- '@NULL'
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，推荐直接看原文**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[聚类分析算法kmeans和KNN](https://www.jianshu.com/p/105535717e11)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+# MOTIVE
+
+
+
+
+
+ 	
+  * 之前从来没听说过还有网格聚类，看一下
+
+
+
+
+
+* * *
+
+
+
+
+
+基于网格的聚类（gird-based methods）
+
+这种方法通常将数据空间划分成有限个单元的网格结构，所有的处理都是以单个的单元为对象。这样做起来处理速度很快，因为这与数据点的个数无关，而只与单元格个数有关。
+
+代表算法有：STING，CLIQUE。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

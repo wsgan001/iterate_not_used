@@ -1,0 +1,136 @@
+---
+author: evo
+comments: true
+date: 2018-04-02 11:15:47+00:00
+layout: post
+link: http://106.15.37.116/2018/04/02/mxnet/
+slug: mxnet
+title: MxNet
+wordpress_id: 2458
+categories:
+- 随想与反思
+tags:
+- mxnet
+---
+
+<!-- more -->
+
+
+# REF：
+
+
+
+
+
+ 	
+  1. 七月在线 深度学习
+
+
+********************************************************************************
+
+
+# 缘由：
+
+
+降到了MxNet，因此总结下。
+
+
+# 要点：
+
+
+
+
+## 1.MxNet初始化
+
+
+MxNet官网如下：
+
+http://mxnet.incubator.apache.org/index.html
+
+很多同学用过dmlc的Xgboost。**难道Xgboost与MxNet有关系？dmlc是什么？Xgboost怎么使用的？之前只听说过。GBDT**
+
+
+## 2.MxNet实现MLP
+
+
+
+
+### 读入数据
+
+
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac2129b96171.png)
+
+
+
+
+
+### 定义网络
+
+
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac212af38c60.png)
+
+
+
+
+
+### 训练
+
+
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac212b46c166.png)
+
+
+
+
+
+### 预测
+
+
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac212baaeb41.png)
+
+
+
+
+
+## 3.MxNet与ResNet
+
+
+ResNet通过直接将input直接送到后续层里，在一定程度上克服了梯度衰减问题，可以训练更深的网络。但是更深的网络结构，同时加上BN层之后，训练的参数量变大，对存储的消耗变大。**BN层是什么？**
+
+试试MxNet，它对显存的利用率高一些。**什么是显存的利用率？为什么对显存的利用率更高一些？**
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac2152a0f3b8.png)
+
+
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac2152f67984.png)
+
+
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac215386e311.png)
+
+
+
+
+
+# 
+
+
+
+
+# COMMENT：
+
+
+
+
+**没有自己使用过**

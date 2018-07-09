@@ -1,0 +1,190 @@
+---
+author: evo
+comments: true
+date: 2018-05-29 08:52:18+00:00
+layout: post
+link: http://106.15.37.116/2018/05/29/%e7%ae%97%e6%b3%95%ef%bc%9a%e5%ad%97%e7%ac%a6%e6%b5%81%e4%b8%ad%e7%ac%ac%e4%b8%80%e4%b8%aa%e4%b8%8d%e9%87%8d%e5%a4%8d%e7%9a%84%e5%ad%97%e7%ac%a6/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e5%ad%97%e7%ac%a6%e6%b5%81%e4%b8%ad%e7%ac%ac%e4%b8%80%e4%b8%aa%e4%b8%8d%e9%87%8d%e5%a4%8d%e7%9a%84%e5%ad%97%e7%ac%a6'
+title: 算法：字符流中第一个不重复的字符
+wordpress_id: 6993
+categories:
+- 基础程序设计
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，所有版权属于原作者，原文已列在 ORIGINAL 中。为了方便个人学习做了整合、修改，仅供个人学习使用。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+# 题目
+
+
+
+
+## 题目描述
+
+
+请实现一个函数用来找出字符流中第一个只出现一次的字符。
+
+例如，当从字符流中只读出前两个字符 "go" 时，第一个只出现一次的字符是 "g" 。当从该字符流中读出前六个字符 “google" 时，第一个只出现一次的字符是 "l" 。**嗯，原来是这个意思。**
+
+如果当前字符流没有存在出现一次的字符，返回 # 字符。
+
+
+
+
+
+
+# 题目解答
+
+
+字符只能一个接着一个从字符流中读取出来，因此我们可以定义一个数据容器来保存字符在字符流中的位置，当一个字符第一次从字符流中取出来的时候，把它保存在字符流中的位置保存到容器中。
+
+当这个字符再次从字符流中被读取出来的时候，那么它就不是只出现一次的字符， 也就是被忽略了。这时候就把在数据容器里保存的值更新成一个特殊的值即可。
+
+代码如下：
+
+    
+    #include <iostream>
+    #include <cstring>
+    using namespace std;
+    
+    
+    class Solution {
+    private:
+        std::string  str;//用来存放输入的字符串
+        int  count[256];//用来存放某个字符出现的次数
+    public:
+        Solution() {
+            str = "";
+            memset(count, '\0', sizeof(count));
+        }
+    
+        void Insert(char ch) {
+            str += ch;
+            count[(int)ch]++;
+        }
+        char FirstAppearingOnce() {
+            //要找出这个str中的第一个只出现一次的字符，因此不能直接遍历 count
+            int len = str.size();
+            for (int i = 0; i < len; i++) {
+                if (count[(int)str[i]] == 1) {
+                    return str[i];
+                }
+            }
+            return '#';
+        }
+    };
+    
+    
+    
+    int main() {
+        Solution solu;
+        solu.Insert('g');
+        cout << solu.FirstAppearingOnce() << endl;
+        solu.Insert('o');
+        cout << solu.FirstAppearingOnce() << endl;
+        solu.Insert('o');
+        cout << solu.FirstAppearingOnce() << endl;
+        solu.Insert('g');
+        cout << solu.FirstAppearingOnce() << endl;
+        solu.Insert('l');
+        cout << solu.FirstAppearingOnce() << endl;
+        solu.Insert('e');
+        cout << solu.FirstAppearingOnce() << endl;
+        return 0;
+    }
+
+
+输出：
+
+    
+    g
+    g
+    g
+    #
+    l
+    l
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

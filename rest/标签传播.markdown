@@ -1,0 +1,96 @@
+---
+author: evo
+comments: true
+date: 2018-04-28 09:15:55+00:00
+layout: post
+link: http://106.15.37.116/2018/04/28/label-spread/
+slug: label-spread
+title: 标签传播
+wordpress_id: 4465
+categories:
+- 随想与反思
+tags:
+- '@NULL'
+- '@todo'
+---
+
+<!-- more -->
+
+[mathjax]
+
+
+# REF
+
+
+
+
+
+ 	
+  1. aaa
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+# MOTIVE
+
+
+
+
+
+ 	
+  * 看了一下才发现之前没有总结过标签传播，还是要单独总结下的。
+
+
+
+
+
+* * *
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

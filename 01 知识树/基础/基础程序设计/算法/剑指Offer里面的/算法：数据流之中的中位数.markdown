@@ -1,0 +1,328 @@
+
+# REF
+
+- [CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+
+  * aaa
+
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+如何得到一个数据流中的中位数？
+
+如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。
+
+
+##
+
+
+
+
+# 题目解答
+
+
+
+
+
+
+  * | 数据结构 | 插入的时间效率 | 得到的中位数的时间效率 |
+
+
+  * | 没有排序的数组 | O(1) | O(n) |
+
+
+  * | 排序的数组 | O(n) | O(1) |
+
+
+  * | 排序的链表 | O(n) | O(1) |
+
+
+  * | 二叉搜索树 | 平均O(logn), 最差O(n) | 平均O(logn), 最差O(n) |
+
+
+  * | AVL树 | O(logn) | O(1) |
+
+
+  * | 最大堆和最小堆 | O(logn) | O(1) |
+
+
+  *
+
+
+
+## 堆排序策略
+
+
+对于数据流，对应的就是在线算法了，一道很经典的题目就是在 1 亿个数中找到最大的前 100 个数，这是一道堆应用题，找最大的前 100 个数，那么我们就创建一个大小为 100 的小顶堆，每来一个元素就与堆顶元素比较，因为堆顶元素是目前前100大数中的最小数，前来的元素如果比该元素大，那么就把原来的堆顶替换掉。
+
+那么对于这一道题呢？
+
+如果单纯的把所有元素放到一个数组里，每次查找中位数最快也要 O(n)，综合下来是 O(n^2) 的复杂度。因此，我们可以利用上面的想法，用一个大顶堆来维护前 n/2 小的元素，那么每次找中位数只到取出堆顶就可以了。
+
+但是，有一个问题，数据要动态增长，有可能之前被替换掉的元素随着元素的增加又跑回来了，所以我们不能单纯得向上题一样把元素丢掉，我们可以再用一个小顶堆来存前 n/2 大的元素。
+
+代码如下：
+
+
+    #include <iostream>
+    #include <vector>
+    #include <functional>   // std::greater
+    #include <algorithm>    // std::sort
+    using namespace std;
+
+    class Solution {
+    protected:
+        vector<int>    bigTopHeap;  //大顶堆，也就是说，这里面的数都是小于顶的，用于存放 数据集中的较小的那一半数。
+        vector<int>   smallTopHeap;//小顶堆，也就是说，这里面的数都是大于顶的，用于存放 数据集中的较大的那一半数。
+
+    public:
+
+        //为什么两个堆能保持平衡呢？为什么能够：0 <= m_min.size( ) - m_max.size( ) <= 1 呢？
+        void Insert(int num) {
+            //如果现在的个数是偶数
+            if (((smallTopHeap.size() + bigTopHeap.size()) & 1) == 0) {
+                //而且，大顶堆里面有数据，且num小于大顶堆的最大数
+                if (bigTopHeap.size() > 0 && num < bigTopHeap[0]) {
+                    //就放到大顶堆里面
+                    bigTopHeap.push_back(num);
+                    push_heap(bigTopHeap.begin(), bigTopHeap.end(), less<int>());//排序
+                    num = bigTopHeap[0];//把排序后的最大值付给num
+                    pop_heap(bigTopHeap.begin(), bigTopHeap.end(), less<int>());//？ 为什么还要排序？
+                    bigTopHeap.pop_back();//把最大值pop出去
+                }
+                smallTopHeap.push_back(num); //把大顶堆中找到的最大值放到小顶堆中
+                push_heap(smallTopHeap.begin(), smallTopHeap.end(), greater<int>());//进行排序
+            }
+            else {
+                //如果是奇数
+                //而且，小顶堆里面有数据，且 num 大于小顶堆的最小的数
+                if (smallTopHeap.size() > 0 && num > smallTopHeap[0]) {
+                    smallTopHeap.push_back(num);
+                    push_heap(smallTopHeap.begin(), smallTopHeap.end(), greater<int>());
+                    num = smallTopHeap[0];
+                    pop_heap(smallTopHeap.begin(), smallTopHeap.end(), greater<int>());
+                    smallTopHeap.pop_back();
+                }
+                bigTopHeap.push_back(num); //把小顶堆中找到的最小值放到大顶堆中
+                push_heap(bigTopHeap.begin(), bigTopHeap.end(), less<int>());
+            }
+        }
+
+
+        // 由于Insert 的时候保持 0 <= m_min.size( ) - m_max.size( ) <= 1，因此median可以这么求
+        double GetMedian() {
+            int size = smallTopHeap.size() + bigTopHeap.size();
+            if (size == 0)
+                return -1;
+            double median = 0;
+            if ((size & 1) != 0) {
+                //奇数的时候，中位数是小顶堆的顶
+                median = (double)smallTopHeap[0];
+            }
+            else {
+                //偶数的时候，中位数是两个堆的平均值（题目的要求）
+                median = (double)(bigTopHeap[0] + smallTopHeap[0]) / 2;
+            }
+            return median;
+        }
+
+    };
+
+    int main() {
+        int array[] = { 5, 2, 3, 4, 1, 6, 7, 0, 8 };
+        vector<int> vec(array, array + 9);
+
+        Solution s;
+        for (int i = 0; i < vec.size(); i++) {
+            s.Insert(vec[i]);//添加新数据
+            cout << s.GetMedian() << endl;
+        }
+        return 0;
+    }
+
+
+输出：
+
+
+    5
+    3.5
+    3
+    3.5
+    3
+    3.5
+    4
+    3.5
+    4
+
+
+**有几个地方没有明白：**
+
+**为什么两个堆能保持平衡呢？为什么能够：0 <= m_min.size( ) - m_max.size( ) <= 1 呢？**
+
+**pop_heap 也要总结下，为什么 bigTopHeap 要排序两次？**
+
+
+
+
+## 哈希 set-multiset 策略
+
+
+**这个没有看，要看下，multiset 要总结下。**
+
+类似的策略, 我们可以采用 multiset 来实现, set 和 multiset 会根据特定的排序准则，自动将元素进行排序。不同的是后者允许元素重复而前者不允许：
+
+
+    #include <iostream>
+    #include <sstream>
+    #include <vector>
+    #include <set>
+    #include <functional>   // std::greater
+    #include <algorithm>    // std::sort
+    using namespace std;
+
+    class Solution {
+    protected:
+        multiset<int>   left;       /*  左半部分  */
+        multiset<int>   right;      /*  右半部分  */
+
+    public:
+        void Insert(int n) {
+            int tmp = n;
+            if (((left.size() + right.size()) & 1) == 0) {
+                if (right.empty() != true && n > *right.begin()) {
+                    right.insert(n);
+                    tmp = *right.begin();
+                    right.erase(right.find(tmp));
+                }
+                left.insert(tmp);
+            }
+            else {
+                if (left.empty() != true && n < *left.rbegin()) {
+                    left.insert(n);
+                    tmp = *left.rbegin();
+                    left.erase(left.find(tmp));
+                }
+                right.insert(tmp);
+            }
+
+        }
+
+        double GetMedian() {
+            cout << "left[" << left.size() << "] : ";
+            copy(left.begin(), left.end(), ostream_iterator<int>(cout, " "));
+            cout << "right[" << right.size() << "] : ";
+            copy(right.begin(), right.end(), ostream_iterator<int>(cout, " "));
+            cout << endl;
+
+            if (((left.size() + right.size()) & 1) == 0) {
+                cout << *left.rbegin() << ", " << *right.begin() << endl;
+                return (double)(*left.rbegin() + *right.begin()) / 2.0;
+            }
+            else {
+                cout << (double)*left.rbegin() << endl;
+                return (double)*left.rbegin();
+            }
+        }
+    };
+
+    int main() {
+        int array[] = { 5, 2, 3, 4, 1, 6, 7, 0, 8 };
+        vector<int> vec(array, array + 9);
+
+        Solution s;
+        for (int i = 0; i < vec.size(); i++) {
+            s.Insert(vec[i]);//添加新数据
+            cout << s.GetMedian() << endl;
+        }
+        return 0;
+    }
+
+
+输出：
+
+
+    left[1] : 5 right[0] :
+    5
+    5
+    left[1] : 2 right[1] : 5
+    2, 5
+    3.5
+    left[2] : 2 3 right[1] : 5
+    3
+    3
+    left[2] : 2 3 right[2] : 4 5
+    3, 4
+    3.5
+    left[3] : 1 2 3 right[2] : 4 5
+    3
+    3
+    left[3] : 1 2 3 right[3] : 4 5 6
+    3, 4
+    3.5
+    left[4] : 1 2 3 4 right[3] : 5 6 7
+    4
+    4
+    left[4] : 0 1 2 3 right[4] : 4 5 6 7
+    3, 4
+    3.5
+    left[5] : 0 1 2 3 4 right[4] : 5 6 7 8
+    4
+    4
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT

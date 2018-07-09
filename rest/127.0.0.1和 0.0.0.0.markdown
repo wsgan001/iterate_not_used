@@ -1,0 +1,11 @@
+# TODO
+-
+
+# ORIGINAL
+  1. [127.0.0.1和0.0.0.0地址的区别](https://blog.csdn.net/ythunder/article/details/61931080)
+
+
+
+
+# 缘由
+一直想知道，python manage.py runserver 0:8000 与 python manage.py runserver 到底区别在哪里？在真正生产的时候，到底使用的是那个？0:8000 吗？

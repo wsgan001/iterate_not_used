@@ -1,0 +1,338 @@
+---
+author: evo
+comments: true
+date: 2018-05-27 03:36:52+00:00
+layout: post
+link: http://106.15.37.116/2018/05/27/%e7%ae%97%e6%b3%95%ef%bc%9a%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e6%b7%b1%e5%ba%a6/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e6%b7%b1%e5%ba%a6'
+title: 算法：二叉树的深度
+wordpress_id: 6803
+categories:
+- 基础程序设计
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * **没有细看 要仔细看下**
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+输入一棵二叉树，求该树的深度。
+
+从根结点到叶结点依次经过的结点（含根、叶结点）形成树的一条路径，最长路径的长度为树的深度。
+
+
+
+
+# 题目解答
+
+
+我们可以对二叉树进行层次遍历，维护一个层数计数器，这样每次进入一层就增加1，从而得到二叉树的层数。
+
+这样的化，如果使用递归的话，思路就更简单了，返回左右子树中深度最大的那个，还有其他非递归的方法。
+
+代码如下：
+
+    
+    #include <iostream>
+    #include <deque>
+    #include <queue>
+    #include <vector>
+    
+    using namespace std;
+    
+    
+    struct TreeNode {
+    	int val;
+    	struct TreeNode *left;
+    	struct TreeNode *right;
+    };
+    
+    
+    class Solution {
+    public:
+    
+    	//递归的方式，左右子树的深度
+    	int TreeDepthRecursion0(TreeNode *root) {
+    		if (root == NULL) {
+    			return 0;
+    		}
+    		else {
+    			int leftDepth = TreeDepthRecursion0(root->left);
+    			int rightDepth = TreeDepthRecursion0(root->right);
+    			return max(leftDepth, rightDepth) + 1;
+    		}
+    	}
+    
+    	//递归的另一种方式，深度作为参数进行传递
+    	int TreeDepthRecursion1(TreeNode *root, int depth) {
+    		if (root == NULL) {
+    			return depth;
+    		}
+    		else {
+    			int leftDepth = TreeDepthRecursion1(root->left, depth + 1);
+    			int rightDepth = TreeDepthRecursion1(root->right, depth + 1);
+    			return max(leftDepth, rightDepth);
+    		}
+    	}
+    
+    
+    	int LevelOrderDev(TreeNode *root) {
+    		// deque双端队列，
+    		// 支持迭代器，有push_back()方法，
+    		// 跟vector差不多，比vector多了个pop_front,push_front方法
+    		int count = 0;
+    		deque<TreeNode *> qFirst, qSecond;
+    		qFirst.push_back(root);
+    
+    		while (qFirst.empty() != true) {
+    			while (qFirst.empty() != true) {
+    				TreeNode *temp = qFirst.front();
+    				qFirst.pop_front();
+    				cout << temp->val;
+    				if (temp->left != NULL) {
+    					qSecond.push_back(temp->left);
+    				}
+    				if (temp->right != NULL) {
+    					qSecond.push_back(temp->right);
+    				}
+    			}
+    			cout << endl;
+    			count++;
+    			qFirst.swap(qSecond);
+    		}
+    		return count;
+    	}
+    
+    
+    	int LevelOrderUsePoint(TreeNode *root) {
+    		vector<TreeNode*> vec;
+    		vec.push_back(root);
+    		int cur = 0;
+    		int end = 1;
+    		int count = 0;
+    		while (cur < vec.size()) {
+    			end = vec.size();       //  新的一行访问开始，重新定位last于当前行最后一个节点的下一个位置
+    
+    			while (cur < end) {
+    				cout << vec[cur]->val;
+    
+    				if (vec[cur]->left != NULL) {
+    					vec.push_back(vec[cur]->left);
+    				}
+    				if (vec[cur]->right != NULL) {
+    					vec.push_back(vec[cur]->right);
+    				}
+    				cur++;
+    			}
+    			cout << endl;
+    			count++;
+    		}
+    
+    		return count;
+    	}
+    
+    	int LevelOrderUseSize(TreeNode *root) {
+    		int count = 0;
+    		int parentSize = 1, childSize = 0;
+    		TreeNode *temp = NULL;
+    
+    		queue<TreeNode *> q;
+    		q.push(root);
+    		while (q.empty() != true) {
+    			temp = q.front();
+    			cout << temp->val;
+    			q.pop();
+    			if (temp->left != NULL) {
+    				q.push(temp->left);
+    				childSize++;
+    			}
+    			if (temp->right != NULL) {
+    				q.push(temp->right);
+    				childSize++;
+    			}
+    			parentSize--;
+    			if (parentSize == 0) {
+    				parentSize = childSize;
+    				childSize = 0;
+    				cout << endl;
+    				count++;
+    			}
+    		}
+    		return count;
+    	}
+    
+    	int LevelOrderUseEnd(TreeNode *root) {
+    		int count = 0;
+    		queue<TreeNode *> q;
+    
+    		q.push(root);
+    		q.push(NULL);
+    
+    		while (q.empty() != true) {
+    			TreeNode* node = q.front();
+    			q.pop();
+    			if (node) {
+    				cout << node->val;
+    				if (node->left != NULL) {
+    					q.push(node->left);
+    				}
+    				if (node->right != NULL) {
+    					q.push(node->right);
+    				}
+    			}
+    			else if (q.empty() != true) {
+    				q.push(NULL);
+    				cout << endl;
+    				count++;
+    			}
+    		}
+    		return count;
+    	}
+    };
+    
+    int main() {
+    	//     0
+    	//   1   2
+    	// 3
+    	TreeNode tree[4];
+    	tree[0].val = 0;
+    	tree[0].left = &tree[1];
+    	tree[0].right = &tree[2];
+    	tree[1].val = 1;
+    	tree[1].left = &tree[3];
+    	tree[1].right = NULL;
+    	tree[2].val = 2;
+    	tree[2].left = NULL;
+    	tree[2].right = NULL;
+    	tree[3].val = 3;
+    	tree[3].left = NULL;
+    	tree[3].right = NULL;
+    
+    	Solution solu;
+    	cout << solu.TreeDepthRecursion0(tree) << endl << endl;
+    	cout << solu.TreeDepthRecursion1(tree, 0) << endl << endl;
+    	cout << solu.LevelOrderDev(tree) << endl << endl;
+    	cout << solu.LevelOrderUseEnd(tree) << endl << endl;
+    	cout << solu.LevelOrderUseSize(tree) << endl << endl;
+    	cout << solu.LevelOrderUsePoint(tree) << endl << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    3
+    
+    3
+    
+    0
+    12
+    3
+    3
+    
+    0
+    12
+    32
+    
+    0
+    12
+    3
+    3
+    
+    0
+    12
+    3
+    3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

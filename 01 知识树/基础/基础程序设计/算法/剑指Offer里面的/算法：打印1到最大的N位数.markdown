@@ -1,0 +1,480 @@
+---
+author: evo
+comments: true
+date: 2018-05-15 16:12:00+00:00
+layout: post
+link: http://106.15.37.116/2018/05/16/%e7%ae%97%e6%b3%95%ef%bc%9a%e6%89%93%e5%8d%b01%e5%88%b0%e6%9c%80%e5%a4%a7%e7%9a%84n%e4%bd%8d%e6%95%b0/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e6%89%93%e5%8d%b01%e5%88%b0%e6%9c%80%e5%a4%a7%e7%9a%84n%e4%bd%8d%e6%95%b0'
+title: 算法：打印1到最大的N位数
+wordpress_id: 5804
+categories:
+- 随想与反思
+tags:
+- NOT_ADD
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+给定一个数字N，打印从1到最大的N位数。
+
+
+## **输入**
+
+
+每个输入文件仅包含一组测试样例。
+
+对于每个测试案例，输入一个数字 N(1<=N<=5) 。 **输出** 对应每个测试案例，依次打印从1到最大的N位数。
+
+
+## **样例输入**
+
+
+1
+
+
+## **样例输出**
+
+
+1 2 3 4 5 6 7 8 9
+
+
+# 题目解答
+
+
+
+
+## 最先想到的
+
+
+看到这道题，最先想到的就是，求出最大值，然后依次输出就行：
+
+    
+    #include <iostream>
+    #include <cmath>
+    using namespace std;
+    
+    
+    class Solutin {
+    public:
+    	void Print(int n) {
+    		int max = pow(10, n);
+    		for (int i = 1; i < max; i++) {
+    			cout << i << endl;
+    		}
+    	}
+    };
+    
+    
+    int main() {
+    	Solutin solu;
+    	int n;
+    	while (cin >> n) {
+    		solu.Print(n);
+    	}
+    	return 0;
+    }
+
+
+其实我们在写的时候就会想，n 的值并没有限制范围，那么 pow(10,n) 是有可能超过 INT_MAX 的，这个时候输出的值肯定是不确定的或者说是被截断的。
+
+此时，我们自然想到了使用字符串，因为数字总是可能溢出的。
+
+
+## 字符串一般是大数问题最值得信赖的方案
+
+
+我们的思路是：
+
+
+
+ 	
+  * 初始就开辟一个N+1大小的串，用来存储数字
+
+ 	
+  * 用字符串模拟数字的自增，进位，输出
+
+ 	
+  * 当串长度超过N+1时，或者第0位产生进位时就溢出
+
+
+嗯，是个不错的方法，代码如下：
+
+    
+    #include <iostream>
+    #include <cstring>
+    using namespace std;
+    
+    
+    class Solutin {
+    
+    private:
+    	int             m_N;                    //  N位数 m_N 总是 >= m_length
+    	char            *m_number;              //  存储数据的字符串 真正的信息串存储在m_number[m_N - length, m_N);
+    	bool            m_isOverFlow;           //  是否溢出, 溢出时说明无需继续输出
+    	volatile int    m_length;               //  当前数字的位数
+    
+    
+    public:
+    	Solutin(int n) {
+    		this->m_N = n;
+    		this->m_isOverFlow = false;
+    		this->m_number = new char[n + 1];//用来存放数字 
+    		memset(m_number, '\0', n + 1);
+    		this->m_number[n - 1] = '1';
+    		this->m_length = 1;
+    	}
+    
+    	void Print() {
+    		if (m_N <= 0) {
+    			return;
+    		}
+    		while (this->m_isOverFlow != true) {
+    			PrintNumber();
+    			Increment();
+    		}
+    	}
+    
+    	//将数据打印出来
+    	void PrintNumber() {
+    		//  真正的信息串存储在m_number[m_N - length, m_N);
+    		cout << "number is stroge in [" << m_N - m_length << ", " << m_N << ")" << endl;
+    		for (int i = m_N - m_length; i < m_N; i++) {
+    			cout << m_number[i];
+    		}
+    		cout << endl;
+    	}
+    
+    	//加1
+    	bool Increment() {
+    		int nSum = 0;               //  当前位
+    		int takeOver = 1;           //  进位，个位进1
+    		for (int i = m_N - 1; i >= m_N - m_length; i--) {
+    			//先算出新的当前位
+    			if (m_number[i] != '\0') {
+    				nSum = m_number[i] - '0' + takeOver;
+    			}
+    			else {
+    				nSum = nSum + takeOver;
+    			}
+    			cout << "nSum = " << nSum << endl;
+    
+    			//  根据当前位是否大于10进行判断
+    			if (nSum >= 10) {
+    				// 如果已经到最大值了，终止循环
+    				if (i == 0) {
+    					m_isOverFlow = true;
+    					cout << "*** the end ***" << endl;
+    					delete m_number;//将数据删除
+    					return false;
+    				}
+    				else {
+    					//更新字符串中的值
+    					nSum -= 10;
+    					m_number[i] = '0' + nSum;
+    					//  设定进位
+    					takeOver = 1;
+    					//  如果此时是在最高位进1的，因此长度会增加1
+    					if (i == m_N - m_length) {
+    						m_length++;
+    						cout << "take over now ( length = " << m_length << " )" << endl;
+    					}
+    				}
+    			}
+    			else {
+    				//没有大于10，说明不会再产生进位，直接修改值，然后挑出
+    				m_number[i] = '0' + nSum;
+    				break;
+    			}
+    		}
+    		return true;
+    	}
+    
+    };
+    
+    
+    int main() {
+    	int n;
+    	while (cin >> n) {
+    		Solutin solu(n);
+    		solu.Print();
+    	}
+    	return 0;
+    }
+
+
+输入为 2 时，输出：
+
+    
+    2
+    number is stroge in [1, 2)
+    1
+    nSum = 2
+    number is stroge in [1, 2)
+    2
+    nSum = 3
+    number is stroge in [1, 2)
+    ...略去
+    nSum = 7
+    number is stroge in [1, 2)
+    7
+    nSum = 8
+    number is stroge in [1, 2)
+    8
+    nSum = 9
+    number is stroge in [1, 2)
+    9
+    nSum = 10
+    take over now ( length = 2 )
+    nSum = 1
+    number is stroge in [0, 2)
+    10
+    nSum = 1
+    number is stroge in [0, 2)
+    11
+    nSum = 2
+    number is stroge in [0, 2)
+    12
+    ...略去
+    95
+    nSum = 6
+    number is stroge in [0, 2)
+    96
+    nSum = 7
+    number is stroge in [0, 2)
+    97
+    nSum = 8
+    number is stroge in [0, 2)
+    98
+    nSum = 9
+    number is stroge in [0, 2)
+    99
+    nSum = 10
+    nSum = 10
+    *** the end ***
+
+
+嗯，效果不错，虽然代码有点复杂。
+
+实际上，要在短时间内完成上面这样思路清晰而缜密的代码还是有点困难的，那么有没有更加简洁的方法呢？
+
+
+## 转换为数字排列的解法
+
+
+OK，我们举个例子，比如：当 n=4 时，这个最大数就是9999，如果把小于9999的数字中不足四位的数字前面补上0的话，即：2->0002 ，那么我们就可以发现，n位所有的十进制数起始就是 n 个从 0 到 9 的全排列。
+
+嗯，厉害了。
+
+也就是说，我们可以把数字的每一位都从0到9排列一遍，然后就能得到所有的十进制数。只要我们在打印的时候，数字中排在前面的 0 不打印出来而已。
+
+OK，那么这个就可以用递归来解决：
+
+比如输入 n=3，那么从最高位开始按 0~9 循环，每次递归设置下一位，直到设置到数字的最后一位，OK，这个时候这个数字就可以打印出来了。
+
+    
+    #include <iostream>
+    #include <cstring>
+    using namespace std;
+    
+    
+    class Solutin {
+    public:
+    	void PrintToMaxOfNDigits(int n) {
+    		if (n <= 0) {
+    			return;
+    		}
+    		char *number = new char[n + 1];
+    		number[n] = '\0';
+    
+    		// 循环最开始的这一位
+    		for (int i = 0; i < 10; i++) {
+    			cout << "now list all " << i << " in the low position" << endl;
+    			number[0] = i + '0';//是的，虽然这里对第一位进行操作，但是后面的递归实际上是从最后一位进行打印的。
+    			PrintToMaxOfNDigitsRecursively(number, n, 0);
+    		}
+    		delete[] number;
+    	}
+    
+    	void PrintToMaxOfNDigitsRecursively(char *number, int length, int index) {
+    		//如果递归到最后一位，说明这个数字已经可以确定下来了，因此打印出来
+    		if (index == length - 1) {
+    			cout << "we find a number" << endl;
+    			PrintNumber(number);
+    			return;
+    		}
+    
+    		//  当前位循环0~9 ，循环的时候递归后面一位
+    		for (int i = 0; i < 10; i++) {
+    			number[index + 1] = i + '0';//这里之所以时index+1 时因为之前已经对最开始的一位遍历过了
+    			cout << "now, index = " << index << ", digit = " << number[index + 1] << endl;
+    			PrintToMaxOfNDigitsRecursively(number, length, index + 1);
+    		}
+    	}
+    
+    	//利害，还有这样操作的 
+    	void PrintNumber(char *number) {
+    		//把前面的 0 过滤掉
+    		int i = 0;
+    		int length = strlen(number);
+    		for (i = 0; i < length; i++) {
+    			if (number[i] != '0') {
+    				break;
+    			}
+    		}
+    		//输出后面的数字部分
+    		if (i != length) {
+    			cout << &number[0] << endl;
+    		}
+    	}
+    };
+    
+    
+    int main() {
+    	int n;
+    	Solutin solu;
+    	while (cin >> n) {
+    		solu.PrintToMaxOfNDigits(n);
+    	}
+    	return 0;
+    }
+
+
+输入2 的时候，输出如下：
+
+    
+    2
+    now list all 0 in the low position
+    now, index = 0, digit = 0
+    we find a number
+    now, index = 0, digit = 1
+    we find a number
+    01
+    now, index = 0, digit = 2
+    we find a number
+    02
+    now, index = 0, digit = 3
+    we find a number
+    03
+    now, index = 0, digit = 4
+    we find a number
+    04
+    now, index = 0, digit = 5
+    we find a number
+    05
+    now, index = 0, digit = 6
+    we find a number
+    06
+    now, index = 0, digit = 7
+    we find a number
+    07
+    now, index = 0, digit = 8
+    we find a number
+    08
+    now, index = 0, digit = 9
+    we find a number
+    09
+    now list all 1 in the low position
+    now, index = 0, digit = 0
+    we find a number
+    10
+    now, index = 0, digit = 1
+    we find a number
+    11
+    ...略去
+    now, index = 0, digit = 7
+    we find a number
+    97
+    now, index = 0, digit = 8
+    we find a number
+    98
+    now, index = 0, digit = 9
+    we find a number
+    99
+
+
+**说实话，感觉上面这种方法比第二种方法写起来也简单不到哪里去。**
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

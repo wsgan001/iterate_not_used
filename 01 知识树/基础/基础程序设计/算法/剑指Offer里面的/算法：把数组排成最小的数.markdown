@@ -1,0 +1,239 @@
+---
+author: evo
+comments: true
+date: 2018-05-26 08:08:54+00:00
+layout: post
+link: http://106.15.37.116/2018/05/26/%e7%ae%97%e6%b3%95%ef%bc%9a%e6%8a%8a%e6%95%b0%e7%bb%84%e6%8e%92%e6%88%90%e6%9c%80%e5%b0%8f%e7%9a%84%e6%95%b0/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e6%8a%8a%e6%95%b0%e7%bb%84%e6%8e%92%e6%88%90%e6%9c%80%e5%b0%8f%e7%9a%84%e6%95%b0'
+title: 算法：把数组排成最小的数
+wordpress_id: 6731
+categories:
+- 基础程序设计
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * **还是很厉害的，再理解下。**
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。
+
+
+## **输入**
+
+
+例如输入数组
+
+{3，32，321}
+
+
+## **输出**
+
+
+则打印出这三个数字能排成的最小数字为
+
+321323
+
+
+# 题目解答
+
+
+
+
+## 按照拼接后的结果排序
+
+
+OK，看完题目后，我们可以把题目理解为：
+
+如何给这个数组排序，使其看做一个数字的时候最小。
+
+OK，我们第一个想到的可能是按字典序排序，小的在前面。可惜这个是不可行的，比如 32 的字典序比 322 小，但是 32322 比 32232 大。
+
+所以我们在这里自定义一个比较大小的函数，在比较两个字符串 s1, s2 大小的时候，先将它们拼接起来，比较 s1+s2 和 s2+s1 那个大，如果 s1+s2 大，那说明 s2 应该放前面，所以按这个规则，s2 就应该排在 s1 前面。
+
+OK，因此：我们先将整数数组转为字符串数组，然后字符串数组进行排序，最后依次输出字符串数组即可。
+
+这里注意的是字符串的比较函数需要重新定义，不是比较a和b，而是比较 ab 与 ba：
+
+
+
+ 	
+  * 如果ab < ba，则a < b
+
+ 	
+  * 如果ab > ba，则a > b
+
+ 	
+  * 如果ab = ba，则a = b
+
+
+这个比较函数的定义是本解决方案的关键。
+
+    
+    #include <iostream>
+    #include <vector>
+    #include <string>
+    #include <algorithm>
+    #include <sstream>
+    using namespace std;
+    
+    
+    //这也可以？ostringstream 之前没用过
+    template<class T>
+    string ToString(const T& t) {
+    	ostringstream oss;  //  创建一个流
+    	oss << t;            //  把值传递如流中
+    	return oss.str();  //  获取转换后的字符转并将其写入result
+    }
+    
+    
+    class Solution {
+    public:
+    
+    	// 比较函数  比较的不是两个字符串本身的大小，而是他们拼接后的两个数字的大小
+    	static bool Compare(const string &left, const string &right) {
+    		string leftright = left + right;
+    		string rightleft = right + left;
+    		if (leftright > rightleft) {
+    			cout << leftright << " > " << rightleft << " -- " << rightleft << endl;
+    		}
+    		else {
+    			cout << leftright << " < " << rightleft << " -- " << leftright << endl;
+    		}
+    		return leftright < rightleft;
+    	}
+    
+    
+    	string PrintMinNumber(vector<int> numbers) {
+    		string res = "";
+    		string str;
+    
+    		vector<string> strNum;
+    
+    		//  将整数转换成字符串
+    		for (unsigned int i = 0; i < numbers.size(); i++) {
+    			str = ToString(numbers[i]);
+    			strNum.push_back(str);
+    			cout << str << endl;
+    		}
+    
+    		//  对字符串按照拼接后的大小进行排序
+    		sort(strNum.begin(), strNum.end(), Compare);
+    
+    		//  拼接
+    		for (unsigned int i = 0; i < strNum.size(); i++) {
+    			res += strNum[i];
+    		}
+    		return res;
+    	}
+    };
+    
+    
+    int main() {
+    	Solution solu;
+    	int arr[] = { 321, 32, 3 };
+    	vector<int> vec(arr, arr + 3);
+    	cout << solu.PrintMinNumber(vec) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    321
+    32
+    3
+    32321 > 32132 -- 32132
+    32321 > 32132 -- 32132
+    3321 > 3213 -- 3213
+    332 > 323 -- 323
+    321323
+
+
+还是很厉害的。
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

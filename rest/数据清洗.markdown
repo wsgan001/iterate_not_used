@@ -1,0 +1,127 @@
+---
+author: evo
+comments: true
+date: 2018-04-28 23:50:44+00:00
+layout: post
+link: http://106.15.37.116/2018/04/29/data-cleaning/
+slug: data-cleaning
+title: 数据清洗
+wordpress_id: 4509
+categories:
+- 随想与反思
+tags:
+- '@NULL'
+- '@todo'
+---
+
+<!-- more -->
+
+[mathjax]
+
+
+# REF
+
+
+
+
+
+ 	
+  1. [特征工程](https://feisky.xyz/machine-learning/basic/feature-engineering.html)
+
+ 	
+  2. [机器学习基础与实践（一）----数据清洗](http://www.cnblogs.com/charlotte77/p/5606926.html)
+
+ 	
+  3. [机器学习基础与实践（二）----数据转换](http://www.cnblogs.com/charlotte77/p/5622325.html)
+
+ 	
+  4. [清理、处理和可视化数据集](https://www.ibm.com/developerworks/cn/analytics/library/ba-cleanse-process-visualize-data-set-1/)
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * 还需要很多补充
+
+
+
+
+# MOTIVE
+
+
+
+
+
+ 	
+  * 对数据清洗的方法进行总结
+
+
+
+
+
+* * *
+
+
+
+
+
+# 大概的方法
+
+
+主要是一些数据的 ETL 如是数据的抽取（Extract），清洗（Cleaning），转换（Transform），装在（Load）工作。**这些也要对应总结一下。**
+
+**需要详细的说明，不然不知道怎么落实在项目中。**
+
+
+
+ 	
+  * 缩放特征值（归一化）：将浮点特征值从自然范围（如 100 到 900）转换为标准范围（如 0 到 1）。特征集包含多个特征时，缩放特征可以加快梯度下降的收敛过程，并可以避免 NaN 陷阱。特征缩放的方法一般为 scaled-value = (value-mean)/stddevscaled−value=(value−mean)/stddev
+
+ 	
+  * 处理极端离群值，如取对数、限制最大最小值等方法
+
+ 	
+  * 分箱（离散化）
+
+ 	
+  * 填补遗漏值
+
+ 	
+  * 移除重复样本、不良标签、不良特征值等
+
+ 	
+  * 平滑
+
+ 	
+  * 正则化
+
+
+
+
+# 在实际中的落实
+
+
+**需要补充，比如到底什么时候用什么方法？到底用python 如何实现上面的方法？**
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

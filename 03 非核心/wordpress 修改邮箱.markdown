@@ -1,0 +1,62 @@
+---
+author: evo
+comments: true
+date: 2018-04-03 12:38:38+00:00
+layout: post
+link: http://106.15.37.116/2018/04/03/wordpress-change-email/
+slug: wordpress-change-email
+title: wordpress 修改邮箱
+wordpress_id: 2820
+categories:
+- 非核心点
+tags:
+- wordpress
+---
+
+<!-- more -->
+
+
+# 缘由：
+
+
+想将我的邮箱统一成gmail邮箱，但是，直接修改设置–常规中的站点 邮箱地址 会出现：
+
+这个地址将被用于管理目的。如果您修改这个地址，我们将会向新地址发送电子邮件来确认。**新地址直到获得确认才会启用。**
+
+而这个确认邮件好像并没有收到。
+
+因此找了下：可以用  change admin email  这个插件。
+
+
+# 使用时注意：
+
+
+
+
+
+ 	
+  1. 这个填写设置之后，将会修改2个数据：一个是 在 设置–常规中的**电子邮件地址，**另一个是 **当前登录**的**管理员邮箱地址，你要确保当前登录的账号是你的主要管理员账户，这里请特别注意！**
+
+ 	
+  2. **修改完成将插件删除，以免其他人破解你的后台后修改数据。**
+
+
+
+
+
+# REF：
+
+
+
+
+
+ 	
+  1. 
+
+
+[[小插件]修改WordPress的站点与管理员的邮箱地址](https://www.themepark.com.cn/xcjxgwordpressdzdyglyd.html)
+
+
+
+
+

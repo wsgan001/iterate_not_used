@@ -1,0 +1,109 @@
+---
+author: evo
+comments: true
+date: 2018-05-31 01:40:44+00:00
+layout: post
+link: http://106.15.37.116/2018/05/31/linux-%e6%96%87%e4%bb%b6%e5%92%8c%e6%96%87%e4%bb%b6%e5%a4%b9%e6%93%8d%e4%bd%9c/
+slug: linux-%e6%96%87%e4%bb%b6%e5%92%8c%e6%96%87%e4%bb%b6%e5%a4%b9%e6%93%8d%e4%bd%9c
+title: Linux 文件和文件夹操作
+wordpress_id: 7077
+categories:
+- 基础工具使用
+tags:
+- '@NULL'
+- linux
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，所有版权属于原作者，原文已列在 ORIGINAL 中。为了方便个人学习做了整合、修改，仅供个人学习使用。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. [Linux rm命令 删除文件夹](https://blog.csdn.net/sqbzo/article/details/8990404)
+
+ 	
+  2. [每天一个linux命令（5）：rm 命令](https://www.cnblogs.com/peida/archive/2012/10/26/2740521.html)
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * 要总结下，怎么安全的删除
+
+ 	
+  * 模拟回收站真的实用吗？
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+# 缘由
+
+
+经常要把下载的东西删除，或者把文件夹里面的整个东西删掉
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

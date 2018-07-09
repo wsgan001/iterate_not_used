@@ -1,0 +1,286 @@
+---
+author: evo
+comments: true
+date: 2018-05-29 01:45:30+00:00
+layout: post
+link: http://106.15.37.116/2018/05/29/%e7%ae%97%e6%b3%95%ef%bc%9a%e6%8a%8a%e5%ad%97%e7%ac%a6%e4%b8%b2%e8%bd%ac%e6%8d%a2%e6%88%90%e6%95%b4%e6%95%b0/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e6%8a%8a%e5%ad%97%e7%ac%a6%e4%b8%b2%e8%bd%ac%e6%8d%a2%e6%88%90%e6%95%b4%e6%95%b0'
+title: 算法：把字符串转换成整数
+wordpress_id: 6980
+categories:
+- 基础程序设计
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，所有版权属于原作者，原文已列在 ORIGINAL 中。为了方便个人学习做了整合、修改，仅供个人学习使用。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * **对这种判断是否 OVER_FLOW 的要总结下。**
+
+ 	
+  * **而且，为什么返回之前还要对范围进行限定？**
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+将一个字符串转换成一个整数，要求不能使用字符串转换整数的库函数。 数值为 0 或者字符串不是一个合法的数值则返回0
+
+字符串包括数字字母符号，可以为空。
+
+
+## **样例输入**
+
+
+
+
+
+ 	
+  * 1a33
+
+ 	
+  * -2147483648
+
+
+
+
+## **样例输出**
+
+
+
+
+
+ 	
+  * 0
+
+ 	
+  * -2147483648
+
+
+
+
+## 
+
+
+
+
+# 题目解答
+
+
+其实，看到这个题目，感觉就可以这样解：
+
+
+
+ 	
+  * 先检查一下每个字符是不是数字或者是正负号，如果不是，那么输出0
+
+ 	
+  * 然后再把每一位单独拿出来，计算减去 "0" 之后的值，作为哪一位的权重，然后加起来之后，设置符号就行了。
+
+
+不过，需要注意的是：
+
+ 	
+  * 要排除前导的一些空白字符
+
+ 	
+  * 数字前面可能有符号位 +/- 的，要进行处理
+
+ 	
+  * overflow 的问题
+
+ 	
+    * 实际上，不管我们的 value 用什么保存，long,long long，他们都是有表示范围的，因此当字符串过长时都会溢出，溢出后可能会发生截断，或者甚至读取成一个负数，这样我们循环结束后再判断就不可行。
+
+ 	
+    * 因此，要在循环的过程中，只要一发生溢出就结束。
+
+
+
+
+
+OK，完整代码如下：
+
+    
+    #include <iostream>
+    using namespace std;
+    
+    class Solution {
+    public:
+        int StrToInt(string str) {
+            string::iterator pstr = str.begin();
+            //  排除前导的空格
+            while (*pstr == ' ') {
+                pstr++;
+            }
+    
+            //  判断符号位+ -
+            bool isMinus = false;
+            if (*pstr == '+') {
+                pstr++;
+            }
+            else if (*pstr == '-') {
+                pstr++;
+                isMinus = true;
+            }
+    
+            long long int value = 0;
+            for (; pstr != str.end(); pstr++) {
+                if ('0' <= *pstr && *pstr <= '9') {
+                    value *= 10;
+                    value += *pstr - '0';
+                    cout << "current value = " << value << endl;
+                }
+                else {
+                    break;//存在除了0~9以外的字符
+                }
+    
+                // 这个地方的判断没有理解？为什么这样是可以的？比如说，溢出之后符号不会改变吗？对于溢出要总结一下
+                //  解决OVER_FLOW的问题
+                //  INT_MAX     2147483647
+                //  INT_MIN     -2147483648  minus = true
+                if ((isMinus == true && value > (unsigned long)(INT_MAX)+1)     //  负数绝对值最大为INT_MAX + 1
+                    || (isMinus == false && value > INT_MAX))                         //  正数最大值为INT_MAX
+                {
+                    cout << value << ", " << INT_MAX + 1 << endl;
+                    cout << "too max than int" << endl;
+                    break;
+                }
+            }
+            if (pstr != str.end()) {
+                return 0;//说明是break出来的
+            }
+            else {
+                if (isMinus == true) {
+                    value = -value;
+                }
+                //为什么这个地方还要对范围限定一下？
+                if (value >= INT_MAX) {
+                    value = INT_MAX;
+                }
+                else if (value <= INT_MIN) {
+                    value = INT_MIN;
+                }
+                return (int)value;
+            }
+        }
+    };
+    
+    
+    int main(void) {
+        Solution solu;
+        cout << "INT_MAX " << INT_MAX << endl;
+        cout << "INT_MIN " << INT_MIN << endl;
+        cout << solu.StrToInt("1a33") << endl;
+        cout << endl;
+        cout << solu.StrToInt("-2147483648") << endl;
+        return EXIT_SUCCESS;//没想到还有 EXIT_SUCCESS 
+    }
+
+
+输出：
+
+    
+    INT_MAX 2147483647
+    INT_MIN -2147483648
+    current value = 1
+    0
+    
+    current value = 2
+    current value = 21
+    current value = 214
+    current value = 2147
+    current value = 21474
+    current value = 214748
+    current value = 2147483
+    current value = 21474836
+    current value = 214748364
+    current value = 2147483648
+    -2147483648
+
+
+**上面的代码中的 判断 OVER_FLOW 的地方没看懂，要对这种判断是否 OVER_FLOW 的要总结下。**
+
+**而且，为什么返回之前还要对范围进行限定？**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

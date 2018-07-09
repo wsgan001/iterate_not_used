@@ -1,0 +1,95 @@
+---
+author: evo
+comments: true
+date: 2018-05-07 13:03:56+00:00
+layout: post
+link: http://106.15.37.116/2018/05/07/normalize/
+slug: normalize
+title: 归一化
+wordpress_id: 5395
+categories:
+- 随想与反思
+tags:
+- '@NULL'
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，推荐直接看原文**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. [数据标准化/归一化normalization](https://blog.csdn.net/pipisorry/article/details/52247379)  没有看，需要看下
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * 需要整理一下，最好找到权威的资料系统的整理
+
+
+
+
+# MOTIVE
+
+
+
+
+
+ 	
+  * 之前一直以为归一化只有一种方式，就是求最大最小，然后再除以这个范围，就得到0~1的值了，但是今天在网上还看到了对数归一化和反余切的变换，有这种吗？看了下，这两种好像不是归一化，但是是变换，因此也要总结下，到底归一化有那些方式？是为了什么？
+
+
+
+
+
+* * *
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

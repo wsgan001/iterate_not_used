@@ -1,0 +1,39 @@
+---
+author: evo
+comments: true
+date: 2018-03-19 15:12:06+00:00
+layout: post
+link: http://106.15.37.116/2018/03/19/hanoi/
+slug: hanoi
+title: 汉诺塔问题
+wordpress_id: 440
+categories:
+- 随想与反思
+---
+
+<!-- more -->
+
+
+## 问题：
+
+
+汉诺塔问题。将盘子从A移动到B上面，借助C。
+
+
+## 解答：
+
+
+
+    
+    def hanoi(n, A, B, C):
+        if n == 1:
+            print(A + '  ->  ' + B)
+        else:
+            hanoi(n - 1, A, C, B)  # 先将A上面的盘子借助B移动到C上面去
+            print(A + '  ->  ' + B)
+            hanoi(n - 1, C, A, B)  # 再将C上面的盘子借助B移动到A上面去
+    
+    hanoi(5, 'a', 'b', 'c')
+
+
+

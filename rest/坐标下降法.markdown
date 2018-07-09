@@ -1,0 +1,95 @@
+---
+author: evo
+comments: true
+date: 2018-04-29 23:55:13+00:00
+layout: post
+link: http://106.15.37.116/2018/04/30/coordinate-descent/
+slug: coordinate-descent
+title: 坐标下降法
+wordpress_id: 4687
+categories:
+- 随想与反思
+tags:
+- '@NULL'
+---
+
+<!-- more -->
+
+[mathjax]
+
+
+# REF
+
+
+
+
+
+ 	
+  1. 《机器学习》周志华
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+# MOTIVE
+
+
+
+
+
+ 	
+  * 对坐标下降进行总结
+
+
+
+
+
+* * *
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

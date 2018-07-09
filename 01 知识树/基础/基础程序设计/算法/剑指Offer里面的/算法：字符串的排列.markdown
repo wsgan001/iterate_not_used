@@ -1,0 +1,453 @@
+---
+author: evo
+comments: true
+date: 2018-05-19 03:20:14+00:00
+layout: post
+link: http://106.15.37.116/2018/05/19/%e7%ae%97%e6%b3%95%ef%bc%9a%e5%ad%97%e7%ac%a6%e4%b8%b2%e7%9a%84%e6%8e%92%e5%88%97/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e5%ad%97%e7%ac%a6%e4%b8%b2%e7%9a%84%e6%8e%92%e5%88%97'
+title: 算法：字符串的排列
+wordpress_id: 6016
+categories:
+- 基础程序设计
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * **看来，STL 中的东西，尤其是各种容器和对容器的操作一定要掌握，比如方法二中的swap、sort和这里的 next_permutation。等。嗯，是必须要掌握的，因为很多的东西在别的类库里也有，知道了STL里的之后，别的类库也能大概知道会有什么功能。**
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+输入一个字符串,按字典序打印出该字符串中字符的所有排列，打印结果的时候请按字母顺序输出。
+
+**注意**：字符串长度不超过9，可能有字符重复，字符只包括大小写字母。
+
+
+## **样例输入**
+
+
+abc
+
+
+## **样例输出**
+
+
+abc acb bac bca cab cba
+
+
+
+
+# 题目解答
+
+
+
+
+## 普通的全排列 递归
+
+
+最先想到的就是全排列，依次从字符串中取出一个字符作为最终排列的第一个字符，然后对剩余字符组成的字符串递归生成全排列，最终结果为取出的字符和剩余子串全排列的组合。
+
+    
+    #include <iostream>
+    #include <algorithm>
+    #include <vector>
+    #include <string>
+    using namespace std;
+    
+    
+    class Solution {
+    protected:
+    	vector<string> m_res;
+    
+    public:
+    	vector<string> Permutation(string s) {
+    		m_res.clear();
+    		if (s.empty() == true) {
+    			return m_res;
+    		}
+    		PermutationRecursion("", s);
+    		return m_res;
+    	}
+    	void PermutationRecursion(string prefix, string str) {
+    		if (str.length() == 0) {
+    			//说明都已经处理完了，那么prefix就是全部了
+    			m_res.push_back(prefix);
+    		}
+    		else {
+    			//递归处理
+    			for (int i = 0; i < str.length(); i++) {
+    				PermutationRecursion(prefix + str[i],
+    					str.substr(0, i) + str.substr(i + 1, str.length()));
+    			}
+    		}
+    	}
+    
+    };
+    
+    int main() {
+    	Solution solu;
+    	vector<string> res;
+    	res=	solu.Permutation("abc");
+    	for each (string s in res) {
+    		cout << s << endl;
+    	}
+    	return 0;
+    }
+
+
+输出：
+
+    
+    abc
+    acb
+    bac
+    bca
+    cab
+    cba
+
+
+这个方法还是很易于理解的。
+
+但是我们很快就想到了一个问题：有字符重复的时候要怎么处理？比如 s="ABA"，会生成两个 “AAB”。
+
+
+## 基于交换的全排列（递归）
+
+
+OK，我们可以看看这种方法：
+
+由于全排列就是从第一个数字起，每个数分别与它后面的数字交换。
+
+因此，我们可以先尝试加个这样的判断：如果一个数与后面的数字相同那么这两个数就不交换 了。
+
+例如：abb：
+
+
+
+ 	
+  * 对于 abb，尝试交换 12：得到 bab；尝试交换 13： 得到 bba；尝试交换 23：都是b，就不用交换了。
+
+ 	
+  * 对于 bab，尝试交换 23：得到 bba。
+
+ 	
+  * 对于 bba，尝试交换 23：得到 bab。
+
+
+可见，由于这里的 bab 的 23 交换和 bba 结果相同了，因此这个方法不可行。
+
+OK，那么我们换种思维：
+
+ 	
+  * 对于 abb，尝试交换 12 ：得到 bab；尝试交换13 ：由于 3 和之前交换过的 2 相等，因此不交换；尝试交换23：由于2 与 3 本身相等因此不交换。
+
+ 	
+  * 对于 bab，尝试交换 23：得到 bba。
+
+
+此时全排列竟然已经生成完毕！**有点仓促吧？确认下为什么能确保？**
+
+OK，看起来这种方式应该是可行的，那么怎么应用到程序中呢？
+
+
+
+ 	
+  1. 首先，我们把第一个字符和它后面非重复出现的字符一一交换。如果这个被要求交换的字符在之前已经有过或者与第一个字符相同，那么就不进行交换。比如：abcba ，当第一个a与后面的每一个进行交换的时候，第二个b就不会被交换到，第二个a也不会被交换到。
+
+ 	
+  2. 交换之后，把第一个字符固定，然后按照步骤1一样，同样的处理后面的字符串。
+
+ 	
+  3. 以此类推
+
+
+**这个图不是很好，没有写出带重复字符的情况：**
+
+![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aff8658ea68e.png)
+
+程序如下：
+
+    
+    #include <iostream>
+    #include <algorithm>
+    #include <vector>
+    #include <string>
+    using namespace std;
+    
+    
+    
+    
+    class Solution {
+    protected:
+    	vector<string> m_res;
+    public:
+    	vector<string> Permutation(string str) {
+    		m_res.clear();
+    		if (str.empty() == true) {
+    			return m_res;
+    		}
+    		PermutationRecursion(str, 0);
+    		sort(m_res.begin(), m_res.end());//竟然直接sort就行？要掌握下
+    		return m_res;
+    	}
+    
+    	//递归实现
+    	// 由于是直接传参，不是传指针，因此传递进去之后，里面的str就与这里的str没有关系了。
+    	void PermutationRecursion(string str, int begin) {
+    		if (str[begin] == '\0') {
+    			//如果已经是结尾了，就说明全部的字符已经正确的处理了。
+    			cout << str << endl<<endl;
+    			m_res.push_back(str);
+    		}
+    		else {
+    			//遍历后面的这些字符
+    			for (int i = begin; str[i] != '\0'; i++) {
+    				//如果从begin 到i 这中间没有根 i 重复的字符
+    				//因为如果有与 i 重复的，那么这个 i 这个字符之前肯定是已经被交换到前面去遍历过了。
+    				if (!HasDuplicate(str, begin, i)) {
+    					swap(str[i], str[begin]);		//把i交换到前面去 然后作为一个新的 str 进行递归
+    					cout << "swap " << str[i] << "(" << i << ")"
+    						<< " and " << str[begin] << "(" << begin << ")" << endl;
+    					PermutationRecursion(str, begin + 1);		//继续递归后面的字符
+    					swap(str[i], str[begin]);		//再交换回来 因为下个循环我还要用到 str 
+    				}
+    			}
+    		}
+    	}
+    private:
+    	//find duplicate of str[i] in str[k,i)
+    	bool HasDuplicate(string& str, int k, int i) const {
+    		for (int p = k; p < i; p++) {
+    			if (str[p] == str[i])
+    				return true;
+    		}
+    		return false;
+    	}
+    };
+    
+    int main() {
+    	Solution solu;
+    	vector<string> res;
+    	res = solu.Permutation("abca");
+    	for each (string s in res) {
+    		cout << s << endl;
+    	}
+    	return 0;
+    }
+
+
+输出：
+
+    
+    swap a(0) and a(0)
+    swap b(1) and b(1)
+    swap c(2) and c(2)
+    swap a(3) and a(3)
+    abca
+    
+    swap c(3) and a(2)
+    swap c(3) and c(3)
+    abac
+    
+    swap b(2) and c(1)
+    swap b(2) and b(2)
+    swap a(3) and a(3)
+    acba
+    
+    swap b(3) and a(2)
+    swap b(3) and b(3)
+    acab
+    
+    swap b(3) and a(1)
+    swap c(2) and c(2)
+    swap b(3) and b(3)
+    aacb
+    
+    swap c(3) and b(2)
+    swap c(3) and c(3)
+    aabc
+    
+    swap a(1) and b(0)
+    swap a(1) and a(1)
+    swap c(2) and c(2)
+    swap a(3) and a(3)
+    baca
+    
+    swap c(3) and a(2)
+    swap c(3) and c(3)
+    baac
+    
+    swap a(2) and c(1)
+    swap a(2) and a(2)
+    swap a(3) and a(3)
+    bcaa
+    
+    swap a(2) and c(0)
+    swap b(1) and b(1)
+    swap a(2) and a(2)
+    swap a(3) and a(3)
+    cbaa
+    
+    swap b(2) and a(1)
+    swap b(2) and b(2)
+    swap a(3) and a(3)
+    caba
+    
+    swap b(3) and a(2)
+    swap b(3) and b(3)
+    caab
+    
+    aabc
+    aacb
+    abac
+    abca
+    acab
+    acba
+    baac
+    baca
+    bcaa
+    caab
+    caba
+    cbaa
+
+
+嗯，OK，这个方法真的很不错。
+
+
+## STL 中，直接使用 next_permutation 求一个容器的全排列
+
+
+事实上，在STL中，可以直接使用next_permutation方便的求一个容器的全排列。
+
+代码如下：
+
+    
+    #include <iostream>
+    #include <algorithm>
+    #include <vector>
+    #include <string>
+    using namespace std;
+    
+    
+    
+    class Solution {
+    public:
+    	vector<string> Permutation(string str) {
+    		vector<string> res;
+    		if (str.empty() == true) {
+    			return res;
+    		}
+    		sort(str.begin(), str.end());
+    		do {
+    			res.push_back(str);
+    		} while (next_permutation(str.begin(), str.end()));//看来stl一定要掌握，尤其是关于各种容器的应用
+    		return res;
+    	}
+    };
+    
+    int main() {
+    	Solution solu;
+    	vector<string> res;
+    	res = solu.Permutation("abca");
+    	for each (string s in res) {
+    		cout << s << endl;
+    	}
+    	return 0;
+    }
+
+
+输出：
+
+    
+    aabc
+    aacb
+    abac
+    abca
+    acab
+    acba
+    baac
+    baca
+    bcaa
+    caab
+    caba
+    cbaa
+
+
+**看来，STL 中的东西，尤其是各种容器和对容器的操作一定要掌握，比如方法二中的swap、sort和这里的 next_permutation。等。**
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

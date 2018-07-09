@@ -1,0 +1,641 @@
+---
+author: evo
+comments: true
+date: 2018-05-29 07:52:56+00:00
+layout: post
+link: http://106.15.37.116/2018/05/29/%e7%ae%97%e6%b3%95%ef%bc%9a%e6%95%b0%e7%bb%84%e4%b8%ad%e9%87%8d%e5%a4%8d%e7%9a%84%e6%95%b0%e5%ad%97/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e6%95%b0%e7%bb%84%e4%b8%ad%e9%87%8d%e5%a4%8d%e7%9a%84%e6%95%b0%e5%ad%97'
+title: 算法：数组中重复的数字
+wordpress_id: 6981
+categories:
+- 基础程序设计
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，所有版权属于原作者，原文已列在 ORIGINAL 中。为了方便个人学习做了整合、修改，仅供个人学习使用。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+在一个长度为 n 的数组里的所有数字都在 0 到 n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字是重复的，也不知道每个数字重复几次。
+
+请找出数组中任意一个重复的数字。
+
+例如，如果输入长度为7的数组 {2,3,1,0,2,5,3}，那么对应的输出是重复的数字 2 或者 3 。
+
+
+## **样例输入**
+
+
+
+
+
+ 	
+  * 2, 3, 1, 0, 2, 5, 3
+
+ 	
+  * 2, 1, 3, 1, 4
+
+
+
+
+## **样例输出**
+
+
+
+
+
+ 	
+  * 2
+
+ 	
+  * 1
+
+
+
+
+
+# 题目解答
+
+
+
+
+## 排序后判断重复
+
+
+最简单的思路就是先把输入的数组排序，从排序的数组中找出重复的数字就是个很容易的事情了。只需要从头向尾扫描一遍排序好的数组即可。
+
+对一个数组排序的时间复杂度是\(O(nlogn)\)，扫描一个排序好的数组发现重复的数字的时间复杂度是\(O(n)\)。
+
+代码如下：
+
+    
+    #include <iostream>
+    #include <algorithm>
+    using namespace std;
+    
+    class Solution {
+    public:
+        bool duplicate(int numbers[], int length, int* dupNum) {
+            *dupNum = -1;
+            if (CheckValidity(numbers, length) == false) {
+                return false;
+            }
+            sort(numbers, numbers + length);    //  对数组进行排序
+            int i = 0;
+            bool isDup = false;
+            *dupNum = -1;
+            //  扫描一遍数组发现重复的数字
+            for (i = 0; i < length - 1; i++) {
+                //  重复了
+                if (numbers[i] == numbers[i + 1]) {
+                    isDup = true;
+                    *dupNum = numbers[i];
+                    break;
+                }
+            }
+            return isDup;
+        }
+    
+    private:
+        //检查输入是否合法
+        bool CheckValidity(int *numbers, int length) {
+            //  输入数据不合法
+            if (numbers == NULL || length <= 0) {
+                return false;
+            }
+            //  元素必须在[0, n-1]的范围
+            for (int i = 0; i < length; i++) {
+                if (numbers[i] < 0 || numbers[i] > length - 1) {
+                    return false;
+                }
+            }
+    
+            return true;
+        }
+    };
+    
+    
+    int main(void) {
+        int ls[8] = { 0, 4, 2, 3, 2, 6, 7, 4 };
+        int dupNum = -1;
+        Solution solu;
+        if (solu.duplicate(ls, 8, &dupNum)) {
+            cout << dupNum << endl;
+        }
+        return EXIT_SUCCESS;
+    }
+
+
+输出：
+
+    
+    2
+
+
+
+
+## 以空间换时间
+
+
+
+
+### hashtable 哈希法优化查找速率
+
+
+当然我们用 hashtabble 也可以实现，hashtable 中可以很方便的查找到某个元素是否存在，时间复杂度 \(O(n)\)，空间复杂度 \(O(n)\)
+
+    
+    #include <iostream>
+    #include <algorithm>
+    #include <set>
+    using namespace std;
+    
+    class Solution {
+    public:
+        bool duplicate(int numbers[], int length, int* duplication) {
+            *duplication = -1;
+            if (CheckValidity(numbers, length) == false) {
+                return false;
+            }
+            set<int> s;
+            bool isDup = false;
+            *duplication = -1;
+            for (int i = 0; i < length; i++) {
+                if (s.count(numbers[i]) == 1) {
+                    isDup = true;
+                    *duplication = numbers[i];
+                    break;
+                }
+                s.insert(numbers[i]);
+            }
+            return isDup;
+        }
+    
+    private:
+        //检查输入是否合法
+        bool CheckValidity(int *numbers, int length) {
+            //  输入数据不合法
+            if (numbers == NULL || length <= 0) {
+                return false;
+            }
+            //  元素必须在[0, n-1]的范围
+            for (int i = 0; i < length; i++) {
+                if (numbers[i] < 0 || numbers[i] > length - 1) {
+                    return false;
+                }
+            }
+    
+            return true;
+        }
+    };
+    
+    
+    int main(void) {
+        int ls[8] = { 0, 4, 2, 3, 2, 6, 7, 4 };
+        int dupNum = -1;
+        Solution solu;
+        if (solu.duplicate(ls, 8, &dupNum)) {
+            cout << dupNum << endl;
+        }
+        return EXIT_SUCCESS;
+    }
+
+
+输出：
+
+    
+    2
+
+
+
+
+
+### 标识数组法
+
+
+hashtable 的方式是在优化查找的过程，因为在 hashtable 中查找的时间复杂度为 \(O(1)\) ，那么我们继而联想到，如果不设hash，直接用一个用一个数组flag当前标识，记录某个元素是否出现，
+
+
+
+ 	
+  * flag[i] =0 标识元素i未出现,
+
+ 	
+  * flag[i] =1 标识元素i出现
+
+
+这样也可以在 \(O(1)\) 的时间内实现判断：
+
+    
+    #include <iostream>
+    #include <algorithm>
+    #include <set>
+    using namespace std;
+    
+    class Solution {
+    public:
+        bool duplicate(int numbers[], int length, int* duplication) {
+            *duplication = -1;
+            if (CheckValidity(numbers, length) == false) {
+                return false;
+            }
+            int *flags = new int[length];
+            memset(flags, 0, sizeof(int)*length);
+            for (int i = 0; i < length; i++) {
+                if (flags[numbers[i]] != 0) {
+                    *duplication = numbers[i];
+                    return true;
+                }
+                else {
+                    flags[numbers[i]] = 1;
+                }
+            }
+            delete[] flags;
+            return false;
+        }
+    
+    private:
+        //检查输入是否合法
+        bool CheckValidity(int *numbers, int length) {
+            //  输入数据不合法
+            if (numbers == NULL || length <= 0) {
+                return false;
+            }
+            //  元素必须在[0, n-1]的范围
+            for (int i = 0; i < length; i++) {
+                if (numbers[i] < 0 || numbers[i] > length - 1) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    };
+    
+    
+    int main(void) {
+        int ls[8] = { 0, 1, 2, 3, 2, 6, 7, 4 };
+        int dupNum = -1;
+        Solution solu;
+        if (solu.duplicate(ls, 8, &dupNum)) {
+            cout << dupNum << endl;
+        }
+        return EXIT_SUCCESS;
+    }
+
+
+输出：
+
+    
+    2
+
+
+这里都是用的以空间换时间的方式，那么有没有什么办法能够优化空间上的消耗呢？
+
+实际上，我们需要的只是一个标识： 0 或者 1，因此我们完全没必要使用一个整数来做标识，我们可以用一个 n 位的单元来存储这些标识，这样就把空间消耗将低了。
+
+OK，但是上面的方法还是需要额外的空间，那么有没有不需要空间消耗的方法呢？
+
+
+## 符号位标识法
+
+
+我们可以看到数组中元素的大小都在 [0-n) 这个区间内，而且都是正数，那么也就是说这些数字的符号位对我们来说就是无关紧要的，OK，那么我们直接把数字 numbers[i] 的标识存放到 numbers[numbers[i]] 的符号位里面就行了，就不另找地方了。**厉害了。**
+
+
+
+ 	
+  * numbers[i] 符号位为 0 表示数字 i 没有重复
+
+ 	
+  * numbers[i] 符号位为 1 标识数字 i 重复
+
+
+而且，关键是，这样操作之后，把符号位里面的标识去掉，数据又恢复回来了，也不会被破坏。
+
+    
+    #include <iostream>
+    #include <algorithm>
+    #include <set>
+    using namespace std;
+    
+    
+    #define SET_SYMBOL_BIT(num)  ((num) |= (1 << 31))		//  设置符号位为1 
+    #define GET_SYMBOL_BIT(num)  (((num) >> 31) & 1)		// 获取符号位(标识)
+    #define GET_ORIGIN_NUM(num)  ((num) & (~(1 << 31)))		//	获取除了符号位之外的源数据 
+    
+    class Solution {
+    public:
+    
+        //  将数字 numbers[i] 的标识存放到 numbers[numbers[i]] 的符号位里面。利害
+        bool duplicate(int numbers[], int length, int* duplication) {
+            *duplication = -1;
+            if (CheckValidity(numbers, length) == false) {
+                return false;
+            }
+            for (int i = 0; i < length; i++) {
+                if (GET_SYMBOL_BIT(numbers[GET_ORIGIN_NUM(numbers[i])]) == 1) {
+                    //说明这个数已经出现过了
+                    *duplication = GET_ORIGIN_NUM(numbers[i]);
+                    return true;
+                }
+                else {
+                    //设置 numbers[numbers[i]] 的符号位
+                    SET_SYMBOL_BIT(numbers[GET_ORIGIN_NUM(numbers[i])]);
+                }
+            }
+            return false;
+        }
+    private:
+        //检查输入是否合法
+        bool CheckValidity(int *numbers, int length) {
+            //  输入数据不合法
+            if (numbers == NULL || length <= 0) {
+                return false;
+            }
+            //  元素必须在[0, n-1]的范围
+            for (int i = 0; i < length; i++) {
+                if (numbers[i] < 0 || numbers[i] > length - 1) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    };
+    
+    
+    
+    int main(void) {
+        int ls[8] = { 0, 1, 2, 3, 2, 6, 7, 4 };
+        int dupNum = -1;
+        Solution solu;
+        if (solu.duplicate(ls, 8, &dupNum)) {
+            cout << dupNum << endl;
+        }
+        return EXIT_SUCCESS;
+    }
+
+
+输出：
+
+    
+    2
+
+
+**利害，操作细腻。**
+
+这种方法还是很nice的，既没有借助外部辅助空间，又没有破坏数据（能够恢复），那么有没有其他类似的方法呢？
+
+
+
+
+## 固定偏移法
+
+
+
+
+numbers[i] 的标识存放到 numbers[numbers[i]] 的符号位里面就行了，就不另找地方了。厉害了。
+
+OK，之前，我们是把 numbers[i]  出现过的标识存放到  numbers[numbers[i]]  的符号位里面了。
+
+那么，现在，我们这样做：当 numbers[i] 出现的时候，我们把 numbers[numbers[i]] 这个数加上 n ，这样，当我下次出现了一个与 numbers[i] 相同的数的时候，我们就可以看 [numbers[i]]  有没有加过 n，如果加过了，说明这个  numbers[i]  数出现过了。
+
+由于题目中有要求：长度为 n 的数组里的所有数字都在 0~n-1 的范围内，因此 每个数加上 n 之后与原来的数仍是对应关系，而且，可以通过numbers[numbers[i]] % n 来得到原来的数。所以我们才可以这么做。**还是很厉害的。**
+
+OK，代码如下：
+
+    
+    #include <iostream>
+    #include <algorithm>
+    #include <set>
+    using namespace std;
+    
+    class Solution {
+    public:
+        //注意：这个题目是有条件的：长度为 n 的数组里的所有数字都在 0~n-1 的范围内。所以才可以这么做
+        bool duplicate(int numbers[], int length, int* duplication) {
+            *duplication = -1;
+            if (CheckValidity(numbers, length) == false) {
+                return false;
+            }
+            for (int i = 0; i < length; i++) {
+                //实际上，这个地方取余数之后的numbers[i] % length 就是 numbers[i] 原始的数
+                //而如果 numbers[numbers[i] % length] 大于 length，
+                //就说明 numbers[numbers[i] % length] 之前已经加过一遍 length 了。
+                //也就是说 numbers[i] 这个数之前已经出现过了
+                if (numbers[numbers[i] % length] >= length) {
+                    //因此，对于出现过的数，直接求余就是原来的数。
+                    *duplication = numbers[i] % length;
+                    return true;
+                }
+                else {
+                    //对于每一个没有出现过的 numbers[i] ，
+                    //我都把对应的numbers[numbers[i] % length] 加上一个length
+                    numbers[numbers[i] % length] += length;
+                }
+            }
+            return false;
+        }
+    private:
+        //检查输入是否合法
+        bool CheckValidity(int *numbers, int length) {
+            //  输入数据不合法
+            if (numbers == NULL || length <= 0) {
+                return false;
+            }
+            //  元素必须在[0, n-1]的范围
+            for (int i = 0; i < length; i++) {
+                if (numbers[i] < 0 || numbers[i] > length - 1) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    };
+    
+    
+    
+    int main(void) {
+        int ls[8] = { 0, 5, 2, 3, 2, 6, 7, 4 };
+        int dupNum = -1;
+        Solution solu;
+        if (solu.duplicate(ls, 8, &dupNum)) {
+            cout << dupNum << endl;
+        }
+        return EXIT_SUCCESS;
+    }
+
+
+输出：
+
+    
+    2
+
+
+
+
+## 将元素放在自己该在的位置
+
+
+我们考虑一下，如果每个数字都置只出现一次，那么此时是最完美的，每一个下标 i 对应元素numbers[i]，也就是说我们对于数组中的每个元素 numbers[i] 都可以把它放在自己应该在的位置numbers[numbers[i]] 上。
+
+因此，如果我们发现有两个元素想往同一个位置上放的时候，就说明这个元素必然重复。
+
+过程如下：
+
+
+
+ 	
+  1. 如果 numbers[i] == i，那么我们认为 number[i] 这个元素是在自己的位置上的。
+
+ 	
+  2. 否则的话，numbers[i] 这个元素就应该在 numbers[numbers[i]] 这个位置上, 于是我们交换numbers[i] 和 numbers[numbers[i]] 。如果发现 numbers[i] == numbers[numbers[i]，那么这个 numbers[i] 就是重复的元素。
+
+ 	
+  3. 交换过后，i 先不加，仍然重复操作 1 ，一直到 number[i]== i，才开始操作下一个位置的元素。
+
+
+
+    
+    #include <iostream>
+    #include <algorithm>
+    #include <set>
+    using namespace std;
+    
+    class Solution {
+    public:
+        bool duplicate(int numbers[], int length, int* duplication) {
+            *duplication = -1;
+            if (CheckValidity(numbers, length) == false) {
+                return false;
+            }
+            for (int i = 0; i < length; i++) {
+                while (numbers[i] != i) {
+                    if (numbers[i] == numbers[numbers[i]]) {
+                        *duplication = numbers[i];
+                        return true;
+                    }
+                    swap(numbers[i], numbers[numbers[i]]);
+                }
+            }
+            return false;
+        }
+    private:
+        //检查输入是否合法
+        bool CheckValidity(int *numbers, int length) {
+            //  输入数据不合法
+            if (numbers == NULL || length <= 0) {
+                return false;
+            }
+            //  元素必须在[0, n-1]的范围
+            for (int i = 0; i < length; i++) {
+                if (numbers[i] < 0 || numbers[i] > length - 1) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    };
+    
+    
+    
+    int main(void) {
+        int ls[8] = { 0, 5, 2, 3, 2, 6, 7, 4 };
+        int dupNum = -1;
+        Solution solu;
+        if (solu.duplicate(ls, 8, &dupNum)) {
+            cout << dupNum << endl;
+        }
+        return EXIT_SUCCESS;
+    }
+
+
+输出：
+
+    
+    2
+
+
+嗯，这也是一个方法。
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

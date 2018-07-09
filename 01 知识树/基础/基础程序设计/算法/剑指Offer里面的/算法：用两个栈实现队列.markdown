@@ -1,0 +1,261 @@
+---
+author: evo
+comments: true
+date: 2018-05-15 03:10:36+00:00
+layout: post
+link: http://106.15.37.116/2018/05/15/%e7%ae%97%e6%b3%95%ef%bc%9a%e7%94%a8%e4%b8%a4%e4%b8%aa%e6%a0%88%e5%ae%9e%e7%8e%b0%e9%98%9f%e5%88%97/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e7%94%a8%e4%b8%a4%e4%b8%aa%e6%a0%88%e5%ae%9e%e7%8e%b0%e9%98%9f%e5%88%97'
+title: 算法：用两个栈实现队列
+wordpress_id: 5744
+categories:
+- 随想与反思
+tags:
+- NOT_ADD
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# 题目
+
+
+
+
+## 题目描述
+
+
+用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。
+
+
+
+
+# [](https://github.com/gatieme/CodingInterviews/tree/master/007-%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97#%E5%88%86%E6%9E%90)题目解答
+
+
+
+
+## 直接倒来倒去
+
+
+比如两个栈 s1，s2，我们可以维护s1作为**存储空间**，以s2作为**临时缓冲区**。
+
+
+
+ 	
+  * 入队时，将元素压入s1。
+
+ 	
+  * 出队时，将s1的元素逐个“倒入”（弹出并压入）s2，将s2的顶元素弹出作为出队元素，之后再将s2剩下的元素逐个“倒回”s1。
+
+
+见下面示意图：
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/05/img_5afa3d39a9420.png)
+
+
+嗯，上面的思路的确是可行的，有一个小小的优化的点可以提一下：
+
+
+
+ 	
+  * 在出队时，将s1的元素逐个“倒入”s2时，原在s1栈底的元素，不用 “倒入” s2（即只“倒”s1.Count()-1个），可直接弹出作为出队元素返回。这样可以减少一次压栈的操作。虽然只减少一次，但也是一个优化
+
+
+但是呢，上面的这种倒来倒去的方法感觉效率不是很高，比如，如果连续取的话，每次都要倒来倒去，因此，我们可以这样：
+
+
+## 每次出队完成后，可以并不立即从 s2 倒回到 s1
+
+
+每次出队完成后，可以并不立即从 s2 倒回到 s1，这时的数据可能在s1中，也可能在s2中，但是我可以在每次操作前进行下面的检查：
+
+
+
+ 	
+  * 在下次入队时，先判断s1是否为空，如不为空，说明所有元素都在s1，此时将入队元素直接压入s1；如为空，要将s2的元素逐个“倒回”s1，再压入入队元素。
+
+ 	
+  * 在出队时，先判断s2是否为空，如不为空，直接弹出s2的顶元素并出队；如为空，将s1的元素逐个“倒入”s2，把最后一个元素弹出并出队。
+
+
+这样，如果连续读的时候，效率能上升一点了。
+
+还有什么可以改进的吗？
+
+
+## 直接不再倒回了，而且也只在需要的时候倒入
+
+
+我们可以始终把s1作为**输入栈**，以s2作为**输出栈**
+
+
+
+ 	
+  * 当入队时，我们就将元素压入s1，不管s1里面是空的还是有数据。
+
+ 	
+  * 出队时，我们首先判断s2是否为空，如不为空，则直接弹出顶元素；如为空，则将s1的元素逐个 “倒入” s2，把最后一个元素弹出并出队。
+
+
+OK，这样的话直接没有倒回这一步了，而且倒入的步骤也只在需要时才 “倒” 一次。还是很厉害的。
+
+完整代码如下：
+
+    
+    #include <iostream>
+    #include <stack>
+    using namespace std;
+    
+    
+    class Solution {
+    
+    private:
+    	stack<int> stackIn;
+    	stack<int> stackOut;
+    
+    public:
+    	void push(int node) {
+    		stackIn.push(node);
+    	}
+    
+    	int pop() {
+    		int node = -1;
+    
+    		//  两个栈都是NULL的时候，整个队列为空
+    		if (this->checkEmpty() == true) {
+    			cout << "整个队列为NULL" << endl;
+    			return -1;
+    		}
+    
+    		// 如果输出为空  将输入栈中的元素倒入输出栈
+    		if (stackOut.empty() == true) {
+    			while (stackIn.empty() != true) {
+    				node = stackIn.top();
+    				stackIn.pop();
+    				stackOut.push(node);
+    				cout << node << "导入输出栈" << endl;
+    			}
+    		}
+    
+    		node = stackOut.top();
+    		stackOut.pop();
+    
+    
+    		return node;
+    	}
+    
+    	bool checkEmpty() {
+    		return (stackIn.empty() == true && stackOut.empty() == true);
+    	}
+    };
+    
+    
+    int main() {
+    	Solution solu;
+    	solu.push(1);
+    	solu.push(2);
+    	solu.push(3);
+    	solu.push(4);
+    
+    	int node;
+    	while (solu.checkEmpty() != true) {
+    		node = solu.pop();
+    		cout << node << " 出栈" << endl;
+    	}
+    	return 0;
+    }
+
+
+输出：
+
+    
+    4导入输出栈
+    3导入输出栈
+    2导入输出栈
+    1导入输出栈
+    1 出栈
+    2 出栈
+    3 出栈
+    4 出栈
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

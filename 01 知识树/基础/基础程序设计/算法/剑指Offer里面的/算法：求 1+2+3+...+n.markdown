@@ -1,0 +1,557 @@
+---
+author: evo
+comments: true
+date: 2018-05-28 10:54:25+00:00
+layout: post
+link: http://106.15.37.116/2018/05/28/%e7%ae%97%e6%b3%95%ef%bc%9a%e6%b1%82-123-n/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e6%b1%82-123-n'
+title: 
+wordpress_id: 6960
+categories:
+- 基础程序设计
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，所有版权属于原作者，原文已列在 ORIGINAL 中。为了方便个人学习做了整合、修改，仅供个人学习使用。**
+
+
+# ORIGINAL
+
+
+
+
+
+
+  1.
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+
+  * **这个算法题目的解答用了很多方法，而且都挺厉害的，要再琢磨下，该整理的要整理下。**
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+
+  * aaa
+
+
+
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+求 1+2+3+...+n，
+
+要求不能使用乘除法、for、while、if、else、switch、case 等关键字及条件判断语句（A?B:C）。
+
+**样例输入**
+
+
+
+
+  * 3
+
+
+  * 5
+
+
+**样例输出**
+
+
+
+
+  * 6
+
+
+  * 15
+
+
+
+
+# 题目解答
+
+
+
+
+## 递归+短路判断终止
+
+
+计算1+2+3+...+n, 可以认为是一个 **递归 **的过程, 这点很容易理解
+
+但是怎么才能不用分支判断来保证递归的终止呢？
+
+还记得我们的调试语句么：
+
+
+    #ifdef __tmain
+        #define debug cout
+    #else
+        #define debug 0 && cout
+    #endif // __tmain
+
+
+当不希望使用调试模式的时候，我们是通过短路运算 `0 && cout` 来使条件为假值，从而不执行输出语句的。**什么是短路运算？ && 这个到底是什么意思？**
+
+因此，我们也可以通过短路来实现循环终止：
+
+
+
+
+  * 从 n 开始递减进程递归的相加运算
+
+
+  * 当递归至 0 时使递归短路即可
+
+
+代码如下：
+
+
+    #include <iostream>
+    using namespace std;
+
+    class Solution {
+    public:
+    	int SumRecursion(int n) {
+    		int ans = n;
+    		n && (ans += SumRecursion(n - 1));
+    		return ans;
+    	}
+    };
+
+    int main() {
+    	Solution solu;
+    	cout << solu.SumRecursion(5) << endl ;
+    	return 0;
+    }
+
+
+输出：
+
+
+    15
+
+
+**利害，这种短路运算，之前听都没听说过。**
+
+
+## 位运算计算 \(1+2+3+...+n=n(n+1)/2\)
+
+
+我们其实知道，等差数列求和的问题
+
+\[1+2+3+...+n=\frac{n(n+1)}{2}\]
+
+但是 \(\frac{n(n+1)}{2}\) 是一个乘除的运算，本题限制使用乘除，因此我们得另寻它法。
+
+我们知道 a*b 运算在计算机内部其实是通过移位和加法来完成的：**利害，我虽然知道是移位实现的，但是不知道到底怎么实现的，利害的。**
+
+
+    int Multi(int a, int b) {
+    	int res = 0;
+    	while (a != 0) {
+    		if ((a & 1) != 0) {
+    			res += b;
+    		}
+    		a >>= 1;
+    		b <<= 1;
+    	}
+    	return res;
+    }
+
+
+那么我们的  \(\frac{n(n+1)}{2}\)  可以用 Multi(n, n + 1) >>1 来计算。
+
+但是题目中说了不能用while，因此我们要再做一些调整，还是上面的策略：
+
+
+
+
+  * 循环用递归来代替
+
+
+  * 分支用短路运算来代替
+
+
+那么我们的乘法运算就成为：**仔细看下**
+
+
+    int MultiRecursion(int a, int b) {
+    	static int res = 0;
+    	a && MultiRecursion(a >> 1, b << 1);    //  递归的进行运算
+    	(a & 1) && (res += b);                  //  短路
+    	return res;
+    }
+
+
+完整代码如下：
+
+
+    #include <iostream>
+    using namespace std;
+
+    class Solution {
+    public:
+    	int res;
+    	int Sum_Solution(int n) {
+    		res = 0;
+    		return (MultiRecursion(n, n + 1) >> 1);
+    	}
+    	int MultiRecursion(int a, int b) {
+    		a && MultiRecursion(a >> 1, b << 1);    //  递归的进行运算
+    		(a & 1) && (res += b);                  //  短路
+    		return res;
+    	}
+    };
+
+    int main() {
+    	Solution solu;
+    	cout << solu.Sum_Solution(5) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+
+    15
+
+
+
+
+## 利用构造函数求解
+
+
+这种相加的循环操作可以认为是累加了 N 次，即重复的让相同的代码执行了 N 次。
+
+OK，还记得我们 C++ 里面类对象里面的静态计数器的设计么，静态的 count 可以在构造函数中进行累加， 从而维护出类对象的个数。
+
+OK，那么我们就可以采用相同的思路，在类的构造函数里面进行计数器的累加和求和操作，这样我们 构造出N个对象即可完成所需操作。**厉害了。**
+
+
+    #include <iostream>
+    using namespace std;
+
+
+    class Temp {
+    private:
+    	static unsigned int N;
+    	static unsigned int Sum;
+    public:
+    	//创建 Temp 对象的时候就已经执行了构造函数。
+    	Temp() {
+    		++N;
+    		Sum += N;
+    	}
+    	static void Reset() {
+    		N = 0;
+    		Sum = 0;
+    	}
+    	static unsigned int GetSum() {
+    		return Sum;
+    	}
+    };
+
+    unsigned int Temp::N = 0;
+    unsigned int Temp::Sum = 0;
+
+    class Solution {
+    public:
+    	int res;
+    	int Sum_Solution(int n) {
+    		Temp::Reset();//先对static变量进行重置
+    		Temp *a = new Temp[n];//创建很多 Temp对象
+    		delete[] a; //清理掉资源并置为NULL
+    		a = NULL;
+    		return Temp::GetSum();
+    	}
+    };
+
+
+    int main() {
+    	Solution solu;
+    	cout << solu.Sum_Solution(5) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+
+    15
+
+
+**真是利害的方法，对C++的运用真的很到位。**
+
+
+## 利用虚函数求解
+
+
+我们同样可以围绕递归做文章，既然不能在一个函数中通过分支判断是不是终止递归
+
+那么我们可以定义两个函数，一个函数充当递归函数的角色，另一个函数处理终止递归的情况，不过这样的话，我们需要在两个函数中二选一，从二选一我们自然的想到了布尔变量，比如值为true的时候调用第一个，值为false的时候，调用第二个函数,
+
+那么我们怎么把一个值 n 转换为一个布尔类型呢，其实，如果对 n 连续做两次反运算， 即 !!n， 那么非零的 n 就会转换为 true， 0 就会转换为 false。**厉害了**
+
+代码如下：
+
+
+    #include <iostream>
+    using namespace std;
+
+    class base;
+    base *parray[2];//用来存放两个指针
+
+    class base {
+    public:
+    	virtual unsigned int sum(unsigned int n) {
+    		//  递归的终止
+    		return 0;
+    	}
+    };
+
+    class derive :public base {
+    public:
+    	virtual unsigned int sum(unsigned int n) {
+    		// !!n 将 n 转换为 bool 类型, 来选择函数
+    		// sum(n) = sum(n - 1) + n 则是递归公式
+    		// 因此，只有当 n=0 的时候，!!n 才会是0，
+    		// 也就是说，这个时候才会调用到 base的 sum函数里面 。利害
+    		return parray[!!n]->sum(n - 1) + n;
+    	}
+    };
+
+    class Solution {
+    public:
+    	int Sum_Solution(int n) {
+    		base a;
+    		derive b;
+    		parray[0] = &a;//第0个指针指向 a
+    		parray[1] = &b;//第1个指针指向 b
+    		return parray[1]->sum(n);
+    	}
+    };
+
+
+    int main() {
+    	Solution solu;
+    	cout << solu.Sum_Solution(5) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+
+    15
+
+
+**震惊了，这么利害，妙。**
+
+**这种情况一般什么时候会用到？**
+
+
+## 利用函数指针求解
+
+
+前面的方案我们通过使用 C++ 的虚函数和多态的特性实现了对函数的选择，但是其实我们用函数指针也可以实现选择函数
+
+
+    #include <iostream>
+    using namespace std;
+
+
+    typedef int(*func)(int);//定义一个函数指针
+
+    // 递归的终止函数
+    int Teminator(int n) {
+    	return 0;
+    }
+
+    //  递归函数, 选择函数进行递归
+    int Recursion(int n) {
+    	//两个函数指针分别指向两个函数
+    	static func pf[2] =
+    	{
+    		Teminator,
+    		Recursion,
+    	};
+    	return n + pf[!!n](n - 1);
+    }
+
+    class Solution {
+    public:
+    	int Sum_Solution(int n) {
+    		return Recursion(n);
+    	}
+    };
+
+    int main() {
+    	Solution solu;
+    	cout << solu.Sum_Solution(5) << endl;
+    	return 0;
+    }
+
+
+
+输出：
+
+
+    15
+
+
+**厉害呀，函数指针，需要好好整理一下函数指针的用法，还是有些不清楚。不过这个程序倒是非常清晰的。**
+
+
+## 利用模板类型求解
+
+
+我们可以利用编译器来帮助完成类似于递归的运算：
+
+
+    #include <iostream>
+    using namespace std;
+
+
+    template <unsigned int n>
+    struct Sum {
+    	enum Value {
+    		N = Sum< n - 1 >::N + n
+    	};
+    };
+
+    template <>
+    struct Sum<1> {
+    	enum Value {
+    		N = 1
+    	};
+    };
+
+
+    class Solution {
+    public:
+    	int Sum_Solution(int n) {
+    		//这里的 n 要怎么才能传进去？
+    		return Sum<5>::N;
+    	}
+    };
+
+    int main() {
+    	Solution solu;
+    	cout << solu.Sum_Solution(5) << endl;
+    	return 0;
+    }
+
+
+
+输出：
+
+
+    15
+
+
+**这个方法完全没看懂，关于模板还是要好好总结下的。而且 Sum<5>::N 中的 5 怎么才能换成 n？**
+
+Sum<100>::N 就是 1+2++...+100 的结果，当编译器看到 Sum<100>::N 时，就会为模板类 Sum 以参数 100 生成对象，而由于这个类的定义是递归的，因此编译器会一直递归的操作，直至参数为1，递归结束。**没明白这一段，为什么编译器会生成对象？**
+
+这个方法是有缺陷的：
+
+
+
+
+  1. 由于这个过程是由编译器在编译阶段完成的, 因此要求 n 必须是一个编译期间就能确定的常量, 不能动态定义。**哦，好吧，怪不得不能用 n 。**
+
+
+  2. 编译器对递归编译代码的递归深度是有限制的，因此要求 n 不能太大。** 上限是多少？**
+
+
+
+
+
+## 数组指针+求和公式
+
+
+我们可以使用经典的求和公式。但是使用数组指针来绕开不能使用乘法的问题。
+
+
+
+完整代码如下：
+
+
+    #include <iostream>
+    #include <stdio.h>
+    #include <stdint.h>
+    using namespace std;
+
+
+    class Solution {
+    public:
+    	int Sum_Solution(int n) {
+    		return ((int)(&((uint8_t(*)[n])0)[1 + n][0])) >> 1;
+    	}
+    };
+
+    int main() {
+    	Solution solu;
+    	cout << solu.Sum_Solution(5) << endl;
+    	return 0;
+    }
+
+
+
+**这个地方完全没懂。**
+
+**这个代码报错了：[n] 这个地方说：error C2540: 作为数组界限的非常量表达式 。为什么？**
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT

@@ -1,0 +1,531 @@
+---
+author: evo
+comments: true
+date: 2018-05-30 08:36:37+00:00
+layout: post
+link: http://106.15.37.116/2018/05/30/%e7%ae%97%e6%b3%95%ef%bc%9a%e6%bb%91%e5%8a%a8%e7%aa%97%e5%8f%a3%e7%9a%84%e6%9c%80%e5%a4%a7%e5%80%bc/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e6%bb%91%e5%8a%a8%e7%aa%97%e5%8f%a3%e7%9a%84%e6%9c%80%e5%a4%a7%e5%80%bc'
+title: 算法：滑动窗口的最大值
+wordpress_id: 7028
+categories:
+- 基础程序设计
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，所有版权属于原作者，原文已列在 ORIGINAL 中。为了方便个人学习做了整合、修改，仅供个人学习使用。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * **看来每个基本的算法题都是有可能在某个场景下被用到的。以后在整理算法题的时候最好把它可能在什么场景下用到总结一下。**
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+给定一个数组和滑动窗口的大小，找出所有滑动窗口里数值的最大值
+
+例如，如果输入数组 {2,3,4,2,6,2,5,1} 及滑动窗口的大小 3，那么针对数组 {2,3,4,2,6,2,5,1} 的滑动窗口有以下6个：
+
+
+
+ 	
+  * {[2,3,4],2,6,2,5,1}，最大值4
+
+ 	
+  * {2,[3,4,2],6,2,5,1}，最大值4
+
+ 	
+  * {2,3,[4,2,6],2,5,1}，最大值6
+
+ 	
+  * {2,3,4,[2,6,2],5,1}，最大值6
+
+ 	
+  * {2,3,4,2,[6,2,5],1}，最大值6
+
+ 	
+  * {2,3,4,2,6,[2,5,1]}，最大值5
+
+
+一共存在6个滑动窗口，他们的最大值分别为 {4,4,6,6,6,5} 。
+
+
+
+
+# 题目解答
+
+
+
+
+## 暴力解法
+
+
+如果采用蛮力法，这个问题似乎不难解决：可以扫描每一个滑动窗口的所有数字并找出其中的最大值。
+
+如果滑动窗口的大小为 k，需要 O(k) 时间才能找出滑动窗口里的最大值 。对于长度为 n 的输入数组，这个算法总的时间复杂度是 O(nk) 。
+
+    
+    #include <iostream>
+    #include <sstream>
+    #include <vector>
+    using namespace std;
+    
+    class Solution {
+    public:
+        vector<int> maxInWindows(const vector<int>& num, unsigned int size) {
+            vector<int> res;//用来存放最大值
+            if (num.size() == 0 || size == 0) {
+                return res;
+            }
+            //直接进行遍历
+            for (int start = 0; start <= (int)(num.size() - size); start++) {
+                int end = start + size;
+                int max = INT_MIN;
+                //把窗口内的最大值存放起来
+                for (int index = start; index < end; index++) {
+                    if (num[index] > max) {
+                        max = num[index];
+                    }
+                }
+                res.push_back(max);
+            }
+            return res;
+        }
+    };
+    
+    int main() {
+        int array[] = { 2, 3, 4, 2, 6, 2, 5, 1 };
+        vector<int> vec(array, array + 8);
+    
+        Solution solu;
+        vector<int> res = solu.maxInWindows(vec, 3);
+        copy(res.begin(), res.end(), ostream_iterator<int>(cout, " "));//没想到还有这种操作
+        return 0;
+    }
+
+
+输出：
+
+    
+    4 4 6 6 6 5
+
+
+
+
+
+## 转化成队列中求最大值
+
+
+实际上，一个滑动窗口可以看成是一个队列 queue 。因为：当窗口滑动时，处于窗口的第一个数字被删除，同时在窗口的末尾添加一个新的数字。这符合队列的先进先出特性。因此，如果可以从队列中找出队列的最大数，那么这个问题也就解决了。
+
+OK，怎么从队列中求出最大值呢？
+
+
+### 最大堆的方法
+
+
+我们可以把这个窗口中的数存放到一个大顶堆里面，这样有新的数进来的时候，把数加进来，同时把失效的数字去掉（随着窗口的滑动，有些数字会失效）。
+
+这样每次插入和删除数字的时候时间复杂度是 O(LogN)，查找最大值的操作复杂度为 O(1)。
+
+这个堆用的是：priority_queue
+
+    
+    #include <iostream>
+    #include <sstream>
+    #include <vector>
+    #include <queue>
+    using namespace std;
+    
+    class Solution {
+    
+        typedef pair<int, int> IntPair;
+    
+    public:
+        vector<int> maxInWindows(const vector<int> &num, unsigned int size) {
+            vector<int> result;
+            priority_queue<IntPair> Q;//竟然还有这种 queue 
+            if (num.size() < size || size < 1) {
+                return result;
+            }
+            //把开始的几个数据做成 IntPair 存放到队列中 ，优先级是 num[i] 。
+            for (int i = 0; i < size - 1; i++) {
+                Q.push(IntPair(num[i], i));
+            }
+            //开始依次往后
+            for (int i = size - 1; i < num.size(); i++) {
+                //把新数据加入到堆里面
+                Q.push(IntPair(num[i], i));
+                IntPair p = Q.top();
+                //把过期的数据去掉
+                while (p.second < i - (size - 1)) {
+                    Q.pop();
+                    p = Q.top();
+                }
+                //把当前窗口的最大值存放起来
+                result.push_back(p.first);
+            }
+            return result;
+        }
+    };
+    
+    int main() {
+        int array[] = { 2, 3, 4, 2, 6, 2, 5, 1 };
+        vector<int> vec(array, array + 8);
+    
+        Solution solu;
+        vector<int> res = solu.maxInWindows(vec, 3);
+        copy(res.begin(), res.end(), ostream_iterator<int>(cout, " "));//没想到还有这种操作
+        return 0;
+    }
+
+
+输出：
+
+    
+    4 4 6 6 6 5
+
+
+这个的确是个好方法。
+
+**priority_queue 和 pair 的操作之前没有见到过，还是要总结下的。**
+
+OK，可见，堆是一个可以快速求出这个窗口对应的队列的最大值的方法，那么还有什么别的方法吗？
+
+
+### 两个栈的方法
+
+
+之前，我们遇到两个算法问题：
+
+
+
+ 	
+  * 一个是：实现一个栈，这个栈要能在 O(1) 的复杂度找到最小值。[包含min函数的栈](http://106.15.37.116/2018/05/18/%e7%ae%97%e6%b3%95%ef%bc%9a%e5%8c%85%e5%90%abmin%e5%87%bd%e6%95%b0%e7%9a%84%e6%a0%88/)
+
+ 	
+  * 一个是：使用两个 stack  来实现一个 queue 的功能。 [用两个栈实现队列](http://106.15.37.116/2018/05/15/%e7%ae%97%e6%b3%95%ef%bc%9a%e7%94%a8%e4%b8%a4%e4%b8%aa%e6%a0%88%e5%ae%9e%e7%8e%b0%e9%98%9f%e5%88%97/)
+
+
+OK，既然我们可以用两个stack实现一个队列，而且这两个stack都可以在O(1)的时间内找到最大值，那么我就可以用在这道题目中。
+
+我们用两个栈组成的队列来存放窗口的数字，由于我们存放和删除item都是O(1)，而查找对大值也是 O(1) ，因此整体是 O(3) 。
+
+比最大堆的 O(LogN) 快了不少。**利害的。**
+
+    
+    #include <iostream>
+    #include <sstream>
+    #include <vector>
+    #include <queue>
+    using namespace std;
+    
+    #define MAX 100
+    
+    
+    //自定义的stack
+    class Stack {
+    private:
+        int stackItem[MAX];
+        int link2NextMaxValueIndex[MAX];//这里面的[i] 存放的是 stackItem[i] 在添加进来之前 stackItem里面的最大值的index。
+        int stackTop;//top 对应的 index
+        int maxValueIndex;//用来记录最大值对应的 index
+    public:
+        Stack() : stackTop(-1), maxValueIndex(-1) {
+        }
+    
+        int size() {
+            return stackTop + 1;
+        }
+        int empty() {
+            return stackTop < 0 ? 1 : 0;
+        }
+    
+        //查找当前 stack的最大值
+        int max() {
+            if (maxValueIndex >= 0)
+                return stackItem[maxValueIndex];
+            else
+                return -100;//为什么不存在 max 就返回 -100？
+        }
+        void push(int val) {
+            ++stackTop;
+            if (stackTop == MAX) {
+                cout << "The stack has been full!" << endl;
+                return;
+            }
+            else {
+                stackItem[stackTop] = val;
+                if (max() < val) {
+                    link2NextMaxValueIndex[stackTop] = maxValueIndex;//将此时的index存放到link2NextMaxValueIndex的对应的位置，这样，当 stackTop从 stackItem里面被pop出去的时候，我能根据那个之后的stackTop找到我pop出去之后此时的最大值的index。
+                    maxValueIndex = stackTop;//更新我的最大值的index
+                }
+                else
+                    link2NextMaxValueIndex[stackTop] = -1;//这个时候说明，如果这个压进来的val到时候被pop出去了，那么我的maxValueIndex不变，因为val并不是最大值。
+            }
+        }
+    
+        int pop() {
+            int ret;
+            if (stackTop == -1) {
+                cout << "The stack is empty!" << endl;
+                return -1;
+            }
+            else {
+                ret = stackItem[stackTop];
+                if (stackTop == maxValueIndex) {
+                    //这个时候要pop的这个是最大值，因此要把次大值准备好。
+                    maxValueIndex = link2NextMaxValueIndex[stackTop];
+                }
+                --stackTop;
+                return ret;
+            }
+        }
+    
+    
+    };
+    
+    
+    class Queue {
+    private:
+        Stack stackIn;//在入队的时候，直接把数据存到stackIn里面
+        Stack stackOut;//一个在队列出的时候，把stackIn内容放到stackOut，然后出
+    public:
+        int size() {
+            return stackIn.size() + stackOut.size();
+        }
+        int max() {
+            //两个stack都是很方便查找最大值的，都是O(1)
+            return std::max(stackIn.max(), stackOut.max());
+        }
+        void enQueue(int val) {
+            stackIn.push(val);//直接压入 stackIn
+        }
+        int deQueue() {
+            if (stackOut.empty() && !stackIn.empty()) {
+                //把stackIn里面的内容都压入 stackOut里面
+                while (!stackIn.empty()) {
+                    stackOut.push(stackIn.pop());
+                }
+            }
+            //然后从stackOut里面 pop出去
+            return stackOut.pop();//从Stack里面，我们可以知道，如果stackOut是空的，那么pop出来的就是-1 。
+        }
+    };
+    
+    class Solution {
+    public:
+        vector<int> maxInWindows(const vector<int>& num, unsigned int size) {
+            unsigned int    length = num.size();
+            vector<int>     res;
+            if (length == 0 || size == 0 || length < size) {
+                return res;
+            }
+    
+            Queue  que;
+            for (int i = 0; i < num.size(); i++) {
+                if (que.size() < size) {
+                    //开始的时候一直是enQueue
+                    que.enQueue(num[i]);
+                }
+                else {
+                    //将最大值存放到res里面
+                    res.push_back(que.max());
+                    //把新的值enQueue进来，把就得值deQueue出去。
+                    que.enQueue(num[i]);
+                    que.deQueue();
+                }
+            }
+            if (que.size() == size) {
+                res.push_back(que.max());
+            }
+            return res;
+        }
+    };
+    
+    
+    int main() {
+        int array[] = { 2, 3, 4, 2, 6, 2, 5, 1 };
+        vector<int> vec(array, array + 8);
+        Solution solu;
+        vector<int> res = solu.maxInWindows(vec, 3);
+        copy(res.begin(), res.end(), ostream_iterator<int>(cout, " "));//没想到还有这种操作
+        return 0;
+    }
+
+
+输出：
+
+    
+    4 4 6 6 6 5
+
+
+**利害呀，看来每个基本的算法题都是有可能在某个场景下被用到的。以后在整理算法题的时候最好把它可能在什么场景下用到总结一下。**
+
+
+## 单调队列
+
+
+我们使用一个双端队列来存放滑动窗口对应的值的index，但是这个双端队列里面的index对应的数值是从大到小排序的。
+
+具体如下：
+
+对于一个新来的元素 k，我们将其与双端队列中的元素相比较
+
+
+
+ 	
+  * 队列中前面比 k 小的数的 index 直接移出队列（因为不再可能成为后面滑动窗口的最大值了）。
+
+ 	
+  * 前面比 k 大的 X，比较两者下标，判断 X 是否已不在窗口之内，如果不在就直接移出队列。
+
+
+这样，队列的第一个元素就是滑动窗口中的最大值的index。
+
+看代码更清晰一些：
+
+    
+    #include <iostream>
+    #include <sstream>
+    #include <vector>
+    #include <queue>
+    using namespace std;
+    
+    
+    class Solution {
+    public:
+        vector<int> maxInWindows(const vector<int>& num, unsigned int size) {
+            unsigned int length = num.size();
+            vector<int> result;
+            if (length == 0 || size == 0 || length < size) {
+                return result;
+            }
+    
+            deque<int> indexQueue;
+    
+            //第一个窗口的处理比较简单, 直接找到最大的那个即可
+            for (unsigned int i = 0;i < size;i++) {
+                //如果当前元素num[i] 大于 队列最后的index指向的值，那么直接删除队尾的元素
+                while (indexQueue.empty() != true && num[i] >= num[indexQueue.back()]) {
+                    indexQueue.pop_back();
+                }
+                //  将当前元素的下标压入队列中
+                indexQueue.push_back(i);
+            }
+            //这时候 indexQueue 里面的值都是从大到小排的数的 index，因为只要前面的数比较小，后面来一个大数就把它前面的小的数都干掉了。因此，最后，虽然前size个值不是都在 indexQueue里面，但是 indexQueue里面一定是从大到小的数的 index。
+    
+    
+            //对于后续的滑动窗口
+            for (unsigned int i = size; i < length; i++) {
+                //把最大值放到result里面
+                result.push_back(num[indexQueue.front()]);
+                //还是 队尾的元素如果不够大就删除，这样可以确保indexQueue的第一个元素始终是最大值的index
+                while (indexQueue.empty() != true&& num[i] >= num[indexQueue.back()]) {
+                    indexQueue.pop_back();
+                }
+                //前面的index失效了，也删除
+                if (indexQueue.empty() != true&& indexQueue.front() < (int)(i - size + 1)) {
+                    indexQueue.pop_front();
+                }
+                //然后把当前的index push 进去
+                indexQueue.push_back(i);
+            }
+            result.push_back(num[indexQueue.front()]);//最后还有一个要添加进去，因为在 i=3 的时候才开始 push 第一个
+            return result;
+        }
+    };
+    
+    
+    int main() {
+        int array[] = { 2, 3, 4, 2, 6, 2, 5, 1 };
+        vector<int> vec(array, array + 8);
+        Solution solu;
+        vector<int> res = solu.maxInWindows(vec, 3);
+        copy(res.begin(), res.end(), ostream_iterator<int>(cout, " "));//没想到还有这种操作
+        return 0;
+    }
+
+
+输出：
+
+    
+    4 4 6 6 6 5
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

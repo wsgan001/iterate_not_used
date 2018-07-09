@@ -1,0 +1,463 @@
+---
+author: evo
+comments: true
+date: 2018-05-27 23:45:06+00:00
+layout: post
+link: http://106.15.37.116/2018/05/28/%e7%ae%97%e6%b3%95%ef%bc%9a%e7%bf%bb%e8%bd%ac%e5%ad%97%e7%ac%a6%e4%b8%b2%e4%b8%ad%e7%9a%84%e5%8d%95%e8%af%8d%e9%a1%ba%e5%ba%8f/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e7%bf%bb%e8%bd%ac%e5%ad%97%e7%ac%a6%e4%b8%b2%e4%b8%ad%e7%9a%84%e5%8d%95%e8%af%8d%e9%a1%ba%e5%ba%8f'
+title: 算法：翻转字符串中的单词顺序
+wordpress_id: 6929
+categories:
+- 基础程序设计
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+反转字符串中的单词顺序。
+
+注：把被空格间隔开的部分作为一个单词。
+
+
+## **样例输入**
+
+
+student. a am I
+
+I'm a Freshman and I like JOBDU!
+
+
+## **样例输出**
+
+
+I am a student.
+
+JOBDU! like I and Freshman a I'm
+
+
+
+
+# 题目解答
+
+
+
+
+## 先翻转所有字符，再逐个单词翻转
+
+
+这道题主要思想就是先翻转所有字符，再逐个单词翻转。
+
+对于如何查找到每个单词，我们使用指针left和right维护单词的起始位置和结束位置，如果当前遇到一个空格，说明发现了一个单词，如果找到了单词的最后，而末尾字符不是空格，说明字符串的末尾也是一个单词
+
+
+### [](https://github.com/gatieme/CodingInterviews/tree/master/042-%E7%BF%BB%E8%BD%AC%E5%8D%95%E8%AF%8D%E9%A1%BA%E5%BA%8F%E5%88%97#%E9%80%9A%E8%BF%87%E7%BF%BB%E8%BD%AC%E5%87%BD%E6%95%B0%E6%9D%A5%E5%AE%9E%E7%8E%B0)通过翻转函数来实现
+
+
+
+    
+    #include <iostream>
+    #include <string>
+    using namespace std;
+    
+    class Solution {
+    public:
+    	string ReverseSentence(string str) {
+    		if (str.size() == 0) {
+    			return "";
+    		}
+    
+    		//  首先翻转整个句子
+    		Reverse(str, 0, str.size() - 1);
+    
+    		//  紧接着查找到每个单词, 然后翻转它
+    		int left = 0, right = 0;
+    		while (right <= str.size()) {
+    			//为什么要检查最后一个位置呢？原因如下：
+    			//当倒数第一个位置有空格的时候，left 会变为 str.size()，然后 right也变为 str.size()， 也就是说这个时候是不应该反转的，因为超过了 limit ，因此是正确的。
+    			//如果倒数第一个位置不是空格，那么right 为 str.size()-1 的时候，left就不会动，然后，right变成 str.size() ，这时候要对最后一个单词进行反转。是正确的。
+    			//因此要对最后一个位置进行检查。
+    			if ((str[right] == ' ')|| (right == str.size() && str[right - 1] != ' ')) {
+    				Reverse(str, left, right - 1);
+    				left = right + 1;//当有两个连续空格的时候，会顺利过去，
+    			}
+    			right++;
+    		}
+    		return str;
+    	}
+    
+    	void Reverse(string &str, int left, int right) {
+    		while (left < right) {
+    			swap(str[left], str[right]);
+    			left++;
+    			right--;
+    		}
+    	}
+    	//这种迭代器来实现 reverse 的也要掌握
+    	void Reverse(string::iterator left, string::iterator right) {
+    		while (left < right) {
+    			cout << *left << ", " << *right << endl;
+    			swap(*left, *right);
+    			left++;
+    			right--;
+    		}
+    	}
+    };
+    
+    
+    int main() {
+    	Solution solu;
+    	cout << solu.ReverseSentence("student. a am I") << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    I am a student.
+
+
+
+
+### 使用 STL 的函数库来实现
+
+
+**没有看，还是很厉害的，要仔细看下，没想到 STL 这么强大。**
+
+也可以使用STL来实现这些功能
+
+    
+    #include <iostream>
+    #include <string>
+    using namespace std;
+    
+    class Solution {
+    public:
+    	string ReverseSentence(string str) {
+    		if (str.size() == 0) {
+    			return str;
+    		}
+    		reverse(str.begin(), str.end());
+    		size_t left = 0;
+    		size_t right = 0;
+    		while (right != string::npos) {
+    			left = str.find_first_not_of(' ', left);  //  第一个非空格字符是单词的起始位置
+    			right = str.find_first_of(' ', left);      //  第一个空格位置标识了单词的结束
+    
+    			//  处理末尾是空格(原字符串开头是空格的情况)
+    			//  当最后全是空格的时候，此时可以结束循环
+    			if (left == string::npos) {
+    				break;
+    			}
+    			//  如果查找不到空格, 到了字符串的末尾
+    			//  此时[degin, str.size( )]是末尾的字符串
+    			if (right == string::npos) {
+    				reverse(str.begin() + left, str.end());
+    			}
+    			else {
+    				//  否则[left, end]是一个单词
+    				reverse(str.begin() + left, str.begin() + right);
+    				left = right + 1;
+    			}
+    		}
+    		return str;
+    	}
+    };
+    
+    int main() {
+    	Solution solu;
+    	cout << solu.ReverseSentence("student. a am I") << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    I am a student.
+
+
+
+
+### 用栈的后进先出特性实现翻转
+
+
+当然由于栈是后进先出的，因此我们可以通过栈来实现翻转：
+
+
+
+ 	
+  * 将每个字符依次入栈，那么出现的顺序正好就是逆序
+
+
+
+    
+    #include <iostream>
+    #include <string>
+    #include <stack>
+    using namespace std;
+    
+    class Solution {
+    public:
+    	string ReverseSentence(string str) {
+    		if (str.size() == 0) {
+    			return str;
+    		}
+    
+    		string result;
+    		stack<char>stk1;
+    		stack<char>stk2;
+    
+    		//把str中的全部压入
+    		for (auto i : str) {
+    			stk1.push(i);
+    		}
+    
+    		//  接下来我们翻转每个单词
+    		//  只要不是空格就一直入栈(实现翻转)
+    		//  遇见空格的时候，就读取栈中元素(出栈的顺序正好是每个单词的顺序)
+    		while (!stk1.empty()) {
+    			//如果没有遇到空格，就把字符弹出，压到第二个栈
+    			if (stk1.top() != ' ') {   
+    				stk2.push(stk1.top());
+    				stk1.pop();
+    			}
+    			else {   
+    				//如果遇到了空格，说明一个单词结束了，因此将第二个栈里的弹出
+    				while (!stk2.empty()) {
+    					result += stk2.top();//利害呀
+    					stk2.pop();
+    				}
+    				//空格也要加上。注意，这个地方，如果stk1有连续的空格，那么也会正确处理的。
+    				result += stk1.top();
+    				stk1.pop();
+    			}
+    		}
+    		//注意：这时候 stk1 已经空了， 但是stk2中还有最后一个单词。
+    		while (!stk2.empty()) {
+    			result += stk2.top();
+    			stk2.pop();
+    		}
+    		return result;
+    	}
+    };
+    
+    int main() {
+    	Solution solu;
+    	cout << solu.ReverseSentence("student. a  am I") << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    I am  a student.
+
+
+**嗯，利害，将 stack 用的这么熟练。要好好看下**
+
+
+## 从后向前重新组装字符串
+
+
+student. a am I
+
+I am a student.
+
+还有以一种思路就是从后向前，读取到每个单词，就开始顺序的拼接它们。
+
+
+### 从后向前，读取到每个单词，就开始顺序的拼接它们
+
+
+代码如下：
+
+    
+    #include <iostream>
+    #include <string>
+    #include <stack>
+    using namespace std;
+    
+    class Solution {
+    public:
+    	string ReverseSentence(string str) {
+    		if (str.size() == 0) {
+    			return str;
+    		}
+    		string res = "", tmp = "";
+    		for (unsigned int i = 0; i < str.size(); ++i) {
+    			if (str[i] == ' ') {
+    				//  发现一个单词
+    				cout << tmp << endl;
+    				res = " " + tmp + res;      //  顺序的拼接, 前面需要一个空格
+    				tmp = "";
+    			}
+    			else {
+    				tmp += str[i];
+    			}
+    		}
+    		//  拼接最后一个单子, 前面无需空格
+    		if (tmp.size() != 0) {
+    			res = tmp + res;
+    		}
+    		return res;
+    	}
+    };
+    
+    int main() {
+    	Solution solu;
+    	cout << solu.ReverseSentence("student. a  am I") << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    student.
+    a
+    
+    am
+    I am  a student.
+
+
+
+
+### 使用 STL 的函数库来实现
+
+
+
+    
+    #include <iostream>
+    #include <string>
+    #include <stack>
+    using namespace std;
+    
+    class Solution {
+    public:
+    	string ReverseSentence(string str) {
+    		string result;
+    		while (str.rfind(" ") != -1) {
+    			unsigned long position = str.rfind(" ");
+    			string temp = str.substr(position + 1);
+    			result = result + temp + ' ';
+    			str = str.substr(0, position);
+    			cout << "str = " << str << endl;
+    		}
+    		result = result + str;
+    		return result;
+    	}
+    };
+    
+    int main() {
+    	Solution solu;
+    	cout << solu.ReverseSentence("student. a  am I") << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    str = student. a  am
+    str = student. a
+    str = student. a
+    str = student.
+    I am  a student.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

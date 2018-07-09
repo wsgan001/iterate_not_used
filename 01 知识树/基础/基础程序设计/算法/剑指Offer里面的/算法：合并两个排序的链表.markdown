@@ -1,0 +1,323 @@
+
+
+# ORIGINAL
+
+
+
+
+
+
+  1. [CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+  2. [Merge k Sorted Lists（合并K个已排序的链表）](https://blog.csdn.net/gatieme/article/details/51097730)  **未总结，这个要总结下，好像有很大的不同**
+
+
+
+
+# TODO
+
+
+
+
+
+
+  * **上面 ORIGINAL里面的 合并K个已排序的链表，这个未总结，要总结下，好像有很大的不同**
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+
+  * aaa
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。
+
+
+## **样例输入**
+
+
+1 3 5 7 9         2 4
+
+
+## **样例输出**
+
+
+1 2 3 4 5 7 9
+
+
+# 题目解答
+
+
+
+
+## [](https://github.com/gatieme/CodingInterviews/tree/master/017-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%8E%92%E5%BA%8F%E7%9A%84%E9%93%BE%E8%A1%A8#%E5%B8%B8%E8%A7%84%E5%86%99%E6%B3%95)常规的写法
+
+
+其实这个问题简单的方法，用两个指针同步遍历两个链表，每次找到小的那个插入到新的链表中就行。
+
+
+    #include <iostream>
+    using namespace std;
+
+
+    struct ListNode {
+    public:
+    	int val;
+    	struct ListNode *next;
+    };
+
+
+    class Solution {
+    public:
+    	ListNode* Merge(ListNode *pLeft, ListNode *pRight) {
+    		//判断左右两个链表是否为空
+    		if (pLeft == NULL) {
+    			cout << "left list is NULL" << endl;
+    			return pRight;
+    		}
+    		else if (pRight == NULL) {
+    			cout << "right list is NULL" << endl;
+    			return pLeft;
+    		}
+
+    		ListNode *left = pLeft;
+    		ListNode *right = pRight;
+
+    		//  先生成头结点
+    		ListNode *head = NULL;
+    		if (left->val < right->val) {
+    			head = left;
+    			left = left->next;
+    			cout << head->val << " 已经作为头节点加入 " << endl;
+    		}
+    		else {
+    			head = right;
+    			right = right->next;
+    			cout << head->val << " 已经作为头节点加入 " << endl;
+    		}
+
+
+    		//  开始遍历两个链表  每次找到一个小的加入新的链表
+    		ListNode *curr = head;
+    		while (left != NULL && right != NULL) {
+    			cout << "比较 " << "left = " << left->val << ", right = " << right->val << "   ";
+    			if (left->val < right->val) {
+    				cout << left->val << " 已加入 " << endl;
+    				curr->next = left;
+    				curr = curr->next;
+    				left = left->next;
+    			}
+    			else {
+    				cout << right->val << " 已加入 " << endl;
+    				curr->next = right;
+    				curr = curr->next;
+    				right = right->next;
+    			}
+    		}
+
+
+    		//  处理较长链表的剩余部分
+    		if (left != NULL) {
+    			curr->next = left;
+    		}
+    		else {
+    			curr->next = right;
+    		}
+    		return head;
+    	}
+    };
+
+    int main() {
+    	//准备两个链表
+    	ListNode left, right[3];
+
+    	left.val = 5;
+    	left.next = NULL;
+
+    	right[0].val = 1;
+    	right[0].next = &right[1];
+    	right[1].val = 2;
+    	right[1].next = &right[2];
+    	right[2].val = 4;
+    	right[2].next = NULL;
+    	//打印左链表
+    	cout << "左链表：";
+    	ListNode *node_l = &left;
+    	while (node_l != NULL) {
+    		cout << node_l->val;
+    		node_l = node_l->next;
+    	}
+    	cout << endl;
+
+    	//打印右链表
+    	cout << "右链表：";
+    	ListNode *node_r = &right[0];
+    	while (node_r != NULL) {
+    		cout << node_r->val;
+    		node_r = node_r->next;
+    	}
+    	cout << endl;
+
+    	//进行合并
+    	Solution solu;
+    	ListNode *head = solu.Merge(&left, right);
+    	while (head != NULL) {
+    		cout << head->val;
+    		head = head->next;
+    	}
+    	return 0;
+    }
+
+
+输出：
+
+
+    左链表：5
+    右链表：124
+    1 已经作为头节点加入
+    比较 left = 5, right = 2   2 已加入
+    比较 left = 5, right = 4   4 已加入
+    1245
+
+
+
+
+
+## 递归实现
+
+
+可以对上面的思路使用递归实现。
+
+
+    #include <iostream>
+    using namespace std;
+
+
+    struct ListNode {
+    public:
+    	int val;
+    	struct ListNode *next;
+    };
+
+    class Solution {
+    public:
+    	ListNode* Merge(ListNode *pLeft, ListNode *pRight) {
+
+    		if (pLeft == NULL) {
+    			cout << "left list already NULL，THE END" << endl;
+    			return pRight;
+    		}
+    		else if (pRight == NULL) {
+    			cout << "right list already NULL，THE END" << endl;
+    			return pLeft;
+    		}
+
+    		ListNode *head = NULL;
+
+    		if (pLeft->val < pRight->val) {
+    			head = pLeft;
+    			head->next = Merge(pLeft->next, pRight);
+    		}
+    		else {
+    			head = pRight;
+    			head->next = Merge(pLeft, pRight->next);
+    		}
+
+    		return head;
+    	}
+    };
+
+    int main() {
+    	//准备两个链表
+    	ListNode left, right[3];
+
+    	left.val = 5;
+    	left.next = NULL;
+
+    	right[0].val = 1;
+    	right[0].next = &right[1];
+    	right[1].val = 2;
+    	right[1].next = &right[2];
+    	right[2].val = 4;
+    	right[2].next = NULL;
+    	//打印左链表
+    	cout << "左链表：";
+    	ListNode *node_l = &left;
+    	while (node_l != NULL) {
+    		cout << node_l->val;
+    		node_l = node_l->next;
+    	}
+    	cout << endl;
+
+    	//打印右链表
+    	cout << "右链表：";
+    	ListNode *node_r = &right[0];
+    	while (node_r != NULL) {
+    		cout << node_r->val;
+    		node_r = node_r->next;
+    	}
+    	cout << endl;
+
+    	//进行合并
+    	Solution solu;
+    	ListNode *head = solu.Merge(&left, right);
+    	while (head != NULL) {
+    		cout << head->val;
+    		head = head->next;
+    	}
+    	return 0;
+    }
+
+
+输出：
+
+
+    左链表：5
+    右链表：124
+    right list already NULL，THE END
+    1245
+
+
+可见，递归的合并写起来还是比较方便的。
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT

@@ -1,0 +1,77 @@
+
+
+# GNU 工具链
+
+
+
+
+
+```
+1. [GNU 工具链](http://106.15.37.116/2018/06/01/gnu-%e5%b7%a5%e5%85%b7%e9%93%be/)
+```
+
+
+
+# GNU make
+
+
+
+
+
+```
+1. [Makefile](http://106.15.37.116/2018/05/04/makefile/) 这个还没有总结，需要好好总结下
+```
+
+
+
+# GNU 编译器合集（GCC）
+
+
+
+
+
+# GNU Binutils
+
+
+
+
+
+# GNU Debugger（GDB）
+
+
+
+
+
+# GNU 构建系统（auto tools）
+
+
+
+## Autoconf
+
+
+
+## Autoheader
+
+
+
+## Automake
+
+
+
+## Libtool
+
+
+
+
+
+
+
+
+
+# 需要补充的
+
+
+
+
+
+# 需要消化的

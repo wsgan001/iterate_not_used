@@ -1,0 +1,519 @@
+---
+author: evo
+comments: true
+date: 2018-05-27 02:17:49+00:00
+layout: post
+link: http://106.15.37.116/2018/05/27/%e7%ae%97%e6%b3%95%ef%bc%9a%e6%95%b0%e5%ad%97%e5%9c%a8%e6%8e%92%e5%ba%8f%e6%95%b0%e7%bb%84%e4%b8%ad%e5%87%ba%e7%8e%b0%e7%9a%84%e6%ac%a1%e6%95%b0/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e6%95%b0%e5%ad%97%e5%9c%a8%e6%8e%92%e5%ba%8f%e6%95%b0%e7%bb%84%e4%b8%ad%e5%87%ba%e7%8e%b0%e7%9a%84%e6%ac%a1%e6%95%b0'
+title: 算法：数字在排序数组中出现的次数
+wordpress_id: 6802
+categories:
+- 基础程序设计
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * ** STL 里面还是有很多有用的东西的，要好好总结下。关键是：别的类库也可能会实现STL里面的一些功能，即使名字不一样，这样熟悉了 STL 别的也能够上手**
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+# 题目
+
+
+
+
+## **题目描述**
+
+
+统计一个数字在排序数组中出现的次数。
+
+
+# 题目解答
+
+
+
+
+## 暴力方法
+
+
+由于数组是有序的，因此我么通过一次遍历，对要查找的元素直接计数就可以了。
+
+    
+    #include <iostream>
+    #include <vector>
+    using namespace std;
+    
+    class Solution {
+    public:
+    	int GetNumberOfK(vector<int> data, int k) {
+    		if (data.size() == 0) {
+    			return 0;
+    		}
+    		int count = 0;
+    		//数组是排序的，因此可以 data[i] <= k
+    		for (unsigned int i = 0;i < data.size() && data[i] <= k;i++) {
+    			if (data[i] == k) {
+    				count++;
+    			}
+    		}
+    		return count;
+    	}
+    };
+    
+    int main() {
+    	Solution solu;
+    	int arr[] = { 1, 2, 3, 3, 3, 3, 4, 5 };
+    	vector<int> vec(arr, arr + 8);
+    	cout << solu.GetNumberOfK(vec, 3) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    4
+
+
+也可以用STL里面的multiset：
+
+    
+    #include <iostream>
+    #include <vector>
+    #include <set>
+    using namespace std;
+    
+    class Solution {
+    public:
+    	int GetNumberOfK(vector<int> data, int k) {
+    		multiset<int> mData;
+    		for (int i = 0; i < data.size(); i++) {
+    			mData.insert(data[i]);
+    		}
+    		return mData.count(k);
+    	}
+    };
+    int main() {
+    	Solution solu;
+    	int arr[] = { 1, 2, 3, 3, 3, 3, 4, 5 };
+    	vector<int> vec(arr, arr + 8);
+    	cout << solu.GetNumberOfK(vec, 3) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    4
+
+
+
+
+## 分治
+
+
+
+
+### [](https://github.com/gatieme/CodingInterviews/tree/master/038-%E6%95%B0%E5%AD%97%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E9%80%92%E5%BD%92%E5%92%8C%E9%9D%9E%E9%80%92%E5%BD%92)二分查找（递归和非递归）
+
+
+我们通过二分查找到指定的元素 K 后，然后再分别向前和向后查找总的个数。
+
+是的，这的确是一种方法：
+
+    
+    #include <iostream>
+    #include <vector>
+    #include <set>
+    using namespace std;
+    
+    class Solution {
+    public:
+    	int GetNumberOfK(vector<int> data, int key) {
+    		if (data.size() == 0) {
+    			return 0;
+    		}
+    		//  用二分查找查找到Key的位置
+    		int index = BinarySearch(data, 0, data.size() - 1, key);//递归版本
+    		//int index = BinarySearch(data, key);//非递归版本
+    		if (index == -1) {
+    			return 0;
+    		}
+    		//前后两部分
+    		int count = 1;
+    		for (int j = index - 1;j >= 0 && data[j] == key;j--) {
+    			count++;
+    		}
+    		for (int j = index + 1;j < data.size() && data[j] == key;j++) {
+    			count++;
+    		}
+    		return count;
+    	}
+    
+    	//递归的二分查找
+    	int BinarySearch(vector<int> &data, int begin, int end, int key) {
+    		if (begin > end) {
+    			return -1;
+    		}
+    		int mid = (begin + end) / 2;
+    		if (data[mid] == key) {
+    			return mid;
+    		}
+    		else if (data[mid] > key) {
+    			return BinarySearch(data, begin, mid - 1, key);
+    		}
+    		else if (data[mid] < key) {
+    			return BinarySearch(data, mid + 1, end, key);
+    		}
+    		return -1;
+    	}
+    	//非递归版本 的 二分查找
+    	int BinarySearch(vector<int> array, int key) {
+    		int low = 0, high = array.size() - 1;
+    		int mid;
+    		while (low <= high) {
+    			mid = (low + high) / 2;
+    			if (key == array[mid]) {
+    				return mid;
+    			}
+    			if (key < array[mid]) {
+    				high = mid - 1;
+    			}
+    			if (key > array[mid]) {
+    				low = mid + 1;
+    			}
+    		}
+    		return -1;
+    	}
+    };
+    int main() {
+    	Solution solu;
+    	int arr[] = { 1, 2, 3, 3, 3, 3, 4, 5 };
+    	vector<int> vec(arr, arr + 8);
+    	cout << solu.GetNumberOfK(vec, 3) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    4
+
+
+
+
+### 改进的二分查找，返回第一个和最后一个的位置
+
+
+好吧，这也可以。
+
+
+#### **递归版**
+
+
+
+    
+    #include <iostream>
+    #include <vector>
+    #include <set>
+    using namespace std;
+    
+    class Solution {
+    public:
+    	int GetNumberOfK(vector<int> data, int k) {
+    		if (data.empty()) {
+    			return 0;
+    		}
+    		int number = 0;
+    		int first = GetFirstIndex(data, 0, data.size() - 1, k);
+    		int last = GetLastIndex(data, 0, data.size() - 1, k);
+    		cout << first << ";" << last << endl;
+    		if (first > -1 && last > -1) {
+    			number = last - first + 1;
+    			return number;
+    		}
+    		else {
+    			return -1;
+    		}
+    	}
+    
+    	// 查找第一个的位置
+    	int GetFirstIndex(vector<int> &data, int low, int high, int k) {
+    		if (low > high) {
+    			return -1;
+    		}
+    		int mid = (low + high) / 2;
+    		if (data[mid] == k) {
+    			if ((mid > 0 && data[mid - 1] != k) || mid == 0) {
+    				return mid;
+    			}
+    			else {
+    				high = mid ;//- 1
+    			}
+    		}
+    		else if (data[mid] > k) {
+    			high = mid - 1;
+    		}
+    		else if (data[mid] < k) {
+    			low = mid + 1;
+    		}
+    		return GetFirstIndex(data, low, high, k);
+    	}
+    
+    	int GetLastIndex(vector<int> &data, int low, int high, int k) {
+    		if (low > high) {
+    			return -1;
+    		}
+    		int mid = (low + high) / 2;
+    		if (data[mid] == k) {
+    			if ((mid > 0 && data[mid + 1] != k) || mid == high) {
+    				return mid;
+    			}
+    			else {
+    				low = mid + 1;
+    			}
+    		}
+    		else {
+    			if (mid > k) {
+    				high = mid - 1;
+    			}
+    			else {
+    				low = mid + 1;
+    			}
+    		}
+    		return GetLastIndex(data, low, high, k);
+    	}
+    };
+    int main() {
+    	Solution solu;
+    	int arr[] = { 1, 2, 3, 3, 3, 3, 4, 5 };
+    	vector<int> vec(arr, arr + 8);
+    	cout << solu.GetNumberOfK(vec, 3) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    2;5
+    4
+
+
+
+
+#### 非递归版本：
+
+
+
+    
+    #include <iostream>
+    #include <vector>
+    #include <set>
+    using namespace std;
+    
+    class Solution {
+    public:
+    	int GetNumberOfK(std::vector<int> data, int k) {
+    		if (data.empty()) {
+    			return 0;
+    		}
+    		int number = 0;
+    		int first = GetFirstIndex(data, 0, data.size() - 1, k);
+    		int last = GetLastIndex(data, 0, data.size() - 1, k);
+    		cout << first << " ; " << last << endl;
+    		if (first > -1 && last > -1) {
+    			number = last - first + 1;
+    			return number;
+    		}
+    		else {
+    			return 0;
+    		}
+    	}
+    
+    	int GetFirstIndex(vector<int> &data, int low, int high, int k) {
+    		int first = -1;
+    		int  mid = low;
+    		while (low <= high) {
+    			int mid = (low + high) / 2;
+    			if (data[mid] == k) {
+    				if (mid == 0 || data[mid - 1] < k) {
+    					first = mid;
+    					break;
+    				}
+    				else {
+    					high = mid - 1;
+    				}
+    			}
+    			else if (data[mid] < k) {
+    				low = mid + 1;
+    			}
+    			else if (data[mid] > k) {
+    				high = mid - 1;
+    			}
+    		}
+    		return first;
+    	}
+    
+    	int GetLastIndex(vector<int> &data, int low, int high, int k) {
+    		int last = -1;
+    		int mid;
+    		while (low <= high) {
+    			mid = (low + high) / 2;
+    			if (data[mid] == k) {
+    				if ((mid == data.size() - 1) || data[mid + 1] > k) {
+    					last = mid;
+    					break;
+    				}
+    				else {
+    					low = mid + 1;
+    				}
+    			}
+    			else if (data[mid] < k) {
+    				low = mid + 1;
+    			}
+    			else if (data[mid] > k) {
+    				high = mid - 1;
+    			}
+    		}
+    		return last;
+    	}
+    };
+    int main() {
+    	Solution solu;
+    	//int arr[] = { 1, 2, 3, 3, 3, 3, 4, 5 };
+    	//int arr[] = { 3, 3, 3, 3 };
+    	int arr[] = { 3 };
+    	vector<int> vec(arr, arr + 1);
+    	cout << solu.GetNumberOfK(vec, 3) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    0 ; 0
+    1
+
+
+
+
+#### 使用 STL 的 lower_bound 和 upper_bound 来实现
+
+
+
+    
+    #include <iostream>
+    #include <algorithm>
+    #include <vector>
+    using namespace std;
+    
+    class Solution {
+    public:
+    	int GetNumberOfK(vector<int> data, int k) {
+    		std::vector<int>::iterator low, up;
+    		low = std::lower_bound(data.begin(), data.end(), k);
+    		up = upper_bound(data.begin(), data.end(), k);
+    		return distance(low, up);
+    	}
+    };
+    int main() {
+    	Solution solu;
+    	//int arr[] = { 1, 2, 3, 3, 3, 3, 4, 5 };
+    	//int arr[] = { 3 };
+    	int arr[] = { 3, 3, 3, 3 };
+    	vector<int> vec(arr, arr + 4);
+    	cout << solu.GetNumberOfK(vec, 3) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    4
+
+
+**可见 STL 里面还是有很多有用的东西的，之前只是你不知道，所以都没有用到而已，实际上知道了之后还是会用到的，而且方便很多。**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

@@ -1,0 +1,269 @@
+---
+author: evo
+comments: true
+date: 2018-05-26 08:29:58+00:00
+layout: post
+link: http://106.15.37.116/2018/05/26/%e7%ae%97%e6%b3%95%ef%bc%9a%e4%b8%91%e6%95%b0/
+slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e4%b8%91%e6%95%b0'
+title: 算法：丑数
+wordpress_id: 6733
+categories:
+- 基础程序设计
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * **没明白？为什么 index2 直接向后加就行？**
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+# 题目
+
+
+
+
+## 题目描述
+
+
+把只包含因子 2、3 和 5 的数称作丑数（Ugly Number）。
+
+例如 6、8 都是丑数，但 14 不是，因为它包含因子 7。 习惯上我们把 1 当做是第一个丑数。
+
+求按从小到大的顺序的第N个丑数。
+
+
+# 题目解答
+
+
+
+
+## 暴力方法
+
+
+OK，最简单直接的方法，就是**逐个判断每个整数是不是丑数**，循环所有数字，判断它是不是丑数，首先我们需要判断某个整数 number 是不是丑数：
+
+代码如下：
+
+    
+    #include <iostream>
+    using namespace std;
+    
+    
+    
+    class Solution {
+    protected:
+    	bool IsUglyNumber(int number) {
+    		while (number % 5 == 0) {
+    			number /= 5;
+    		}
+    		while (number % 3 == 0) {
+    			number /= 3;
+    		}
+    		while (number % 2 == 0) {
+    			number /= 2;
+    		}
+    		return (number == 1);
+    	}
+    public:
+    	//遍历每一个数
+    	int GetUglyNumber_Solution(int index) {
+    		if (index <= 0) {
+    			return -1;
+    		}
+    		int count = 1;
+    		int num = 0;
+    		while (count <= index) {
+    			num++;
+    			if (IsUglyNumber(num) == 1) {
+    				cout << "count = " << count << ", " << num << " is " << endl;
+    				count++;
+    			}
+    		}
+    		return num;
+    	}
+    };
+    
+    int main() {
+    	Solution solu;
+    	cout << solu.GetUglyNumber_Solution(3) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    count = 1, 1 is
+    count = 2, 2 is
+    count = 3, 3 is
+    3
+
+
+OK，那么有什么更好的方法呢？
+
+
+## 寻找所有的丑数
+
+
+实际上，根据丑数的定义，丑数应该是另一个丑数乘以 2 、3 或者 5 的结果（1除外）。
+
+因此，我们可以创建一个数组，里面的数字是排好序的丑数。里面的每一个丑数是前面的丑数乘以 2、3 或者 5 得到的。
+
+OK，那么现在关键的就是确保数组里的丑数是有序的了。
+
+
+
+ 	
+  * 现在我们假设数组中已经有若干个丑数，排好序后存在数组中。而且其中的最大丑数记做 M。
+
+ 	
+  * 现在我们来生成下一个丑数，该丑数肯定是之前数组里面的某一个丑数乘以 2、3 或者 5 得到的结果。 那么，怎么办呢？
+
+ 	
+    * 首先，我们先把已有的每个丑数乘以 2。在乘以 2 的时候，能得到若干个结果小于或等于M的。由于之前我们的数组也是按照顺序生成的，小于或者等于 M 的数肯定已经在数组中了，这些就不用考虑，而大于M的这些结果中，我们只需要第一个大于 M 的结果，哪些更大的结果我们以后再说。OK，我们把得到的第一个乘以 2 后大于 M 的结果，记为 M2 。
+
+ 	
+    * 同样我们把已有的每一个丑数乘以3和5，能得到第一个大于M的结果M3和M5。
+
+ 	
+    * 那么下一个丑数应该是 M2、M3 和 M5 三个数的最小者。
+
+
+
+
+
+代码如下：
+
+    
+    #include <iostream>
+    using namespace std;
+    
+    
+    
+    class Solution {
+    protected:
+    	int ugly[10000];//用来存放丑数的序列
+    
+    	//从三个数中找到最小的
+    	int min(int a, int b, int c) {
+    		int temp = (a < b ? a : b);
+    		return (temp < c ? temp : c);
+    	}
+    
+    public:
+    	int GetUglyNumber_Solution(int N) {
+    		ugly[0] = 1;
+    		int index2 = 0;
+    		int index3 = 0;
+    		int index5 = 0;
+    		int index = 1;
+    		while (index < N) {
+    			//竞争产生下一个丑数
+    			int val = min(ugly[index2] * 2, ugly[index3] * 3, ugly[index5] * 5);
+    
+    			//将产生这个丑数的index*向后挪一位；为什么直接向后加就行？
+    			//不能用elseif，因为可能有两个最小值，这时都要挪动；
+    			if (val == ugly[index2] * 2) {
+    				++index2;
+    			}
+    			if (val == ugly[index3] * 3) {
+    				++index3;
+    			}
+    			if (val == ugly[index5] * 5) {
+    				++index5;
+    			}
+    			ugly[index++] = val;
+    		}
+    		int result = ugly[N - 1];
+    		return result;
+    	}
+    };
+    
+    int main() {
+    	Solution solu;
+    	cout << solu.GetUglyNumber_Solution(3) << endl;
+    	return 0;
+    }
+
+
+输出：
+
+    
+    3
+
+
+**没明白？为什么 index2 直接向后加就行？**
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

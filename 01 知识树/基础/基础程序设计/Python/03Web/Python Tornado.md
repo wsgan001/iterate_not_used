@@ -1,0 +1,1 @@
+**Tornado全称叫Tornado Web Serve**r,目前是Facebook开源的一个版本,它和其他主流的框架有一个非常明显的区别：就是非阻塞式服务器,速度非常快.特别对于长轮询，WebSocket等实时要求高的web服务来说是一个福音,基本可以和Node.js一决高下. 

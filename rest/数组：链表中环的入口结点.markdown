@@ -1,0 +1,311 @@
+---
+author: evo
+comments: true
+date: 2018-05-29 09:21:39+00:00
+layout: post
+link: http://106.15.37.116/2018/05/29/%e6%95%b0%e7%bb%84%ef%bc%9a%e9%93%be%e8%a1%a8%e4%b8%ad%e7%8e%af%e7%9a%84%e5%85%a5%e5%8f%a3%e7%bb%93%e7%82%b9/
+slug: '%e6%95%b0%e7%bb%84%ef%bc%9a%e9%93%be%e8%a1%a8%e4%b8%ad%e7%8e%af%e7%9a%84%e5%85%a5%e5%8f%a3%e7%bb%93%e7%82%b9'
+title: 数组：链表中环的入口结点
+wordpress_id: 6996
+categories:
+- 基础程序设计
+tags:
+- ordinary algorithm
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，所有版权属于原作者，原文已列在 ORIGINAL 中。为了方便个人学习做了整合、修改，仅供个人学习使用。**
+
+
+# ORIGINAL
+
+
+
+
+
+ 	
+  1. 
+
+
+[CodingInterviews](https://github.com/gatieme/CodingInterviews)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# INTRODUCTION
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+# 题目
+
+
+
+
+## 题目描述
+
+
+一个链表中包含环，请找出该链表的环的入口结点。
+
+
+
+
+# 题目解答
+
+
+
+
+## 双指针法
+
+
+假设链表长度为 N，那么第 N 链接到了第 k 个节点形成了环，即我们需要查找到倒数第 N-K+1 个节点，那么环中就有 N-K+1 个节点，这时候我们定义两个指针 \(P_1\) 和 \(P_2\) 指向链表的头部，指针\(P_1\) 先在链表中向前移动 n-k+1 步，到达第 n-k+2 个节点，然后两个指针同步向前移动，当 \(P_2\) 走了K-1步到达环的入口的时候，指针 \(P_1\) 正好走了N+1步，到达了环的入口，即两个指针会相遇在环的入口处。
+
+那么我们剩下的问题就是如何得到环中节点的数目?
+
+我们可以使用一快一慢两个指针（比如慢指针一次走一步，慢指针一次走两步），如果走的过程中发现快指针追上了慢指针，说明遇见了环，而且相遇的位置一定在环内，考虑一下环内，从任何一个节点出现再回到这个节点的距离就是环的长度，于是我们可以进一步移动慢指针，快指针原地不动，当慢指针再次回到相遇位置时，正好在环内走了一圈，从而我们通过计数就可以获取到环的长度。
+
+
+
+ 	
+  * 第一步，找环中相汇点。分别用 p1， p2 指向链表头部，p1每次走一步，p2 每次走二步，直到 p1==p2 找到在环中的相汇点。
+
+ 	
+  * 第二步，找环的长度。从环中的相汇点开始，p2 不动，p1 前移，当再次相遇时，p1 刚好绕环一周，其移动即为环的长度 K 。
+
+ 	
+  * 第三步, 求环的起点，转换为求环的倒数第 N-K 个节点，则两指针 left 和 right 均指向起始，right先走 K 步，然后两个指针开始同步移动，当两个指针再次相遇时，right 刚好绕环一周回到起点，left 则刚好走到了起点位置。
+
+
+
+    
+    #include <iostream>
+    using namespace std;
+    
+    struct ListNode {
+        int val;
+        struct ListNode *next;
+    };
+    
+    #define SLOW_STEP   1
+    #define FAST_STEP   2
+    
+    class Solution {
+    public:
+        ListNode* EntryNodeOfLoop(ListNode* pHead) {
+            //  找到环中的某个节点
+            ListNode* meetingNode = HasCycle(pHead);
+            if (meetingNode == NULL) {
+                return NULL;
+            }
+            cout << "find a node in cycle, value = " << meetingNode->val << endl;
+    
+            //  获得链表中环路的长度
+            int cycleLength = GetCycleLength(meetingNode);
+            cout << "cycle length = " << cycleLength << endl;
+    
+            //  使用双指针来寻找环的入口
+            ListNode *leftNode = pHead;
+            ListNode *rightNode = pHead;
+            rightNode = NextNode(rightNode, cycleLength);//  右指针先往前走n步
+            while (leftNode != rightNode) {
+                leftNode = leftNode->next;
+                rightNode = rightNode->next;
+            }
+            //相等的时候就是环得入口
+            return leftNode;
+        }
+    
+        //检查是不是有环
+        ListNode* HasCycle(ListNode *pHead) {
+            if (pHead == NULL) {
+                return NULL;
+            }
+            ListNode *pSlow = pHead->next;
+            ListNode *pFast = pSlow->next;
+            while (pSlow != NULL && pFast != NULL) {
+                if (pFast == pSlow) {
+                    return pSlow;
+                }
+                pSlow = NextNode(pSlow, SLOW_STEP);
+                pFast = NextNode(pFast, FAST_STEP);
+            }
+            return NULL;
+        }
+        //向后走几步
+        ListNode* NextNode(ListNode *node, int step) {
+            for (int i = 0; i < step && node != NULL; i++) {
+                node = node->next;
+            }
+            return node;
+        }
+    
+    
+        //获取链表中环的长度
+        int GetCycleLength(ListNode *node) {
+            int length = 0;
+            if (node == NULL) {
+                return length;
+            }
+            //环内从任何一个节点往后走再回到这个节点的距离就是环的长度
+            ListNode *currNode = node;
+            ListNode *stepNode = node->next;
+            for (length = 1;; length++) {
+                if (stepNode == currNode) {
+                    return length;
+                }
+                stepNode = stepNode->next;
+            }
+            return 0;
+        }
+    };
+    
+    int main() {
+        ListNode list[6];
+        list[0].val = 1;
+        list[0].next = &list[1];
+        list[1].val = 2;
+        list[1].next = &list[2];
+        list[2].val = 3;
+        list[2].next = &list[3];
+        list[3].val = 4;
+        list[3].next = &list[4];
+        list[4].val = 5;
+        list[4].next = &list[5];
+        list[5].val = 6;
+        list[5].next = &list[2];
+    
+        Solution solu;
+        cout <<"entry node value = "<< solu.EntryNodeOfLoop(list)->val << endl;
+    
+        return 0;
+    }
+
+
+输出：
+
+    
+    find a node in cycle, value = 5
+    cycle length = 4
+    entry node value = 3
+
+
+**还是很清晰的。**
+
+
+
+
+## 断链法
+
+
+使用两个指针，一个在前面，另一个紧邻着这个指针，在后面。 两个指针同时向前移动，每移动一次，前面的指针的 next 指向NULL。 也就是说把访问过的节点都断开，这样最后到达的那个节点一定是尾节点的下一个， 也就是循环的第一个。到这结束。
+
+这个方法的时间复杂度为 \(O(n)\)，还是不错的，但是它会修改链表的指向。**因此，感觉这个一般不会用到吧？除非复制了整个链表。**
+
+代码如下：
+
+    
+    #include <iostream>
+    using namespace std;
+    
+    struct ListNode {
+        int val;
+        struct ListNode *next;
+    };
+    
+    
+    class Solution {
+    public:
+        ListNode* EntryNodeOfLoop(ListNode* pHead) {
+            if (pHead == NULL|| pHead->next == NULL) {
+                return NULL;
+            }
+            ListNode* previous = pHead;
+            ListNode* current = pHead->next;
+            while (current != NULL) {
+                previous->next = NULL;
+                previous = current;
+                current = current->next;
+            }
+            return previous;
+        }
+    };
+    
+    int main() {
+        ListNode list[6];
+        list[0].val = 1;
+        list[0].next = &list[1];
+        list[1].val = 2;
+        list[1].next = &list[2];
+        list[2].val = 3;
+        list[2].next = &list[3];
+        list[3].val = 4;
+        list[3].next = &list[4];
+        list[4].val = 5;
+        list[4].next = &list[5];
+        list[5].val = 6;
+        list[5].next = &list[2];
+    
+        Solution solu;
+        cout <<"entry node value = "<< solu.EntryNodeOfLoop(list)->val << endl;
+    
+        return 0;
+    }
+
+
+输出：
+
+    
+    entry node value = 3
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

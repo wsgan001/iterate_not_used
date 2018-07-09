@@ -1,0 +1,171 @@
+---
+author: evo
+comments: true
+date: 2018-04-30 04:49:11+00:00
+layout: post
+link: http://106.15.37.116/2018/04/30/multiplication-of-matrix-and-vector/
+slug: multiplication-of-matrix-and-vector
+title: 矩阵和向量相乘
+wordpress_id: 4716
+categories:
+- 随想与反思
+---
+
+<!-- more -->
+
+[mathjax]
+
+
+# REFERENCE
+
+
+
+
+
+ 	
+  1. 《深度学习》
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+# MOTIVE
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+
+# 矩阵的乘积
+
+
+矩阵乘法是矩阵运算中最重要的操作之一。两个矩阵 A 和 B 的 矩阵乘积（matrix product）是第三个矩阵 C。为了使乘法定义良好，矩阵 A 的列数必须和矩阵 B 的行数相等。如果矩阵 A 的形状是 m×n，矩阵 B 的形状是 n×p，那么矩阵 C 的形状是 m×p。
+
+我们可以通过将两个或多个矩阵并列放置以书写矩阵乘法：
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae69bd7d4bd8.png)
+
+
+具体地，该乘法操作定义为：
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae69be1b3284.png)
+
+
+注意：两个矩阵的标准乘积不是指两个矩阵中对应元素的乘积。但是，矩阵中对应元素的乘积这种矩阵操作确实是存在的，它被称为 元素对应乘积（element-wise product）或者 Hadamard 乘积（Hadamard product），记为 \(\mathbf{A}\odot \mathbf{B}\)。  **这个就是卷积把？再确认下。**
+
+
+
+
+# 向量的乘积
+
+
+两个相同维数的向量 \(\mathbf{x}\) 和 \(\mathbf{y}\) 的 点积（dot product）可看作是矩阵乘积 \(\mathbf{x}^T\mathbf{y}\) 。我们可以把矩阵乘积\(\mathbf{C}=\mathbf{A}\mathbf{B}\) 中计算\(C_{i,j}\) 的步骤看作是 \(\mathbf{A}\) 的第 i 行和 \(\mathbf{B}\) 的第 j 列之间的点积。**嗯，怪不得乘积有叫做点积。**
+
+
+
+
+# 矩阵乘积的一些性质
+
+
+矩阵乘积运算有许多有用的性质，从而使矩阵的数学分析更加方便。比如，矩阵乘积服从分配律：
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae69bf929753.png)
+
+
+矩阵乘积也服从结合律：
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae69c020586e.png)
+
+
+不同于标量乘积，矩阵乘积并不满足交换律（AB = BA 的情况并非总是满足）。然而，两个向量的 点积（dot product）满足交换律：
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae69c0d08bef.png)
+
+
+矩阵乘积的转置有着简单的形式：**这个矩阵乘积的转置一直不是很理解，为什么结果是这样的？要仔细了解下。**
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae69c1695585.png)
+
+
+利用两个向量点积的结果是标量，标量转置是自身的事实，我们可以得到向量的点积满足交换律的原因：
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae69c2abde9f.png)
+
+
+矩阵乘积还有很多有用的性质，这里不一一提及。**后续学习的时候另外总结一下。**
+
+
+
+
+# 表达一个线性方程组
+
+
+现在我们已经知道了足够多的线性代数符号，可以表达下列线性方程组：
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae69c40ba5e2.png)
+
+
+其中 \(\mathbf{A}\in \mathbb{R}^{m\times n}\) 是一个已知矩阵， \(\mathbf{b}\in \mathbb{R}^{m}\) 是一个已知向量， \(\mathbf{x}\in \mathbb{R}^{n}\)是一个我们要求解的未知向量。向量 \(\mathbf{x}\)的每一个元素\(x_i\) 都是未知的。矩阵 \(\mathbf{A}\)  的每一行和 \(\mathbf{b}\) 中对应的元素构成一个约束。我们可以把上面的式子重写为：**这个还是要好好理解下的，尤其是每个矩阵和向量是多少行，多少列的。从这个式子可以看出，向量的确默认指的是列向量的形式。**
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae69c4dcd53d.png)
+
+
+或者，更明确地，写作
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae69c5a54793.png)
+
+
+矩阵向量乘积符号为这种形式的方程提供了更紧凑的表示。**是的，这三种写法，还是要感受一下的。很好啊，很清晰。**
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+
