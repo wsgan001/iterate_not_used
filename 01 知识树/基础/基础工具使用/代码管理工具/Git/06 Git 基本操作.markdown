@@ -290,7 +290,7 @@ $ git commit -am 'changes to hello file'
  1 files changed, 2 insertions(+), 1 deletions(-)
 ```
 
-<span style="color:red;">竟然是-am ，怪不得，我之前使用的是 -a 和 -m 好像是不行的。好的。</span>
+<span style="color:red;">试了下，好像 -am 只能对文本的修改可以合并成 am 进行提交，但是文件夹名字的修改并不会提交上去，还是要用 git add 。确认下？</span>
 
 
 ### git reset HEAD
