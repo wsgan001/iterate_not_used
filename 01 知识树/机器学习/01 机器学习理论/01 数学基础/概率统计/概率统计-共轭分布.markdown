@@ -1,0 +1,95 @@
+---
+author: evo
+comments: true
+date: 2018-04-30 00:06:36+00:00
+layout: post
+link: http://106.15.37.116/2018/04/30/conjugate-distribution/
+slug: conjugate-distribution
+title: 概率统计-共轭分布
+wordpress_id: 4693
+categories:
+- 随想与反思
+tags:
+- '@NULL'
+---
+
+<!-- more -->
+
+[mathjax]
+
+
+# REF
+
+
+
+
+
+ 	
+  1. 《机器学习》周志华
+
+
+
+
+# TODO
+
+
+
+
+
+ 	
+  * aaa
+
+
+
+
+# MOTIVE
+
+
+
+
+
+ 	
+  * 对共轭分布进行总结
+
+
+
+
+
+* * *
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

@@ -1,0 +1,295 @@
+---
+author: evo
+comments: true
+date: 2018-05-12 12:13:26+00:00
+layout: post
+link: http://106.15.37.116/2018/05/12/line-regression-sample1/
+slug: line-regression-sample1
+title: 
+wordpress_id: 5593
+categories:
+- 随想与反思
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，推荐直接看原文**
+
+
+# ORIGINAL
+
+
+
+
+
+
+  1. [第8章 预测数值型数据：回归](http://ml.apachecn.org/mlia/regress/)
+
+
+
+
+# TODO
+
+
+
+
+
+
+  * **还要结合理论全面理解下**
+
+  * **lwlr的东西要不要拆出来单独？因为岭回归和前向逐步回归都拆出来了**
+
+  * 
+
+
+
+# MOTIVE
+
+
+
+
+
+
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+## 项目要求
+
+
+找出一些点的最佳拟合图像：
+
+![线性回归数据示例图](http://ml.apachecn.org/images/8.Regression/LinearR_2.png)
+
+
+## 项目数据
+
+
+[download id="5599"]
+
+数据格式为：
+
+
+    x0          x1          y 
+    1.000000    0.067732    3.176513
+    1.000000    0.427810    3.816464
+    1.000000    0.995731    4.550095
+    1.000000    0.738336    4.256571
+
+
+
+
+## 完整代码
+
+
+
+
+    import numpy as np
+    import matplotlib.pylab as plt
+
+
+​    
+    # 加载数据集
+    def load_data_set(file_name):
+        feature_num = len(open(file_name).readline().split('\t')) - 1
+        data_arr = []
+        label_arr = []
+        fr = open(file_name)
+        for line in fr.readlines():
+            line_arr = []
+            cur_line = line.strip().split('\t')
+            # 特征值
+            for i in range(feature_num):
+                line_arr.append(float(cur_line[i]))
+            data_arr.append(line_arr)
+            # 标签
+            label_arr.append(float(cur_line[-1]))
+        data_mat = np.mat(data_arr)
+        label_mat = np.mat(label_arr).T
+        return data_mat, label_mat
+
+
+​    
+    # 标准线性回归
+    def standard_lr(data_mat, label_mat):
+        data_square = data_mat.T * data_mat
+        # 因为要用到xTx的逆矩阵，因此先确定xTx是否可逆
+        # 可逆的条件是矩阵的行列式不为0，如果为0，即不可逆，则无法继续进行计算 为什么？
+        # linalg.det()可以求得矩阵的行列式
+        if np.linalg.det(data_square) == 0.0:
+            print("This matrix is singular, cannot do inverse")
+            return
+        # 根据书中的公式，求得w的最优解
+        weights = data_square.I * (data_mat.T * label_mat)
+        label_pred_mat = data_mat * weights
+        return label_pred_mat, weights
+
+
+​    
+    def plot_standard_lr(data_mat, label_mat, label_pred):
+        fig = plt.figure()
+        # add_subplot(349)函数的参数的意思是，将画布分成3行4列图像画在从左到右从上到下第9块
+        ax = fig.add_subplot(111)
+        # x 是 data_mat 中的第二列，y是 label_mat 的第一列
+        ax.scatter([data_mat[:, 1].flatten()], [label_mat[:, 0].flatten().A[0]])
+        # data_copy = data_mat.copy()
+        # data_copy.sort(0)
+    
+        ax.plot(data_mat[:, 1], label_pred)
+        plt.show()
+
+
+​    
+    # 还是不是很明白，要配合理论看一下
+    # 局部加权线性回归，在待预测点附近的每个点赋予一定的权重，在子集上基于最小均方差来进行普通的回归。
+    # 关于赋予权重矩阵的核的一个参数，与权重的衰减速率有关
+    def lwlr_pred_label(data, data_mat, label_mat, k=1.0):
+        # 获得xMat矩阵的行数
+        row_num = np.shape(data_mat)[0]
+        # 创建权重矩阵weights，该矩阵为每个样本点初始化了一个权重
+        # eye()：对角线为1，其他为0
+        weight_mat = np.mat(np.eye((row_num)))
+        for i in range(row_num):
+            # 计算 data 与每个样本点之间的距离
+            diff_mat = data - data_mat[i, :]
+            # 计算出每个样本贡献误差的权值，k控制衰减的速度
+            weight_mat[i, i] = np.exp(diff_mat * diff_mat.T / (-2.0 * k ** 2))
+        # 根据矩阵乘法计算 xTx ，weights 是样本点对应的权重矩阵
+        data_square = data_mat.T * (weight_mat * data_mat)
+        if np.linalg.det(data_square) == 0.0:
+            print("This matrix is singular, cannot do inverse")
+            return
+        # 计算出回归系数的一个估计
+        weights = data_square.I * (data_mat.T * (weight_mat * label_mat))
+        # 得到预测点
+        label_pred = data * weights
+        return label_pred
+
+
+​    
+    # k：控制核函数的衰减速率 要怎么确定？
+    # 测试局部加权线性回归，对数据集中每个点调用 lwlr() 函数
+    def lwlr(data_mat, label_mat, k=1.0):
+        row_num = np.shape(data_mat)[0]
+        label_pred_mat = np.zeros(row_num)  # 1 * m
+        for i in range(row_num):
+            label_pred_mat[i] = lwlr_pred_label(data_mat[i], data_mat, label_mat, k)
+        return label_pred_mat
+
+
+​    
+    # 将lwlr的预测结果画出来
+    def plot_lwlr(data_mat, label_mat, label_pred_mat):
+        data_sorted_index_mat = data_mat[:, 1].argsort(0)  # argsort()函数是将data_mat中第二列元素从小到大排列，返回行号
+        x_sorted_data = data_mat[data_sorted_index_mat][:, 0, :]  # 没想到，还可以这么排序， 最后这个冒号是什么意思？
+        fig = plt.figure()
+        ax1 = fig.add_subplot(311)
+        ax1.plot(x_sorted_data[:, 1], label_pred_mat[0][data_sorted_index_mat])
+        ax1.scatter([data_mat[:, 1].flatten().A[0]], [label_mat.flatten().A[0]], s=2, c='red')
+        ax2 = fig.add_subplot(312)
+        ax2.plot(x_sorted_data[:, 1], label_pred_mat[1][data_sorted_index_mat])
+        ax2.scatter([data_mat[:, 1].flatten().A[0]], [label_mat.flatten().A[0]], s=2, c='red')
+        ax3 = fig.add_subplot(313)
+        ax3.plot(x_sorted_data[:, 1], label_pred_mat[2][data_sorted_index_mat])
+        ax3.scatter([data_mat[:, 1].flatten().A[0]], [label_mat.flatten().A[0]], s=2, c='red')
+        plt.show()
+
+
+​    
+    if __name__ == "__main__":
+        # 加载数据
+        data_mat, label_mat = load_data_set("line_data.txt")
+        # 标准的线性回归
+        label_pred_mat, weights = standard_lr(data_mat, label_mat)  # 计算出权重
+        plot_standard_lr(data_mat, label_mat, label_pred_mat)  # 画出图像
+    
+        # 局部加权线性回归 Locally Weighted Linear Regression，LWLR
+        label_pred_mat_1 = lwlr(data_mat, label_mat, 1)
+        label_pred_mat_001 = lwlr(data_mat, label_mat, 0.01)
+        label_pred_mat_0003 = lwlr(data_mat, label_mat, 0.003)
+        label_pred_mat_list=[label_pred_mat_1, label_pred_mat_001, label_pred_mat_0003]
+    
+        plot_lwlr(data_mat, label_mat, label_pred_mat_list)
+
+
+输出图像：
+
+standard_regression 结果的图像：
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af6dd5197da4.png)
+
+
+lwlr 结果的图像：
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af6e5c24ea25.png)
+
+
+代码中的涉及的问题如下：
+
+
+## 普通的线性回归方法和局部加权线性回归方法
+
+
+**关于理论要好好在线性回归那篇中总结一下，这个地方引用**
+
+在计算局部加权线性回归方法的时候，会等待比较长的时间，也即增加了计算量，因为它对每个点做预测时都必须使用整个数据集。
+
+
+## 由 lwlr 的图可以看出
+
+
+
+
+
+
+  * k = 1.0 时的模型效果与最小二乘法差不多，
+
+  * k=0.01时该模型可以挖出数据的潜在规律
+
+  * k=0.003时则考虑了太多的噪声，进而导致了过拟合现象。
+
+
+**那么实际项目中怎么知道到底用多少呢？**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

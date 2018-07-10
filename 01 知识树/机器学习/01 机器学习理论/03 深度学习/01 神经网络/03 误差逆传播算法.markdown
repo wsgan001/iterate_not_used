@@ -1,0 +1,110 @@
+
+
+
+
+误差逆传播算法 亦称“反向传播算法”.
+
+
+
+多层网络的学习能力比单层感知机强得多。欲训练多层网络，式(5.1)的 简单感知机学习规则显然不够了，需要更强大的学习算法。
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180626/HiAD3khi7m.png?imageslim)
+
+误差逆传播(error BackPropagation,简称BP) 算法就是其中最杰出的代表，它是迄今最成功的神经网络学习算法.现实任务中使用神经网络时，大多是在使用 BP 算法进行训练.值得指出的是，BP算法不仅可用于多层前馈神经网络，还可用于其他类型的神经网络，例如训练递归神经网络[Pineda, 1987].但通常说“BP网络”时, 一般是指用BP算法训练的多层前馈神经网络。
+
+
+下面我们来看看BP算法究竟是什么样。给定训练集 $D=\{(x_1,y_1),(x_2,y_2),\cdots (x_m,y_m)\}$，$x_i\in  \mathbb{R}^d$ ，$y_i\in \mathbb{R}^l$ ，即输入示例由 d 个属性描述，输出 l 维实值向量.为便于讨论，图 5.7 给出了一个拥有 d 个输入神经元、l 个输出神经元、q 个隐层神经元的多层前馈网络结构，其中输出层第 j 个神经元的阈值 用 $\theta_j$ 表示，隐层第 h 个神经元的阈值用 $\gamma_h$  表示.输入层第 i 个神经元与隐层第 h 个神经元之间的连接权为 $v_{ih}$ 。隐层第 h 个神经元与输出层第 j 个神经元之间的连接权为 $w_{hj}$ 。记隐层第 h 个神经元接收到的输入为 $\alpha_h=\sum_{i=1}^{d}v_{ih}x_i$ ，输出层第 j 个神经元接收到的输入为 $\beta_j=\sum_{h=1}^{q}w_{hj}b_h$ ，其中 $b_h$ 为隐层第 h 个神经
+元的输出。假设隐层和输出层神经元都使用图 5.2(b) 中的 Sigmoid函数。
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180626/giFDElh243.png?imageslim)
+
+对训练例 $(x_k,y_k)$ ，假定神经网络的输山为 $\hat{y}_k=(\hat{y}_1^k,\hat{y}_2^k,\cdots ,\hat{y}_l^k)，即
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180626/63EdGL9EgF.png?imageslim)
+
+则网络在 $(x_k,y_k)$ 上的均方误差为:
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180626/lEiid194Fd.png?imageslim)
+
+
+图5.7的网络中有 $(d + l + 1)q + l$ 个参数需确定：输入层到隐层的 $d\times q$ 个权值、隐层到输出层的 $q\times l$ 个权值、q 个隐层神经元的阈值、l 个输出层神经元的阈值。BP是一个迭代学习算法，在迭代的每一轮中采用广义的感知机学习规则对参数进行更新估计，即与式(5.1)类似，任意参数 v 的更新估计式为：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180626/DfeFCBl5H6.png?imageslim)
+
+下面我们以图5.7中隐层到输出层的连接权 $w_{hj}$ 为例来进行推导.
+
+
+BP算法基于梯度下降(gradient descent)策略，以目标的负梯度方向对参数进行调整.对式(5.4)的误差 $E_k$，给定学习率 $\eta$ ，有
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180626/CiF5gfFkG8.png?imageslim)
+
+注意到 $w_{hj}$ 先影响到第 j 个输出层神经元的输入值 $\beta_j$ ，再影响到其输出值 $\hat{y}_j^k$ ， 然后影响到 $E_k$，有
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180626/khhHkkIa5j.png?imageslim)
+
+
+根据 $\beta_j$ 的定义，显然有
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180626/4i7G72J9BI.png?imageslim)
+
+图5.2中的Sigmoid函数有一个很好的性质：
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180626/6j7CFkbHBm.png?imageslim)
+
+于是根据式(5.4)和(5.3)，有
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180626/E5lljg8fig.png?imageslim)
+
+
+将式(5.10)和(5.8)代入式(5.7),再代入式(5.6)，就得到了BP算法中关于$w_{hj}$ 的更新公式
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180626/a9JflCbk08.png?imageslim)
+
+
+类似可得
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180626/bhB3BmH7jJ.png?imageslim)
+
+式(5.13)和(5.14)中
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180626/KBg2D52CH7.png?imageslim)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180626/ghDC7De80E.png?imageslim)
+
+
+学习率 $\eta\in (0,1)$ 控制着算法每一轮迭代中的更新步长，若太大则容易振荡，太小则收敛速度又会过慢.有时为了做精细调节，可令式(5.11)与(5.12)使用 $\eta_1$ ,式(5.13)与(5.14)使用 $\eta_2$,两者未必相等.
+
+
+图5.8给出了 BP算法的工作流程.对每个训练样例，BP算法执行以下操 作：先将输入示例提供给输入层神经元，然后逐层将信号前传，直到产生输出 层的结果；然后计算输出层的误差(第4-5行)，再将误差逆向传播至隐层神经元(第6行),最后根据隐层神经元的误差来对连接权和阈值进行调整(第7行). 该迭代过程循环进行，直到达到某些停止条件为止，例如训练误差已达到一个很小的值。图5.9给出了在2个属性、5个样本的西瓜数据上，随着训练轮数的增加，网络参数和分类边界的变化情况.
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180626/ED5kmckjme.png?imageslim)
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180626/Ffb1jifACi.png?imageslim)
+
+需注意的是，BP算法的目标是要最小化训练集D上的累积误差
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180626/2h77blCAf2.png?imageslim)
+
+但我们上面介绍的“标准BP算法”每次仅针对一个训练样例更新连接权和阈值，也就是说，图5.8中算法的更新规则是基于单个的 $E_k$ 推导而得.如果类似地推导出基于累积误差最小化的更新规则，就得到了累积误差逆传播(accumulated error backpropagation)算法.累积BP算法与标准BP算法都很常用.一般来说，标准BP算法每次更新只针对单个样例，参数更新得非常频繁，而且对不同样例进行更新的效果可能出现“抵消”现象因此，为了达到同样的累积误差极小点，标准BP算法往往需进行更多次数的迭代.累积BP算法直接针对累积误差最小化，它在读取整个训练集 D 一遍后才对参数进行更新, 其参数更新的频率低得多.但在很多任务中，累积误差下降到一定程度之后，进一步下降会非常缓慢，这时标准 BP 往往会更快获得较好的解，尤其是在训练集D非常大时更明显.
+
+[Hornik et al., 1989]证明，只需一个包含足够多神经元的隐层，多层前馈网络就能以任意精度逼近任意复杂度的连续函数。然而，如何设置隐层神经元的个数仍是个未决问题，实际应用中通常靠 “试错法”(trial-by-error) 调整。<span style="color:red;">现在还是未解决的吗？</span>
+
+
+正是由于其强大的表示能力，BP 神经网络经常遭遇过拟合，其训练误差持续降低，但测试误差却可能上升。有两种策略常用来缓解 BP 网络的过拟合。
+<span style="color:red;">这两种方法在实践中是怎么运用的？</span>
+
+- 第一种策略是 “早停” (early stopping):将数据分成训练集和验证集，训练集用 来计算梯度、更新连接权和阈值，验证集用来估计误差，若训练集误差降低但 验证集误差升高，则停止训练，同时返回具有最小验证集误差的连接权和阈值.
+- 第二种策略是“正则化” (regularization) [Barron, 1991; Girosi et al., 1"S] 其 基本思想是在误差目标函数中增加一个用于描述网络复杂度的部分，例如连接权与阈值的平方和.仍令 $E_k$ 表示第 k 个训练样例上的误差，$w_i$ 表示连接权和阈值，则误差目标函数(5.16)改变为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180626/ag3mLdiDG6.png?imageslim)
+
+其中 $\lambda \in(0,1)$ 用于对经验误差与网络复杂度这两项进行折中，常通过交叉验证法来估计。<span style="color:red;">没明白？</span>
+
+
+
+
+
+
+
+# REF
+1. 《机器学习》周志华

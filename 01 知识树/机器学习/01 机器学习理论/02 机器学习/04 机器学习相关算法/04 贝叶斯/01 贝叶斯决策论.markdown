@@ -1,0 +1,73 @@
+
+
+贝叶斯决策论
+
+贝叶斯决策论(Bayesian decision theory)是概率框架下实施决策的基本方法.对分类任务来说，在所有相关概率都已知的理想情形下，贝叶斯决策论考虑如何基于这些概率和误判损失来选择最优的类别标记.下面我们以多分类任务为例来解释其基本原理.
+
+
+假设有 $N$ 种可能的类别标记，即 $\mathcal{Y}=\{c_1,c_2,\cdots ,c_N\}$ ，$\lambda_{ij}$ 是将一个真实标记为 $c_j$ 的样本误分类为 $c_i$ 所产生的损失.基于后验概率 $P(c_i | x)$ 可获得将样本 x 分类为 $c_i$ 所产生的期望损失(expected loss),即在样本 x 上的“条件风险” (conditional risk)
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/bGbD4882EH.png?imageslim)
+
+我们的任务是寻找一个判定准则 $ h:\mathcal{X}\mapsto \mathcal{Y}$ 以最小总体风险：
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/j4ae1CAD3b.png?imageslim)
+
+
+显然，对每个样本 $x$ ，若 h 能最小化风险 $R(h(x)|x)$ ，则总体风险 $R(h)$ 也将被最小化。这就产生了 贝叶斯判定准则（Bayes decision rule）：为最小化总体风险，只需要在每个样本上选择哪个能使条件风险 $R(c|x)$ 最小的类别标记，即：
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/a9f12JhhJ1.png?imageslim)
+
+此时， $h^*$ 称为贝叶斯最优分类器(Bayes optimal classifier),与之对应的总体风险 $R(h^*)$ 称为贝叶斯风险(Bayes risk). $1 -R(h^*)$ 反映了分类器所能达到的最好性能，即通过机器学习所能产生的模型精度的理论上限.
+
+
+
+具体来说，若目标是最小化分类错误率，则误判损失 $\lambda_{ij}$ 可写为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/fBcIGFkBgC.png?imageslim)
+
+
+此时条件风险
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/cBDahibgFB.png?imageslim)
+
+于是，最小化分类错误率的贝叶斯最优分类器为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/egi8mE8bi0.png?imageslim)
+
+
+即对每个样本 x,选择能使后验概率 $P(c|x)$ 最大的类别标记.
+
+不难看出，欲使用贝叶斯判定准则来最小化决策风险，首先要获得后验概率 $P(c|x)$ (注意，这只是从概率框 架的角度来理解机器学习 事实上很多机器学习技术 无须准确估计出后验概率 就能准确进行分类.)
+然而，在现实任务中这通常难以直接获得.从这个角度来看，机器学习所要实现的是基于有限的训练样本集尽可能准确地估计出后验概率 $P(c|x)$ .大体来说，主要有两种策略：
+
+- 给定 x 可通过直接建模  $P(c|x)$ 来 预测c，这样得到的是“判别式模型”(discriminative models);
+- 也可先对联合概率分布  $P(x,c)$ 建模，然后再由此获得 $P(c|x)$ , 这样得到的是“生成式模型”(generative models)。
+
+显然，前面介绍的决策树、BP神经网络、支持向量 机等，都可归入判别式模型的范畴.对生成式模型来说，必然考虑
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/FcBF66Lm4g.png?imageslim)
+
+基于贝叶斯定理，$P(c|x)$ 可写为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/6dGc20EkaF.png?imageslim)
+
+
+其中，$P(c)$ 是类“先验”(prior)概率；$P(x丨c)$ 是样本 x 相对于类标记 c 的类条件概率(class-conditional probability),或称为“似然” (likelihood); $P(x)$ 是 用于归一化的“证据”(evidence)因子.对给定样本 x 证据因子$P(x)$ 与类标记无关，因此估计 $P(c|x)$ 的问题就转化为如何基于训练数据 D 来估计先验 P(c) 和似然  $P(c|x)$ 。
+
+类先验概率表达了样本空间中各类样本所占的比例，根据大数定律，当训练集包含充足的独立同分布样本时，P(c)可通过各类样本出现的频率来进行估计.
+
+对类条件概率 $P(x|c) 来说，由于它涉及关于 x 所有属性的联合概率，直接根据样本出现的频率来估计将会遇到严重的困难.例如，假设样本的 d 个属性都是二值的，则样本空间将有 $2^d$ 种可能的取值，在现实应用中，这个值往往远大于训练样本数 m ,也就是说，很多样本取值在训练集中根本没有出现，直接使用频率来估计 $P(x|c)$ 显然不可行，因为“未被观测到”与“出现概率为零”通常是不同的。
+
+
+
+
+
+
+
+
+
+
+
+# REF
+1. 《机器学习》周志华

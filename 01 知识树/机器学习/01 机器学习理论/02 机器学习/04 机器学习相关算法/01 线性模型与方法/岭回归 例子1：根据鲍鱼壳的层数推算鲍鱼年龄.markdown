@@ -1,0 +1,237 @@
+---
+author: evo
+comments: true
+date: 2018-05-12 23:41:44+00:00
+layout: post
+link: http://106.15.37.116/2018/05/13/ridge-regression-sample1/
+slug: ridge-regression-sample1
+title: 
+wordpress_id: 5619
+categories:
+- 随想与反思
+---
+
+<!-- more -->
+
+[mathjax]
+
+**注：非原创，推荐直接看原文**
+
+
+# ORIGINAL
+
+
+
+
+
+
+  1. 
+
+
+[第8章 预测数值型数据：回归](http://ml.apachecn.org/mlia/regress/)
+
+
+
+
+
+
+
+# TODO
+
+
+
+
+
+
+  * **代码的原理还需要总结下，然后在这里引用**
+
+
+
+
+# MOTIVE
+
+
+
+
+
+
+  * aaa
+
+
+
+
+
+* * *
+
+
+
+
+
+# 项目要求
+
+
+我们有一份来自 UCI 的数据集合的数据，记录了鲍鱼（一种介壳类水生动物）的年龄。鲍鱼年龄可以从鲍鱼壳的层数推算得到。
+
+
+# 项目数据
+
+
+[download id="5613"]
+
+数据存储格式：
+
+
+    1   0.455   0.365   0.095   0.514   0.2245  0.101   0.15    15
+    1   0.35    0.265   0.09    0.2255  0.0995  0.0485  0.07    7
+    -1  0.53    0.42    0.135   0.677   0.2565  0.1415  0.21    9
+    1   0.44    0.365   0.125   0.516   0.2155  0.114   0.155   10
+    0   0.33    0.255   0.08    0.205   0.0895  0.0395  0.055   7
+
+
+
+
+# 与其它项目的关系
+
+
+岭回归是基于线性回归的。
+
+当数据的特征比样本点还多的时候（n > m），我们就不能再使用线性回归和局部线性回归了，因这时候输入数据的矩阵x不是满秩矩阵。非满秩矩阵在求逆时会出现问题。 为了解决这个问题，我们提出了岭回归，这是我们要讲的第一种缩减方法。
+
+
+# 完整代码
+
+
+
+
+    import numpy as np
+    import matplotlib.pylab as plt
+    from time import sleep
+    import bs4
+    from bs4 import BeautifulSoup
+    import json
+    import urllib.request  # 在Python3中将urllib2和urllib3合并为一个标准库urllib,其中的urllib2.urlopen更改为urllib.request.urlopen
+
+
+​    
+    # 加载数据集
+    def load_data_set(file_name):
+        feature_num = len(open(file_name).readline().split('\t')) - 1
+        data_arr = []
+        label_arr = []
+        fr = open(file_name)
+        for line in fr.readlines():
+            line_arr = []
+            cur_line = line.strip().split('\t')
+            # 特征值
+            for i in range(feature_num):
+                line_arr.append(float(cur_line[i]))
+            data_arr.append(line_arr)
+            # 标签
+            label_arr.append(float(cur_line[-1]))
+        data_mat = np.mat(data_arr)
+        label_mat = np.mat(label_arr).T
+        return data_mat, label_mat
+
+
+​    
+    # 给定 lambda 下的岭回归求解。
+    # lam 引入的一个λ值，使得矩阵非奇异
+    def ridge_regression(data_mat_m, label_mat_m, lam=0.2):
+        column_num = np.shape(data_mat_m)[1]
+        data_square = data_mat_m.T * data_mat_m
+        # 岭回归就是在矩阵 xTx 上加一个 λI 从而使得矩阵非奇异，进而能对 xTx + λI 求逆
+        denom = data_square + np.eye(column_num) * lam
+        # 检查行列式是否为零，即矩阵是否可逆，行列式为0的话就不可逆，不为0的话就是可逆。
+        if np.linalg.det(denom) == 0.0:
+            print("This matrix is singular, cannot do inverse")
+            return
+        weight = denom.I * (data_mat_m.T * label_mat_m)
+        return weight
+
+
+​    
+    # 用于在一组 λ 上测试结果
+    def try_ridge(data_mat_m, label_mat_m):
+        label_mean = np.mean(label_mat_m, 0)
+        label_mat_m = label_mat_m - label_mean  # Y的所有的特征减去均值
+    
+        data_mean = np.mean(data_mat_m, 0)  # xMat 平均值
+        data_var = np.var(data_mat_m, 0)  # X的方差
+        data_mat_m = (data_mat_m - data_mean) / data_var
+    
+        # 可以在 30 个不同的 lambda 下调用 ridgeRegres() 函数。
+        num_test_pts = 30  # 为什么用这个名字？
+        column_num = np.shape(data_mat_m)[1]
+        weight_mat = np.zeros((num_test_pts, column_num))  # 30 * column_num
+        for i in range(num_test_pts):
+            lam = np.exp(i - 10)  # 为什么是这么计算的？
+            weight = ridge_regression(data_mat_m, label_mat_m, lam)
+            weight_mat[i, :] = weight.T
+        # 返回所有的回归系数
+        return weight_mat
+
+
+​    
+    def plot_weight_mat(weight_mat):
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        print(weight_mat)
+        ax.plot(weight_mat)
+        plt.show()
+
+
+​    
+    if __name__ == "__main__":
+        data_mat, label_mat = load_data_set("../../../input/8.Regression/abalone.txt")
+        weight_mat = try_ridge(data_mat, label_mat)
+        plot_weight_mat(weight_mat)
+
+
+输出图像如下：
+
+
+![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af77a45d765f.png)
+
+
+上图绘制除了回归系数与 log(λ) 的关系。
+
+
+
+
+  * 在最左边，即 λ 最小时，可以得到所有系数的原始值（与线性回归一致）；
+
+  * 在右边，系数全部缩减为0；
+
+  * 在中间部分的某值将可以取得最好的预测效果。
+
+
+为了定量地找到最佳参数值，还需要进行交叉验证。另外，要判断哪些变量对结果预测最具有影响力，在上图中观察它们对应的系数大小就可以了。**嗯，这倒是，但是如果变量与目标有非线性，比如平方的关系，这种模型是看不出来的。除非手动添加特征，确认下是不是**
+
+
+
+**代码的原理还需要总结下，然后在这里引用**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+

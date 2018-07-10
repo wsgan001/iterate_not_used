@@ -1,0 +1,56 @@
+
+
+
+
+
+
+核化线性降维
+
+线性降维方法假设从高维空间到低维空间的函数映射是线性的，然而，在不少现实任务中，可能需要非线性映射才能找到恰当的低维嵌入.图10.6给出了一个例子，样本点从二维空间中的矩形区域采样后以S形曲面嵌入到三维空 间，若直接使用线性降维方法对三维空间观察到的样本点进行降维，则将丢失原本的低维结构.为了对“原本采样的”低维空间与降维后的低维空间加以区别，我们称前者为“本真”(intrinsic)低维空间.
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/LmGdkc27L7.png?imageslim)
+
+
+非线性降维的一种常用方法，是基于核技巧对线性降维方法进行“核化” (kernelized).下面我们以核主成分分析(Kernelized PCA,简称KPCA) 为例来进行演示.
+
+假定我们将在高维特征空间中把数据投影到由 W 确定的超平面上，即 PCA欲求解
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/g5DHkDEkEH.png?imageslim)
+
+
+其中 $z_i$ 是样本点 $x_i$ 在高维特征空间中的像.易知
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/03LAcgfGI5.png?imageslim)
+
+其中 $\alpha_i=\frac{1}{\lambda}z_i^TW$ 。假定 $z_i$ 是由原始属性空间中的样本点 $x_i$ 通过映射 $\phi$ 诊产生， 即 $z_i=\phi(x_i),i=1,2,\cdots ,m$ .若 $\phi$ 能被显式表达出来,则通过它将样本映射至高维特征空间，再在特征空间中实施 PCA 即可.式(10.19)变换为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/8eBg2a9IeH.png?imageslim)
+
+式(10.20)变换为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/cKeADeKGdG.png?imageslim)
+
+一般情形下，我们不清楚 $\phi$ 的具体形式，于是引入核函数
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/ch8CGFE7li.png?imageslim)
+
+将式(10.22)和(10.23)代入式(10.21)后化简可得
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/C981FciGf3.png?imageslim)
+
+其中 K 为 $\kappa$ 对应的核矩阵，$(K)_{ij}=\kappa(x_i,x_j),A=(\alpha_1;\alpha_2;\cdots ;\alpha_m)$ .显然，式(10.24)是特征值分解问题，取K最大的 $d'$ 个特征值对应的特征向量即可.
+
+对新样本 $x$ ,其投影后的第 $j(j = 1,2,\cdots ,d')$ 维坐标为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/4ecbDdi31A.png?imageslim)
+
+
+其中 $\alpha_i$ 已经过规范化， $\alpha_i^j$ 是 $\alpha_i$ 的第 j 个分量.式(10.25)显示出，为获得投影后的坐标，KPCA需对所有样本求和，因此它的计算开销较大。
+
+
+
+
+# REF
+1. 《机器学习》周志华

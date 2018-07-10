@@ -1,0 +1,91 @@
+度量学习
+
+
+亦称距离度量学习(distance metric learning).
+
+
+在机器学习中，对高维数据进行降维的主要目的是希望找到一个合适的低维空间，在此空间中进行学习能比原始空间性能更好。事实上，每个空间对应了 在样本属性上定义的一个距离度量，而寻找合适的空间，实质上就是在寻找一个合适的距离度量.那么，为何不直接尝试“学习”出一个合适的距离度量呢? 这就是度量学习(metric learning)的基本动机.
+
+欲对距离度量进行学习，必须有一个便于学习的距离度量表达形式.9.3节给出了很多种距离度量的表达式，但它们都是“固定的”、没有可调节的参数， 因此不能通过对数据样本的学习来加以改善.为此，我们先来做一个推广.
+
+
+对两个 d 维样本 $x_i$ 和 $x_j$ ,它们之间的平方氏距离可写为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/A6AbEH1aGB.png?imageslim)
+
+其中 $dist_{ij,k}$ 表示 $x_i$ 和 $x_j$ 在第 k 维上的距离.若假定不同属性的重要性不同，则可引入属性权重 w ，得到
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/bb7i9kaAAi.png?imageslim)
+
+
+其中 $w_i\geq 0$ ,$W=diag(w)$ 是一个对角矩阵，$(W)_{ii}=w_i$ 。
+
+
+式(10.33)中的 W 可通过学习确定，但我们还能再往前走一步: W 的非对角元素均为零，这意味着坐标轴是正交的，即属性之间无关;但现实问题中往往不是这样，例如考虑西瓜的“重量”和“体积”这两个属性，它们显然是正相关的，其对应的坐标轴不再正交.为此，将式(10.33)中的 W 替换为一个普通的半正定对称矩阵 M，于是就得到了马氏距离(Mahalanobis distance)
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/0kAHkf289f.png?imageslim)
+
+其中 M 亦称“度量矩阵”，而度量学习则是对 M 进行学习.注意到为了保持 距离非负且对称，M 必须是(半)正定对称矩阵，即必有正交基 P 使得 M 能写为 $M = PP^T$ .
+
+对 M 进行学习当然要设置一个目标.假定我们是希望提高近邻分类器的性能，则可将 M 直接嵌入到近邻分类器的评价指标中去，通过优化该性能指标相应地求得 M .下面我们以近邻成分分析(Neighbourhood Component Analysis,简称 NCA) 为例进行讨论.
+
+近邻分类器在进行判别时通常使用多数投票法，邻域中的每个样本投 1 票, 邻域外的样本投 0 票.不舫将其替换为概率投票法.对于任意样本 $x_j$ ，它对$x_i$ 分类结果影响的概率为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/acecEl3IaK.png?imageslim)
+
+
+
+当 $i=j$ 时，$p_{ij}$ 最大.显然，$x_j$ 对 $x_i$ 的影响随着它们之间距离的增大而减小. 若以留一法 (LOO) 正确率的最大化为目标，则可计算 $x_i$ 的留一法正确率，即它被自身之外的所有样本正确分类的概率为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/5aEk14dC3h.png?imageslim)
+
+其中 $\Omega_i$ 表示与 $x_i$ 属于相同类别的样本的下标集合.于是，整个样本集上的留一法正确率为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/c9HdFlBIHd.png?imageslim)
+
+
+将式(10.35)代入(10.37),再考虑到 $M = PP^T$ ，则 NCA 的优化目标为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/j5eKfiEIAJ.png?imageslim)
+
+
+求解式(10.38)即可得到最大化近邻分类器 LOO 正确率的距离度量矩阵 M.
+
+实际上，我们不仅能把错误率这样的监督学习目标作为度量学习的优化目标，还能在度量学习中引入领域知识。
+
+例如，若已知某些样本相似、某些样本不相似，则可定义“必连”(must-link)约束集合 $\mathcal{M}$ 与“勿连”(caimot-link)约束集合 $\mathcal{C}$ ，$(x_i,x_j)\in \mathcal{M}$  表示 $x_i$ 与$x_j$ 相似，$(x_i,x_k)\in \mathcal{C}$ 表示 $x_i$ 与 $x_k$ 不相似. 显然，我们希望相似的样本之间距离较小，不相似的样本之间距离较大，于是可通过求解下面这个凸优化问题获得适当的度量矩阵 M [Xing et al., 2003]:
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180629/9KdgI9Ll1B.png?imageslim)
+
+其中约束 $M\succeq 0$ 表明 M 必须是半正定的.式(10.39)要求在不相似样本间的距离不小于 1 的前提下，使相似样本间的距离尽可能小.
+
+
+不同的度量学习方法针对不同目标获得“好”的半正定对称距离度量矩阵 M ，若 M 是一个低秩矩阵，则通过对 M 进行特征值分解，总能找到一组正交基，其正交基数目为矩阵 M 的秩 rank(M) , 小于原属性数d.于是，度量学习学得的结果可衍生出一个降维矩阵 $P\in\mathbb{R}^{d\times rank(M)}$ ,能用于降维之目的.
+
+
+
+
+
+
+# COMMENT
+
+
+
+
+10.7阅读材料
+
+懒惰学习方法主要有&近邻学习器、懒惰决策树[Friedman et al., 1996]; 朴素贝叶斯分类器能以懒惰学习方式使用，也能以急切学习方式使用.关于懒 惰学习的更多内容可参阅[Aha, 1997].
+
+主成分分析是一种无监督的线性降维方法，监督线性降维方法最著名的 是线性判别分析(LDA) [Fisher, 1936],参见3.4节，其核化版本KLDA [Baudat and Anouar, 2000]参见6.6节.通过最大化两个变量集合之间的相关性，则可 得到“典型相关分析” (Canonical Correlation Analysis,简称 CCA) [Hotelling， 1936]及其核化版本KCCA [Harden et al., 2004],该方法在多视图学习(multi-view learning)中有广泛应用.在模式识别领域人们发现，直接对矩阵对 象(例如一幅图像)进行降维操作会比将其拉伸为向量(例如把图像逐行拼接 成一个向量)再进行降维操作有更好的性能，于是产生了 2DPCA [Yang et al.， 2004]、2DLDA [Ye et al.5 2005]、(2D)2PCA [Zhang and Zhou, 2005]等方法, 以及基于张量(tensor)的方法[Kolda and Bader, 2009].
+
+参见第13章.
+
+
+除了 Isomap和LLE,常见的流形学习方法还有拉普拉斯特征映射(Lapl-cian Eigenmaps,简称 LE) [Belkin and Niyogi, 2003]、局部切空间对齐(Local Tangent Space Alignment,简称 LTSA) [Zhang and Zha, 2004]等.局部保持投 影(Locality Preserving Projections,简称 LPP) [He and Niyogi, 2004]是基于 LE的线性降维方法.对监督学习而言，根据类别信息扭曲后的低维空间常比本 真低维空间更有利[Geng et al., 2005].值得注意的是，流形学习欲有效进行邻 域保持则需样本密采样，而这恰是高维情形下面临的重大障碍，因此流形学习 方法在实践中的降维性能往往没有预期的好;但邻域保持的想法对机器学习的 其他分支产生了重要影响，例如半监督学习中有著名的流形假设、流形正则化 [Belkin et al., 2006]. [Yan et al., 2007]从图嵌入的角度给出了降维方法的一个 统一框架.
+
+半监督聚类见13.6节.
+
+
+将必连关系、勿连关系作为学习任务优化目标的约束，在半监督聚类的研 究中使用得更早[WagStaffetal.，2001].在度量学习中，由于这些约束是对所有 样本同时发生作用[Xing et al., 2003],因此相应的方法被称为全局度量学习方
+
+法.人们也尝试利用局部约束（例如邻域内的三元关系），从而产生了局部距离 度量学习方法［Weinberger and Saul, 2009］,甚至有一些研究试图为每个样本 产生最合适的距离度量［Prome et al.5 2007; Zhan et al., 2009］.在具体的学习 与优化求解方面，不同的度量学习方法往往采用了不同的技术，例如［Yang et al.，2006］将度量学习转化为判别式概率模型框架下基于样本对的二分类问题 求解5 ［Davis et al.5 2007］将度量学习转化为信息论框架下的Bregman优化问 题，能方便地进行在线学习.

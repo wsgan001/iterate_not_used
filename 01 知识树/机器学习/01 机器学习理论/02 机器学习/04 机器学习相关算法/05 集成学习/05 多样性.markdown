@@ -1,0 +1,160 @@
+
+
+
+多样性
+
+
+## 1 误差-分歧分解
+
+8.1节提到，欲构建泛化能力强的集成，个体学习器应“好而不同”.现在 我们来做一个简单的理论分析。
+
+
+假定我们用个体学习器 $h_1,h_2,\cdots ,h_T$ 通过加权平均法(8.23)结合产生的集成来完成回归学习任务 $f:\mathbb{R}^d\mapsto \mathbb{R}$ 。对示例 x ,定义学习器 $h_i$ 的 “分歧” (ambiguity)为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/Eb0kFhjE5B.png?imageslim)
+
+则集成的“分歧”是
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/l8CCC4a4GB.png?imageslim)
+
+显然，这里的“分歧”项表征了个体学习器在样本 x 上的不一致性，即在 一定程度上反映了个体学习器的多样性。个体学习器 $h_i$ 和集成 H 的平方误差分别为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/d8JlbkLfhi.png?imageslim)
+
+
+令 $\overlien{E}(h|x)=\sum_{i=1}^{T}w_i\cdot E(h_i|x)$ 表示个体学习器误差的加权均值，有
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/mj671Fme53.png?imageslim)
+
+式(8.31)对所有样本 x 均成立，令 $p(x)$ 表示样本的概率密度，则在全样本
+上有
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/bgiE8aF85J.png?imageslim)
+
+类似的，个体学习器 $h_i$ 在全样本上的泛化误差和分歧项分别为：
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/egbkc4A3L6.png?imageslim)
+
+集成的泛化误差为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/ak3BBALEa8.png?imageslim)
+
+
+将式(8.33)~(8.35)代入式(8.32)，再令 $\overline{E}=\sum_{i=1}^{T}w_iE_i$ 表示个体学习器泛化误差的加权均值，$\overline{A}=\sum_{i=1}^{T}w_iA_i$ 表示个体学习器的加权分歧值，有
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/C0h9C0D0Gh.png?imageslim)
+
+式(8.36)这个漂亮的式子明确提示出：个体学习器准确性越高、多样性越大，则集成越好.上面这个分析首先由［Krogh and Vedelsby, 1995］给出，称为 “误差-分歧分解” (error-ambiguity decomposition)。
+
+
+至此，读者可能很高兴：我们直接把 $\overline{E}-\overline{A}$ 作为优化目标来求解，不就能得到最优的集成了？遗憾的是，在现实任务中很难直接对 $\overline{E}-\overline{A}$ 进行优化，不 仅由于它们是定义在整个样本空间上，还由于 $\overline{A}$ 不是一个可直接操作的多样性度量，它仅在集成构造好之后才能进行估计.此外需注意的是，上面的推导过程 只适用于回归学习，难以直接推广到分类学习任务上去。
+
+## 2 多样性度量
+
+
+顾名思义，多样性度量(diversity measure)是用于度量集成中个体分类器的 多样性，即估算个体学习器的多样化程度.典型做法是考虑个体分类器的两两相似/不相似性.
+
+给定数据集 $D=\{(x_1,y_1),(x_2,y_2),\cdots ,(x_m,y_m)}$, 对二分类任务，$y_i\in \{-1,+1\}$ ,分类器 $h_i$ 与 $h_j$ 的预测结果列联表(contingency table)为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/jhAGJELC9I.png?imageslim)
+
+
+其中，a 表示 $h_i$ 与 $h_j$ 均预测为正类的样本数目；b、v、d 含义由此类推; a+b+c+d=m 。基于这个列联表，下面给出一些常见的多样性度量.
+
+- 不合度量(disagreement measure)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/kg3JBjH22e.png?imageslim)
+$dis_{ij}$ 的值域为[0，l].值越大则多样性越大
+
+- 相关系数(correlation coefficient)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/h93e69K7g8.png?imageslim)
+$\rho_{ij}$ 的值域为[-1，1].若 $h_i$ 与 $h_j$ 无关，则值为 0;若 $h_i$ 与 $h_j$ 正相关则值为正，否则为负.
+
+- Q-统计量(Q-statistic)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/C0g5baf83K.png?imageslim)
+$Q_{ij}$ 与相关系数 $\rho_{ij}$  符号相同，且 $|Q_{ij}|\leq |\rho_{ij}|$ .
+
+- $\kappa$ 统计量($\kappa$-statistic)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/HgedF2bdfi.png?imageslim)
+其中， $p_1$ 是两个分类器取得一致的概率; $p_2$ 是两个分类器偶然达成一致的概率，它们可由数据集 D 估算：
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/BFbh9he0K9.png?imageslim)
+若分类器 $h_i$ 与 $h_j$ 在 D 上完全一致，则 $\kappa=1$ ;若它们仅是偶然达成一致,则 $\kappa= 0$ . $\kappa$ 通常为非负值，仅在 $h_i$ 与 $h_j$ 达成一致的概率甚至低于偶然性的情况下取负值.
+
+
+以上介绍的都是 “成对型”(pairwise)多样性度量，它们可以容易地通过 2 维图绘制出来.例如著名的 “$\kappa$-误差图”，就是将每一对分类器作为图上的一个点，横坐标是这对分类器的值，纵坐标是它们的平均误差，图8.10 给出了 一个例子.显然，数据点云的位置越高，则个体分类器准确性越低；点云的位置 越靠右，则个体学习器的多样性越小.
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/AcJ90lD57g.png?imageslim)
+
+## 3多样性增强
+
+在集成学习中需有效地生成多样性大的个体学习器.与简单地直接用初始 数据训练出个体学习器相比，如何增强多样性呢？
+
+一般思路是在学习过程中引入随机性，常见做法主要是对数据样本、输入属性、输出表示、算法参数进行扰动.
+
+### 数据样本扰动
+给定初始数据集，可从中产生出不同的数据子集，再利用不同的数据子集训练出不同的个体学习器.数据样本扰动通常是基于采样法，例如在Bagging 中使用自助采样，在AdaBoost中使用序列采样.此类做法简单高效，使用最广.
+
+对很多常见的基学习器，例如决策树、神经网络等，训练样本稍加变化就会 导致学习器有显著变动，数据样本扰动法对这样的“不稳定基学习器”很有效; 然而，有一些基学习器对数据样本的扰动不敏感，例如线性学习器、支持向量机、朴素贝叶斯、近邻学习器等，这样的基学习器称为稳定基学习器(stable base learner),对此类基学习器进行集成往往需使用输入属性扰动等其他机制.
+
+### 输入属性扰动
+子空间一般指从初始的高维属性空间投影产生的低维属性空间，描述低维空间的属性是通过初始属性投影变换而得，未必是初始属性.参见第10章.
+
+训练样本通常由一组属性描述，不同的“子空间” (subspace,即属性子 集)提供了观察数据的不同视角.显然，从不同子空间训练出的个体学习器必然 有所不同.著名的隨机子空间(random subspace)算法就依赖于输入属性扰动，该算法从初始属性集中抽取出若干个属性子集，再基于每个属性子集训练一个基学习器，算法描述如图 8.11 所示。
+
+对包含大量冗余属性的数据， 在子空间中训练个体学习器不仅能产生多样性大的个体，还会因属性数的减少而大幅节省时间开销，同时，由于冗余属性多，减少一些属性后训练出的个体学习器也不至于太差。若数据只包含少量属性，或者冗余属性很少，则不宜使用输入属性扰动法.
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/3aHcCkKK4m.png?imageslim)
+
+
+### 输出表示扰动
+
+此类做法的基本思路是对输出表示进行操级以增强多样性.可对训练样本 的类标记稍作变动，如“翻转法”(Flipping Output) 随机改变 一些训练样本的标记；也可对输出表示进行转化，如“输出调制法”(Output Smearing) 将分类输出转化为回归输出后构建个体学习器; 还可将原任务拆解为多个可同时求解的子任务，如ECOC法利用纠错输出码将多分类任务拆解为一系列二分类任务来训练基学习器.
+
+### 算法参数扰动
+
+基学习算法一般都有参数需进行设置，例如神经网络的隐层神经元数、初始连接权值等，通过随机设置不同的参数，往往可产生差别较大的个体学习器.
+
+例如 “负相关法”(Negative Correlation) 显式地通过正则 化项来强制个体神经网络使用不同的参数.对参数较少的算法，可通过将其学 习过程中某些环节用其他类似方式代替，从而达到扰动的目的，
+
+例如可将决策树使用的属性选择机制替换成其他的属性选择机制.值得指出的是，使用单一学习器时通常需使用交叉验证等方法来确定参数值，这事实上已使用了不同参数训练出多个学习器，只不过最终仅选择其中一个学习器进行使用，而集成学习则相当于把这些学习器都利用起来；由此也可看出，集成学习技术的实际计算开销并不比使用单一学习器大很多.
+
+不同的多样性增强机制可同时使用，例如 8.3.2 节介绍的随机森林中同时使用了数据样本扰动和输入属性扰动，有些方法甚至同时使用了更多机制[Zhou, 2012]。
+
+
+
+
+
+
+
+
+
+
+
+# COMMENT
+
+下面是辅助阅读
+
+
+，集成学习方面的主要推荐读物是［Zhou, 2012 本章提及的所有内容在 该书中都有更深入详细的介绍.［Kuncheva, 2004; Rokach, 2010b］可供参考. ［Schapire and Freund, 2012］则是专门关于 Boosting 的著作.
+
+Boosting 源于［Schapire, 1"0］对［Kearns and Valiant, 1989］提出的“弱 学习是否等价于强学习”这个重要理论问题的构造性证明.最初的Boosting 算法仅有理论意义，经数年努力后［Freund and Schapire, 1997］提出AdaBoost， 并因此获得理论计算机科学方面的重要奖项——哥德尔奖.不同集成学习方 法的工作机理和理论性质往往有显著不同，例如从偏差-方差分解的角度看， Boosting主要关注降低偏差，而Bagging主要关注降低方差.MultiBoosting ［Webb，2000］等方法尝试将二者的优点加以结合.关于Boosting和Bagging已 有很多理论研究结果，可参阅［Zhou, 2012］第2〜3章.
+
+这个现象的严格表述是 “为什么Ada Boost在训 练误差达到零之后继续训 练仍能提高泛化性能”； 若一直训练下去，过拟合 最终仍会出现.
+
+8.2 节给出的 AdaBoost 推导源于“统计视角” (statistical view) ［Friedman et al., 2000］,此派理论认为AdaBoost实质上是基于加性模型(additive model)以类似牛顿迭代法来优化指数损失函数.受此启发，通过将迭代优化过 程替换为其他优化方法，产生了 GradientBoosting ［Friedman, 2001］＞ LPBoost ［Demiriz et al., 2008］等变体算法.然而，这派理论产生的推论与AdaBoost实际 行为有相当大的差别［Mease and Wyner, 2008］,尤其是它不能解释AdaBoost 为什么没有过拟合这个重要现象，因此不少人认为，统计视角本身虽很有意义， 但其阐释的是一个与AdaBoost相似的学习过程而并非AdaBoost本身.“间 隔理论”(margin theory) ［Schapire et al., 1998］能直观地解释这个重要现象,
+
+但过去15年中一直存有争论,直到最近的研究结果使它最终得以确立，并对新 型学习方法的设计给出了启示;相关内容可参阅［Zhou5 2014］.
+
+本章仅介绍了最基本的几种结合方法，常见的还有基于D-S证据理论的方 法、动态分类器选择、混合专家(mixture of experts)等.本章仅介绍了成对型 多样性度量.［Kuncheva and Whitaker, 2003; Tang et al., 2006］显示出，现有 多样性度量都存在显著缺陷.如何理解多样性，被认为是集成学习中的圣杯问 题.关于结合方法和多样性方面的内容，可参阅［Zhou, 2012］第4〜5章.
+
+对并行化集成的修剪亦 称“选择性集成”(selective ensemble),但现在一 般将选择性集成用作集成 修剪的同义语，亦称“集 成选择’’ (ensemble selection).
+
+在集成产生之后再试图通过去除一些个体学习器来获得较小的集成，称 为集成修剪(ensemble pruning).这有助于减小模型的存储开销和预测时间开 销.早期研究主要针对序列化集成进行，减小集成规模后常导致泛化性能下降 ［Rokach, 2010a］; ［Zhou et al., 2002］揭示出对并行化集成进行修剪能在减小规 模的同时提升泛化性能，并催生了基于优化的集成修剪技术.这方面的内容可 参阅［Zhou, 2012］第 6 章.
+
+关于聚类、半监督学习、代价敏感学习等任务中集成学习的内容，可参阅 ［Zhou, 2012］第7〜8章.事实上，集成学习已被广泛用于几乎所有的学习任务. 著名数据挖掘竞赛KDDCup历年的冠军几乎都使用了集成学习.
+
+由于集成包含多个学习器，即便个体学习器有较好的可解释性，集成仍是 黑箱模型.已有一些工作试图改善集成的可解释性,例如将集成转化为单模 型、从集成中抽取符号规则等，这方面的研究衍生出了能产生性能超越集成 的单学习器的“二次学习”(twice-learning)技术，例如NeC4.5算法［Zhou and Jiang, 2004］.可视化技术也对改善可解释性有一定帮助.可参阅［Zhou, 2012］ 第8章.
+
+
+
+# REF
+1. 《机器学习》周志华

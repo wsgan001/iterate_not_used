@@ -1,0 +1,1686 @@
+
+# REF
+1. 《深度学习》Ian Goodfellow
+
+# TODO
+
+
+术语
+绝对值整流 absolute value rectification 167, 172, 173
+
+准确率 accuracy 91, 360, 372-375
+
+声学 acoustic 392
+
+激活函数 activation function 147, 245, 257, 258, 260, 271-273, 277, 278
+
+AdaGrad AdaGrad 261, 262
+
+对抗 adversarial 464
+
+对抗样本 adversarial example 230, 231
+
+对抗训练 adversarial training 230, 231, 233, 474
+
+几乎处处 almost everywhere 64
+
+几乎必然 almost sure 114
+
+几乎必然收敛 almost sure convergence 114
+
+选择性剪接数据集 alternative splicing dataset 456
+
+原始采样 Ancestral Sampling 494, 495, 507, 513, 557, 565, 569, 591, 606, 610
+
+退火重要采样 annealed importance sampling 533-537, 566, 571, 612
+
+专用集成电路 application-specific integrated circuit 384
+
+近似贝叶斯计算 approximate Bayesian computation 611
+
+近似推断 approximate inference 490, 497, 499, 539-542, 556-558
+
+架构 architecture 170
+
+人工智能 artificial intelligence 1-4, 6-10, 16, 17, 21, 47, 49, 136, 138, 141, 279, 362, 377, 385, 411, 416, 444, 462, 471, 472, 476, 614
+
+人工神经网络 artificial neural network 12, 13, 20, 21, 377
+
+渐近无偏 asymptotically unbiased 109
+
+异步随机梯度下降 Asynchoronous Stochastic Gradient Descent 380
+
+异步 asynchronous 240
+
+注意力机制 attention mechanism 313, 339, 358, 382, 383, 404, 405, 596
+
+属性 attribute 411
+
+自编码器 autoencoder xv, 4, 20, 21, 169, 233, 234, 245, 260, 293, 301-303, 322, 373, 420, 425, 426, 428-442, 445-448, 450, 452, 453, 464, 474, 514, 521, 528, 551, 558, 595, 596, 601, 606-608
+
+自动微分 automatic differentiation 191
+
+自动语音识别 Automatic Speech Recognition 390, 391
+
+自回归网络 auto-regressive network 592, 602, 603, 605, 606
+
+反向传播 back propagate 425
+
+反向传播 back propagation 147, 175, 406, 429, 530, 560, 575-577, 585-588, 592, 594-596, 610 回退 back-off 478
+
+反向传播 backprop 153, 176, 181, 182, 185, 187, 188, 384, 385
+
+通过时间反向传播 back-propagation through time 326-328, 586
+
+反向传播 backward propagation 257-259, 271, 326, 328, 329, 345-347, 354, 355, 358 词袋 bag of words 401
+
+Bagging bootstrap aggregating 220-222, 224, 225, 229
+
+bandit bandit 409
+
+批量 batch viii, 237-239, 251-253, 256, 261, 273
+
+批标准化 batch normalization 230, 271-273, 362, 455, 456
+
+贝叶斯误差 Bayes error 102, 103, 360
+
+贝叶斯规则 Bayes' rule 63, 64, 119, 463, 465, 535
+
+贝叶斯推断 Bayesian inference 87, 121, 122, 450
+
+贝叶斯网络 Bayesian network 480, 483, 496, 566
+
+贝叶斯概率 Bayesian probability 49
+
+贝叶斯统计 Bayesian statistics 118
+
+基准 bechmark 106, 360
+
+信念网络 belief network 21, 480, 592, 603
+
+Bernoulli 分布 Bernoulli distribution 56, 61, 157-159, 369, 435, 548, 570, 573, 593
+
+基准 baseline 362, 363, 375
+
+BFGS BFGS 270
+
+偏置 bias in affine function 96, 199, 202, 243, 257, 260, 326, 334, 350-354, 371, 396, 408, 546, 547, 559, 564, 565, 567, 571, 572, 575, 579, 580, 582, 585
+
+偏差 bias in statistics 197, 198, 265, 400
+
+有偏 biased 240, 248
+
+有偏重要采样 biased importance sampling 400, 505
+
+偏差 biass 114
+
+二元语法 bigram 393, 400
+
+二元关系 binary relation 410
+
+二值稀疏编码 binary sparse coding 546-551
+
+比特 bit 66
+
+块坐标下降 block coordinate descent 274
+
+块吉布斯采样 block Gibbs Sampling 500, 510, 563
+
+玻尔兹曼分布 Boltzmann distribution 485
+
+玻尔兹曼机 Boltzmann Machine 248, 260, 293, 485, 486, 500, 513, 520, 559-561, 567, 571, 575, 576, 578, 579, 584-586, 596, 607
+
+Boosting Boosting 222, 229
+
+桥式采样 bridge sampling 533, 536, 537
+
+广播 broadcasting 29
+
+磨合 Burning-in 509, 518-520, 522, 523, 571, 573
+
+变分法 calculus of variations 155, 156, 544, 545, 551, 554, 555
+
+容量 capacity 98, 99, 101, 104, 106, 114, 215, 222, 237, 359, 364-367, 381, 382, 394, 401, 402, 430, 431, 433, 434, 436, 440, 441, 470, 523, 528
+
+级联 cascade 382, 384
+
+灾难遗忘 catastrophic forgetting 168
+
+范畴分布 categorical distribution 56, 369
+
+因果因子 causal factor 466, 470, 472, 473
+
+因果模型 causal modeling 53
+
+中心差分 centered difference 373
+
+中心极限定理 central limit theorem 58, 504
+
+链式法则 chain rule 53, 76, 525
+
+混沌 chaos 258
+
+弦 chord 492, 493
+
+弦图 chordal graph 493
+
+梯度截断 clip gradient 164
+
+截断梯度 clipping the gradient 353
+
+团 clique 482-486, 491-494, 496, 497, 539, 543, 565
+
+团势能 clique potential 482, 484, 485
+
+闭式解 closed form solution 206, 420, 422
+
+级联 coalesced 379, 383
+
+编码 code 429-431, 433-435, 445, 447, 448
+
+协同过滤 collaborative filtering 407, 408
+
+列 column 28
+
+列空间 column space 33
+
+共因 common cause 489
+
+完全图 complete graph 491
+
+复杂细胞 complex cell 312
+
+计算图 computational graph 176, 247, 320-322, 328-330, 341, 355, 498, 576, 596, 603 计算机视觉 Computer Vision 218, 363, 377, 384-386, 389, 421, 470 概念漂移 concept drift 457, 458
+
+条件计算 conditional computation 382
+
+条件概率 conditional probability 52, 53, 64, 69, 524
+
+条件独立的 conditionally independent 53, 418, 481, 487, 488, 492
+
+共轭 conjugate 268
+
+共轭方向 conjugate directions 267
+
+共轭梯度 conjugate gradient 267-270
+
+联结主义 connectionism 12, 13, 15, 16, 19, 377, 559
+
+一致性 consistency 114
+
+约束优化 constrained optimization 82, 83, 85, 220, 485
+
+特定环境下的独立 context-specific independences 488
+
+contextual bandit contextual bandit 409, 410
+
+延拓法 continuation method 278, 279
+
+收缩 contractive 346, 445-447
+
+收缩自编码器 contractive autoencoder 434, 438, 440, 442, 445, 446, 606, 607
+
+对比散度 contrastive divergence 248, 438, 519-523, 527, 529, 564, 565, 571, 574, 575, 580-582, 586, 608
+
+凸优化 Convex optimization 82, 241-243, 261, 274
+
+卷积 convolution 281, 282, 450, 499
+
+卷积玻尔兹曼机 Convolutional Boltzmann Machine 293
+
+卷积玻尔兹曼机 convolutional Boltzmann machine 584
+
+卷积网络 convolutional net 472
+
+卷积网络 convolutional network 20, 21, 144, 175, 242, 246, 281, 282, 285, 287, 288, 290, 293-297, 299, 301, 302, 304, 306-314, 317-319, 337, 338, 360, 362, 363, 375, 379, 391, 395, 402, 403, 408, 456, 469, 470, 583, 584, 594, 601, 604
+
+卷积神经网络 convolutional neural network 145, 218, 229, 281, 284, 285, 290, 295, 306 坐标上升 coordinate ascent 541, 543, 572 坐标下降 coordinate descent 274 共父 coparent 539, 547
+
+相关系数 correlation 55
+
+代价 cost 119, 134, 243-246, 248, 252, 257, 360, 361, 365, 370, 455, 506
+
+代价函数 cost function 26, 74, 76, 78, 87, 104, 115, 116, 132-134, 152, 201, 203, 204, 208, 209, 214, 215, 231, 235-237, 242-249, 251, 252, 255, 269, 271, 272, 274, 275, 278, 279, 353, 360, 365, 375, 413, 421, 423, 433, 437, 438, 453, 465, 506, 524, 575, 588, 601
+
+协方差 covariance 55, 60, 202, 220, 427
+
+协方差矩阵 covariance matrix 55, 58, 60, 418, 427
+
+协方差 RBM covariance RBM 580, 581
+
+覆盖 coverage 361, 375
+
+准则 criterion 74, 210, 251, 254, 256, 262-265, 267, 269, 322, 327, 345, 401, 435, 437-439, 446, 447, 575, 586, 594, 596, 608, 610
+
+临界点 critical point 74-77, 79-82, 242-245, 249, 250, 266, 453, 551, 553
+
+临界温度 critical temperatures 514
+
+互相关函数 cross-correlation 283
+
+交叉嫡 cross-entropy 68, 116, 153-156, 189-191, 194, 330, 333, 396, 397
+
+累积函数 cumulative function 504
+
+课程学习 curriculum learning 279, 280, 327
+
+维数灾难 curse of dimensionality 135, 136, 138, 394, 395, 468, 473, 603
+
+曲率 curvature 78-81, 99, 201, 242, 253, 266
+
+控制论 cybernetics 12, 13
+
+衰减 damping 551
+
+数据生成分布 data generating distribution 97, 236, 240, 241, 251
+
+数据生成过程 data generating process 97, 449
+
+数据并行 data parallelism 380
+
+数据点 data point 92
+
+数据集 dataset 87, 92-95, 97, 98, 101, 104, 106, 107, 113-115, 118, 119, 125, 128, 131, 133, 134, 141
+
+数据集增强 dataset augmentation 386, 389
+
+决策树 decision tree 125, 127, 382-384, 466
+
+解码器 decoder 4, 338, 339, 402-404, 417, 420, 421, 423-427, 429-431, 434-436, 439-441, 447, 469, 595
+
+分解 decompose 38
+
+深度信念网络 deep belief network 17, 21, 310, 452, 472, 520, 536, 538, 562, 564-566, 568, 569, 572, 584, 591, 609
+
+深度玻尔兹曼机 Deep Boltzmann Machine xiv, 20, 21, 452, 513, 520, 523, 526, 527, 538, 539, 551, 557, 562, 564, 566-577, 584, 609
+
+深度回路 deep circuit 472
+
+深度前馈网络 deep feedforward network 145, 147, 391, 417, 428
+
+深度生成模型 deep generative model 452
+
+深度学习 deep learning 1, 4-7, 10-15, 17, 18, 22-24, 26, 73, 74, 76, 79, 82, 87-89, 92, 93, 100, 105, 125, 128, 132, 133, 135-138, 141, 144, 197, 198, 210-212, 230, 235, 237, 239, 248, 251, 256, 261, 262, 266, 269, 270, 275, 345, 358, 362, 364, 371, 374, 377, 379, 381, 383-386, 390-392, 407, 408, 410, 412, 415, 416, 444, 448, 456, 458, 462, 466, 472, 474-476, 484, 496-499, 501, 506, 507, 510, 516, 518, 521, 526, 538, 539, 542, 543, 555
+
+深度模型 deep model 93, 235, 236, 241, 243, 245, 257, 263, 277, 452, 522, 526
+
+深度网络 deep network 144, 211, 258, 272, 278, 471
+
+信任度 degree of belief 49
+
+去噪 denoising 90, 92, 433, 437, 438, 440, 445, 476, 528
+
+去噪自编码器 denoising autoencoder xv, 207, 433, 434, 436-440, 442, 445, 454, 457, 588, 606-
+
+611
+
+去噪得分匹配 denoising score matching 438, 528
+
+依赖 dependency 474, 476, 488, 492, 496
+
+深度 depth 145
+
+导数 derivative 74, 76, 77, 81, 86
+
+描述 description 70
+
+设计矩阵 design matrix 93-95, 129
+
+细致平衡 detailed balance 608
+
+探测级 detector stage 290
+
+确定性 deterministic 238
+
+对角矩阵 diagonal matrix 36
+
+微分熵 differential entropy 67, 552
+
+微分方程 differential equation 255
+
+降维 dimensionality reduction 406, 429, 448
+
+Dirac delta 函数 Dirac delta function 59
+
+Dirac 分布 dirac distribution 59, 60, 528, 542, 543, 553, 554
+
+有向 directed 69
+
+有向图模型 directed graphical model 331, 334, 418, 462, 480-482, 491, 494, 495, 591, 603 有向模型 Directed Model 481, 482, 485, 488, 490-492, 495, 507, 538, 557, 565, 566, 594 方向导数 directional derivative 76, 77
+
+判别 RBM discriminative RBM 453
+
+判别器网络 discriminator network 597
+
+分布式表示 distributed representation 16, 138, 228, 394-396, 404, 406-408, 410-412, 444, 449, 459, 466-471, 473, 498, 499
+
+深度神经网络 DNN 247, 261, 262, 265, 271, 273, 381, 384, 391, 450-453, 471, 566
+
+领域自适应 domain adaption 457
+
+点积 dot product 30, 35, 123, 124
+
+双反向传播 double backprop 233, 474
+
+双重分块循环矩阵 doubly block circulant matrix 284, 307
+
+降采样 downsampling 293, 298
+
+Dropout Dropout 208, 222-230, 252, 257, 362, 364, 366, 367, 381, 383, 391, 455, 456, 574, 576, 588, 600
+
+Dropout Boosting Dropout Boosting 229
+
+d-分离 d-separation 488, 490
+
+动态规划 dynamic programming 188
+
+动态结构 dynamic structure 382, 383
+
+提前终止 early stopping 212-217, 237, 258, 362, 454, 455
+
+回声状态网络 echo state network 21, 345-348
+
+有效容量 effective capacity 100
+
+特征分解 eigendecomposition 37-39
+
+特征值 eigenvalue 37
+
+特征向量 eigenvector 37
+
+基本单位向量 elementary basis vectors 485
+
+元素对应乘积 element-wise product 30
+
+嵌入 embedding 442, 443
+
+经验分布 empirical distribution 59, 60, 236, 238, 528
+
+经验频率 empirical frequency 59
+
+经验风险 empirical risk 236
+
+经验风险最小化 empirical risk minimization 236, 237
+
+编码器 encoder 4, 338, 339, 402-404, 421, 424-427, 429-432, 434-440, 442, 443, 445, 447, 451, 558, 595, 596
+
+端到端的 end-to-end 359, 362, 363, 374, 392, 496
+
+能量函数 energy function 485, 486, 499, 500, 511, 518, 559-561, 566, 567, 575, 578-583, 586
+
+基于能量的模型 Energy-based model 485-487, 499, 506, 507, 510, 511, 513, 514, 559, 561, 566, 583
+
+集成 ensemble 197, 220-223, 225-227, 229, 381, 402, 450
+
+集成学习 ensemble learning 420
+
+轮 epoch 242, 374
+
+轮数 epochs 213
+
+等式约束 equality constraint 83, 84
+
+均衡分布 Equilibrium Distribution 508, 509
+
+等变 equivariance 286
+
+等变表示 equivariant representations 285
+
+误差条 error bar 103
+
+误差函数 error function 74
+
+误差度量 error metric 359, 360
+
+错误率 error rate 91, 360, 361, 366
+
+估计量 estimator 108-115, 197, 456, 468, 520, 523
+
+欧几里得范数 Euclidean norm 34
+
+欧拉-拉格朗日方程 Euler-Lagrange Equation 552
+
+证据下界 evidence lower bound 539, 540, 543, 544, 548, 565
+
+样本 example 13, 23, 88, 90-95, 97, 99, 100, 102, 106, 107, 109, 110, 112-119, 123-125, 128, 129, 131-133, 135-138, 141, 210
+
+额外误差 excess error 252, 256
+
+期望 expectation 54, 56
+
+期望最大化 expectation maximization 419, 541-544, 595
+
+E 步 expectation step 541
+
+期望值 expected value 54
+
+经验 experience, E 87, 88, 92, 94, 95
+
+专家网络 expert network 383
+
+相消解释 explaining away 538, 550, 565
+
+相消解释作用 explaining away effect 489
+
+解释因子 explanatory factort 463, 471, 473, 474
+
+梯度爆炸 exploding gradient 248
+
+利用 exploitation 409, 410
+
+探索 exploration 409, 410
+
+指数分布 exponential distribution 58
+
+因子 factor 482-484, 486, 493, 494, 559, 585
+
+因子分析 factor analysis 418, 420, 426
+
+因子图 factor graph 493, 494
+
+因子 factorial 417, 425, 426, 501, 544, 551, 562, 563, 568, 569
+
+分解 factorization 69, 70
+
+分解的 factorized 474
+
+变差因素 factors of variation 4, 6, 173, 470, 472, 473
+
+快速 Dropout fast dropout 228
+
+快速持续性对比散度 fast persistent contrastive divergence 524
+
+可行 feasible 83, 84, 86
+
+特征 feature 88, 92-96, 98, 99, 104, 123-125, 128-131
+
+特征提取器 feature extractor 422, 425, 453, 469, 543
+
+特征映射 feature map 282, 389
+
+特征选择 feature selection 204
+
+反馈 feedback 145
+
+前向 feedforward 145
+
+前馈分类器 feedforward classifier 464
+
+前馈网络 feedforward network 145-150, 156, 169, 171, 172, 174, 193-196, 245, 247, 248, 259, 276, 319, 321, 330, 334, 337, 344, 347, 361, 362, 429, 432, 434, 435, 437, 449, 450, 464, 465, 472, 474, 593
+
+前馈神经网络 feedforward neural network 145-148, 151, 153, 165, 171, 175, 246, 434 现场可编程门阵列 field programmable gated array 384 精调 fine-tune 451, 452, 455, 520
+
+精调 fine-tuning 275, 276, 425, 565
+
+有限差分 finite difference 373
+
+第一层 first layer 145
+
+不动点方程 fixed point equation 545, 549, 550, 554, 556, 557, 569, 572
+
+定点运算 fixed-point arithmetic 378
+
+翻转 flip 283
+
+浮点运算 float-point arithmetic 378
+
+遗忘门 forget gate 350-352
+
+前向模式累加 forward mode accumulation 192
+
+前向传播 forward propagation 175, 182, 183, 257-259, 285, 301, 302, 309, 325, 326, 338, 346, 349
+
+傅立叶变换 Fourier transform 308, 309
+
+中央凹 fovea 313
+
+自由能 free energy 487
+
+频率派概率 frequentist probability 49
+
+频率派统计 frequentist statistics 118
+
+Frobenius 范数 Frobenius norm 35, 41, 44, 45
+
+F 分数 F-score 361
+
+全 full 297
+
+泛函 functional 155, 551-555
+
+泛函导数 functional derivative 551-554
+
+Gabor 函数 Gabor function 314-317
+
+Gamma 分布 Gamma distribution 581
+
+门控 gated 349-352, 355
+
+门控循环网络 gated recurrent net 362
+
+门控循环单元 gated recurrent unit 349, 351, 362
+
+门控 RNN gated RNN 349, 351
+
+选通器 gater 383
+
+高斯分布 Gaussian distribution xxvi, 57, 58, 60, 68, 154, 156, 162, 163, 165, 295, 418, 426, 554, 555, 578, 580, 581, 587, 588, 595, 600, 602
+
+高斯核 Gaussian kernel 124, 466
+
+高斯混合模型 Gaussian Mixture Model 60, 61, 390, 391, 496
+
+高斯混合体 Gaussian mixtures 466
+
+高斯输出分布 Gaussian output distribution 155
+
+高斯 RBM Gaussian RBM 579-581
+
+Gaussian-Bernoulli RBM Gaussian-Bernoulli RBM xiv, 578-580
+
+通用 GPU general purpose GPU 379
+
+泛化 generalization 97, 99, 136, 137, 146-149, 151, 172, 174, 194, 197, 198, 257, 277, 364, 381, 386, 389, 425, 457-459, 465, 468, 469, 472
+
+泛化误差 generalization error 97, 100-102, 114, 236, 239-241, 250, 252, 257, 259, 261, 362, 364-367, 425
+
+泛化 generalize 257, 457-459, 468-470, 473, 592, 603, 606
+
+广义函数 generalized function 59
+
+广义 Lagrange 函数 generalized Lagrange function 83, 84, 204
+
+广义 Lagrangian generalized Lagrangian 83, 85
+
+广义伪似然 generalized pseudolikelihood 525, 526, 576
+
+广义伪似然估计 generalized pseudolikelihood estimator 525
+
+广义得分匹配 generalized score matching 527, 528
+
+生成式对抗框架 generative adversarial framework 465
+
+生成式对抗网络 generative adversarial network 464, 465, 513, 531, 592, 597-601
+
+生成模型 generative model 385, 417, 419, 420, 422, 425, 426, 428, 431-433, 440, 453, 464, 465, 470, 471, 498, 513, 515, 531, 537, 557-559, 564-566, 585, 587, 591, 592, 594, 596, 600, 611-614
+
+生成式建模 generative modeling 594, 595, 597, 602, 610-613
+
+生成矩匹配网络 generative moment matching network 600, 601
+
+生成随机网络 generative stochastic network xv, 431, 607-611
+
+生成器网络 generator network 592-595, 597, 599-601
+
+吉布斯分布 Gibbs distribution 484
+
+Gibbs 采样 Gibbs Sampling 495, 499-501, 510-513, 515, 522, 527, 565, 568, 570, 573, 576, 581, 582
+
+吉布斯步数 Gibbs steps 519, 521, 523, 573
+
+全局对比度归一化 Global contrast normalization 387-389
+
+全局极小值 global minima 245, 246
+
+全局最小点 global minimum 75, 76, 82, 85, 243, 244, 249, 279
+
+梯度 gradient 76-78, 82, 83, 85, 86, 199-201, 203, 205, 214, 215, 323, 326-330, 343, 344, 346, 347, 349, 352-358, 438, 439
+
+梯度上升 gradient ascent 548
+
+梯度截断 gradient clipping 246, 248, 258, 354, 355
+
+梯度下降 gradient descent 74, 75, 77-83, 85, 123, 132-134, 205, 206, 215, 237, 238, 242, 245-247, 249, 251-255, 258, 259, 266, 272-274, 354, 365, 371, 380, 381, 405, 421, 429, 437, 447, 453, 470, 511, 541, 545, 549, 577, 589, 594
+
+图模型 graphical model 69, 331-334, 396, 475, 476, 479, 481, 487, 488, 491, 494-499, 501, 538, 543, 544, 550, 551, 554, 559, 561, 562, 566, 567, 591, 603
+
+图形处理器 Graphics Processing Unit 239, 378-380, 383, 384
+
+贪心 greedy 451, 452
+
+贪心算法 greedy algorithm 275, 451
+
+贪心逐层预训练 greedy layer-wise pretraining 310, 572, 575, 576
+
+贪心逐层训练 greedy layer-wise training 572
+
+贪心逐层无监督预训练 greedy layer-wise unsupervised pretraining 450-452
+
+贪心监督预训练 greedy supervised pretraining 275, 276
+
+贪心无监督预训练 greedy unsupervised pretraining 452, 574
+
+网格搜索 grid search 368-370
+
+Hadamard 乘积 Hadamard product xxv, 30
+
+汉明距离 Hamming distance 528
+
+硬专家混合体 hard mixture of experts 383
+
+硬双曲正切函数 hard tanh 170
+
+簧风琴 harmonium 499, 561
+
+哈里斯链 Harris Chain 509
+
+Helmholtz 机 Helmholtz machine 431, 592
+
+Hessian Hessian xxv, 78-82, 200, 201, 203, 204, 215, 239, 242, 244, 246, 248, 253, 266-268, 270, 271, 279, 352, 453, 454, 575
+
+异方差 heteroscedastic 162
+
+隐藏层 hidden layer 5, 13, 146-148, 150, 165, 171-173, 184, 188, 190, 195, 224, 271, 272, 275278, 301, 324, 429, 434, 440, 446, 448, 449, 471, 472, 527, 538, 561-571, 573, 580, 591, 604, 606, 610
+
+隐马尔可夫模型 Hidden Markov Model 390-392
+
+隐藏单元 hidden unit vi, 5, 15, 16, 20, 21, 148, 154, 156, 165, 166, 168-172, 175, 190, 195, 206-208, 211, 215, 218, 220, 222-224, 226, 229, 230, 243, 257, 260, 273, 295, 300, 321, 323-327, 329, 332, 334, 335, 339, 345, 348-350, 352, 363, 365-368, 374, 382, 383, 387, 405, 421, 434, 437, 445, 446, 466, 469-472, 492, 496, 499, 500, 510, 517, 520, 522, 527, 539, 541, 543, 546, 547, 550, 560-562, 565-571, 575, 578-582, 584-586, 592, 594, 602, 604-606, 613
+
+隐藏变量 hidden variable 526, 538
+
+爬山 hill climbing 77
+
+超参数 hyperparameter 253, 254, 259, 261-264, 359, 363-371, 375, 455
+
+超参数优化 hyperparameter optimization 368
+
+假设空间 hypothesis space 98
+
+同分布的 identically distributed 97
+
+可辨认的 identifiable 243
+
+单位矩阵 identity matrix xxiii, 31
+
+独立同分布假设 i.i.d. assumption 97
+
+病态 ill conditioning 242
+
+不道德 immorality 491, 492
+
+重要采样 Importance Sampling 400, 401, 504-506, 532-536, 592, 596
+
+相互独立的 independent 53, 97
+
+独立成分分析 independent component analysis 418-422
+
+独立同分布 independent identically distributed 503, 531
+
+独立子空间分析 independent subspace analysis 421
+
+索引 index of matrix 27, 28
+
+指示函数 indicator function 58
+
+不等式约束 inequality constraint 83-85
+
+推断 inference xiv, 2, 208, 225, 227-229, 393, 394, 415, 431, 432, 497, 542, 559, 560, 565, 567-571, 573-577, 582, 586, 592-596, 598, 600, 605, 606, 613
+
+无限 infinite 456
+
+信息检索 information retrieval 448
+
+内积 inner product 123
+
+输入 input 282, 453
+
+输入分布 input distribution 453, 454, 457
+
+干预查询 intervention query 53
+
+不变 invariant 291
+
+求逆 invert 579
+
+Isomap Isomap 456
+
+各向同性 isotropic 58, 61
+
+Jacobian Jacobian xxv, 77, 78, 176, 178, 180, 185-187, 233, 278, 329, 343, 345, 346, 373, 421, 445, 446
+
+Jacobian 矩阵 Jacobian matrix 65, 178, 192
+
+联合概率分布 joint probability distribution 50, 52, 53, 69, 559-561, 566
+
+Karush-Kuhn-Tucker Karush-Kuhn-Tucker 83-85, 204, 206
+
+核函数 kernel function 123, 282
+
+核机器 kernel machine 124, 125, 146, 210, 345, 466, 564
+
+核方法 kernel method 124
+
+核技巧 kernel trick 123, 124, 133, 146
+
+KL 散度 KL divergence 116, 219, 539, 545
+
+知识库 knowledge base 2, 411, 412
+
+知识图谱 knowledge graph 412
+
+Krylov 方法 Krylov method 193
+
+KL 散度 Kullback-Leibler (KL) divergence xxvi, 67, 68
+
+标签 label 92, 94, 124, 136, 453, 459, 470, 472
+
+标注 labeled 363, 364, 375, 450, 454, 456, 458, 459, 461, 462
+
+拉格朗日乘子 Lagrange multiplier 552, 553
+
+语言模型 language model 355, 392-394, 402, 403, 406, 410, 506
+
+Laplace 分布 Laplace distribution 58
+
+大学习步骤 large learning step 544
+
+潜在 latent 163, 418, 419, 426, 431, 451, 463, 496, 522, 560, 561, 597, 599, 602, 609 潜层 latent layer 561
+
+潜变量 latent variable xiii, 60, 163, 243, 396, 417-419, 429, 431-433, 435, 452, 462, 466, 472, 486, 487, 496-499, 501, 512, 514, 517, 521, 527, 538, 539, 541, 542, 544, 545, 548, 554, 560-562, 564-567, 576, 592, 594-596, 607, 609
+
+大数定理 Law of large number 503
+
+逐层的 layer-wise 451
+
+L-BFGS L-BFGS 270, 271
+
+渗漏整流线性单元 Leaky ReLU 167, 362
+
+渗漏单元 leaky unit 347-349
+
+学成 learned 450, 454, 458, 459, 465, 467, 470, 473, 474, 557, 558, 592
+
+学习近似推断 learned approximate inference 447
+
+学习器 learner 106, 138, 240, 457, 459, 463, 469, 472, 473
+
+学习率 learning rate 77, 79, 133, 235, 239, 242, 251, 252, 254, 256, 261-264, 266, 268, 271, 362, 363, 365-368, 372, 523, 524, 573, 589, 591
+
+勒贝格可积 Lebesgue-integrable 517
+
+左特征向量 left eigenvector 37
+
+左奇异向量 left singular vector 40
+
+莱布尼兹法则 Leibniz's rule 517
+
+似然 likelihood 49
+
+线搜索 line search 77, 83, 269
+
+线性自回归网络 linear auto-regressive network 602
+
+线性分类器 linear classifier 237, 428, 449, 453, 458, 467, 470
+
+线性组合 linear combination 33
+
+线性相关 linear dependence 33
+
+线性因子模型 linear factor model 417, 418, 420, 421, 423, 425, 426, 428, 501, 543, 579 线性模型 linear model 14, 198, 203, 204, 206, 215, 228, 231, 560, 602
+
+线性回归 linear regression 87, 94, 96-98, 100, 101, 104, 108, 117-119, 121-123, 133, 134, 198, 200-203, 205, 206, 219, 228, 260, 345, 428, 544, 602
+
+线性阀值单元 linear threshold units 469, 470
+线性无关 linearly independent 33
+
+链接预测 link prediction 412
+
+链接重要采样 linked importance sampling 537
+
+Lipschitz Lipschitz 82
+
+Lipschitz 常数 Lipschitz constant 82
+
+Lipschitz 连续 Lipschitz continuous 82
+
+流体状态机 liquid state machine 345
+
+局部条件概率分布 local conditional probability distribution 480
+
+局部不变性先验 local constancy prior 136
+
+局部对比度归一化 local contrast normalization 388, 389
+
+局部下降 local descent 250
+
+局部核 local kernel 137, 466
+
+局部极大值 local maxima 127, 245
+
+局部极大点 local maximum 74, 75, 79, 80, 244, 549
+
+局部极小值 local minima 243-245, 249, 279, 453
+
+局部极小点 local minimum 74-76, 79, 80, 82, 213, 214, 237, 243, 244, 249, 255, 453 对数尺度 logarithmic scale 368, 369
+
+逻辑回归 logistic regression 2, 3, 6, 123, 146, 153, 155, 177, 198, 206, 231, 310, 362, 367, 397, 530, 560, 600, 602
+
+logistic sigmoid logistic sigmoid vi, 61, 62, 122, 157, 159, 168, 171
+
+分对数 logit 63, 158
+
+对数线性模型 log-linear model 486
+
+长短期记忆 long short-term memory ix, 16, 22, 260, 278, 349-353, 355, 356, 358, 362, 392 长期依赖 long-term dependency 247, 341, 343-345, 347, 348, 351, 355 环 loop 492, 493
+
+环状信念传播 loopy belief propagation 498, 499
+
+损失 loss 91, 116, 132, 528, 576
+
+损失函数 loss function 74, 107, 134, 219, 236, 237, 245, 248, 249, 253, 278, 325-327, 355, 365, 396, 401, 422, 430, 431, 433, 435, 447, 585, 587, 602
+
+496, 498, 502, 506, 518, 519, 542, 551, 552, 557
+
+机器学习模型 machine learning model 452
+
+机器翻译 machine translation 362, 459
+
+主对角线 main diagonal 29
+
+流形 manifold 139, 141, 142, 233, 426, 427, 438-446, 473, 474, 496, 511, 513, 597
+
+流形假设 manifold hypothesis 140
+
+流形学习 manifold learning 139, 434, 442-444, 597
+
+边缘概率分布 marginal probability distribution 52
+
+马尔可夫链 Markov Chain xv, 506-514, 518-524, 527, 534, 566, 569, 571, 573, 607-610
+
+马尔可夫链蒙特卡罗 Markov Chain Monte Carlo 415, 504, 506, 507, 509, 511, 513, 518-520, 524, 528, 534, 563, 569, 575, 606, 609-611
+
+马尔可夫网络 Markov network 482, 486, 496, 500
+
+马尔可夫随机场 Markov random field 482, 486
+
+掩码 mask 222-225, 228, 229
+
+矩阵 matrix 28
+
+矩阵逆 matrix inversion 31, 32
+
+矩阵乘积 matrix product 29
+
+最大范数 max norm 35
+
+池 pool 291, 293, 294
+
+最大池化 max pooling 290-293, 301, 469, 602
+
+极大值 maxima 244, 245
+
+M步 maximization step 541, 542
+
+最大后验 Maximum A Posteriori v, 121, 122, 204, 392, 432, 542-544, 558, 582
+
+最大似然 maximum likelihood 420, 424, 516, 545, 546
+
+最大似然估计 maximum likelihood estimation 115-119, 121, 122, 134, 238, 393, 520, 525, 529, 543, 545
+
+最大平均偏差 maximum mean discrepancy 601
+
+maxout maxout 213, 243, 259, 278, 292, 317, 362
+
+maxout 单元 maxout unit 167, 168, 172, 317, 365
+
+平均绝对误差 mean absolute error 156
+
+均值和协方差 RBM mean and covariance RBM 580-583
+
+学生 t 分布均值乘积 mean product of Student t-distribution 580-583
+
+均方误差 mean squared error 95, 96, 103, 104, 113, 116-118, 120, 129, 148, 154-156, 158, 194, 195, 345, 422, 430, 435, 437, 464, 465, 590, 595, 608
+
+均值-协方差 RBM mean-covariance restricted Boltzmann machine 486
+
+均匀场 meanfield 21, 568-570, 572-574, 576, 577, 584, 592, 596, 605
+
+均值场 mean-field 544-551, 554, 557, 558
+
+测度论 measure theory 64
+
+零测度 measure zero 64
+
+记忆网络 memory network 356, 358, 412
+
+信息传输 message passing 551
+
+小批量 minibatch viii, 132, 183, 189, 190, 221-223, 237-241, 248, 251-254, 256, 259, 261-265, 270, 272, 320, 353, 354, 374, 380, 383, 429, 436, 453, 502, 509, 519, 521, 523, 541, 573, 577
+
+小批量随机 minibatch stochastic 239
+
+极小值 minima 245, 249
+
+极小点 minimum 250, 251, 553
+
+混合 Mixing 511-515, 521-524
+
+混合时间 Mixing Time 509, 510
+
+混合密度网络 mixture density network 163
+
+混合分布 mixture distribution 59
+
+专家混合体 mixture of experts 383, 466
+
+模态 modality 460
+
+峰值 mode xiii, 511-515, 520, 522-524, 551
+
+模型 model 452
+
+模型平均 model averaging 220-222
+
+模型压缩 model compression 381
+
+模型可辨识性 model identifiability 243
+
+模型并行 model parallelism 380
+
+矩 moment 600, 601, 611
+
+矩匹配 moment matching 600, 611
+
+动量 momentum 253-256, 261, 263, 264, 277, 362
+
+蒙特卡罗 Monte Carlo 227, 400, 502-504, 506, 515, 518, 524, 532, 557, 581, 589, 595 Moore-Penrose 伪逆 Moore-Penrose pseudoinverse xxv, 41, 99, 105
+
+道德化 moralization 491, 492
+
+道德图 moralized graph 491, 492
+
+多层感知机 multilayer perceptron 5, 20, 21, 145, 188, 189, 194, 275, 276, 298, 340, 341, 403, 440, 471, 560, 565, 566, 568, 569, 574, 575, 586
+
+多峰值 multimodal 533, 550, 611
+
+多模态学习 multimodal learning 460
+
+多项式分布 multinomial distribution 56
+
+Multinoulli 分布 multinoulli distribution 56, 59, 60, 73, 159, 163
+
+多预测深度玻尔兹曼机 multi-prediction deep Boltzmann machine 575-577, 596, 607 多任务学习 multitask learning 210, 211, 457, 458 多维正态分布 multivariate normal distribution 58, 418, 512
+
+朴素贝叶斯 naive Bayes 2
+
+奈特 nats 66
+
+自然语言处理 Natural Language Processing 246, 363, 377, 392, 395, 396, 406, 407, 410, 455
+
+最近邻 nearest neighbor 137, 450, 466-468
+
+最近邻图 nearest neighbor graph 443
+
+最近邻回归 nearest neighbor regression 101, 125
+
+负定 negative definite 38
+
+负部函数 negative part function 63
+
+负相 negative phase 517-520, 522-524, 526, 527, 557, 561, 571, 572
+
+半负定 negative semidefinite 38
+
+Nesterov 动量 Nesterov momentum 256
+
+网络 network 145
+
+神经自回归密度估计器 neural auto-regressive density estimator xiv, 602, 604-606 神经自回归网络 neural auto-regressive network 603-606 神经语言模型 Neural Language Model 394, 396, 397, 399, 401, 402, 406, 411 神经机器翻译 Neural Machine Translation 395
+
+神经网络 neural network 12-17, 19-23, 197-199, 205-207, 215, 218, 221, 222, 225, 229-232, 234, 235, 241-250, 257, 258, 261, 262, 266, 267, 269, 270, 273-275, 277-280, 319, 341, 349, 356, 358, 377-379, 384, 387, 390-392, 395, 396, 401, 402, 405, 406, 408, 411, 429, 444, 447, 452-455, 466, 470, 506, 556, 587
+
+神经网络图灵机 neural Turing machine 356, 357
+
+牛顿法 Newton's method 81, 82, 85, 242, 243, 245, 250, 266-268, 270, 274
+
+n-gram n-gram 393, 394, 396, 397, 401-403, 467, 478
+
+没有免费午餐定理 no free lunch theorem 102, 105, 472
+
+噪声 noise 101, 140, 239, 248, 253, 279, 362, 363, 453, 528-531
+
+噪声分布 noise distribution 529-531
+
+噪声对比估计 noise-contrastive estimation 529-531
+
+非凸 nonconvex 241, 243-246, 262, 266, 275, 279
+
+非分布式 nondistributed 467-469
+
+非分布式表示 nondistributed representation 466-468
+
+非线性共轭梯度 nonlinear conjugate gradients 269, 270
+
+非线性独立成分估计 nonlinear independent components estimation 420, 421
+
+非参数 non-parametric 100, 394, 442-444
+
+范数 norm 34
+
+正态分布 normal distribution 57, 58, 61, 504, 553
+
+正规方程 normal equation 96, 98, 99, 133, 148
+
+归一化的 normalized 51
+
+标准初始化 normalized initialization 258
+
+数值 numeric value 182
+
+数值优化 numerical optimization 235, 242, 246
+
+对象识别 object recognition 246, 362, 364, 385, 389, 390, 423, 425, 459, 612
+
+目标 objective 455
+
+目标函数 objective function 74, 77, 84, 197-202, 204, 205, 213, 214, 217, 221, 236-238, 241, 246-248, 250, 252, 253, 265-267, 269, 274, 278, 279, 353, 359, 368, 374, 450, 470, 525, 527, 564, 572
+
+奥卡姆剃刀 Occam's razor 100
+
+one-hot one-hot 125, 131, 161, 193, 394, 395, 454, 455, 459, 466, 468, 586, 603
+
+一次学习 one-shot learning 459
+
+在线 online 238
+
+在线学习 online learning 240
+
+操作 operation 176
+
+最佳容量 optimal capacity 101, 103, 114
+
+原点 origin 33
+
+正交 orthogonal 36
+
+正交矩阵 orthogonal matrix 37
+
+标准正交 orthonormal 36, 39
+
+输出 output 453
+
+输出层 output layer 145
+
+过完备 overcomplete 431, 434, 582, 583
+
+过估计 overestimation 506
+
+过拟合 overfitting 98, 99, 105, 114, 197, 198, 215, 237, 241, 252, 258, 359, 363, 365, 366, 372, 375, 381, 450, 454, 455, 478, 613
+
+过拟合机制 overfitting regime 101
+
+上溢 overflow 72, 73, 535
+
+并行分布式处理 Parallel Distributed Processing 194
+
+并行回火 parallel tempering 514, 524, 537
+
+参数 parameter 94
+
+参数服务器 parameter server 381
+
+参数共享 parameter sharing 218, 225, 229, 285, 286, 288, 300, 313, 319, 320, 322, 323, 332, 333, 402, 601, 602, 604
+
+有参情况 parametric case 118
+
+参数化整流线性单元 parametric ReLU 167, 362
+
+偏导数 partial derivative 76, 77, 445, 551
+
+配分函数 Partition Function 415, 484, 486, 502, 506, 515, 516, 518, 519, 524, 525, 527-529, 531-537, 557, 559-561, 564, 565, 571, 578, 583, 584, 598
+
+性能度量 performance measures 87, 88, 91, 95, 361, 362
+
+性能度量 performance metrics 359, 360, 362, 370, 372, 374, 375
+
+置换不变性 permutation invariant 296
+
+持续性对比散度 persistent contrastive divergence 521, 523, 564, 572, 575, 581, 582
+
+音素 phoneme 390-392, 457
+
+语音 phonetic 392
+
+分段 piecewise 362
+
+点估计 point estimator 108
+
+策略 policy 409, 410
+
+策略梯度 policy gradient 383
+
+池化 pooling 207, 229, 281, 287, 290-295, 299, 306, 309, 310, 312, 313, 386, 421
+
+池化函数 pooling function 290
+
+病态条件 poor conditioning 74, 81, 239, 242, 246, 248, 250, 253, 454
+
+正定 positive definite 38
+
+正部函数 positive part function 63
+
+正相 positive phase 517-520, 523, 524, 557, 560, 571
+
+半正定 positive semidefinite 38
+
+后验概率 posterior probability 60
+
+幂方法 power method 248
+
+PR 曲线 PR curve 361
+
+精度 precision 57, 361, 373, 612
+
+精度矩阵 precision matrix 58
+
+预测稀疏分解 predictive sparse decomposition 447
+
+预训练 pretraining 275-278, 391, 425, 451-456, 498, 521, 527
+
+初级视觉皮层 primary visual cortex 311
+
+主成分分析 principal components analysis xi, 42-44, 128-130, 134, 210, 235, 302, 388, 418-420, 422, 424, 426, 427, 430, 441, 446, 448
+
+先验概率 prior probability 60
+
+先验概率分布 prior probability distribution 118, 295
+
+概率 PCA probabilistic PCA 418-420, 426, 538, 539
+
+概率密度函数 probability density function 51, 52, 57-59, 64, 503, 551-553, 598
+
+概率分布 probability distribution 47, 50-56, 58-61, 66, 67, 69, 70, 360, 472, 516, 529, 531 概率质量函数 probability mass function 50, 51, 90, 560, 571 专家之积 product of expert 486
+
+乘法法则 product rule 53
+
+成比例 proportional 70
+
+提议分布 proposal distribution 400, 532, 534-536 伪似然 pseudolikelihood 524-530, 571
+
+象限对 quadrature pair 316
+
+量子力学 quantum mechanics 48
+
+径向基函数 radial basis function 124, 146, 170, 471
+
+随机搜索 random search 369-371
+
+随机变量 random variable 49-56, 58-60, 64, 65, 67, 69, 70, 472, 525, 530, 534
+
+值域 range 33
+
+比率匹配 ratio matching 527, 528, 564
+
+召回率 recall 361, 382, 612
+
+接受域 receptive field 287, 295
+
+再循环 recirculation 429
+
+推荐系统 recommender system 407-409
+
+重构 reconstruction 429, 430, 436-439, 441, 442, 445-447, 608, 609
+
+重构误差 reconstruction error 419, 422, 426, 427, 431, 433, 437, 438, 440, 445, 446, 448, 454, 514, 608
+
+整流线性 rectified linear 151, 167, 230, 243, 273, 290
+
+整流线性变换 rectified linear transformation 152
+
+整流线性单元 rectified linear unit 14, 15, 150, 151, 165-168, 170-172, 177, 195, 233, 278, 362, 375, 391, 433, 455
+
+整流网络 rectifier network 172, 173, 195
+
+循环 recurrence 450
+
+循环卷积网络 recurrent convolutional network 307
+
+循环网络 recurrent network 145, 246-248, 307, 319-324, 326, 330, 333, 338, 341, 343-347, 349, 350, 353, 354, 357, 412, 417, 440, 474, 550, 576, 577
+
+循环神经网络 recurrent neural network ix, 21, 22, 144, 145, 208, 228, 247, 306, 318-325, 328, 330-341, 343-345, 348, 349, 352, 355, 358, 392, 403, 550, 585, 586, 596
+
+回归 regression 103
+
+正则化 regularization 104, 105, 118, 122, 197-206, 208, 209, 212-220, 222, 227-236, 258, 355, 359, 362, 364-366, 387-389, 422, 431, 432, 434, 438, 440, 446, 453, 455, 472
+
+正则化 regularize 239, 365, 421, 422, 455, 456, 514, 528, 575, 584, 588
+
+正则化项 regularizer 104, 122, 126, 134, 362, 452, 454, 455, 467
+
+强化学习 reinforcement learning 23, 93, 232, 383, 409, 410, 458, 557, 588, 590
+
+关系 relation 410-412
+
+关系型数据库 relational database 411
+
+重参数化 reparametrization 575, 588
+
+重参数化技巧 reparametrization trick 588, 594, 610
+
+表示 representation 2-7, 16, 210, 219, 220, 297, 357, 367, 394, 395, 403, 404, 411, 430, 431, 433, 440-442, 448
+
+表示学习 representation learning 4, 403, 417, 419, 448-450, 452, 457, 458, 461-463, 466, 472474, 501, 514
+
+表示容量 representational capacity 100, 104
+
+储层计算 reservoir computing 345
+
+受限玻尔兹曼机 Restricted Boltzmann Machine 228, 301, 391, 408, 437, 438, 448, 450, 472, 490, 499-501, 510, 514, 515, 517, 519-523, 533, 536-538, 561-568, 571, 572, 574, 575, 578, 579, 581, 583, 585, 586, 591, 600, 605, 609, 610
+
+反向相关 reverse correlation 314
+
+反向模式累加 reverse mode accumulation 191
+
+岭回归 ridge regression 199
+
+右特征向量 right eigenvector 37
+
+右奇异向量 right singular vector 40
+
+风险 risk 236
+
+行 row 28
+
+扫视 saccade 313
+
+鞍点 saddle point 75, 76, 79, 80, 82, 244-246, 248, 249, 266, 267
+
+无鞍牛顿法 saddle-free Newton method 245
+
+相同 same 297, 298
+
+样本均值 sample mean 110
+
+样本方差 sample variance 110, 111
+
+饱和 saturate 61
+
+标量 scalar 27
+
+得分 score 437-440, 526, 527
+
+得分匹配 score matching 437, 438, 445, 526-530, 606
+
+二阶导数 second derivative 77-80
+
+二阶导数测试 second derivative test 80
+
+第二层 second layer 145
+
+二阶方法 second-order method 245
+
+自对比估计 self-contrastive estimation 531
+
+自信息 self-information 66
+
+语义哈希 semantic hashing 448
+
+半受限玻尔兹曼机 semi-restricted Boltzmann Machine 539
+
+半监督 semi-supervised 363, 415
+
+半监督学习 semi-supervised learning 209, 210, 231, 450, 452, 454, 462, 463, 473
+
+可分离的 separable 309, 449, 453
+
+分离的 separate 473
+
+分离 separation 487, 488, 495
+
+情景 setting 458, 459, 469, 471
+
+浅度回路 shadow circuit 472
+
+香农熵 Shannon entropy xxvi, 66, 67
+
+香农 shannons 66
+
+塑造 shaping 279, 560, 611
+
+短列表 shortlist 396, 397
+
+sigmoid sigmoid 157-162, 168, 169, 195, 278, 362, 425, 511
+
+sigmoid 信念网络 sigmoid Belief Network 591, 592
+
+简单细胞 simple cell 311
+
+奇异的 singular 34
+
+奇异值 singular value 39, 40
+
+奇异值分解 singular value decomposition 39-41, 130, 408
+
+奇异向量 singular vector 39
+
+跳跃连接 skip connection 340, 341, 347, 348
+
+慢特征分析 slow feature analysis 421-423, 474
+
+慢性原则 slowness principle 421-423
+
+平滑 smoothing 394
+
+平滑先验 smoothness prior 136
+
+softmax softmax 449
+
+softmax 函数 softmax function 72, 73, 209, 226, 227, 325, 328, 372, 375, 383
+
+softmax 单元 softmax unit 375
+
+softplus softplus 170
+
+softplus 函数 softplus function 61-63, 158, 170
+
+生成子空间 span 33
+
+稀疏 sparse 203, 204, 218-220, 227, 431-434, 440
+
+稀疏激活 sparse activation 195
+
+稀疏编码 sparse coding 274, 423-426, 432, 440, 447, 451, 490, 492, 496, 501, 527, 538, 543, 544, 551, 558, 582, 583, 591
+
+稀疏连接 sparse connectivity 285-287
+
+稀疏初始化 sparse initialization 259
+
+稀疏交互 sparse interactions 285
+
+稀疏权重 sparse weights 285
+
+谱半径 spectral radius 345-347
+
+语音识别 Speech Recognition 362, 377, 381, 390-392, 457
+
+sphering sphering 388
+
+尖峰和平板 spike and slab 317, 425, 426
+
+尖峰和平板 RBM spike and slab RBM 580-583
+
+虚假模态 spurious modes 520, 522
+
+方阵 square 34
+
+标准差 standard deviation 54, 112, 238, 272, 273, 386-389
+
+标准差 standard error 57, 111, 112, 238
+
+标准正态分布 standard normal distribution 57
+
+声明 statement 47, 48
+
+平稳的 stationary 333
+
+平稳分布 Stationary Distribution 508-510, 512
+
+驻点 stationary point 74, 84
+
+统计效率 statistic efficiency 118
+
+统计学习理论 statistical learning theory 97
+
+统计量 statistics 108
+
+最陡下降 steepest descent 247
+
+随机 stochastic 238, 239
+
+随机课程 stochastic curriculum 280
+
+随机梯度上升 Stochastic Gradient Ascent 541
+
+随机梯度下降 stochastic gradient descent 14, 87, 132, 133, 205, 206, 216, 222, 228, 238-242, 246, 251-254, 256, 258, 270, 277, 344, 353, 354, 356, 362, 380, 437, 506, 518, 574, 575, 589, 606
+
+随机矩阵 Stochastic Matrix 508
+
+随机最大似然 stochastic maximum likelihood 521-524, 526, 528, 529, 564, 565, 568, 571-574, 576
+
+流 stream 240
+
+步幅 stride 287, 291, 293, 294, 297, 298, 301, 302, 306
+
+结构学习 structure learning 496, 498
+
+结构化概率模型 structured probabilistic model 47, 69, 70, 472, 475, 477, 479-482, 495, 498, 559 结构化变分推断 structured variational inference 544 亚原子 subatomic 48
+
+子采样 subsample 502
+
+求和法则 sum rule 52
+
+和-积网络 sum-product network 472
+
+监督 supervised 92, 210, 211, 218, 231, 236, 310, 311, 317, 379, 425, 440, 449-453, 455, 557, 584
+
+监督学习 supervised learning xxvii, 87, 92-94, 101, 107, 116, 122, 123, 125, 126, 134, 140, 144, 210, 232, 236, 342, 362, 397, 407, 409, 410, 415, 432, 449, 450, 452, 453, 455-458, 462, 463, 472, 529, 594
+
+监督学习算法 supervised learning algorithm 92
+
+监督模型 supervised model 453
+
+监督预训练 supervised pretraining 456
+
+支持向量 support vector 124, 466
+
+代理损失函数 surrogate loss function 237, 248 符号 symbol 182
+
+符号表示 symbolic representation 182, 466, 468 对称 symmetric 36
+
+切面距离 tangent distance 232
+
+切平面 tangent plane 440, 443, 446
+
+正切传播 tangent prop 232-234
+
+目标 target 92-95, 101, 102, 105, 108, 116, 122, 128, 134, 135, 137, 138, 141
+
+泰勒 taylor 79, 81, 203, 215, 242
+
+导师驱动过程 teacher forcing 327, 328
+
+温度 temperature 514
+
+回火转移 tempered transition 514
+
+回火 tempering 514
+
+张量 tensor 28
+
+测试误差 test error 97, 98, 101, 103, 241, 363, 365, 366, 371, 372, 375, 452, 454, 455 测试集 test set 91, 95, 97, 98, 106, 107, 112, 235, 237, 252, 277, 363, 364, 366, 372, 375, 454 碰撞情况 the collider case 489
+
+绑定的权重 tied weights 285
+
+Tikhonov 正则 Tikhonov regularization 199
+
+平铺卷积 tiled convolution 300, 301, 303, 305
+
+时延神经网络 time delay neural network 314, 319, 391
+
+时间步 time step 168, 247, 248, 265, 319-335, 339-341, 343, 346, 348-350, 352-354, 357, 392, 404, 405, 423, 577, 585, 605, 609, 610
+
+Toeplitz 矩阵 Toeplitz matrix 284
+
+标记 token 392, 393, 411
+
+容差 tolerance 85, 549
+
+地质 ICA topographic ICA 421
+
+训练误差 training error 97, 98, 100-103, 236, 241, 364-366, 372, 375, 454
+
+训练集 training set 97, 98, 235-241, 243, 249, 251, 252, 254, 256, 260, 262-265, 267, 269, 274, 277, 280, 360, 362-364, 366, 367, 372, 373, 375, 462, 464, 468
+
+转录 transcribe 89, 91, 94
+
+转录系统 transcription system 359, 361, 372, 374, 375
+
+迁移学习 transfer learning 454, 456-461, 604
+
+转移 transition 322
+
+转置 transpose 29
+
+三角不等式 triangle inequality 34
+
+三角形化 triangulate 493
+
+三角形化图 triangulated graph 493
+
+三元语法 trigram 393
+
+无偏 unbiased 109, 240, 241, 251, 503-505, 528
+
+无偏样本方差 unbiased sample variance 111
+
+欠完备 undercomplete 430, 431
+
+欠定的 underdetermined 552
+
+欠估计 underestimation 506
+
+欠拟合 underfitting 98, 99, 105, 114, 197-199, 241, 295, 359, 365, 366, 372, 373, 375, 598, 613
+
+欠拟合机制 underfitting regime 101
+
+下溢 underflow 72, 73
+
+潜在 underlying 236, 237, 462-466, 470-474
+
+潜在成因 underlying cause 461, 463, 473
+
+无向 undirected 69
+
+无向模型 undirected Model 482-488, 490-493, 495, 500, 502, 510, 515-518, 538, 557, 564, 565, 591
+
+展开图 unfolded graph 322, 323, 326, 392
+
+展开 unfolding 320-322, 340, 392
+
+均匀分布 uniform distribution 51, 52, 55, 67, 165, 456
+
+一元语法 unigram 393, 400
+
+单峰值 unimodal 514, 556
+
+单元 unit 146
+
+单位范数 unit norm 36, 43
+
+单位向量 unit vector 36
+
+万能近似定理 universal approximation theorem 171, 172, 434
+
+万能近似器 universal approximator 60, 471, 472, 560
+
+万能函数近似器 universal function approximator 151
+
+未标注 unlabeled 450, 454, 455, 459, 461, 463, 472
+
+未归一化概率函数 unnormalized probability function 483, 484, 486, 493
+
+非共享卷积 unshared convolution 299
+
+无监督 unsupervised 20, 21, 92, 210, 218, 228, 363, 391, 415, 423, 425, 440, 447, 449-453, 455, 458, 459, 462, 463
+
+无监督学习 unsupervised learning 87, 92-94, 107, 128, 134, 207, 210, 211, 234, 236, 363, 391, 415, 432, 443, 450-455, 457, 458, 462-464, 529, 610
+
+无监督学习算法 unsupervised learning algorithm 92
+
+无监督预训练 unsupervised pretraining 450, 452-457
+
+有效 valid 284, 297, 298
+
+验证集 validation set 106, 237, 242, 259, 368-370, 455
+
+梯度消失与爆炸问题 vanishing and exploding gradient problem 247, 248, 259
+
+梯度消失 vanishing gradient 248
+
+Vapnik-Chervonenkis 维度 Vapnik-Chervonenkis dimension 100, 467, 470
+
+变量消去 variable elimination 547
+
+方差 variance 54, 56, 57, 111, 197-199, 202, 206, 220
+
+方差减小 variance reduction 589, 590
+
+变分自编码器 variational auto-encoder 195, 431, 506, 558, 592, 594-597, 600, 606
+
+变分导数 variational derivative 551
+
+变分自由能 variational free energy 539
+
+变分推断 variational inference 497, 499, 526
+
+去噪 denoise 128, 386
+
+向量 vector 27
+
+虚拟对抗样本 virtual adversarial example 231
+
+虚拟对抗训练 virtual adversarial training 452
+
+可见层 visible layer 5
+
+V-结构 V-structure 489, 539
+
+醒眠 wake sleep 557, 565, 592
+
+warp warp 380, 383
+
+支持向量机 support vector machine 123-125, 153, 310, 367, 522
+
+无向图模型 undirected graphical model 516, 531
+
+权重 weight 94
+
+权重衰减 weight decay 104-106, 199-202, 205, 206, 209, 213, 215, 217, 218, 227, 228, 243, 258, 274, 364-367, 432, 454, 524, 544
+
+权重比例推断规则 weight scaling inference rule 226-229
+
+权重空间对称性 weight space symmetry 243
+
+条件概率分布 conditional probability distribution 534
+
+白化 whitening 388
+
+宽度 width 146
+
+赢者通吃 winner-take-all 161
+
+正切传播 tangent propagation 474
+
+流形正切分类器 manifold tangent classifier 474
+
+词嵌入 word embedding 363, 395, 404, 406, 408, 454, 459
+
+词义消歧 word-sense disambiguation 412
+
+零数据学习 zero-data learning 459, 461
+
+零次学习 zero-shot learning 459-461
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT

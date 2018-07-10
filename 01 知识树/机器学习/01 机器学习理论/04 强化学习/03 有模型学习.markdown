@@ -1,0 +1,207 @@
+
+
+
+
+
+有模型学习
+
+考虑多步强化学习任务，暂且先假定任务对应的马尔可夫决策过程四元组 $E=\langle X,A,P,R\rangle $ 均为已知，这样的情形称为 “模型已知” ，即机器已对环境进行了建模，能在机器内部模拟出与环境相同或近似的状况.在已知模型的环境中学习称为“有模型学习” (model-based learning)。此时，对于任意状态 $x$,$x'$ 和动作 $a$ ，在 $x$ 状态下执行动作 $a$ 转移到状态 $x'$ 的概率 $P_{x\rightarrow x'}^a$ 是已知的，该转移所带来的奖赏 $R_{x\rightarrow x'}^a$ 也是已知的。为便于讨论，不妨假设状态空间 X 和动作空间 A 均为有限。
+
+
+## 1 策略评估
+
+在模型已知时，对任意策略 $\pi$ 能估计出该策略带来的期望累积奖赏.令函数 $V^\pi(x)$ 表示从状态 $x$ 出发，使用策略 $\pi$ 所带来的累积奖赏；函数$Q^\pi(x,a)$  表示从状态 $x$ 出发，执行动作 $a$ 后再使用策略 $\pi$ 带来的累积奖赏。这里的 $V(\cdot)$ 称为 “状态值函数”(state value function), $Q(\cdot)$ 称为 “状态-动作值函数” (state-action value function),分别表示指定 “状态” 上以及指定 “状态-动作” 上的累积奖赏.
+
+由累积奖赏的定义，有状态值函数
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180701/ca4AAki8GG.png?imageslim)
+
+
+为叙述简洁,后面在涉及上述两种累积奖赏时,就不再说明奖赏类别，读者从上下文应能容易地判知。令 $x_0$ 表示起始状态, $a_0$ 表示起始状态上采取的第一个动作；对于 $T$ 步累积奖赏，用下标 $t$ 表示后续执行的步数。我们有状态-动作值函数
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180701/KBJ04dlKmH.png?imageslim)
+
+
+由于 MDP 具有马尔可夫性质，即系统下一时刻的状态仅由当前时刻的状态决定，不依赖于以往任何状态，于是值函数有很简单的递归形式.对于 $T$ 步累积奖赏有
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180701/Eaf7E2c8jJ.png?imageslim)
+
+类似的，对于 $\gamma$ 折扣累积奖赏有
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180701/5ejbF6G1CL.png?imageslim)
+
+需注意的是，正是由于 $P$ 和 $R$ 已知，才可以进行全概率展开.
+
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180701/kG53JKbj7b.png?imageslim)
+
+读者可能已发现，用上面的递归等式来计算值函数，实际上就是一种动态规划算法。对于 $V_T^\pi$ ,可设想递归一直进行下去，直到最初的起点；换言之，从值函数的初始值 $V_0^\pi$ 出发，通过一次迭代能计算出每个状态的单步奖赏 $V_1^\pi$ ，进而从单步奖赏出发，通过一次迭代计算出两步累积奖赏 $V_2^\pi$ ,……图 16.7 中算法遵 循了上述流程，对于 $T$ 步累积奖赏，只需迭代 $T$ 轮就能精确地求出值函数.
+
+
+对于 $V_\gamma^\pi$ ,由于 $\gamma^t$ 在 t 很大时趋于0,因此也能使用类似的算法，只需将图 16.7算法的第3行根据式(16.8)进行替换。此外，由于算法可能会迭代很多次， 因此需设置一个停止准则.常见的是设置一个阈值 $\theta$ ,若在执行一次迭代后值函数的改变小于 $\theta$ 则算法停止；相应的，图16.7算法第4行中的 $t=T+1$ 需替换为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180701/aed7c3hmle.png?imageslim)
+
+有了状态值函数 V,就能直接计算出状态-动作值函数
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180701/jI5KK3FJ6k.png?imageslim)
+
+## 2 策略改进
+
+对某个策略的累积奖赏进行评估后，若发现它并非最优策略，则当然希望 对其进行改进.理想的策略应能最大化累积奖赏
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180701/8f6AJJ5FC3.png?imageslim)
+
+
+一个强化学习任务可能有多个最优策略，最优策略所对应的值函数 $V^*$ 称 为最优值函数，即
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180701/Fe7Bi9e6i1.png?imageslim)
+
+注意，当策略空间无约束时式(16.12)的 $V^*$ 才是最优策略对应的值函数,例如对 离散状态空间和离散动作空间，策略空间是所有状态上所有动作的组合，共有 |A|IXI种不同的策略.若策略空间有约束，则违背约束的策略是“不合法”的， 即便其值函数所取得的累积奖赏值最大，也不能作为最优值函数.
+
+由于最优值函数的累积奖赏值已达最大，因此可对前面的Bellman等 式(16.7)和(16.8)做一个改动，即将对动作的求和改为取最优：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180702/JHlFgCgCH1.png?imageslim)
+
+
+换言之，
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180702/CC7G3h2hI0.png?imageslim)
+
+
+代入式(16.10)可得最优状态-动作值函数
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180702/DaLH8BHFme.png?imageslim)
+
+
+上述关于最优值函数的等式，称为最优 Bellman 等式,其唯一解是最优值函数.
+
+最优 Bellman 等式揭示了非最优策略的改进方式：将策略选择的动作改变 为当前最优的动作.显然，这样的改变能使策略更好。不妨令动作改变后对应的 策略为 $\pi'$ ,改变动作的条件为 $Q^{\pi}(x,\pi'Ix))\geq V^\pi (x)$ ,以 $\gamma$ 折扣累积奖赏为例，由式(16.10)可计算出递推不等式
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180702/deDA285EB2.png?imageslim)
+
+
+值函数对于策略的每一点改进都是单调递增的，因此对于当前策略 $\pi$ ,可放心地将其改进为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180702/h59IjCIdJd.png?imageslim)
+
+直到 $pi'$ 与 $pi$ 一致、不再发生变化，此时就满足了最优 Bellman 等式，即找到了最优策略.
+
+
+
+
+## 3策略迭代与值迭代
+
+由前两小节我们知道了如何评估一个策略的值函数，以及在策略评估后如 何改进至获得最优策略.显然，将这两者结合起来即可得到求解最优解的方法: 从一个初始策略(通常是随机策略)出发，先进行策略评估，然后改进策略，评估 改进的策略，再进一步改进策略，……不断迭代进行策略评估和改进,直到策略 收敛、不再改变为止.这样的做法称为“策略迭代” (policy iteration).
+
+图16.8给出的算法描述,就是在基于r步累积奖赏策略评估相基础上，加
+
+输入：MDP四元组五=〈X，A"〉；
+
+累积奖赏参数
+
+过程：
+
+|A(rc)|是a;状态下所有 可选动作数.
+
+式(16.7)更新值函数.
+
+式(16.10)计算Q值.
+
+
+1： Va? G X : V(x) = 0, 7r(x,(1)— 1^x)1;
+
+2: loop
+
+3:    for t = 1,2,... do
+
+4:    Vrre X: Vf(x) = Z；aeA 冗(尤，a)    + ^^))；
+
+5： if t = T + 1 then 6：    break
+
+7：    else
+
+8:    V =    W
+
+9：    end if
+
+10： end for
+
+11：    \/x E X : 7vf(x) = argmaxn(=4 Q(x,aY,
+
+12： if Vrr:    = tt(3；) then
+
+13： break
+
+14： else
+
+15:    tv = TVf
+
+16：    end if
+
+17: end loop
+
+输出：最优策略tt
+
+图16.8基于r步累积奖赏的策略迭代算法
+
+参见习题16.3.
+
+
+入策略改进而形成的策略迭代算法.类似的，可得到基于7折扣累积奖赏的策 略迭代算法.策略迭代算法在每次改进策略后都需重新进行策略评估，这通常 比较耗时.
+
+由式(16.16)可知，策略改进与值函数的改进是一致的，因此可将策略改进 视为值函数的改善，即由式(16.13)可得
+
+吟0) = maxaGA    Px^xf+    ⑽ 18)
+P^x,⑻七，+ 外M).
+
+于是可得到值迭代(value iteration)算法，如图16.9所示.
+输入：MDP四元组五二〈XM,P,E);
+
+累积奖赏参数T;
+
+收敛阈值<9 .
+
+过程：
+
+1： Vrc G X : V{x) = 0;
+
+式(16.18)更新值函数.
+
+
+2： for t = 1,2,... do
+
+3:    Vrc e.X : V\x) - maxaeA    + ^^))；
+
+4： if max^ex |V(a;) — Vf(x)\ < 0 then 5： break
+
+6： else 7： V = Vf 8：    end if
+
+9： end for
+
+式(16.10)计算Q值.
+
+
+输出：策略冗⑷=argmaxaeAQ(a;,a)
+
+图16.9基于r步累积奖赏的值迭代算法
+
+若采用7折扣累积奖赏，只需将图16.9算法中第3行替换为
+
+y^)=max    + 7V(Y)) •    (16.19)
+a xfeX
+
+从上面的算法可看出，在模型已知时强化学习任务能归结为基于动态规划 的寻优问题.与监督学习不同，这里并未涉及到泛化能力，而是为每一个状态找 到最好的动作.
+
+
+
+
+
+
+
+
+
+# REF
+1. 《机器学习》周志华

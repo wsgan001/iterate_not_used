@@ -1,0 +1,121 @@
+
+
+
+
+
+核方法
+
+回顾式(6.24)和(6.56)可发现，给定训练样本 $\{(x_1,y_1),(x_2,y_2),\cdots ,(x_m,y_m)\}$ ，若不考虑偏移项 b,则无论SVM还是SVR，学得的模型总能表示成核函数 $\kappa(x,x_i)$ 的线性组合.不仅如此，事实上我们有下面这个称为“表示定理”(representor theorem)的更一般的结论：
+
+
+定理6.2 (表示定理) 令 $\mathbb{H}$ 为核函数 $\kappa$ 对应的再生核希尔伯特空间，$||h||_{\mathbb{H}}$  表示 $\mathbb{H}$ 空间中关于 h 的范数，对于任意单调递増函数 $\Omega:[0,\infty]\mapsto \mathbb{R}$ 和任意非负损失函数 $\ell:\mathbb{R}^m\mapsto [0,\infty]$ ,优化问题
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/j0LCLC265G.png?imageslim)
+
+的解总可写为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/AfLc9C1lkK.png?imageslim)
+
+表示定理对损失函数没有限制，对正则化项仅要求单调递增，甚至不要求是凸函数，意味着对于一般的损失函数和正则化项，优化问题(6.57)的最优解 $h*(x)$ 都可表示为核函数 $\kappa(x,x_i)$ 的线性组合；这显示出核函数的巨大威力。
+
+
+人们发展出一系列基于核函数的学习方法，统称为“核方法” (kernel methods).最常见的，是通过“核化”(即引入核函数)来将线性学习器拓展为 非线性学习器。
+
+下面我们以线性判别分析为例来演示如何通过核化来对其进行非线性拓展，从而得到 “核线性判别分析” (Kernelized Linear Discriminant Analysis，简称 KLDA).
+
+我们先假设可通过某种映射 $\phi:\mathcal{X}\mapsto \mathbb{F}$ 将样本映射到一个特征空间 $\mathbb{F}$ ，然后在 $\mathbb{F}$ 中执行线性判别分析，以求得
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/Eg8mm7CHA0.png?imageslim)
+
+类似于式(3.35)，KLDA的学习目标是
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/2ElGGj6m5j.png?imageslim)
+
+
+
+其中 $S_b^\phi$ 和 $S_w^\phi$ 分别为训练样本在特征空间 $\mathbb{F}$ 中的类间散度矩阵和类内散度矩阵。令 $X_i$ 表示第 $i\in \{0,1\}$ 类样本的集合，其样本数为 $m_i$ ；总样本数 $m=m_0+m_1$ 。第 i 类样本在特征空间 $\mathbb{F}$ 中的均值为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/DfdJE1Dh6l.png?imageslim)
+
+两个散度矩阵分别为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/6mG6Fdamj5.png?imageslim)
+
+
+通常我们难以知道映射 $\phi$ 的具体形式，因此使用核函数 $\kappa(x,x_i)=\phi(x_i)^T\phi(x)$ 来隐式地表达这个映射和特征空间 $\mathbb{F}$ 。把 $J(w)$ 作为式(6.57)中的损失函数 $\ell$ ，再令 $\Omega \equiv 0$ ,由表示定理，函数 $h(x)$ 可写为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/h4C92LGjJ5.png?imageslim)
+
+
+于是由式(6.59)可得
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/JaGHefGl9H.png?imageslim)
+
+令 $K\in\mathbb{R}^{m\times m}$ 为核函数 $\kappa$ 所对应的核矩阵，$(K)_{ij}=\kappa(x_i,y_i)$。令 $l_i\in \{1,0\}^{m\times 1}$ 为第 i 类样本的指示向量，即 $l_i$ 的第 j 个分量为 1 当且仅当 $x_j\in X_i$ ,否则 $l_i$ 的第 j 个分量为 0 .再令
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/ifjk1m0jB9.png?imageslim)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/gDFc9elLdl.png?imageslim)
+
+于是,式(6.60)等价为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/6J8f0aiGCE.png?imageslim)
+
+显然，使用线性判别分析求解方法即可得到 $\alpha$ ，进而可由式(6.64)得到投影函数 $h(x)$ .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# COMMENT
+
+下面是补充阅读
+
+
+线性核SVM迄今仍是 文本分类的首选技术.一 个重要原因可能是：若将 每个单词作为文本数据的 一个属性，则该属性空间 维数很高，冗余度很大，其 描述能力足以将不同文档 “打散”.关于打散,参见
+
+12.4 节.
+
+
+支持向量机于1995年正式发表［Cortes and Vapnik, 1995］,由于在文本分 类任务中显示出卓越性能［Joachims, 1998］,很快成为机器学习的主流技术，并 直接掀起了 “统计学习” (statistical learning)在2000年前后的高潮.但实际 上，支持向量的概念早在二十世纪六十年代就已出现，统计学习理论在七十年 代就已成型.对核函数的研究更早,Mercer定理［Cristianini and Shawe-Taylor, 2000］可追溯到1909年，RKHS则在四十年代就已被研究，但在统计学习兴起 后，核技巧才真正成为机器学习的通用基本技术.关于支持向量机和核方法有 很多专门书籍和介绍性文章［Cristianini and Shawe-Taylor, 2000; Burges，1998; 邓乃扬与田英态，2009; Scholkopf et al., 1999; Scholkopf and Smola，2002］,统 计学习理论则可参阅［Vapnik5 1995, 1998, 1999］.
+
+m是样本个数.
+
+
+支持向量机的求解通常是借助于凸优化技术［Boyd and Vandenberghe, 2004］.如何提高效率，使SVM能适用于大规模数据一直是研究重点.对线性核 SVM已有很多成果，例如基于割平面法(cutting plane algorithm)的SVMperf 具有线性复杂度［Joachims, 2006］,基于随机梯度下降的Pegasos速度甚至更 快［Shalev-Shwartz et al., 2011］,而坐标下降法则在稀疏数据上有很高的效率 ［Hsieh et al., 2008］.非线性核SVM的时间复杂度在理论上不可能低于 因此研究重点是设计快速近似算法，如基于采样的CVM ［Tsang et al., 2006］. 基于低秩逼近的Bystrom方法［Williams and Seeger, 2001］、基于随机傅里叶 特征的方法［Rahimi and Recht, 2007］等.最近有研究显示，当核矩阵特征值有 很大差别时，Nystrom方法往往优于随机傅里叶特征方法［Yang et al., 2012］.
+
+支持向量机是针对二分类任务设计的，对多分类任务要进行专门的推广 ［Hsu and Lin, 2002］5对带结构输出的任务也已有相应的算法［Tsochantaridis
+
+et al.5 2005］.支持向量回归的研究始于［Drucker et al.; 1997］, ［Smola and Scholkopf, 2004］给出了一个较为全面的介绍.
+集成学.习参见第8章.
+
+
+核函数直接决定了支持向量机与核方法的最终性能，但遗憾的是，核函数 的选择是一个未决问题.多核学习(multiple kernel learning)使用多个核函数并 通过学习获得其最优凸组合作为最终的核函数［Lanckriet et al., 2004; Bach et al.，2004］,这实际上是在借助集成学习机制.
+
+一致性亦称“相合性”.
+
+
+替代损失函数在机器学习中被广泛使用.但是，通过求解替代损失 函数得到的是否仍是原问题的解？这在理论上称为替代损失的“一致 性” (consistency)问题.［Vapnik and Chervonenkis, 1991］给出 了基于替代损 失进行经验风险最小化的一致性充要条件，［Zhang, 2004］证明了几种常见凸替 代损失函数的一致性.
+
+SVM已有很多软件包，比较著名的有LIBSVM [Chang and Lin, 2011]和 LIBLINEAR [Fan et al.，2008]等.
+
+
+
+
+
+# REF
+1. 《机器学习》周志华

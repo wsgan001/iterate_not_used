@@ -1,0 +1,184 @@
+
+
+
+# TODO
+
+- 上一节中末尾的问题没有加进来。
+- 从回归里面把加入扰动的部分拿进来
+- 从回归里面把整个计算过程拿进来。
+- 一直想透彻理解么是线性回归，和Logistic回归有什么关系和区别？
+
+
+
+# 知识前提
+
+- 均方误差
+- 矩阵求逆，求导
+
+
+
+
+# 介绍一下线性回归
+
+## 什么是线性回归？
+
+
+给定一个数据集 $D=\{(x_1,y_1),(x_2,y_2),\cdots ,(x_m,y_m),\}$，其中的$(x_1,y_1)$ 就是一个样本， $x_i=(x_{i1};x_{i2};\cdots ;x_{id})$ 就是一个样本的属性，$y_i\in \mathbb{R}$ 就是这个样本的标记 。
+
+那么 "线性回归"(linear regression)  实际上就是试图学得一个线性模型，以尽可能准确地预测实值，来输出标记。
+
+
+# 我们看看只有一个特征的时候
+
+
+即，w只是一个数值，那么此时的线性回归试图学得
+$f(x_i)=wx_i+b$ 使得 $f(x_i)\simeq y_i$。
+
+OK，现在我们想求得这个w和b，使得 $f(x_i)\simeq y_i$。
+
+但是呢，在这之前，我们必须首先知道，到底怎么去衡量f(x_i)与y_i的近似情况。不然的话，我们也不知道我们得到的w和b是不是足够好，是不是有更好的使$f(x_i)$更近似于$y_i$。
+
+也就是说：
+
+
+# 我们要知道对 $f(x_i)$ 与 $y_i$ 的近似性的度量方法
+
+怎么衡量呢？
+
+其实我们可以把 $f(x_i)$ 与 $y_i$ 的近似情况看成是 $f(x_i)$ 与 $y_i$ 的距离，而越近似，就说明距离越小。
+
+那么这二者之间的距离怎么求呢？OK，这里我们想到了欧式距离 (Euclidean distance)。是可以的。<span style="color:red;">这里还有什么衡量的标准吗？</span>
+
+写成如下：
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180625/l5eahc8m4C.png)
+
+实际呢，这个欧氏距离其实就是对应的均方误差，而这其实是回归任务中最常用的性能度量。
+
+
+# OK，我们想将求一套w和b使得这个距离最小
+
+
+实际上，基于均方误差最小化来进行模型求解的方法被称为 "最小二乘法"(least squre method)。而求解 w 和 b 使![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180625/mLiK6B4GJI.png)最小化的过程，称为线性回归模型的最小二乘 "参数估计" (prameter estimation)。<span style="color:red;">最小二乘，需要再明确下，为什么叫最小二乘法？再总结下。</span>
+
+OK，求最小化，我们首先想到求导数：
+
+将 $E_{(w,b)}$ 分别对w和b求导，得到：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180625/134G5l55H5.png)
+
+
+令两个导数为 0 得到：
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180625/9C9JC8jgc3.png)
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180625/JLJDK17j03.png)
+
+
+而这两个是 w和 b 的最优解的闭式 (closed-form)解 。<span style="color:red;">什么是闭式解？</span>
+
+其中 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180625/K2mkgHaIK0.png)为x的均值
+OK，实际上上面，我们已经求出了，只有一个特征的时候，为了使 $f(x_i)$ 最近似于 $y_i$ ，此时的w和b的值。
+
+下面，我们把它扩展到d个属性的时候：
+
+
+# d个属性的时候
+
+
+此时我们试图学得：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180625/jL0heg6BKG.png)
+
+
+这称为"多元线性回归" (multivariate linear regression）。
+
+同样的，可以使用最小二乘法 来对 w 和 b 进行估计.为便于讨论，我们把 w
+和 b 吸收入向量形式 $\hat{w}=(w;b)$ ，相应的，把数据集 D 表示为一个 $m x (d + 1)$ 大小的矩阵 X ，其中每行对应于一个示例，该行前 d 个元素对应于示例的 d 个属性值，最后一个元素恒置为 1 :
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180625/Id1FjgdiL5.png)
+
+
+再把标记也写成向量形式, $y=(y_1;y_2; \cdots ;y_m)$， 则有：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180625/a59I80hL1B.png)
+
+
+
+
+
+# 求偏导
+
+
+令![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180625/KmBACIAaK9.png)，对 $\hat{w}$ 求导得到：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180625/a8883KCF13.png)
+
+
+令上式为零可得 $\hat{w}$ 最优解的闭式解，但由于涉及矩阵逆的计算，比单变量情形要复杂一些.下面我们做一个简单的讨论.
+
+
+# $X^TX$ 为满秩矩阵的时候
+
+
+当 $X^TX$ 为满秩矩阵 (full-rank matrix)或正走矩阵 (positive definite matrix) 时，令上式为0可得：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180625/jilFKjg5ha.png)
+
+
+其中：$(X^TX)^{-1}$ 是矩阵 $(X^TX)$ 的逆矩阵，令 $\hat{x_i}=(x_i,1)$ ,则最终学得的多元线性回归模型为
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180625/K2Am7CcJF5.png)
+
+
+
+
+
+# $X^TX$ 为不满秩怎么办？
+
+
+然而，现实任务中$X^TX$ 往往不是满秩矩阵.例如在许多任务中我们会遇到大量的变量，其数目甚至超过样例数，导致 X 的列数多于行数 ，$X^TX$ 显然不满秩.此时可解出多个$\hat{w}$， 它们都能使均方误差最小化.选择哪一个解作为输出 ，将由学习算法的归纳偏好决定， 常见的做法是引入正则化 (regularization) 项。<span style="color:red;">什么叫学习算法的归纳偏好？为什么正则化可以调整？正则化不是为了降低模型复杂度的过拟合问题的吗？</span>
+
+嗯，到这里，基本上线性回归的主要东西就OK了。
+
+那么，我们继续想一下：
+
+线性模型虽简单，其实却有可以有丰富的变化的，之前我们想让预测值逼近真实标记 y 的时候， 就得到了线性回归模型：
+
+$$y=w^Tx+b$$
+
+OK，那么可否令模型预测值逼近 y 的衍生物呢？比如 $lny$ ？OK，我们先假设样本的目标y实际上是在指数尺度上变化的，那么，我们就可以将输出标记的对数作为线性模型逼近的目标 ，即：
+
+$$lny=w^Tx+b$$
+
+
+
+而这，就是 "对数线性回归" (log-linear regression) ，它实际上是在试图让 $e^{w^Tx+b}$ 逼近 y。实际上，上面这个式子虽然在形式上仍是线性回归，但实质上已经是在求取输入空间到输出空间的非线性函数映射了，如图所示：
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180625/42bCB3hLib.png)
+
+
+而这里面的对数函数则起到了将线性回归模型的预测值与真实标记联系起来的作用。<span style="color:red;">厉害呀，但是，怎么能从一开始就知道要加上这个对数函数？</span>
+
+更一般地，考虑单调可微函数 $g(\cdot )$， $g(\cdot )$ 连续且充分光滑
+令：
+
+$$y=g^{-1}(w^Tx+b)$$
+
+
+这样得到的模型称为" 广义线性模型" (generalized linear model)，其中 函数 $g(\cdot )$ 称为"联系函数" (link funtin)。显然，对数线性回归是广义线性模型在 $g(\cdot )=ln(\cdot )$ 时的特例。
+
+注：广义线性模型的参数估计常通过加权最小二乘法或极大似然法进行。<span style="color:red;">厉害了，要总结下，而且，什么是加权最小二乘法？</span>
+
+
+
+
+# REF
+
+1. 《机器学习》周志华
