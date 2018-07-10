@@ -3,13 +3,6 @@
 
 
 
-
-
-
-
-
-
-
 # REF
 
 1. [linux下查看软件版本信息](https://blog.csdn.net/LY_Feng/article/details/7883310)
