@@ -19,6 +19,8 @@ Git 各平台安装包下载地址为：[http://git-scm.com/downloads](https://g
 
 ## Git 安装
 
+<span style="color:red;">首先，要注意一下：最好安装在默认的地方，因为有些东西要用到 git ，比如 vscode 、hexo 等，不放在默认的地方，后面设置会比较麻烦。</span>
+
 ### Linux 平台上安装
 
 
