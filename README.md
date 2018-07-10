@@ -1,2 +1,2 @@
 # iterate
-my wiki to interate myself
+wiki to interate myself
