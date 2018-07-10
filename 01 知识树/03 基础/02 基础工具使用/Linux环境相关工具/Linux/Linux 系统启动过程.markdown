@@ -1,61 +1,6 @@
----
-author: evo
-comments: true
-date: 2018-05-04 11:15:34+00:00
-layout: post
-link: http://106.15.37.116/2018/05/04/linux-%e7%b3%bb%e7%bb%9f%e5%90%af%e5%8a%a8%e8%bf%87%e7%a8%8b/
-slug: linux-%e7%b3%bb%e7%bb%9f%e5%90%af%e5%8a%a8%e8%bf%87%e7%a8%8b
-title: Linux 系统启动过程
-wordpress_id: 5078
-categories:
-- 基础工具使用
-tags:
-- linux
----
-
-<!-- more -->
-
-[mathjax]
+# Linux 系统启动过程
 
 
-# REFERENCE
-
-
-
-
-
- 	
-  1. [Linux教程](https://www.w3cschool.cn/linux/)
-
-
-
-
-# TODO
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-# MOTIVE
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-
-* * *
 
 
 
@@ -65,19 +10,19 @@ Linux系统的启动过程并不是大家想象中的那么复杂，其过程可
 
 
 
- 	
+
   * 内核的引导。
 
- 	
+
   * 运行init。
 
- 	
+
   * 系统初始化。
 
- 	
+
   * 建立终端 。
 
- 	
+
   * 用户登录系统。
 
 
@@ -150,25 +95,25 @@ Linux系统有7个运行级别(runlevel)：
 
 
 
- 	
+
   * 运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动
 
- 	
+
   * 运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆
 
- 	
+
   * 运行级别2：多用户状态(没有NFS)
 
- 	
+
   * 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式
 
- 	
+
   * 运行级别4：系统未使用，保留
 
- 	
+
   * 运行级别5：X11控制台，登陆后进入图形GUI模式
 
- 	
+
   * 运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动
 
 
@@ -188,9 +133,9 @@ Linux系统有7个运行级别(runlevel)：
 
 它主要完成的工作有：激活交换分区，检查磁盘，加载硬件模块以及其它一些需要优先执行任务。
 
-    
+
     l5:5:wait:/etc/rc.d/rc 5
-    
+
 
 
 这一行表示以5为参数运行/etc/rc.d/rc，/etc/rc.d/rc是一个Shell脚本，它接受5作为参数，去执行/etc/rc.d/rc5.d/目录下的所有的rc启动脚本，/etc/rc.d/rc5.d/目录中的这些启动脚本实际上都是一些连接文件，而不是真正的rc启动脚本，真正的rc启动脚本实际上都是放在/etc/rc.d/init.d/目录下。
@@ -228,14 +173,14 @@ rc执行完毕后，返回init。这时基本系统环境已经设置好了，�
 
 init接下来会打开6个终端，以便用户登录系统。在inittab中的以下6行就是定义了6个终端：
 
-    
+
     1:2345:respawn:/sbin/mingetty tty1
     2:2345:respawn:/sbin/mingetty tty2
     3:2345:respawn:/sbin/mingetty tty3
     4:2345:respawn:/sbin/mingetty tty4
     5:2345:respawn:/sbin/mingetty tty5
     6:2345:respawn:/sbin/mingetty tty6
-    
+
 
 
 从上面可以看出在2、3、4、5的运行级别中都将以respawn方式运行mingetty程序，mingetty程序能打开终端、设置模式。
@@ -257,13 +202,13 @@ init接下来会打开6个终端，以便用户登录系统。在inittab中的�
 
 
 
- 	
+
   * （1）命令行登录
 
- 	
+
   * （2）ssh登录
 
- 	
+
   * （3）图形界面登录
 
 
@@ -335,27 +280,27 @@ Linux预设提供了六个命令窗口终端机让我们来登录。
 
 例如你可以运行如下命令关机：
 
-    
+
     sync 将数据由内存同步到硬盘中。
-    
+
     shutdown 关机指令，你可以man shutdown 来看一下帮助文档。例如你可以运行如下命令关机：
-    
+
     shutdown –h 10 ‘This server will shutdown after 10 mins’ 这个命令告诉大家，计算机将在10分钟后关机，并且会显示在登陆用户的当前屏幕中。
-    
+
     Shutdown –h now 立马关机
-    
+
     Shutdown –h 20:25 系统会在今天20:25关机
-    
+
     Shutdown –h +10 十分钟后关机
-    
+
     Shutdown –r now 系统立马重启
-    
+
     Shutdown –r +10 系统十分钟后重启
-    
+
     reboot 就是重启，等同于 shutdown –r now
-    
+
     halt 关闭系统，等同于shutdown –h now 和 poweroff
-    
+
 
 
 最后总结一下，不管是重启系统还是关闭系统，首先要运行sync命令，把内存中的数据写到磁盘中。
@@ -374,25 +319,6 @@ Linux预设提供了六个命令窗口终端机让我们来登录。
 
 
 
+# REF
 
-
-
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+1. [Linux教程](https://www.w3cschool.cn/linux/)

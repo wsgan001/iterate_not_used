@@ -1,31 +1,5 @@
----
-author: evo
-comments: true
-date: 2018-05-04 11:21:55+00:00
-layout: post
-link: http://106.15.37.116/2018/05/04/linux-%e7%94%a8%e6%88%b7%e5%92%8c%e7%94%a8%e6%88%b7%e7%bb%84%e7%ae%a1%e7%90%86/
-slug: linux-%e7%94%a8%e6%88%b7%e5%92%8c%e7%94%a8%e6%88%b7%e7%bb%84%e7%ae%a1%e7%90%86
-title: Linux 用户和用户组管理
-wordpress_id: 5099
-categories:
-- 基础工具使用
-tags:
-- linux
----
+# Linux 用户和用户组管理
 
-<!-- more -->
-
-[mathjax]
-
-
-# REFERENCE
-
-
-
-
-
- 	
-  1. [Linux教程](https://www.w3cschool.cn/linux/)
 
 
 
@@ -36,7 +10,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -48,7 +22,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -76,13 +50,13 @@ Linux系统是一个多用户多任务的分时操作系统，任何一个要使
 
 
 
- 	
+
   * 用户账号的添加、删除与修改。
 
- 	
+
   * 用户口令的管理。
 
- 	
+
   * 用户组的管理。
 
 
@@ -107,40 +81,40 @@ Linux系统是一个多用户多任务的分时操作系统，任何一个要使
 
 
 
-    
+
     useradd 选项 用户名
-    
+
 
 
 参数说明：
 
 
 
- 	
+
   * 选项:
 
- 	
+
     * -c comment 指定一段注释性描述。
 
- 	
+
     * -d 目录 指定用户主目录，如果此目录不存在，则同时使用-m选项，可以创建主目录。
 
- 	
+
     * -g 用户组 指定用户所属的用户组。
 
- 	
+
     * -G 用户组，用户组 指定用户所属的附加组。
 
- 	
+
     * -s Shell文件 指定用户的登录Shell。
 
- 	
+
     * -u 用户号 指定用户的用户号，如果同时有-o选项，则可以重复使用其他用户的标识号。
 
 
 
 
- 	
+
   * 用户名:
 
 指定新账号的登录名。
@@ -152,9 +126,9 @@ Linux系统是一个多用户多任务的分时操作系统，任何一个要使
 
 
 
-    
+
     # useradd –d /usr/sam -m sam
-    
+
 
 
 此命令创建了一个用户sam，其中-d和-m选项用来为登录名sam产生一个主目录/usr/sam（/usr为默认的用户主目录所在的父目录）。
@@ -164,9 +138,9 @@ Linux系统是一个多用户多任务的分时操作系统，任何一个要使
 
 
 
-    
+
     # useradd -s /bin/sh -g group –G adm,root gem
-    
+
 
 
 此命令新建了一个用户gem，该用户的登录Shell是 `/bin/sh`，它属于group用户组，同时又属于adm和root用户组，其中group用户组是其主组。
@@ -185,18 +159,18 @@ Linux提供了集成的系统管理工具userconf，它可以用来对用户账�
 
 删除一个已有的用户账号使用`userdel`命令，其格式如下：
 
-    
+
     userdel 选项 用户名
-    
+
 
 
 常用的选项是-r，它的作用是把用户的主目录一起删除。
 
 例如：
 
-    
+
     # userdel sam
-    
+
 
 
 此命令删除用户sam在系统文件中（主要是/etc/passwd, /etc/shadow, /etc/group等）的记录，同时删除用户的主目录。
@@ -209,9 +183,9 @@ Linux提供了集成的系统管理工具userconf，它可以用来对用户账�
 
 修改已有用户的信息使用`usermod`命令，其格式如下：
 
-    
+
     usermod 选项 用户名
-    
+
 
 
 常用的选项包括`-c, -d, -m, -g, -G, -s, -u以及-o等`，这些选项的意义与`useradd`命令中的选项一样，可以为用户指定新的资源值。
@@ -222,9 +196,9 @@ Linux提供了集成的系统管理工具userconf，它可以用来对用户账�
 
 例如：
 
-    
+
     # usermod -s /bin/ksh -d /home/z –g developer sam
-    
+
 
 
 此命令将用户sam的登录Shell修改为ksh，主目录改为/home/z，用户组改为developer。
@@ -237,25 +211,25 @@ Linux提供了集成的系统管理工具userconf，它可以用来对用户账�
 
 指定和修改用户口令的Shell命令是`passwd`。超级用户可以为自己和其他用户指定口令，普通用户只能用它修改自己的口令。命令的格式为：
 
-    
+
     passwd 选项 用户名
-    
+
 
 
 可使用的选项：
 
 
 
- 	
+
   * -l 锁定口令，即禁用账号。
 
- 	
+
   * -u 口令解锁。
 
- 	
+
   * -d 使账号无口令。
 
- 	
+
   * -f 强迫用户下次登录时修改口令。
 
 
@@ -263,21 +237,21 @@ Linux提供了集成的系统管理工具userconf，它可以用来对用户账�
 
 例如，假设当前用户是sam，则下面的命令修改该用户自己的口令：
 
-    
-    $ passwd 
-    Old password:****** 
-    New password:******* 
+
+    $ passwd
+    Old password:******
+    New password:*******
     Re-enter new password:*******
-    
+
 
 
 如果是超级用户，可以用下列形式指定任何用户的口令：
 
-    
-    # passwd sam 
-    New password:******* 
+
+    # passwd sam
+    New password:*******
     Re-enter new password:*******
-    
+
 
 
 普通用户修改自己的口令时，passwd命令会先询问原口令，验证后再要求用户输入两遍新口令，如果两次输入的口令一致，则将这个口令指定给用户；而超级用户为用户指定口令时，就不需要知道原口令。
@@ -286,16 +260,16 @@ Linux提供了集成的系统管理工具userconf，它可以用来对用户账�
 
 为用户指定空口令时，执行下列形式的命令：
 
-    
+
     # passwd -d sam
-    
+
 
 
 此命令将用户sam的口令删除，这样用户sam下一次登录时，系统就不再询问口令。
 
 passwd命令还可以用-l(lock)选项锁定某一用户，使其不能登录，例如：
 
-    
+
     # passwd -l sam
 
 
@@ -320,19 +294,19 @@ passwd命令还可以用-l(lock)选项锁定某一用户，使其不能登录，
 
 
 
-    
+
     groupadd 选项 用户组
-    
+
 
 
 可以使用的选项有：
 
 
 
- 	
+
   * -g GID 指定新用户组的组标识号（GID）。
 
- 	
+
   * -o 一般与-g选项同时使用，表示新用户组的GID可以与系统已有用户组的GID相同。
 
 
@@ -342,9 +316,9 @@ passwd命令还可以用-l(lock)选项锁定某一用户，使其不能登录，
 
 
 
-    
+
     # groupadd group1
-    
+
 
 
 此命令向系统中增加了一个新组group1，新组的组标识号是在当前已有的最大组标识号的基础上加1。
@@ -354,7 +328,7 @@ passwd命令还可以用-l(lock)选项锁定某一用户，使其不能登录，
 
 
 
-    
+
     # groupadd -g 101 group2
 
 
@@ -365,9 +339,9 @@ passwd命令还可以用-l(lock)选项锁定某一用户，使其不能登录，
 
 
 
-    
+
     groupdel 用户组
-    
+
 
 
 
@@ -376,9 +350,9 @@ passwd命令还可以用-l(lock)选项锁定某一用户，使其不能登录，
 
 
 
-    
+
     # groupdel group1
-    
+
 
 
 此命令从系统中删除组group1。
@@ -388,22 +362,22 @@ passwd命令还可以用-l(lock)选项锁定某一用户，使其不能登录，
 
 
 
-    
+
     groupmod 选项 用户组
-    
+
 
 
 常用的选项有：
 
 
 
- 	
+
   * -g GID 为用户组指定新的组标识号。
 
- 	
+
   * -o 与-g选项同时使用，用户组的新GID可以与系统已有用户组的GID相同。
 
- 	
+
   * -n新用户组 将用户组的名字改为新名字
 
 
@@ -413,9 +387,9 @@ passwd命令还可以用-l(lock)选项锁定某一用户，使其不能登录，
 
 
 
-    
+
     # groupmod -g 102 group2
-    
+
 
 
 此命令将组group2的组标识号修改为102。
@@ -425,9 +399,9 @@ passwd命令还可以用-l(lock)选项锁定某一用户，使其不能登录，
 
 
 
-    
+
     # groupmod –g 10000 -n group3 group2
-    
+
 
 
 此命令将组group2的标识号改为10000，组名修改为group3。
@@ -438,9 +412,9 @@ passwd命令还可以用-l(lock)选项锁定某一用户，使其不能登录，
 
 用户可以在登录后，使用命令newgrp切换到其他用户组，这个命令的参数就是目的用户组。例如：
 
-    
+
     $ newgrp root
-    
+
 
 
 这条命令将当前用户切换到root用户组，前提条件是root用户组确实是该用户的主组或附加组。类似于用户账号的管理，用户组的管理也可以通过集成的系统管理工具来完成。
@@ -470,9 +444,9 @@ Linux系统中的每个用户都在/etc/passwd文件中有一个对应的记录�
 
 这个文件对所有用户都是可读的。它的内容类似下面的例子：
 
-    
+
     ＃ cat /etc/passwd
-    
+
     root:x:0:0:Superuser:/:
     daemon:x:1:1:System daemons:/etc:
     bin:x:2:2:Owner of system commands:/bin:
@@ -484,14 +458,14 @@ Linux系统中的每个用户都在/etc/passwd文件中有一个对应的记录�
     listen:x:37:4:Network daemon:/usr/net/nls:
     lp:x:71:18:Printer administrator:/usr/spool/lp:
     sam:x:200:50:Sam san:/usr/sam:/bin/sh
-    
+
 
 
 从上面的例子我们可以看到，/etc/passwd中一行记录对应着一个用户，每行记录又被冒号(:)分隔为7个字段，其格式和具体含义如下：
 
-    
+
     用户名:口令:用户标识号:组标识号:注释性描述:主目录:登录Shell
-    
+
 
 
 
@@ -555,15 +529,15 @@ Shell是用户与Linux系统之间的接口。Linux的Shell有许多种，每种
 
 常见的伪用户如下所示：
 
-    
-    伪 用 户 含 义 
-    bin 拥有可执行的用户命令文件 
-    sys 拥有系统文件 
-    adm 拥有帐户文件 
-    uucp UUCP使用 
-    lp lp或lpd子系统使用 
+
+    伪 用 户 含 义
+    bin 拥有可执行的用户命令文件
+    sys 拥有系统文件
+    adm 拥有帐户文件
+    uucp UUCP使用
+    lp lp或lpd子系统使用
     nobody NFS使用
-    
+
 
 
 
@@ -591,44 +565,44 @@ Shell是用户与Linux系统之间的接口。Linux的Shell有许多种，每种
 
 它的文件格式与/etc/passwd类似，由若干个字段组成，字段之间用":"隔开。这些字段是：
 
-    
+
     登录名:加密口令:最后一次修改时间:最小时间间隔:最大时间间隔:警告时间:不活动时间:失效时间:标志
-    
 
 
 
 
 
- 	
+
+
   1. "登录名"是与/etc/passwd文件中的登录名相一致的用户账号
 
- 	
+
   2. "口令"字段存放的是加密后的用户口令字，长度为13个字符。如果为空，则对应用户没有口令，登录时不需要口令；如果含有不属于集合 { ./0-9A-Za-z }中的字符，则对应的用户不能登录。
 
- 	
+
   3. "最后一次修改时间"表示的是从某个时刻起，到用户最后一次修改口令时的天数。时间起点对不同的系统可能不一样。例如在SCO Linux 中，这个时间起点是1970年1月1日。
 
- 	
+
   4. "最小时间间隔"指的是两次修改口令之间所需的最小天数。
 
- 	
+
   5. "最大时间间隔"指的是口令保持有效的最大天数。
 
- 	
+
   6. "警告时间"字段表示的是从系统开始警告用户到用户密码正式失效之间的天数。
 
- 	
+
   7. "不活动时间"表示的是用户没有登录活动但账号仍能保持有效的最大天数。
 
- 	
+
   8. "失效时间"字段给出的是一个绝对的天数，如果使用了这个字段，那么就给出相应账号的生存期。期满后，该账号就不再是一个合法的账号，也就不能再用来登录了。
 
 
 下面是/etc/shadow的一个例子：
 
-    
+
     ＃ cat /etc/shadow
-    
+
     root:Dnakfw28zf38w:8764:0:168:7:::
     daemon:*::0:0::::
     bin:*::0:0::::
@@ -641,7 +615,7 @@ Shell是用户与Linux系统之间的接口。Linux的Shell有许多种，每种
     listen:*::0:0::::
     lp:*::0:0::::
     sam:EkdiSECLWPdSa:9740:0:0::::
-    
+
 
 
 
@@ -659,30 +633,30 @@ Shell是用户与Linux系统之间的接口。Linux的Shell有许多种，每种
 
 用户组的所有信息都存放在/etc/group文件中。此文件的格式也类似于/etc/passwd文件，由冒号(:)隔开若干个字段，这些字段有：
 
-    
+
     组名:口令:组标识号:组内用户列表
-    
 
 
 
 
 
- 	
+
+
   1. "组名"是用户组的名称，由字母或数字构成。与/etc/passwd中的登录名一样，组名不应重复。
 
- 	
+
   2. "口令"字段存放的是用户组加密后的口令字。一般Linux 系统的用户组都没有口令，即这个字段一般为空，或者是*。
 
- 	
+
   3. "组标识号"与用户标识号类似，也是一个整数，被系统内部用来标识组。
 
- 	
+
   4. "组内用户列表"是属于这个组的所有用户的列表/b]，不同用户之间用逗号(,)分隔。这个用户组可能是用户的主组，也可能是附加组。
 
 
 /etc/group文件的一个例子如下：
 
-    
+
     root::0:root
     bin::2:root,bin
     sys::3:root,uucp
@@ -690,7 +664,7 @@ Shell是用户与Linux系统之间的接口。Linux的Shell有许多种，每种
     daemon::5:root,daemon
     lp::7:root,lp
     users::20:root,sam
-    
+
 
 
 
@@ -706,14 +680,14 @@ Shell是用户与Linux系统之间的接口。Linux的Shell有许多种，每种
 
 每一列按照`/etc/passwd`密码文件的格式书写，要注意每个用户的用户名、UID、宿主目录都不可以相同，其中密码栏可以留做空白或输入x号。一个范例文件user.txt内容如下：
 
-    
+
     user001::600:100:user:/home/user001:/bin/bash
     user002::601:100:user:/home/user002:/bin/bash
     user003::602:100:user:/home/user003:/bin/bash
     user004::603:100:user:/home/user004:/bin/bash
     user005::604:100:user:/home/user005:/bin/bash
     user006::605:100:user:/home/user006:/bin/bash
-    
+
 
 
 
@@ -722,7 +696,7 @@ Shell是用户与Linux系统之间的接口。Linux的Shell有许多种，每种
 
 
 
-    
+
     # newusers < user.txt
 
 
@@ -734,9 +708,9 @@ Shell是用户与Linux系统之间的接口。Linux的Shell有许多种，每种
 
 将 `/etc/shadow` 产生的 `shadow` 密码解码，然后回写到 `/etc/passwd` 中，并将`/etc/shadow`的`shadow`密码栏删掉。这是为了方便下一步的密码转换工作，即先取消 `shadow password` 功能。
 
-    
+
     # pwunconv
-    
+
 
 
 
@@ -746,14 +720,14 @@ Shell是用户与Linux系统之间的接口。Linux的Shell有许多种，每种
 
 范例文件 `passwd.txt` 内容如下：
 
-    
+
     user001:密码
     user002:密码
     user003:密码
     user004:密码
     user005:密码
     user006:密码
-    
+
 
 
 
@@ -763,7 +737,7 @@ Shell是用户与Linux系统之间的接口。Linux的Shell有许多种，每种
 
 创建用户密码，`chpasswd` 会将经过 `/usr/bin/passwd` 命令编码过的密码写入 `/etc/passwd` 的密码栏。
 
-    
+
     # chpasswd < passwd.txt
 
 
@@ -774,7 +748,7 @@ Shell是用户与Linux系统之间的接口。Linux的Shell有许多种，每种
 
 执行命令 `/usr/sbin/pwconv` 将密码编码为 `shadow password`，并将结果写入 `/etc/shadow`。
 
-    
+
     # pwconv
 
 
@@ -791,24 +765,6 @@ Shell是用户与Linux系统之间的接口。Linux的Shell有许多种，每种
 
 
 
+# REF
 
-
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+1. [Linux教程](https://www.w3cschool.cn/linux/)

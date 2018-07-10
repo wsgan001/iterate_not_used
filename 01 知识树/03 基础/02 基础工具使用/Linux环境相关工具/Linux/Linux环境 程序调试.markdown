@@ -1,122 +1,55 @@
----
-author: evo
-comments: true
-date: 2018-05-04 12:08:21+00:00
-layout: post
-link: http://106.15.37.116/2018/05/04/linux%e7%8e%af%e5%a2%83-%e7%a8%8b%e5%ba%8f%e8%b0%83%e8%af%95/
-slug: linux%e7%8e%af%e5%a2%83-%e7%a8%8b%e5%ba%8f%e8%b0%83%e8%af%95
-title: linux环境 程序调试
-wordpress_id: 5145
-categories:
-- 基础工具使用
-tags:
-- linux
----
-
-<!-- more -->
-
-[mathjax]
-
-
-# REFERENCE
-
-
-
-
-
- 	
-  1. [Linux Tools Quick Tutorial](http://linuxtools-rst.readthedocs.io/zh_CN/latest/index.html)
-
-
-
-
-# TODO
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-# MOTIVE
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-
-* * *
-
-
-
-
-
+# Linux环境 程序调试
 
 
 
 目录
 
 
-
-
-
-
- 	
   * [程序调试](http://linuxtools-rst.readthedocs.io/zh_CN/latest/advance/02_program_debug.html#program-debug)
 
- 	
+
     * [进程调试](http://linuxtools-rst.readthedocs.io/zh_CN/latest/advance/02_program_debug.html#id3)
 
- 	
+
       * [gdb 程序交互调试](http://linuxtools-rst.readthedocs.io/zh_CN/latest/advance/02_program_debug.html#gdb)
 
- 	
+
       * [pstack 跟踪栈空间](http://linuxtools-rst.readthedocs.io/zh_CN/latest/advance/02_program_debug.html#pstack)
 
- 	
+
       * [strace 分析系统调用](http://linuxtools-rst.readthedocs.io/zh_CN/latest/advance/02_program_debug.html#strace)
 
 
 
 
- 	
+
     * [目标文件分析](http://linuxtools-rst.readthedocs.io/zh_CN/latest/advance/02_program_debug.html#id4)
 
- 	
+
       * [nm](http://linuxtools-rst.readthedocs.io/zh_CN/latest/advance/02_program_debug.html#nm)
 
- 	
+
       * [objdump](http://linuxtools-rst.readthedocs.io/zh_CN/latest/advance/02_program_debug.html#objdump)
 
- 	
+
       * [readelf](http://linuxtools-rst.readthedocs.io/zh_CN/latest/advance/02_program_debug.html#readelf)
 
- 	
+
       * [size 查看程序内存占用](http://linuxtools-rst.readthedocs.io/zh_CN/latest/advance/02_program_debug.html#size)
 
- 	
+
       * [file 文件类型查询](http://linuxtools-rst.readthedocs.io/zh_CN/latest/advance/02_program_debug.html#file)
 
- 	
+
       * [strings 查询数据中的文本信息](http://linuxtools-rst.readthedocs.io/zh_CN/latest/advance/02_program_debug.html#strings)
 
- 	
+
       * [fuser 显示文件使用者](http://linuxtools-rst.readthedocs.io/zh_CN/latest/advance/02_program_debug.html#fuser)
 
- 	
+
       * [xxd 十六进制显示数据](http://linuxtools-rst.readthedocs.io/zh_CN/latest/advance/02_program_debug.html#xxd)
 
- 	
+
       * [od](http://linuxtools-rst.readthedocs.io/zh_CN/latest/advance/02_program_debug.html#od)
 
 
@@ -159,7 +92,7 @@ GDB中的命令固然很多，但我们只需掌握其中十个左右的命令�
 
 
 
-    
+
     $gdb programmer     # 启动gdb
     >break main         # 设置断点
     >run                # 运行调试程序
@@ -167,7 +100,7 @@ GDB中的命令固然很多，但我们只需掌握其中十个左右的命令�
     >print var1         # 在调试过程中，我们需要查看当前某个变量值的时候，使用print 命令打印该值
     >list               # 显示当前调试处的源代码
     >info b             # 显示当前断点设置情况
-    
+
 
 
 
@@ -195,7 +128,7 @@ pstack是一个脚本工具，可显示每个进程的栈跟踪。pstack 命令�
 
 语法:
 
-    
+
     $pstrack <program-pid>
 
 
@@ -209,7 +142,7 @@ pstack是一个脚本工具，可显示每个进程的栈跟踪。pstack 命令�
 
 
 
-    
+
     $ pstack 4551
     Thread 7 (Thread 1084229984 (LWP 4552)):
     #0  0x000000302afc63dc in epoll_wait () from /lib64/tls/libc.so.6
@@ -219,7 +152,7 @@ pstack是一个脚本工具，可显示每个进程的栈跟踪。pstack 命令�
     #4  0x000000302b80610a in start_thread () from /lib64/tls/libpthread.so.0
     #5  0x000000302afc6003 in clone () from /lib64/tls/libc.so.6
     #6  0x0000000000000000 in ?? ()
-    
+
 
 
 
@@ -243,7 +176,7 @@ strace常用来跟踪进程执行时的系统调用和所接收的信号。在Li
 
 完整程序:
 
-    
+
     strace -o output.txt -T -tt -e trace=all -p 28979
 
 
@@ -253,7 +186,7 @@ strace常用来跟踪进程执行时的系统调用和所接收的信号。在Li
 
 查看进程正在做什么(实时输出进程执行系统调用的情况):
 
-    
+
     $strace -p <process-pid>
 
 
@@ -291,7 +224,7 @@ nm用来列出目标文件的符号清单。
 
 
 
-    
+
     $nm myProgrammer
     08049f28 d _DYNAMIC
     08049ff4 d _GLOBAL_OFFSET_TABLE_
@@ -328,7 +261,7 @@ nm用来列出目标文件的符号清单。
     080483c0 t frame_dummy
     080483e4 T main
              U printf@@GLIBC_2.0
-    
+
 
 
 
@@ -343,13 +276,13 @@ nm用来列出目标文件的符号清单。
 
 
 
- 	
+
   * A 表示绝对 (absolute)，这意味着不能将该值更改为其他的连接；
 
- 	
+
   * B 表示 BSS 段中的符号；
 
- 	
+
   * C 表示引用未初始化的数据的一般符号。
 
 
@@ -394,13 +327,13 @@ ogjdump工具用来显示二进制文件的信息，就是以一种可阅读的�
 
 
 
-    
+
     $objdump -d myprogrammer
     a.out:     file format elf32-i386
-    
-    
+
+
     Disassembly of section .init:
-    
+
     080482b4 <_init>:
      80482b4:   53                      push   %ebx
      80482b5:   83 ec 08                sub    $0x8,%esp
@@ -416,10 +349,10 @@ ogjdump工具用来显示二进制文件的信息，就是以一种可阅读的�
      80482dd:   83 c4 08                add    $0x8,%esp
      80482e0:   5b                      pop    %ebx
      80482e1:   c3                      ret
-    
+
     Disassembly of section .plt:
     ...
-    
+
 
 
 
@@ -467,7 +400,7 @@ ogjdump工具用来显示二进制文件的信息，就是以一种可阅读的�
 
 
 
-    
+
     $readelf -all a.out
     ELF Header:
       Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00
@@ -489,7 +422,7 @@ ogjdump工具用来显示二进制文件的信息，就是以一种可阅读的�
       Size of section headers:           40 (bytes)
       Number of section headers:         30
       Section header string table index: 27
-    
+
     Section Headers:
       [Nr] Name              Type            Addr     Off    Size   ES Flg Lk Inf Al
       [ 0]                   NULL            00000000 000000 000000 00      0   0  0
@@ -523,7 +456,7 @@ ogjdump工具用来显示二进制文件的信息，就是以一种可阅读的�
       [28] .symtab           SYMTAB          00000000 0015ec 000410 10     29  45  4
       [29] .strtab           STRTAB          00000000 0019fc 0001f9 00      0   0  1
       ...
-    
+
 
 
 
@@ -542,9 +475,9 @@ ELF Header 为该文件中所有段入口显示了详细的摘要。在列举出
 
 
 
-    
+
     <span></span>$readelf --debug-dump a.out | more
-    
+
 
 
 
@@ -590,11 +523,11 @@ size这个工具用来查看程序运行时各个段的实际内存占用:
 
 
 
-    
+
     $size a.out
     text           data     bss     dec     hex filename
     1146            256       8    1410     582 a.out
-    
+
 
 
 
@@ -618,7 +551,7 @@ size这个工具用来查看程序运行时各个段的实际内存占用:
 
 比如我们在64位机器上发现了一个32位的库，链接不上，这就有问题了：
 
-    
+
     $file a.out
     a.out: ELF 64-bit LSB executable, AMD x86-64, version 1 (SYSV), for GNU/Linux 2.6.9, dynamically linked (uses shared libs), for GNU/Linux 2.6.9, not stripped
 
@@ -627,7 +560,7 @@ size这个工具用来查看程序运行时各个段的实际内存占用:
 
 也可以查看Core文件是由哪个程序生成:
 
-    
+
     $file core.22355
 
 
@@ -644,7 +577,7 @@ size这个工具用来查看程序运行时各个段的实际内存占用:
 
 一个文件中包含二进制数据和文本数据，如果只需要查看其文本信息，使用这个命令就很方便；过滤掉非字符数据，将文本信息输出:
 
-    
+
     $strings <objfile>
 
 
@@ -661,7 +594,7 @@ size这个工具用来查看程序运行时各个段的实际内存占用:
 
 显示所有正在使用着指定的file, file system 或者 sockets的进程信息;
 
-    
+
     $fuser -m -u redis-server
     redis-server: 11552rce(weber) 22912rce(weber) 25501rce(weber)
 
@@ -672,7 +605,7 @@ size这个工具用来查看程序运行时各个段的实际内存占用:
 
 fuser通常被用在诊断系统的”resource busy”问题。如果你希望kill所有正在使用某一指定的file, file system or sockets的进程的时候，你可以使用-k选项:
 
-    
+
     $fuser –k /path/to/your/filename
 
 
@@ -695,7 +628,7 @@ fuser通常被用在诊断系统的”resource busy”问题。如果你希望ki
 
 
 
-    
+
     $xxd a.out
     0000000: 7f45 4c46 0101 0100 0000 0000 0000 0000  .ELF............
     0000010: 0200 0300 0100 0000 3083 0408 3400 0000  ........0...4...
@@ -704,7 +637,7 @@ fuser通常被用在诊断系统的”resource busy”问题。如果你希望ki
     0000040: 3480 0408 2001 0000 2001 0000 0500 0000  4... ... .......
     0000050: 0400 0000 0300 0000 5401 0000 5481 0408  ........T...T...
     ...
-    
+
 
 
 
@@ -732,37 +665,37 @@ fuser通常被用在诊断系统的”resource busy”问题。如果你希望ki
 
 
 
- 	
+
   * d 十进制
 
- 	
+
   * o 八进制（系统默认值）
 
- 	
+
   * x 十六进制
 
- 	
+
   * n 不打印位移值
 
 
 -t 指定数据的显示格式，主要的参数有：
 
- 	
+
   * c ASCII字符或反斜杠序列
 
- 	
+
   * d 有符号十进制数
 
- 	
+
   * f 浮点数
 
- 	
+
   * o 八进制（系统默认值为02）
 
- 	
+
   * u 无符号十进制数
 
- 	
+
   * x 十六进制数
 
 
@@ -778,7 +711,7 @@ fuser通常被用在诊断系统的”resource busy”问题。如果你希望ki
 
 
 
-    
+
     $od -Ax -tcx4 a.c
     000000   #   i   n   c   l   u   d   e       <   s   t   d   i   o   .
                   636e6923        6564756c        74733c20        2e6f6964
@@ -791,7 +724,7 @@ fuser通常被用在诊断系统的”resource busy”问题。如果你希望ki
     000040   ,   i   )   ;  \n   }  \n
                   3b29692c        000a7d0a
     000047
-    
+
 
 
 
@@ -808,7 +741,7 @@ fuser通常被用在诊断系统的”resource busy”问题。如果你希望ki
 
 
 
-    
+
     $od -c a.c
     0000000   #   i   n   c   l   u   d   e       <   s   t   d   i   o   .
     0000020   h   >  \n  \n   v   o   i   d       m   a   i   n   (   )  \n
@@ -816,7 +749,7 @@ fuser通常被用在诊断系统的”resource busy”问题。如果你希望ki
     0000060   r   i   n   t   f   (   "   h   e   l   l   o   ,   %   d   "
     0000100   ,   i   )   ;  \n   }  \n
     0000107
-    
+
 
 
 
@@ -844,24 +777,6 @@ fuser通常被用在诊断系统的”resource busy”问题。如果你希望ki
 
 
 
+# REF
 
-
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+1. [Linux Tools Quick Tutorial](http://linuxtools-rst.readthedocs.io/zh_CN/latest/index.html)

@@ -1,19 +1,4 @@
----
-author: evo
-comments: true
-date: 2018-03-31 04:07:22+00:00
-layout: post
-link: http://106.15.37.116/2018/03/31/linux-find-file-or-folder/
-slug: linux-find-file-or-folder
-title: linux 查找文件和文件夹
-wordpress_id: 2143
-categories:
-- 基础计算机
-tags:
-- linux
----
-
-<!-- more -->
+# Linux 查找文件和文件夹
 
 
 # 缘由：
@@ -38,13 +23,13 @@ find的使用格式如下：
 
 
 
- 	
+
   * <指定目录>： 所要搜索的目录及其所有子目录。默认为当前目录。
 
- 	
+
   * <指定条件>： 所要搜索的文件的特征。
 
- 	
+
   * <指定动作>： 对搜索结果进行特定的处理。
 
 
@@ -80,14 +65,8 @@ find / -name wp-content -print
 
 
 
- 	
-  1. 
+
+  1.
 
 
 [Linux的五个查找命令](http://www.ruanyifeng.com/blog/2009/10/5_ways_to_search_for_files_using_the_terminal.html)
-
-
-
-
-
-

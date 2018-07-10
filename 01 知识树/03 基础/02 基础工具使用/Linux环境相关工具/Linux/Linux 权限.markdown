@@ -1,64 +1,6 @@
----
-author: evo
-comments: true
-date: 2018-06-05 00:25:55+00:00
-layout: post
-link: http://106.15.37.116/2018/06/05/linux-%e6%9d%83%e9%99%90/
-slug: linux-%e6%9d%83%e9%99%90
-title: Linux 权限
-wordpress_id: 7418
-categories:
-- 基础工具使用
-tags:
-- linux
----
+TODO
 
-<!-- more -->
-
-[mathjax]
-
-**注：非原创，所有版权属于原作者，原文已列在 ORIGINAL 中。为了方便个人学习做了整合、修改，仅供个人学习使用。**
-
-
-# ORIGINAL
-
-
-
-
-
- 	
-  1. aaa
-
-
-
-
-# TODO
-
-
-
-
-
- 	
-  * **很多问题，要根据书系统的学习一下。**
-
-
-
-
-
-* * *
-
-
-
-
-
-# INTRODUCTION
-
-
-
-
-
- 	
-  * aaa
+* **很多问题，要根据书系统的学习一下。**
 
 
 
@@ -89,34 +31,3 @@ ls: cannot access logfiles/gunicorn_error.log: Permission denied
 **gunicorn 想写log文件的时候，这个user 是谁？是用root账户运行的root 吗？还是gunicorn ？有gunicorn 这个账户吗？还是supivisor？它运行的gunicorn。还是gunicorn 所在的 evo ？它这个exe是在这个 /home/evo 下面的。还是什么？为什么会没有写这个在 /home/evo 里面的这个文件夹的权限？**
 
 **到底该怎么修改文件和文件夹的权限？使用 root 和 evo 和sudo evo 到底有什么区别？我怎么知道两个账户是不是同一个group的？如果一个文件夹是在 /home/evo 里面的，那么谁有权限修改？为什么会显示问号？为什么我上面改了之后却没有变？**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-

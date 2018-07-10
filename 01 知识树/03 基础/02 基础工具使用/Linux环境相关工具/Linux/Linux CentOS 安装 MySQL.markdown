@@ -1,86 +1,18 @@
----
-author: evo
-comments: true
-date: 2018-05-31 01:02:06+00:00
-layout: post
-link: http://106.15.37.116/2018/05/31/linux-centos-%e5%ae%89%e8%a3%85-mysql/
-slug: linux-centos-%e5%ae%89%e8%a3%85-mysql
-title: Linux CentOS 安装 MySQL
-wordpress_id: 7069
-categories:
-- 基础工具使用
-tags:
-- Database
-- linux
+TODO
+
+* **还是有很多疑问的**
+
 ---
 
-<!-- more -->
 
-[mathjax]
-
-**注：非原创，所有版权属于原作者，原文已列在 ORIGINAL 中。为了方便个人学习做了整合、修改，仅供个人学习使用。**
-
-
-# ORIGINAL
-
-
-
-
-
- 	
-  1. [CentOS 7 安装 MySQL](https://blog.csdn.net/SmallTankPy/article/details/75451645)
-
-
-
-
-# TODO
-
-
-
-
-
- 	
-  * **还是有很多疑问的**
-
-
-
-
-
-* * *
-
-
-
-
-
-# INTRODUCTION
-
-
-
-
-
- 	
-  * aaa
-
-
-
+# Linux CentOS 安装 MySQL
 
 
 # 在安装之前
 
-
-
-
 ## 首先检查 MySQL 是否已安装
 
-
-
-
-
- 	
   * yum list installed | grep mysql
-
-
-
 
 ## 如果有的话 就全部卸载
 
@@ -88,7 +20,7 @@ tags:
 
 
 
- 	
+
   * yum -y remove +数据库名称
 
 
@@ -107,10 +39,10 @@ tags:
 
 
 
- 	
+
   * yum search libaio # 检索相关信息
 
- 	
+
   * yum install libaio # 安装依赖包
 
 
@@ -123,13 +55,13 @@ tags:
 
 
 
- 	
+
   * wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
 
 
 添加 MySQL Yum Repository 到你的系统 repository 列表中：
 
- 	
+
   * yum localinstall mysql-community-release-el7-5.noarch.rpm
 
 
@@ -139,7 +71,7 @@ tags:
 
 
 
- 	
+
   * yum repolist enabled | grep "mysql.*-community.*"
 
 
@@ -152,13 +84,13 @@ tags:
 
 
 
- 	
+
   * yum repolist all | grep mysql
 
 
 可以看到 5.5、 5.7 版本是默认禁用的，因为现在最新的稳定版是 5.6
 
- 	
+
   * yum repolist enabled | grep mysql
 
 
@@ -171,7 +103,7 @@ tags:
 
 
 
- 	
+
   * yum install mysql-community-server
 
 
@@ -186,10 +118,10 @@ Yum 会自动处理 MySQL 与其他组件的依赖关系。遇到提示，输入
 
 
 
- 	
+
   * rpm -qi mysql-community-server.x86_64 0:5.6.24-3.el7
 
- 	
+
   * whereis mysql
 
 
@@ -203,19 +135,19 @@ Yum 会自动处理 MySQL 与其他组件的依赖关系。遇到提示，输入
 
 
 
- 	
+
   * systemctl start mysqld
 
 
 查看 MySQL Server 状态：
 
- 	
+
   * systemctl status mysqld
 
 
 测试是否安装成功：
 
- 	
+
   * mysql
 
 
@@ -223,7 +155,7 @@ Yum 会自动处理 MySQL 与其他组件的依赖关系。遇到提示，输入
 
 关闭 MySQL Server：
 
- 	
+
   * systemctl stop mysqld
 
 
@@ -244,10 +176,10 @@ Yum 会自动处理 MySQL 与其他组件的依赖关系。遇到提示，输入
 
 
 
- 	
+
   * firewall-cmd --permanent --zone=public --add-port=3306/tcp
 
- 	
+
   * firewall-cmd --permanent --zone=public --add-port=3306/udp
 
 
@@ -255,7 +187,7 @@ Yum 会自动处理 MySQL 与其他组件的依赖关系。遇到提示，输入
 
 重新加载防火墙：
 
- 	
+
   * firewall-cmd --reload
 
 
@@ -268,7 +200,7 @@ Yum 会自动处理 MySQL 与其他组件的依赖关系。遇到提示，输入
 
 
 
- 	
+
   * mysql_secure_installation;
 
 
@@ -288,22 +220,22 @@ Yum 会自动处理 MySQL 与其他组件的依赖关系。遇到提示，输入
 
 
 
- 	
+
   * systemctl start mysqld
 
- 	
+
   * mysql -u root -p   **#****为什么这么写？意思是什么？**
 
 
 现在已经在mysql 里面了，用查询语句查看 user 表：
 
- 	
+
   * show databases;
 
- 	
+
   * use mysql;
 
- 	
+
   * select host,user,password from user;
 
 
@@ -311,10 +243,10 @@ Yum 会自动处理 MySQL 与其他组件的依赖关系。遇到提示，输入
 
 
 
- 	
+
   * grant all privileges on *.* to 'root'@'%' identified by 'lam7' with grant option;
 
- 	
+
   * flush privileges;     #让刚刚修改的权限生效
 
 
@@ -322,7 +254,7 @@ Yum 会自动处理 MySQL 与其他组件的依赖关系。遇到提示，输入
 
 再看一下 users：
 
- 	
+
   * select host,user,password from user;
 
 
@@ -332,7 +264,7 @@ Yum 会自动处理 MySQL 与其他组件的依赖关系。遇到提示，输入
 
 关闭 数据库：
 
- 	
+
   * systemctl stop mysqld
 
 
@@ -342,13 +274,13 @@ Yum 会自动处理 MySQL 与其他组件的依赖关系。遇到提示，输入
 
 
 
- 	
+
   * systemctl stop firewalld
 
 
 然后查看状态：
 
- 	
+
   * systemctl status firewalld
 
 
@@ -385,17 +317,19 @@ Yum 会自动处理 MySQL 与其他组件的依赖关系。遇到提示，输入
 
 **下面这个有用吗？要补充进来**
 
-    
-    # 使用root用户登录后创建新用户  
+
+    # 使用root用户登录后创建新用户
     mysql> CREATE USER 'demouser'@'localhost' IDENTIFIED BY 'demopassword';
-    
-    # 授权  
+
+    # 授权
     mysql> GRANT ALL PRIVILEGES ON demodb.* to demouser@localhost;
     mysql> FLUSH PRIVILEGES;
-    
-    # 使用新创建的用户登录后创建数据库  
+
+    # 使用新创建的用户登录后创建数据库
     mysql> CREATE DATABASE demodb;
-    
 
 
 
+# REF
+
+1. [CentOS 7 安装 MySQL](https://blog.csdn.net/SmallTankPy/article/details/75451645)

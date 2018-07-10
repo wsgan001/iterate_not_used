@@ -1,60 +1,4 @@
----
-author: evo
-comments: true
-date: 2018-05-04 11:20:05+00:00
-layout: post
-link: http://106.15.37.116/2018/05/04/linux-%e6%96%87%e4%bb%b6%e5%9f%ba%e6%9c%ac%e5%b1%9e%e6%80%a7/
-slug: linux-%e6%96%87%e4%bb%b6%e5%9f%ba%e6%9c%ac%e5%b1%9e%e6%80%a7
-title: Linux 文件基本属性
-wordpress_id: 5079
-categories:
-- 随想与反思
----
-
-<!-- more -->
-
-[mathjax]
-
-
-# REFERENCE
-
-
-
-
-
- 	
-  1. [Linux教程](https://www.w3cschool.cn/linux/)
-
-
-
-
-# TODO
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-# MOTIVE
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-
-* * *
-
+# Linux 文件基本属性
 
 
 
@@ -66,13 +10,13 @@ Linux系统是一种典型的多用户系统，不同的用户处于不同的地
 
 在Linux中我们可以使用 ll 或者 ls –l 命令来显示一个文件的属性以及文件所属的用户和组，如：
 
-    
+
     [root@www /]# ls -l
     total 64
     dr-xr-xr-x   2 root root 4096 Dec 14  2012 bin
     dr-xr-xr-x   4 root root 4096 Apr 19  2012 boot
     ……
-    
+
 
 
 实例中，bin文件的第一个属性用"d"表示。"d"在Linux中代表该文件是一个目录文件。
@@ -81,19 +25,19 @@ Linux系统是一种典型的多用户系统，不同的用户处于不同的地
 
 
 
- 	
+
   * 当为[_ d_ ]则是目录
 
- 	
+
   * 当为[_ -_ ]则是文件；
 
- 	
+
   * 若是[_ l_ ]则表示为链接文档(link file)；
 
- 	
+
   * 若是[_ b_ ]则表示为装置文件里面的可供储存的接口设备(可随机存取装置)；
 
- 	
+
   * 若是[_ c_ ]则表示为装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)。
 
 
@@ -129,13 +73,13 @@ Linux系统是一种典型的多用户系统，不同的用户处于不同的地
 
 
 
-    
+
     [root@www /]# ls -l
     total 64
     dr-xr-xr-x   2 root root 4096 Dec 14  2012 bin
     dr-xr-xr-x   4 root root 4096 Apr 19  2012 boot
     ……
-    
+
 
 
 对于文件来说，它都有一个特定的所有者，也就是对该文件具有所有权的用户。
@@ -159,16 +103,16 @@ Linux系统是一种典型的多用户系统，不同的用户处于不同的地
 
 语法：
 
-    
+
     chgrp [-R] 属组名文件名
-    
+
 
 
 参数选项
 
 
 
- 	
+
   * -R：递归更改文件属组，就是在更改某个目录文件的属组时，如果加上-R的参数，那么该目录下的所有文件的属组都会更改。
 
 
@@ -179,29 +123,29 @@ Linux系统是一种典型的多用户系统，不同的用户处于不同的地
 
 语法：
 
-    
+
     chown [–R] 属主名 文件名
     chown [-R] 属主名：属组名 文件名
-    
+
 
 
 进入 /root 目录（~）将install.log的拥有者改为bin这个账号：
 
-    
+
     [root@www ~] cd ~
     [root@www ~]# chown bin install.log
     [root@www ~]# ls -l
     -rw-r--r--  1 bin  users 68495 Jun 25 08:53 install.log
-    
+
 
 
 将install.log的拥有者与群组改回为root：
 
-    
+
     [root@www ~]# chown root:root install.log
     [root@www ~]# ls -l
     -rw-r--r--  1 root root 68495 Jun 25 08:53 install.log
-    
+
 
 
 
@@ -217,31 +161,31 @@ Linux文件的基本权限就有九个，分别是owner/group/others三种身份
 
 
 
- 	
+
   * r:4
 
- 	
+
   * w:2
 
- 	
+
   * x:1
 
 
 每种身份(owner/group/others)各自的三个权限(r/w/x)分数是需要累加的，例如当权限为： [-rwxrwx---] 分数则是：
 
- 	
+
   * owner = rwx = 4+2+1 = 7
 
- 	
+
   * group = rwx = 4+2+1 = 7
 
- 	
+
   * others= --- = 0+0+0 = 0
 
 
 所以等一下我们设定权限的变更时，该文件的权限数字就是770啦！变更权限的指令chmod的语法是这样的：
 
-    
+
      chmod [-R] xyz 文件或目录
 
 
@@ -249,22 +193,22 @@ Linux文件的基本权限就有九个，分别是owner/group/others三种身份
 
 
 
- 	
+
   * xyz : 就是刚刚提到的数字类型的权限属性，为 rwx 属性数值的相加。
 
- 	
+
   * -R : 进行递归(recursive)的持续变更，亦即连同此目录下的所有文件都会变更
 
 
 举例来说，如果要将.bashrc这个文件所有的权限都设定启用，那么命令如下：
 
-    
+
     [root@www ~]# ls -al .bashrc
     -rw-r--r--  1 root root 395 Jul  4 11:45 .bashrc
     [root@www ~]# chmod 777 .bashrc
     [root@www ~]# ls -al .bashrc
     -rwxrwxrwx  1 root root 395 Jul  4 11:45 .bashrc
-    
+
 
 
 那如果要将权限变成 _-rwxr-xr--_ 呢？那么权限的分数就成为 [4+2+1][4+0+1][4+0+0]=754。
@@ -306,18 +250,18 @@ x
 </table>
 如果我们需要将文件权限设置为 -rwxr-xr-- ，可以使用 _chmod u=rwx,g=rx,o=r 文件名_ 来设定:
 
-    
+
     [root@www ~]# ls -al .bashrc
     -rwxr-xr-x  1 root root 395 Jul  4 11:45 .bashrc
     [root@www ~]# chmod  a+w  .bashrc
     [root@www ~]# ls -al .bashrc
     -rwxrwxrwx  1 root root 395 Jul  4 11:45 .bashrc
-    
+
 
 
 而如果是要将权限去掉而不改变其他已存在的权限呢？例如要拿掉全部人的可执行权限，则：
 
-    
+
     [root@www ~]# chmod  a-x  .bashrc
     [root@www ~]# ls -al .bashrc
     -rw-rw-rw-  1 root root 395 Jul  4 11:45 .bashrc
@@ -331,27 +275,6 @@ x
 
 
 
+# REF
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+1. [Linux教程](https://www.w3cschool.cn/linux/)

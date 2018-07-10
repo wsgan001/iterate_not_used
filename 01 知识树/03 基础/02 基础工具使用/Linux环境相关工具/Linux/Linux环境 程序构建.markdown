@@ -1,61 +1,4 @@
----
-author: evo
-comments: true
-date: 2018-05-04 12:03:18+00:00
-layout: post
-link: http://106.15.37.116/2018/05/04/linux%e7%8e%af%e5%a2%83-%e7%a8%8b%e5%ba%8f%e6%9e%84%e5%bb%ba/
-slug: linux%e7%8e%af%e5%a2%83-%e7%a8%8b%e5%ba%8f%e6%9e%84%e5%bb%ba
-title: linux环境 程序构建
-wordpress_id: 5135
-categories:
-- 基础工具使用
-tags:
-- linux
----
-
-<!-- more -->
-
-[mathjax]
-
-
-# REFERENCE
-
-
-
-
-
- 	
-  1. [Linux Tools Quick Tutorial](http://linuxtools-rst.readthedocs.io/zh_CN/latest/index.html)
-
-
-
-
-# TODO
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-# MOTIVE
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-
-* * *
+# Linux环境 程序构建
 
 
 
@@ -113,10 +56,10 @@ makefile Makefile
 
 
 
- 	
+
   * 必须满足第一条规则，满足后停止
 
- 	
+
   * 除第一条规则，其他无顺序
 
 
@@ -128,22 +71,22 @@ makefile Makefile
 
 
 
- 	
+
   * $@目标文件名
 
- 	
+
   * @^所有前提名，除副本
 
- 	
+
   * @＋所有前提名，含副本
 
- 	
+
   * @＜一个前提名
 
- 	
+
   * @？所有新于目标文件的前提名
 
- 	
+
   * @*目标文件的基名称
 
 
@@ -232,23 +175,6 @@ http://scc.qibebt.cas.cn/docs/linux/base/%B8%FA%CE%D2%D2%BB%C6%F0%D0%B4Makefile-
 
 
 
+# REF
 
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+1. [Linux Tools Quick Tutorial](http://linuxtools-rst.readthedocs.io/zh_CN/latest/index.html)

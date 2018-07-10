@@ -1,73 +1,11 @@
----
-author: evo
-comments: true
-date: 2018-05-04 11:27:06+00:00
-layout: post
-link: http://106.15.37.116/2018/05/04/linux-yum/
-slug: linux-yum
-title: linux yum
-wordpress_id: 5102
-categories:
-- 基础工具使用
-tags:
-- linux
----
-
-<!-- more -->
-
-[mathjax]
-
-
-# REFERENCE
-
-
-
-
-
- 	
-  1. [Linux教程](https://www.w3cschool.cn/linux/)
-
- 	
-  2. [linux 用yum安装软件和卸载软件](https://blog.csdn.net/ospop/article/details/17304233)
-
-
-
-
-# TODO
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-# MOTIVE
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-
-* * *
-
-
+# Linux yum
 
 
 
 ## linux yum 命令
 
 
-yum（ Yellow dog Updater, Modified）是一个在Fedora和RedHat以及SUSE中的Shell前端软件包管理器。
+yum（ Yellow dog Updater, Modified）是一个在 Fedora 和 RedHat 以及 SUSE 中的 Shell 前端软件包管理器。
 
 基於RPM包管理，能够从指定的服务器自动下载RPM包并且安装，可以自动处理依赖性关系，并且一次安装所有依赖的软体包，无须繁琐地一次次下载、安装。
 
@@ -78,21 +16,21 @@ yum提供了查找、安装、删除某一个、一组甚至全部软件包的�
 
 
 
-    
+
     yum [options] [command] [package ...]
-    
 
 
 
 
 
- 	
+
+
   * **options：**可选，选项包括-h（帮助），-y（当安装过程提示选择全部为"yes"），-q（不显示安装的过程）等等。
 
- 	
+
   * **command：**要进行的操作。
 
- 	
+
   * **package**操作的对象。
 
 
@@ -111,40 +49,40 @@ yum提供了查找、安装、删除某一个、一组甚至全部软件包的�
 
 
 
- 	
+
   * 1.列出所有可更新的软件清单命令：yum check-update
 
- 	
+
   * 2.更新所有软件命令：yum update
 
- 	
+
   * 3.仅安装指定的软件命令：yum install <package_name>
 
- 	
+
   * 4.仅更新指定的软件命令：yum update <package_name>
 
- 	
+
   * 5.列出所有可安裝的软件清单命令：yum list
 
- 	
+
   * 6.删除软件包命令：yum remove <package_name>
 
- 	
+
   * 7.查找软件包 命令：yum search <keyword>
 
- 	
+
   * 8.清除缓存命令:
 
- 	
+
     * yum clean packages: 清除缓存目录下的软件包
 
- 	
+
     * yum clean headers: 清除缓存目录下的 headers
 
- 	
+
     * yum clean oldheaders: 清除缓存目录下旧的 headers
 
- 	
+
     * yum clean, yum clean all (= yum clean packages; yum clean oldheaders) :清除缓存目录下的软件包及旧的headers
 
 
@@ -158,7 +96,7 @@ yum提供了查找、安装、删除某一个、一组甚至全部软件包的�
 
 安装 pam-devel
 
-    
+
     [root@www ~]# yum install pam-devel
     Setting up Install Process
     Parsing package install arguments
@@ -171,7 +109,7 @@ yum提供了查找、安装、删除某一个、一组甚至全部软件包的�
     filelists.xml.gz          100% |=========================| 138 kB    00:00
     -> Finished Dependency Resolution
     ……(省略)
-    
+
 
 
 
@@ -181,21 +119,21 @@ yum提供了查找、安装、删除某一个、一组甚至全部软件包的�
 
 移除 pam-devel
 
-    
+
     [root@www ~]# yum remove pam-devel
     Setting up Remove Process
     Resolving Dependencies  <==同样的，先解决属性相依的问题 --> Running transaction check
     ---> Package pam-devel.i386 0:0.99.6.2-4.el5 set to be erased
     --> Finished Dependency Resolution
-    
+
     Dependencies Resolved
-    
+
     =============================================================================
      Package                 Arch       Version          Repository        Size
     =============================================================================
     Removing:
      pam-devel               i386       0.99.6.2-4.el5   installed         495 k
-    
+
     Transaction Summary
     =============================================================================
     Install      0 Package(s)
@@ -210,7 +148,7 @@ yum提供了查找、安装、删除某一个、一组甚至全部软件包的�
 
 利用 yum 的功能，找出以 pam 为开头的软件名称有哪些？
 
-    
+
     [root@www ~]# yum list pam*
     Installed Packages
     pam.i386                  0.99.6.2-3.27.el5      installed
@@ -244,28 +182,28 @@ yum提供了查找、安装、删除某一个、一组甚至全部软件包的�
 
 首先备份/etc/yum.repos.d/CentOS-Base.repo
 
-    
+
     mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-    
+
 
 
 下载对应版本repo文件, 放入/etc/yum.repos.d/(操作前请做好相应备份)
 
 
 
- 	
+
   * [CentOS5](https://mirrors.163.com/.help/CentOS5-Base-163.repo) ：http://mirrors.163.com/.help/CentOS5-Base-163.repo
 
- 	
+
   * [CentOS6](https://mirrors.163.com/.help/CentOS6-Base-163.repo) ：http://mirrors.163.com/.help/CentOS6-Base-163.repo
 
 
 运行以下命令生成缓存
 
-    
+
     yum clean all
     yum makecache
-    
+
 
 
 除了网易之外，国内还有其他不错的yum源，比如中科大和搜狐。
@@ -282,27 +220,7 @@ sohu的yum源安装方法查看: [http://mirrors.sohu.com/help/centos.html](htt
 
 
 
+# REF
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+1. [Linux教程](https://www.w3cschool.cn/linux/)
+2. [linux 用yum安装软件和卸载软件](https://blog.csdn.net/ospop/article/details/17304233)

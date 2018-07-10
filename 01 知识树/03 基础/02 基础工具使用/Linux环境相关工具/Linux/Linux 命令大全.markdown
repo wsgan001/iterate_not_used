@@ -1,61 +1,4 @@
----
-author: evo
-comments: true
-date: 2018-05-04 11:28:41+00:00
-layout: post
-link: http://106.15.37.116/2018/05/04/linux-%e5%91%bd%e4%bb%a4%e5%a4%a7%e5%85%a8/
-slug: linux-%e5%91%bd%e4%bb%a4%e5%a4%a7%e5%85%a8
-title: Linux 命令大全
-wordpress_id: 5103
-categories:
-- 基础工具使用
-tags:
-- linux
----
-
-<!-- more -->
-
-[mathjax]
-
-
-# REFERENCE
-
-
-
-
-
- 	
-  1. [Linux教程](https://www.w3cschool.cn/linux/)
-
-
-
-
-# TODO
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-# MOTIVE
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-
-* * *
+# Linux 命令大全
 
 
 
@@ -1297,21 +1240,6 @@ Linux 命令大全
 
 
 
+# REF
 
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+1. [Linux教程](https://www.w3cschool.cn/linux/)

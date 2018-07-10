@@ -1,63 +1,4 @@
----
-author: evo
-comments: true
-date: 2018-05-04 11:08:41+00:00
-layout: post
-link: http://106.15.37.116/2018/05/04/linux-%e5%ad%a6%e4%b9%a0%e7%ae%80%e4%bb%8b/
-slug: linux-%e5%ad%a6%e4%b9%a0%e7%ae%80%e4%bb%8b
-title: Linux 学习简介
-wordpress_id: 5075
-categories:
-- 随想与反思
-tags:
-- linux
----
-
-<!-- more -->
-
-[mathjax]
-
-
-# REFERENCE
-
-
-
-
-
- 	
-  1. [Linux教程](https://www.w3cschool.cn/linux/)
-
-
-
-
-# TODO
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-# MOTIVE
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-
-* * *
-
-
+# Linux 学习简介
 
 
 
@@ -93,7 +34,7 @@ W3Cschool提供的[Linux教程](https://www.w3cschool.cn/linux)主要是为初�
 
 
 
- 	
+
   * Linux学习建议概述：
 
 
@@ -105,7 +46,7 @@ W3Cschool提供的[Linux教程](https://www.w3cschool.cn/linux)主要是为初�
 
 
 
- 	
+
   * Linux学习方法参考：
 
 
@@ -117,7 +58,7 @@ W3Cschool提供的[Linux教程](https://www.w3cschool.cn/linux)主要是为初�
 
 
 
- 	
+
   * Linux学习参考资料：
 
 
@@ -160,31 +101,31 @@ Linux问答：[http://www.w3cschool.cn/topic/linux](https://www.w3cschool.cn/top
 
 
 
- 	
+
   * 源码的开放化
 
 
 Linux操作系统是免费的，并且开发人员可以自由获取使用Linux源代码，开发者可以针对不同的应用需求对源码进行修改和优化，极大的便捷了嵌入式系统的开发，这也是其他操作系统无法做到的。
 
- 	
+
   * 支持多用户及任务并行
 
 
 Linux系统可支持多名用户在线使用，每个用户之间互不影响，有较好的保密性；Linux可同时执行多个程序，并且各个程序的运行是独立的。
 
- 	
+
   * 良好的安全性及稳定性
 
 
 Linux的内核继承了Unix系统的稳定、高效的特性，这一特性已在各领域得到了大量的验证。同时Linux采取了如对读、写控制、审计跟踪、核心授权等多种安全技术，保障用户开发环境的安全。
 
- 	
+
   * 广泛的硬件平台支持
 
 
 Linux可以在多种硬件平台上进行运行，如在带有x86、680x0、SPARC、Alpha等大多数主流的处理器平台均可以运行。
 
- 	
+
   * 移植的便捷性
 
 
@@ -303,25 +244,25 @@ Linux的发行版说简单点就是将Linux内核与应用软件做一个打包�
 
 
 
- 	
+
   * 巴西联邦政府由于支持Linux而世界闻名。
 
- 	
+
   * 有新闻报道俄罗斯军队自己制造的Linux发布版的，做为G.H.ost项目已经取得成果.
 
- 	
+
   * 印度的Kerala联邦计划在向全联邦的高中推广使用Linux。
 
- 	
+
   * 中华人民共和国为取得技术独立，在龙芯过程中排他性地使用Linux。
 
- 	
+
   * 在西班牙的一些地区开发了自己的Linux发布版，并且在政府与教育领域广泛使用，如Extremadura地区的gnuLinEx和Andalusia地区的Guadalinex。
 
- 	
+
   * 葡萄牙同样使用自己的Linux发布版Caixa Mágica，用于Magalh?es笔记本电脑和e-escola政府软件。
 
- 	
+
   * 法国和德国同样开始逐步采用Linux。
 
 
@@ -406,27 +347,6 @@ Linux
 
 
 
+# REF
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+1. [Linux教程](https://www.w3cschool.cn/linux/)
