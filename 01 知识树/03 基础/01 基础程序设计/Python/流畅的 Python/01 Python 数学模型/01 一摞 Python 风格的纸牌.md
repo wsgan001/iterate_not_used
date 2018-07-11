@@ -28,7 +28,6 @@ Python 最好的品质之一是一致性。当你使用 Python 工作一会儿�
 
 > magic 和 dunder
 >
->
 > 魔术方法(magic method)是特殊方法的昵称。<span style="color:red;">嗯，这个还是要明确下的，因为有的时候忘了，不知道他说的魔术方法到底是什么。</span>有些Python开发者在提到 `__getitem__` 这个特殊方法的时候，会用诸如“下划线－下划线－ getitem” 这种说法，但是显然这种说法会引起歧义，因为像 `__x` 这种命名在 Python 里还有其他含义，但是如果完整地说出 “下划线－下划线－getitem－下划线－下划线” ，又会很麻烦。于是我跟着Steve Holden，一位技术书作者和老师，学会了 “双下一getitem” (dunder-getitem) 这种说法。于是乎，特殊方法也叫双下方法(dunder method)。 <span style="color:red;">好吧，这一段说的是魔术方法的英文的念法。</span>
 
 
