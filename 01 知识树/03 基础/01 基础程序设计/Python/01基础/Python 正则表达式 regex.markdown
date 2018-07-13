@@ -1,37 +1,11 @@
----
-author: evo
-comments: true
-date: 2018-05-03 10:27:44+00:00
-layout: post
-link: http://106.15.37.116/2018/05/03/python-regex/
-slug: python-regex
-title: Python 正则表达式 regex
-wordpress_id: 5008
-categories:
-- 随想与反思
-tags:
-- python
----
-
-<!-- more -->
-
-[mathjax]
+# Python 正则表达式 regex
 
 
-# REFERENCE
+# REF
 
-
-
-
-
- 	
-  1. [python基础教程 w3cschool](https://www.w3cschool.cn/python/)
-
- 	
-  2. [Python 3 教程 菜鸟教程](http://www.runoob.com/python3/python3-tutorial.html)
-
- 	
-  3. [Python正则表达式匹配反斜杠“\”](https://blog.csdn.net/jinixin/article/details/56705284)
+1. [python基础教程 w3cschool](https://www.w3cschool.cn/python/)
+2. [Python 3 教程 菜鸟教程](http://www.runoob.com/python3/python3-tutorial.html)
+3. [Python正则表达式匹配反斜杠“\”](https://blog.csdn.net/jinixin/article/details/56705284)
 
 
 
@@ -42,10 +16,10 @@ tags:
 
 
 
- 	
+
   * **要把    [python中的正则表达式](http://106.15.37.116/2018/03/23/python-re/)  合并进来**
 
- 	
+
   * **讲的还是不够详细，很多特殊的点都没有触及到，在使用的时候还是会经常卡住。**
 
 
@@ -78,7 +52,7 @@ re 模块也提供了与这些方法功能完全一致的函数，这些函数�
 
 
 
-* * *
+---
 
 
 
@@ -91,9 +65,9 @@ re.match 尝试从字符串的起始位置匹配一个模式，如果不是起�
 
 **函数语法**：
 
-    
+
     re.match(pattern, string, flags=0)
-    
+
 
 
 函数参数说明：
@@ -158,30 +132,30 @@ re.match 尝试从字符串的起始位置匹配一个模式，如果不是起�
 </table>
 实例：
 
-    
+
     #!/usr/bin/python
     import re
-    
+
     line = "Cats are smarter than dogs"
-    
+
     matchObj = re.match( r'(.*) are (.*?) .*', line, re.M|re.I)
-    
+
     if matchObj:
        print "matchObj.group() : ", matchObj.group()
        print "matchObj.group(1) : ", matchObj.group(1)
        print "matchObj.group(2) : ", matchObj.group(2)
     else:
        print "No match!!"
-    
+
 
 
 以上实例执行结果如下：
 
-    
+
     matchObj.group() :  Cats are smarter than dogs
     matchObj.group(1) :  Cats
     matchObj.group(2) :  smarter
-    
+
 
 
 
@@ -200,9 +174,9 @@ re.search 会在字符串内查找模式匹配，直到找到第一个匹配。
 
 函数语法：
 
-    
+
     re.search(pattern, string, flags=0)
-    
+
 
 
 函数参数说明：
@@ -267,30 +241,30 @@ re.search 会在字符串内查找模式匹配，直到找到第一个匹配。
 </table>
 实例：
 
-    
+
     #!/usr/bin/python
     import re
-    
+
     line = "Cats are smarter than dogs";
-    
+
     matchObj = re.search( r'(.*) are (.*?) .*', line, re.M|re.I)
-    
+
     if matchObj:
        print "searchObj.group() : ", searchObj.group()
        print "searchObj.group(1) : ", searchObj.group(1)
        print "searchObj.group(2) : ", searchObj.group(2)
     else:
        print "Nothing found!!"
-    
+
 
 
 以上实例执行结果如下：
 
-    
+
     searchObj.group() :  Cats are smarter than dogs
     searchObj.group(1) :  Cats
     searchObj.group(2) :  smarter
-    
+
 
 
 
@@ -309,32 +283,32 @@ re.match只匹配字符串的开始，如果字符串开始不符合正则表达
 
 实例：
 
-    
+
     #!/usr/bin/python
     import re
-    
+
     line = "Cats are smarter than dogs";
-    
+
     matchObj = re.match( r'dogs', line, re.M|re.I)
     if matchObj:
        print "match --> matchObj.group() : ", matchObj.group()
     else:
        print "No match!!"
-    
+
     matchObj = re.search( r'dogs', line, re.M|re.I)
     if matchObj:
        print "search --> matchObj.group() : ", matchObj.group()
     else:
        print "No match!!"
-    
+
 
 
 以上实例运行结果如下：
 
-    
+
     No match!!
     search --> matchObj.group() :  dogs
-    
+
 
 
 
@@ -353,9 +327,9 @@ Python 的 re 模块提供了 re.sub 用于替换字符串中的匹配项。
 
 语法：
 
-    
+
     re.sub(pattern, repl, string, max=0)
-    
+
 
 
 返回的字符串是在字符串中用 RE 最左边不重复的匹配来替换。如果模式没有发现，字符将被没有改变地返回。
@@ -364,50 +338,50 @@ Python 的 re 模块提供了 re.sub 用于替换字符串中的匹配项。
 
 实例：
 
-    
+
     #!/usr/bin/python
     import re
-    
+
     phone = "2004-959-559 # 这是一个电话号码"
-    
+
     # 删除注释
     num = re.sub(r'#.*$', "", phone)
     print "电话号码 : ", num
-    
+
     # 移除非数字的内容
-    num = re.sub(r'\D', "", phone)    
+    num = re.sub(r'\D', "", phone)
     print "电话号码 : ", num
-    
+
 
 
 以上实例执行结果如下：
 
-    
+
     电话号码 :  2004-959-559
     电话号码 :  2004959559
-    
 
 
 
 
-## 
+
+##
 
 
 OK，上面的这个sub例子还是比较简单的，之前我遇到一个问题，把文档中的：
 
-    
+
     '\(\[ P=\left[\begin{matrix}  \]\)'
 
 
 替换为：
 
-    
+
     '\[ P=\left[\begin{matrix}  \]'
 
 
 这个看起来没有什么麻烦的，但是，它关键在于 \ 和 ( 这两个符号的处理，因为再正则表达式中，这些都是有特含义的，之前总是写不对，后来看了网上，说，**这种特殊字符在匹配的时候，要把这些特殊字符前面都要加上反斜杠**，这才可以：
 
-    
+
     aaa='\(\[ P=\left[\begin{matrix}  \]\)'
     re.sub(r'\\\(\\\[(.*?)\\\]\\\)',r'\[ \1 \]',aaa)
 
@@ -418,7 +392,7 @@ OK，上面的这个sub例子还是比较简单的，之前我遇到一个问题
 
 
 
-    
+
     '\\[  P=\\left[\x08egin{matrix}   \\]'
 
 
@@ -1032,6 +1006,3 @@ OK，上面的这个sub例子还是比较简单的，之前我遇到一个问题
 
 
 # COMMENT
-
-
-

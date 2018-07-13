@@ -19,7 +19,6 @@ def cube(x):
 
 for a in array:
     cube_array.append(cube(a))
-
 ```
 
 或者简单一点：
@@ -173,24 +172,9 @@ map和filter也同样可以结合起来用。
 print map(lambda x:x*x,filter(lambda x:x%2!=0 and x%13!=0,range(1,101)))
 ```
 
-<h4>勘误和交流</h4>
-匆忙写下的一个笔记，出错简直是一定的。如果您发现了任何错误或者有关于本文的任何建议，麻烦发邮件给我（stevenslxie at gmail.com）或者在GitHub上直接交流，不胜感激。
-
-<h4>转载声明</h4>
-如果你喜欢这篇文章，可以随意转载。但请
-<ul>
-<li>标明原作者StevenSLXie;</li>
-<li>标明原链接(https://github.com/StevenSLXie/Tutorials-for-Web-Developers/blob/master/Python%E7%9A%84map%7Cfilter%7Creduce%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95%E4%BE%8B%E4%B8%BE.md);</li>
-<li>在可能的情况下请保持文本显示的美观。比如，请不要直接一键复制到博客之类，因为代码的显示效果可能非常糟糕;</li>
-<li>请将这个转载声明包含进来；</li>
-</ul>
 
 
-<h4>还有一件事</h4>
-如果你阅读完这篇文章，觉得很有收获。可以：
-<ul>
-<li>在GitHub上的这个repo打星，因为我之后还会陆续更新。这样可能方便一点，对我更是一种鼓励；</li>
-<li>如果你是V2EX过来的，可以在那里表示感谢；</li>
 
-Happy Coding!
-</ul>
+# REF
+
+- https://github.com/StevenSLXie/Tutorials-for-Web-Developers/blob/master/Python%E7%9A%84map%7Cfilter%7Creduce%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95%E4%BE%8B%E4%B8%BE.md

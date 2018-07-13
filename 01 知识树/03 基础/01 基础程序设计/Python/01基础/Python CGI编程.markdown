@@ -1,77 +1,14 @@
----
-author: evo
-comments: true
-date: 2018-05-03 10:30:56+00:00
-layout: post
-link: http://106.15.37.116/2018/05/03/python-cgi/
-slug: python-cgi
-title: Python CGI编程
-wordpress_id: 5009
-categories:
-- 随想与反思
----
-
-<!-- more -->
-
-[mathjax]
-
+# Python CGI编程
 
 # REFERENCE
 
-
-
-
-
- 	
-  1. [python基础教程 w3cschool](https://www.w3cschool.cn/python/)
-
- 	
-  2. [Python 3 教程 菜鸟教程](http://www.runoob.com/python3/python3-tutorial.html)
-
-
-
-
-# TODO
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-# MOTIVE
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-
-* * *
-
+1. [python基础教程 w3cschool](https://www.w3cschool.cn/python/)
+2. [Python 3 教程 菜鸟教程](http://www.runoob.com/python3/python3-tutorial.html)
 
 
 
 
 ## Python CGI编程
-
-
-
-
-
-* * *
-
-
-
 
 
 ## 什么是CGI
@@ -94,25 +31,14 @@ CGI(Common Gateway Interface),通用网关接口,它是一段程序,运行在服
 
 为了更好的了解CGI是如何工作的，我们可以从在网页上点击一个链接或URL的流程：
 
+* 1、使用你的浏览器访问URL并连接到HTTP web 服务器。
 
+* 2、Web服务器接收到请求信息后会解析URL，并查找访问的文件在服务器上是否存在，如果存在返回文件的内容，否则返回错误信息。
 
- 	
-  * 1、使用你的浏览器访问URL并连接到HTTP web 服务器。
-
- 	
-  * 2、Web服务器接收到请求信息后会解析URL，并查找访问的文件在服务器上是否存在，如果存在返回文件的内容，否则返回错误信息。
-
- 	
-  * 3、浏览器从服务器上接收信息，并显示接收的文件或者错误信息。
+* 3、浏览器从服务器上接收信息，并显示接收的文件或者错误信息。
 
 
 CGI程序可以是Python脚本，PERL脚本，SHELL脚本，C或者C++程序等。
-
-
-
-* * *
-
-
 
 
 
@@ -147,7 +73,7 @@ Apache 支持CGI 配置：
 
 设置好CGI目录：
 
-    
+
     <code class="python hljs">ScriptAlias /cgi-bin/ /var/www/cgi-bin/</code>
 
 
@@ -159,7 +85,7 @@ CGI文件的扩展名为.cgi，python也可以使用.py扩展名。
 
 如果你想指定其他运行 CGI 脚本的目录，可以修改 httpd.conf 配置文件，如下所示：
 
-    
+
     <Directory "/var/www/cgi-bin">
        AllowOverride None
        Options +ExecCGI
@@ -173,7 +99,7 @@ CGI文件的扩展名为.cgi，python也可以使用.py扩展名。
 
 在 AddHandler 中添加 .py 后缀，这样我们就可以访问 .py 结尾的 python 脚本文件：
 
-    
+
     <code class="python hljs">AddHandler cgi-script .cgi .pl .py</code>
 
 
@@ -191,10 +117,10 @@ CGI文件的扩展名为.cgi，python也可以使用.py扩展名。
 
 我们使用Python创建第一个CGI程序，文件名为hellp.py，文件位于/var/www/cgi-bin目录中，内容如下，修改文件的权限为755：
 
-    
+
     #coding=utf-8
     #!/usr/bin/python
-    
+
     print "Content-type:text/html\r\n\r\n"
     print '<html>'
     print '<head>'
@@ -204,14 +130,14 @@ CGI文件的扩展名为.cgi，python也可以使用.py扩展名。
     print '<h2>Hello Word! This is my first CGI program</h2>'
     print '</body>'
     print '</html>'
-    
+
 
 
 以上程序在浏览器访问显示结果如下：
 
-    
+
     Hello Word! This is my first CGI program
-    
+
 
 
 这个的hello.py脚本是一个简单的Python脚本，脚本第一行的输出内容"Content-type:text/html\r\n\r\n"发送到浏览器并告知浏览器显示的内容类型为"text/html"。
@@ -231,14 +157,14 @@ hello.py文件内容中的" Content-type:text/html\r\n\r\n"即为HTTP头部的�
 
 HTTP头部的格式如下：
 
-    
+
     HTTP 字段名: 字段内容
-    
+
 
 
 例如：
 
-    
+
     <code class="python hljs">Content-type: text/html</code>
 
 
@@ -426,13 +352,13 @@ HTTP头部的格式如下：
 </table>
 以下是一个简单的CGI脚本输出CGI的环境变量：
 
-    
+
     #!/usr/bin/python
     # -*- coding: UTF-8 -*-
     # filename:test.py
-    
+
     import os
-    
+
     print "Content-type: text/html"
     print
     print "<meta charset=\"utf-8\">"
@@ -463,31 +389,31 @@ HTTP头部的格式如下：
 
 GET方法发送编码后的用户信息到服务端，数据信息包含在请求页面的URL上，以"?"号分割, 如下所示：
 
-    
+
     http://www.test.com/cgi-bin/hello.py?key1=value1&key2=value2
-    
+
 
 
 有关 GET 请求的其他一些注释：
 
 
 
- 	
+
   * GET 请求可被缓存
 
- 	
+
   * GET 请求保留在浏览器历史记录中
 
- 	
+
   * GET 请求可被收藏为书签
 
- 	
+
   * GET 请求不应在处理敏感数据时使用
 
- 	
+
   * GET 请求有长度限制
 
- 	
+
   * GET 请求只应当用于取回数据
 
 
@@ -498,27 +424,27 @@ GET方法发送编码后的用户信息到服务端，数据信息包含在请�
 
 以下是一个简单的URL，使用GET方法向hello_get.py程序发送两个参数：
 
-    
+
     /cgi-bin/hello_get.py?first_name=ZARA&last_name=ALI
-    
+
 
 
 以下为hello_get.py文件的代码：
 
-    
+
     #coding=utf-8
     #!/usr/bin/python
-    
+
     # CGI处理模块
-    import cgi, cgitb 
-    
+    import cgi, cgitb
+
     # 创建 FieldStorage 的实例化
-    form = cgi.FieldStorage() 
-    
+    form = cgi.FieldStorage()
+
     # 获取数据
     first_name = form.getvalue('first_name')
     last_name  = form.getvalue('last_name')
-    
+
     print "Content-type:text/html\r\n\r\n"
     print "<html>"
     print "<head>"
@@ -528,14 +454,14 @@ GET方法发送编码后的用户信息到服务端，数据信息包含在请�
     print "<h2>Hello %s %s</h2>" % (first_name, last_name)
     print "</body>"
     print "</html>"
-    
+
 
 
 浏览器请求输出结果：
 
-    
+
     Hello ZARA ALI
-    
+
 
 
 
@@ -545,14 +471,14 @@ GET方法发送编码后的用户信息到服务端，数据信息包含在请�
 
 以下是一个通过HTML的表单使用GET方法向服务器发送两个数据，提交的服务器脚本同样是hello_get.py文件，代码如下：
 
-    
+
     <form action="/cgi-bin/hello_get.py" method="get">
     First Name: <input type="text" name="first_name">  <br />
-    
+
     Last Name: <input type="text" name="last_name" />
     <input type="submit" value="Submit" />
     </form>
-    
+
 
 
 
@@ -564,20 +490,20 @@ GET方法发送编码后的用户信息到服务端，数据信息包含在请�
 
 以下同样是hello_get.py ，它也可以处理浏览器提交的POST表单数据:
 
-    
+
     #coding=utf-8
     #!/usr/bin/python
-    
-    # 引入 CGI 模块 
-    import cgi, cgitb 
-    
+
+    # 引入 CGI 模块
+    import cgi, cgitb
+
     # 创建 FieldStorage 实例
-    form = cgi.FieldStorage() 
-    
+    form = cgi.FieldStorage()
+
     # 获取表单数据
     first_name = form.getvalue('first_name')
     last_name  = form.getvalue('last_name')
-    
+
     print "Content-type:text/html\r\n\r\n"
     print "<html>"
     print "<head>"
@@ -587,19 +513,19 @@ GET方法发送编码后的用户信息到服务端，数据信息包含在请�
     print "<h2>Hello %s %s</h2>" % (first_name, last_name)
     print "</body>"
     print "</html>"
-    
+
 
 
 以下为表单通过POST方法向服务器脚本hello_get.py提交数据:
 
-    
+
     <form action="/cgi-bin/hello_get.py" method="post">
     First Name: <input type="text" name="first_name"><br />
     Last Name: <input type="text" name="last_name" />
-    
+
     <input type="submit" value="Submit" />
     </form>
-    
+
 
 
 
@@ -609,38 +535,38 @@ GET方法发送编码后的用户信息到服务端，数据信息包含在请�
 
 checkbox用于提交一个或者多个选项数据，HTML代码如下：
 
-    
+
     <form action="/cgi-bin/checkbox.cgi" method="POST" target="_blank">
     <input type="checkbox" name="maths" value="on" /> Maths
     <input type="checkbox" name="physics" value="on" /> Physics
     <input type="submit" value="Select Subject" />
     </form>
-    
+
 
 
 以下为 checkbox.cgi 文件的代码：
 
-    
+
     #coding=utf-8
     #!/usr/bin/python
-    
-    # 引入 CGI 处理模块 
-    import cgi, cgitb 
-    
-    # 创建 FieldStorage的实例 
-    form = cgi.FieldStorage() 
-    
+
+    # 引入 CGI 处理模块
+    import cgi, cgitb
+
+    # 创建 FieldStorage的实例
+    form = cgi.FieldStorage()
+
     # 接收字段数据
     if form.getvalue('maths'):
        math_flag = "ON"
     else:
        math_flag = "OFF"
-    
+
     if form.getvalue('physics'):
        physics_flag = "ON"
     else:
        physics_flag = "OFF"
-    
+
     print "Content-type:text/html\r\n\r\n"
     print "<html>"
     print "<head>"
@@ -651,7 +577,7 @@ checkbox用于提交一个或者多个选项数据，HTML代码如下：
     print "<h2> CheckBox Physics is : %s</h2>" % physics_flag
     print "</body>"
     print "</html>"
-    
+
 
 
 
@@ -661,33 +587,33 @@ checkbox用于提交一个或者多个选项数据，HTML代码如下：
 
 Radio只向服务器传递一个数据，HTML代码如下：
 
-    
+
     <form action="/cgi-bin/radiobutton.py" method="post" target="_blank">
     <input type="radio" name="subject" value="maths" /> Maths
     <input type="radio" name="subject" value="physics" /> Physics
     <input type="submit" value="Select Subject" />
     </form>
-    
+
 
 
 radiobutton.py 脚本代码如下：
 
-    
+
     #coding=utf-8
     #!/usr/bin/python
-    
-    # Import modules for CGI handling 
-    import cgi, cgitb 
-    
-    # Create instance of FieldStorage 
-    form = cgi.FieldStorage() 
-    
+
+    # Import modules for CGI handling
+    import cgi, cgitb
+
+    # Create instance of FieldStorage
+    form = cgi.FieldStorage()
+
     # Get data from fields
     if form.getvalue('subject'):
        subject = form.getvalue('subject')
     else:
        subject = "Not set"
-    
+
     print "Content-type:text/html\r\n\r\n"
     print "<html>"
     print "<head>"
@@ -697,7 +623,7 @@ radiobutton.py 脚本代码如下：
     print "<h2> Selected Subject is %s</h2>" % subject
     print "</body>"
     print "</html>"
-    
+
 
 
 
@@ -707,34 +633,34 @@ radiobutton.py 脚本代码如下：
 
 Textarea向服务器传递多行数据，HTML代码如下：
 
-    
+
     <form action="/cgi-bin/textarea.py" method="post" target="_blank">
     <textarea name="textcontent" cols="40" rows="4">
     Type your text here...
     </textarea>
     <input type="submit" value="Submit" />
     </form>
-    
+
 
 
 textarea.cgi脚本代码如下：
 
-    
+
     #coding=utf-8
     #!/usr/bin/python
-    
-    # Import modules for CGI handling 
-    import cgi, cgitb 
-    
-    # Create instance of FieldStorage 
-    form = cgi.FieldStorage() 
-    
+
+    # Import modules for CGI handling
+    import cgi, cgitb
+
+    # Create instance of FieldStorage
+    form = cgi.FieldStorage()
+
     # Get data from fields
     if form.getvalue('textcontent'):
        text_content = form.getvalue('textcontent')
     else:
        text_content = "Not entered"
-    
+
     print "Content-type:text/html\r\n\r\n"
     print "<html>"
     print "<head>";
@@ -743,7 +669,7 @@ textarea.cgi脚本代码如下：
     print "<body>"
     print "<h2> Entered Text Content is %s</h2>" % text_content
     print "</body>"
-    
+
 
 
 
@@ -753,7 +679,7 @@ textarea.cgi脚本代码如下：
 
 HTML下拉框代码如下：
 
-    
+
     <form action="/cgi-bin/dropdown.py" method="post" target="_blank">
     <select name="dropdown">
     <option value="Maths" selected>Maths</option>
@@ -761,27 +687,27 @@ HTML下拉框代码如下：
     </select>
     <input type="submit" value="Submit"/>
     </form>
-    
+
 
 
 dropdown.py 脚本代码如下所示：
 
-    
+
     #coding=utf-8
     #!/usr/bin/python
-    
-    # Import modules for CGI handling 
-    import cgi, cgitb 
-    
-    # Create instance of FieldStorage 
-    form = cgi.FieldStorage() 
-    
+
+    # Import modules for CGI handling
+    import cgi, cgitb
+
+    # Create instance of FieldStorage
+    form = cgi.FieldStorage()
+
     # Get data from fields
     if form.getvalue('dropdown'):
        subject = form.getvalue('dropdown')
     else:
        subject = "Not entered"
-    
+
     print "Content-type:text/html\r\n\r\n"
     print "<html>"
     print "<head>"
@@ -791,7 +717,7 @@ dropdown.py 脚本代码如下所示：
     print "<h2> Selected Subject is %s</h2>" % subject
     print "</body>"
     print "</html>"
-    
+
 
 
 
@@ -820,32 +746,32 @@ dropdown.py 脚本代码如下所示：
 
 http cookie的发送是通过http头部来实现的，他早于文件的传递，头部set-cookie的语法如下：
 
-    
-    Set-cookie:name=name;expires=date;path=path;domain=domain;secure 
-    
+
+    Set-cookie:name=name;expires=date;path=path;domain=domain;secure
 
 
 
 
 
- 	
+
+
   * name=name: 需要设置cookie的值(name不能使用"；"和"，"号),有多个name值时用"；"分隔例如：name1=name1;name2=name2;name3=name3。
 
- 	
+
   * expires=date: cookie的有效期限,格式： expires="Wdy,DD-Mon-YYYY HH:MM:SS"
 
- 	
-  * 
- 	
+
+  *
+
   * path=path: 设置cookie支持的路径,如果path是一个路径，则cookie对这个目录下的所有文件及子目录生效，例如： path="/cgi-bin/"，如果path是一个文件，则cookie指对这个文件生效，例如：path="/cgi-bin/cookie.cgi"。
 
- 	
+
   * domain=domain: 对cookie生效的域名，例如：domain="www.chinalb.com"
 
- 	
+
   * secure: 如果给出此标志，表示cookie只能通过SSL协议的https服务器来传递。
 
- 	
+
   * cookie的接收是通过设置环境变量HTTP_COOKIE来实现的，CGI程序可以通过检索该变量获取cookie信息。
 
 
@@ -863,11 +789,11 @@ http cookie的发送是通过http头部来实现的，他早于文件的传递�
 
 Cookie的设置非常简单，cookie会在http头部单独发送。以下实例在cookie中设置了UserID 和 Password：
 
-    
+
     <pre>
     #coding=utf-8
     #!/usr/bin/python
-    
+
     print "Set-Cookie:UserID=XYZ;\r\n"
     print "Set-Cookie:Password=XYZ123;\r\n"
     print "Set-Cookie:Expires=Tuesday, 31-Dec-2007 23:12:40 GMT";\r\n"
@@ -875,7 +801,7 @@ Cookie的设置非常简单，cookie会在http头部单独发送。以下实例�
     print "Set-Cookie:Path=/perl;\n"
     print "Content-type:text/html\r\n\r\n"
     ...........Rest of the HTML Content....
-    
+
 
 
 以上实例使用了 Set-Cookie 头信息来设置Cookie信息，可选项中设置了Cookie的其他属性，如过期时间Expires，域名Domain，路径Path。这些信息设置在 "Content-type:text/html\r\n\r\n"之前。
@@ -893,48 +819,48 @@ Cookie的设置非常简单，cookie会在http头部单独发送。以下实例�
 
 Cookie信息检索页非常简单，Cookie信息存储在CGI的环境变量HTTP_COOKIE中，存储格式如下：
 
-    
+
     key1=value1;key2=value2;key3=value3....
-    
+
 
 
 以下是一个简单的CGI检索cookie信息的程序：
 
-    
+
     #coding=utf-8
     #!/usr/bin/python
-    
-    # Import modules for CGI handling 
+
+    # Import modules for CGI handling
     from os import environ
     import cgi, cgitb
-    
+
     if environ.has_key('HTTP_COOKIE'):
        for cookie in map(strip, split(environ['HTTP_COOKIE'], ';')):
           (key, value ) = split(cookie, '=');
           if key == "UserID":
              user_id = value
-    
+
           if key == "Password":
              password = value
-    
+
     print "User ID  = %s" % user_id
     print "Password = %s" % password
-    
+
 
 
 以上脚本输出结果如下：
 
-    
+
     User ID = XYZ
     Password = XYZ123
-    
+
 
 
 文件上传实例：
 
 HTML设置上传文件的表单需要设置enctype 属性为multipart/form-data，代码如下所示：
 
-    
+
     <!DOCTYPE html>
     <html>
     <head>
@@ -952,29 +878,29 @@ HTML设置上传文件的表单需要设置enctype 属性为multipart/form-data�
 
 save_file.py脚本文件代码如下：
 
-    
+
     #coding=utf-8
     #!/usr/bin/python
-    
+
     import cgi, os
     import cgitb; cgitb.enable()
-    
+
     form = cgi.FieldStorage()
-    
+
     # 获取文件名
     fileitem = form['filename']
-    
+
     # 检测文件是否上传
     if fileitem.filename:
-       # 设置文件路径 
+       # 设置文件路径
        fn = os.path.basename(fileitem.filename)
        open('/tmp/' + fn, 'wb').write(fileitem.file.read())
-    
+
        message = 'The file "' + fn + '" was uploaded successfully'
-       
+
     else:
        message = 'No file was uploaded'
-       
+
     print """\
     Content-Type: text/html\n
     <html>
@@ -983,14 +909,14 @@ save_file.py脚本文件代码如下：
     </body>
     </html>
     """ % (message,)
-    
+
 
 
 如果你使用的系统是Unix/Linux，你必须替换文件分隔符，在window下只需要使用open()语句即可：
 
-    
+
     fn = os.path.basename(fileitem.filename.replace("\\", "/" ))
-    
+
 
 
 
@@ -1007,20 +933,20 @@ save_file.py脚本文件代码如下：
 
 如果我们需要为用户提供文件下载链接，并在用户点击链接后弹出文件下载对话框，我们通过设置HTTP头信息来实现这些功能，功能代码如下：
 
-    
+
     #coding=utf-8
     #!/usr/bin/python
-    
+
     # HTTP Header
     print "Content-Type:application/octet-stream; name=\"FileName\"\r\n";
     print "Content-Disposition: attachment; filename=\"FileName\"\r\n\n";
-    
+
     # Actual File Content will go hear.
     fo = open("foo.txt", "rb")
-    
+
     str = fo.read();
     print str
-    
+
     # Close opend file
     fo.close()
 
@@ -1054,6 +980,3 @@ save_file.py脚本文件代码如下：
 
 
 # COMMENT
-
-
-

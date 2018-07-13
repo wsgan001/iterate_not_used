@@ -1,84 +1,19 @@
----
-author: evo
-comments: true
-date: 2018-05-04 11:48:02+00:00
-layout: post
-link: http://106.15.37.116/2018/05/04/shell-%e4%bb%8b%e7%bb%8d/
-slug: shell-%e4%bb%8b%e7%bb%8d
-title: shell 介绍
-wordpress_id: 5104
-categories:
-- 基础工具使用
-tags:
-- shell
----
-
-<!-- more -->
-
-[mathjax]
-
-
-# REFERENCE
-
-
-
-
-
- 	
-  1. [Linux教程](https://www.w3cschool.cn/linux/)
-
-
-
-
-# TODO
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-# MOTIVE
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-
-* * *
-
-
 
 
 
 ## Shell 教程
 
 
-Shell 是一个用C语言编写的程序，它是用户使用Linux的桥梁。Shell既是一种命令语言，又是一种程序设计语言。
+Shell 是一个用 C 语言编写的程序，它是用户使用Linux的桥梁。Shell既是一种命令语言，又是一种程序设计语言。
 
 Shell 是指一种应用程序，这个应用程序提供了一个界面，用户通过这个界面访问操作系统内核的服务。
 
-Ken Thompson的sh是第一种Unix Shell，Windows Explorer是一个典型的图形界面Shell。
+Ken Thompson的sh是第一种 Unix Shell，Windows Explorer 是一个典型的图形界面 Shell。
 
 [**Shell 在线工具**](https://www.w3cschool.cn/tryrun/showphp/helloworld)
 
 
-
-* * *
-
-
-
-
+---
 
 ## Shell 脚本
 
@@ -90,8 +25,7 @@ Shell 脚本（shell script），是一种为shell编写的脚本程序。
 由于习惯的原因，简洁起见，本文出现的"shell编程"都是指shell脚本编程，不是指开发shell自身。
 
 
-
-* * *
+---
 
 
 
@@ -106,22 +40,12 @@ Linux的Shell种类众多，常见的有：
 
 
 
- 	
+
   * Bourne Shell（/usr/bin/sh或/bin/sh）
-
- 	
   * Bourne Again Shell（/bin/bash）
-
- 	
   * C Shell（/usr/bin/csh）
-
- 	
   * K Shell（/usr/bin/ksh）
-
- 	
   * Shell for Root（/sbin/sh）
-
- 	
   * ……
 
 
@@ -179,10 +103,10 @@ echo命令用于向窗口输出文本。
 
 将上面的代码保存为test.sh，并cd到相应目录：
 
-    
+
     chmod +x ./test.sh  #使脚本具有执行权限
     ./test.sh  #执行脚本
-    
+
 
 
 注意，一定要写成./test.sh，而不是test.sh，运行其它二进制的程序也一样，直接写test.sh，linux系统会去PATH里寻找有没有叫test.sh的，而只有/bin, /sbin, /usr/bin，/usr/sbin等在PATH里，你的当前目录通常不在PATH里，所以写成test.sh是会找不到命令的，要用./test.sh告诉系统说，就在当前目录找。
@@ -193,10 +117,10 @@ echo命令用于向窗口输出文本。
 
 这种运行方式是，直接运行解释器，其参数就是shell脚本的文件名，如：
 
-    
+
     /bin/sh test.sh
     /bin/php test.php
-    
+
 
 
 这种方式运行的脚本，不需要在第一行指定解释器信息，写了也没用。
@@ -204,32 +128,6 @@ echo命令用于向窗口输出文本。
 
 
 
+# REF
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+1. [Linux教程](https://www.w3cschool.cn/linux/)
