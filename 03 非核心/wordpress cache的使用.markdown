@@ -1,23 +1,5 @@
----
-author: evo
-comments: true
-date: 2018-03-31 01:23:11+00:00
-layout: post
-link: http://106.15.37.116/2018/03/31/wordpress-cache/
-slug: wordpress-cache
-title: wordpress cache的使用
-wordpress_id: 2112
-categories:
-- 非核心点
-tags:
-- wordpress
----
-
-<!-- more -->
-
 
 # 缘由：
-
 
 发现网站的加载有点慢，因此想用个cache 的插件。
 
@@ -44,7 +26,7 @@ tags:
 
 
 
- 	
+
   1. [How to use WP Fastest Cache for WordPress Optimization](https://www.youtube.com/watch?v=oJyjFHc34RM)
 
 
@@ -57,10 +39,10 @@ tags:
 
 
 
- 	
+
   1. [https://gtmetrix.com/](https://gtmetrix.com/)
 
- 	
+
   2. [https://tools.pingdom.com/](https://tools.pingdom.com/)（这个要先登陆，但是能更好的对比出加载的缺陷）
 
 
@@ -74,10 +56,10 @@ tags:
 
 
 
- 	
+
   * 设置cache之前是2.10s  Test From USA
 
- 	
+
   * 设置cache后变成1.5s Test From USA
 
 

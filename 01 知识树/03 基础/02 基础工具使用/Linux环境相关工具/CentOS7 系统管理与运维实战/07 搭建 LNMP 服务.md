@@ -4,7 +4,7 @@
 
 ###### 搭蓮LNMP明务
 
-Web服务除了常见的LAMP (Linux+Apache+MySQL+PHP)架构外，另外一种应用比较 广泛的架构即为LNMP (Linux+Nginx+MySQL+PHP)„ Nginx是一款轻量级的Web服务软件， 同时支持负载均衡和反向代理。因为Nginx并发能力很强，所以国内很多大型公司都使用Nginx 作为Web服务器。
+Web服务除了常见的LAMP (Linux+Apache+MySQL+PHP)架构外，另外一种应用比较 广泛的架构即为LNMP (Linux+Nginx+MySQL+PHP)„ Nginx是一款轻量级的Web服务软件， 同时支持负载均衡和反向代理。因为Nginx并发能力很强，所以国内很多大型公司都使用 Nginx 作为Web服务器。
 
 本章首先介绍LNMP (Linux+Nginx+MySQL+PHP)涉及的相关软件的安装与管理，然后 介绍Nginx的负载均衡和反向代理，接着介绍Nginx和PHP的两种集成方式。最后通过PHP 操作MySQL的实战案例，使读者了解如何通过PHP实现MySQL数据库表的增、删、改、査 功能。
 

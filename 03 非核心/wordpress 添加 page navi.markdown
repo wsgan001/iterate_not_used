@@ -1,19 +1,3 @@
----
-author: evo
-comments: true
-date: 2018-03-31 05:40:32+00:00
-layout: post
-link: http://106.15.37.116/2018/03/31/wordpress-add-page-navi/
-slug: wordpress-add-page-navi
-title: wordpress 添加 page navi
-wordpress_id: 2154
-categories:
-- 非核心点
-tags:
-- wordpress
----
-
-<!-- more -->
 
 
 # 缘由：
@@ -61,19 +45,19 @@ Page navi slider
 
 登陆到服务器上，查找wordpress对应的文件夹：
 
-    
+
     find / -name wp-content -print
 
 
 输出：
 
-    
+
     /data/wwwroot/default/wp-content
 
 
 然后进入里面的theme文件夹。并创建一个twentytwelve_child文件夹：
 
-    
+
     cd /data/wwwroot/default/wp-content
     ls
     cd themes
@@ -82,21 +66,21 @@ Page navi slider
 
 然后开始创建一个style.css文件：
 
-    
+
     cd twentytwelve_child
     vim style.css
 
 
 并将如下内容复制并保存到style.css文件中：（css是继承而不是覆盖的，因此调用到这里的时候会调用到twentytwelve的css里面）
 
-    
+
     /*
     Theme: Twenty Twelve Child
-    Description: Child Theme for twenty twelve theme to add page navi 
+    Description: Child Theme for twenty twelve theme to add page navi
     Author: evo_li
     Template: twentytwelve
     */
-    
+
     @import url("../twentytwelve/style.css");
 
 
@@ -110,7 +94,7 @@ Page navi slider
 
 首先将一些php文件从twentytwelve文件夹中拷贝到twentytwelve_child中：
 
-    
+
     cd /data/wwwroot/default/wp-content/themes/
     cp twentytwelve/archive.php twentytwelve_child/archive.php
     cp twentytwelve/author.php twentytwelve_child/author.php
@@ -126,16 +110,16 @@ Page navi slider
 
 
 
- 	
+
   * _<?php twentytwelve_content_nav( 'nav-below' ); ?>_
 
- 	
+
   * _<?php twentytwelve_content_nav( 'nav-above' ); ?>_
 
 
 替换为：
 
- 	
+
   * _<?php if(function_exists('page_navi_slider')){page_navi_slider();}?>_
 
 
@@ -164,11 +148,8 @@ Page navi slider
 
 
 
- 	
+
   1. [wordpress 子主题](https://codex.wordpress.org/zh-cn:%E5%AD%90%E4%B8%BB%E9%A2%98)
 
- 	
+
   2. [Page navi slider](https://wordpress.org/plugins/page-navi-slider/#installation)
-
-
-

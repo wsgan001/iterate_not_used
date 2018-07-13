@@ -1,20 +1,3 @@
----
-author: evo
-comments: true
-date: 2018-03-03 07:14:22+00:00
-layout: post
-link: http://106.15.37.116/2018/03/03/mathjax/
-slug: mathjax
-title: wordpress中的mathjax插件
-wordpress_id: 212
-categories:
-- 非核心点
-tags:
-- wordpress
----
-
-<!-- more -->
-
 
 # 缘由：
 
@@ -47,7 +30,7 @@ tags:
 下载地址：[MathJax-2.7.3](https://www.mathjax.org/mathjax-v2-7-3-now-available/)
 
 
-## 
+##
 
 
 
@@ -123,8 +106,8 @@ f_k = f(x_k)
 
 
 
- 	
-  1. 
+
+  1.
 
 
 [3分钟教会你用mathjax在csdn博客中编辑数学公式](https://blog.csdn.net/cvrszeng/article/details/52333055)
@@ -132,16 +115,8 @@ f_k = f(x_k)
 
 
 
- 	
-  2. 
+
+  2.
 
 
 [latex公式、编号、对齐](http://blog.sina.com.cn/s/blog_4419b53f0101baiw.html)
-
-
-
-
-
-
-
-
