@@ -1,68 +1,11 @@
----
-author: evo
-comments: true
-date: 2018-05-21 11:22:03+00:00
-layout: post
-link: http://106.15.37.116/2018/05/21/tl-%e7%ac%ac%e4%b8%80%e7%b1%bb%e6%96%b9%e6%b3%95%ef%bc%9a%e6%95%b0%e6%8d%ae%e5%88%86%e5%b8%83%e8%87%aa%e9%80%82%e5%ba%94/
-slug: tl-%e7%ac%ac%e4%b8%80%e7%b1%bb%e6%96%b9%e6%b3%95%ef%bc%9a%e6%95%b0%e6%8d%ae%e5%88%86%e5%b8%83%e8%87%aa%e9%80%82%e5%ba%94
-title: TL 第一类方法：数据分布自适应
-wordpress_id: 6139
-categories:
-- 人工智能学习
-tags:
-- Transfer Learning
+TODO
+
+* **基本没看明白**
+
 ---
 
-<!-- more -->
 
-[mathjax]
-
-**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
-
-
-# ORIGINAL
-
-
-
-
-
- 	
-  1. [迁移学习简明手册](https://github.com/jindongwang/transferlearning-tutorial)  [王晋东](https://zhuanlan.zhihu.com/p/35352154)
-
-
-
-
-# TODO
-
-
-
-
-
- 	
-  * **基本没看明白**
-
-
-
-
-
-* * *
-
-
-
-
-
-# INTRODUCTION
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
+# TL 第一类方法：数据分布自适应
 
 
 
@@ -81,22 +24,22 @@ tags:
 
 
 
- 	
+
   * 数据的边缘分布不同，即数据整体不相似 **什么意思？**
 
- 	
+
   * 数据的条件分布不同，即数据整体相似，但是具体到每个类里，都不太相似。**什么意思？**
 
 
 根据数据分布的性质，这类方法又可以分为：
 
- 	
+
   * 边缘分布自适应
 
- 	
+
   * 条件分布自适应
 
- 	
+
   * 联合分布自适应
 
 
@@ -215,25 +158,25 @@ TCA方法是迁移学习领域一个经典的方法，之后的许多研究工�
 
 
 
- 	
+
   * ACA (Adapting Component Analysis)~\cite{dorri2012adapting}: 在TCA中加入HSIC
 
- 	
+
   * DTMKL (Domain Transfer Multiple Kernel Learning)~\cite{duan2012domain}: 在TCA中加入了MK-MMD，用了新的求解方式
 
- 	
+
   * TJM (Transfer Joint Matching)~\cite{long2014transfer}: 在优化目标中同时进行边缘分布自适应和源域样本选择
 
- 	
+
   * DDC (Deep Domain Confusion)~\cite{tzeng2014deep}: 将MMD度量加入了深度网络特征层的loss中(我们将会在深度迁移学习中介绍此工作)
 
- 	
+
   * DAN (Deep Adaptation Network)~\cite{long2015learning}: 扩展了DDC的工作，将MMD换成了MK-MMD，并且进行多层loss计算(我们将会在深度迁移学习中介绍此工作)
 
- 	
+
   * DME (Distribution Matching Embedding): 先计算变换矩阵，再进行特征映射(与TCA顺序相反)
 
- 	
+
   * CMD (Central Moment Matching)~\cite{zellinger2017central}: MMD着眼于一阶，此工作将MMD推广到了多阶
 
 
@@ -308,10 +251,10 @@ DISTANCE(\mathcal{D}_s,\mathcal{D}_t) \approx ||P(\mathbf{x}_s) - P(\mathbf{x}_t
 
 
 
- 	
+
   1. 源域和目标域边缘分布不同
 
- 	
+
   2. 源域和目标域条件分布不同
 
 
@@ -413,22 +356,22 @@ JDA方法是十分经典的迁移学习方法。后续的相关工作通过在JD
 
 
 
- 	
+
   * ARTL~(Adaptation Regularization)~\cite{long2014adaptation}: 将JDA嵌入一个结构风险最小化框架中，用表示定理直接学习分类器
 
- 	
+
   * VDA~\cite{tahmoresnezhad2016visual}: 在JDA的优化目标中加入了类内距和类间距的计算
 
- 	
+
   * \cite{hsiao2016learning}: 在JDA的基础上加入结构不变性控制
 
- 	
+
   * \cite{hou2015unsupervised}： 在JDA的基础上加入目标域的选择
 
- 	
+
   * JGSA~(Joint Geometrical and Statistical Alignment)~\cite{zhang2017joint}: 在JDA的基础上加入类内距、类间距、标签持久化
 
- 	
+
   * JAN~(Joint Adaptation Network)~\cite{long2017deep}: 提出了联合分布度量JMMD，在深度网络中进行联合分布的优化
 
 
@@ -464,10 +407,10 @@ DISTANCE(\mathcal{D}_s,\mathcal{D}_t) \approx (1 &- \mu)DISTANCE(P(\mathbf{x}_s)
 
 
 
- 	
+
   1. 精度比较：BDA > JDA > TCA > 条件分布自适应。
 
- 	
+
   2. 将不同的概率分布自适应方法用于神经网络，是一个发展趋势。下图展示的结果表明，将概率分布适配加入深度网络中，往往会取得比非深度方法更好的结果。
 
 
@@ -480,16 +423,6 @@ DISTANCE(\mathcal{D}_s,\mathcal{D}_t) \approx (1 &- \mu)DISTANCE(P(\mathbf{x}_s)
 
 
 
+# REF
 
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+1. [迁移学习简明手册](https://github.com/jindongwang/transferlearning-tutorial)  [王晋东](https://zhuanlan.zhihu.com/p/35352154)
