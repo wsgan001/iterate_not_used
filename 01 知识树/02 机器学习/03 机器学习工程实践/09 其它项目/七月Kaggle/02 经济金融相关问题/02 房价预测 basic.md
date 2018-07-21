@@ -94,7 +94,7 @@ array([[<matplotlib.axes._subplots.AxesSubplot object at 0x10864a5f8>,
         <matplotlib.axes._subplots.AxesSubplot object at 0x1092429b0>]], dtype=object)
 ```
 
-![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180720/B7gD3eIH7a.png?imageslim)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180721/l5HH5dj85D.png?imageslim)
 
 从上图可以看出，上面的 price  不是类正态的一个分部。由于我的数据集是偏着的，我的出来的结果也会偏着。<span style="color:red;">没明白为什么这样处理之后结果就不偏了？</span>
 
@@ -463,8 +463,8 @@ plt.plot(alphas, test_scores)
 plt.title("Alpha vs CV Error");
 ```
 
-![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180720/1J9kK5mb1j.png?imageslim)
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180721/CHj7De3B84.png?imageslim)
 
 可见，大概 alpha=10~20 的时候，可以把 score 达到 0.135 左右。这时候就比较低了。这时候还可以吧范围设定到 10~20 ，然后继续搜索。
 
@@ -495,7 +495,8 @@ plt.title("Max Features vs CV Error");
 ```
 
 
-![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180720/4E4k5DILcE.png?imageslim)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180721/7j0AHCae4k.png?imageslim)
+
 
 也就是说每棵树使用 30% 的特征的时候错误率最低，为 0.137
 
