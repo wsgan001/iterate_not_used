@@ -1,13 +1,15 @@
 
-#5 Summary
+# 5 Summary
 
 ## 5.1 About the project
 
-Our goal is to <b>use time and weather to predict energy demand of buildings based on historical data</b>. The model will produce accurate energy demand forecasts that will be useful in smart grid technology.  If Harvard University can predict the energy demand of all campus buildings, they will be able to optimize the operations of chillers, boilers and energy storage systems. 
+Our goal is to <b>use time and weather to predict energy demand of buildings based on historical data</b>. The model will produce accurate energy demand forecasts that will be useful in smart grid technology.  If Harvard University can predict the energy demand of all campus buildings, they will be able to optimize the operations of chillers, boilers and energy storage systems.
 
 There are three types of energy consumption, electricity, chilled water and steam. Chilled water is for cooling and steam is for heating. Chilled water and steam are generated in center plants and are delivered to buildings, just like electricity.
 
-<img src = "Pics/chilled water and steam.jpg">
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/7m154leAki.jpg?imageslim)
+
 Image source: http://www.compression.org/distributed-energy/district-energy-distributed-energy-deschematic-640w/
 
 
@@ -18,13 +20,13 @@ We tried five Machine Learning methods. <b>(1) Linear Regression (LR) (2) Suppor
 
 ### Electricity consumption pattern
 
-* Electricity shows a strong periodical pattern. You can clearly see the difference between day and night, weekdays and weekends. 
+* Electricity shows a strong periodical pattern. You can clearly see the difference between day and night, weekdays and weekends.
 
-<img src = "Pics/hourly electricity.png">
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/G28jc6mC1D.png?imageslim)
 
-* It looks like during each semester, electricity use ramps up toward a peak at finals, perhaps representative of studying patterns. The students are working harder and harder toward finals. Then there is a dip after semesters end, inlcuding Christmas vacation. The electricity consumption is relatively low during January and summer terms, and spring break, when campus can be relatively empty. (Text partially contributed by Steven) 
+* It looks like during each semester, electricity use ramps up toward a peak at finals, perhaps representative of studying patterns. The students are working harder and harder toward finals. Then there is a dip after semesters end, inlcuding Christmas vacation. The electricity consumption is relatively low during January and summer terms, and spring break, when campus can be relatively empty. (Text partially contributed by Steven)
 
-<img src = "Pics/Weekly-electricity.jpg" style = "width:900px; height:400px">
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/dHBlcBccaB.jpg?imageslim)
 
 ### Relationship between Energy Consumption and Features
 
@@ -33,30 +35,35 @@ We tried five Machine Learning methods. <b>(1) Linear Regression (LR) (2) Suppor
 
 * Chilled water and steam are strongly co-related with temperature and humidity. Daily chilled water and steam consumption have a good linear relationship with cooling and heating degrees. Even simple linear regression might be already quite accurate. However, using with weather information to predict hourly chilled water and steam is not suffient.
 
-<img src="Pics/exploratory analysis.jpg">
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/KcI99dKi6c.jpg?imageslim)
 
 ## 5.3 Prediction Accuracy of Different Machine Learning Methods
 
 ### Linear Regression
-<img src = "Pics/summary_lr.png">
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/5F8b6lG51L.png?imageslim)
+
 Advantage of the method: Simple and fast.
 
 Disadvantage of the method: Poor results for large data sets. For example, hourly prediction.
 
 ### Support Vector Regression
-<img src = "Pics/summary_svr.png">
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/5d6507Cdbf.png?imageslim)
 
 ### Gaussian Process Regression
 
-<img src = "Pics/summary_gp.png">
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/f691fEDJlj.png?imageslim)
 
 ### Random Forests
-<img src = "Pics/summary_rf.png">
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/HD1KmIl8cg.png?imageslim)
 
 ### K-Nearest Neighbours
-<img src = "Pics/summary_knn.png">
 
-* Please note that in Random Forests and K-Nearest Neighbours methods, the training set is larger and the test set is smaller compared with those in other methods. 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/iCHD9ikG00.png?imageslim)
+
+* Please note that in Random Forests and K-Nearest Neighbours methods, the training set is larger and the test set is smaller compared with those in other methods.
 
 
 * For KNN and RF predictions, the accuracy might increase if the features are carefully selected for different type of energy. For example, steam has nothing to do with dehumidification and cooling degrees, which are features designed for chilled water. Moreover, pressure, solar radiation, wind direction and wind speed do not have an impact on energy use according to our exploratory analysis. It is meaningless to include them in the prediction.
@@ -64,21 +71,23 @@ Disadvantage of the method: Poor results for large data sets. For example, hourl
 
 * Due to the time limitation, we didn't perform hourly prediction for all the methods.
 
-#6 Conclusion
+# 6 Conclusion
 
-<img src = "Pics/summary_hourly2.png">
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/gIiBGKJeee.png?imageslim)
 
-<img src = "Pics/summary_daily2.png">
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/gID65ad8aA.png?imageslim)
 
 ### Daily Consumption
 
 #### Chilled Water and Steam Prediction
-* According to exploratory analysis, Daily chilled water and steam consumption have a good linear relationship with cooling and heating degrees. Even simple linear regression could predict daily chilled water and steam consumption quite well. 
+
+* According to exploratory analysis, Daily chilled water and steam consumption have a good linear relationship with cooling and heating degrees. Even simple linear regression could predict daily chilled water and steam consumption quite well.
 
 
 * Gaussian Process Regression and Random Forests perform slightly better than other methods in daily chilled water prediction. However, Random Forests prediction used a larger training set and smaller test set. The training test ratio is 2.4 : 1 for Random Forests and 1.1 : 1 for other methods. Therefore, it is not a fair comparison. The accuracy of RF could be lower if using the same training and test set.
 
 #### Daily Electricity
+
 * Daily electricity is not correlated with weather. Occupancy/schedule/study pattern have a large impact on daily electricity.
 
 
@@ -102,7 +111,8 @@ Disadvantage of the method: Poor results for large data sets. For example, hourl
 
 * It is no doubt that Gaussian Process Regression outperforms other methods even in an <b><i>unfair</b></i> comparison. However, this does not mean Gaussian Process Regression is superior to other methods in genral. The features in Gaussian Process Regression are different from other methods. Maybe it is because we choose the right features for Gaussian Process regression.
 
-<img src="Pics/gp_daily steam.png">
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/L0E3Fl93CA.png?imageslim)
+
 A sample image of Gaussian Process Regression prediction.
 
 #7 Discussion
@@ -117,8 +127,3 @@ A sample image of Gaussian Process Regression prediction.
 
 
 * We tried our best to explain everything in the notebooks. However, there is very limited time for this project and the some part of work is trivial and difficult to explain. If there is anything unclear to you, do not heasitate to send us an email. We are happy to explain further. Please forgive any typos.
-
-
-```
-
-```

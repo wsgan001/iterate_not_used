@@ -596,7 +596,7 @@ plt.show()
 
 比如画图也是这样，不是为了酷，而是为了真正理解数据。
 
-上面这个图实际上看不出什么模式，因为太密集了。所以它单单拿出了 2014 年的7~8月的数据
+上面这个图实际上看不出什么模式，因为太密集了。所以它单单拿出了 2014 年的 7~8 月的数据
 
 
 ```
@@ -614,7 +614,7 @@ plt.show()
 
 We manage to get the daily electricity consumption through "reindex".
 
-
+获得每天的用电量
 
 ```python
 dailyTimestamp = pd.date_range(start = '2011/7/1', end = '2014/10/31', freq = 'D')
@@ -677,14 +677,18 @@ plt.show()
 ```
 
 
-    <matplotlib.figure.Figure at 0x10a556a90>
+```
+<matplotlib.figure.Figure at 0x10a556a90>
+```
 
 
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/H441BG1fC6.png?imageslim)
 
 
-    <matplotlib.figure.Figure at 0x109b48150>
+```
+<matplotlib.figure.Figure at 0x109b48150>
+```
 
 
 
@@ -692,7 +696,7 @@ plt.show()
 
 可以看到每个学期期末考试之后用电就往下降了。
 
-这些曲线能帮助我们更了解数据，能了解到数据中有没有什么明显的模式。同时也提醒我们，节日和特殊的日期是很重要的。
+这些曲线能帮助我们更了解数据，能了解到数据中有没有什么明显的模式。同时也提醒我们，节日和特殊的日期是很重要的。即提醒我们说，好像什么东西与这个是关联的，可以作为特征来使用。
 
 到目前为止，所有的工作都在电能上。
 
@@ -705,7 +709,7 @@ The super low electricity consumption happens after semesters end, including Chr
 We clean the chilled water data in the same way as electricity.
 
 
-```
+```python
 chilledWater = df[['Gund Main Energy - Ton-Days']]
 chilledWater.head()
 ```
@@ -793,6 +797,7 @@ plt.show()
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/8i2k3mLaLm.png?imageslim)
 
+需要做的很严谨。
 
 ```python
 hourlyTimestamp = pd.date_range(start = '2011/7/1', end = '2014/10/31', freq = 'H')
@@ -832,6 +837,10 @@ hourlyChilledWater.head()
 
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/E0h7m7Egdi.png?imageslim)
+
+不要着急，就从绘制简单的折线图开始，最简单的曲线图。而且这个代码大家都可以看得懂。你可以做得不像他这么漂亮，但是一定要做，最起码画个 plot.
+
+从上图可以看出模式还是很明显的，从6月份开始到10月份，冷凝水的需求的就比较大，大家上课的地方都需要降温。
 
 
 |                     | chilledWater-TonDays | startTime           | endTime             |
@@ -875,11 +884,15 @@ dailyChilledWater.head()
 ```
 
 
+```
 <matplotlib.figure.Figure at 0x10a022050>
+```
 
 
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/b80HAiFa7e.png?imageslim)
+
+冬天的时候就不用这个冷凝水了。
 
 |            | chilledWater-TonDays | startDay   | endDay     |
 | ---------- | -------------------- | ---------- | ---------- |
@@ -1025,6 +1038,7 @@ hourlySteam.head()
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/b7l58e9fl8.png?imageslim)
 
+可见，1,2 月份的时候要供暖。
 
 |                     | steam-LBS  | startTime           | endTime             |
 | ------------------- | ---------- | ------------------- | ------------------- |
@@ -1084,12 +1098,16 @@ dailySteam.head()
 | 2011-07-04 | 3236.718750 | 2011-07-04 | 2011-07-05 |
 
 
+我们看到了时间的一些模式，下面我们看看天气
 
 ## Weather data
 
 ### Original data
 
+中国的一些数据，可以通过爬虫，也可以有一些 app 是有历史的天气数据的，滴滴的天气数据是买的。
+
 There are <b>two</b> sources for weather data.
+
 * Year 2014: From local weather on the roof of GSD (Graduate School of Design) building Gund.
 * Year 2012 & 2013: purchased weather data from weather stations located in Cambridge, MA. Please note that year 2012 and 2013 data were from different weather stations.
 
@@ -1111,7 +1129,9 @@ weather2014.head()
 | 4    | 2014-01-01 00:20:00 | -5.23 | 52.9 | -13.33 | 248           | 2.5           | 1021.2        | 1                   |
 
 
+<span style="color:red;">文章后面有对这些天气字段的说明。</span>
 
+可以看到天气的数据是每5分钟就有一个，我们实际上是对每个小时的预测，因此做一个采样：
 
 Convert to hourly by resampling method.
 
@@ -1133,7 +1153,7 @@ weather2014.head()
 | 2014-01-01 03:00:00 | -6.320833 | 49.675000 | -15.114167 | 234.333333    | 1.191667      | 1023.233333   | 1                   |
 | 2014-01-01 04:00:00 | -6.535833 | 49.708333 | -15.305833 | 227.333333    | 1.633333      | 1023.925000   | 1                   |
 
-
+<span style="color:red;">种种的写法真的是厉害。</span>
 
 
 
@@ -1185,6 +1205,9 @@ Combine two files and add more features including cooling degrees, heating degre
 
 > Here is <b>all</b> the hourly weather data.
 
+他们对这些天气数据做了一些处理，<span style="color:red;">以后，我们遇到类似天气的数据的时候也可以仿照进行使用。</span>
+
+<span style="color:red;">代码写的非常的清晰，向他学习</span>
 
 ```python
 # Combine two weather files
@@ -1252,6 +1275,9 @@ hourlyWeather.head()
 
 
 
+了解我们处理之后的数据，进行绘图：
+
+对数据进行批量整理之后，大的变动之后，一定要进行绘图来再次了解我们的数据。
 
 
 ```python
@@ -1293,6 +1319,7 @@ plt.show()
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/A6DglgKjEI.png?imageslim)
 
+可以看出，哈佛所在的地区的气温没有太受工业的影响，还是比较符合预期的。
 
 ```
 <matplotlib.figure.Figure at 0x107d9a690>
@@ -1322,6 +1349,7 @@ plt.show()
 
 ### Daily weather data
 
+按照天进行采样：
 
 ```python
 dailyWeather = hourlyWeather.resample('D')
@@ -1376,20 +1404,30 @@ plt.show()
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/EdDIlgeic8.png?imageslim)
 
 
-    <matplotlib.figure.Figure at 0x105eb1950>
+```
+<matplotlib.figure.Figure at 0x105eb1950>
+```
 
 
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/BCbDb3jcaC.png?imageslim)
 
 
-    <matplotlib.figure.Figure at 0x10b8d4b50>
+```
+<matplotlib.figure.Figure at 0x10b8d4b50>
+```
 
 
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/0iJ89HkBcj.png?imageslim)
 
+
+
+到目前为止，我们已经处理了时间的特征，天气的特征。下面我们想看看教学楼的学生使用程度。
+
 ## Features related to occupancy
+
+
 
 This is a number between 0 and 1. 0 indicated no occupants, 1 indicates normal occupancy. This is an estimate based on holidays, weekends and school academic calendar.
 
@@ -1409,7 +1447,7 @@ holidays.head()
 | 4    | 2011-12-24 | 2012-01-02 | 0.0   |
 
 
-
+可见，12-24 的时候，平安夜，教学楼关掉了，value 为 0 。
 
 
 
@@ -1439,6 +1477,7 @@ dailyOccupancy.drop('cosHour', axis = 1, inplace = True)
 
 ## Merge energy consumption data with weather and occupancy features
 
+开始把前面整理好的特征 merge 起来。
 
 ```python
 hourlyElectricityWithFeatures = hourlyElectricity.join(hourlyWeather, how = 'inner')
@@ -1487,19 +1526,31 @@ dailySteamWithFeatures.dropna(axis=0, how='any', inplace = True)
 dailySteamWithFeatures.to_excel('Data/dailySteamWithFeatures.xlsx')
 ```
 
+
+
+
 ## A note for features
+
+<span style="color:red;">他们做的东西非常的细致，给了一对各种 feature 的说明。</span>
 
 ### Nomenclature (Alphabetically)
 
-<p><b> coolingDegrees</b>: if T-C - 12 > 0, then = T-C - 12, else = 0. Assume that when outdoor temperature is below 12C, no cooling is needed, which is true for many buildings. This will be useful for daily prediction, because the average of hourly cooling degrees is better than average of hourly temperature.</p>
-<p><b> cosHour</b>: $\text{cos}(\text{hourOfDay} \cdot \frac{2\pi}{24})$ </p>
+<p><b> coolingDegrees</b>: if T-C - 12 > 0, then = T-C - 12, else = 0. Assume that when outdoor temperature is below 12C, no cooling is needed, which is true for many buildings. This will be useful for daily prediction, because the average of hourly cooling degrees is better than average of hourly temperature.</p>可见，他们也是了解了一下什么样的特征能标识现在的气候情况，可以从书本上了解，也可以咨询相关专业的人。
+
+<p><b> cosHour</b>: $\text{cos}(\text{hourOfDay} \cdot \frac{2\pi}{24})$ </p><span style="color:red;">这个是时针与12点的张角的 cos 值。很有意思的 feature 。不知道使用的时候是不是有一些效果。不过还是不错的。</span>
+
+
+
 <p><b> dehumidification</b>: if humidityRatio - 0.00886 > 0, then = humidityRatio - 0.00886, else = 0. This will be useful for chilled water prediction, especially daily chilled water prediction.</p>
 <p><b> heatingDegrees</b>: if 15 - T-C > 0, then = 15 - T-C, else = 0. Assume that when outdoor temperature is above 15C, no heating is needed. This will be useful for daily prediction, because the average of hourly heating degrees is better than average of hourly temperature.</p>
 <p><b> occupancy</b>: A number between 0 and 1. 0 indicated no occupants, 1 indicates normal occupancy. This is an estimate based on holidays, weekends and school academic calendar.</p>
 <p><b> pressure-mbar</b>: atmospheric pressure</p>
-<p><b> RH-% </b>: Relative humidity</p>
+<p><b> RH-% </b>: Relative humidity</p> 相对的湿度
 <p><b> T-C </b>: Dry-bulb temperature</p>
 <p><b> Tdew-C </b>: Dew-point temperature</p>
+
+
+<span style="color:red;">厉害，整个项目做得非常细致，非常严谨。这篇报告非常的详尽。</span>
 
 ### Humidity
 
@@ -1527,6 +1578,7 @@ pd.options.display.mpl_style = 'default'
 
 ## Monthly energy consumption
 
+然后，就是对于能量的分析，三种能源消耗的情况：
 
 ```python
 pd.options.display.mpl_style = 'default'
@@ -1560,7 +1612,16 @@ plt.legend( (b1, b2, b3), ('Electricity', 'Steam', 'Chilled Water') )
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/hF4e68LLI0.png?imageslim)
 
+图非常的漂亮，可以明显的看出，电能是一直要使用的，供暖是冬天用，冷凝水是夏天用。
+
+<span style="color:red;">图非常的漂亮，非常的专业。可以直观得出想要的信息。</span>
+
+
+
+
 ## Electricity energy consumption pattern
+
+开始探索能源消耗的一些模式。
 
 First, let's see what we can find in hourly and daily electricity energy consumption.
 
@@ -1619,6 +1680,10 @@ plt.colorbar(im, cax=cax)
 
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/10f3463b1i.png?imageslim)
+
+他使用的是 `from mpl_toolkits.axes_grid1 import make_axes_locatable` 这个库，没有听说过。
+
+这是一个按照小时的热力图，画的是电能的使用情况，可以明显看到中间有三段是没有数据的，与之前的相符。而且，红色的时候用电量很大，可以清楚的看到他是有一定模式的。
 
 > Above is a heapmap of hourly electricity use over three years. The banlk part indicates missing data.
 
@@ -1720,7 +1785,11 @@ It is so obvious the peak consumption is during the finals. And then it suddenly
 
 * It looks like during each semester, electricity use ramps up toward a peak at finals, perhaps representative of studying patterns. The students are working harder and harder toward finals. Then there is a dip after semesters end, inlcuding Christmas vacation. The electricity consumption is relatively low during January and summer terms, and spring break, when campus can be relatively empty. (Text partially contributed by Steven)
 
+
+
 ## Relationship between energy consumption and features
+
+探寻一下能源的小号和特征之间的关系。
 
 ### Main features we considered
 
@@ -1840,6 +1909,9 @@ plt.show()
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/mKk3H8HG5J.png?imageslim)
 
+横坐标是 temperture 温度，纵坐标是各种能源的消耗。我们可以看到，随着温度的升高，电能的使用并没有明显的变化。中间是冷凝水随着温度的上升迅速的升高，热蒸汽也是。
+
+<span style="color:red;">绘图画的非常好。能帮助我们了解特征</span>
 
 > Chilled water and steam are strongly co-related with temperature. However, using only outdoor temperature or cooling/heating degrees to predict hourly chilled water and steam is not suffient.
 
@@ -2083,11 +2155,12 @@ plt.show()
 
 ### Findings
 
+做得很精细，他们把从这些特征中分析得到的规律总结了一下：
+
 * Electricity is not co-related with weather data (temperature). The idea of using weather information to predict electricity will NOT work. I think it mostly depends on time/occupancy. But we can still do some pattern exploration to figure out day/night, weekday/weekend, school day/holiday electricity consumption pattern. Actually, we should have noticed that from monthly data.
 
 
 * Chilled water and steam are strongly correlated with temperature and humidity. Daily chilled water and steam consumption have a good linear relationship with cooling and heating degrees. Therefore, simple linear regression might already be accurate enough.
-
 
 
 * Although chilled water and steam consumption are strongly correlated with weather, using with weather information to predict hourly chilled water and steam is not suffient according to the plots above. This is because operation schedule affects hourly energy consumption. Occupancy and operation schedule must be included in hourly chilled water and steam prediction.
@@ -2100,3 +2173,8 @@ plt.show()
 
 
 * Occupancy is derived from academic calendar, holidays and weekends. Basiaclly, we just assign a lower value to holidays, weekends and summer. cosHour, occupancy might help, might not, since they are just estimation of occupancy.
+
+
+
+
+非常的好，要吃透，融入到自己的框架里面。并扩展出新的东西。
