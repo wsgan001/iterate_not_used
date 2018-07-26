@@ -1,5 +1,5 @@
 
-4 就是一些建模的过程
+基本就是使用 线性回归和 svm 进行建模的过程，很详细，要仔细看下，其中 svm 使用了 gird_search 要总结成模板，方便以后使用。
 
 
 #4 Prediction Using Different Machine Learning Methods
@@ -56,7 +56,9 @@ dailyElectricity.head()
 | 2012-01-05 | 5496.223993     | 46.916667 | -0.583333 | -9.866667  | 1002.041667   | 90.750000           | 258.333333    | 5.162041      | 0.001746            | 0.000000       | 15.583333      | 0                | 0.3       |
 
 
+注意，有些数据是拿不到的，哈佛响应官方的号召来做这个事情，所以有这个权限接触到数据。
 
+中国的气象的数据是可以采集到的，能耗的数据应该是拿不到的。
 
 
 ## Daily Predictions
@@ -120,6 +122,7 @@ The Linear Regression coefficients are
 
 
 
+要想清晰的表达结果的特征还是要考画图。业余选手会说，我的准确度是多少，专业选手会通过画图给出直观的对比。
 
 
 ```python
@@ -130,13 +133,9 @@ plt.plot(XX_elect_test.index, y_lr, label='Predicted', color='g')
 plt.legend(loc='upper right')
 ```
 
-
-
 ```
 <matplotlib.legend.Legend at 0x32b713c8>
 ```
-
-
 
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/jJL2D8m17g.png?imageslim)
@@ -746,6 +745,7 @@ YY_elect_test = elect_test['electricity-kWh']
 
 ```
 
+使用了 grid_search 来寻找超参：
 
 ```python
 # Input parameters ranges to cross validation

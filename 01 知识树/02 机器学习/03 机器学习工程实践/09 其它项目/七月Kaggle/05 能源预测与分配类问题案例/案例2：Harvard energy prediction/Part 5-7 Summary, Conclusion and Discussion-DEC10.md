@@ -1,4 +1,7 @@
 
+所有的项目都要有总结，summary ，这个summary 写的很好，有配图，
+
+
 # 5 Summary
 
 ## 5.1 About the project
@@ -12,11 +15,14 @@ There are three types of energy consumption, electricity, chilled water and stea
 
 Image source: http://www.compression.org/distributed-energy/district-energy-distributed-energy-deschematic-640w/
 
+<span style="color:red;">可见，真的很缜密，图片的来源都进行了标注。</span>
 
 We tried five Machine Learning methods. <b>(1) Linear Regression (LR) (2) Support Vector Regression (SVR) (3) Gaussian Process Regression (GP) (4) Random Forests (RF) and (5) K-Nearest Neighbours (KNN).</b>
 
 
 ## 5.2 Findings from Exploratory Analysis
+
+我们看到的一些分析的结果：
 
 ### Electricity consumption pattern
 
@@ -38,6 +44,8 @@ We tried five Machine Learning methods. <b>(1) Linear Regression (LR) (2) Suppor
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/KcI99dKi6c.jpg?imageslim)
 
 ## 5.3 Prediction Accuracy of Different Machine Learning Methods
+
+厉害，对每个模型都给出了自己的分析：
 
 ### Linear Regression
 
@@ -72,6 +80,9 @@ Disadvantage of the method: Poor results for large data sets. For example, hourl
 * Due to the time limitation, we didn't perform hourly prediction for all the methods.
 
 # 6 Conclusion
+
+下面是各个模型的对比：真的很清楚，厉害了。
+
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/gIiBGKJeee.png?imageslim)
 
@@ -109,6 +120,8 @@ Disadvantage of the method: Poor results for large data sets. For example, hourl
 
 ### The winner is Gaussian Process Regression.
 
+他们介绍了对这个项目而言最优的模型是什么，以及讨论为什么选择这个模型。
+
 * It is no doubt that Gaussian Process Regression outperforms other methods even in an <b><i>unfair</b></i> comparison. However, this does not mean Gaussian Process Regression is superior to other methods in genral. The features in Gaussian Process Regression are different from other methods. Maybe it is because we choose the right features for Gaussian Process regression.
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/L0E3Fl93CA.png?imageslim)
@@ -116,6 +129,8 @@ Disadvantage of the method: Poor results for large data sets. For example, hourl
 A sample image of Gaussian Process Regression prediction.
 
 #7 Discussion
+
+
 
 * We spent a lot of time cleaning the raw data. Therefore, we can only manage prediction for one building.
 

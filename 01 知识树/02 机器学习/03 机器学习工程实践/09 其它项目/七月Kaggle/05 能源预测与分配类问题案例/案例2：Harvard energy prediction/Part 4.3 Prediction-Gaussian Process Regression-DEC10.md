@@ -1,5 +1,12 @@
+TODO
+
+- 箱线图到底是怎么看的？
+
+
 
 #4 Prediction Using Different Machine Learning Methods
+
+这种方法在 sklearn 中是有的，<span style="color:red;">之前好像没见过。</span>
 
 ## 4.3 Gaussian Process Regression
 
@@ -245,6 +252,11 @@ plt.show()
 
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180725/iE0LaKd9cH.png?imageslim)
+
+
+他会给出预测值，而且，会给出预测值的 95% 的置信区间。<span style="color:red;">为什么要给出这种置信区间？</span>
+
+
 
 Above is the visualization of part of the prediction.
 
