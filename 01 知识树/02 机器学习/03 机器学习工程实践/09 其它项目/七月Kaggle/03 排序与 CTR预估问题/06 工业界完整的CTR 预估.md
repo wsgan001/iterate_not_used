@@ -713,8 +713,7 @@ pass
 ```
 
 
-![png](Spark-Criteo-CTR-Prediction_files/Spark-Criteo-CTR-Prediction_51_0.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180726/KdCIAEAJFL.png?imageslim)
 
 #### **(3e) Handling unseen features **
 #### We naturally would like to repeat the process from Part (3d), e.g., to compute OHE features for the validation and test datasets.  However, we must be careful, as some categorical values will likely appear in new data that did not exist in the training data. To deal with this situation, update the `oneHotEncoding()` function from Part (1d) to ignore previously unseen categories, and then compute OHE features for the validation data.
@@ -1059,8 +1058,7 @@ pass
 ```
 
 
-![png](Spark-Criteo-CTR-Prediction_files/Spark-Criteo-CTR-Prediction_76_0.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180726/770geb47Ee.png?imageslim)
 
 ### **Part 5: Reduce feature dimension via feature hashing**
 
@@ -1355,10 +1353,10 @@ pass
 ```
 
 
-![png](Spark-Criteo-CTR-Prediction_files/Spark-Criteo-CTR-Prediction_93_0.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180726/GkhmhkKE4m.png?imageslim)
 
 #### ** (5e) Evaluate on the test set **
+
 #### Finally, evaluate the best model from Part (5d) on the test set.  Compare the resulting log loss with the baseline log loss on the test set, which can be computed in the same way that the validation log loss was computed in Part (4f).
 
 
@@ -1374,9 +1372,12 @@ print ('Hashed Features Test Log Loss:\n\tBaseline = {0:.3f}\n\tLogReg = {1:.3f}
        .format(logLossTestBaseline, logLossTest))
 ```
 
-    Hashed Features Test Log Loss:
-    	Baseline = 0.537
-    	LogReg = 0.456
+
+```
+Hashed Features Test Log Loss:
+	Baseline = 0.537
+	LogReg = 0.456
+```
 
 
 
@@ -1387,5 +1388,7 @@ Test.assertTrue(np.allclose(logLossTestBaseline, 0.537438),
 Test.assertTrue(np.allclose(logLossTest, 0.455616931), 'incorrect value for logLossTest')
 ```
 
-    1 test passed.
-    1 test passed.
+```
+1 test passed.
+1 test passed.
+```
