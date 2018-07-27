@@ -1,64 +1,12 @@
----
-author: evo
-comments: true
-date: 2018-05-22 06:56:14+00:00
-layout: post
-link: http://106.15.37.116/2018/05/22/gan-%e8%ae%ad%e7%bb%83%e4%b8%ad%e5%ad%98%e5%9c%a8%e7%9a%84%e9%97%ae%e9%a2%98/
-slug: gan-%e8%ae%ad%e7%bb%83%e4%b8%ad%e5%ad%98%e5%9c%a8%e7%9a%84%e9%97%ae%e9%a2%98
-title: GAN 训练中存在的问题
-wordpress_id: 6249
-categories:
-- 人工智能学习
-tags:
-- GAN
----
-
-<!-- more -->
-
-[mathjax]
-
-**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
-
-
-# ORIGINAL
+# GAN 训练中存在的问题
 
 
 
+TODO
 
+* **看到文章提到说，现在已经解决了，是怎么解决的？**
 
- 	
-  1. aaa
-
-
-
-
-# TODO
-
-
-
-
-
- 	
-  * **看到文章提到说，现在已经解决了，是怎么解决的？**
-
-
-
-
-
-* * *
-
-
-
-
-
-# INTRODUCTION
-
-
-
-
-
- 	
-  * 怎么解决的？要总结下。
+* 怎么解决的？要总结下。
 
 
 训练不稳定、梯度消失、模式崩溃的问题
@@ -120,6 +68,3 @@ tags:
 
 
 # COMMENT
-
-
-

@@ -1,34 +1,8 @@
----
-author: evo
-comments: true
-date: 2018-05-22 09:50:20+00:00
-layout: post
-link: http://106.15.37.116/2018/05/22/gan-%e4%be%8b%e5%ad%901%ef%bc%9a%e6%89%8b%e5%86%99%e6%95%b0%e5%ad%97%e7%94%9f%e6%88%90/
-slug: gan-%e4%be%8b%e5%ad%901%ef%bc%9a%e6%89%8b%e5%86%99%e6%95%b0%e5%ad%97%e7%94%9f%e6%88%90
-title: GAN 例子1：手写数字生成
-wordpress_id: 6277
-categories:
-- 人工智能学习
-tags:
-- '@todo'
-- GAN
----
-
-<!-- more -->
-
-[mathjax]
-
-**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
-
+# GAN 例子1：手写数字生成
 
 # ORIGINAL
 
-
-
-
-
- 	
-  1. [GAN入门教程｜从0开始，手把手教你学会最火的神经网络](https://zhuanlan.zhihu.com/p/27440393)
+1. [GAN入门教程｜从0开始，手把手教你学会最火的神经网络](https://zhuanlan.zhihu.com/p/27440393)
 
 
 
@@ -39,7 +13,7 @@ tags:
 
 
 
- 	
+
   * **文章只看了一小半，代码也没有怎么看，要接着看**
 
 
@@ -58,7 +32,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -134,14 +108,14 @@ Code链接：
 
 代码如下：
 
-    
+
     import tensorflow as tf
     import numpy as np
     import datetime
     import matplotlib.pyplot as plt
-    
+
     from tensorflow.examples.tutorials.mnist import input_data
-    
+
     def discriminator(images, reuse_variables=None):
         with tf.variable_scope(tf.get_variable_scope(), reuse=reuse_variables) as scope:
             # First convolutional and pool layers
@@ -152,7 +126,7 @@ Code链接：
             d1 = d1 + d_b1
             d1 = tf.nn.relu(d1)
             d1 = tf.nn.avg_pool(d1, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
-    
+
             # Second convolutional and pool layers
             # This finds 64 different 5 x 5 pixel features
             d_w2 = tf.get_variable('d_w2', [5, 5, 32, 64], initializer=tf.truncated_normal_initializer(stddev=0.02))
@@ -161,7 +135,7 @@ Code链接：
             d2 = d2 + d_b2
             d2 = tf.nn.relu(d2)
             d2 = tf.nn.avg_pool(d2, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
-    
+
             # First fully connected layer
             d_w3 = tf.get_variable('d_w3', [7 * 7 * 64, 1024], initializer=tf.truncated_normal_initializer(stddev=0.02))
             d_b3 = tf.get_variable('d_b3', [1024], initializer=tf.constant_initializer(0))
@@ -169,16 +143,16 @@ Code链接：
             d3 = tf.matmul(d3, d_w3)
             d3 = d3 + d_b3
             d3 = tf.nn.relu(d3)
-    
+
             # Second fully connected layer
             d_w4 = tf.get_variable('d_w4', [1024, 1], initializer=tf.truncated_normal_initializer(stddev=0.02))
             d_b4 = tf.get_variable('d_b4', [1], initializer=tf.constant_initializer(0))
             d4 = tf.matmul(d3, d_w4) + d_b4
-    
+
             # d4 contains unscaled values
             return d4
-    
-    
+
+
     def generator(z, batch_size, z_dim):
         g_w1 = tf.get_variable('g_w1', [z_dim, 3136], dtype=tf.float32,
                                initializer=tf.truncated_normal_initializer(stddev=0.02))
@@ -187,7 +161,7 @@ Code链接：
         g1 = tf.reshape(g1, [-1, 56, 56, 1])
         g1 = tf.contrib.layers.batch_norm(g1, epsilon=1e-5, scope='g_b1')
         g1 = tf.nn.relu(g1)
-    
+
         # Generate 50 features
         g_w2 = tf.get_variable('g_w2', [3, 3, 1, z_dim / 2], dtype=tf.float32,
                                initializer=tf.truncated_normal_initializer(stddev=0.02))
@@ -197,7 +171,7 @@ Code链接：
         g2 = tf.contrib.layers.batch_norm(g2, epsilon=1e-5, scope='g_b2')
         g2 = tf.nn.relu(g2)
         g2 = tf.image.resize_images(g2, [56, 56])
-    
+
         # Generate 25 features
         g_w3 = tf.get_variable('g_w3', [3, 3, z_dim / 2, z_dim / 4], dtype=tf.float32,
                                initializer=tf.truncated_normal_initializer(stddev=0.02))
@@ -207,7 +181,7 @@ Code链接：
         g3 = tf.contrib.layers.batch_norm(g3, epsilon=1e-5, scope='g_b3')
         g3 = tf.nn.relu(g3)
         g3 = tf.image.resize_images(g3, [56, 56])
-    
+
         # Final convolution with one output channel
         g_w4 = tf.get_variable('g_w4', [1, 1, z_dim / 4, 1], dtype=tf.float32,
                                initializer=tf.truncated_normal_initializer(stddev=0.02))
@@ -215,20 +189,20 @@ Code链接：
         g4 = tf.nn.conv2d(g3, g_w4, strides=[1, 2, 2, 1], padding='SAME')
         g4 = g4 + g_b4
         g4 = tf.sigmoid(g4)
-    
+
         # Dimensions of g4: batch_size x 28 x 28 x 1
         return g4
-    
-    
-    
+
+
+
     # 加载图像
     mnist = input_data.read_data_sets("MNIST_data/")
     sample_image = mnist.train.next_batch(1)[0]
     print(sample_image.shape)
     sample_image = sample_image.reshape([28, 28])
     plt.imshow(sample_image, cmap='Greys')
-    
-    
+
+
     #随便生成一个图像看一下
     #创建能够保存生成器输出的变量
     z_dimensions = 100
@@ -243,12 +217,12 @@ Code链接：
                                     feed_dict={z_placeholder: z_batch})
         generated_image = generated_image.reshape([28, 28])
         plt.imshow(generated_image, cmap='Greys')
-    
-    
+
+
     # 重置
     tf.reset_default_graph()
-    
-    
+
+
     #下面开始正式进行
     # 准备一些参数
     batch_size = 50
@@ -262,8 +236,8 @@ Code链接：
     Dx = discriminator(x_placeholder)
     #Dg 用来存放判别器根据一张生成图片预测出的可能性
     Dg = discriminator(Gz, reuse_variables=True)
-    
-    
+
+
     #定义损失函数
     #判别器的损失函数，函数计算 Dx和 0与 Dg 和 1之间的交叉熵损失 的各分量的平均值
     d_loss_real = tf.reduce_mean(
@@ -273,8 +247,8 @@ Code链接：
     # 生成器的损失函数
     g_loss = tf.reduce_mean(
         tf.nn.sigmoid_cross_entropy_with_logits(logits = Dg, labels = tf.ones_like(Dg)))
-    
-    
+
+
     #开始定义优化程序
     tvars = tf.trainable_variables()
     # 创建两个变量列表，一个是判别器的权重和偏差，另一个是生成器的权重和偏差。
@@ -283,18 +257,18 @@ Code链接：
     g_vars = [var for var in tvars if 'g_' in var.name]#生成器的权重和偏差
     print([v.name for v in d_vars])
     print([v.name for v in g_vars])
-    
-    
+
+
     #制定两个优化器，我们一般选择Adam优化算法
     # 用来训练判别器
     d_trainer_fake = tf.train.AdamOptimizer(0.0003).minimize(d_loss_fake, var_list=d_vars)
     d_trainer_real = tf.train.AdamOptimizer(0.0003).minimize(d_loss_real, var_list=d_vars)
     #用来训练生成器
     g_trainer = tf.train.AdamOptimizer(0.0001).minimize(g_loss, var_list=g_vars)
-    
+
     # From this point forward, reuse variables
     tf.get_variable_scope().reuse_variables()
-    
+
     # tensorboard上需要用到的 tensorboard怎么用？
     tf.summary.scalar('Generator_loss', g_loss)
     tf.summary.scalar('Discriminator_loss_real', d_loss_real)
@@ -304,12 +278,12 @@ Code链接：
     merged = tf.summary.merge_all()
     logdir = "tensorboard/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + "/"
     writer = tf.summary.FileWriter(logdir, sess.graph)
-    
-    
-    
+
+
+
     sess = tf.Session()
     sess.run(tf.global_variables_initializer())
-    
+
     # 先给判别器几个简单的原始训练进行迭代，这种方法有助于形成对生成器有用的梯度。
     for i in range(300):
         z_batch = np.random.normal(0, 1, size=[batch_size, z_dimensions])
@@ -318,27 +292,27 @@ Code链接：
                                                {x_placeholder: real_image_batch, z_placeholder: z_batch})
         if(i % 100 == 0):
             print("dLossReal:", dLossReal, "dLossFake:", dLossFake)
-    
-    
+
+
     #进行主要的训练循环，训练生成器和判别器   GPU>3h   CPU>30h
     for i in range(100000):
         real_image_batch = mnist.train.next_batch(batch_size)[0].reshape([batch_size, 28, 28, 1])
         z_batch = np.random.normal(0, 1, size=[batch_size, z_dimensions])
-    
+
         # Train discriminator on both real and fake images
         _, __, dLossReal, dLossFake = sess.run([d_trainer_real, d_trainer_fake, d_loss_real, d_loss_fake],
                                                {x_placeholder: real_image_batch, z_placeholder: z_batch})
-    
+
         # Train generator
         z_batch = np.random.normal(0, 1, size=[batch_size, z_dimensions])
         _ = sess.run(g_trainer, feed_dict={z_placeholder: z_batch})
-    
+
         if i % 10 == 0:
             # Update TensorBoard with summary statistics
             z_batch = np.random.normal(0, 1, size=[batch_size, z_dimensions])
             summary = sess.run(merged, {z_placeholder: z_batch, x_placeholder: real_image_batch})
             writer.add_summary(summary, i)
-    
+
         if i % 100 == 0:
             # Every 100 iterations, show a generated image
             print("Iteration:", i, "at", datetime.datetime.now())
@@ -347,14 +321,14 @@ Code链接：
             images = sess.run(generated_images, {z_placeholder: z_batch})
             plt.imshow(images[0].reshape([28, 28]), cmap='Greys')
             plt.show()
-    
+
             # Show discriminator's estimate
             im = images[0].reshape([1, 28, 28, 1])
             result = discriminator(x_placeholder)
             estimate = sess.run(result, {x_placeholder: im})
             print("Estimate:", estimate)
-    
-    
+
+
     #加载了一个我们在高速GPU机器上训练了10小时的模型，你可以试验下训练过的GAN
     '''
     saver = tf.train.Saver()
@@ -389,6 +363,3 @@ Code链接：
 
 
 # COMMENT
-
-
-

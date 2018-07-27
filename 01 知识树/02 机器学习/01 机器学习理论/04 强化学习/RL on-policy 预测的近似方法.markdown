@@ -1,71 +1,5 @@
----
-author: evo
-comments: true
-date: 2018-05-16 16:38:15+00:00
-layout: post
-link: http://106.15.37.116/2018/05/17/rl-on-policy-%e9%a2%84%e6%b5%8b%e7%9a%84%e8%bf%91%e4%bc%bc%e6%96%b9%e6%b3%95/
-slug: rl-on-policy-%e9%a2%84%e6%b5%8b%e7%9a%84%e8%bf%91%e4%bc%bc%e6%96%b9%e6%b3%95
-title: RL on-policy 预测的近似方法
-wordpress_id: 5890
-categories:
-- 人工智能学习
-tags:
-- NOT_ADD
-- Reinforcement Learning
----
+# RL on-policy 预测的近似方法
 
-<!-- more -->
-
-[mathjax]
-
-**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
-
-
-# ORIGINAL
-
-
-
-
-
- 	
-  1. 
-
-
-# [强化学习读书笔记 - 09 - on-policy预测的近似方法](http://www.cnblogs.com/steven-yang/p/6535418.html)
-
-
-
-
-
-
-
-# TODO
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-
-* * *
-
-
-
-
-
-# INTRODUCTION
-
-
-
-
-
- 	
-  * aaa
 
 
 这一章开始了第二部门 - **近似解决方案**
@@ -76,19 +10,12 @@ tags:
 
 我们先看看传统方法中存在的问题：
 
-
-
- 	
   * 不适用复杂的环境。主要原因是状态和行动太多，策略需要大量空间来记忆策略价值。
-
- 	
   * 环境可能是不稳定的，过去的经验不能适用于未来的情况。需要一个通用性的方法来更新策略价值。
-
- 	
   * 策略价值是一个数值，缺乏通用性。期望有一个通用的方法来计算策略价值。
 
 
-所以对近似预测方法的理解是，找到一个通用的方法\(\hat{v}(s, \theta)\)。
+所以对近似预测方法的理解是，找到一个通用的方法 $\hat{v}(s, \theta)$。
 **数学表示**
 \[
 \hat{v}(s, \theta) \approx v_{\pi}(s) \\
@@ -116,7 +43,7 @@ d(s) \text{ - on-policy distribution, the fraction of time spent in s under the 
 
 
 
- 	
+
   * 在情节性任务中
 \[
 \eta(s) = h(s) + \sum_{\bar{s}} \eta(\bar{s}) \sum_{a} \pi(a|\bar{s})p(s|\bar{s}, a), \ \forall s \in \mathcal{S} \\
@@ -126,7 +53,7 @@ where \\
 h(s) \text{ - time spent in a state s if episodes start in it}
 \]
 
- 	
+
   * 在连续性任务中
 \[
 d(s) = \text{ the stationary distribution under } \pi \\
@@ -174,7 +101,7 @@ where \\
 
 
 
- 	
+
   * 算法描述
 
 
@@ -205,7 +132,7 @@ For \(t = 0, 1, \cdots, T - 1\)
 
 
 
- 	
+
   * 算法描述
 
 
@@ -323,22 +250,6 @@ until S' is terminal</blockquote>
 
 
 
+# REF
 
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+1.# [强化学习读书笔记 - 09 - on-policy预测的近似方法](http://www.cnblogs.com/steven-yang/p/6535418.html)
