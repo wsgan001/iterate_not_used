@@ -26,13 +26,13 @@ tags:
 
 
 
- 	
+
   1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
- 	
+
   2. 《设计模式精解 - GoF 23种设计模式解析》
 
- 	
+
   3. 《大话设计模式》作者 程杰
 
 
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,21 +63,21 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
 
- 	
+
   1. 建造者模式：将复杂对象的创建与表示分开，使得相同的创建过程可以有不同的表示。用户只需制定需要建造的类型，不需要知道建造的过程和细节。
 
- 	
+
   2. 指挥者是建造者模式中重要的类，用于控制建造过程，也可以隔离用户与建造过程的关联。
 
- 	
+
   3. 建造者隐藏了产品的组装细节，若需要改变一个产品的内部表示，可以再定义一个具体的建造者。
 
- 	
+
   4. 建造者模式是在当前创造复杂对象的算法，独立于该对象的组成部分和装配方式时适用的模式。
 
 
@@ -106,8 +106,7 @@ tags:
 Builder模式结构图为：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b10ddb0860a5.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/HEFLeGjlJb.png?imageslim)
 
 它的关键是其中的 Director 对象并不直接返回对象，而是通过Builder 一步步 （BuildPartA，BuildPartB，BuildPartC）的来创建对象。当然这里 Director 可以提供一个默认的返回对象的接口（即返回通用的复杂对象的创建，即不指定或者特定唯一指定BuildPart中的参数）。**什么意思？**
 
@@ -124,19 +123,19 @@ Builder模式结构图为：
 
 builder.h：
 
-    
+
     #ifndef DESIGN_PATTERNS_BUILDER_H
     #define DESIGN_PATTERNS_BUILDER_H
-    
+
     class Pen {
     };
     class Graphics {
     };
-    
-    
-    
-    
-    
+
+
+
+
+
     class PersonBuilder {
     public:
       PersonBuilder() {
@@ -144,18 +143,18 @@ builder.h：
       PersonBuilder(Pen*, Graphics*);
       virtual ~PersonBuilder() {
       };
-    
+
       virtual void BuildHead() {
       };
       virtual void BuildBody() {
       };
-    
+
     protected:
       Pen* pen_;
       Graphics* graphics_;
     };
-    
-    //两个不同的构建者 
+
+    //两个不同的构建者
     class PersonThinBuilder: public PersonBuilder {
     public:
       PersonThinBuilder(Pen*, Graphics*);
@@ -168,8 +167,8 @@ builder.h：
       void BuildHead();
       void BuildBody();
     };
-    
-    
+
+
     class PersonDirector {
     public:
         PersonDirector(PersonBuilder*);
@@ -177,25 +176,25 @@ builder.h：
     private:
         PersonBuilder* person_builder_;
     };
-    
-    
+
+
     #endif //DESIGN_PATTERNS_BUILDER_H
-    
+
 
 
 builder.cpp：
 
-    
+
     #include "builder.h"
     #include <iostream>
-    
-    
+
+
     PersonBuilder::PersonBuilder(Pen* pen, Graphics* graphics): pen_(pen), graphics_(graphics){
     }
-    
-    
+
+
     PersonThinBuilder::PersonThinBuilder(Pen* pen, Graphics* graphics): PersonBuilder(pen, graphics) {
-    
+
     }
     void PersonThinBuilder::BuildHead() {
       std::cout<< "Build Thin Head"<<std::endl;
@@ -203,10 +202,10 @@ builder.cpp：
     void PersonThinBuilder::BuildBody() {
       std::cout<< "Build Thin Body" << std::endl;
     }
-    
-    
+
+
     PersonFatBuilder::PersonFatBuilder(Pen* pen, Graphics* graphics): PersonBuilder(pen, graphics) {
-    
+
     }
     void PersonFatBuilder::BuildHead() {
       std::cout<< "Build Fat Head" << std::endl;
@@ -214,55 +213,55 @@ builder.cpp：
     void PersonFatBuilder::BuildBody() {
       std::cout<< "Build Fat Body" << std::endl;
     }
-    
-    
+
+
     //这个 Director 并不关心传进来的是胖构建者还是瘦构建者
     //它只知道这个传进来的是一个构建者就可以
     PersonDirector::PersonDirector(PersonBuilder* person_builder) : person_builder_(person_builder) {
-    
+
     }
     void PersonDirector::CreatePerson() {
         person_builder_->BuildBody();
         person_builder_->BuildHead();
     }
-    
+
 
 
 main.cpp：
 
-    
+
     #include "builder.h"
-    
-    
+
+
     //对于每一个 胖构建者和瘦构建者来说，它里面就可以放一些特殊的参数，但是它们作为构建者的本质没有变，
     //相当于 是不同的面包模板，可以生产不同的面包，但是面包的形状是存放在不同的面包模板里面的。
     int main() {
-    
+
         Pen *pPen;
         Graphics *pGraphics;
         PersonBuilder* pPersonBuilder;
         PersonDirector* pPersonDirector;
-    
+
         pPen = new Pen;
         pGraphics = new Graphics;
-    
+
         // 创建一个瘦人
         pPersonBuilder = new PersonThinBuilder(pPen, pGraphics);
         pPersonDirector = new PersonDirector(pPersonBuilder);
         pPersonDirector->CreatePerson();
-    
+
         // 创建一个胖人
         // 只需要把 PersonThinBuilder 替换成 PersonFatBuilder 即可
         pPersonBuilder = new PersonFatBuilder(pPen, pGraphics);
         pPersonDirector = new PersonDirector(pPersonBuilder);
         pPersonDirector->CreatePerson();
-    
+
         delete pPen;
         delete pGraphics;
         delete pPersonBuilder;
         delete pPersonDirector;
-    
-    
+
+
         return 0;
     }
 
@@ -292,10 +291,10 @@ Builder 模式和 AbstractFactory 模式在功能上是很相似的，因为都�
 
 
 
- 	
+
   * Builder 模式强调的是一步步创建对象，并通过相同的创建过程可以获得不同的结果对象，一般来说Builder 模式中对象不是直接返回的。
 
- 	
+
   * 而在 AbstractFactory 模式中对象是直接返回的，AbstractFactory 模式强调的是为创建多个相互依赖的对象提供一个同一的接口。
 
 
@@ -316,6 +315,3 @@ Builder 模式和 AbstractFactory 模式在功能上是很相似的，因为都�
 
 
 # COMMENT
-
-
-

@@ -26,13 +26,13 @@ tags:
 
 
 
- 	
+
   1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
- 	
+
   2. 《设计模式精解 - GoF 23种设计模式解析》
 
- 	
+
   3. 《大话设计模式》作者 程杰
 
 
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -76,19 +76,19 @@ tags:
 
 
 
- 	
+
   1. 面向对象中并非类越多越好，类的划分是为了封装，但分类的基础是抽象，具有相同属性和功能的对象的抽象集合才是类。
 
- 	
+
   2. 策略模式：定义算法家族并分别封装，他们完成的工作相同，只是实现不同，可以互相替换。继承有助于析取这些算法的公共功能。此模式让算法的变化不会影响到使用算法的用户。
 
- 	
+
   3. 策略与工厂模式结合，使客户端需要认识的类减少，耦合度更加降低。
 
- 	
+
   4. 策略模式可以简化单元测试，因为每个算法可以通过自己的接口单独测试。
 
- 	
+
   5. 只要在不同时间内应用不同的业务规则，就可以考虑用策略模式来处理这种变化的可能性。
 
 
@@ -103,8 +103,7 @@ Strategy模式和Template模式要解决的问题是相同（类似）的，都�
 Strategy 模式典型的结构图为:
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b11006f2b03a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/K2EIbCaAkj.png?imageslim)
 
 图 2-1: Strategy Pattern 结构图
 
@@ -117,84 +116,84 @@ Strategy 模式典型的结构图为:
 
 strategy.h
 
-    
+
     #ifndef DESIGN_PATTERNS_STRATEGY_H
     #define DESIGN_PATTERNS_STRATEGY_H
-    
+
     #include <string>
-    
+
     class CashSuper {
     public:
       virtual ~CashSuper() {}
       virtual double AcceptCash(double) = 0;
     };
-    
+
     class CashNormal: public CashSuper {
     public:
       double AcceptCash(double);
     };
-    
+
     class CashRebate: public CashSuper {
     public:
       CashRebate() {}
       CashRebate(double);
       double AcceptCash(double);
-    
+
     private:
       double money_rebate_;
     };
-    
+
     class CashReturn: public CashSuper {
     public:
       CashReturn() {}
       CashReturn(double, double);
       double AcceptCash(double);
-    
+
     private:
       double money_condition_;
       double money_return_;
     };
-    
+
     class CashContext {
     public:
       CashContext() {}
       CashContext(std::string, std::string);
       ~CashContext();
       double GetResult(double);
-    
+
     private:
       CashSuper *cash_;
     };
-    
-    
+
+
     #endif //DESIGN_PATTERNS_STRATEGY_H
-    
+
 
 
 strategy.cpp
 
-    
+
     #include "strategy.h"
     #include <iostream>
     #include <sstream>
-    
+
     double CashNormal::AcceptCash(double money) {
       return money;
     }
-    
+
     CashRebate::CashRebate(double money_rebate): money_rebate_(money_rebate) {}
-    
+
     double CashRebate::AcceptCash(double money) {
       return money * money_rebate_;
     }
-    
+
     CashReturn::CashReturn(double money_condition, double money_return):
         money_condition_(money_condition), money_return_(money_return) {}
-    
+
     double CashReturn::AcceptCash(double money) {
       return money - (int)(money / money_condition_) * money_return_;
     }
-    
+
     CashContext::CashContext(std::string type, std::string number) {
       if(type == "normal") {
         cash_ = new CashNormal();
@@ -212,36 +211,36 @@ strategy.cpp
         cash_ = new CashReturn(money_condition, money_return);
       }
     }
-    
+
     CashContext::~CashContext() {
       delete cash_;
     }
-    
+
     double CashContext::GetResult(double money) {
       double result = cash_->AcceptCash(money);
       std::cout << result << std::endl;
       return result;
     }
-    
-    
+
+
 
 
 main.cpp
 
-    
+
     #include "strategy.h"
     #include <iostream>
-    
-    
+
+
     int main() {
         CashContext *cash_context_;
         cash_context_ = new CashContext("rebate", "0.8");
         cash_context_->GetResult(1000);
-    
+
         cash_context_ = new CashContext("return", "300 100");
         cash_context_->GetResult(1000);
         delete cash_context_;
-    
+
         return 0;
     }
 
@@ -275,16 +274,16 @@ Strategy模式的代码很直观，关键是将算法的逻辑封装到一个类
 
 
 
- 	
+
   1. 1） “黑盒”复用，因为被包含对象的内部细节对外是不可见的；
 
- 	
+
   2. 2） 封装性好，原因为1）；
 
- 	
+
   3. 3） 实现和抽象的依赖性很小（组合对象和被组合对象之间的依赖性小）；
 
- 	
+
   4. 4） 可以在运行期间动态定义实现（通过一个指向相同类型的指针，典型的是抽象
 
 
@@ -322,6 +321,3 @@ Strategy模式的代码很直观，关键是将算法的逻辑封装到一个类
 
 
 # COMMENT
-
-
-

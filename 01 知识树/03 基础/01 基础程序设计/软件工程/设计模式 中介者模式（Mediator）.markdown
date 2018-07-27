@@ -65,8 +65,7 @@ Mediator 模式
 Mediator模式典型的结构图为：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b110904befef.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/8ekD4baGDF.png?imageslim)
 
 图 2-1: Mediator Pattern 结构图
 

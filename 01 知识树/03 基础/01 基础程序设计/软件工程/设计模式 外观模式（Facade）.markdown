@@ -26,10 +26,10 @@ tags:
 
 
 
- 	
+
   1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
- 	
+
   2. 《大话设计模式》作者 程杰
 
 
@@ -41,7 +41,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -60,7 +60,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -73,19 +73,19 @@ tags:
 
 
 
- 	
+
   1. 外观模式：为子系统中一组接口提供一个一致的界面，即定义一个高层接口，增加子系统的易用性。
 
- 	
+
   2. 外观模式完美体现了依赖倒转原则和迪米特法则。
 
- 	
+
   3. 设计初期阶段，在MVC三层架构中，任意两层间建立外观Facade。
 
- 	
+
   4. 子系统会因不断演化变得复杂，增加外观Facade提供简单简单接口减少依赖。
 
- 	
+
   5. 在维护一个大的遗留系统时，新的开发又必须依赖其部分功能。此时，开发一个外观Facade类，从老系统中抽象出比较清晰的简单接口。让新系统只与Facade交互，而Facade与遗留代码交互所有的工作。
 
 
@@ -107,8 +107,7 @@ tags:
 图 2-1: Facade Pattern 结构图
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b10fe1b3f1e8.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/aE4CdIDChJ.png?imageslim)
 
 Fa5ade模式的想法、思路和实现都非常简单，但是其思想却是非常有意义的。并且Fa5ade 设计模式在实际的开发设计中也是应用最广、最多的模式之一。
 
@@ -125,117 +124,117 @@ Fa5ade模式的想法、思路和实现都非常简单，但是其思想却是�
 
 facade.h：
 
-    
+
     #ifndef DESIGN_PATTERNS_FACADE_H
     #define DESIGN_PATTERNS_FACADE_H
-    
-    
+
+
     class Stock1 {
     public:
       void Buy();
       void Sell();
     };
-    
+
     class Stock2 {
     public:
       void Buy();
       void Sell();
     };
-    
+
     class Reality1 {
     public:
       void Buy();
       void Sell();
     };
-    
+
     class Fund {
     public:
       Fund();
       ~Fund();
       void BuyFund();
       void SellFund();
-    
+
     private:
       Stock1 *stock1_;
       Stock2 *stock2_;
       Reality1 *reality1_;
     };
-    
-    
+
+
     #endif //DESIGN_PATTERNS_FACADE_H
-    
+
 
 
 facade.cpp：
 
-    
+
     #include "facade.h"
     #include <iostream>
-    
+
     void Stock1::Buy() {
       std::cout << "buy stock1" << std::endl;
     }
-    
+
     void Stock1::Sell() {
       std::cout << "sell stock1" << std::endl;
     }
-    
+
     void Stock2::Buy() {
       std::cout << "buy stock2" << std::endl;
     }
-    
+
     void Stock2::Sell() {
       std::cout << "sell stock2" << std::endl;
     }
-    
+
     void Reality1::Buy() {
       std::cout << "buy reality1" << std::endl;
     }
-    
+
     void Reality1::Sell() {
       std::cout << "sell reality1" << std::endl;
     }
-    
+
     Fund::Fund() {
       stock1_ = new Stock1;
       stock2_ = new Stock2;
       reality1_ = new Reality1;
-    } 
-    
+    }
+
     Fund::~Fund() {
       delete stock1_;
       delete stock2_;
       delete reality1_;
     }
-    
+
     void Fund::BuyFund() {
       stock1_->Buy();
       stock2_->Buy();
       reality1_->Buy();
     }
-    
+
     void Fund::SellFund() {
       stock1_->Sell();
       stock2_->Sell();
       reality1_->Sell();
     }
-    
+
 
 
 main.cpp：
 
-    
+
     #include "facade.h"
     #include <iostream>
-    
-    
+
+
     int main() {
         Fund *fund_;
         fund_ = new Fund;
         fund_->BuyFund();
         fund_->SellFund();
         delete fund_;
-    
+
         return 0;
     }
 
@@ -268,6 +267,3 @@ Fa5ade模式在高层提供了一个统一的接口，解耦了系统。设计�
 
 
 # COMMENT
-
-
-

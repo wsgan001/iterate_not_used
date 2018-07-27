@@ -26,13 +26,13 @@ tags:
 
 
 
- 	
+
   1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
- 	
+
   2. 《设计模式精解 - GoF 23种设计模式解析》
 
- 	
+
   3. 《大话设计模式》作者 程杰
 
 
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -76,13 +76,13 @@ tags:
 
 
 
- 	
+
   1. 拥有过多分支的过长方法违背了单一职责原则，而且当需求变化时修改代码往往会违背开放-封闭原则，应该将分支变成一不同小类，将状态的判断逻辑转移到小类中。
 
- 	
+
   2. 状态模式：一个对象可能拥有多种状态，当内在状态改变时允许改变行为。
 
- 	
+
   3. 状态模式的好处是将与特定状态有关的行为局部化，并将不同状态的行为分隔开。
 
 
@@ -106,85 +106,84 @@ State模式就是被用来解决上面列出的两个问题的，在State模式�
 图 2-1: State Pattern 结构图
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b1101944368a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/ChG7j7lICe.png?imageslim)
 
 -实现
 ♦完整代码示例
 
 state.h
 
-    
+
     #ifndef DESIGN_PATTERNS_STATE_H
     #define DESIGN_PATTERNS_STATE_H
-    
+
     class State;
-    
+
     class Work {
     public:
       Work();
       ~Work();
       void SetState(State*);
       void WriteProgram();
-    
+
     public:
       bool finished_;
       int hour_;
-    
+
     private:
       State* state_;
     };
-    
+
     class State {
     public:
       virtual ~State() {}
       virtual void WriteProgram(Work*) = 0;
     };
-    
+
     class WorkingState: public State {
       void WriteProgram(Work* work);
     };
-    
+
     class OvertimeState: public State {
       void WriteProgram(Work* work);
     };
-    
+
     class RestState: public State {
       void WriteProgram(Work* work);
     };
-    
+
     class SleepingState: public State {
       void WriteProgram(Work* work);
     };
-    
-    
+
+
     #endif //DESIGN_PATTERNS_STATE_H
-    
+
 
 
 state.cpp
 
-    
+
     #include "state.h"
     #include <iostream>
-    
+
     Work::Work() {
       state_ = new WorkingState();
     }
-    
+
     Work::~Work() {
       delete state_;
     }
-    
+
     void Work::SetState(State *state) {
       delete state_;
       state_ = state;
     }
-    
+
     void Work::WriteProgram() {
       state_->WriteProgram(this);
     }
-    
+
     void WorkingState::WriteProgram(Work *work) {
       if(work->hour_ < 17) {
         std::cout << work->hour_ << " : working" << std::endl;
@@ -193,7 +192,7 @@ state.cpp
         work->WriteProgram();
       }
     }
-    
+
     void OvertimeState::WriteProgram(Work *work) {
       if(work->finished_) {
         work->SetState(new RestState());
@@ -205,11 +204,11 @@ state.cpp
         work->WriteProgram();
       }
     }
-    
+
     void RestState::WriteProgram(Work *work) {
       std::cout << work->hour_ << " : return to rest" << std::endl;
     }
-    
+
     void SleepingState::WriteProgram(Work *work) {
       std::cout << work->hour_ << " : sleeping" << std::endl;
     }
@@ -217,33 +216,33 @@ state.cpp
 
 main.cpp
 
-    
+
     #include "state.h"
     #include <iostream>
-    
-    
+
+
     int main() {
         Work *work_;
         work_ = new Work();
-    
+
         work_->hour_ = 15;
         work_->WriteProgram();
-    
+
         work_->hour_ = 20;
         work_->finished_ = false;
         work_->WriteProgram();
-    
+
         work_->hour_ = 22;
         work_->WriteProgram();
-    
+
         delete work_;
         work_ = new Work();
         work_->hour_ = 20;
         work_->finished_ = true;
         work_->WriteProgram();
         delete work_;
-    
-    
+
+
         return 0;
     }
 
@@ -293,6 +292,3 @@ State模式问题主要是逻辑分散化，状态逻辑分布到了很多的Sta
 
 
 # COMMENT
-
-
-

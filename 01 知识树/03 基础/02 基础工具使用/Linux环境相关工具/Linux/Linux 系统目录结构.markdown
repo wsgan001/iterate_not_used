@@ -15,18 +15,13 @@
 你会看到如下图所示:
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aec40fef1e03.png)
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/6dba4848af.png?imageslim)
 树状目录结构：
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aec4106c654d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/H7EHCLL0d2.png?imageslim)
 
 以下是对这些目录的解释：
 

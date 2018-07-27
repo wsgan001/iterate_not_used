@@ -5,7 +5,7 @@ date: 2018-05-04 11:25:59+00:00
 layout: post
 link: http://106.15.37.116/2018/05/04/vim-vi/
 slug: vim-vi
-title: 
+title:
 wordpress_id: 5101
 categories:
 - 随想与反思
@@ -85,11 +85,8 @@ Vim是从 vi 发展出来的一个文本编辑器。代码补完、编译及错�
 
 vim 键盘图：
 
-![](https://img.w3cschool.cn/attachments/day_161011/201610111458038045.gif)![](https://img.w3cschool.cn/attachments/day_161011/201610111458038045.gif)
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aec431be2dcc.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/l6k1lc1821.png?imageslim)
 
 
 
@@ -190,8 +187,7 @@ vim 键盘图：
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aec432a66d5a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/GfcBmdHLhF.png?imageslim)
 
 
 

@@ -26,13 +26,13 @@ tags:
 
 
 
- 	
+
   1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
- 	
+
   2. 《设计模式精解 - GoF 23种设计模式解析》
 
- 	
+
   3. 《大话设计模式》作者 程杰
 
 
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,25 +63,25 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
 
 
- 	
+
   1. 代理模式：为其他对象提供一种代理以控制对这个对象的访问。实际上是在访问对象时引入一定程度的间接性。
 
- 	
+
   2. 远程代理：为一个对象在不同地址空间提供局部代表，隐藏一个对象存在于不同空间的事实。如.Net加入Web引用，引入WebService，此时项目会生成WebReference的文件夹，就是代理。
 
- 	
+
   3. 虚拟代理：根据需要创建开销很大的对象，通过它存放实例化需很长时间的真实对象。HTML中的多图，就是通过虚拟代理代替了真实图片，存储路径和尺寸。
 
- 	
+
   4. 安全代理：控制真实对象的访问权限，用于对象应该拥有不同的访问权限时。
 
- 	
+
   5. 智能指引：当调用真实对象时，代理处理一些另外的事情。通过代理在访问对象时增加一些内务处理。
 
 
@@ -111,8 +111,7 @@ tags:
 Proxy模式典型的结构图为:
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b10febdce853.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/5Ah11e5CfA.png?imageslim)
 
 图 2-1: Proxy Pattern 结构图 实际上，Proxy模式的想法非常简单，
 
@@ -121,13 +120,13 @@ Proxy模式典型的结构图为:
 
 proxy.h
 
-    
+
     #ifndef DESIGN_PATTERNS_PROXY_H
     #define DESIGN_PATTERNS_PROXY_H
-    
+
     #include <iostream>
     #include <string>
-    
+
     class SchoolGirl {
     public:
       SchoolGirl() {}
@@ -136,24 +135,24 @@ proxy.h
     private:
       std::string name_;
     };
-    
+
     class GiveGift {
     public:
       virtual void GiveFlowers() = 0;
       virtual void GiveDolls() = 0;
     };
-    
+
     class Pursuit: public GiveGift{
     public:
       Pursuit() {}
       Pursuit(SchoolGirl *);
       void GiveFlowers();
       void GiveDolls();
-    
+
     private:
       SchoolGirl *school_girl_;
     };
-    
+
     class Proxy: public GiveGift{
     public:
       Proxy() {}
@@ -161,51 +160,51 @@ proxy.h
       ~Proxy();
       void GiveFlowers();
       void GiveDolls();
-    
+
     private:
       Pursuit *pursuit_;
     };
-    
-    
+
+
     #endif //DESIGN_PATTERNS_PROXY_H
-    
+
 
 
 proxy.cpp
 
-    
+
     #include "proxy.h"
-    
+
     SchoolGirl::SchoolGirl(std::string name): name_(name) {
     }
-    
+
     std::string SchoolGirl::GetName() {
       return name_;
     }
-    
+
     Pursuit::Pursuit(SchoolGirl *school_girl): school_girl_(school_girl){
     }
-    
+
     void Pursuit::GiveFlowers() {
       std::cout << "Give flowers to " << school_girl_->GetName() << std::endl;
     }
-    
+
     void Pursuit::GiveDolls() {
       std::cout << "Give dolls to " << school_girl_->GetName() << std::endl;
     }
-    
+
     Proxy::Proxy(SchoolGirl *school_girl) {
       pursuit_ = new Pursuit(school_girl);
     }
-    
+
     Proxy::~Proxy() {
       delete pursuit_;
     }
-    
+
     void Proxy::GiveFlowers() {
       pursuit_->GiveFlowers();
     }
-    
+
     void Proxy::GiveDolls() {
       pursuit_->GiveDolls();
     }
@@ -213,11 +212,11 @@ proxy.cpp
 
 main.cpp
 
-    
+
     #include "proxy.h"
     #include <iostream>
-    
-    
+
+
     int main() {
         SchoolGirl *school_girl_;
         Proxy *proxy_;
@@ -227,8 +226,8 @@ main.cpp
         proxy_->GiveDolls();
         delete school_girl_;
         delete proxy_;
-    
-    
+
+
         return 0;
     }
 
@@ -260,6 +259,3 @@ Proxy模式最大的好处就是实现了逻辑和实现的彻底解耦。
 
 
 # COMMENT
-
-
-

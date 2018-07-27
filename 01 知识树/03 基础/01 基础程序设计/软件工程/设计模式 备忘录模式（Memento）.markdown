@@ -26,13 +26,13 @@ tags:
 
 
 
- 	
+
   1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
- 	
+
   2. 《设计模式精解 - GoF 23种设计模式解析》
 
- 	
+
   3. 《大话设计模式》作者 程杰
 
 
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -78,13 +78,13 @@ tags:
 
 
 
- 	
+
   1. 备忘录模式：不破坏封装，获取对象内部状态并在其之外保存该对象，以便其未来恢复到当前状态。
 
- 	
+
   2. Orginator负责创建Memento，Memento封装Originator状态细节，Caretaker负责保管和交付Memento。
 
- 	
+
   3. 备忘录模式适用于需要维护历史状态的对象，或只需要保存原类属性中的小部分。
 
 
@@ -106,30 +106,29 @@ Memento模式的关键就是要在不破坏封装行的前提下，捕获并保�
 图 2-1: Memento Pattern 结构图
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b110642acd1f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/4g71H88Jhg.png?imageslim)
 
 -实现
 ♦完整代码示例(code)
 
 memento.h
 
-    
+
     #ifndef DESIGN_PATTERNS_MEMENTO_H
     #define DESIGN_PATTERNS_MEMENTO_H
-    
+
     class StateMemento {
     public:
       StateMemento() {}
       StateMemento(int, int);
       int GetHp();
       int GetMp();
-    
+
     private:
       int hp_;
       int mp_;
     };
-    
+
     class GameRole {
     public:
       GameRole();
@@ -137,12 +136,12 @@ memento.h
       void StateDisplay();
       void Fight();
       void RecoveryState(StateMemento*);
-    
+
     private:
       int hp_;
       int mp_;
     };
-    
+
     class StateCaretaker {
     public:
       StateCaretaker() {}
@@ -152,86 +151,86 @@ memento.h
     private:
       StateMemento* memento_;
     };
-    
-    
+
+
     #endif //DESIGN_PATTERNS_MEMENTO_H
-    
+
 
 
 memento.cpp
 
-    
+
     #include "memento.h"
     #include <iostream>
-    
+
     StateMemento::StateMemento(int hp, int mp): hp_(hp), mp_(mp) {}
-    
+
     int StateMemento::GetHp() {
       return hp_;
     }
-    
+
     int StateMemento::GetMp() {
       return mp_;
     }
-    
+
     GameRole::GameRole(): hp_(100), mp_(100) {}
-    
+
     StateMemento* GameRole::CreateMemento() {
       return new StateMemento(hp_, mp_);
     }
-    
+
     void GameRole::StateDisplay() {
       std::cout << hp_ << " " << mp_ << std::endl;
     }
-    
+
     void GameRole::Fight() {
       hp_ = 0;
       mp_ = 0;
     }
-    
+
     void GameRole::RecoveryState(StateMemento *memento) {
       hp_ = memento->GetHp();
       mp_ = memento->GetMp();
     }
-    
+
     StateCaretaker::StateCaretaker(StateMemento *memento): memento_(memento) {}
-    
+
     StateCaretaker::~StateCaretaker() {
       delete memento_;
     }
-    
+
     StateMemento* StateCaretaker::GetMemento() {
       return memento_;
     }
-    
-    
-    
+
+
+
 
 
 main.cpp
 
-    
+
     #include "memento.h"
     #include <iostream>
-    
-    
+
+
     int main() {
         GameRole* game_role_;
         StateCaretaker* state_caretaker_;
         game_role_ = new GameRole();
         state_caretaker_ = new StateCaretaker(game_role_->CreateMemento());
         game_role_->StateDisplay();
-    
+
         game_role_->Fight();
         game_role_->StateDisplay();
-    
+
         game_role_->RecoveryState(state_caretaker_->GetMemento());
         game_role_->StateDisplay();
         delete game_role_;
         delete state_caretaker_;
-    
-    
-    
+
+
+
         return 0;
     }
 
@@ -262,6 +261,3 @@ Memento模式的关键就是friend class Originator;我们可以看到，Memento
 
 
 # COMMENT
-
-
-

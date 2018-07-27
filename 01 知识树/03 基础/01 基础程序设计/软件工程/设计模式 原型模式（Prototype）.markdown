@@ -26,13 +26,13 @@ tags:
 
 
 
- 	
+
   1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
- 	
+
   2. 《设计模式精解 - GoF 23种设计模式解析》
 
- 	
+
   3. 《大话设计模式》作者 程杰
 
 
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -92,8 +92,7 @@ tags:
 Prototype模式的结构图为：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b10e3c20409f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/EaLk2GCiIG.png?imageslim)
 
 Prototype 模式提供了一个通过已存在对象进行新对象创建的接口 Clone() ，Clone () 的实现和具体的语言相关，在 C++ 中我们将通过拷贝构造函数来进行实现。
 
@@ -110,13 +109,13 @@ Prototype 模式提供了一个通过已存在对象进行新对象创建的接�
 
 prototypr.h：
 
-    
+
     #ifndef DESIGN_PATTERNS_PROTOTYPE_H
     #define DESIGN_PATTERNS_PROTOTYPE_H
-    
+
     #include <string>
-    
-    
+
+
     //看起来好像与普通的拷贝功能没有什么区别吧？确认下
     class WorkExperience {
     public:
@@ -125,12 +124,12 @@ prototypr.h：
       std::string GetCompany();
       std::string GetTimeArea();
       WorkExperience* Clone();
-    
+
     private:
       std::string company_;
       std::string time_area_;
     };
-    
+
     class Resume {
     public:
       Resume() {};
@@ -146,19 +145,19 @@ prototypr.h：
       std::string age_;
       WorkExperience *work_experience_;
     };
-    
-    
+
+
     #endif //DESIGN_PATTERNS_PROTOTYPE_H
-    
+
 
 
 prototype.cpp：
 
-    
+
     #include "prototype.h"
     #include <iostream>
-    
-    
+
+
     void WorkExperience::SetCompany(std::string company) {
       company_ = company;
     }
@@ -177,8 +176,8 @@ prototype.cpp：
       new_work_experience->SetTimeArea(time_area_);
       return new_work_experience;
     }
-    
-    
+
+
     Resume::Resume(std::string name) {
       name_ = name;
       work_experience_ = new WorkExperience();
@@ -208,38 +207,38 @@ prototype.cpp：
 
 main.cpp：
 
-    
+
     #include "prototype.h"
-    
-    
+
+
     int main() {
         Resume *resume1_;
         Resume *resume2_;
-    
+
         resume1_ = new Resume("Bob");
         resume1_->SetPersonalInfo("M", "24");
         resume1_->SetWorkExperience("Google", "2015~2017");
-    
+
         resume2_ = resume1_->Clone();
-    
+
         resume1_->PrintResume();
         resume2_->PrintResume();
-    
+
         resume2_->SetPersonalInfo("F", "23");
         resume1_->PrintResume();
         resume2_->PrintResume();
-    
+
         resume2_->SetWorkExperience("Twitter", "2016~2017");
         resume1_->PrintResume();
         resume2_->PrintResume();
-    
+
         resume1_->SetWorkExperience("Amazon", "2015-2017");
         resume1_->PrintResume();
         resume2_->PrintResume();
-    
+
         delete resume1_;
         delete resume2_;
-    
+
         return 0;
     }
 
@@ -264,13 +263,13 @@ Prototype 模式通过复制原型 (Prototype) 而获得新对象创建的功能
 
 
 
- 	
+
   * Builder模式重在复杂对象的一步步创建(并不直接返回对象)，
 
- 	
+
   * AbstractFactory 模式重在产生多个相互依赖类的对象。
 
- 	
+
   * Prototype 模式重在从自身复制自 己创建新类。
 
 
@@ -295,25 +294,23 @@ Prototype 模式通过复制原型 (Prototype) 而获得新对象创建的功能
 
 
 
- 	
+
   1. 原型模式：用原型实例指定创建对象的种类，并通过拷贝这些原型创建对象。本质是从一个对象再创建另一个可定制的对象，并且不需要知道创建细节。
 
- 	
+
   2. 原型抽象类的关键是有一个Clone()方法，原型具体类中复写Clone()创建当前对象的浅表副本。
 
- 	
+
   3. 对.Net而言，由于拷贝太常用原型抽象类并不需要，在System命名空间中提供了ICloneable接口，其中唯一的方法就是Clone()，只要实现这个接口就可以完成原型模式。
 
- 	
+
   4. 原型拷贝无需重新初始化对象，动态获取对象的运行状态。既隐藏了对象创建的细节，又提升性能。
 
- 	
+
   5. 在具体原型类中，MemberwiseClone()方法是浅拷贝，对值类型字段诸位拷贝，对引用类型只复制引用但不会把具体的对象值拷贝过来。
 
- 	
+
   6. 比起浅拷贝，深拷贝把引用对象的变量指向新对象，而不是原被引用的对象。对于需要深拷贝的每一层，都需要实现ICloneable原型模式。
 
- 	
+
   7. 数据集对象DataSet，Clone()是浅拷贝，Copy()是深拷贝。
-
-

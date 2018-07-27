@@ -26,13 +26,13 @@ tags:
 
 
 
- 	
+
   1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
- 	
+
   2. 《设计模式精解 - GoF 23种设计模式解析》
 
- 	
+
   3. 《大话设计模式》作者 程杰
 
 
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -76,13 +76,13 @@ tags:
 
 
 
- 	
+
   1. 职责链模式：使多个对象都有机会处理请求，解除请求发送者和接收者的耦合。将对象连成一条链，并沿这条链传递请求直到请求被解决。
 
- 	
+
   2. 请求交付给最小接受者，职责链中每一环保存后继的引用，使得请求有序沿链传递。
 
- 	
+
   3. 通过合理设置后继以及分支关系，避免一个请求到了链末端依旧无法被处理，或因配置错误得不到处理的情况。
 
 
@@ -122,8 +122,7 @@ Chain of Responsibility 模式描述其实就是这样一类问题将可能处�
 Chain of Responsibility模式典型的结构图为：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b110b8a9100d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Gg7HKFk8J8.png?imageslim)
 
 图 2-1： Chain of Responsibility Pattern 结构图
 
@@ -134,83 +133,83 @@ Chain of Responsibility模式中ConcreteHandler将自己的后继对象(向下�
 
 chain_of_responsibility.h
 
-    
+
     #ifndef DESIGN_PATTERNS_CHAIN_OF_RESPONSIBILITY_H
     #define DESIGN_PATTERNS_CHAIN_OF_RESPONSIBILITY_H
-    
+
     #include <string>
-    
+
     class Request {
     public:
       Request() {}
       Request(std::string, int);
       std::string GetType();
       int GetNumber();
-    
+
     private:
       std::string type_;
       int number_;
     };
-    
+
     class Manager {
     public:
       Manager() {}
       Manager(std::string);
       void SetSuperior(Manager *);
       virtual void RequestApplications(Request *) = 0;
-    
+
     protected:
       Manager *superior_;
       std::string name_;
     };
-    
+
     class CommonManager: public Manager {
     public:
       CommonManager(std::string);
       void RequestApplications(Request *);
     };
-    
+
     class Majordomo: public Manager {
     public:
       Majordomo(std::string);
       void RequestApplications(Request *);
     };
-    
+
     class GeneralManager: public Manager {
     public:
       GeneralManager(std::string);
       void RequestApplications(Request *);
     };
-    
-    
+
+
     #endif //DESIGN_PATTERNS_CHAIN_OF_RESPONSIBILITY_H
-    
+
 
 
 chain_of_responsibility.cpp
 
-    
+
     #include "chain_of_responsibility.h"
     #include <iostream>
-    
+
     Request::Request(std::string type, int number): type_(type), number_(number) {}
-    
+
     int Request::GetNumber() {
       return number_;
     }
-    
+
     std::string Request::GetType() {
       return type_;
     }
-    
+
     Manager::Manager(std::string name): name_(name) {}
-    
+
     void Manager::SetSuperior(Manager *superior) {
       superior_ = superior;
     }
-    
+
     CommonManager::CommonManager(std::string name): Manager(name) {}
-    
+
     void CommonManager::RequestApplications(Request *request) {
       if(request->GetType() == "leave application" && request->GetNumber() <= 2){
         std::cout << name_ << " : approve" << std::endl;
@@ -218,9 +217,9 @@ chain_of_responsibility.cpp
         superior_->RequestApplications(request);
       }
     }
-    
+
     Majordomo::Majordomo(std::string name): Manager(name) {}
-    
+
     void Majordomo::RequestApplications(Request *request) {
       if(request->GetType() == "leave application" && request->GetNumber() <= 5){
         std::cout << name_ << " : approve" << std::endl;
@@ -228,9 +227,9 @@ chain_of_responsibility.cpp
         superior_->RequestApplications(request);
       }
     }
-    
+
     GeneralManager::GeneralManager(std::string name): Manager(name) {}
-    
+
     void GeneralManager::RequestApplications(Request *request) {
       if(request->GetType() == "leave application"){
         std::cout << name_ << " : approve" << std::endl;
@@ -240,16 +239,16 @@ chain_of_responsibility.cpp
         std::cout << name_ << " : not approve" << std::endl;
       }
     }
-    
+
 
 
 main.cpp
 
-    
+
     #include "chain_of_responsibility.h"
     #include <iostream>
-    
-    
+
+
     int main() {
         Request *request1_, *request2_;
         CommonManager *common_manager_;
@@ -260,10 +259,10 @@ main.cpp
         general_manager_ = new GeneralManager("ZongJingLi");
         common_manager_->SetSuperior(majordomo_);
         majordomo_->SetSuperior(general_manager_);
-    
+
         request1_ = new Request("leave application", 4);
         common_manager_->RequestApplications(request1_);
-    
+
         request2_ = new Request("salary increase", 1000);
         common_manager_->RequestApplications(request2_);
         delete request1_;
@@ -271,9 +270,9 @@ main.cpp
         delete common_manager_;
         delete majordomo_;
         delete general_manager_;
-    
-    
-    
+
+
+
         return 0;
     }
 
@@ -312,6 +311,3 @@ Chain of Responsibility模式的最大的一个有点就是给累统降低了賴
 
 
 # COMMENT
-
-
-

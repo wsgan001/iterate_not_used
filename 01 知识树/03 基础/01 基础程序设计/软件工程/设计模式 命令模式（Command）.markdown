@@ -26,13 +26,13 @@ tags:
 
 
 
- 	
+
   1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
- 	
+
   2. 《设计模式精解 - GoF 23种设计模式解析》
 
- 	
+
   3. 《大话设计模式》作者 程杰
 
 
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -76,10 +76,10 @@ tags:
 
 
 
- 	
+
   1. 命令模式：将请求分装为对象，将请求和执行分开，可以用不同的请求对客户参数化。可以对请求排队、通过或否决、记录日志、撤销或重做。
 
- 	
+
   2. 基于敏捷开发原则，不要给代码添加基于猜测而实际不需要的功能，在需要的时候通过重构实现。
 
 
@@ -97,8 +97,7 @@ Command模式通过将请求封装到一个对象（Command）中，并将请求
 Command模式的典型结构图为:
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b1109b198a3b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/0B9G8i6H64.png?imageslim)
 
 图 2-1： Command Pattern 结构图
 
@@ -109,88 +108,88 @@ Command 模式结构图中，将请求的接收者（处理者）放到 Command 
 
 command.h
 
-    
+
     #ifndef DESIGN_PATTERNS_COMMAND_H
     #define DESIGN_PATTERNS_COMMAND_H
-    
+
     #include <vector>
-    
+
     class Barbecuer {
     public:
       void BakeMutton();
       void BakeChicken();
     };
-    
+
     class Command {
     public:
       Command() {}
       Command(Barbecuer*);
       virtual ~Command() {}
       virtual void ExecuteCommand() = 0;
-    
+
     protected:
       Barbecuer* barbecuer_;
     };
-    
+
     class BakeMuttonCommand: public Command {
     public:
       BakeMuttonCommand() {}
       BakeMuttonCommand(Barbecuer*);
       void ExecuteCommand();
     };
-    
+
     class BakeChickenCommand: public Command {
     public:
       BakeChickenCommand() {}
       BakeChickenCommand(Barbecuer*);
       void ExecuteCommand();
     };
-    
+
     class Waiter {
     public:
       void SetOrder(Command*);
       void CancelOrder(Command*);
       void Notify();
-    
+
     private:
       std::vector <Command*> commands_;
     };
-    
-    
+
+
     #endif //DESIGN_PATTERNS_COMMAND_H
-    
+
 
 
 command.cpp
 
-    
+
     #include "command.h"
     #include <string>
     #include <iostream>
     #include <typeinfo>
-    
+
     void Barbecuer::BakeMutton() {
       std::cout << "bake mutton" << std::endl;
     }
-    
+
     void Barbecuer::BakeChicken() {
       std::cout << "bake chicken" << std::endl;
     }
-    
+
     Command::Command(Barbecuer *barbecuer): barbecuer_(barbecuer) {}
-    
+
     BakeMuttonCommand::BakeMuttonCommand(Barbecuer *barbecuer): Command(barbecuer) {}
-    
+
     void BakeMuttonCommand::ExecuteCommand() {
       barbecuer_->BakeMutton();
     }
-    
+
     BakeChickenCommand::BakeChickenCommand(Barbecuer *barbecuer): Command(barbecuer) {}
-    
+
     void BakeChickenCommand::ExecuteCommand() {
       barbecuer_->BakeChicken();
     }
-    
+
     void Waiter::SetOrder(Command *command) {
       if(dynamic_cast<BakeChickenCommand*>(command)){
         std::cout << "chicken sold out" << std::endl;
@@ -199,7 +198,7 @@ command.cpp
         std::cout << "add: " << std::string(typeid(*command).name()).substr(2) << std::endl;
       }
     }
-    
+
     void Waiter::CancelOrder(Command *command) {
       for(std::vector <Command*> ::iterator it = commands_.begin(); it != commands_.end(); ++it) {
         if(*it == command) {
@@ -209,22 +208,22 @@ command.cpp
         }
       }
     }
-    
+
     void Waiter::Notify() {
       for (std::vector<Command *>::iterator it = commands_.begin(); it != commands_.end(); ++it) {
         (*it)->ExecuteCommand();
       }
     }
-    
+
 
 
 main.cpp
 
-    
+
     #include "command.h"
     #include <iostream>
-    
-    
+
+
     int main() {
         Barbecuer *barbecuer_;
         Command *bake_mutton_command1_;
@@ -246,8 +245,8 @@ main.cpp
         delete bake_mutton_command2_;
         delete bake_chicken_command_;
         delete waiter_;
-    
-    
+
+
         return 0;
     }
 
@@ -281,6 +280,3 @@ Command 模式的思想非常简单，但是 Command 模式也十分常见，并
 
 
 # COMMENT
-
-
-

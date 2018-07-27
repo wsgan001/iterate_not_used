@@ -26,13 +26,13 @@ tags:
 
 
 
- 	
+
   1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
- 	
+
   2. 《设计模式精解 - GoF 23种设计模式解析》
 
- 	
+
   3. 《大话设计模式》作者 程杰
 
 
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -88,8 +88,7 @@ Singleton 模式应该是最常用到的了。
 Singleton模式结构图如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b10cdd756131.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/gk9emjI3C9.png?imageslim)
 
 可以看到，我们是通过维护一个 static 的成员变量来记录这个唯一的对象实例的。然后通过提供一个 staitc 的接口 instance 来获得这个唯一的实例。
 
@@ -104,39 +103,39 @@ Singleton模式结构图如下：
 
 singleton.h：
 
-    
+
     #ifndef DESIGN_PATTERNS_SINGLETON_H
     #define DESIGN_PATTERNS_SINGLETON_H
-    
-    
+
+
     #include <thread>
     #include <mutex>
-    
+
     class Singleton {
     private:
       Singleton() {};
     public:
       static Singleton* GetInstance();
-    
+
     private:
       static Singleton* instance;
       static std::mutex mtx;
     };
-    
-    
+
+
     #endif //DESIGN_PATTERNS_SINGLETON_H
-    
+
 
 
 singleton.cpp：
 
-    
+
     #include "singleton.h"
-    
+
     // 初始化 static 变量
     Singleton* Singleton::instance = NULL;
     std::mutex Singleton::mtx;
-    
+
     //这个锁是不是有问题的，确认下
     Singleton* Singleton::GetInstance() {
         if (instance == NULL) {
@@ -152,23 +151,23 @@ singleton.cpp：
 
 main.cpp：
 
-    
+
     #include "singleton.h"
-    
-    
+
+
     int main() {
-    
+
         Singleton* instance1;
         Singleton* instance2;
-    
+
         instance1 = Singleton::GetInstance();
         instance2 = Singleton::GetInstance();
-    
+
         delete instance1;
         if (instance1 != instance2) {
             delete instance2;
         }
-    
+
         return 0;
     }
 
@@ -191,13 +190,13 @@ Singleton 模式在开发中经常用到，比如：
 
 
 
- 	
+
   * 因为有些变量必须是唯一的，比如说打印机的实例等。
 
- 	
+
   * 比如某个线程要是唯一的。
 
- 	
+
   * 有时候，某个 Factory（AbstractFactory）也要是唯一的，比如说连接数据库的时候，factory 可能对应了 sql 和access，但是我们同一个时刻只会对应一个 ，这时候也会用到 singleton 。
 
 
@@ -260,16 +259,11 @@ Singleton中可以实例化子类Singleton，而Client程序不可访问（防�
 
 
 
- 	
+
   1. 单例模式：让类自身保证它只有一个实例，并提供一个全局访问点。
 
- 	
+
   2. 多线程下单例模式可能失效，需要采取双重锁定的的方式，确保被锁定的代码同一时刻只被一个进程访问。
 
- 	
+
   3. 饿汉式单例：即静态初始化方式，在类初始化时产生私有单例对象，会提前占用资源；渴汉式单例：在第一次被引用时将自己初始化，会产生多线程访问安全问题，需要添加双重锁定。
-
-
-
-
-

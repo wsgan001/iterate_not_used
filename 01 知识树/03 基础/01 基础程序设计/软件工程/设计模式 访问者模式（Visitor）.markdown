@@ -1,90 +1,14 @@
----
-author: evo
-comments: true
-date: 2018-05-31 23:49:21+00:00
-layout: post
-link: http://106.15.37.116/2018/06/01/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-%e8%ae%bf%e9%97%ae%e8%80%85%e6%a8%a1%e5%bc%8f%ef%bc%88visitor%ef%bc%89/
-slug: '%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-%e8%ae%bf%e9%97%ae%e8%80%85%e6%a8%a1%e5%bc%8f%ef%bc%88visitor%ef%bc%89'
-title: 设计模式 访问者模式（Visitor）
-wordpress_id: 7198
-categories:
-- 基础程序设计
-tags:
-- Design Patterns
----
-
-<!-- more -->
-
-[mathjax]
-
-**注：非原创，所有版权属于原作者，原文已列在 ORIGINAL 中。为了方便个人学习做了整合、修改，仅供个人学习使用。**
-
-
-# ORIGINAL
-
-
-
-
-
- 	
-  1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
-
- 	
-  2. 《设计模式精解 - GoF 23种设计模式解析》
-
- 	
-  3. 《大话设计模式》作者 程杰
-
-
-
-
-# TODO
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-
-* * *
-
-
-
-
-
-# INTRODUCTION
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-
+# 设计模式 访问者模式（Visitor）
 
 
 # 访问者模式（Visitor）
 
-
-
-
-
- 	
   1. 访问者模式：在不改变各元素的前提下定义作用于这些类的新的操作。
 
- 	
+
   2. 访问者模式使用双分派，将数据结构和作用于结构上的操作解耦，意味着执行的操作决定于请求的种类和接收者的状态。
 
- 	
+
   3. 如果系统具有较为稳定的数据结构，又有易于变化的算法操作，则适合使用访问者模式。
 
 
@@ -102,8 +26,7 @@ Visitor 模式则提供了一种解决方案:将更新(变更)封装到一个类
 我们通过Visitor模式解决上面的问题，其典型的结构图为:
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b110a7c8f5f4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Ifl7d1Cd8h.png?imageslim)
 
 图2-1: Visitor Pattern 结构图
 
@@ -118,78 +41,78 @@ Visitor模式在不破坏类的前提下，为类提供增加新的新操作。V
 
 visitor.h
 
-    
+
     #ifndef DESIGN_PATTERNS_VISITOR_H
     #define DESIGN_PATTERNS_VISITOR_H
-    
+
     #include <vector>
-    
+
     class Action;
-    
+
     class Person {
     public:
       virtual ~Person() {}
       virtual void Accept(Action*) = 0;
     };
-    
+
     class Man: public Person {
     public:
       void Accept(Action*);
     };
-    
+
     class Woman: public Person {
     public:
       void Accept(Action*);
     };
-    
+
     class ObjectStructure {
     public:
       void Attach(Person*);
       void Detach(Person*);
       void Display(Action*);
-    
+
     private:
       std::vector <Person*> people;
     };
-    
+
     class Action {
     public:
       virtual void GetManConclusion(Person*) = 0;
       virtual void GetWomanConclusion(Person*) = 0;
     };
-    
+
     class Success: public Action {
       void GetManConclusion(Person*);
       void GetWomanConclusion(Person*);
     };
-    
+
     class Failure: public Action {
       void GetManConclusion(Person*);
       void GetWomanConclusion(Person*);
     };
-    
+
     #endif //DESIGN_PATTERNS_VISITOR_H
-    
+
 
 
 visitor.cpp
 
-    
+
     #include "visitor.h"
     #include <iostream>
-    
+
     void Man::Accept(Action *action) {
       action->GetManConclusion(this);
     }
-    
+
     void Woman::Accept(Action *action) {
       action->GetWomanConclusion(this);
     }
-    
+
     void ObjectStructure::Attach(Person *person) {
       people.push_back(person);
     }
-    
+
     void ObjectStructure::Detach(Person *person) {
       for(std::vector <Person*>::iterator it = people.begin(); it != people.end(); ++it) {
         if(*it == person) {
@@ -198,40 +121,40 @@ visitor.cpp
         }
       }
     }
-    
+
     void ObjectStructure::Display(Action *action) {
       for (std::vector<Person *>::iterator it = people.begin(); it != people.end(); ++it) {
         (*it)->Accept(action);
       }
     }
-    
+
     void Success::GetManConclusion(Person *person) {
       std::cout << "man gets success" << std::endl;
     }
-    
+
     void Success::GetWomanConclusion(Person *person) {
       std::cout << "woman gets success" << std::endl;
     }
-    
+
     void Failure::GetManConclusion(Person *person) {
       std::cout << "man gets failure" << std::endl;
     }
-    
+
     void Failure::GetWomanConclusion(Person *person) {
       std::cout << "woman gets failure" << std::endl;
     }
-    
-    
-    
+
+
+
 
 
 main.cpp
 
-    
+
     #include "visitor.h"
     #include <iostream>
-    
-    
+
+
     int main() {
         Person *man_;
         Person *woman_;
@@ -252,9 +175,9 @@ main.cpp
         delete object_structure_;
         delete success_;
         delete failure_;
-    
-    
-    
+
+
+
         return 0;
     }
 
@@ -319,13 +242,10 @@ double dispatch（双分派）则在选择一个方法的时候，不仅仅要�
 
 
 
-* * *
 
 
+# REF
 
-
-
-# COMMENT
-
-
-
+1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
+2. 《设计模式精解 - GoF 23种设计模式解析》
+3. 《大话设计模式》作者 程杰

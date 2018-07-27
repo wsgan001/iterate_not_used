@@ -26,13 +26,13 @@ tags:
 
 
 
- 	
+
   1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
- 	
+
   2. 《设计模式精解 - GoF 23种设计模式解析》
 
- 	
+
   3. 《大话设计模式》作者 程杰
 
 
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -75,10 +75,10 @@ tags:
 
 
 
- 	
+
   1. 模板方法模式：定义一个操作中的算法框架，将一些步骤延迟到子类中。子类在不改变框架的前提下就可以重新定义某些特定步骤。
 
- 	
+
   2. 当不变和可变的行为在子类中混到一起时，可以通过把重复的行为移到同一地方，帮助子类摆脱重复不变行为的纠缠。
 
 
@@ -106,8 +106,7 @@ Template模式是采用继承的方式实现这一点：将逻辑（算法）框
 图2-1: Template 模式结构图
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b11002ac90ab.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/ja28mA5giB.png?imageslim)
 
 Template模式实际上就是利用面向对象中多态的概念实现算法实现细节和高层接口的 松耦合。可以看到Template模式采取的是继承方式实现这一点的，由于继承是一种强约束 性的条件，因此也给 Template 模式带来一些许多不方便的地方（有关这一点将在讨论中展
 
@@ -118,93 +117,93 @@ Template模式实际上就是利用面向对象中多态的概念实现算法实
 
 template_method.h
 
-    
+
     #ifndef DESIGN_PATTERNS_TEMPLATE_METHOD_H
     #define DESIGN_PATTERNS_TEMPLATE_METHOD_H
-    
+
     #include <string>
-    
+
     class TestPaper {
     public:
       void Question1();
       void Question2();
       void Question3();
-    
+
     protected:
       virtual std::string Answer1() = 0;
       virtual std::string Answer2() = 0;
       virtual std::string Answer3() = 0;
     };
-    
+
     class TestPaperA: public TestPaper {
       std::string Answer1();
       std::string Answer2();
       std::string Answer3();
     };
-    
+
     class TestPaperB: public TestPaper {
       std::string Answer1();
       std::string Answer2();
       std::string Answer3();
     };
-    
-    
+
+
     #endif //DESIGN_PATTERNS_TEMPLATE_METHOD_H
-    
+
 
 
 template_method.cpp
 
-    
+
     #include "template_method.h"
     #include <iostream>
-    
+
     void TestPaper::Question1() {
       std::cout << "question 1: " << Answer1() << std::endl;
     }
-    
+
     void TestPaper::Question2() {
       std::cout << "question 2: " << Answer2() << std::endl;
     }
-    
+
     void TestPaper::Question3() {
       std::cout << "question 3: " << Answer3() << std::endl;
     }
-    
+
     std::string TestPaperA::Answer1() {
       return "a";
     }
-    
+
     std::string TestPaperA::Answer2() {
       return "a";
     }
-    
+
     std::string TestPaperA::Answer3() {
       return "a";
     }
-    
+
     std::string TestPaperB::Answer1() {
       return "b";
     }
-    
+
     std::string TestPaperB::Answer2() {
       return "b";
     }
-    
+
     std::string TestPaperB::Answer3() {
       return "b";
     }
-    
-    
+
+
 
 
 main.cpp
 
-    
+
     #include "template_method.h"
     #include <iostream>
-    
-    
+
+
     int main() {
         TestPaper *test_paper_a_;
         TestPaper *test_paper_b_;
@@ -212,12 +211,12 @@ main.cpp
         test_paper_a_->Question1();
         test_paper_a_->Question2();
         test_paper_a_->Question3();
-    
+
         test_paper_b_ = new TestPaperB();
         test_paper_b_->Question1();
         test_paper_b_->Question2();
         test_paper_b_->Question3();
-    
+
         return 0;
     }
 
@@ -266,6 +265,3 @@ Template模式暴露的问题也正是继承所固有的问题，Strategy模式�
 
 
 # COMMENT
-
-
-

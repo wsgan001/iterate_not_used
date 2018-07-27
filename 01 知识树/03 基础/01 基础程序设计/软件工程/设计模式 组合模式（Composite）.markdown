@@ -26,13 +26,13 @@ tags:
 
 
 
- 	
+
   1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
- 	
+
   2. 《设计模式精解 - GoF 23种设计模式解析》
 
- 	
+
   3. 《大话设计模式》作者 程杰
 
 
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -85,21 +85,20 @@ tags:
 Composite模式的典型结构图为：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b10fc9a95c15.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/587D9CBh1G.png?imageslim)
 
 -实现
 ♦完整代码示例(code)
 
 composite.h：
 
-    
+
     #ifndef DESIGN_PATTERNS_COMPOSITE_H
     #define DESIGN_PATTERNS_COMPOSITE_H
-    
+
     #include <string>
     #include <vector>
-    
+
     class Company {
     public:
       Company() {}
@@ -107,11 +106,11 @@ composite.h：
       virtual void Add(Company*) = 0;
       virtual void Display(int) = 0;
       virtual void LineOfDuty() = 0;
-    
+
     protected:
       std::string name_;
     };
-    
+
     class HrDepartment: public Company {
     public:
       HrDepartment() {}
@@ -120,7 +119,7 @@ composite.h：
       void Display(int);
       void LineOfDuty();
     };
-    
+
     class FinanceDepartment: public Company {
     public:
       FinanceDepartment() {}
@@ -129,7 +128,7 @@ composite.h：
       void Display(int);
       void LineOfDuty();
     };
-    
+
     class ConcreteCompany: public Company {
     public:
       ConcreteCompany() {}
@@ -137,54 +136,54 @@ composite.h：
       void Add(Company*);
       void Display(int);
       void LineOfDuty();
-    
+
     private:
       std::vector <Company*> companies_;
     };
-    
-    
+
+
     #endif //DESIGN_PATTERNS_COMPOSITE_H
-    
+
 
 
 composite.cpp：
 
-    
+
     #include "composite.h"
     #include <iostream>
-    
+
     Company::Company(std::string name): name_(name) {}
-    
+
     HrDepartment::HrDepartment(std::string name): Company(name) {}
-    
+
     void HrDepartment::Display(int depth) {
       for(int i = 0; i < depth; ++i)
         std::cout << "--";
       std::cout << name_  << std::endl;
     }
-    
+
     void HrDepartment::LineOfDuty() {
       std::cout << name_ << " : human resources" << std::endl;
     }
-    
+
     FinanceDepartment::FinanceDepartment(std::string name): Company(name) {}
-    
+
     void FinanceDepartment::Display(int depth) {
       for(int i = 0; i < depth; ++i)
         std::cout << "--";
       std::cout << name_  << std::endl;
     }
-    
+
     void FinanceDepartment::LineOfDuty() {
       std::cout << name_ << " : finance analysis" << std::endl;
     }
-    
+
     ConcreteCompany::ConcreteCompany(std::string name): Company(name) {}
-    
+
     void ConcreteCompany::Add(Company *company) {
       companies_.push_back(company);
     }
-    
+
     void ConcreteCompany::Display(int depth) {
       for(int i = 0; i < depth; ++i)
         std::cout << "--";
@@ -193,7 +192,7 @@ composite.cpp：
         (*it)->Display(depth + 1);
       }
     }
-    
+
     void ConcreteCompany::LineOfDuty() {
       for(std::vector <Company*> ::iterator it = companies_.begin(); it != companies_.end(); ++it) {
         (*it)->LineOfDuty();
@@ -203,11 +202,11 @@ composite.cpp：
 
 main.cpp：
 
-    
+
     #include "composite.h"
     #include <iostream>
-    
-    
+
+
     int main() {
         ConcreteCompany *beijing_head_office_;
         ConcreteCompany *huadong_branch_office_;
@@ -216,32 +215,32 @@ main.cpp：
         beijing_head_office_ = new ConcreteCompany("Beijing Head Office");
         beijing_head_office_->Add(new HrDepartment("Beijing HR Department"));
         beijing_head_office_->Add(new FinanceDepartment("Beijing Finance Department"));
-    
+
         huadong_branch_office_ = new ConcreteCompany("Huadong Branch Office");
         huadong_branch_office_->Add(new HrDepartment("Huadong HR Department"));
         huadong_branch_office_->Add(new FinanceDepartment("Huadong Finance Department"));
         beijing_head_office_->Add(huadong_branch_office_);
-    
+
         nanjing_office_ = new ConcreteCompany("Nangjing Office");
         nanjing_office_->Add(new HrDepartment("Nanjing HR Department"));
         nanjing_office_->Add(new FinanceDepartment("Nanjing Finance Department"));
         huadong_branch_office_->Add(nanjing_office_);
-    
+
         hangzhou_office_ = new ConcreteCompany("Nangjing Office");
         hangzhou_office_->Add(new HrDepartment("Hangzhou HR Department"));
         hangzhou_office_->Add(new FinanceDepartment("Hangzhou Finance Department"));
         huadong_branch_office_->Add(hangzhou_office_);
-    
+
         std::cout << "Structure Tree:" << std::endl;
         beijing_head_office_->Display(0);
-    
+
         std::cout << "Duty Lines:" << std::endl;
         beijing_head_office_->LineOfDuty();
         delete beijing_head_office_;
         delete huadong_branch_office_;
         delete nanjing_office_;
         delete hangzhou_office_;
-    
+
         return 0;
     }
 
@@ -277,14 +276,11 @@ Composite模式通过和Decorator模式有着类似的结构图，但是Composit
 
 
 
- 	
+
   1. 组合模式：将对象的组合以树形的层次结构表示，对单个对象和组合结构的操作具有一致性。
 
- 	
+
   2. 透明方法：叶子和分枝对外接口无差别；安全方法：分枝具有添加删除叶子的接口，低层抽象接口和叶子没有。
 
- 	
+
   3. 基本对象组合成组合，组合又可以被组合，不断递归下去，在任何用到基本对象的地方都可以使用组合对象。
-
-
-

@@ -26,13 +26,13 @@ tags:
 
 
 
- 	
+
   1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
- 	
+
   2. 《设计模式精解 - GoF 23种设计模式解析》
 
- 	
+
   3. 《大话设计模式》作者 程杰
 
 
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -84,15 +84,9 @@ OK，假设现在是一个过关游戏，每个关卡都有一些怪物守着，
 AbstractFactory 模式就是用来解决这类问题的：要创建一组相关或者相互依赖的对象。
 
 
-
-
 # AbstractFactory 模式介绍
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b10c61ed71e8.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/A09j3A7gIC.png?imageslim)
 
 上面这个就是 AbstractFactory 模式的典型结构图，这个模式的关键就是将这一组对象的创建封装到一个用于创建对象的具体类  ConcreteFactory 中。这样，维护这样一个创建类就比维护很多相关对象的创建过程要简单的多。
 
@@ -109,11 +103,11 @@ AbstractFactory 模式就是用来解决这类问题的：要创建一组相关�
 
 abstract_factory.h：
 
-    
+
     #ifndef DESIGN_PATTERNS_ABSTRACT_FACTORY_H
     #define DESIGN_PATTERNS_ABSTRACT_FACTORY_H
-    
-    
+
+
     //两种数据类型 User 和 Department
     //由于对于相同的 User 数据，存放到 sql 和 access 中的时候，使用的具体的方法是不同的，
     //因此又分成了 SqlServerUser 和 AccessUser。也是用的factory。
@@ -135,9 +129,9 @@ abstract_factory.h：
         void InsertUser(User* user);
         User GetUser(int id);
     };
-    
-    
-    
+
+
+
     class Department {
     };
     class IDepartment {
@@ -155,8 +149,8 @@ abstract_factory.h：
         void InsertDepartment(Department* department);
         Department GetDepartment(int id);
     };
-    
-    
+
+
     //这个工厂用来实现对数据库的操作，可能是 sql 数据库，也可能是 access
     class IFactory {
     public:
@@ -173,51 +167,51 @@ abstract_factory.h：
         IUser* CreateUser();
         IDepartment* CreateDepartment();
     };
-    
-    
+
+
     #endif //DESIGN_PATTERNS_ABSTRACT_FACTORY_H
-    
+
 
 
 abstract_factory.cpp：
 
-    
+
     #include "abstract_factory.h"
     #include <iostream>
-    
+
     void SqlserverUser::InsertUser(User* user) {
       std::cout << "Insert User into Sqlserver" << std::endl;
     }
     User SqlserverUser::GetUser(int id) {
       std::cout << "Get User from Sqlserver" << std::endl;
     }
-    
-    
+
+
     void AccessUser::InsertUser(User* user) {
       std::cout << "Insert User into Access" << std::endl;
     }
     User AccessUser::GetUser(int id) {
       std::cout << "Get User from Access" << std::endl;
     }
-    
-    
+
+
     void SqlserverDepartment::InsertDepartment(Department* department) {
       std::cout << "Insert Department into Sqlserver" << std::endl;
     }
     Department SqlserverDepartment::GetDepartment(int id) {
       std::cout << "Get Department from Sqlserver" << std::endl;
     }
-    
-    
+
+
     void AccessDepartment::InsertDepartment(Department* department) {
       std::cout << "Insert Department into Access" << std::endl;
     }
     Department AccessDepartment::GetDepartment(int id) {
       std::cout << "Get Department from Access" << std::endl;
     }
-    
-    
-    
+
+
+
     //两个数据库对两种数据类型的操作
     IUser* SqlserverFactory::CreateUser() {
       IUser* i_user =  new SqlserverUser();
@@ -239,16 +233,16 @@ abstract_factory.cpp：
 
 main.cpp：
 
-    
+
     #include "abstract_factory.h"
-    
-    
+
+
     int main() {
-    
+
         IFactory* pIFactory;
         IUser* pIUser;
         IDepartment* pIDepartment;
-    
+
         //使用 sqlserver 来添加 User 和 Department 数据
         pIFactory = new SqlserverFactory();
         pIUser = pIFactory->CreateUser();
@@ -257,7 +251,7 @@ main.cpp：
         pIDepartment = pIFactory->CreateDepartment();
         pIDepartment->InsertDepartment(new Department());
         pIDepartment->GetDepartment(0);
-    
+
         //使用 access 来添加 User 和 Department 数据
         //可见，与上面的对比，只改变了这个地方。
         pIFactory = new AccessFactory();
@@ -267,12 +261,12 @@ main.cpp：
         pIDepartment = pIFactory->CreateDepartment();
         pIDepartment->InsertDepartment(new Department());
         pIDepartment->GetDepartment(0);
-    
-    
+
+
         delete pIFactory;
         delete pIUser;
         delete pIDepartment;
-    
+
         return 0;
     }
 
@@ -317,19 +311,17 @@ main.cpp：
 
 
 
- 	
+
   1. 抽象工厂模式：提供一个创建一系列相关或互相依赖对象的接口，只需要知道对象的系列，无需知道具体的对象。
 
- 	
+
   2. 在客户端中，具体工厂类只在初始化时出现一次，更改产品系列即可使用不同产品配置。
 
- 	
+
   3. 利用简单工厂类替换抽象工厂类及其子类，可以使客户端不再受不同系列的影响。
 
- 	
+
   4. 结合反射机制，Assembly.Load(“程序集名称”).CreateInstance(“命名空间”.“类名”)，可以直接通过字符串创建对应类的实例。所有在简单工厂中，都可以通过反射去除switch或if，解除分支判断带来的耦合。
 
- 	
+
   5. 反射中使用的字符串可以通过配置文件传入，避免更改代码。
-
-

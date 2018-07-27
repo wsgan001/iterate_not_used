@@ -26,13 +26,13 @@ tags:
 
 
 
- 	
+
   1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
- 	
+
   2. 《设计模式精解 - GoF 23种设计模式解析》
 
- 	
+
   3. 《大话设计模式》作者 程杰
 
 
@@ -44,10 +44,10 @@ tags:
 
 
 
- 	
+
   * **很多地方都没明白，话需要一些例子，**
 
- 	
+
   * **而且，到底具体是在什么样的场景下使用？还是没有很清楚。**
 
 
@@ -66,14 +66,14 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
 
 
- 	
-  1. 
+
+  1.
 
 
 
@@ -97,10 +97,10 @@ tags:
 
 
 
- 	
+
   1. 别人使用你的程序的接口的时候，它必须知道实际的子类的名称，而当系统复杂后，这些子类的命名是比较麻烦的，有时候为了处理可能的名字冲突，命名可能是很奇怪的。**难道使用工厂模式就不用知道实际的子类的名字了吗？**
 
- 	
+
   2. 程序的扩展性和维护变得越来越困难。**为什么这么说？好像是这么回事，不过也要确认下，把普通的写出来与工厂模式对比下，工厂模式扩展和维护很方便吗？**
 
 
@@ -128,10 +128,10 @@ tags:
 
 
 
- 	
+
   1. 定义创建对象的接口，封装了对象的创建。**什么叫封装了对象的创建？**
 
- 	
+
   2. 使得具体化类的工作延迟到了子类中。**为什么？怎么做到的？**
 
 
@@ -149,8 +149,7 @@ tags:
 我们经常就是声明一个创建对象的接口，并封装了对象的创建过程。Factory 在这里就类似于一个真正意义上的工厂（生产对象）。**封装了对象的创建过程？什么意思？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b10990dd5939.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/22dmKLFJ59.png?imageslim)
 
 上图所示的 Factory 模式经常在系统开发中用到，但是这个
 
@@ -163,8 +162,7 @@ tags:
 我们不仅提供了一个对象创建对象的接口，还在子类中提供其具体实现（因为只有在子类中可以决定到底实例化哪一个类）。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b1099483b32c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/3aKKICLm1h.png?imageslim)
 
 如上图，Factory 中只是提供了对象创建的接口，对象创建的实现被放在 Factory 的子类  ConcreteFactory 中进行。这个与之前的图是不同的。
 
@@ -179,14 +177,15 @@ tags:
 ## 代码如下
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b10c28a91185.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/G8K11d6fiK.png?imageslim)
+
 
 factory_method.h：
 
-    
+
     #ifndef DESIGN_PATTERNS_FACTORY_METHOD_H
     #define DESIGN_PATTERNS_FACTORY_METHOD_H
-    
+
     //基类
     class Worker {
     public:
@@ -194,18 +193,18 @@ factory_method.h：
       virtual void Sweep();
       virtual void BuyRice();
     };
-    
-    
+
+
     //两个子类
     class TemporaryWorker: public Worker {
-    
+
     };
     class FormalWorker: public Worker {
-    
+
     };
-    
-    
-    
+
+
+
     //工厂 为什么工厂的命名要以 I 为开头？
     class IFactory {
     public:
@@ -213,12 +212,12 @@ factory_method.h：
       };
       virtual ~IFactory() {//虚析构函数的原因是什么？确认下
       };
-    
+
       virtual Worker* CreateWorker() = 0;//这个是什么意思？忘记了
     };
-    
-    
-    
+
+
+
     //两个继承的工厂，实现了对上面两个Product 子类的实例化
     class TemporaryWorkerFactory: public IFactory {
     public:
@@ -228,16 +227,16 @@ factory_method.h：
     public:
       Worker* CreateWorker();
     };
-    
+
     #endif //DESIGN_PATTERNS_FACTORY_METHOD_H
 
 
 factory_method.cc：
 
-    
+
     #include "factory_method.h"
     #include <iostream>
-    
+
     void Worker::Wash() {
       std::cout << "Wash" << std::endl;
     }
@@ -247,9 +246,9 @@ factory_method.cc：
     void Worker::BuyRice() {
       std::cout << "BuyRice" << std::endl;
     }
-    
-    
-    
+
+
+
     Worker* TemporaryWorkerFactory::CreateWorker() {
       Worker* worker = new TemporaryWorker();
       return worker;
@@ -262,28 +261,28 @@ factory_method.cc：
 
 main.cpp：
 
-    
+
     #include "factory_method.h"
-    
-    
+
+
     int main() {
-    
+
         IFactory* pIFactory;
         Worker* pWorker;
-    
+
         //产生一个临时工来做事情
         pIFactory = new TemporaryWorkerFactory();
         pWorker = pIFactory->CreateWorker();
         pWorker->Wash();
-    
+
         // 产生一个正式工来做事情
         pIFactory = new FormalWorkerFactory();
         pWorker = pIFactory->CreateWorker();
         pWorker->Wash();
-    
+
         delete pIFactory;
         delete pWorker;
-    
+
         return 0;
     }
 
@@ -321,10 +320,10 @@ Factory模式也带来至少以下两个问题：
 
 
 
- 	
+
   1. 如果为每一个具体的 ConcreteProduct 类的实例化提供一个函数体，那么我们可能不得不在系统中添加了一个方法来处理这个新建的 ConcreteProduct ，这样 Factory 的接口永远就不可能封闭（Close）。当然我们可以通过创建一个 Factory 的子类来通过多态实现这一点， 但是这也是以新建一个类作为代价的。**没明白**
 
- 	
+
   2. 在实现中我们可以通过参数化工厂方法，即给 FactoryMethod() 传递一个参数用以决定是创建具体哪一个具体的Product 。当然也可以通过模板化避免 1 中的子类创建子类，其方法就是将具体Product 类作为模板参数，实现起来也很简单。**没明白**
 
 
@@ -350,13 +349,11 @@ Factory模式也带来至少以下两个问题：
 
 
 
- 	
+
   1. 工厂方法模式：定义一个用于创建对象的接口，让子类决定实例化哪个类。
 
- 	
+
   2. 工厂方法把简单工厂的内部判断逻辑移到了客户端代码，本来需要修改工厂类，现在是修改客户端。
 
- 	
+
   3. 简单工厂模式违背了开放-封闭原则，工厂方法模式借助多态，克服了该缺点，却保持了封装对象创建过程的优点。
-
-

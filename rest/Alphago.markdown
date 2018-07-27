@@ -34,155 +34,125 @@ Alphago是一个决策机器，包括CNN，MLP，RL的DQL，还有一些组合�
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac38490da5b5.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/J4igIKIJdg.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac384a34a8d1.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/IEdeJLAkCC.png?imageslim)
 
 你看到的所有资料都会告诉你它有2个大脑：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac384dc5c81b.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/B7LI3iCAel.png?imageslim)
 
 
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/f0ck3b4LjA.png?imageslim)
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac384e7af882.png)
 
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Hl3K45bjAL.png?imageslim)
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac384f3b5703.png)
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/61I09F404B.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac384fb00548.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/052HdBlLhG.png?imageslim)
 
 
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/LlJ5L4ka5e.png?imageslim)
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac38505c5d8f.png)
 
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/4JAabhK13L.png?imageslim)
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac38515881ac.png)
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/J6Jc4bgE9k.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3852006722.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Ga362Fe2fD.png?imageslim)
 
 
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/j8577mChaL.png?imageslim)
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3852a6ddb6.png)
 
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/i5e505aa7F.png?imageslim)
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3853a65cac.png)
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/AIclgc7IEk.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac38541080ff.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/F9aF46ia1D.png?imageslim)
 
 
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/F1BLJIkcJh.png?imageslim)
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac38547bd382.png)
 
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/KkK3JJjf3B.png?imageslim)
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac385533f448.png)
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/JbdKJ2E3mc.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac38559420c3.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/gi5KJ8kE0f.png?imageslim)
 
 
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/afkBaIG8Hh.png?imageslim)
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3855f2c71f.png)
 
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/BfDKd9A50D.png?imageslim)
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3856f61c39.png)
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/jbg9b8cm8B.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac38574c91b7.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/HgFBiJamIB.png?imageslim)
 
 
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/CH0IIkLJiK.png?imageslim)
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3857f4c312.png)
 
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/8mGaGdB3K1.png?imageslim)
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac385961dff1.png)
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/iEIlLjld3A.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3859b57ecd.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Ag5KLi94bf.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac385a217305.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac385b762d0a.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac385c00a5ca.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac385c6435d1.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac385d01a465.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac385d79f32e.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac385dd126c1.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/3F5c4Gk6lj.png?imageslim)
 
 组合完毕
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac385e2b04a7.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/74Cahe947l.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac385f13bc0e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/DgHEE4f53f.png?imageslim)
 
 代码请戳
 https://github.com/Rochester-NRT/RocAlphaGo
@@ -201,16 +171,6 @@ https://github.com/Rochester-NRT/RocAlphaGo/wiki/01.-Home
 **基本要自己重新总结一遍才好！才能认识深刻**
 
 
-
-
 # REF：
 
-
-
-
-
- 	
-  1. 七月在线 深度学习
-
-
-
+1. 七月在线 深度学习

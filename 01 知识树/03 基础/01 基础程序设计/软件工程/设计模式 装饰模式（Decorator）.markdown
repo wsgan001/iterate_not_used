@@ -26,13 +26,13 @@ tags:
 
 
 
- 	
+
   1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
- 	
+
   2. 《设计模式精解 - GoF 23种设计模式解析》
 
- 	
+
   3. 《大话设计模式》作者 程杰
 
 
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -87,8 +87,7 @@ tags:
 Decorator模式典型的结构图为:
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b10fbb3b41b3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/5h8hleceA1.png?imageslim)
 
 在结构图中， ConcreteComponent 和 Decorator 需要有同样的接口，因此 ConcreteComponent和Decorator有着一个共同的父类。这里有人会问，让Decorator直接维 护一个指向ConcreteComponent引用（指针）不就可以达到同样的效果，答案是肯定并且是 否定的。肯定的是你可以通过这种方式实现，否定的是你不要用这种方式实现，因为通过这 种方式你就只能为这个特定的 ConcreteComponent 提供修饰操作了，当有了一个新的
 
@@ -102,80 +101,80 @@ ConcreteComponent你又要去新建一个Decorator来实现。但是通过结构
 
 decorator.h：
 
-    
+
     #ifndef DESIGN_PATTERNS_DECORATOR_H
     #define DESIGN_PATTERNS_DECORATOR_H
-    
-    
+
+
     class Person {
     public:
       virtual void Show();
     };
-    
+
     class Finery: public Person {
     public:
       Finery() {}
       Finery(Person*);
       void Show() {}
-    
+
     protected:
       Person *component_;
     };
-    
+
     class Tie: public Finery {
     public:
       Tie() {}
       Tie(Person*);
       void Show();
     };
-    
+
     class Suit: public Finery {
     public:
       Suit() {}
       Suit(Person*);
       void Show();
     };
-    
+
     class Shoes: public Finery {
     public:
       Shoes() {}
       Shoes(Person*);
       void Show();
     };
-    
-    
+
+
     #endif //DESIGN_PATTERNS_DECORATOR_H
-    
+
 
 
 decorator.cpp：
 
-    
+
     #include "decorator.h"
     #include <iostream>
-    
+
     void Person::Show() {
       std::cout << "person" << std::endl;
     }
-    
+
     Finery::Finery(Person *component): component_(component) {}
-    
+
     Tie::Tie(Person *component): Finery(component) {}
-    
+
     void Tie::Show() {
       std::cout << "tie ";
       component_->Show();
     }
-    
+
     Suit::Suit(Person *component): Finery(component) {}
-    
+
     void Suit::Show() {
       std::cout << "suit ";
       component_->Show();
     }
-    
+
     Shoes::Shoes(Person *component): Finery(component) {}
-    
+
     void Shoes::Show() {
       std::cout << "shoes ";
       component_->Show();
@@ -184,11 +183,11 @@ decorator.cpp：
 
 main.cpp：
 
-    
+
     #include "decorator.h"
-    
-    
-    
+
+
+
     int main() {
         Person* person_;
         Tie* tie_;
@@ -248,14 +247,11 @@ Decorator模式除了采用组合的方式取得了比采用继承方式更好�
 
 
 
- 	
+
   1. 装饰模式：动态的给一个对象添加一些额外的职能，把所需功能按顺序串联起来并进行控制。
 
- 	
+
   2. 每个要装饰的功能放在单独的类中，并让这个类包装它所要修饰的对象。当需要执行特殊行为时，客户端就可以根据需要有选择的、有顺序的使用装饰功能包装对象了。
 
- 	
+
   3. 装饰模式有效的把类的核心职能和装饰功能区分开了，并且可以去除相关类中重复的装饰逻辑。
-
-
-

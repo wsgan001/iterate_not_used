@@ -26,13 +26,13 @@ tags:
 
 
 
- 	
+
   1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
- 	
+
   2. 《设计模式精解 - GoF 23种设计模式解析》
 
- 	
+
   3. 《大话设计模式》作者 程杰
 
 
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -76,16 +76,16 @@ tags:
 
 
 
- 	
+
   1. 享元模式：运用共享技术有效支持大量细粒度对象。
 
- 	
+
   2. 在享元模式对象内部不随环境改变的共享部分是内部状态，不可共享需要通过调用传递进来的参数是外部状态。
 
- 	
+
   3. 使用享元模式的场景包括，一个应用程序产生了大量的实例对象，占用了大量内存开销；或对象的大多数状态为外部状态，删除内部状态后可以用较少的共享对象来取代组对象。
 
- 	
+
   4. 应用场景有正则表达式、浏览器、机器人指令集等。
 
 
@@ -105,8 +105,7 @@ tags:
 图 2-1: Flyweight Pattern 结构图
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b10fd7c3c243.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/mDkbE3mL3C.png?imageslim)
 
 可以从图2-1中看出，Flyweight模式中有一个类似Factory模式的对象构造工厂 FlyweightFactory，当客户程序员（Client）需要一个对象时候就会向FlyweightFactory发出 请求对象的消息GetFlyweight （）消息，FlyweightFactory拥有一个管理、存储对象的“仓 库”（或者叫对象池，vector实现），GetFlyweight （）消息会遍历对象池中的对象，如果已 经存在则直接返回给Client，否则创建一个新的对象返回给Client。当然可能也有不想被共 享的对象（例如结构图中的UnshareConcreteFlyweight），但不在本模式的讲解范围，故在实 现中不给出。
 
@@ -115,28 +114,28 @@ tags:
 
 flyweight.h：
 
-    
+
     #ifndef DESIGN_PATTERNS_FLYWEIGHT_H
     #define DESIGN_PATTERNS_FLYWEIGHT_H
-    
+
     #include <map>
     #include <string>
-    
+
     class User {
     public:
       User() {}
       User(std::string);
       std::string GetName();
-    
+
     private:
       std::string name_;
     };
-    
+
     class Website {
     public:
       virtual void Use(User *) = 0;
     };
-    
+
     class ConcreteWebsite: public Website {
     public:
       ConcreteWebsite() {}
@@ -145,46 +144,46 @@ flyweight.h：
     private:
       std::string website_name_;
     };
-    
+
     class WebsiteFactory {
     public:
       ~WebsiteFactory();
       Website* GetWebsiteCategory(std::string);
       int GetWebsiteCount();
-    
+
     private:
       std::map <std::string, Website*> flyweights_;
     };
-    
+
     #endif //DESIGN_PATTERNS_FLYWEIGHT_H
-    
+
 
 
 flyweight.cpp：
 
-    
+
     #include "flyweight.h"
     #include <iostream>
-    
+
     User::User(std::string name): name_(name) {}
-    
+
     std::string User::GetName() {
       return name_;
     }
-    
+
     ConcreteWebsite::ConcreteWebsite(std::string website_name): website_name_(website_name) {}
-    
+
     void ConcreteWebsite::Use(User *user) {
       std::cout << user->GetName() << " use " << website_name_ << std::endl;
     }
-    
+
     WebsiteFactory::~WebsiteFactory() {
       std::map <std::string, Website*> ::iterator it;
       for(it = flyweights_.begin(); it != flyweights_.end(); it++) {
         delete it->second;
       }
     }
-    
+
     Website* WebsiteFactory::GetWebsiteCategory(std::string website_name) {
       if(flyweights_.find(website_name) == flyweights_.end()) {
         Website *website = new ConcreteWebsite(website_name);
@@ -192,23 +191,23 @@ flyweight.cpp：
       }
       return flyweights_[website_name];
     }
-    
+
     int WebsiteFactory::GetWebsiteCount() {
       int cnt = (int)flyweights_.size();
       std::cout << cnt << std::endl;
       return cnt;
     }
-    
-    
+
+
 
 
 main.cpp：
 
-    
+
     #include "flyweight.h"
     #include <iostream>
-    
-    
+
+
     int main() {
         WebsiteFactory *website_factory_;
         Website *website_;
@@ -217,17 +216,17 @@ main.cpp：
         website_->Use(new User("Bob"));
         website_->Use(new User("Alice"));
         website_factory_->GetWebsiteCount();
-    
+
         website_ = website_factory_->GetWebsiteCategory("blog");
         website_->Use(new User("Bob"));
         website_->Use(new User("Alice"));
         website_factory_->GetWebsiteCount();
-    
+
         website_ = website_factory_->GetWebsiteCategory("bbs");
         website_->Use(new User("Bob"));
         website_->Use(new User("Alice"));
         website_factory_->GetWebsiteCount();
-    
+
         delete website_factory_;
         return 0;
     }
@@ -263,6 +262,3 @@ Flyweight模式在实现过程中主要是要为共享对象提供一个存放�
 
 
 # COMMENT
-
-
-

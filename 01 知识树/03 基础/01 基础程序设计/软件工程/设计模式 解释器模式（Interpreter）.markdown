@@ -26,13 +26,13 @@ tags:
 
 
 
- 	
+
   1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
- 	
+
   2. 《设计模式精解 - GoF 23种设计模式解析》
 
- 	
+
   3. 《大话设计模式》作者 程杰
 
 
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -78,16 +78,16 @@ tags:
 
 
 
- 	
+
   1. 解释器模式：给定一种语言，定义它文法的一种表示，再定义一个解释器，使用该表示来解释语言中的句子。
 
- 	
+
   2. 如果一种特定类型发生的频率足够高，就可以将其实例表达为一个句子，构建解释器来解析。
 
- 	
+
   3. 解释器模式就是用“迷你语言”来表现程序要解决的问题，将句子抽象为语法树。由于各个节电的类大体相同，便于修改、扩展和实现。
 
- 	
+
   4. 解释器为文法中的每条规则定义了一个类，当文法过多时将难以维护，建议使用其他技术如语法分析程序或编译器生成器处理。
 
 
@@ -103,8 +103,7 @@ Interpreter 模式提供了这样的一个实现语法解释器的框架，笔�
 Interpreter模式典型的结构图为:
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b110d71c24eb.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/EGHh6J9e1D.png?imageslim)
 
 图 2-1: Interpreter Pattern 结构图
 
@@ -115,64 +114,64 @@ Interpreter 模式中，提供了 TerminalExpression 和 NonterminalExpression �
 
 interpreter.h
 
-    
+
     #ifndef DESIGN_PATTERNS_INTERPRETER_H
     #define DESIGN_PATTERNS_INTERPRETER_H
-    
+
     #include <string>
-    
+
     class Context {
     public:
       void SetText(std::string);
       std::string GetText();
-    
+
     private:
       std::string text_;
     };
-    
+
     class Expression {
     public:
       virtual ~Expression() {}
       void Interprete(Context*);
-    
+
     protected:
       virtual void Excute(std::string, double) = 0;
     };
-    
+
     class Scale: public Expression {
     private:
       void Excute(std::string, double);
     };
-    
+
     class Note: public Expression {
     private:
       void Excute(std::string, double);
     };
-    
+
     class ExpressionFactory {
     public:
       Expression* CreateExpression(Context*);
     };
-    
+
     #endif //DESIGN_PATTERNS_INTERPRETER_H
-    
+
 
 
 interpreter.cpp
 
-    
+
     #include "interpreter.h"
     #include <iostream>
     #include <sstream>
-    
+
     std::string Context::GetText() {
       return text_;
     }
-    
+
     void Context::SetText(std::string text) {
       text_ = text;
     }
-    
+
     void Expression::Interprete(Context *context) {
       std::stringstream ss;
       std::string key;
@@ -188,7 +187,7 @@ interpreter.cpp
       context->SetText(remain_text);
       Excute(key, value);
     }
-    
+
     void Scale::Excute(std::string key, double value) {
       switch ((int)value){
         case 1:
@@ -204,11 +203,11 @@ interpreter.cpp
           break;
       }
     }
-    
+
     void Note::Excute(std::string key, double value) {
       std::cout << key[0] << std::endl;
     }
-    
+
     Expression* ExpressionFactory::CreateExpression(Context *context) {
       char key = context->GetText()[0];
       if(key == 'O') {
@@ -221,16 +220,16 @@ interpreter.cpp
 
 main.cpp
 
-    
+
     #include "interpreter.h"
     #include <iostream>
-    
-    
+
+
     int main() {
         Context *context_;
         ExpressionFactory *expression_factory_;
         Expression *expression_;
-    
+
         expression_factory_ = new ExpressionFactory();
         context_ = new Context();
         context_->SetText("O 2 E 0.5 G 0.5 A 3");
@@ -241,8 +240,8 @@ main.cpp
         }
         delete context_;
         delete expression_factory_;
-    
-    
+
+
         return 0;
     }
 
@@ -279,6 +278,3 @@ Interpreter 模式中使用类来表示文法规则，因此可以很容易实�
 
 
 # COMMENT
-
-
-

@@ -26,13 +26,13 @@ tags:
 
 
 
- 	
+
   1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
- 	
+
   2. 《设计模式精解 - GoF 23种设计模式解析》
 
- 	
+
   3. 《大话设计模式》作者 程杰
 
 
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -81,13 +81,13 @@ Adapter模式解决的问题在生活中经常会遇到，比如说：
 
 
 
- 	
+
   1. 把 A 直接招安到我们Team为我们工作，提供 S 服务的时候让 A 去办就是了。
 
- 	
+
   2. A 可能在别的地方有工作，并且不准备接受我们的招安，于是我们 Team 可以想这样一种方式解决问题：
 
- 	
+
     * 我们安排 B 去完成这项任务，然后，让 B 工作的时候可以向 A 请教，因此 B 就是一个复合体，它提供 S 服务，但是他是 B 的继承弟子。
 
 
@@ -109,14 +109,12 @@ Adapter模式解决的问题在生活中经常会遇到，比如说：
 Adapter Pattern（类模式）的结构图为：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b10f6949e4c3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/9bFhL9E7Be.png?imageslim)
 
 Adapter Pattern（对象模式）的结构图为：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b10f6c247995.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/HlI109084H.png?imageslim)
 
 可见：
 
@@ -135,23 +133,23 @@ Adapter Pattern（对象模式）的结构图为：
 
 adapter.h：
 
-    
+
     #ifndef DESIGN_PATTERNS_ADAPTER_H
     #define DESIGN_PATTERNS_ADAPTER_H
-    
+
     #include <string>
-    
+
     class Player {
     public:
       Player() {}
       Player(std::string);
       virtual void Attack() {}
       virtual void Defense() {}
-    
+
     protected:
       std::string name_;
     };
-    
+
     class Forward: public Player {
     public:
       Forward() {}
@@ -159,7 +157,7 @@ adapter.h：
       void Attack();
       void Defense();
     };
-    
+
     class Center: public Player {
     public:
       Center() {}
@@ -167,18 +165,18 @@ adapter.h：
       void Attack();
       void Defense();
     };
-    
+
     class ForeignCenter {
     public:
       ForeignCenter() {}
       ForeignCenter(std::string);
       void Gong();
       void Shou();
-    
+
     private:
       std::string name_;
     };
-    
+
     class Translator: public Player {
     public:
       Translator() {}
@@ -186,105 +184,105 @@ adapter.h：
       ~Translator();
       void Attack();
       void Defense();
-    
+
     private:
       ForeignCenter *foreign_center_;
     };
-    
-    
+
+
     #endif //DESIGN_PATTERNS_ADAPTER_H
-    
+
 
 
 adapter.cpp：
 
-    
+
     #include "adapter.h"
     #include <iostream>
-    
+
     Player::Player(std::string name): name_(name) {}
-    
+
     Forward::Forward(std::string name): Player(name) {}
-    
+
     void Forward::Attack() {
       std::cout << "forward " << name_ << " attack" << std::endl;
     }
-    
+
     void Forward::Defense() {
       std::cout << "forward " << name_ << " defense" << std::endl;
     }
-    
+
     Center::Center(std::string name): Player(name) {}
-    
+
     void Center::Attack() {
       std::cout << "center " << name_ << " attack" << std::endl;
     }
-    
+
     void Center::Defense() {
       std::cout << "center " << name_ << " defense" << std::endl;
     }
-    
+
     ForeignCenter::ForeignCenter(std::string name): name_(name) {}
-    
+
     void ForeignCenter::Gong() {
       std::cout << "foreign center " << name_ << " attack" << std::endl;
     }
-    
+
     void ForeignCenter::Shou() {
       std::cout << "foreign center " << name_ << " defense" << std::endl;
     }
-    
+
     Translator::Translator(std::string name): Player(name) {
       foreign_center_ = new ForeignCenter(name);
     }
-    
+
     Translator::~Translator() {
       delete foreign_center_;
     }
-    
+
     void Translator::Attack() {
       foreign_center_->Gong();
     }
-    
+
     void Translator::Defense() {
       foreign_center_->Shou();
     }
-    
-    
-    
-    
+
+
+
+
 
 
 main.cpp：
 
-    
+
     #include "adapter.h"
-    
-    
-    
+
+
+
     int main() {
-    
+
         Forward *forward_;
         Center *center_;
         Translator *translator_;
-    
+
         forward_ = new Forward("Battier");
         forward_->Attack();
         forward_->Defense();
-    
+
         center_ = new Center("Russell");
         center_->Attack();
         center_->Defense();
-    
+
         translator_ = new Translator("YaoMing");
         translator_->Attack();
         translator_->Defense();
         delete forward_;
         delete center_;
         delete translator_;
-    
-    
-    
+
+
+
         return 0;
     }
 
@@ -326,13 +324,11 @@ Adapter模式实现上比较简单，要说明的是在类模式Adapter中，我
 
 
 
- 	
+
   1. 适配器模式：当系统数据和行为都一致，只有接口不符合时，将一个类的接口转化为客户端期望的另一个接口。
 
- 	
+
   2. 适配器模式用于服用一些现存的类，常用在第三方接口或软件开发后期双方都不易修改的时候。
 
- 	
+
   3. 在.Net中DataAdapter是用于DataSet和数据源间的适配器，Fill更改DataSet适配数据源，Update更改数据源适配DataSet。
-
-

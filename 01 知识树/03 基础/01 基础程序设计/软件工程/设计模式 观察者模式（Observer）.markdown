@@ -26,13 +26,13 @@ tags:
 
 
 
- 	
+
   1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
- 	
+
   2. 《设计模式精解 - GoF 23种设计模式解析》
 
- 	
+
   3. 《大话设计模式》作者 程杰
 
 
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -76,22 +76,22 @@ tags:
 
 
 
- 	
+
   1. 观察者模式：多个观察者对象同时监听某一主题（通知者）对象，当该主题对象状态变化时会通知所有观察者对象，使它们能更新自己。
 
- 	
+
   2. 具体观察者保存一个指向具体主题对象的引用，抽象主题保存一个抽象观察者的引用集合，提供一个可以添加或删除观察者的接口。
 
- 	
+
   3. 抽象模式中有两方面，一方面依赖另一方面，使用观察者模式可将两者独立封装，解除耦合。
 
- 	
+
   4. 观察者模式让主题和观察者双方都依赖于抽象接口，而不依赖于具体。
 
- 	
+
   5. 委托就是一种引用方法类型。委托可看作函数的类，委托的实例代表具体函数。在主题对象内声明委托，不再依赖抽象观察者。
 
- 	
+
   6. 一个委托可以搭载多个相同原形和形式（参数和返回值）的方法，这些方法不需要属于一个类，且被依次唤醒。
 
 
@@ -114,7 +114,9 @@ Observer 模式应该可以说是应用最多、影响最广的模式之一，�
 这些表示都依赖于同一组数据，我们当然需要当数据改变的时候，所有的统计的显示都能够 同时改变。Observer模式就是解决了这一个问题。
 
 ■模式选择
-Observer模式典型的结构图为:![](http://106.15.37.116/wp-content/uploads/2018/06/img_5b110242d7efd.png)
+Observer模式典型的结构图为:
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/ckh3K1hbc6.png?imageslim)
 
 图 2-1: Observer Pattern 结构图
 
@@ -125,15 +127,15 @@ Observer模式典型的结构图为:![](http://106.15.37.116/wp-content/uploads/
 
 observer.h
 
-    
+
     #ifndef DESIGN_PATTERNS_OBSERVER_H
     #define DESIGN_PATTERNS_OBSERVER_H
-    
+
     #include <string>
     #include <vector>
-    
+
     class Notifier;
-    
+
     class Observer {
     public:
       Observer() {}
@@ -141,26 +143,26 @@ observer.h
       virtual ~Observer() {}
       void SetNotifier(Notifier *);
       virtual void Update() = 0;
-    
+
     protected:
       std::string name_;
       Notifier *notifier_;
     };
-    
+
     class StockObserver: public Observer {
     public:
       StockObserver() {}
       StockObserver(std::string);
       void Update();
     };
-    
+
     class NbaObserver: public Observer {
     public:
       NbaObserver() {}
       NbaObserver(std::string);
       void Update();
     };
-    
+
     class Notifier {
     public:
       virtual ~Notifier() {}
@@ -169,39 +171,39 @@ observer.h
       void SetState(std::string);
       std::string GetState();
       void Notify();
-    
+
     protected:
       std::vector <Observer*> observers_;
       std::string state_;
     };
-    
+
     class Secretary: public Notifier {
     };
-    
+
     class Boss: public Notifier {
     };
-    
-    
+
+
     #endif //DESIGN_PATTERNS_OBSERVER_H
-    
+
 
 
 observer.cpp
 
-    
+
     #include "observer.h"
     #include <iostream>
-    
+
     Observer::Observer(std::string name): name_(name) {}
-    
+
     void Observer::SetNotifier(Notifier *notifier) {
       notifier_ = notifier;
     }
-    
+
     void Notifier::Attach(Observer * observer) {
       observers_.push_back(observer);
     }
-    
+
     void Notifier::Detach(Observer * observer) {
       for(std::vector <Observer*> ::iterator it = observers_.begin(); it != observers_.end(); ++it) {
         if(*it == observer) {
@@ -210,29 +212,29 @@ observer.cpp
         }
       }
     }
-    
+
     void Notifier::SetState(std::string state) {
       state_ = state;
     }
-    
+
     std::string Notifier::GetState() {
       return state_;
     }
-    
+
     void Notifier::Notify() {
       for(std::vector <Observer*> ::iterator it = observers_.begin(); it != observers_.end(); ++it) {
         (*it)->Update();
       }
     }
-    
+
     StockObserver::StockObserver(std::string name): Observer(name) {}
-    
+
     void StockObserver::Update() {
       std::cout << name_ << ", " << notifier_->GetState() << ", close stock" << std::endl;
     }
-    
+
     NbaObserver::NbaObserver(std::string name): Observer(name) {}
-    
+
     void NbaObserver::Update() {
       std::cout << name_ << ", " << notifier_->GetState() << ", close NBA" << std::endl;
     }
@@ -240,11 +242,11 @@ observer.cpp
 
 main.cpp
 
-    
+
     #include "observer.h"
     #include <iostream>
-    
-    
+
+
     int main() {
         Boss *boss_;
         StockObserver *stock_observer_;
@@ -253,20 +255,20 @@ main.cpp
         stock_observer_ = new StockObserver("Alice");
         nba_observer_ = new NbaObserver("Bob");
         boss_->SetState("boss is back himself");
-    
+
         stock_observer_->SetNotifier(boss_);
         nba_observer_->SetNotifier(boss_);
         boss_->Attach(stock_observer_);
         boss_->Attach(nba_observer_);
         boss_->Notify();
-    
+
         boss_->Detach(nba_observer_);
         boss_->Notify();
         delete boss_;
         delete stock_observer_;
         delete nba_observer_;
-    
-    
+
+
         return 0;
     }
 
@@ -303,6 +305,3 @@ Observer模式也称为发布一订阅（publish-subscribe），目标就是通�
 
 
 # COMMENT
-
-
-
