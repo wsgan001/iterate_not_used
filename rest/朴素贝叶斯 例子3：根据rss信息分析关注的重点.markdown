@@ -1,71 +1,13 @@
----
-author: evo
-comments: true
-date: 2018-05-08 13:24:37+00:00
-layout: post
-link: http://106.15.37.116/2018/05/08/%e6%9c%b4%e7%b4%a0%e8%b4%9d%e5%8f%b6%e6%96%af-%e4%be%8b%e5%ad%903%ef%bc%9a%e6%a0%b9%e6%8d%ae%e4%b8%aa%e4%ba%ba%e5%b9%bf%e5%91%8a%e8%8e%b7%e5%be%97%e5%8c%ba%e5%9f%9f%e5%80%be%e5%90%91/
-slug: '%e6%9c%b4%e7%b4%a0%e8%b4%9d%e5%8f%b6%e6%96%af-%e4%be%8b%e5%ad%903%ef%bc%9a%e6%a0%b9%e6%8d%ae%e4%b8%aa%e4%ba%ba%e5%b9%bf%e5%91%8a%e8%8e%b7%e5%be%97%e5%8c%ba%e5%9f%9f%e5%80%be%e5%90%91'
-title: 朴素贝叶斯 例子3：根据rss信息分析关注的重点
-wordpress_id: 5459
-categories:
-- 随想与反思
-tags:
-- '@todo'
----
-
-<!-- more -->
-
-[mathjax]
-
-**注：非原创，推荐直接看原文**
-
-
-# ORIGINAL
+# 朴素贝叶斯 例子3：根据rss信息分析关注的重点
 
 
 
+TODO
 
+* **这个没有很理解到底是做什么的，要对照书看一下**
+* **运行的时候报错说：ModuleNotFoundError: No module named 'rfc822' 。尚没有解决。**
+* **而且这两个rss源好像也是没有entries这个属性的。这两个问题需要解决。**
 
- 	
-  1. [第4章 基于概率论的分类方法：朴素贝叶斯](http://ml.apachecn.org/mlia/naive-bayes/)
-
- 	
-  2. 
-
-
-
-# TODO
-
-
-
-
-
- 	
-  * **这个没有很理解到底是做什么的，要对照书看一下**
-
- 	
-  * **运行的时候报错说：ModuleNotFoundError: No module named 'rfc822' 。尚没有解决。**
-
- 	
-  * **而且这两个rss源好像也是没有entries这个属性的。这两个问题需要解决。**
-
-
-
-
-# MOTIVE
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-
-* * *
 
 
 
@@ -95,27 +37,27 @@ tags:
 
 
 
-    
+
     import numpy as np
     import feedparser
     import operator
-    
-    
+
+
     # 将文本内容切分成 word list
     def text_parse(content):
         import re
         list_of_words = re.split(r'\W*', content)
         return [tok.lower() for tok in list_of_words if len(tok) > 2]
-    
-    
+
+
     # 根据样本中的词汇创建词汇表
     def create_vocabulary_list(data_set):
         vocabulary_set = set([])  # create empty set
         for document in data_set:
             vocabulary_set = vocabulary_set | set(document)  # union of the two sets
         return list(vocabulary_set)
-    
-    
+
+
     # 获得前30个最常用到的words
     def calculate_most_freq_words(vocabulary_list, full_words):
         import operator
@@ -126,8 +68,8 @@ tags:
                              key=operator.itemgetter(1),
                              reverse=True)
         return sorted_freq[:30]
-    
-    
+
+
     # 将文本转化成向量
     def convert_doc_to_vec(vocabulary_list, doc):
         doc_vec = [0] * len(vocabulary_list)
@@ -135,8 +77,8 @@ tags:
             if word in vocabulary_list:
                 doc_vec[vocabulary_list.index(word)] += 1
         return doc_vec
-    
-    
+
+
     # 计算出概率值
     def calculate_probility(vec_data, label):
         doc_num = len(vec_data)
@@ -146,7 +88,7 @@ tags:
         vec_1 = np.ones(word_num)
         word_num_0 = 2.0  # 整个数据集单词出现总数   为什么不是0？
         word_num_1 = 2.0
-    
+
         for i in range(doc_num):
             if label[i] == 1:
                 vec_1 += vec_data[i]  # 如果是正样本，对正样本的向量进行加和
@@ -154,11 +96,11 @@ tags:
             else:
                 vec_0 += vec_data[i]
                 word_num_0 += sum(vec_data[i])
-    
+
         p_vec_0 = np.log(vec_0 / word_num_0)
         p_vec_1 = np.log(vec_1 / word_num_1)  # 即在正样本类别下，每个单词出现的概率   为什么使用log()？
         return p_vec_0, p_vec_1, p_1
-    
+
     def classify_NB(test_vec, p_vec_not_abusive, p_vec_abusive, p_abusive):
         p1 = sum(test_vec * p_vec_abusive) + np.log(p_abusive)  # element-wise mult
         p0 = sum(test_vec * p_vec_not_abusive) + np.log(1.0 - p_abusive)
@@ -166,8 +108,8 @@ tags:
             return 1
         else:
             return 0
-    
-    
+
+
     def localWords(feed0, feed1):
         # 将文本提取出来
         doc_list = []
@@ -185,7 +127,7 @@ tags:
             class_list.append(0)
         vocabulary_list = create_vocabulary_list(doc_list)  # create vocabulary
         top30_words = calculate_most_freq_words(vocabulary_list, full_words)  # remove top 30 words
-    
+
         # 从字典中将这30个词移除
         for pair_w in top30_words:
             if pair_w[0] in vocabulary_list:
@@ -205,7 +147,7 @@ tags:
             train_label.append(class_list[docIndex])
         # 计算后面要用到的概率
         p_vec_0, p_vec_1, p_1 = calculate_probility(np.array(train_mat), np.array(train_label))
-    
+
         # 进行测试
         errorCount = 0
         for docIndex in test_set:  # classify the remaining items
@@ -214,7 +156,7 @@ tags:
                 errorCount += 1
         print('the error rate is: ', float(errorCount) / len(test_set))
         return vocabulary_list, p_vec_0, p_vec_1
-    
+
     #最具表征性的词汇显示函数
     def getTopWords(ny, sf):
         vocabList, p_vec_0, p_vec_1 = localWords(ny, sf)
@@ -237,8 +179,8 @@ tags:
         print("NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**")
         for item in sortedNY:
             print(item[0])
-    
-    
+
+
     if __name__=="__main__":
         ny = feedparser.parse('http://newyork.craigslist.org/stp/index.rss')
         sf = feedparser.parse('http://sfbay.craigslist.org/stp/index.rss')
@@ -256,17 +198,6 @@ tags:
 
 
 
+# REF
 
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+1. [第4章 基于概率论的分类方法：朴素贝叶斯](http://ml.apachecn.org/mlia/naive-bayes/)
