@@ -188,8 +188,7 @@ Loss over the whole dataset:
 In each solver iteration, we use a stochastic approximation of this objective, drawing a mini-batch of N << |D| instances:
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac2224d6dd5e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/g8Ec2HgihI.png?imageslim)
 
 
 
@@ -199,8 +198,7 @@ In each solver iteration, we use a stochastic approximation of this objective, d
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac2226d06d64.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Imd9ea31A7.png?imageslim)
 
 Data term: error averagedover instances
 
@@ -209,20 +207,17 @@ Regularizationterm: penalizelarge weights to improve generalization
 Stochastic Gradient Descent (known as Solver)
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac222886396f.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/e0B1DddII5.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac222a428f0c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/CbcDL8CBlk.png?imageslim)
 
 对于一个AlexNet来说，
 solver.prototxt里的设计如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac222ad42ab3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/33e2AjH4d1.png?imageslim)
 
 http://caffe.berkeleyvision.org/doxygen/classcaffe_1_1HingeLossLayer.html
 
@@ -277,13 +272,11 @@ http://caffe.berkeleyvision.org/doxygen/classcaffe_1_1HingeLossLayer.html
 问题：给出一张图，识别图中的物体类别及位置。**提示：用分类做检测？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac223a50897e.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/dKciGl8gEa.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac223c21aaea.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/fD9BH1GC44.png?imageslim)
 
 
 
@@ -323,8 +316,7 @@ http://caffe.berkeleyvision.org/doxygen/classcaffe_1_1HingeLossLayer.html
 computer vision 最大的哲学理念就是multiple scale 这个，即多尺度。它能解决很多问题，一个是看到一个物体在不同的视角；一个是把data **tation做的非常好了，就是一张图变成很多张图。**这个还想再了解下。**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac2244fceebd.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/6ggIJa51C0.png?imageslim)
 
 Uijlingset al, “Selective Search for Object Recognition”, IJCV 2013
 
@@ -339,7 +331,7 @@ Uijlingset al, “Selective Search for Object Recognition”, IJCV 2013
 而DL的方法，就比如fast RCNN 等很多。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22491ef37e.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/0JD5afFhc8.png?imageslim)
 
 
 这个表在下面这个文档中：
@@ -357,24 +349,14 @@ Region Proposasl Network
 这是一个feature map，有一个中间点，有9个anchor，anchor box rpn **什么是rpn？没明白这张图。**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac2256fde34a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/1bH370ik44.png?imageslim)
 
 其实就是 iteratively/ recursively 做一遍 sliding window, 把feature map上的每一个点，遍历搜索，设计出两种loss： **没有很明白**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac2259ad2147.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/LcK4jhC5Ii.png?imageslim)
 
 DL 的重要方法：RCNN，Fast-RCNN，Faster-RCNN：
-
-
-#
-
-
-
-
-#
 
 
 
@@ -387,8 +369,7 @@ pipeline 就是整体的流程
 R是region的意思。为什么要warped一下？因为当时大家的网络最后一层都是一个FC，它的输入是fixed的，由于要求这最后的输入是一样的，所以最前面的输入也需要一样。后面发展到全卷积网络就不需要这个warped的操作。由于当时全都是加一个FC，因此加了warped。**这也就是为什么1*1的卷积有他自己的用处，因为它虽然等于FC，但是允许你输入任意变化。****利害**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac225daa0687.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/4JeGj6L7KE.png?imageslim)
 
 当时它只把DL作为特征提取，然后做SVM，而且forward 2000遍，
 
@@ -396,12 +377,7 @@ R是region的意思。为什么要warped一下？因为当时大家的网络最�
 ## Step 1: Train (or download) a classification model for ImageNet (ResNet-101)
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac225ff7a1d8.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/738G9lIcE9.png?imageslim)
 
 
 ## Step 2: Fine-tune model for detection
@@ -422,8 +398,7 @@ R是region的意思。为什么要warped一下？因为当时大家的网络最�
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac2261df1a0e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/0BLB89ifhi.png?imageslim)
 
 
 
@@ -447,8 +422,7 @@ R是region的意思。为什么要warped一下？因为当时大家的网络最�
 虽然有些比较笨重的缺点，但是当时是第一个用DL的方法来做 object detection 的。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac2265b80b6e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/99feB6AGDF.png?imageslim)
 
 
 
@@ -459,8 +433,7 @@ R是region的意思。为什么要warped一下？因为当时大家的网络最�
 相当于把softmax用SVM来做
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac226670a82a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/6DjkgJ7hj7.png?imageslim)
 
 
 
@@ -473,14 +446,12 @@ For each class, train a linear regression model to map from cached features to o
 即只要有offset，他就把框动一动
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac226a9eb9dc.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/1Hm0aE9beB.png?imageslim)
 
 RCNN results：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac226b90636c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/jd6C9315b4.png?imageslim)
 
 两个结论：
 
@@ -539,8 +510,7 @@ RCNN results：
 **而且对于RoI的BP是怎么做的？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac2278aa08d0.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/JLcAab532E.png?imageslim)
 
 Solution：Share computation of convolutional layers between proposals.
 
@@ -551,8 +521,7 @@ Solution：Share computation of convolutional layers between proposals.
 loss 是 smooth L1 和 softmax 加起来的。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac227badea24.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/mDg3B4JlG9.png?imageslim)
 
 Train end-to-end：
 
@@ -565,60 +534,42 @@ Train end-to-end：
 **这一节没看懂，很重要**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac2282f0dfeb.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/fjJLb1Eha1.png?imageslim)
 
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/kFiebCa9h2.png?imageslim)
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac228354c41f.png)
-
-
-为什么又两项求和呢？原来是28*28的，
+为什么又两项求和呢？原来是 28*28 的，
 
 i是上一层的位置，j是这一层的位置 ，虽然是二维的，但是它拉成一个向量了，为了简写就这样了。
 
 回顾一下深度学习课程中，如何计算层与层之间的梯度的？
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22851d8a17.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/E6gieII954.png?imageslim)
 
 
 ## Fast-RCNN bbox regression loss
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac2286a2bfc4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/EK8f0j70hg.png?imageslim)
 
 t是target v是prediction，**没明白**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac2286e2658f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/G7K3JA6iAB.png?imageslim)
 
 https://github.com/ShaoqingRen/caffe/blob/062f2431162165c658a42d717baf8b74918aa18e/src/caffe/layers/smooth_L1_loss_layer.cu
 
 那么具体的target (Ground Truth)坐标怎么算呢？
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22b44757e7.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/lDjl5chEff.png?imageslim)
 
 真实坐标减去已经有的坐标，然后除以宽度。我们预测的就是这个宽度
 
 其实是预测差值。x - x_a (given box), x 是新的位置，t_x是偏移量。**没明白？没有讲的很细。**
 
-
-#
-
-
-
-
-#
 
 
 
@@ -627,9 +578,7 @@ https://github.com/ShaoqingRen/caffe/blob/062f2431162165c658a42d717baf8b74918aa1
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22be2071e3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/JH71CJEbGE.png?imageslim)
 
 又4个loss，rpn里面两个，一个是regression一个是classification 然后classificer里面又两个loss，也是一个regression和一个classification。
 
@@ -674,8 +623,7 @@ rpn只有两类 前景和后景？ **什么？**
 找到这四步骤对应的函数，对于理解整个算法非常重要。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22cbb3d25d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/7F03EkdeEG.png?imageslim)
 
 
 

@@ -1,38 +1,14 @@
----
-author: evo
-comments: true
-date: 2018-04-03 12:14:29+00:00
-layout: post
-link: http://106.15.37.116/2018/04/03/cv-image-recognition-and-location/
-slug: cv-image-recognition-and-location
-title: cv 图像识别与定位
-wordpress_id: 2754
-categories:
-- 随想与反思
-tags:
-- '@todo'
-- '@want_to_know'
----
-
-<!-- more -->
+# cv 图像识别与定位
 
 
 # 缘由：
-
 
 对图像识别与定位进行总结，之前还有一篇，要合并到这里来。
 
 
 # 1.两种思路：
 
-
-
-
-
-
   * 思路1：视作回归
-
-
   * 思路2：借助图像窗口
 
 
@@ -61,16 +37,8 @@ ImageNet
 
 步骤1:
 
-
-
-
   * 先解决简单问题，搭一个识别图像的神经网络
-
-
   * 在AlexNet VGG GoogleLenet ResNet上fine-tune一下
-
-
-
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/70BH2lLeA5.png?imageslim)
 
@@ -552,8 +520,7 @@ Region-sensitive score maps and ROI pooling
 
 # COMMENT：
 
-
-**与之前的http://106.15.37.116/2018/04/02/cv-object-detection/ 有部分是重复的，因此要自己过滤之后进行拆分和梳理。**
+**与之前的 http://106.15.37.116/2018/04/02/cv-object-detection/ 有部分是重复的，因此要自己过滤之后进行拆分和梳理。**
 
 
 
@@ -573,11 +540,6 @@ R-FCN
 (Caffe + Python) https://github.com/Orpine/py-R-FCN
 
 
-# REF：
+## REF：
 
-
-
-
-
-
-  1. 七月在线 深度学习
+1. 七月在线 深度学习

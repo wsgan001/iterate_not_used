@@ -1,23 +1,3 @@
----
-author: evo
-comments: true
-date: 2018-04-05 06:41:13+00:00
-layout: post
-link: http://106.15.37.116/2018/04/05/nlp-word-segmentation/
-slug: nlp-word-segmentation
-title: nlp 怎么进行分词
-wordpress_id: 3348
-categories:
-- 随想与反思
-tags:
-- '@todo'
-- '@want_to_know'
----
-
-<!-- more -->
-
-[mathjax]
-
 
 # 缘由：
 
@@ -41,19 +21,19 @@ A="小"，B="明"，X=A+B="小明"
 
 
 
- 	
+
   * 凝固程度就是考虑：   P(A)P(B)  vs  P(X)
 
- 	
+
   * 自由程度就是考虑：   信息熵H(A)、H(B) **怎么通过概率计算信息熵？**
 
 
 凝固程度和自由程度缺一不可：
 
- 	
+
   * 只考虑凝固程度，会照出“巧克“等一半的词。
 
- 	
+
   * 只考虑自由程度，会将”走了一趟“，”吃了一顿“等的”了一“提取出来。
 
 
@@ -84,7 +64,5 @@ A="小"，B="明"，X=A+B="小明"
 
 
 
- 	
+
   1. 七月在线 机器学习
-
-
