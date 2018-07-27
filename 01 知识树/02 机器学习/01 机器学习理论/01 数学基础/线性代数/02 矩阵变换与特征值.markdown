@@ -5,7 +5,7 @@ date: 2018-03-31 07:31:59+00:00
 layout: post
 link: http://106.15.37.116/2018/03/31/ai-linear-algebra-matrix-transformation-and-eigenvalues/
 slug: ai-linear-algebra-matrix-transformation-and-eigenvalues
-title: 
+title:
 wordpress_id: 2167
 categories:
 - 随想与反思
@@ -42,7 +42,7 @@ tags:
 
   * **实对称阵不同特征值的特征向量正交，这个在一些机器学习的公式推理的时候用到很多次了，要再理解下。**
 
-  * 
+  *
 
 
 
@@ -141,12 +141,12 @@ tags:
 
 
 
-# 
+#
 
 
 
 
-# 
+#
 
 
 
@@ -312,8 +312,7 @@ A是n阶矩阵，若数λ和n维非0列向量x满足Ax=λx，那么，数λ称�
 证明：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb1df6ca778.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Cdh44ifbff.png?imageslim)
 
 这个是想告诉大家是对称阵的特征值一定是实数。
 
@@ -386,8 +385,7 @@ A是n阶矩阵，若数λ和n维非0列向量x满足Ax=λx，那么，数λ称�
 对称阵A为正定阵；A的特征值都为正；A的顺序主子式（主对角线上的）大于0；这三个命题等价。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac85e5125893.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/fe186Ccgii.png?imageslim)
 
 用在那里呢？taylor展开式的时候，如果是n元的变量，求一阶导数，则是一个n阶的向量，求二阶导数就是一个n^2的一个方阵，这个方阵判定的话就是用的正定负定。**没明白？**
 
@@ -397,15 +395,14 @@ A是n阶矩阵，若数λ和n维非0列向量x满足Ax=λx，那么，数λ称�
 
 给定凸锥的定义如下：
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac85e86028a6.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/dfmJJdcA1D.png?imageslim)
 
 试证明：n阶半正定方阵的集合为凸锥。[note][凸锥](http://106.15.37.116/2018/03/31/ai-convex-optimization-optimization-and-convex-optimization/)[/note]这个是凸优化方面的一个题目。这个证明题本身没有价值，价值在于通过证明过程理解定义。考察的是半正定阵的定义。
 
 利用定义证明：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb1eb52e446.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/3hB60kL644.png?imageslim)
 
 
 
@@ -420,8 +417,7 @@ A为m×n的矩阵， x为n×1的列向量，则Ax为m×1的列向量，记\(\ove
 推导：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb1edd4f144.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/3i62FlCJab.png?imageslim)
 
 **上面的，矩阵的求偏导的计算方式是什么样子的？**
 
@@ -454,7 +450,7 @@ A为\(n\times n\)的矩阵，x为\(n\times 1\)的列向量，记 \(y=\overrighta
 \[\frac{\partial y}{\partial \overrightarrow{x}}=\frac{\partial(\overrightarrow{x}^T\cdot A\cdot \overrightarrow{x})}{\partial \overrightarrow{x}}=2A\cdot \overrightarrow{x}\]
 
 
-### 
+###
 
 
 
@@ -464,13 +460,12 @@ A为\(n\times n\)的矩阵，x为\(n\times 1\)的列向量，记 \(y=\overrighta
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb78820388f.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/g00JIIgdC8.png?imageslim)
 
 
 
 
-
-## 
+##
 
 
 

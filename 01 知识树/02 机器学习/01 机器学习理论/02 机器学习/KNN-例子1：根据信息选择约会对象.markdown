@@ -193,8 +193,7 @@
 画出的图形如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af051b7f202a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/FfmAjmEG42.png?imageslim)
 
 输出的结果如下：
 

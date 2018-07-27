@@ -26,7 +26,7 @@ tags:
 
 
 
- 	
+
   1. [迁移学习简明手册](https://github.com/jindongwang/transferlearning-tutorial)  [王晋东](https://zhuanlan.zhihu.com/p/35352154)
 
 
@@ -38,10 +38,10 @@ tags:
 
 
 
- 	
+
   * **各种利害，要拆分开来，每个都总结下。**
 
- 	
+
   * **不同领域之间的结合还是很厉害的。**
 
 
@@ -60,7 +60,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -115,8 +115,7 @@ Google Deepmind公司最新发布的AlphaZero~\cite{silver2017mastering}就实�
 远领域迁移学习示意图：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02d28c25c71.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/AKc2ja2BhF.png?imageslim)
 
 传递迁移学习目前的研究成果还十分稀少。我们期待这一领域会有更多好的成果出现。
 
@@ -155,8 +154,7 @@ Google Deepmind公司最新发布的AlphaZero~\cite{silver2017mastering}就实�
 终身迁移学习示意图：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02d36f82454.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/EL9EccaFhK.png?imageslim)
 
 **有些厉害了。**
 
@@ -239,6 +237,3 @@ Google 公司的 AlphaGo 系列在围棋方面的成就让强化学习这一术�
 
 
 # COMMENT
-
-
-

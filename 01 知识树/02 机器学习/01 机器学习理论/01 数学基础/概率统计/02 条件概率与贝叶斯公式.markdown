@@ -84,8 +84,7 @@ $$P(A\mid B)=\frac{P(AB)}{P(B)}$$
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba0f5abef4d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/mjCfbIgj36.png?imageslim)
 
 
 
@@ -141,19 +140,18 @@ $$P(A\mid B)=\frac{P(AB)}{P(B)}$$
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba10b315ab9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/LhhIFe0dEc.png?imageslim)
 
 **这个地方是在讲贝叶斯网络的时候讲到的。在琢磨下。**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae1b24177717.png)这个地方我们假定了 \(P(A_i)\) 是相等的。要注意。
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/fkKFkH8HlF.png?imageslim) 这个地方我们假定了 \(P(A_i)\) 是相等的。要注意。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae1b257e2fed.png)指的是：在给定数据的时候，我们想去看一下那一条结论是最有可能发生的。但是我们往往算的是反方向，在A_i给定的时候这个数据出现的极大值。而这个
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/7G5D8Di30l.png?imageslim)指的是：在给定数据的时候，我们想去看一下那一条结论是最有可能发生的。但是我们往往算的是反方向，在A_i给定的时候这个数据出现的极大值。而这个
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae1b26047d54.png)就是极大似然估计。再理解下。
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/ad45g7Flcm.png?imageslim)就是极大似然估计。再理解下。
 
 
 所以极大似然估计其实是先验性的假定了A_1,A_2,A_n  出现的概率是相同的。

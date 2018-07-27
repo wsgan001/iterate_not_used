@@ -1,10 +1,7 @@
 
 
+TODO
 
-
-
-
-# TODO
 * **没想到sklearn 官网上竟然有这么好的例子，而且还有讲解，需要好好整理学习。**
 * **要好好整理下，结合理论**
 
@@ -175,10 +172,10 @@ KRR prediction for 100000 inputs in 0.327 s
 输出图像：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af80c5cd0963.png)
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af80c6b485a0.png)
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af80c793ad5f.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/47EF4iICC3.png?imageslim)
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/DmJhk1Hb1G.png?imageslim)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/jbh9legB3i.png?imageslim)
 
 
 

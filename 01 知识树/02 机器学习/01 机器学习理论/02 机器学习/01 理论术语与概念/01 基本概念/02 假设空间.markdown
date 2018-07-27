@@ -49,8 +49,7 @@ TODO
 西瓜数据集：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b0504f03a4d8.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/6le2ajFjF2.png?imageslim)
 
 这里要学习的目标是 “好瓜“。
 
@@ -88,7 +87,7 @@ OK，可能有人马上发现，表中的第一行：“ (色泽=青绿)∧ (根
 
 下图显示出了这个 西瓜问题假设空间：
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b0508182537d.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/h3eJE0KC78.png?imageslim)
 
 实际上，我们有很多策略可以对这个假设空间进行搜索。比如：自顶向下、从一般到特殊， 或是自底向上、从特殊到一般。
 
@@ -101,17 +100,7 @@ OK，可能有人马上发现，表中的第一行：“ (色泽=青绿)∧ (根
 例如， 在西瓜问题中，与表中的训练集所对应的版本空间如图所示：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b0509c0118c7.png)
-
-
-
-
-
-
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/B20fl3b7bJ.png?imageslim)
 
 
 
@@ -120,4 +109,3 @@ OK，可能有人马上发现，表中的第一行：“ (色泽=青绿)∧ (根
 # REF
 
 1. 《机器学习》周志华
-

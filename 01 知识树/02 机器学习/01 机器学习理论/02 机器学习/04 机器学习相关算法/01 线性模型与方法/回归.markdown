@@ -1,58 +1,27 @@
 
 
-  * 七月在线 机器学习
-
-
-  * [第8章 预测数值型数据：回归](http://ml.apachecn.org/mlia/regress/) **这里面由关于局部加权线性回归、岭回归、Lasso 要整理进来**
 
 
 
 
 # TODO
 
-
-
-
-
-
-  * **将线性回归拆分出去，并且局部加权线性回归要说清楚点，机器学习实战 书上提到了**
-
-
-  * **把Logistic回归拆分出去，而且，为什么logistic回归叫着回归的名字却是用来做分类的呢？**
-
-
-  * **把梯度下降拆分出去**
-
-
-  * **岭回归和Lasso要添加进来，并拆分到线性回归里面**
+- **认真总结**
+- **需要添加 Andrew Ng,Machine Learning。和统计学习方法的东西。**
+* **将线性回归拆分出去，并且局部加权线性回归要说清楚点，机器学习实战 书上提到了**
+* **把Logistic回归拆分出去，而且，为什么logistic回归叫着回归的名字却是用来做分类的呢？**
+* **把梯度下降拆分出去**
+* **岭回归和Lasso要添加进来，并拆分到线性回归里面**
 
 
 
 
 # MOTIVE
 
-
-
-
-
-
   * 对机器学习中回归问题相关的总结
 
 
-
-
-
-* * *
-
-
-
-
-
 # 知识前提
-
-
-
-
 
 
   * 矩阵变换与特征值
@@ -119,19 +88,16 @@ HorsePower = 0.0015 * annualSalary - 0.99 * hoursListeningToPublicRadio
 y=ax+b， x是房屋面积，y是房屋价格
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb789b90edf.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/856eIehmCC.png?imageslim)
 
 考虑两个变量的时候呢：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb78baab68a.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/EBFemBC2H3.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb78c96a8bd.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/B133b68Bhk.png?imageslim)
 
 在上面的式子中，可以在\(\theta_0\)的地方加上一个强制为1的\(x_0\)，这样就得到了下面的式子，而且可从i=0开始。
 
@@ -260,8 +226,7 @@ y=ax+b， x是房屋面积，y是房屋价格
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb94d04a4e0.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/LlEclDBDme.png?imageslim)
 
 
 
@@ -333,24 +298,16 @@ A为非奇异矩阵,则线性方程组Ax=b的解为\(x=A^{-1}b\)其中A的逆矩
   3. 如果\(J(\theta)\)能够继续减小，返回2
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acab44f515fb.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/mc3b8BEFag.png?imageslim)
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acab47c8652c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/ABm46IK4Cc.png?imageslim)
 
 
 
 
 ## 好了，开始计算最小二乘的梯度是什么
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb950ad3a8a.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/FIE2Ida4dd.png?imageslim)
 
 
 ## 有了梯度就可以进行梯度下降了
@@ -386,8 +343,7 @@ A为非奇异矩阵,则线性方程组Ax=b的解为\(x=A^{-1}b\)其中A的逆矩
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb953055758.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/2A0ijfLkl7.png?imageslim)
 
 
 
@@ -400,8 +356,7 @@ A为非奇异矩阵,则线性方程组Ax=b的解为\(x=A^{-1}b\)其中A的逆矩
 实际上是可以的：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acabe3f0fda0.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/8eI07eB2Ja.png?imageslim)
 
 这种方式比较激进，叫做随机梯度下降，实际上这种方式比批处理的方式更值得推荐，因为m一般比较大，而且以网络流的方式的时候m不可能全部拿到，而是一点一点拿到。
 
@@ -431,10 +386,7 @@ A为非奇异矩阵,则线性方程组Ax=b的解为\(x=A^{-1}b\)其中A的逆矩
 ### 代码
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb957d72456.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/E67EDb9AEf.png?imageslim)
 
 
 
@@ -445,21 +397,14 @@ A为非奇异矩阵,则线性方程组Ax=b的解为\(x=A^{-1}b\)其中A的逆矩
 可以按照一个规则，再当前梯度下给出一个比较好的\(\alpha\).
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb95884e184.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/ajba0523fH.png?imageslim)
 
 
 
 
 ### 线性回归、rate、Loss
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb959a94b9e.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/25d95ehAi9.png?imageslim)
 
 
 ##  随机梯度下降
@@ -472,8 +417,7 @@ A为非奇异矩阵,则线性方程组Ax=b的解为\(x=A^{-1}b\)其中A的逆矩
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acb102bf1363.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/70gcD5bb21.png?imageslim)
 
 
 
@@ -481,10 +425,7 @@ A为非奇异矩阵,则线性方程组Ax=b的解为\(x=A^{-1}b\)其中A的逆矩
 ###  输出
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acb1055d0939.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/1If1iJB1AJ.png?imageslim)
 
 对比看一下，基本看不出那个好，那个差。不过可以看出随机梯度下降是比较震荡的，但是批处理的方式是一直往下的 。
 
@@ -494,8 +435,7 @@ A为非奇异矩阵,则线性方程组Ax=b的解为\(x=A^{-1}b\)其中A的逆矩
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acb11146b30d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/48583H4L9E.png?imageslim)
 
 可见，基本是差不多的，非常接近，批处理是1.69,3   随机梯度下降是 1.65,3  。在实际中优先使用随机梯度下降。
 
@@ -513,20 +453,17 @@ A为非奇异矩阵,则线性方程组Ax=b的解为\(x=A^{-1}b\)其中A的逆矩
 可不可以？
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb95a7e50bf.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/mKc1FaiEfj.png?imageslim)
 
 如下图：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acac44a44cd9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/8Fc9g2B8mm.png?imageslim)
 
 上图中：紫色： 线性回归   绿色：Logistic回归，如果样本有偏，那么进行线性回归的时候，紫色的线显然不适合做分类，而绿色的是适合的。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acac4672ce0a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/dmelF6haAH.png?imageslim)
 
 上图中：左侧：线性回归   右侧： Softmax回归 三个样本，拟合出两条线，那么线性回归显然也不合理。
 
@@ -552,8 +489,7 @@ A为非奇异矩阵,则线性方程组Ax=b的解为\(x=A^{-1}b\)其中A的逆矩
 左边是：\(y=\theta_0+\theta_1x\) 右边是： \(y=\theta_0+\theta_1x+\theta_2x^2\)
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acac5c9d3fa5.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/F1K9L680a5.png?imageslim)
 
 这个时候右边虽然有\(x^2\)，但是仍然是可以用线性回归，只要比左边多添加一个\(x^2\)的维度就行。所以只要系数是线性的就可以用线性回归。
 
@@ -561,10 +497,7 @@ A为非奇异矩阵,则线性方程组Ax=b的解为\(x=A^{-1}b\)其中A的逆矩
 ## 局部加权线性回归
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acacb0b02cee.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/2E9D7Ajgmb.png?imageslim)
 
 
 
@@ -584,14 +517,12 @@ A为非奇异矩阵,则线性方程组Ax=b的解为\(x=A^{-1}b\)其中A的逆矩
 之前是这样的：即求最小二乘
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb963627e59.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/mb523LfgH3.png?imageslim)
 
 现在加了一个权重\(w^{(i)}\)
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb96393cbdd.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/ffB68GBg79.png?imageslim)
 
 那么这个权值怎么定呢？
 
@@ -667,7 +598,7 @@ A为非奇异矩阵,则线性方程组Ax=b的解为\(x=A^{-1}b\)其中A的逆矩
 
 这个就是我们的Logistic回归函数，有时候也叫sigmoid函数，图像如下：
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acad137c138c.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/l2kl6356mI.png?imageslim)
 
 这个地方提一下，\(g(z)\)的导数是：
 
@@ -701,10 +632,7 @@ A为非奇异矩阵,则线性方程组Ax=b的解为\(x=A^{-1}b\)其中A的逆矩
 ## 然后求对数似然函数及其梯度
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb96888212f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/I8h7bbmLc7.png?imageslim)
 
 那么现在已经求出了一个偏导了，就可以给定一个学习率来按照梯度进行下降。
 
@@ -712,10 +640,7 @@ A为非奇异矩阵,则线性方程组Ax=b的解为\(x=A^{-1}b\)其中A的逆矩
 ## 将梯度带入得到Logistic回归参数的学习规则
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb9697bf817.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/hCh52Kl21h.png?imageslim)
 
 Logistic回归，任意给定一个值，都可以得到一个全局最优值。
 
@@ -747,8 +672,7 @@ Logistic回归，任意给定一个值，都可以得到一个全局最优值。
 那么得到：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acaefa9c1803.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/JClCKa9Il9.png?imageslim)
 
 
 
@@ -772,18 +696,6 @@ Logistic回归，任意给定一个值，都可以得到一个全局最优值。
 如Logistic 回归中的\(g(z)=\frac{1}{1+e^{-z}}\) ，可以添加一个\(\lambda\)进行拉伸变换后：\(g(z)=\frac{1}{1+e^{-\lambda z}}\) **这个拉伸变换有什么用？**
 
 
-#
-
-
-
-
-#
-
-
-
-
-#
-
 
 
 
@@ -801,8 +713,7 @@ Logistic回归，任意给定一个值，都可以得到一个全局最优值。
 没明白这个怎么跟最小二乘有关系了？
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb96e236a7b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/hdDDb3DA8f.png?imageslim)
 
 
 
@@ -813,20 +724,17 @@ Logistic回归，任意给定一个值，都可以得到一个全局最优值。
 上面的Lagrange函数的对偶函数是这样求的：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acaf3eb84d44.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/d6ijeLc0KF.png?imageslim)
 
 求偏导之后：**这个求偏导为0的结果x*是什么意义？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acaf3e4729eb.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/9CmK0lffCi.png?imageslim)
 
 这个值不是真的，是关于v的一个值，把这个值回带到Lagrange函数里面去。就得到了Lagrange对偶函数。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acaf49e2c843.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/4bFk2gHE58.png?imageslim)
 
 
 
@@ -836,19 +744,14 @@ Logistic回归，任意给定一个值，都可以得到一个全局最优值。
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb96fb964b0.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/1EIcJf713j.png?imageslim)
 
 这个就是之前求线性回归的时候的最优解
 
 
 ## 带进去就求到了极值点
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb97069d508.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/eEAeIDA8cE.png?imageslim)
 
 我们会发现，这个对偶函数的极大值，等于原函数的极小值，也就是说这个满足了强对偶条件，即线性回归满足了强对偶性。**什么是强队偶？**
 
@@ -857,13 +760,12 @@ Logistic回归，任意给定一个值，都可以得到一个全局最优值。
 顺便提下，KKT条件不是强对偶性的充要条件，甚至不是充分条件。只是一个必要条件。**为什么，要了解下。**
 
 
+## REF
+
+* 七月在线 机器学习
+* [第8章 预测数值型数据：回归](http://ml.apachecn.org/mlia/regress/) **这里面由关于局部加权线性回归、岭回归、Lasso 要整理进来**
 
 
 
 
 # COMMENT：
-
-
-**认真总结**
-
-**需要添加 Andrew Ng,Machine Learning。和统计学习方法的东西。**

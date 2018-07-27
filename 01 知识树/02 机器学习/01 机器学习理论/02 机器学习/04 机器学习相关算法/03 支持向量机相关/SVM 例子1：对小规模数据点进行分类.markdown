@@ -5,7 +5,7 @@ date: 2018-05-10 13:12:55+00:00
 layout: post
 link: http://106.15.37.116/2018/05/10/svm-sample1/
 slug: svm-sample1
-title: 
+title:
 wordpress_id: 5513
 categories:
 - 随想与反思
@@ -27,7 +27,7 @@ tags:
 
 
 
-  1. 
+  1.
 
 
 [第6章 支持向量机](http://ml.apachecn.org/mlia/svm/)
@@ -107,7 +107,7 @@ tags:
     import matplotlib.pyplot as plt
 
 
-​    
+​
     def generate_data(file_name):
         fw = open(file_name, 'w')
         xcord0 = [];
@@ -130,13 +130,13 @@ tags:
         fw.close()
 
 
-​    
+​
     def load_data_set(file_name):
         xcord0 = []
         ycord0 = []
         xcord1 = []
         ycord1 = []
-    
+
         datas = []
         labels = []
         fr = open(file_name)
@@ -155,18 +155,18 @@ tags:
         return xcord0, ycord0, xcord1, ycord1
 
 
-​    
+​
     def plot_graph(xcord0, ycord0, xcord1, ycord1):
         fig = plt.figure()
         ax = fig.add_subplot(111)
-    
+
         ax.scatter(xcord0, ycord0, marker='s', s=90)
         ax.scatter(xcord1, ycord1, marker='o', s=50, c='red')
         plt.title('Non-linearly Separable Data for Kernel Method')
         plt.show()
 
 
-​    
+​
     if __name__ == "__main__":
         # generate_data("testSetRBF.txt")
         xcord0, ycord0, xcord1, ycord1 = load_data_set("testRBF.txt")
@@ -176,8 +176,7 @@ tags:
 输出图像：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af443fcd6c70.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Idhc43mf57.png?imageslim)
 
 OK，下面看完整的代码：
 
@@ -185,7 +184,7 @@ OK，下面看完整的代码：
     import numpy as np
 
 
-​    
+​
     # 加载数据集
     def load_data_set(file_name):
         datas = []
@@ -198,7 +197,7 @@ OK，下面看完整的代码：
         return datas, labels
 
 
-​    
+​
     def clip_alpha(aj, H, L):
         if aj > H:
             aj = H
@@ -207,7 +206,7 @@ OK，下面看完整的代码：
         return aj
 
 
-​    
+​
     def select_j_rand(i, m):
         j = i  # we want to select any J not equal to i
         while (j == i):
@@ -215,7 +214,7 @@ OK，下面看完整的代码：
         return j
 
 
-​    
+​
     # C 松弛变量(常量值)，允许有些数据点可以处于分隔面的错误一侧。
     # 控制最大化间隔和保证大部分的函数间隔小于1.0这两个目标的权重。
     # 可以通过调节该参数达到不同的结果。
@@ -226,7 +225,7 @@ OK，下面看完整的代码：
         row_num, column_num = np.shape(data_mat)
         alphas = np.mat(np.zeros((row_num, 1)))  # 拉格朗日乘子  有点类似权重值
         b = 0  # 模型的常量值
-    
+
         iter = 0
         while (iter < max_iter):
             alpha_pairs_changed = 0  # 记录alpha是否已经进行优化，每次循环时设为0，然后再对整个集合顺序遍历
@@ -303,7 +302,7 @@ OK，下面看完整的代码：
         return b, alphas
 
 
-​    
+​
     class opt_struct:
         def __init__(self, data_mat_in, class_labels, C, toler, kTup):  # Initialize the structure with the parameters
             self.X = data_mat_in
@@ -319,7 +318,7 @@ OK，下面看完整的代码：
                 self.K[:, i] = kernel_trans(self.X, self.X[i, :], kTup)
 
 
-​    
+​
     # data_mat 数据集
     # row_mat data_mat数据集的第i行的数据
     # kTup  核函数的信息
@@ -339,14 +338,14 @@ OK，下面看完整的代码：
         return K
 
 
-​    
+​
     def calc_Ek(oS, k):
         fXk = float(np.multiply(oS.alphas, oS.labelMat).T * oS.K[:, k] + oS.b)
         Ek = fXk - float(oS.labelMat[k])
         return Ek
 
 
-​    
+​
     def selectJ(i, oS, Ei):  # this is the second choice -heurstic, and calcs Ej
         max_k = -1;
         max_delta_e = 0;
@@ -369,13 +368,13 @@ OK，下面看完整的代码：
         return j, Ej
 
 
-​    
+​
     def update_Ek(oS, k):  # after any alpha has changed update the new value in the cache
         Ek = calc_Ek(oS, k)
         oS.eCache[k] = [1, Ek]
 
 
-​    
+​
     def innerL(i, oS):
         Ei = calc_Ek(oS, i)
         if ((oS.labelMat[i] * Ei < -oS.tol) and (oS.alphas[i] < oS.C)) \
@@ -420,7 +419,7 @@ OK，下面看完整的代码：
             return 0
 
 
-​    
+​
     # 完整SMO算法外循环，与smoSimple有些类似，但这里的循环退出条件更多一些
     def smoP(data_mat_in, class_labels, C, toler, max_iter, kTup=('lin', 0)):  # full Platt SMO
         oS = opt_struct(np.mat(data_mat_in),
@@ -457,7 +456,7 @@ OK，下面看完整的代码：
         return oS.b, oS.alphas
 
 
-​    
+​
     def try_RBF(k1=1.3):
         datas, labels = load_data_set('trainRBF.txt')
         b, alphas = smoP(datas, labels, 200, 0.0001, 10000, ('rbf', k1))  # C=200 important
@@ -488,7 +487,7 @@ OK，下面看完整的代码：
         print("the test error rate is: %f" % (float(error_count) / m))
 
 
-​    
+​
     if __name__ == "__main__":
         try_RBF()
 
@@ -534,6 +533,3 @@ OK，下面看完整的代码：
 
 
 # COMMENT
-
-
-

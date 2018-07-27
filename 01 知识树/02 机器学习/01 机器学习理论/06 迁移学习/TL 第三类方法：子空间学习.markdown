@@ -26,7 +26,7 @@ tags:
 
 
 
- 	
+
   1. [迁移学习简明手册](https://github.com/jindongwang/transferlearning-tutorial)  [王晋东](https://zhuanlan.zhihu.com/p/35352154)
 
 
@@ -38,7 +38,7 @@ tags:
 
 
 
- 	
+
   * **没看懂**
 
 
@@ -57,7 +57,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -77,10 +77,10 @@ tags:
 
 
 
- 	
+
   * 基于统计特征变换的统计特征对齐方法
 
- 	
+
   * 基于流形变换的流形学习方法 **什么叫流行学习方法？流行是什么？**
 
 
@@ -117,8 +117,7 @@ SA方法实现简单，计算过程高效，是子空间学习的代表性方法
 SDA方法的示意图：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02b6f974808.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/d05lB50LH0.png?imageslim)
 
 上图示意了该方法的简单流程。SDA方法提出，除了子空间变换矩阵 \(\mathbf{T}\) 之外，还应当增加一个概率分布自适应变换 \(\mathbf{A}\) 。SDA方法的优化目标如下：
 
@@ -137,8 +136,7 @@ CORAL方法的求解同样非常简单且高效。CORAL方法被应用到神经�
 Deep-CORAL方法的网络结构：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02b730d309f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/6J4EChbjKb.png?imageslim)
 
 CORAL损失被定义为源域和目标域的二阶统计特征距离：
 
@@ -167,8 +165,7 @@ CORAL损失被定义为源域和目标域的二阶统计特征距离：
 三维空间中两点之间的距离示意图：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02b7bf3e6e1.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/4199aj4DjJ.png?imageslim)
 
 由于在流形空间中的特征通常都有着很好的几何性质，可以避免特征扭曲，因此我们首先将原始空间下的特征变换到流形空间中。
 
@@ -185,8 +182,7 @@ SGF方法从增量学习中得到启发：人类从一个点想到达另一个�
 SGF流形迁移学习方法示意图：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02b82c74198.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/CAfAIiAGHl.png?imageslim)
 
 SGF 方法的主要贡献在于：提出了这种变换的计算及实现了相应的算法。但是它有很明显的缺点：到底需要找几个中间点？ SGF 也没能给出答案，就是说这个参数 \(d\) 是没法估计的，没有一个好的方法。这个问题在 GFK 中被回答了。
 
@@ -195,8 +191,7 @@ GFK方法首先解决SGF的问题：如何确定中间点的个数 \(d\) 。它�
 下图是GFK流形迁移学习方法示意图：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02b861ed954.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Aee84iK2Bk.png?imageslim)
 
 用 \(\mathcal{S}_s\) 和 \(\mathcal{S}_t\) 分别表示源域和目标域经过主成分分析(PCA)之后的子空间，则G可以视为所有的d维子空间的集合。每一个 \(d\) 维的原始子空间都可以被看作 \(\mathbb{G}\) 上的一个点。因此，在两点之间的测地线 \(\{\Phi(t):0 \leq t \leq 1\}\) 可以在两个子空间之间构成一条路径。
 
@@ -217,10 +212,10 @@ GFK方法详细的计算过程可以参考原始的文章，我们在这里不�
 
 
 
- 	
+
   * DIP (Domain-Invariant Projection)~\cite{baktashmotlagh2013unsupervised}: 边缘分布自适应+流形变换
 
- 	
+
   *  \cite{baktashmotlagh2014domain}: 统计流形法，在黎曼流形上进行距离度量。
 
 
@@ -251,6 +246,3 @@ GFK方法详细的计算过程可以参考原始的文章，我们在这里不�
 
 
 # COMMENT
-
-
-

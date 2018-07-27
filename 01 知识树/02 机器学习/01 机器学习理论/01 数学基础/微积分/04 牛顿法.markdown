@@ -114,8 +114,7 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abef2a06cdbd.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/JcBKhmF5Ch.png?imageslim)
 
 **还是没怎么明白牛顿法，而且这个必须要初始点选择的比较好吧？如果用的化怎么选择一个好的初始点？牛顿法就是使用二阶泰勒级数不断逼近极值点吗？**
 

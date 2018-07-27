@@ -5,7 +5,7 @@ date: 2018-05-08 04:35:21+00:00
 layout: post
 link: http://106.15.37.116/2018/05/08/decision-tree-sample1/
 slug: decision-tree-sample1
-title: 
+title:
 wordpress_id: 5421
 categories:
 - 随想与反思
@@ -90,8 +90,7 @@ categories:
 这次我们的数据只有下面这5个：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af062da5b774.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/daBcGj4817.png?imageslim)
 
 
 
@@ -106,7 +105,7 @@ main.py：
     import operator
 
 
-​    
+​
     # 创建数据列表
     def create_data_set():
         data_set = [[1, 1, 'yes'],
@@ -120,7 +119,7 @@ main.py：
         return data_set, features
 
 
-​    
+​
     # 计算这个data_set的信息熵
     def calc_shannon_ent(data_set):
         num_data = len(data_set)
@@ -139,7 +138,7 @@ main.py：
         return shannon_ent
 
 
-​    
+​
     # 从原来的data_set中根据某个特征的某个值获得一个子集
     def get_data_with_feature_value(data_set, feature, value):
         sub_data_set = []
@@ -155,7 +154,7 @@ main.py：
         return sub_data_set
 
 
-​    
+​
     # 选择最好的数据集划分方式
     def get_best_feature_for_split(data_set):
         # 计算还没有划分之前的这个data_set的信息熵
@@ -184,7 +183,7 @@ main.py：
         return best_feature
 
 
-​    
+​
     # 返回数目最多的label
     def majority_count(labels):
         # 统计出不同的label的数量
@@ -201,7 +200,7 @@ main.py：
         return sorted_class_count[0][0]
 
 
-​    
+​
     # 创造一棵树
     def create_tree(data_set, features):
         # 获得所有的标签
@@ -227,7 +226,7 @@ main.py：
         return my_tree
 
 
-​    
+​
     # 使用决策树执行分类
     # 这个没有仔细看，没有看明白？
     def classify(tree, features, test_data):
@@ -243,7 +242,7 @@ main.py：
         return class_label
 
 
-​    
+​
     # 将树存起来
     def store_tree(input_tree, file_name):
         import pickle
@@ -252,7 +251,7 @@ main.py：
         fw.close()
 
 
-​    
+​
     # 将树加载进来
     def grab_tree(file_name):
         import pickle
@@ -260,7 +259,7 @@ main.py：
         return pickle.load(fr)
 
 
-​    
+​
     # 这个例子好像只是对某个特征的某个值进行split，而没有包含大于这个值，小于这个值的时候的一些split，确认下是不是
     if __name__ == "__main__":
         data_set, features = create_data_set()
@@ -287,13 +286,13 @@ tree_plotter.py ：
 
 
     import matplotlib.pyplot as plt
-    
+
     decisionNode = dict(boxstyle="sawtooth", fc="0.8")
     leafNode = dict(boxstyle="round4", fc="0.8")
     arrow_args = dict(arrowstyle="<-")
 
 
-​    
+​
     def get_num_leafs(myTree):
         numLeafs = 0
         firstStr = list(myTree.keys())[0]
@@ -307,7 +306,7 @@ tree_plotter.py ：
         return numLeafs
 
 
-​    
+​
     def get_tree_depth(myTree):
         maxDepth = 0
         firstStr = list(myTree.keys())[0]
@@ -323,7 +322,7 @@ tree_plotter.py ：
         return maxDepth
 
 
-​    
+​
     def plot_node(nodeTxt, centerPt, parentPt, nodeType):
         plot_demo.ax1.annotate(nodeTxt,
                                xy=parentPt,
@@ -335,7 +334,7 @@ tree_plotter.py ：
                                arrowprops=arrow_args)
 
 
-​    
+​
     def plot_mid_text(cntrPt, parentPt, txtString):
         xMid = (parentPt[0] - cntrPt[0]) / 2.0 + cntrPt[0]
         yMid = (parentPt[1] - cntrPt[1]) / 2.0 + cntrPt[1]
@@ -345,7 +344,7 @@ tree_plotter.py ：
                            rotation=30)
 
 
-​    
+​
      # if the first key tells you what feat was split on
     def plot_tree(myTree, parentPt, nodeTxt):
         # this determines the x width of this tree
@@ -369,10 +368,10 @@ tree_plotter.py ：
         plot_tree.yOff = plot_tree.yOff + 1.0 / plot_tree.totalD
 
 
-​    
+​
     # if you do get a dictonary you know it's a tree,
     # and the first element will be another dict
-    
+
     def try_plot_tree(inTree):
         fig = plt.figure(1, facecolor='white')
         fig.clf()
@@ -387,7 +386,7 @@ tree_plotter.py ：
         plt.show()
 
 
-​    
+​
     # 画出几个结点的demo
     def plot_demo():
         fig = plt.figure(1, facecolor='white')
@@ -398,7 +397,7 @@ tree_plotter.py ：
         plt.show()
 
 
-​    
+​
     # 将树加载进来
     def grab_tree(file_name):
         import pickle
@@ -406,7 +405,7 @@ tree_plotter.py ：
         return pickle.load(fr)
 
 
-​    
+​
     if __name__ == "__main__":
         plot_demo()
         my_tree = grab_tree("tree.txt")
@@ -416,29 +415,9 @@ tree_plotter.py ：
 首先画出的是一个demo：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af126c02dd11.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/188eH9g9l7.png?imageslim)
 
 然后，画出的是 tree.txt 文档中的树：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af126e349d65.png)
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/E1kbdKF1cj.png?imageslim)

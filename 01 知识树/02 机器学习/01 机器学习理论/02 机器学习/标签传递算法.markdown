@@ -24,7 +24,7 @@ categories:
 
 
 
- 	
+
   1. aaa
 
 
@@ -36,10 +36,10 @@ categories:
 
 
 
- 	
+
   * **这个当时七月在线里面是与聚类一起讲的，再确认下这个与聚类之间的关系**
 
- 	
+
   * **这个标签传递算法好像没有怎么讲，再总结下**
 
 
@@ -51,7 +51,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -85,8 +85,7 @@ categories:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae19f1d97588.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/CC2l5ka8Jb.png?imageslim)
 
 
 
@@ -97,11 +96,7 @@ categories:
 带宽和邻域总是有影响的。带宽是什么？
 
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae19f4367d3c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/EH16I0hJ62.png?imageslim)
 
 流形分布是什么？有人提了下。
 
@@ -115,65 +110,13 @@ categories:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda3628ceb7.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/jhLCHIKlK9.png?imageslim)
 
 LPA效果：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda36473439.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/6h6j1Afm55.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda3795be4b.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/JAeDIgEiGL.png?imageslim)

@@ -5,7 +5,7 @@ date: 2018-03-31 07:31:39+00:00
 layout: post
 link: http://106.15.37.116/2018/03/31/ai-linear-algebra-linear-mapping-and-matrix/
 slug: ai-linear-algebra-linear-mapping-and-matrix
-title: 
+title:
 wordpress_id: 2165
 categories:
 - 随想与反思
@@ -27,7 +27,7 @@ tags:
 
     1. 七月在线 机器学习
 
-  2. 
+  2.
 
 
 [伪逆矩阵的意义及求法？](https://www.zhihu.com/question/47688307)
@@ -208,8 +208,7 @@ A为 \(m\times s\) 阶的矩阵，B为 \(s\times n\) 阶的矩阵，那么 \(C=A
 即状态转移的概率只依赖于前一个状态。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb19c43f1f3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/843ej6e5g4.png?imageslim)
 
 
 
@@ -219,8 +218,8 @@ A为 \(m\times s\) 阶的矩阵，B为 \(s\times n\) 阶的矩阵，那么 \(C=A
 
 假定按照经济状况将人群分成上、中、下三个阶层，用1、2、3表示。假定当前处于某阶层只和上一代有关，即：考察父代为第i阶层，则子代为第j阶层的概率。假定为如下转移概率矩阵：
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb1a0bd3411.png)![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb1a03180f4.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/f38g0fhH66.png?imageslim)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/cKmKhec5j5.png?imageslim)
 
 
 第n+1代中处于第j个阶层的概率为：**这个式子依据的是全概率公式**
@@ -240,13 +239,9 @@ A为 \(m\times s\) 阶的矩阵，B为 \(s\times n\) 阶的矩阵，那么 \(C=A
 初始概率π= [0.21, 0.68, 0.1]进行迭代:    初始概率π= [0.75, 0.15, 0.1] 进行迭代：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb1a9b05eb8.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/jmhHa2h6dm.png?imageslim)
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb1ae1dba3f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/dcFKFAc4Gi.png?imageslim)
 
 
 
@@ -269,8 +264,7 @@ A为 \(m\times s\) 阶的矩阵，B为 \(s\times n\) 阶的矩阵，那么 \(C=A
 \[\lim_{n\rightarrow \infty}P_{ij}^n=\pi(j)\]
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac824ca60c69.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/5dkkEAb26B.png?imageslim)
 
 同时，若概率密度分布\(\pi P=\pi\)，说明：
 
@@ -315,19 +309,14 @@ A为 \(m\times s\) 阶的矩阵，B为 \(s\times n\) 阶的矩阵，那么 \(C=A
 斜线的意思表示的是计算顺序
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb1c2389d47.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/l4K0CEjEjH.png?imageslim)
 
 代码如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb1c30263c7.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/l2lDHga3bG.png?imageslim)
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb1c3887bd8.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Gk6lIddAb1.png?imageslim)
 
  上面连乘之后得到的数字就是非常著名的卡特兰数，这个数面试中经常会考到。比如n个括号有多少种考查方式。
 
@@ -374,30 +363,21 @@ A为 \(m\times s\) 阶的矩阵，B为 \(s\times n\) 阶的矩阵，那么 \(C=A
 ## 秩与线性方程组的解的关系：
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac844a7879bb.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/32cDIe810d.png?imageslim)
 
 A是m行n列的。
 
 对于n元线性方程组Ax=b，
 
 
-
-
   * 无解的充要条件是R(A)<R(A,b)
-
   * 有唯一解的充要条件是R(A)=R(A,b)=n
-
   * 有无限多解的充要条件是R(A)=R(A,b)<n
 
 
 可以很快得到：
 
-
   * Ax=0有非零解的充要条件是R(A)<n
-
   * Ax=b有解的充要条件是R(A)=R(A,b)，有可能有唯一解，有可能有很多解。
 
 
@@ -454,7 +434,7 @@ A是m行n列的。
 
 
 
-# 
+#
 
 
 
@@ -501,7 +481,7 @@ A是m行n列的。
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcb9d0f1791.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/cB4H7BF48J.png?imageslim)
 
 
 
@@ -509,15 +489,4 @@ A是m行n列的。
 
 
 
-
-
-
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae15927932ac.png)这个公式中的![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae1592ab421e.png)这个是伪逆和![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae1592ecfec2.png)这个是伪逆是完全一样的。为什么？
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/b18hfCC4b0.png?imageslim)这个公式中的![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/m4f4LK536c.png?imageslim)这个是伪逆和![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/F4CgLjE17e.png?imageslim)这个是伪逆是完全一样的。为什么？

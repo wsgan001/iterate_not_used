@@ -5,7 +5,7 @@ date: 2018-05-12 23:44:10+00:00
 layout: post
 link: http://106.15.37.116/2018/05/13/stage-sample1/
 slug: stage-sample1
-title: 
+title:
 wordpress_id: 5625
 categories:
 - 随想与反思
@@ -99,7 +99,7 @@ categories:
     import matplotlib.pylab as plt
 
 
-​    
+​
     # 加载数据集
     def load_data_set(file_name):
         feature_num = len(open(file_name).readline().split('\t')) - 1
@@ -120,7 +120,7 @@ categories:
         return data_mat, label_mat
 
 
-​    
+​
     # 前向逐步回归计算权重值
     def stage_wise(data_mat_m, label_mat_m, epsilon=0.01, num_iter=100):
         row_num, column_num = np.shape(data_mat_m)
@@ -145,19 +145,19 @@ categories:
         return weight_mat
 
 
-​    
+​
     def regular_data_label(data_mat, label_mat):
         data_mean = np.mean(data_mat, 0)  # xMat 平均值
         data_var = np.var(data_mat, 0)  # X的方差
         data_mat_m = (data_mat - data_mean) / data_var
-    
+
         label_mean = np.mean(label_mat, 0)
         label_mat_m = label_mat - label_mean  # 也可以规则化ys但会得到更小的coef
-    
+
         return data_mat_m, label_mat_m
 
 
-​    
+​
     # residual sum of squares error
     def calc_rss_error(label_mat, label_pred_mat):
         # 这个地方如果是(label_mat- label_pred_mat)**2 则错误：
@@ -166,7 +166,7 @@ categories:
         return (np.square(label_mat - label_pred_mat)).sum()
 
 
-​    
+​
     # 标准线性回归
     def standard_lr(data_mat, label_mat):
         data_square = data_mat.T * data_mat
@@ -180,14 +180,14 @@ categories:
         weights = data_square.I * (data_mat.T * label_mat)
         label_pred_mat = data_mat * weights
         return label_pred_mat, weights
-    
+
     def plot_weight_mat(weight_mat,weights):
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.scatter([1000]*8, weights)
         ax.plot(weight_mat)
         plt.show()
-    
+
     # test for stageWise
     if __name__ == "__main__":
         data_mat, label_mat = load_data_set("abalone.txt")
@@ -205,7 +205,7 @@ categories:
     [[ 0.    0.    0.   ...,  0.    0.    0.  ]
      [ 0.    0.    0.   ...,  0.    0.    0.  ]
      [ 0.    0.    0.   ...,  0.    0.    0.  ]
-     ..., 
+     ...,
      [ 0.05  0.    0.09 ..., -0.64  0.    0.36]
      [ 0.04  0.    0.09 ..., -0.64  0.    0.36]
      [ 0.05  0.    0.09 ..., -0.64  0.    0.36]]
@@ -216,8 +216,7 @@ categories:
 输出图像：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af78615e2ab9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/d37e58BIGL.png?imageslim)
 
 有几个问题：
 
@@ -262,6 +261,3 @@ categories:
 
 
 # COMMENT
-
-
-

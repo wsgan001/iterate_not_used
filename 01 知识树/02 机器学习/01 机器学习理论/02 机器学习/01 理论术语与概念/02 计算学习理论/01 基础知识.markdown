@@ -5,7 +5,7 @@ date: 2018-05-24 11:51:03+00:00
 layout: post
 link: http://106.15.37.116/2018/05/24/ml-%e8%ae%a1%e7%ae%97%e5%ad%a6%e4%b9%a0%e7%90%86%e8%ae%ba-%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86/
 slug: ml-%e8%ae%a1%e7%ae%97%e5%ad%a6%e4%b9%a0%e7%90%86%e8%ae%ba-%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86
-title: 
+title:
 wordpress_id: 6555
 categories:
 - 人工智能学习
@@ -82,8 +82,7 @@ tags:
 令 \(h\) 为从 \(\mathcal{X}\) 到 \(\mathcal{Y}\) 的一个映射，其泛化误差为：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b0fa93d34db0.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/fljIe55lIA.png?imageslim)
 
 y) , (12.1)
 
@@ -156,6 +155,3 @@ McDiarmid 不等式[McDiarmid, 1989]:若 吻,...,xm 为 m 个独立随 机变量
 
 
 # COMMENT
-
-
-

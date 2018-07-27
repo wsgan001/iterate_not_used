@@ -22,13 +22,13 @@ tags:
 
 
 
- 	
+
   1. 七月在线 深度学习
 
- 	
+
   2. [DPM（Deformable Parts Model）](http://www.52ml.net/15680.html) **这个还没看**
 
- 	
+
   3. [Selective Search](https://blog.csdn.net/szj_huhu/article/details/78157982)    **还没看 Region Proposal 相关的**
 
 
@@ -51,8 +51,7 @@ tags:
 物体识别
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac2181be0aa2.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/lg976294Cl.png?imageslim)
 
 下面这四张图片分别对应的四种不同的要求：越来越难**  ****厉害  想知道这些都是怎么做到的。**
 
@@ -60,25 +59,25 @@ tags:
 
 Classification                  Localization                         Object Detection            Instance Segmentation
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac218595fe51.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/7bAh7g3A9E.png?imageslim)
 
 左边两种应用的场景特点：
 
 
 
- 	
+
   * Single object, single class
 
- 	
+
   * Large-scale, millions level
 
 
 右边两种应用的场景的特点：
 
- 	
+
   * Multiple objects and classes
 
- 	
+
   * Thousands level
 
 
@@ -93,19 +92,19 @@ Classification                  Localization                  
 
 
 
- 	
+
   * The renowned ImageNet ILSVRC Challenge http://image-net.org/ 最著名的 100多万张图片。 可能训练1周    物体检测的标准比赛
 
- 	
+
   * COCO Common Objects Dataset http://mscoco.org/ COCO只有20多万张，基本是真实世界里的，场景非常复杂 可能训练3~4天
 
- 	
+
   * SUN http://groups.csail.mit.edu/vision/SUN/
 
- 	
+
   * Pascal VOC:http://host.robots.ox.ax.uk/pascal/VOC/ 这个只有20类，但是可以快速做实验，训练1天差不多。  **VOC就是Visual Object Class**
 
- 	
+
   * CIFAR 这个数据量比较小，非常小的32*32 的，主要研究 network architecture，即研究网络的结构怎么变化的 。**什么是network architecture？ **
 
 
@@ -114,8 +113,7 @@ Classification                  Localization                  
 # 比较关键的几个Deep Models：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac221bd99c44.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/J3fHGd4EhD.png?imageslim)
 
 
 
@@ -129,29 +127,26 @@ Deformable Parts Model
 **这个方法到底是怎么做的？现在还这么做吗？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acf668aa72e1.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/IdmiKAf367.png?imageslim)
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac21cc3a3ab9.png)![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac21ccfa6341.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/km3mIBkH3b.png?imageslim)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/kB8fa28CId.png?imageslim)
 
 
 涉及到两篇论文：
 
 
 
- 	
+
   * Felzenszwalbet al, “Object Detection with Discriminatively Trained Part Based Models”, PAMI 2010 [link](http://www.rossgirshick.info/)
 
- 	
+
   * Girschicket al, “Deformable Part Models are Convolutional Neural Networks”, CVPR 2015
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac21dccd52ed.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/0gH5gFfmd0.png?imageslim)
 
 提出了一系列非常经典的做法，包括：
 1. 如何应用stochastic gradient descent (SGD) 到training里。
@@ -170,25 +165,23 @@ Deformable Parts Model
 
 
 
- 	
+
   * 本质是：因为图像有invariance，即图像的不变性，跟文字是不同的，文字是有时序性的，而图像倒着正着都是鸟，所以我可以用相同的参数，就是卷积，在图像上的不同位置来滑动，因为图像有invariance，所以我才可以用卷积操作。**这个要注意，之前不知道为什么可以用卷积**
 
- 	
+
   * 其次才是可以降低计算量和参数量
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac2222102c1f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/53741a1gJ3.png?imageslim)
 
 以前，怕纯CNN不带好，因此最后总是加上FC，但是现在很多都是纯CNN的model了，只不过最后的CNN用的是1*1的卷积。1*1的卷积有什么意义呢？1*1不会减少参数的，**不知道。**
 
 Loss over the whole dataset:
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22231d7635.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/G770EhJlbH.png?imageslim)
 
 后面的是为了防止过拟合
 
@@ -245,19 +238,19 @@ http://caffe.berkeleyvision.org/doxygen/classcaffe_1_1HingeLossLayer.html
 
 
 
- 	
+
   1. 模型 (structure, VGG, GoogleNet-BN, ResNet, etc.)
 
- 	
+
   2. 数据 (dataset statistics, ImageNet, COCO, SUN) 关注的数据量，还有比如人脸检测，从网上下载的有一些合成的图片，假的人脸照片，怎么把这些去除掉？对数据的要求和本身的分析是比较重要的。
 
- 	
+
   3. 算法
 
- 	
+
     1. 训练过程 (loss, back-prop, sampling)
 
- 	
+
     2. 测试过程 (scale, NMS, post-processing)
 
 
@@ -272,7 +265,7 @@ http://caffe.berkeleyvision.org/doxygen/classcaffe_1_1HingeLossLayer.html
 
 
 
-# 
+#
 
 
 是怎么联系的？是怎么想到的？实际上一篇论文submit的时候就已经过时了，这时候你就要想对于这个论文，what can you do in the future。因此每一篇论文的motivation是怎么想到的，这个是比较重要的。
@@ -306,10 +299,10 @@ http://caffe.berkeleyvision.org/doxygen/classcaffe_1_1HingeLossLayer.html
 
 
 
- 	
+
   1. 先做区域提名（Region Proposal），也就是找出一些可能的感兴趣区域（Region Of Interest, ROI）。
 
- 	
+
   2. 然后使用分类模型，对ROI进行分类，比如说花这个框分类到花的概率是0.8 ，那么我们就知道这个框里面可能是花。这个分类可以用ResNet等等。
 
 
@@ -324,7 +317,7 @@ http://caffe.berkeleyvision.org/doxygen/classcaffe_1_1HingeLossLayer.html
 有一个方法是：super pixel ，将图像上的像素进行聚类，逐渐的聚的越来越大，比如根据color的distance 或者hot的distance。**到底实际是怎么聚的？有没有代码？**
 
 
-### 
+###
 
 
 computer vision 最大的哲学理念就是multiple scale 这个，即多尺度。它能解决很多问题，一个是看到一个物体在不同的视角；一个是把data **tation做的非常好了，就是一张图变成很多张图。**这个还想再了解下。**
@@ -376,12 +369,12 @@ Region Proposasl Network
 DL 的重要方法：RCNN，Fast-RCNN，Faster-RCNN：
 
 
-# 
+#
 
 
 
 
-# 
+#
 
 
 
@@ -417,13 +410,13 @@ R是region的意思。为什么要warped一下？因为当时大家的网络最�
 
 
 
- 	
+
   * Instead of 1000 ImageNet classes, want 20 object classes + background （21是因为有个background）
 
- 	
+
   * Throw away final fully-connected layer, reinitialize from scratch
 
- 	
+
   * Keep training model using positive / negative regions from detection images
 
 
@@ -441,13 +434,13 @@ R是region的意思。为什么要warped一下？因为当时大家的网络最�
 
 
 
- 	
+
   * Extract region proposals for all images
 
- 	
+
   * For each region: warp to CNN input size, run forward through CNN, (save pool5 features to disk) **什么是 pool5 features ？ 为什么要存起来？**
 
- 	
+
   * Have a big hard drive: features are ~200GB for PASCAL dataset! **为什么会要这么多的存储空间？**
 
 
@@ -493,10 +486,10 @@ RCNN results：
 
 
 
- 	
+
   * 如果加了bbox reg 会有提高
 
- 	
+
   * 网络越深，效果越好 。（当然，库也要大，至少10万张图）
 
 
@@ -508,13 +501,13 @@ RCNN results：
 
 
 
- 	
+
   1. Slow at test-time: need to run full forward pass of CNN for each region proposal;
 
- 	
+
   2. SVMs and regressors are post-hoc: CNN features not updated in response to SVMs and regressors; **post-hoc 是什么？即不是end-to-end的，不是嵌在深度学习这个框架里面的，而是后面单独弄的一个。**
 
- 	
+
   3. Complex multistage training pipeline.
 
 
@@ -620,12 +613,12 @@ https://github.com/ShaoqingRen/caffe/blob/062f2431162165c658a42d717baf8b74918aa1
 其实是预测差值。x - x_a (given box), x 是新的位置，t_x是偏移量。**没明白？没有讲的很细。**
 
 
-# 
+#
 
 
 
 
-# 
+#
 
 
 
@@ -659,22 +652,22 @@ rpn只有两类 前景和后景？ **什么？**
 
 
 
- 	
+
   1. 对于一张图，scale到某一尺度上(from 500 -> 800)
 
- 	
+
   2. 计算anchor 大小，生成output map:
 
- 	
+
     * 600 x 800 -> 35 x 24 x 15 (anchors) ~ 2w anchors  其中 35是600除以16，15是自己定义的， 2W个框经过NMS就2000个了。**什么是NMS？**
 
 
 
 
- 	
+
   3. 计算bbox_regression_target, 准备input_blob
 
- 	
+
   4. Forward, backward, 更新网络参数。
 
 
@@ -698,13 +691,13 @@ rpn只有两类 前景和后景？ **什么？**
 
 
 
- 	
+
   1. 对于一张图，scale到某一尺度上(from 500 -> 800)
 
- 	
+
   2. Forward一遍，得出每个点的score, bbox_regressiontarget, 计算box大小，scale back to original image.
 
- 	
+
   3. NMS等后续过程，凝练出top_k个置信度很高的box, 计算recall, 得出结论。
 
 
@@ -744,28 +737,28 @@ rpn只有两类 前景和后景？ **什么？**
 
 
 
- 	
+
   * Fast-RCNN
 
- 	
+
     * Counterparts (Grid-based CNN,RCNN minus R,etc.)
 
 
 
 
- 	
+
   * YOLO: Unified real-time object detection (cvpr'16)
 
- 	
+
   * SSD:Single-shot multi-box detector(eccv'16)
 
- 	
+
   * Inside-Outside Net (cvpr'16)
 
- 	
+
   * Adaptive Object Detection using Adjacency-Zoom Prediction
 
- 	
+
   * Region-based FCN (NIPS'16)
 
 
@@ -778,16 +771,16 @@ Region-based Fully Convolutional Networks
 
 
 
- 	
+
   * Motivation:previous methods require a costly pre-region subnet to compute the losses/class score.
 
- 	
+
   * Now:a position-sensitive score map mechanism
 
- 	
+
     * Fully convolutional with all computations shared on the entire image.
 
- 	
+
     * Solves the dilemma that detection is transition variance while classification is not .
 
 
@@ -853,13 +846,13 @@ Figure 2: a negative box of person class
 
 
 
- 	
+
   * RCNN是从一开始就把2000个框全部分开了，就是2000个框都是不同的feature。
 
- 	
+
   * Fast-RCNN 包括 Faster-RCNN 是拦腰截断，从image的输入到中间这块，只有一张图，forward一次，然后通过ROI把2000个框分开了。
 
- 	
+
   * RFCN 它在最后一层分开。在FastScale上效果还比较好，但是在ImageNet上效果比Fast-RCNN还差一些。
 
 
@@ -903,16 +896,16 @@ Figure 2: a negative box of person class
 
 
 
- 	
+
   * 使用模块进行网络设计
 
- 	
+
   * 先降采样，再升采样的全卷积结构
 
- 	
+
   * 跳级结构辅助升采样
 
- 	
+
   * 中继监督训练
 
 
@@ -939,16 +932,16 @@ https://blog.csdn.net/shenxiaolu1984/article/details/51428392
 
 
 
- 	
+
   * 跑通整个detection 的流程
 
- 	
+
   * 熟悉每个步骤的代码，例如：
 
- 	
+
     * function [input_blobs, random_scale_inds] = proposal_generate_minibatch(conf, image_roidb)
 
- 	
+
     * function [image_roidb, bbox_means, bbox_stds] = proposal_prepare_image_roidb(conf, imdbs,roidbs)
 
 
@@ -962,38 +955,38 @@ https://blog.csdn.net/shenxiaolu1984/article/details/51428392
 **没有做，自己做过之后补充进来。**
 
 
-# 
+#
 
 
 一些参考资料
 
 
 
- 	
+
   1. Fast-RCNN
 
- 	
+
     * (Caffe+ MATLAB): https://github.com/rbgirshick/fast-rcnn
 
 
 
 
- 	
+
   2. Faster-RCNN
 
- 	
+
     * (Caffe+ MATLAB): https://github.com/ShaoqingRen/faster_rcnn
 
- 	
+
     * (Caffe+ Python): https://github.com/rbgirshick/py-faster-rcnn
 
 
 
 
- 	
+
   3. YOLO   http://pjreddie.com/darknet/yolo/
 
- 	
+
   4. LocNet, AttractioNet (CVPR’16)   https://github.com/gidariss/LocNet
 
 
@@ -1006,7 +999,7 @@ https://blog.csdn.net/shenxiaolu1984/article/details/51428392
 **这个Neural Style还是要自己试过之后，将代码和生成的图片都补充进来。**
 
 
-# 
+#
 
 
 **视频讲的很多地方没有很明白，再听一遍。**

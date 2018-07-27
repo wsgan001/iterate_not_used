@@ -5,7 +5,7 @@ date: 2018-05-12 12:13:26+00:00
 layout: post
 link: http://106.15.37.116/2018/05/12/line-regression-sample1/
 slug: line-regression-sample1
-title: 
+title:
 wordpress_id: 5593
 categories:
 - 随想与反思
@@ -41,7 +41,7 @@ categories:
 
   * **lwlr的东西要不要拆出来单独？因为岭回归和前向逐步回归都拆出来了**
 
-  * 
+  *
 
 
 
@@ -80,7 +80,7 @@ categories:
 数据格式为：
 
 
-    x0          x1          y 
+    x0          x1          y
     1.000000    0.067732    3.176513
     1.000000    0.427810    3.816464
     1.000000    0.995731    4.550095
@@ -98,7 +98,7 @@ categories:
     import matplotlib.pylab as plt
 
 
-​    
+​
     # 加载数据集
     def load_data_set(file_name):
         feature_num = len(open(file_name).readline().split('\t')) - 1
@@ -119,7 +119,7 @@ categories:
         return data_mat, label_mat
 
 
-​    
+​
     # 标准线性回归
     def standard_lr(data_mat, label_mat):
         data_square = data_mat.T * data_mat
@@ -135,7 +135,7 @@ categories:
         return label_pred_mat, weights
 
 
-​    
+​
     def plot_standard_lr(data_mat, label_mat, label_pred):
         fig = plt.figure()
         # add_subplot(349)函数的参数的意思是，将画布分成3行4列图像画在从左到右从上到下第9块
@@ -144,12 +144,12 @@ categories:
         ax.scatter([data_mat[:, 1].flatten()], [label_mat[:, 0].flatten().A[0]])
         # data_copy = data_mat.copy()
         # data_copy.sort(0)
-    
+
         ax.plot(data_mat[:, 1], label_pred)
         plt.show()
 
 
-​    
+​
     # 还是不是很明白，要配合理论看一下
     # 局部加权线性回归，在待预测点附近的每个点赋予一定的权重，在子集上基于最小均方差来进行普通的回归。
     # 关于赋予权重矩阵的核的一个参数，与权重的衰减速率有关
@@ -176,7 +176,7 @@ categories:
         return label_pred
 
 
-​    
+​
     # k：控制核函数的衰减速率 要怎么确定？
     # 测试局部加权线性回归，对数据集中每个点调用 lwlr() 函数
     def lwlr(data_mat, label_mat, k=1.0):
@@ -187,7 +187,7 @@ categories:
         return label_pred_mat
 
 
-​    
+​
     # 将lwlr的预测结果画出来
     def plot_lwlr(data_mat, label_mat, label_pred_mat):
         data_sorted_index_mat = data_mat[:, 1].argsort(0)  # argsort()函数是将data_mat中第二列元素从小到大排列，返回行号
@@ -205,20 +205,20 @@ categories:
         plt.show()
 
 
-​    
+​
     if __name__ == "__main__":
         # 加载数据
         data_mat, label_mat = load_data_set("line_data.txt")
         # 标准的线性回归
         label_pred_mat, weights = standard_lr(data_mat, label_mat)  # 计算出权重
         plot_standard_lr(data_mat, label_mat, label_pred_mat)  # 画出图像
-    
+
         # 局部加权线性回归 Locally Weighted Linear Regression，LWLR
         label_pred_mat_1 = lwlr(data_mat, label_mat, 1)
         label_pred_mat_001 = lwlr(data_mat, label_mat, 0.01)
         label_pred_mat_0003 = lwlr(data_mat, label_mat, 0.003)
         label_pred_mat_list=[label_pred_mat_1, label_pred_mat_001, label_pred_mat_0003]
-    
+
         plot_lwlr(data_mat, label_mat, label_pred_mat_list)
 
 
@@ -227,14 +227,12 @@ categories:
 standard_regression 结果的图像：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af6dd5197da4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/4Cc7L0LkiE.png?imageslim)
 
 lwlr 结果的图像：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af6e5c24ea25.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/AkEAJ11Djh.png?imageslim)
 
 代码中的涉及的问题如下：
 
@@ -290,6 +288,3 @@ lwlr 结果的图像：
 
 
 # COMMENT
-
-
-

@@ -45,8 +45,7 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb18230d369.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/cmBJ4hFJhj.png?imageslim)
 
 
 
@@ -56,23 +55,20 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb182c2f10f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/l7134KcB72.png?imageslim)
 
 为什么呢？我们先看下均值：
 
 均值的无偏性
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb183304639.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/g5K2A59L2l.png?imageslim)
 
 那么方差又是什么原因呢？
 
 方差的无偏性
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb184d258ee.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/3IfHGd4f88.png?imageslim)
 **上面这个没明白怎么推出来的？要自己推一下。**
 
 标准差是有偏的。
@@ -85,7 +81,7 @@ tags:
 # 均方误差准则：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb186409884.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/HjF1mclLD2.png?imageslim)
 
 如果是无偏估计，所谓的均方误差就是估计量的方差
 
@@ -106,8 +102,5 @@ tags:
 
 
 
- 	
+
   1. 七月在线 机器学习
-
-
-

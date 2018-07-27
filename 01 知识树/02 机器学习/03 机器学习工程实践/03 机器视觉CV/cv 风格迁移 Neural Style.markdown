@@ -26,7 +26,7 @@ tags:
 
 
 
- 	
+
   1. 七月在线 深度学习
 
 
@@ -55,18 +55,17 @@ tags:
 
 
 
- 	
+
   * 图像内容的重建   **这个怎么重建？**
 
- 	
+
   * 绘画风格的重建
 
 
 content_image + style_image=> output image
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac24dcfab9e7.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/GHg4ILl86F.png?imageslim)
 
 文章地址：https://arxiv.org/abs/1508.06576
 
@@ -124,19 +123,19 @@ content_image + style_image=> output image
 
 
 
- 	
+
   * a:conv1-1
 
- 	
+
   * b:conv1-1 and conv2-1
 
- 	
+
   * c:conv1-1,conv2-1 and conv3-1
 
- 	
+
   * d:conv1-1,conv2-1,conv3-1 and conv4-1
 
- 	
+
   * e:conv1-1 conv2-1,conv3-1,conv4-1 and conv5-1
 
 
@@ -148,7 +147,7 @@ content_image + style_image=> output image
 
 
 
- 	
+
   * 内容重建损失函数：
 
 
@@ -166,7 +165,7 @@ P is the feature representation from the original image.
 
 
 
- 	
+
   * 风格重建损失函数：
 
 
@@ -180,7 +179,7 @@ We define feature correlations by Gram matrix G,where G is the inner product bet
 
 \[G_{ij}^l=\sum_{k}^{ }F_{ik}^{l}F_{jk}^l\]
 
- 	
+
   * 最终损失函数：
 
 
@@ -204,10 +203,10 @@ To generate the images that mix the content of a photograph withe the style of a
 
 
 
- 	
+
   * 从上到下表示的时不同conv层的feature进行style，conv1->conv5是一个从整体到局部的过程。
 
- 	
+
   * 从左导游表示的时不同的\(\alpha /\beta \)的比例，\(10^{-5}->10^{-2}\)是指更注重style还是更强调content。**厉害**
 
 
@@ -235,9 +234,3 @@ To generate the images that mix the content of a photograph withe the style of a
 
 Neural Style
 (Caffe + Python)https://github.com/fzliu/style-transfer
-
-
-
-
-
-

@@ -36,10 +36,10 @@ tags:
 
 
 
- 	
+
   * 离散值：\(E(x)=\sum_{i} x_ip_i\)
 
- 	
+
   * 连续型：\(E(X)=\int_{-\infty}^{\infty}xf(x)dx\)
 
 
@@ -53,10 +53,10 @@ tags:
 
 
 
- 	
+
   * \(E(kX)=kE(x)\)
 
- 	
+
   * \(E(X+Y)=E(x)+E(Y)\) 注意，这个是无条件成立的，没有独立或者不相关的要求。
 
 
@@ -64,7 +64,7 @@ tags:
 
 
 
- 	
+
   * \(E(XY)=E(X)E(Y)\) **一直没明白XY的乘积是什么？是对应点进行乘积吗？乘积的期望是什么？**
 
 
@@ -95,8 +95,7 @@ tags:
 **取到的1的个数是k，那么总个数不用管吗？为什么这个地方是这样的？ 求和是对谁求和？\(2^m\)是什么？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba1cac2c489.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/IC3KB2ALeA.png?imageslim)
 
 **这里使用E(x+y)=E(x)+E(y) 来将累加和提取到外面**
 
@@ -105,8 +104,7 @@ tags:
 模拟如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac617fa585d3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/caEe1f4Fid.png?imageslim)
 
 
 
@@ -116,8 +114,7 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba1d95d5abd.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/GfC41FdL9d.png?imageslim)
 
 
 
@@ -132,8 +129,7 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba1db6a01f4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/i6HI53BhKm.png?imageslim)
 
 
 
@@ -155,13 +151,13 @@ X和Y独立时\( E(XY)=E(X)E(Y)\)，而 \(Cov(X,Y)=E(XY)-E(X)E(Y)\)，因此，�
 
 
 
- 	
+
   * 若Cov(X,Y)>0，它们的变化趋势相同
 
- 	
+
   * 若Cov(X,Y)<0，它们的变化趋势相反
 
- 	
+
   * 若Cov(X,Y)=0，称X和Y不相关。
 
 
@@ -174,10 +170,10 @@ X和Y独立时\( E(XY)=E(X)E(Y)\)，而 \(Cov(X,Y)=E(XY)-E(X)E(Y)\)，因此，�
 
 
 
- 	
+
   * \(若\,Var(X)=\sigma_1^2\; Var(Y)=\sigma_2^2\)
 
- 	
+
   * \(则\,\mid Cov(X,Y)\mid \leq \sigma_1\sigma_2\)
 
 
@@ -232,7 +228,5 @@ X和Y独立时\( E(XY)=E(X)E(Y)\)，而 \(Cov(X,Y)=E(XY)-E(X)E(Y)\)，因此，�
 
 
 
- 	
+
   1. 七月在线 机器学习
-
-

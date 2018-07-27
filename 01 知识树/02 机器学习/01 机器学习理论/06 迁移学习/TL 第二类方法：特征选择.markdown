@@ -26,7 +26,7 @@ tags:
 
 
 
- 	
+
   1. [迁移学习简明手册](https://github.com/jindongwang/transferlearning-tutorial)  [王晋东](https://zhuanlan.zhihu.com/p/35352154)
 
 
@@ -38,7 +38,7 @@ tags:
 
 
 
- 	
+
   * **没明白，需要好好总结下。**
 
 
@@ -57,7 +57,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -76,8 +76,7 @@ tags:
 特征选择法示意图：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02b598a8634.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/d46C25mmi5.png?imageslim)
 
 
 
@@ -90,8 +89,7 @@ tags:
 特征选择法中的Pivot feature示意图：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02b5d079114.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/HEGH3lddhJ.png?imageslim)
 
 上图展示了Pivot feature的含义。Pivot feature指的是在文本分类中，在不同领域中出现频次较高的那些词。
 
@@ -103,13 +101,13 @@ SCL方法是特征选择方面的经典研究工作。基于SCL，也出现了�
 
 
 
- 	
+
   * Joint feature selection and subspace learning~\cite{gu2011joint}：特征选择+子空间学习
 
- 	
+
   * TJM (Transfer Joint Matching)~\cite{long2014transfer}: 在优化目标中同时进行边缘分布自适应和源域样本选择
 
- 	
+
   *  FSSL (Feature Selection and Structure Preservation)~\cite{li2016joint}: 特征选择+信息不变性
 
 
@@ -122,13 +120,13 @@ SCL方法是特征选择方面的经典研究工作。基于SCL，也出现了�
 
 
 
- 	
+
   * 特征选择法从源域和目标域中选择提取共享的特征，建立统一模型
 
- 	
+
   * 通常与分布自适应方法进行结合
 
- 	
+
   * 通常采用稀疏表示 \(||\mathbf{A}||_{2,1}\) 实现特征选择
 
 
@@ -159,6 +157,3 @@ SCL方法是特征选择方面的经典研究工作。基于SCL，也出现了�
 
 
 # COMMENT
-
-
-

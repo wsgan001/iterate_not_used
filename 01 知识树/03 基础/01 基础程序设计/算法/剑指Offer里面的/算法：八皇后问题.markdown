@@ -25,8 +25,7 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac4f3006fb1f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/295h2d7fGL.png?imageslim)
 
 分析：显然任意一行有且仅有1个皇后，使用数组
 queen[0…7]表示第i行的皇后位于哪一列。
@@ -47,13 +46,11 @@ queen[0…7]表示第i行的皇后位于哪一列。
  上述数据结构与剪枝过程适用于N皇后问题。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac4f4a01b864.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/6fiKFA8GFh.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac4f4cb7e866.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/0570GHLi89.png?imageslim)
 
 
 
@@ -69,8 +66,5 @@ queen[0…7]表示第i行的皇后位于哪一列。
 
 
 
- 	
+
   1. 七月在线 算法
-
-
-

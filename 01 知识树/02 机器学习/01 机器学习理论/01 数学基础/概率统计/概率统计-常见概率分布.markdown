@@ -25,10 +25,10 @@ tags:
 
 
 
- 	
+
   * 七月在线 机器学习
 
- 	
+
   * 《机器学习》周志华
 
 
@@ -40,10 +40,10 @@ tags:
 
 
 
- 	
+
   * **讲《机器学习》中的附录的概率分布总结进来**
 
- 	
+
   * **并且将原来的图片都替换为文字**
 
 
@@ -55,7 +55,7 @@ tags:
 
 
 
- 	
+
   * 因为总是涉及到二项分布，而且后面如果学各种似然估计的话，这个分布是必须的。
 
 
@@ -85,8 +85,7 @@ tags:
 一个硬币投掷1次
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba1132ef829.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/FD1A7jBjAa.png?imageslim)
 
 
 
@@ -99,19 +98,16 @@ tags:
 一个硬币投掷n次
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba1142bea61.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Hkli1mD7ab.png?imageslim)
 
 也可以用二项展开式去做：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba116e622a8.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/HJIE70HCE1.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba117ad5cc4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Ag1iI4JA9H.png?imageslim)
 
 **上面这两种方法都要清楚，没有仔细看**
 
@@ -121,22 +117,19 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba11942bc8b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/BH18Fb77ce.png?imageslim)
 
 某一项长的就是这个样子。
 
 最后的一个东西就是泊松分布。可见泰勒展开式可以推出泊松分布。也可见，如果我们知道泊松分布，那么可以反推出\(e^x\)的taylor展开式是对的。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba1272752d5.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/beL5EL4AHm.png?imageslim)
 
 离散的情况叫做分布率。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba129921d8a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Kj5eiIE4K0.png?imageslim)
 
 可见，泊松分布的期望和方差都是λ。
 
@@ -148,31 +141,14 @@ tags:
 
 
 
-
-
- 	
-  *  某一服务设施在一定时间内到达的人数
-
- 	
-  *  电话交换机接到呼叫的次数
-
- 	
-  *  汽车站台的候客人数
-
- 	
-  *  机器出现的故障数
-
- 	
-  *  自然灾害发生的次数
-
- 	
-  *  一块产品上的缺陷数
-
- 	
-  *  显微镜下单位分区内的细菌分布数
-
- 	
-  *  某放射性物质单位时间发射出的粒子数
+* 某一服务设施在一定时间内到达的人数
+* 电话交换机接到呼叫的次数
+* 汽车站台的候客人数
+* 机器出现的故障数
+* 自然灾害发生的次数
+* 一块产品上的缺陷数
+* 显微镜下单位分区内的细菌分布数
+* 某放射性物质单位时间发射出的粒子数
 
 
 刚才的二项分布里面，如果n比较大，p比较小的时候，n*p是等于\(\lambda\)的，可以近似成泊松分布。
@@ -191,8 +167,7 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba14d085e28.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/KiECF2d3CK.png?imageslim)
 
 
 
@@ -203,20 +178,17 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba14f6a00a2.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/7HD6K009h5.png?imageslim)
 
 指数分布怎么去理解？事件间隔就是指数分布，这样的话，就与泊松分布的例子感觉比较像，**泊松分布与指数分布到底有什么关系？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba151091d51.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/baaaaaimmF.png?imageslim)
 
 等车是服从指数分布的，平均下来是等20分钟车就来了，但是今天我等10分钟，车没来，那么我在等20分钟等到车的概率跟之前是一样的。所以是无记忆性的。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba151daef77.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/A8ihJlFhdD.png?imageslim)
 
 
 
@@ -231,18 +203,15 @@ tags:
 **这一段还是没有很理解。**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba152a0b29b.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/fK9Ij4IDBh.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba15363dd73.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/58HjcGf7EK.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba1560dd7f6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/AgdF1h8kmI.png?imageslim)
 
 
 
@@ -255,8 +224,7 @@ tags:
 均值做一个旋转，得到下面两个
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba157153929.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/L2mle6097l.png?imageslim)
 
 
 
@@ -296,8 +264,7 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba15be2e92d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/CLekHHcla0.png?imageslim)
 
 
 
@@ -313,8 +280,7 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba1621d60ad.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/2jJ268CFA4.png?imageslim)
 
 
 
@@ -324,8 +290,7 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba1640c9360.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Lhb4Gf42Gc.png?imageslim)
 
 
 
@@ -336,8 +301,7 @@ tags:
 \(\Phi\)比如是投一次硬币，朝上的概率，y是投掷的次数，
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba1657e7e12.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/mFL5f0B0HE.png?imageslim)
 
 
 
@@ -357,8 +321,7 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba1693a7f81.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Hj4hm4G8jk.png?imageslim)
 
 对它求导数，是下面这个样子：
 
@@ -372,8 +335,7 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba171630b23.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/CcE07JCG73.png?imageslim)
 
 
 
@@ -423,18 +385,18 @@ Gamma分布的期望为：
 
 伪代码如下：
 
-    
-    int rand10()
-    {
-        int a1,a2,r;
-        do{
-            a1=rand7()-1;
-            a2=rand7()-1;
-            r=a1*7+a2;
-        }while (r>=40)
-        return r/4+1
-    }
-
+```
+int rand10()
+{
+    int a1,a2,r;
+    do{
+        a1=rand7()-1;
+        a2=rand7()-1;
+        r=a1*7+a2;
+    }while (r>=40)
+    return r/4+1
+}
+```
 
 如果是rand7()+rand7()+...+rand7()这样7个加起来的话来代替a1*7，这样是不对的，因为任何的分布这样加起来在求平均，最后会退化为高斯分布。**为什么会退化为高斯分布？什么是高斯分布？上面讲的分布里面好像没有高斯分布？**
 

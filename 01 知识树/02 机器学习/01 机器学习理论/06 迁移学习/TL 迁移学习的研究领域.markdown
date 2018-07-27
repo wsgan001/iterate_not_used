@@ -26,7 +26,7 @@ tags:
 
 
 
- 	
+
   1. [迁移学习简明手册](https://github.com/jindongwang/transferlearning-tutorial)  [王晋东](https://zhuanlan.zhihu.com/p/35352154)
 
 
@@ -38,7 +38,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -57,7 +57,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -74,23 +74,22 @@ tags:
 迁移学习的研究领域与研究方法分类：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b0163ae981b1.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/g0j4hfLL9A.png?imageslim)
 
 大体上讲，迁移学习的分类可以按照四个准则进行：
 
 
 
- 	
+
   * 按目标域有无标签分
 
- 	
+
   * 按学习方法分
 
- 	
+
   * 按特征分
 
- 	
+
   * 按离线与在线形式分
 
 
@@ -106,13 +105,13 @@ tags:
 
 
 
- 	
+
   * 监督迁移学习 (Supervised Transfer Learning)
 
- 	
+
   * 半监督迁移学习 (Semi-Supervised Transfer Learning)
 
- 	
+
   * 无监督迁移学习 (Unsupervised Transfer Learning)
 
 
@@ -126,16 +125,16 @@ tags:
 
 
 
- 	
+
   * 基于实例的迁移学习方法 (Instance based Transfer Learning)
 
- 	
+
   * 基于特征的迁移学习方法 (Feature based Transfer Learning)
 
- 	
+
   * 基于模型的迁移学习方法 (Model based Transfer Learning)
 
- 	
+
   * 基于关系的迁移学习方法 (Relation based Transfer Learning)
 
 
@@ -181,19 +180,19 @@ tags:
 
 
 
- 	
+
   * 同构迁移学习 (Homogeneous Transfer Learning)
 
- 	
+
   * 异构迁移学习 (Heterogeneous Transfer Learning)
 
 
 这也是一种很直观的方式：
 
- 	
+
   * 如果特征语义和维度都相同，那么就是同构。比如：不同图片的迁移
 
- 	
+
   * 如果特征完全不相同，那么就是异构。比如：图片到文本的迁移
 
 
@@ -209,10 +208,10 @@ tags:
 
 
 
- 	
+
   * 离线迁移学习 (Offline Transfer Learning)
 
- 	
+
   * 在线迁移学习 (Online Transfer Learning)
 
 
@@ -245,6 +244,3 @@ tags:
 
 
 # COMMENT
-
-
-

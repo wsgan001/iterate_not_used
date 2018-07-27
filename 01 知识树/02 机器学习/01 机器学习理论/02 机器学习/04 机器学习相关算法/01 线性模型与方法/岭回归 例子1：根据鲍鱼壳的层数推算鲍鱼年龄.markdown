@@ -1,73 +1,13 @@
----
-author: evo
-comments: true
-date: 2018-05-12 23:41:44+00:00
-layout: post
-link: http://106.15.37.116/2018/05/13/ridge-regression-sample1/
-slug: ridge-regression-sample1
-title: 
-wordpress_id: 5619
-categories:
-- 随想与反思
----
-
-<!-- more -->
-
-[mathjax]
-
-**注：非原创，推荐直接看原文**
 
 
-# ORIGINAL
+TODO
+
+* **代码的原理还需要总结下，然后在这里引用**
 
 
 
 
-
-
-  1. 
-
-
-[第8章 预测数值型数据：回归](http://ml.apachecn.org/mlia/regress/)
-
-
-
-
-
-
-
-# TODO
-
-
-
-
-
-
-  * **代码的原理还需要总结下，然后在这里引用**
-
-
-
-
-# MOTIVE
-
-
-
-
-
-
-  * aaa
-
-
-
-
-
-* * *
-
-
-
-
-
-# 项目要求
+## 项目要求
 
 
 我们有一份来自 UCI 的数据集合的数据，记录了鲍鱼（一种介壳类水生动物）的年龄。鲍鱼年龄可以从鲍鱼壳的层数推算得到。
@@ -102,96 +42,95 @@ categories:
 
 
 
-
-    import numpy as np
-    import matplotlib.pylab as plt
-    from time import sleep
-    import bs4
-    from bs4 import BeautifulSoup
-    import json
-    import urllib.request  # 在Python3中将urllib2和urllib3合并为一个标准库urllib,其中的urllib2.urlopen更改为urllib.request.urlopen
-
-
-​    
-    # 加载数据集
-    def load_data_set(file_name):
-        feature_num = len(open(file_name).readline().split('\t')) - 1
-        data_arr = []
-        label_arr = []
-        fr = open(file_name)
-        for line in fr.readlines():
-            line_arr = []
-            cur_line = line.strip().split('\t')
-            # 特征值
-            for i in range(feature_num):
-                line_arr.append(float(cur_line[i]))
-            data_arr.append(line_arr)
-            # 标签
-            label_arr.append(float(cur_line[-1]))
-        data_mat = np.mat(data_arr)
-        label_mat = np.mat(label_arr).T
-        return data_mat, label_mat
+```python
+import numpy as np
+import matplotlib.pylab as plt
+from time import sleep
+import bs4
+from bs4 import BeautifulSoup
+import json
+import urllib.request  # 在Python3中将urllib2和urllib3合并为一个标准库urllib,其中的urllib2.urlopen更改为urllib.request.urlopen
 
 
-​    
-    # 给定 lambda 下的岭回归求解。
-    # lam 引入的一个λ值，使得矩阵非奇异
-    def ridge_regression(data_mat_m, label_mat_m, lam=0.2):
-        column_num = np.shape(data_mat_m)[1]
-        data_square = data_mat_m.T * data_mat_m
-        # 岭回归就是在矩阵 xTx 上加一个 λI 从而使得矩阵非奇异，进而能对 xTx + λI 求逆
-        denom = data_square + np.eye(column_num) * lam
-        # 检查行列式是否为零，即矩阵是否可逆，行列式为0的话就不可逆，不为0的话就是可逆。
-        if np.linalg.det(denom) == 0.0:
-            print("This matrix is singular, cannot do inverse")
-            return
-        weight = denom.I * (data_mat_m.T * label_mat_m)
-        return weight
+​
+# 加载数据集
+def load_data_set(file_name):
+    feature_num = len(open(file_name).readline().split('\t')) - 1
+    data_arr = []
+    label_arr = []
+    fr = open(file_name)
+    for line in fr.readlines():
+        line_arr = []
+        cur_line = line.strip().split('\t')
+        # 特征值
+        for i in range(feature_num):
+            line_arr.append(float(cur_line[i]))
+        data_arr.append(line_arr)
+        # 标签
+        label_arr.append(float(cur_line[-1]))
+    data_mat = np.mat(data_arr)
+    label_mat = np.mat(label_arr).T
+    return data_mat, label_mat
 
 
-​    
-    # 用于在一组 λ 上测试结果
-    def try_ridge(data_mat_m, label_mat_m):
-        label_mean = np.mean(label_mat_m, 0)
-        label_mat_m = label_mat_m - label_mean  # Y的所有的特征减去均值
-    
-        data_mean = np.mean(data_mat_m, 0)  # xMat 平均值
-        data_var = np.var(data_mat_m, 0)  # X的方差
-        data_mat_m = (data_mat_m - data_mean) / data_var
-    
-        # 可以在 30 个不同的 lambda 下调用 ridgeRegres() 函数。
-        num_test_pts = 30  # 为什么用这个名字？
-        column_num = np.shape(data_mat_m)[1]
-        weight_mat = np.zeros((num_test_pts, column_num))  # 30 * column_num
-        for i in range(num_test_pts):
-            lam = np.exp(i - 10)  # 为什么是这么计算的？
-            weight = ridge_regression(data_mat_m, label_mat_m, lam)
-            weight_mat[i, :] = weight.T
-        # 返回所有的回归系数
-        return weight_mat
+​
+# 给定 lambda 下的岭回归求解。
+# lam 引入的一个λ值，使得矩阵非奇异
+def ridge_regression(data_mat_m, label_mat_m, lam=0.2):
+    column_num = np.shape(data_mat_m)[1]
+    data_square = data_mat_m.T * data_mat_m
+    # 岭回归就是在矩阵 xTx 上加一个 λI 从而使得矩阵非奇异，进而能对 xTx + λI 求逆
+    denom = data_square + np.eye(column_num) * lam
+    # 检查行列式是否为零，即矩阵是否可逆，行列式为0的话就不可逆，不为0的话就是可逆。
+    if np.linalg.det(denom) == 0.0:
+        print("This matrix is singular, cannot do inverse")
+        return
+    weight = denom.I * (data_mat_m.T * label_mat_m)
+    return weight
 
 
-​    
-    def plot_weight_mat(weight_mat):
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        print(weight_mat)
-        ax.plot(weight_mat)
-        plt.show()
+​
+# 用于在一组 λ 上测试结果
+def try_ridge(data_mat_m, label_mat_m):
+    label_mean = np.mean(label_mat_m, 0)
+    label_mat_m = label_mat_m - label_mean  # Y的所有的特征减去均值
+
+    data_mean = np.mean(data_mat_m, 0)  # xMat 平均值
+    data_var = np.var(data_mat_m, 0)  # X的方差
+    data_mat_m = (data_mat_m - data_mean) / data_var
+
+    # 可以在 30 个不同的 lambda 下调用 ridgeRegres() 函数。
+    num_test_pts = 30  # 为什么用这个名字？
+    column_num = np.shape(data_mat_m)[1]
+    weight_mat = np.zeros((num_test_pts, column_num))  # 30 * column_num
+    for i in range(num_test_pts):
+        lam = np.exp(i - 10)  # 为什么是这么计算的？
+        weight = ridge_regression(data_mat_m, label_mat_m, lam)
+        weight_mat[i, :] = weight.T
+    # 返回所有的回归系数
+    return weight_mat
 
 
-​    
-    if __name__ == "__main__":
-        data_mat, label_mat = load_data_set("../../../input/8.Regression/abalone.txt")
-        weight_mat = try_ridge(data_mat, label_mat)
-        plot_weight_mat(weight_mat)
+​
+def plot_weight_mat(weight_mat):
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    print(weight_mat)
+    ax.plot(weight_mat)
+    plt.show()
 
+
+​
+if __name__ == "__main__":
+    data_mat, label_mat = load_data_set("../../../input/8.Regression/abalone.txt")
+    weight_mat = try_ridge(data_mat, label_mat)
+    plot_weight_mat(weight_mat)
+```
 
 输出图像如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af77a45d765f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/6lle5J2LLH.png?imageslim)
 
 上图绘制除了回归系数与 log(λ) 的关系。
 
@@ -209,29 +148,7 @@ categories:
 
 
 
-**代码的原理还需要总结下，然后在这里引用**
 
+## REF
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+1. [第8章 预测数值型数据：回归](http://ml.apachecn.org/mlia/regress/)

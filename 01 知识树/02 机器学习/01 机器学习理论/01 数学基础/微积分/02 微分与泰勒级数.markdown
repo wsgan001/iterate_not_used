@@ -5,7 +5,7 @@ date: 2018-03-31 00:24:32+00:00
 layout: post
 link: http://106.15.37.116/2018/03/31/ai-calculus-differential-and-taylor-series/
 slug: ai-calculus-differential-and-taylor-series
-title: 
+title:
 wordpress_id: 2108
 categories:
 - 随想与反思
@@ -93,8 +93,7 @@ tags:
 \[f(x)=x^x\, x>0\)的最小值是什么？这个函数看起来很怪异，但是与信息熵有关系。**有什么关系？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac5d521dfb04.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Cle1h4Fchb.png?imageslim)
 
 对于幂指函数这种取对数进行处理的方法，在极大似然估计中经常会用到。
 
@@ -107,12 +106,12 @@ tags:
 
 
 
-## 
+##
 
 
 
 
-## 
+##
 
 
 
@@ -131,18 +130,17 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abed328b3a7b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/b06m2ILe00.png?imageslim)
 
 所有求导法则原则上都可以由链式法则结合二元函数的偏导数来推出来。**怎么推导出来的？**
 
 
-## 
+##
 
 
 
 
-## 
+##
 
 
 
@@ -163,7 +161,7 @@ tags:
 
 
 
-## 
+##
 
 
 
@@ -181,8 +179,7 @@ tags:
 \[\forall x,y\in dom\, f,0\leq \theta\leq 1,有 f(\theta x+(1-\theta)y)\leq \theta f(x)+(\1-\theta)f(y)\]
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac5d9df1f925.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/KE188c6BBj.png?imageslim)
 
 **注意，这个图形以前可能认为是凹函数，但是现在机器学习领域中统一称为凸函数。这个没有歧义。**
 
@@ -194,7 +191,7 @@ tags:
 
 
 
- 	
+
   * 若\( f''(x)>0\)，则\(f(x)\) 是凸的；
 
   * 若\( f''(x)<0\)，则\(f(x)\) 是凹的
@@ -213,8 +210,7 @@ tags:
 将两个变量的情况变成n个变量的情况
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5ab9e06949f94.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/6fG5GmK5Fb.png?imageslim)
 
 
 
@@ -236,8 +232,7 @@ tags:
 注意到\(y=-logx\)在定义域上是凸函数
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5ab9e10c3acb1.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/akKclg6k0k.png?imageslim)
 
 
 
@@ -252,7 +247,7 @@ tags:
 
 
 
-## 
+##
 
 
 
@@ -304,8 +299,7 @@ Maclaurin公式：在0附近对 f(x) 做多项式逼近：即将上面的\(x_0\)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5ab9dd5c6818a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/FcA9eLJ550.png?imageslim)
 
 
 

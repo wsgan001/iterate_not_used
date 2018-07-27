@@ -44,7 +44,7 @@ OK，我们考虑二分类任务， 其输出标记 $y\in \{0,1\}$ ，而线性�
 那么哪个函数可以近似单位阶跃呢？
 
 
-# Logistic 函数
+## Logistic 函数
 
 
 而Logistic 函数 (logistic function) 正是这样一个常用的替代函数。**厉害了，没想到logistic函数是这么来的。但是，我们只能够知道它的输出是0~1呀，怎么能知道它一定能够描述 f 于 y 之间的关系呢？就比如线性回归那篇的ln，我怎么就能知道ln一定可以满足呢？有点疑问。**
@@ -146,7 +146,7 @@ $$ln\frac{p(y=1|x)}{p(y=0|x)}=w^Tx+b$$
 
 $$\beta ^*=\underset{\beta}{arg\, min}\,\ell (\beta)$$
 
-以牛顿法为例，其第 t+1 轮迭代解的更新公式为
+以牛顿法为例，其第 $t+1$ 轮迭代解的更新公式为
 
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180626/6EmKkJkmCb.png?imageslim)

@@ -17,8 +17,7 @@ TODO
 下图形象地表示了不同数据分布的目标域数据情况：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02ac712d7c0.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/E83EA19elf.png?imageslim)
 
 简单来说
 
@@ -145,8 +144,7 @@ TCA要维持的是什么特征呢？文章中说是variance，但是实际是sca
 从下图中可以很明显地看出，对于概率分布不同的两部分数据，在经过TCA处理后，概率分布更加接近。这说明了TCA在拉近数据分布距离上的优势。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02b0aea583b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/KBeKjD9kDi.png?imageslim)
 
 
 
@@ -204,8 +202,7 @@ STL方法的基本思路如图所示：
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02b1d95e1fb.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/31cif7hi40.png?imageslim)
 
 首先利用大多数投票的思想，对无标定的位置行为生成伪标签；然后在再生核希尔伯特空间中，利用类内相关性进行自适应地空间降维，使得不同情境中的行为数据之间的相关性增大；最后，通过二次标定，实现对未知标定数据的精准标定。**利用类内相关性进行自适应地空间降维 是什么意思？怎么能增大不同情景中的行为数据的？怎么二次标定的？**
 
@@ -394,8 +391,7 @@ DISTANCE(\mathcal{D}_s,\mathcal{D}_t) \approx (1 &- \mu)DISTANCE(P(\mathbf{x}_s)
 下图的结果清晰地显示出，平衡因子可以取得比JDA、TCA更小的MMD距离、更高的精度。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02b3d801620.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/d2aA42I8hc.png?imageslim)
 
 
 
@@ -416,8 +412,7 @@ DISTANCE(\mathcal{D}_s,\mathcal{D}_t) \approx (1 &- \mu)DISTANCE(P(\mathbf{x}_s)
 
 不同分布自适应方法的精度比较：
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02b426dfa2e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/j5FfkhJHDH.png?imageslim)
 
 
 

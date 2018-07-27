@@ -5,7 +5,7 @@ date: 2018-05-08 10:06:33+00:00
 layout: post
 link: http://106.15.37.116/2018/05/08/nb-sample1/
 slug: nb-sample1
-title: 
+title:
 wordpress_id: 5437
 categories:
 - 随想与反思
@@ -25,7 +25,7 @@ categories:
 
 
 
-  1. 
+  1.
 
 
 [第4章 基于概率论的分类方法：朴素贝叶斯](http://ml.apachecn.org/mlia/)
@@ -95,7 +95,7 @@ categories:
     import numpy as np
 
 
-​    
+​
     # 创建数据集
     # 单词列表postingList, 所属类别classVec
     def create_data_set():
@@ -109,7 +109,7 @@ categories:
         return data, label
 
 
-​    
+​
     # 根据样本中的词汇创建词汇表
     def create_vocabulary_list(data_set):
         vocabulary_set = set([])  # create empty set
@@ -118,7 +118,7 @@ categories:
         return list(vocabulary_set)
 
 
-​    
+​
     # 将文本用矢量表示
     def convert_doc_to_vec(vocabulary_list, doc):
         vec = [0] * len(vocabulary_list)
@@ -130,7 +130,7 @@ categories:
         return vec
 
 
-​    
+​
     # 计算出概率值
     def calculate_probility(vec_data, label):
         doc_num = len(vec_data)
@@ -140,7 +140,7 @@ categories:
         vec_1 = np.ones(word_num)
         word_num_0 = 2.0  # 整个数据集单词出现总数   为什么不是0？
         word_num_1 = 2.0
-    
+
         for i in range(doc_num):
             if label[i] == 1:
                 vec_1 += vec_data[i]  # 如果是正样本，对正样本的向量进行加和
@@ -148,13 +148,13 @@ categories:
             else:
                 vec_0 += vec_data[i]
                 word_num_0 += sum(vec_data[i])
-    
+
         p_vec_0 = np.log(vec_0 / word_num_0)
         p_vec_1 = np.log(vec_1 / word_num_1)  # 即在正样本类别下，每个单词出现的概率   为什么使用log()？
         return p_vec_0, p_vec_1, p_1
 
 
-​    
+​
     # 这个地方还有些不清楚？
     def classify_NB(test_vec, p_vec_not_abusive, p_vec_abusive, p_abusive):
         p1 = sum(test_vec * p_vec_abusive) + np.log(p_abusive)  # element-wise mult
@@ -165,7 +165,7 @@ categories:
             return 0
 
 
-​    
+​
     if __name__ == "__main__":
         # 创建数据集
         data, label = create_data_set()  # 数据集
@@ -177,7 +177,7 @@ categories:
             vec_data.append(convert_doc_to_vec(vocabulary_list, doc))
         # 得到侮辱词汇的概率矢量 和非侮辱词汇的概率矢量 和侮辱的文档的概率
         p_vec_not_abusive, p_vec_abusive, p_abusive = calculate_probility(np.array(vec_data), np.array(label))
-    
+
         # OK，使用两组数据进行测试
         test_data = ['love', 'my', 'dalmation']
         test_vec = np.array(convert_doc_to_vec(vocabulary_list, test_data))
@@ -211,8 +211,7 @@ categories:
 下图给出了函数 f(x) 与 ln(f(x)) 的曲线。可以看出，它们在相同区域内同时增加或者减少，并且在相同点上取到极值。它们的取值虽然不同，但不影响最终结果。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af174ffb7db2.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/kh24fdjdfG.png?imageslim)
 
 
 
@@ -255,6 +254,3 @@ categories:
 
 
 # COMMENT
-
-
-

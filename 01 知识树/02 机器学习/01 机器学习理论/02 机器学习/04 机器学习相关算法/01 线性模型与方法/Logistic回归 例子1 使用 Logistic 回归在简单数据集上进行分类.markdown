@@ -1,9 +1,10 @@
 
 # TODO
-  * **alpha的动态设定有什么需要注意的吗？**
-  * **这个例子虽然简单，但是还是要好好理解的。**
-  * **每个weights的变化过程的图要画出来**
-  * **为什么第二个随机梯度下降方法中对于rand_index的变动能够减少周期性波动？**
+
+* **alpha的动态设定有什么需要注意的吗？**
+* **这个例子虽然简单，但是还是要好好理解的。**
+* **每个weights的变化过程的图要画出来**
+* **为什么第二个随机梯度下降方法中对于rand_index的变动能够减少周期性波动？**
 
 
 
@@ -191,8 +192,7 @@
 输出图像如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af316ffbd260.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/AeAckL2EKj.png?imageslim)
 
 上面的代码的一些疑问和总结：
 
@@ -225,8 +225,7 @@
 下图展示了 stoc_gradient_descent0 算法在 200 次迭代过程中回归系数的变化情况。其中的系数2，也就是 X2 很快就稳定了，但系数 1 和 0 则需要更多次的迭代。如下图所示：**这个图哪里来的？随机梯度下降很容易震荡吗？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af3a2ac514be.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/EAeDCBbk6B.png?imageslim)
 
 因此 stoc_gradient_descent1 做出了改进：
 
@@ -236,94 +235,94 @@
 
 OK，这里我们把上面的 weight 的变化的曲线画一下：
 
+```python
+from numpy import *
+import matplotlib
+import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
 
-    from numpy import *
-    import matplotlib
-    import matplotlib.pyplot as plt
-    from matplotlib.patches import Rectangle
-
-    from Ch05 import simple_logistic
-
-
-​
-    def stoc_gradient_descent0(data_mat, label_mat):
-        m, n = shape(data_mat)
-        alpha = 0.5
-        weights = ones(n)  # initialize to all ones
-        weights_history = zeros((500 * m, n))
-        for j in range(500):
-            for i in range(m):
-                h = simple_logistic.sigmoid(sum(data_mat[i] * weights))
-                error = label_mat[i] - h
-                weights = weights + alpha * error * data_mat[i]
-                weights_history[j * m + i, :] = weights
-        return weights_history
+from Ch05 import simple_logistic
 
 
 ​
-    def stoc_gradient_descent1(data_mat, label_mat):
-        m, n = shape(data_mat)
-        alpha = 0.4
-        weights = ones(n)  # initialize to all ones
-        weights_history = zeros((40 * m, n))
-        for j in range(40):
-            dataIndex = list(range(m))
-            for i in range(m):
-                alpha = 4 / (1.0 + j + i) + 0.01
-                randIndex = int(random.uniform(0, len(dataIndex)))
-                h = simple_logistic.sigmoid(sum(data_mat[randIndex] * weights))
-                error = label_mat[randIndex] - h
-                # print error
-                weights = weights + alpha * error * data_mat[randIndex]
-                weights_history[j * m + i, :] = weights
-                del (dataIndex[randIndex])
-        print(weights)
-        return weights_history
+def stoc_gradient_descent0(data_mat, label_mat):
+    m, n = shape(data_mat)
+    alpha = 0.5
+    weights = ones(n)  # initialize to all ones
+    weights_history = zeros((500 * m, n))
+    for j in range(500):
+        for i in range(m):
+            h = simple_logistic.sigmoid(sum(data_mat[i] * weights))
+            error = label_mat[i] - h
+            weights = weights + alpha * error * data_mat[i]
+            weights_history[j * m + i, :] = weights
+    return weights_history
 
 
 ​
-    def plot_graph(data_arr, my_hist):
-        n = shape(data_arr)[0]  # number of points to create
-        xcord1 = []
-        ycord1 = []
-        xcord2 = []
-        ycord2 = []
-        markers = []
-        colors = []
-
-        fig = plt.figure()
-        ax = fig.add_subplot(311)
-        type1 = ax.plot(my_hist[:, 0])
-        plt.ylabel('X0')
-        ax = fig.add_subplot(312)
-        type1 = ax.plot(my_hist[:, 1])
-        plt.ylabel('X1')
-        ax = fig.add_subplot(313)
-        type1 = ax.plot(my_hist[:, 2])
-        plt.xlabel('iteration')
-        plt.ylabel('X2')
-        plt.show()
+def stoc_gradient_descent1(data_mat, label_mat):
+    m, n = shape(data_mat)
+    alpha = 0.4
+    weights = ones(n)  # initialize to all ones
+    weights_history = zeros((40 * m, n))
+    for j in range(40):
+        dataIndex = list(range(m))
+        for i in range(m):
+            alpha = 4 / (1.0 + j + i) + 0.01
+            randIndex = int(random.uniform(0, len(dataIndex)))
+            h = simple_logistic.sigmoid(sum(data_mat[randIndex] * weights))
+            error = label_mat[randIndex] - h
+            # print error
+            weights = weights + alpha * error * data_mat[randIndex]
+            weights_history[j * m + i, :] = weights
+            del (dataIndex[randIndex])
+    print(weights)
+    return weights_history
 
 
 ​
-    if __name__ == "__main__":
-        data_mat, label_mat = simple_logistic.load_data_set("../testSet.txt")
-        data_arr = array(data_mat)
-        my_hist = stoc_gradient_descent1(data_arr, label_mat)
-        plot_graph(data_arr, my_hist)
+def plot_graph(data_arr, my_hist):
+    n = shape(data_arr)[0]  # number of points to create
+    xcord1 = []
+    ycord1 = []
+    xcord2 = []
+    ycord2 = []
+    markers = []
+    colors = []
 
+    fig = plt.figure()
+    ax = fig.add_subplot(311)
+    type1 = ax.plot(my_hist[:, 0])
+    plt.ylabel('X0')
+    ax = fig.add_subplot(312)
+    type1 = ax.plot(my_hist[:, 1])
+    plt.ylabel('X1')
+    ax = fig.add_subplot(313)
+    type1 = ax.plot(my_hist[:, 2])
+    plt.xlabel('iteration')
+    plt.ylabel('X2')
+    plt.show()
+
+
+​
+if __name__ == "__main__":
+    data_mat, label_mat = simple_logistic.load_data_set("../testSet.txt")
+    data_arr = array(data_mat)
+    my_hist = stoc_gradient_descent1(data_arr, label_mat)
+    plot_graph(data_arr, my_hist)
+```
 
 输出：
 
 
-    [ 12.42965515   1.31174961  -1.95749652]
-
+```
+[ 12.42965515   1.31174961  -1.95749652]
+```
 
 图像如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af408d28d3a8.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/0KJcAIf0Fj.png?imageslim)
 
 
 

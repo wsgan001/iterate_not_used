@@ -5,7 +5,7 @@ date: 2018-03-31 07:29:11+00:00
 layout: post
 link: http://106.15.37.116/2018/03/31/ai-probability-statistics-the-law-of-large-numbers-and-the-central-limit-theorem/
 slug: ai-probability-statistics-the-law-of-large-numbers-and-the-central-limit-theorem
-title: 
+title:
 wordpress_id: 2161
 categories:
 - 随想与反思
@@ -108,8 +108,7 @@ X的k阶中心矩为：
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb0c5b17911.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/gECH510Fhe.png?imageslim)
 
 **这个偏度再实际中会用到吗？使用的场景是什么？**
 
@@ -122,8 +121,7 @@ X的k阶中心矩为：
 这个不一定是正态分布才有的。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb0c82a2e94.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/aED5h64CGl.png?imageslim)
 
 减3是因为正态分布的峰度是3，为了使正态分布从0开始，因此强制减去3。不减3一般叫做超值分布。
 
@@ -173,12 +171,11 @@ X 是一个随机变量，对于任何正整数 n，定义：（**为什么有�
 解：以连续型随机变量为例
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb105957044.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/5bCbl3LgED.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb10accb3b2.png) 这个是方差的定义，因此等于σ的平方。
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/g9JI8fek5g.png?imageslim) 这个是方差的定义，因此等于σ的平方。
 
 
 也就是说期望给定，方差给定，则x不会偏离期望太远，而且没有说x是什么分布。
@@ -292,8 +289,7 @@ X 是一个随机变量，对于任何正整数 n，定义：（**为什么有�
 解：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb0f4940577.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/fD08El80Fb.png?imageslim)
 
 
 
@@ -314,7 +310,7 @@ X 是一个随机变量，对于任何正整数 n，定义：（**为什么有�
 
 
 
-# 
+#
 
 
 

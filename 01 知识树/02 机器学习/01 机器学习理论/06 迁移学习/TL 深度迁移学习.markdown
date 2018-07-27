@@ -26,7 +26,7 @@ tags:
 
 
 
- 	
+
   1. [迁移学习简明手册](https://github.com/jindongwang/transferlearning-tutorial)  [王晋东](https://zhuanlan.zhihu.com/p/35352154)
 
 
@@ -38,13 +38,13 @@ tags:
 
 
 
- 	
+
   * **从深度网络自适应开始，基本没看懂，要认真看下。最好结合论文和代码实现一下，实在不行也要看下代码**
 
- 	
+
   * **一些方法比较重要的话，拆出来连带论文和代码一起看下。**
 
- 	
+
   * **深度对抗网络的迁移要不要拆出来？**
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -79,10 +79,10 @@ tags:
 
 
 
- 	
+
   * 自动化地提取更具表现力的特征
 
- 	
+
   * 满足了实际应用中的端到端 (End-to-End) 需求 **嗯，利害，实际中为什么需要端到端的？**
 
 
@@ -93,20 +93,19 @@ tags:
 深度与非深度迁移学习方法的结果对比：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02b9a7e2f1e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Ce7FG3idGE.png?imageslim)
 
 本部分重点介绍深度迁移学习的基本思路：
 
 
 
- 	
+
   * 首先我们回答一个最基本的问题：为什么深度网络是可迁移的？
 
- 	
+
   * 然后，我们介绍最简单的深度网络迁移形式：finetune。
 
- 	
+
   * 接着分别介绍使用深度网络和深度对抗网络进行迁移学习的基本思路和核心方法。
 
 
@@ -128,17 +127,16 @@ tags:
 深度神经网络进行特征提取到分类的简单示例：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02ba272f13c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/jb8m51faDK.png?imageslim)
 
 这表达了一个什么事实呢？概括来说就是：
 
 
 
- 	
+
   * 前面几层都学习到的是通用的特征（general feature）
 
- 	
+
   * 随着网络层次的加深，后面的网络更偏重于学习任务特定的特征（specific feature）
 
 
@@ -152,13 +150,13 @@ tags:
 
 
 
- 	
+
   * 如何得知哪些层能够学习到 general feature ？
 
- 	
+
   * 哪些层能够学习到 specific feature ？
 
- 	
+
   * 更进一步：如果应用于迁移学习，如何决定该迁移哪些层、固定哪些层？
 
 
@@ -178,10 +176,10 @@ tags:
 
 
 
- 	
+
   * AnB：迁移 A 网络的前 \(n\) 层到B，即：（所有实验都是针对数据B来说的）将A网络的前 \(n\) 层拿来并将它frozen，剩下的 \(8-n\) 层随机初始化，然后对B进行分类。
 
- 	
+
   * BnB：固定B网络的前 \(n\) 层，即：把训练好的B网络的前 \(n\) 层拿来并将它frozen，剩下的 \(8-n\) 层随机初始化，然后对B进行分类。
 
 
@@ -193,8 +191,7 @@ tags:
 实验结果如下图所示：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02bb46b9cc5.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/35CIGAfcEH.png?imageslim)
 
 这个图说明了什么呢？
 
@@ -204,19 +201,19 @@ tags:
 
 
 
- 	
+
   * 原训练好的B模型的前3层直接拿来就可以用而不会对模型精度有什么损失。
 
- 	
+
   * 到了第4和第5层，精度略有下降，不过还是可以接受。
 
- 	
+
   * 然而到了第6第第7层，精度居然奇迹般地回升了！这是为什么？原因如下：对于一开始精度下降的第4第5层来说，确实是到了这一步，feature 变得越来越 specific，所以下降了。那对于第6第7层为什么精度又不变了？那是因为，整个网络就8层，我们固定了第6第7层，这个网络还能学什么呢？所以很自然地，精度和原来的B网络几乎一致！**嗯，是的。**
 
 
 对 BnB+ 来说：
 
- 	
+
   * 结果基本上都保持不变。说明 finetune 对模型结果有着很好的促进作用！**是的。**
 
 
@@ -224,27 +221,26 @@ tags:
 
 对AnB来说：
 
- 	
+
   * 直接将A网络的前3层迁移到B，貌似不会有什么影响，再一次说明，网络的前3层学到的几乎都是general feature！
 
- 	
+
   * 往后，到了第4第5层的时候，精度开始下降，我们直接说：一定是feature不general了!
 
- 	
+
   * 然而，到了第6第7层，精度出现了小小的提升后又下降，这又是为什么？作者在这里提出两点：co-adaptation和feature representation。就是说，第4第5层精度下降的时候，主要是由于A和B两个数据集的差异比较大，所以会下降；到了第6第7层，由于网络几乎不迭代了，学习能力太差，此时feature学不到，所以精度下降得更厉害。
 
 
 再看 AnB+ ：
 
- 	
+
   * 加入了finetune以后，AnB+的表现对于所有的 \(n\) 几乎都非常好，甚至比baseB（最初的B）还要好一些！这说明：finetune对于深度迁移有着非常好的促进作用！**震惊了！为什么呢？是因为多样性吗？**
 
 
 把上面的结果合并就得到了下面一张图：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02bc58340f7.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/9BfK8jJ0Hh.png?imageslim)
 
 至此，AnB 和 BnB 基本完成。
 
@@ -253,8 +249,7 @@ tags:
 为了排除这些影响，作者又分了一下数据集，这次使得 A和B里几乎没有相似的类别。在这个条件下再做 AnB，与原来精度比较（0\%为基准）得到了下图：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02bca567549.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/gcCBg65bgI.png?imageslim)
 
 **这个图中的 random splits 指的是什么？m/n split ? random features？**
 
@@ -268,19 +263,19 @@ tags:
 
 
 
- 	
+
   * 神经网络的前3层基本都是 general feature，进行迁移的效果会比较好。 **对于很多层的网络，也是前三层吗？**
 
- 	
+
   * 深度迁移网络中加入fine-tune，效果会提升比较大，可能会比原网络效果还好。 **是的呀，利害。**
 
- 	
+
   * Fine-tune可以比较好地克服数据之间的差异性。  **什么叫克服数据之间的差异性？**
 
- 	
+
   * 深度迁移网络要比随机初始化权重效果好。 ** 嗯，看来很多把利害的模型和参数直接拿过来训练自己的样本的确是有道理的。**
 
- 	
+
   * 网络层数的迁移可以加速网络的学习和优化。  **什么叫网络层数的迁移？**
 
 
@@ -312,16 +307,16 @@ OK，上面我们知道了深度网络是可迁移的，并且，finetune威力�
 
 
 
- 	
+
   * 可能别人训练好的模型，并不是完全适用于我们自己的任务。
 
- 	
+
   * 可能别人的训练数据和我们的数据之间不服从同一个分布；
 
- 	
+
   * 可能别人的网络能做比我们的任务更多的事情；
 
- 	
+
   * 可能别人的网络比较复杂，我们的任务比较简单。
 
 
@@ -332,8 +327,7 @@ OK，上面我们知道了深度网络是可迁移的，并且，finetune威力�
 下图展示了一个简单的finetune过程。从图中我们可以看到，我们采用的预训练好的网络非常复杂，如果直接拿来从头开始训练，则时间成本会非常高昂。因此我们将此网络进行改造，固定前面若干层的参数，只针对我们的任务，微调后面若干层。这样，网络训练速度会极大地加快，而且对提高我们任务的表现也具有很大的促进作用。**但是，根据上面的研究结果，不是 前几层才是抽取 general feature 的吗？只切掉后面一层的话，虽然训练速度很快，但是效果会不会差比较多？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02bf834d178.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/a39jeJEfHm.png?imageslim)
 
 
 
@@ -345,13 +339,13 @@ Finetune 的优势是显然的，包括：
 
 
 
- 	
+
   * 不需要针对新任务从头开始训练网络，节省了时间成本
 
- 	
+
   * 预训练好的模型通常都是在大数据集上进行的，无形中扩充了我们的训练数据，使得模型更鲁棒、泛化能力更好 **是的。**
 
- 	
+
   * Finetune 实现简单，使得我们只关注自己的任务即可。
 
 
@@ -389,7 +383,7 @@ Finetune 并不只是针对深度神经网络有促进作用，对传统的非�
 
 
 
- 	
+
   * 它无法处理训练数据和测试数据分布不同的情况。而这一现象在实际应用中比比皆是。**什么叫训练数据和测试数据的分布不同？**
 
 
@@ -403,10 +397,10 @@ Finetune 并不只是针对深度神经网络有促进作用，对传统的非�
 
 
 
- 	
+
   * 一是哪些层可以自适应，这决定了网络的学习程度。
 
- 	
+
   * 二是采用什么样的自适应方法(度量准则)，这决定了网络的泛化能力。
 
 
@@ -418,13 +412,13 @@ Finetune 并不只是针对深度神经网络有促进作用，对传统的非�
 
 其中：
 
- 	
+
   * \(\ell\) 表示网络的最终损失
 
- 	
+
   * \(\ell_c(\mathcal{D}_s,\mathbf{y}_s)\) 表示网络在有标注的数据(大部分是源域)上的常规分类损失(这与普通的深度网络完全一致)
 
- 	
+
   * \(\ell_A(\mathcal{D}_s,\mathcal{D}_t)\) 表示网络的自适应损失
 
 
@@ -432,13 +426,13 @@ Finetune 并不只是针对深度神经网络有促进作用，对传统的非�
 
 上述的分析指导我们设计深度迁移网络的基本准则：
 
- 	
+
   1. 决定自适应层。
 
- 	
+
   2. 然后在这些层加入自适应度量。
 
- 	
+
   3. 最后对网络进行 finetune 。
 
 
@@ -460,8 +454,7 @@ Finetune 并不只是针对深度神经网络有促进作用，对传统的非�
 下图是DDC方法的示意图：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02c2b1d123b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/iHKh7bd717.png?imageslim)
 
 DDC 固定了 AlexNet 的前7层，在第8层(分类器前一层)上加入了自适应的度量。自适应度量方法采用了被广泛使用的 MMD 准则。DDC 方法的损失函数表示为：
 
@@ -504,8 +497,7 @@ DAN的优化目标也由两部分组成：损失函数和自适应损失。损�
 DAN的网络结构如下图所示：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02c346e31d5.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Fjf3BA7L5j.png?imageslim)
 
 学习策略
 
@@ -557,8 +549,7 @@ Loss由三部分组成：第一部分是普通训练的loss，对应于经验风
 Joint CNN architecture for domain and task transfer 方法示意图：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02c3939a2b3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/8Fe5jcamEj.png?imageslim)
 
 Domain confusion就不用多说，和现有的一些比如DAN和JAN一样，直接对source和target的margina distribution进行估计即可。
 
@@ -568,8 +559,7 @@ Domain confusion就不用多说，和现有的一些比如DAN和JAN一样，直�
 
 Softlabel示意图：
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02c3b494a53.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/2CHk4HGF66.png?imageslim)
 
 ### 4. 深度联合分布自适应
 
@@ -579,8 +569,7 @@ DAN的作者、清华大学的龙明盛在2017年机器学习顶级会议ICML上
 JAN方法示意图：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02c3dbad893.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/56gFIkHd7g.png?imageslim)
 
 
 
@@ -593,8 +582,7 @@ JAN方法示意图：
 AdaBN方法示意图：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02c3fecfbf6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/D2AGDAJ0Bd.png?imageslim)
 
 AdaBN对比其他方法，实现相当简单。并且，方法本身不带有任何额外的参数。在许多公开数据集上都取得了很好的效果。
 
@@ -669,21 +657,20 @@ Yaroslav Ganin等人~\cite{ganin2016domain}首先在神经网络的训练中加�
 
 
 
- 	
+
   * \(\ell_{recon}\) : 重构损失，确保私有部分仍然对学习目标有作用
 
- 	
+
   * \(\ell_{difference}\) : 公共部分与私有部分的差异损失
 
- 	
+
   * \(\ell_{similarity}\) : 源域和目标域公共部分的相似性损失
 
 
 下图是DSN方法的示意图：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02c4f3ebf44.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/ejcgk2Lf68.png?imageslim)
 
 DDC方法的作者、加州大学伯克利分校的Tzeng等人在2017年发表于计算机视觉顶级会议CVPR上的文章提出了ADDA方法(Adversarial Discriminative Domain Adaptation)~\cite{tzeng2017adversarial}。ADDA是一个通用的框架，现有的很多方法都可被看作是ADDA的特例。上海交通大学的研究者们用Wasserstein GAN进行迁移学习~\cite{shen2018w}，Liu等人提出了Coupled GAN用于迁移学习~\cite{liu2016coupled}。这些工作都大体上按照之前思路进行。
 
@@ -698,8 +685,7 @@ DDC方法的作者、加州大学伯克利分校的Tzeng等人在2017年发表�
 下图展示了部分迁移学习的思想：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b02c524521d3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/3bA35k83F1.png?imageslim)
 
 作者提出了一个叫做 Selective Adversarial Networks (SAN)~\cite{cao2017partial} 的方法来处理partial transfer问题。在partial问题中，传统的对抗网络不再适用。所以就需要对进行一些修改，使得它能够适用于partial问题。
 
@@ -737,6 +723,3 @@ E=\frac{1}{n_t} \sum_{\mathbf{x}_i \in \mathcal{D}_t} H(G_y(G_f(\mathbf{x}_i)))
 
 
 # COMMENT
-
-
-

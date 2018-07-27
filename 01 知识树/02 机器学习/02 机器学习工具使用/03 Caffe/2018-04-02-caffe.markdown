@@ -23,7 +23,7 @@ tags:
 
 
 
- 	
+
   1. 七月在线 深度学习
 
 
@@ -36,13 +36,13 @@ tags:
 对caffe的使用进行总结：
 
 
-# 
+#
 
 
 
 
 
-## 
+##
 
 
 
@@ -53,16 +53,16 @@ tags:
 
 
 
- 	
+
   1. Resize 图片 ， 转换存储格式(LMDB/LevelDB)
 
- 	
+
   2. 定义网络结构（编辑prototxt ）比如说多少层，每层什么样的参数
 
- 	
+
   3. 定义solver （编辑另一个prototxt ） 定义一些优化的方法
 
- 	
+
   4. 一行命令开始训练（可以基于已有的权重赋值）
 
 
@@ -71,10 +71,7 @@ tags:
 # 大体流程如下：
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ecf3adeb6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/5hHjdB0ckJ.png?imageslim)
 
 数据集图片会转存到数据库种，因为我们会频繁的读写这部分数据。它的backend是支持levelDB和LMDB的，然后在这个数据库种进行平凡的读写。**Lrn是什么？levelDB和LMDB是什么？非常想知道代码里面都是怎么实现数据库与计算之间的并行的。不同的thread之间是怎么交互的这里？**
 
@@ -84,8 +81,7 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ed01f04bf.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/HjG5f77HLc.png?imageslim)
 
 
 
@@ -95,32 +91,27 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ed0a01c74.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/BbDlaHEfIL.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ed1a49dff.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/k2e0LDd4CJ.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ed25df360.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/FDl4641c06.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ed3162c59.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/BCLfje9gFH.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ed35bec1c.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/H5DgHJLfC8.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ed39e3502.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/l8eLhd7jK4.png?imageslim)
 
 
 
@@ -137,34 +128,27 @@ tags:
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ed3f049ff.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/gBAbCibhgk.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ed4470b4a.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/HI2j69I1D7.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ed49ddf1d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/I16bBCF01k.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ed4fa831b.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/0FLI74FGE1.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ed54f0522.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/8F2gfLLiJd.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ed5ea524b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/jlk7k6KD24.png?imageslim)
 
 
 
@@ -174,24 +158,20 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ed6eb53d9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/J6JDC6lFKH.png?imageslim)
 
 第4步：训练
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ed8f3226a.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/mim1AjlfE0.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ed975188b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/d435D987im.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ed9ca901e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/GalmgDEcjc.png?imageslim)
 
 
 
@@ -202,8 +182,7 @@ tags:
 AlexNet 、VGG 、GoogLeNet 、ResNet
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1edaf8702a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/J2jAC5KLJd.png?imageslim)
 
 
 
@@ -218,13 +197,10 @@ AlexNet 、VGG 、GoogLeNet 、ResNet
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1edbd87f4f.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/2AhmD2lm4j.png?imageslim)
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1edcc6f33e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/F1I1jkEGjG.png?imageslim)
 
 
 
@@ -234,8 +210,7 @@ AlexNet 、VGG 、GoogLeNet 、ResNet
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1edf197d7e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/fgcGLlD8e9.png?imageslim)
 
 
 
@@ -247,25 +222,25 @@ AlexNet 、VGG 、GoogLeNet 、ResNet
 
 
 
- 	
+
   *  每一层都有控制学习率的参数: blobs_lr
 
- 	
+
   * 一般会把前面层学习率调低，最后新加层调高
 
- 	
+
   * 你甚至可以freeze前面的层次不动
 
- 	
+
   * 一般fine-tuning的前期loss下降非常快，中间有个瓶颈期，要有耐心
 
 
 在solver处调整学习率：
 
- 	
+
   * 调低solver处的学习率（1/10， 1/100）
 
- 	
+
   * 记住存储一下中间结果，以免出现意外
 
 
@@ -282,19 +257,19 @@ AlexNet 、VGG 、GoogLeNet 、ResNet
 
 
 
- 	
+
   * caffe.net是加载/运行/训练模型的主类(接口)
 
- 	
+
   *  caffe.Classifier和caffe.Detector是针对识别/检测的接口
 
- 	
+
   * caffe.SGDSolver最优化
 
- 	
+
   * caffe.io负责输入输出和预处理
 
- 	
+
   * caffe.draw可以画出网络结构图
 
 
@@ -306,16 +281,16 @@ AlexNet 、VGG 、GoogLeNet 、ResNet
 
 
 
- 	
+
   * import numpy as np
 
- 	
+
   * import matplotlib.pyplot as plt
 
- 	
+
   * from PIL import Image
 
- 	
+
   * import caffe
 
 
@@ -327,22 +302,22 @@ AlexNet 、VGG 、GoogLeNet 、ResNet
 
 
 
- 	
+
   * #使用cpu
 
- 	
+
     * caffe.set_mode_cpu()
 
 
 
 
- 	
+
   * #使用gpu
 
- 	
+
     * caffe.set_device(0)
 
- 	
+
     * caffe.set_mode_gpu()
 
 
@@ -357,25 +332,21 @@ AlexNet 、VGG 、GoogLeNet 、ResNet
 定义网络结构
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1eece5eb49.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/137gEie1cJ.png?imageslim)
 
 载入solver
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1eed7aa34a.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/EGa9L7kahd.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1eedac13d5.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/HLE4FB0HdK.png?imageslim)
 
 Solver训练
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1eee498d05.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/2G31iC2dJJ.png?imageslim)
 
 
 
@@ -386,8 +357,7 @@ Solver训练
 做完前向运算取出某层输出
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1eef3b5edb.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/almkAh3I4J.png?imageslim)
 
 更详细的流程可参考 https://github.com/HanXiaoyang/image_retrieval/blob/master/compute_fea_for_image_retrieval.py
 
@@ -395,10 +365,7 @@ Solver训练
 ### Pycaffe图像识别
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ef272551a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/ABB6d2B9fF.png?imageslim)
 
 
 
@@ -408,17 +375,14 @@ Solver训练
 
 你在conv.prototxt中定义好了卷积层如下
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ef3305243.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/F147C5dk3a.png?imageslim)
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ef35498a7.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/hhem5clh5l.png?imageslim)
 
 python python/draw_net.py conv.prototxt my_net.png
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1ef8758c48.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/cJAHfhHHgG.png?imageslim)
 
 
 
@@ -437,5 +401,3 @@ python python/draw_net.py conv.prototxt my_net.png
 
 
 **寒小阳的github上有对于caffe源码的解析。要自己走一遍。**
-
-

@@ -5,7 +5,7 @@ date: 2018-04-28 05:23:04+00:00
 layout: post
 link: http://106.15.37.116/2018/04/28/ml-work-flow/
 slug: ml-work-flow
-title: 
+title:
 wordpress_id: 4392
 categories:
 - 随想与反思
@@ -61,7 +61,7 @@ tags:
 
 
 
-# 
+#
 
 
 
@@ -93,8 +93,7 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3ff6e80c84.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/8f8EF1KDAJ.png?imageslim)
 
 **不知道现在这个开发流程有没有变？**
 
@@ -189,8 +188,7 @@ OK，下面一个一个说：
 利用这种架构就实现了离线训练和在线预测的结合，串联了从离线到在线的整个业务逻辑。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae404b922940.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/825ibL9cGG.png?imageslim)
 
 **之前看过《构建实时机器学习系统》 也要总结下。**
 
@@ -209,6 +207,3 @@ OK，下面一个一个说：
 
 
 # COMMENT
-
-
-

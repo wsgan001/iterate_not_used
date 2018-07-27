@@ -1,33 +1,12 @@
----
-author: evo
-comments: true
-date: 2018-03-31 07:31:10+00:00
-layout: post
-link: http://106.15.37.116/2018/03/31/ai-probability-statistics-moment-estimation-and-maximum-likelihood-estimation/
-slug: ai-probability-statistics-moment-estimation-and-maximum-likelihood-estimation
-title: 
-wordpress_id: 2162
-categories:
-- 随想与反思
-tags:
-- '@want_to_know'
----
-
-<!-- more -->
-
-[mathjax]
+# 矩估计与极大似然估计
 
 
 # REF：
 
+1. 七月在线 深度学习
 
 
 
-
-
-  1. 七月在线 深度学习
-
-********************************************************************************
 
 
 # 缘由：
@@ -42,23 +21,15 @@ tags:
 估计量一般加上一个帽子 \(\hat{\theta}\)
 
 
-# 
-
-
-
 
 # 样本
-
-
-
 
 ## 样本的统计量
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb118c131b3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/KH8DcBFiDD.png?imageslim)
 
 **之所以这里的样本方差是除以n-1的，是因为当减去平均值的时候，自由度降了一个变成n-1（这个只是感性理解的解释，不是真正的解释），真正的解释是什么？**
 
@@ -76,8 +47,7 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb119e72d30.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/kcaKcaiIJ3.png?imageslim)
 
 **注意这个地方是除以n的，这个地方的原点矩和中心矩都是除以n的，这就是为什么下面的矩估计也是除以n的，因为从这而来。**
 
@@ -162,8 +132,7 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb120d73957.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/CJ97lA2Kic.png?imageslim)
 
 
 
@@ -173,24 +142,15 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb12295737a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/kKK4F9G16C.png?imageslim)
 
 这个地方，可见如果你有n个样本，想知道n个样本的可能的均匀分布的上线和下限，就可以这么求。
 
 
 ###  两点分布的矩估计：
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/2mmjhikhIJ.png?imageslim)
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abf45af4cffe.png)
-
-
-
-
-
-## 
 
 
 
@@ -374,6 +334,3 @@ Maximum Likelihood Estimation
   * 一个贝叶斯后验估计的例子  https://ask.julyedu.com/question/7190
 
   * 一个关于 EM 算法的介绍  https://ask.julyedu.com/question/7287
-
-
-

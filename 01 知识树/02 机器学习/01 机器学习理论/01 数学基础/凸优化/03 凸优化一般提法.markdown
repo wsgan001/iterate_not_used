@@ -5,7 +5,7 @@ date: 2018-03-31 07:34:57+00:00
 layout: post
 link: http://106.15.37.116/2018/03/31/ai-convex-optimization-dual-problem-and-kkt-condition/
 slug: ai-convex-optimization-dual-problem-and-kkt-condition
-title: 
+title:
 wordpress_id: 2176
 categories:
 - 随想与反思
@@ -64,26 +64,22 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb6de64d0f1.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/H1c3kE4cGa.png?imageslim)
 
 例：求共轭函数
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb6df85c268.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Dik94DAG6G.png?imageslim)
 
 Fenchel不等式
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb6e02da2b5.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/GFEBhmb590.png?imageslim)
 
 Fenchel不等式的应用
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb6e10055b2.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/76GhcB84hH.png?imageslim)
 
 
 
@@ -233,8 +229,7 @@ Fenchel不等式的应用
 左侧为原函数，右侧为对偶函数
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb75e64b0a1.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/hJgHDJ7d1g.png?imageslim)
 
 上面这个左图种，\(f_0(x)\)就是这个黑色的函数，最下面的这个虚线就是一个约束函数\(f_1(x)<0\)，然后这里没有仿射函数，也就是说m=1，p=0。
 
@@ -347,23 +342,22 @@ Slater 条件
 这个求法就是根据定义求Lagrange函数的下确界。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb76251caf6.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/DdciAhJicB.png?imageslim)
 
 
 
 
-
-## 
-
-
-
-
-## 
+##
 
 
 
 
-## 
+##
+
+
+
+
+##
 
 
 
@@ -394,8 +388,7 @@ Karush-Kuhn-Tucker
 而且我们已经知道
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac0c1a56c6c3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/LILHBj3Dkj.png?imageslim)
 
 对于上面这个式子的解释：
 
@@ -417,8 +410,7 @@ Karush-Kuhn-Tucker
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac0c22f68bb7.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/8fKgL30jFl.png?imageslim)
 
 我们总结出KKT条件如下：
 
@@ -447,13 +439,11 @@ Karush-Kuhn-Tucker
 支持向量机最简单形式：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac0c2f2f3017.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/FlfaL32GmJ.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac0c2fb10e0d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Cjg49I9AF5.png?imageslim)
 
 **看来这个对偶问题与SVM的关系还是很密切的，要深挖一下。**
 
@@ -467,8 +457,7 @@ Karush-Kuhn-Tucker
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb763c16ba7.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/2Ka8mh56b7.png?imageslim)
 
 
 
@@ -478,8 +467,7 @@ Karush-Kuhn-Tucker
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb764bcd53a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/FhA5cF64bm.png?imageslim)
 
 
 
@@ -489,8 +477,7 @@ Karush-Kuhn-Tucker
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb76638070f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Bg44EgAe3d.png?imageslim)
 
 
 
@@ -500,8 +487,7 @@ Karush-Kuhn-Tucker
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb76749e7b5.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/FkBLaA8EKl.png?imageslim)
 
 
 
@@ -555,5 +541,3 @@ Karush-Kuhn-Tucker
   * p189:4.2,4.8,4.10,4.21
 
   * p273:5.1,5.4,5.11,5.225.24
-
-

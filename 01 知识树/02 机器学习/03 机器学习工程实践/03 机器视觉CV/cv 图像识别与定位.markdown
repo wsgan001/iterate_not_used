@@ -29,26 +29,24 @@ tags:
 
 
 
- 	
+
   * 思路1：视作回归
 
- 	
+
   * 思路2：借助图像窗口
 
 
 图像识别与定位：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36a6ca577d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/8eGaaD9aCG.png?imageslim)
 
 ImageNet
 
 实际上有 识别+定位 两个任务
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36a844175c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/LdmE8F2F8E.png?imageslim)
 
 
 
@@ -59,120 +57,112 @@ ImageNet
 4个数字，用L2 loss/欧⽒氏距离损失?
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36ab003cbd.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/ce03E2hGc1.png?imageslim)
 
 步骤1:
 
 
 
- 	
+
   * 先解决简单问题，搭一个识别图像的神经网络
 
- 	
+
   * 在AlexNet VGG GoogleLenet ResNet上fine-tune一下
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36ac785fcb.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/70BH2lLeA5.png?imageslim)
 
 步骤2:
 
 
 
- 	
+
   * 在上述神经网络的尾部展开
 
- 	
+
   * 成为classification + regression模式
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36adf6f5ec.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/bEFg1FB1m5.png?imageslim)
 
 步骤3:
 
 
 
- 	
+
   * Regression(回归)部分用欧氏距离损失
 
- 	
+
   * 使用SGD训练
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36afa014a4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/BGBAKGdGEa.png?imageslim)
 
 步骤4:
 
 
 
- 	
+
   * 预测阶段把2个“头部”模块拼上
 
- 	
+
   * 完成不同的功能
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36b045c403.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/dLGb4hfjbm.png?imageslim)
 
 Regression(回归)的模块部分加在什么位置？
 
 
 
- 	
+
   * (最后的)卷积层后
 
- 	
+
   * 全连接层后
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36b260c852.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/AE1H3lbIkl.png?imageslim)
 
 能否对主体有更细致的识别？
 
 
 
- 	
+
   * 提前规定好有K个组成部分
 
- 	
+
   * 做成K个部分的回归
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36b317c78d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/1I5mKmhaEm.png?imageslim)
 
 应用：如何识别人的姿势？
 
 
 
- 	
+
   * 每个人的组成部分是固定的
 
- 	
+
   * 对K个组成部分(关节)做回归预测 => 首尾相接的线段
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36b437087c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/kAa9l31bIL.png?imageslim)
 
 
 
@@ -183,87 +173,82 @@ Regression(回归)的模块部分加在什么位置？
 
 
 
- 	
+
   * 类似刚才的classification + regression思路
 
- 	
+
   * 咱们取不同的大小的“框”
 
- 	
+
   * 让框出现在不同的位置
 
- 	
+
   * 判定得分
 
- 	
+
   * 按照得分高低对“结果框”做抽取和合并
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36babd9309.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/EkDCbBK8j3.png?imageslim)
 
 实际应用时
 
 
 
- 	
+
   * 尝试各种大小窗口
 
- 	
+
   * 甚至会在窗口上再做一些“回归”的事情
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36bb71a02b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/5HBDLF8g20.png?imageslim)
 
 想办法克服一下过程中的“参数多”与“计算慢”
 
 
 
- 	
+
   * 最初的形式如下
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36bc68a039.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/7i49Khi22j.png?imageslim)
 
 想办法克服一下过程中的“参数多”与“计算慢”
 
 
 
- 	
+
   * 用多卷积核的卷积层 替换 全连接层
 
- 	
+
   * 降低参数量
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36beb4fe25.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/6FllDDGCK4.png?imageslim)
 
 想办法克服一下过程中的“参数多”与“计算慢”
 
 
 
- 	
+
   * 测试/识别 阶段的计算是可复用的(小卷积)
 
- 	
+
   * 加速计算
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36c03a5c46.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/8hFD3ig7Gi.png?imageslim)
 
 
 
@@ -271,82 +256,73 @@ Regression(回归)的模块部分加在什么位置？
 # 物体识别
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36c2331135.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/KeJGm1bIl6.png?imageslim)
 
 再次看做回归问题？
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36c43e0b48.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/cEg2hb7lHa.png?imageslim)
 
 其实你不知道图上有多少个物体…
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36c55e38a1.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/E5h5e5JAm6.png?imageslim)
 
 试着看做分类问题？
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36c770ced0.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/53da08g2f3.png?imageslim)
 
 看做分类问题，难点是？
 
 
 
- 	
+
   * 你需要找“很多位置”，给“很多不同大小的框”
 
- 	
+
   * 你还需要对框内的图像分类(累计很多次)
 
- 	
+
   * 框的大小不一定对
 
- 	
+
   * …
 
- 	
+
   * 当然，如果你的GPU很强大，恩，那加油做吧…
 
 
 看做分类问题，有没有办法优化下？
 
- 	
+
   * 为什么要先给定“框”，能不能找到“候选框”？
 
- 	
+
   * 想办法先找到“可能包含内容的图框”
 
 
 关于“候选图框”识别，有什么办法？
 
- 	
+
   * 自下而上融合成“区域”
 
- 	
+
   * 将“区域”扩充为“图框”
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36ce787f99.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/5K85KbaBC1.png?imageslim)
 
 “图框”候选：其他方式？
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36d003fbda.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/gkJ5j5Jl36.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36d0bf2d29.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/GLL82ajHKC.png?imageslim)
 
 
 
@@ -356,8 +332,7 @@ Regression(回归)的模块部分加在什么位置？
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36d18456ae.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/GkdAjg5dGl.png?imageslim)
 
 Girschick et al, “Rich feature hierarchies for accurate object detection and semantic segmentation”, CVPR 2014
 
@@ -367,8 +342,7 @@ Girschick et al, “Rich feature hierarchies for accurate object detection and s
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36d347e4c7.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/93dmJeJ46j.png?imageslim)
 
 
 
@@ -379,8 +353,7 @@ Girschick et al, “Rich feature hierarchies for accurate object detection and s
 比如20个物体类别+1个背景
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36d546c9d6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/7JJFFAEf7c.png?imageslim)
 
 
 
@@ -391,20 +364,19 @@ Girschick et al, “Rich feature hierarchies for accurate object detection and s
 
 
 
- 	
+
   * 用“图框候选算法”抠出图窗
 
- 	
+
   * Resize后用CNN做前向运算，取第5个池化层做特征
 
- 	
+
   * 存储抽取的特征到硬盘/数据库上
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36db753c68.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/0KfHdKg7D0.png?imageslim)
 
 
 
@@ -414,13 +386,11 @@ Girschick et al, “Rich feature hierarchies for accurate object detection and s
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36ddc11372.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/mEaiDHG77m.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36e09d37b9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/bIljiGcdBI.png?imageslim)
 
 
 
@@ -431,14 +401,13 @@ Girschick et al, “Rich feature hierarchies for accurate object detection and s
 
 
 
- 	
+
   * 微调图窗区域
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36e2758943.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/5e4I6beEG8.png?imageslim)
 
 
 
@@ -454,14 +423,13 @@ Girschick et al, “Rich feature hierarchies for accurate object detection and s
 
 
 
- 	
+
   * 共享图窗计算，从而加速
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36e4609969.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/aHjD5j7A50.png?imageslim)
 
 
 
@@ -472,32 +440,28 @@ Girschick et al, “Rich feature hierarchies for accurate object detection and s
 
 
 
- 	
+
   * 直接做成端到端的系统
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36e58b622c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/8Lm1AKAAc1.png?imageslim)
 
 关于RIP：Region of Interest Pooling
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36e8266c61.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/1F3JaGeBIl.png?imageslim)
 
 维度不匹配怎么办：划分格子grid => 下采样
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36e9abbc03.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/mKc1K57Ga0.png?imageslim)
 
 RIP：Region of Interest Pooling   映射关系显然是可以还原回去的
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36eb7ebeba.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/A2ddflj1d6.png?imageslim)
 
 
 
@@ -507,8 +471,7 @@ RIP：Region of Interest Pooling   映射关系显然是可以还原回去的
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36ec2ac3ce.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/4fk90lc5LF.png?imageslim)
 
 
 
@@ -521,27 +484,23 @@ Region Proposal(候选图窗)一定要另外独立做吗？
 一起用RPN做完得了！
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36ed9baf11.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/C8L18ceefc.png?imageslim)
 
 Ren et al, “Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks”, NIPS 2015
 
 关于RPN：Region Proposal Network
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36eedcf47b.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Ilkfk6kDgi.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36efbaf4bc.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/BCAmmbI4IL.png?imageslim)
 
 关于Faster R-CNN的整个训练过程
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36f09a1530.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Jbm49m8hlf.png?imageslim)
 
 
 
@@ -551,8 +510,7 @@ Ren et al, “Faster R-CNN: Towards Real-Time Object Detection with Region Propo
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36f11e922f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/G9m6La96l0.png?imageslim)
 
 
 
@@ -563,8 +521,7 @@ Ren et al, “Faster R-CNN: Towards Real-Time Object Detection with Region Propo
 Jifeng Dai,etc “R-FCN: Object Detection via Region-based Fully Convolutional Networks ”, 2016
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36f2fc5ed9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/2EhFB17gaE.png?imageslim)
 
 每个颜色代表不同的位置选择区域。
 The bank of kxk score maps correspond to a kxk spatial grid describing relative positions.
@@ -572,25 +529,21 @@ The bank of kxk score maps correspond to a kxk spatial grid describing relative 
 训练损失:
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36f5d63325.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/l5gEEC8L2A.png?imageslim)
 
 分类损失:
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36f647fc69.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/6jFHi7aIc7.png?imageslim)
 
 Region-sensitive score maps and ROI pooling
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36f7a475e0.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/gF20KLk7C7.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac36f81b4516.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/BgeKb43aLF.png?imageslim)
 
 
 
@@ -626,8 +579,5 @@ R-FCN
 
 
 
- 	
+
   1. 七月在线 深度学习
-
-
-

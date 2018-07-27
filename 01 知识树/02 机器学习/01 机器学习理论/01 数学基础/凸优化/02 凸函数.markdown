@@ -5,7 +5,7 @@ date: 2018-03-31 07:34:40+00:00
 layout: post
 link: http://106.15.37.116/2018/03/31/ai-convex-optimization-convex-functions/
 slug: ai-convex-optimization-convex-functions
-title: 
+title:
 wordpress_id: 2174
 categories:
 - 随想与反思
@@ -52,8 +52,7 @@ tags:
 即：割线位于函数之上，就是凸函数。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac992fd21f2a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/eH69fc0LGK.png?imageslim)
 
 
 
@@ -68,8 +67,7 @@ tags:
 即：原始的函数值是大于切线的值的。函数图像位于切线图像的上方，就是凸函数。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac993e1d724a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/0c9BB5B56E.png?imageslim)
 
 
 
@@ -155,8 +153,7 @@ tags:
 函数\(f\)的上境图定义为：\(epi\,f=\{(x,t)\mid x\in dom \,f,f(x)\leq t\}\)
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac99a61c68c0.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/L0Flfej86L.png?imageslim)
 
 
 
@@ -171,17 +168,17 @@ tags:
 \[hypo \, f=\{(x,t)\mid t\leq f(x)\}\]
 
 
-# 
+#
 
 
 
 
-# 
+#
 
 
 
 
-# 
+#
 
 
 
@@ -256,8 +253,7 @@ p和q都是概率密度函数，D是这两个概率密度函数的距离（正�
 证明如下：**厉害的证明**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb6d952d094.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/kG76KFhBAH.png?imageslim)
 
 
 
@@ -296,7 +292,7 @@ p和q都是概率密度函数，D是这两个概率密度函数的距离（正�
 
 
 
- 	
+
   * \(f(x)=\omega_1f_1(x)+\cdots +\omega_nf_n(x)\)
 
 
@@ -344,11 +340,9 @@ sublevel set 就是说 \(f(x)\leq C\)，这个就是sublevel set，等于C就是
 
 直观例子：
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac9ae430ea8a.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/6D9Dh837j9.png?imageslim)
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac9ae52dee7a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/g1cL4gdf5d.png?imageslim)
 
 Oxy平面上随意画N条直线(直线是凸的——虽然直线也是凹的)，在每个 x 处取这些直线的最大的点，则构成的新函数是凸函数；
 
@@ -371,5 +365,3 @@ Oxy平面上随意画N条直线(直线是凸的——虽然直线也是凹的)�
 
 
 **还是有很多不明白的**
-
-

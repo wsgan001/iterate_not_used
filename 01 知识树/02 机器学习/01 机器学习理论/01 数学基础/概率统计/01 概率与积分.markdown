@@ -5,7 +5,7 @@ date: 2018-03-31 07:04:15+00:00
 layout: post
 link: http://106.15.37.116/2018/03/31/ai-probability-statistics-probability-and-integral/
 slug: ai-probability-statistics-probability-and-integral
-title: 
+title:
 wordpress_id: 2137
 categories:
 - 随想与反思
@@ -72,12 +72,12 @@ tags:
 
 
 
-# 
+#
 
 
 
 
-# 
+#
 
 
 
@@ -119,12 +119,12 @@ tags:
 我们在此课中只考虑几乎处处连续的概率密度函数，我们不考虑离散，连续混合型的随机变量。
 
 
-# 
+#
 
 
 
 
-# 
+#
 
 
 
@@ -152,7 +152,7 @@ tags:
 
 
 
- 	
+
   * 第1个球，有N种放法；
 
   * 第2个球，有N种放法；
@@ -174,7 +174,7 @@ tags:
 
 
 
- 	
+
   * 第1个球，有N种放法；
 
   * 第2个球，有N-1种放法；
@@ -201,7 +201,7 @@ tags:
 某班上有50位同学，至少有2人生日相同的概率是多少？
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac5de0ea33a6.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/2E34Lh57gA.png?imageslim)
 
 也就是说虽然有365天，但是至少有两个人生日相同的概率非常高。
 
@@ -261,7 +261,7 @@ n个物品分成k组，使得每组物品的个数分别为\(n_1,n_2,\cdots ,n_k
 
 
 
- 	
+
   * A=B的直线上方区域，即为B>A的情况。
 
   * \(S_{蓝色}\)=0.02 \(S_{矩形}\)=0.16
@@ -271,13 +271,12 @@ n个物品分成k组，使得每组物品的个数分别为\(n_1,n_2,\cdots ,n_k
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5aba0ef4c6bd6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/2Gf5KE8hGL.png?imageslim)
 
 可见，在实践中，实际上不是严格按照原始概率进行推荐的。
 
 
-## 
+##
 
 
 

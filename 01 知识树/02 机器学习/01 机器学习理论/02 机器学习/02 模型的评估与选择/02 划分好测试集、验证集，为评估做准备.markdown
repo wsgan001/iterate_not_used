@@ -132,8 +132,7 @@ OK，我们对留出法有了基本的认识了，感觉上，的确应该这么
 下图是 10 折交叉验证的示意图：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b056127d2de5.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/hEB55JD99C.png?imageslim)
 
 
 

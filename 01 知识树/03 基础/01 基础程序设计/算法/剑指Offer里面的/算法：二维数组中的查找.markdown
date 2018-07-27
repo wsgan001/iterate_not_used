@@ -26,8 +26,8 @@ tags:
 
 
 
- 	
-  1. 
+
+  1.
 
 
 [CodingInterviews](https://github.com/gatieme/CodingInterviews)
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -56,7 +56,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -87,8 +87,7 @@ array： 待查找的二维数组 target：查找的数字
 查找到返回true，查找不到返回false
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5afa198aa5416.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/c5465m28H1.png?imageslim)
 
 
 
@@ -103,13 +102,13 @@ array： 待查找的二维数组 target：查找的数字
 
 暴力的解法，肯定是用两层大循环来查找，不多说直接上代码
 
-    
+
     #include <iostream>
     #include <vector><span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start"></span>
-    
+
     using namespace std;
-    
-    
+
+
     class Solution
     {
     public:
@@ -117,7 +116,7 @@ array： 待查找的二维数组 target：查找的数字
         {
             int row = 0, col = 0, t = 0;
             bool isFound = false;
-    
+
             for(int i = 0; i < array.size( ) ; ++i)
             {
                 for(int j = 0; j < array[i].size( ); ++j)
@@ -130,9 +129,9 @@ array： 待查找的二维数组 target：查找的数字
                     }
                 }
             }
-    
+
             return isFound;
-    
+
         }
     };
 
@@ -146,13 +145,13 @@ array： 待查找的二维数组 target：查找的数字
 
 
 
- 	
+
   * 如果是等于则查找成功；
 
- 	
+
   * 如果是数组中元素小于要查找的数字，说明要查找的数字应该在当前位置的右边或下边。
 
- 	
+
   * 如果是数组中元素大于要查找的数字，说明要查找的数字应该在当前位置的左边或上边。
 
 
@@ -224,13 +223,13 @@ array： 待查找的二维数组 target：查找的数字
 
 
 
- 	
+
   * 如果查找从右上角开始，如果要查找的数字不在右上角，则每次可以剔除一列或一行。
 
- 	
+
   * 也可以从左下角开始
 
- 	
+
   * 但是不能从左上角或者右下角开始。
 
 
@@ -247,10 +246,10 @@ array： 待查找的二维数组 target：查找的数字
 
 
 
- 	
+
   * 比他小的数必定在它的左侧，就往左找
 
- 	
+
   * 比他大的数必定在它的下侧，就往下找
 
 
@@ -261,16 +260,16 @@ array： 待查找的二维数组 target：查找的数字
 
 
 
-    
+
     #include <iostream>
     #include <vector>
-    
+
     using namespace std;
-    
-    
-    
+
+
+
     #define __main main
-    
+
     class Solution
     {
     public:
@@ -279,7 +278,7 @@ array： 待查找的二维数组 target：查找的数字
             bool res = false;
             int row = array.size( );
             int col = array[0].size( );
-    
+
             //  我们从右上角的元素找起来
             //  如果查找的元素比当前位置元素小, 就向左走
             //  如果查找的元素比当前位置元素大, 就向下走
@@ -305,7 +304,7 @@ array： 待查找的二维数组 target：查找的数字
             return res;
         }
     };
-    
+
     int __main()
     {
         int a1[] = { 1, 2, 8, 9, };
@@ -317,7 +316,7 @@ array： 待查找的二维数组 target：查找的数字
         array.push_back(vector<int>(a2, a2 + 4));
         array.push_back(vector<int>(a3, a3 + 4));
         array.push_back(vector<int>(a4, a4 + 4));
-    
+
         Solution solu;
         cout <<solu.Find(array, 7) <<endl;
         return 0;
@@ -332,16 +331,16 @@ array： 待查找的二维数组 target：查找的数字
 
 
 
- 	
+
   * 比他小的数必定在它的上侧，就往上找
 
- 	
+
   * 比他大的数必定在它的右侧，就往右找
 
 
 代码为：
 
-    
+
     class Solution
     {
     public:
@@ -350,7 +349,7 @@ array： 待查找的二维数组 target：查找的数字
             bool res = false;
             int row = array.size( );
             int col = array[0].size( );
-    
+
             //  我们从右上角的元素找起
             //  如果查找的元素比当前位置元素小, 就向上走
             //  如果查找的元素比当前位置元素大, 就向右走
@@ -365,7 +364,7 @@ array： 待查找的二维数组 target：查找的数字
                 else if(target < array[i][j])     // 小的元素在当前位置上侧
                 {
                     cout <<target <<" < " <<array[i][j] <<" turn up" <<endl;
-    
+
                     i--;
                 }
                 else
@@ -392,6 +391,3 @@ array： 待查找的二维数组 target：查找的数字
 
 
 # COMMENT
-
-
-

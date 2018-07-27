@@ -26,7 +26,7 @@ tags:
 
 
 
- 	
+
   1. [迁移学习简明手册](https://github.com/jindongwang/transferlearning-tutorial)  [王晋东](https://zhuanlan.zhihu.com/p/35352154)
 
 
@@ -38,7 +38,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -57,7 +57,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -76,8 +76,7 @@ tags:
 迁移学习可能的应用领域：**有些厉害。**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b0168815b1db.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/DL57bdi8bB.png?imageslim)
 
 OK，下面我们选择几个研究热点，对迁移学习在这些领域的应用场景作一简单介绍：
 
@@ -96,7 +95,8 @@ OK，下面我们选择几个研究热点，对迁移学习在这些领域的应
 
 在计算机视觉中，迁移学习方法被称为 Domain Adaptation。Domain adaptation 的应用场景有很多，比如图片分类、图片哈希等。**看到这个地方，我才想起来之前好像看视频的时候老师提到过图像处理领域的 Domain Adaptation 。 这些应用场景都要实现一下，明确一下。**
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b016910a1d56.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/2LKmdKkFbg.png?imageslim)
+
 
 上图展示了不同的迁移学习图片分类任务示意。同一类图片，不同的拍摄角度、不同光照、不同背景，都会造成特征分布发生改变。因此，使用迁移学习构建跨领域的鲁棒分类器是十分重要的。**嗯。**
 
@@ -111,8 +111,7 @@ OK，下面我们选择几个研究热点，对迁移学习在这些领域的应
 下图是一个由电子产品评论迁移到 DVD 评论的迁移学习任务：**真的有效果吗？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b016a3487b3b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/gkj7BK61G1.png?imageslim)
 
 文本和网络领域顶级会议 WWW 和 CIKM 每年有大量的文章对迁移学习在文本领域的应用作介绍。
 
@@ -132,8 +131,7 @@ OK，下面我们选择几个研究热点，对迁移学习在这些领域的应
 下图展示了同一用户不同位置传感器的信号差异：**厉害了。**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b016a9cc5ae4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/bbElJJi18g.png?imageslim)
 
 这个领域可以参考：迁移学习在行为识别领域的综述文章：Transfer learning for activity recognition: A survey 。**要总结一下，补充进来。毕竟是迁移学习的一种应用。**
 
@@ -148,8 +146,7 @@ OK，下面我们选择几个研究热点，对迁移学习在这些领域的应
 下图展示了室内定位由于时间和设备的变化导致的 WiFi 信号变化：**怎么得到的？没看懂这个图。关于室内定位也要总结下。**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b016b8887310.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/H2kGgHDc0G.png?imageslim)
 
 
 
@@ -174,18 +171,4 @@ OK，下面我们选择几个研究热点，对迁移学习在这些领域的应
 
 
 
-
-
-
-
-
-* * *
-
-
-
-
-
 # COMMENT
-
-
-

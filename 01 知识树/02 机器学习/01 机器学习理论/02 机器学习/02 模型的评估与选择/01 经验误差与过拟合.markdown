@@ -5,7 +5,7 @@ date: 2018-05-23 11:36:50+00:00
 layout: post
 link: http://106.15.37.116/2018/05/23/ml-%e7%bb%8f%e9%aa%8c%e8%af%af%e5%b7%ae%e4%b8%8e%e8%bf%87%e6%8b%9f%e5%90%88/
 slug: ml-%e7%bb%8f%e9%aa%8c%e8%af%af%e5%b7%ae%e4%b8%8e%e8%bf%87%e6%8b%9f%e5%90%88
-title: 
+title:
 wordpress_id: 6343
 categories:
 - 人工智能学习
@@ -125,8 +125,7 @@ tags:
 下图是一个过拟合和欠拟合的一个直观的类比：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5b054ed1f3b87.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/fe3jiB3fFi.png?imageslim)
 
 
 
@@ -161,6 +160,3 @@ tags:
 
 
 # COMMENT
-
-
-
