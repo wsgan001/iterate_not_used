@@ -26,8 +26,8 @@ tags:
 
 
 
- 	
-  1. 
+
+  1.
 
 
 [CodingInterviews](https://github.com/gatieme/CodingInterviews)
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -79,15 +79,14 @@ tags:
 
 输入两颗二叉树 A，B，判断 B 是不是 A 的子结构。
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5afbade1894f8.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/A13dki3FcK.png?imageslim)
 
 ## 数据格式
 
 
 二叉树Node如下：
 
-    
+
     struct TreeNode {
     	int val;
     	struct TreeNode *left;
@@ -112,10 +111,10 @@ OK，明确这两点之后，我们来看看到底怎么从 A 中发现 B 相同
 
 
 
- 	
+
   * 第一步，在树 A 中找到和 B 的根节点的值一样的结点。 这实际上就是树的遍历。可以用递归实现。
 
- 	
+
   * 第二步，如果 1 找到了，那么就判断树 A 中以 R 为根结点的子树是不是包含和树 B 一样的结构。 可以对每个结点进行递归比较，如果每个结点都相同，而且 B 中还有一些 A 中没有的，那么 B 就包含了 A 。
 
 
@@ -125,18 +124,18 @@ OK，主要就是这两步。
 
 代码如下：
 
-    
+
     #include <iostream>
     #include <string>
     using namespace std;
-    
-    
+
+
     struct TreeNode {
     	int val;
     	struct TreeNode *left;
     	struct TreeNode *right;
     };
-    
+
     class Solution {
     public:
     	//树中是否有这个小树的根结点
@@ -157,17 +156,17 @@ OK，主要就是这两步。
     			return true;
     		}
     	}
-    
+
     	//这个结点对应的子树是不是包含这个小树
     	bool DoesParentHaveChild(TreeNode *parent, TreeNode *child) {
-    
+
     		if (child == NULL) { //  子树为NULL，那么必然是子树
     			return true;
     		}
     		else if (parent == NULL) { //子树不是NULL, 但是父亲树是NULL，那么肯定不是子树
     			return false;
     		}
-    
+
     		//  两个节点的值不相等，那么两个树必然不是父子关系
     		if (parent->val != child->val) {
     			return false;
@@ -178,11 +177,11 @@ OK，主要就是这两步。
     		}
     	}
     };
-    
-    
-    
+
+
+
     int main() {
-    
+
     	//准备两个树
     	TreeNode tree_big[8];
     	tree_big[0].val = 8;
@@ -206,7 +205,7 @@ OK，主要就是这两步。
     	tree_big[6].val = 7;
     	tree_big[6].left = NULL;
     	tree_big[6].right = NULL;
-    
+
     	TreeNode tree_small[3];
     	tree_small[0].val = 8;
     	tree_small[0].left = &tree_small[1];
@@ -217,19 +216,19 @@ OK，主要就是这两步。
     	tree_small[2].val = 2;
     	tree_small[2].left = NULL;
     	tree_small[2].right = NULL;
-    
+
     	Solution solu;
     	bool is_has = solu.HasSubtree(tree_big, tree_small);
     	string res = is_has ? "has subtrue" : "not has subtrue";
     	cout << "result: " << res << endl;
-    
+
     	return 0;
     }
 
 
 输出：
 
-    
+
     result: has subtrue
 
 
@@ -254,6 +253,3 @@ OK，主要就是这两步。
 
 
 # COMMENT
-
-
-

@@ -21,8 +21,7 @@ tags:
  每行、每列、每个九宫内，都是1-9这9个数字。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac55e242a3e6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/a4imgAGeFE.png?imageslim)
 
 
 
@@ -33,20 +32,17 @@ tags:
 可。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac55e4dac1c0.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/4b0g2d0aIL.png?imageslim)
 
 代码如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac55e5d6a908.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/7H40d32i4A.png?imageslim)
 
 非递归数独Sudoku
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac55ebc4118c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/59ELEa1JiC.png?imageslim)
 
 COMMENT：
 
@@ -54,8 +50,5 @@ REF：
 
 
 
- 	
+
   1. 七月在线 算法
-
-
-

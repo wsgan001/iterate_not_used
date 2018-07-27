@@ -1,39 +1,11 @@
----
-author: evo
-comments: true
-date: 2018-05-31 23:48:22+00:00
-layout: post
-link: http://106.15.37.116/2018/06/01/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-%e4%b8%ad%e4%bb%8b%e8%80%85%e6%a8%a1%e5%bc%8f%ef%bc%88mediator%ef%bc%89/
-slug: '%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-%e4%b8%ad%e4%bb%8b%e8%80%85%e6%a8%a1%e5%bc%8f%ef%bc%88mediator%ef%bc%89'
-title: 设计模式 中介者模式（Mediator）
-wordpress_id: 7197
-categories:
-- 基础程序设计
-tags:
-- Design Patterns
----
 
-<!-- more -->
+# REF
 
-[mathjax]
+1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
 
-**注：非原创，所有版权属于原作者，原文已列在 ORIGINAL 中。为了方便个人学习做了整合、修改，仅供个人学习使用。**
+2. 《设计模式精解 - GoF 23种设计模式解析》
 
-
-# ORIGINAL
-
-
-
-
-
- 	
-  1. [design-patterns-cpp](https://github.com/yogykwan/design-patterns-cpp)  作者： [Jennica](http://jennica.space/)  厉害的
-
- 	
-  2. 《设计模式精解 - GoF 23种设计模式解析》
-
- 	
-  3. 《大话设计模式》作者 程杰
+3. 《大话设计模式》作者 程杰
 
 
 
@@ -44,7 +16,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,21 +35,21 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
 
- 	
+
   1. 中介者模式：用一个中介对象来封装一系列对象间的交互。
 
- 	
+
   2. 中介者模式在系统中易用也容易被误用，当系统中出现了多对多的交互复杂的对象群时，更应考虑设计的问题。
 
- 	
+
   3. 由于控制集中化，中介者模式将交互复杂性变成了中介者的复杂性，中介者类会比任何一个同事类都复杂。
 
- 	
+
   4. 中介者模式应用的场合有，一组对象以定义良好但复杂的方式进行通信，以及想定制一个分布在多个类中的行为却不想产生太多子类。
 
 
@@ -105,75 +77,75 @@ Mediator 模式中，每个 Colleague 维护一个 Mediator ，当要进行交�
 
 mediator.h
 
-    
+
     #ifndef DESIGN_PATTERNS_MEDIATOR_H
     #define DESIGN_PATTERNS_MEDIATOR_H
-    
+
     #include <string>
-    
+
     class Country;
-    
+
     class UnitedNations {
     public:
       virtual void Declare(std::string, Country*) = 0;
     };
-    
+
     class UnitedNationsSecurityCouncil: public UnitedNations {
     public:
       UnitedNationsSecurityCouncil() {}
       void SetUsa(Country*);
       void SetIraq(Country*);
       void Declare(std::string, Country*);
-    
+
     private:
       Country *usa_;
       Country *iraq_;
     };
-    
+
     class Country {
     public:
       Country() {}
       Country(UnitedNations*);
       virtual void Declare(std::string) = 0;
       virtual void GetMessage(std::string) = 0;
-    
+
     protected:
       UnitedNations *mediator_;
     };
-    
+
     class Usa: public Country {
     public:
       Usa(UnitedNations*);
       void Declare(std::string);
       void GetMessage(std::string);
     };
-    
+
     class Iraq: public Country {
     public:
       Iraq(UnitedNations*);
       void Declare(std::string);
       void GetMessage(std::string);
     };
-    
-    
+
+
     #endif //DESIGN_PATTERNS_MEDIATOR_H
-    
+
 
 
 mediator.cpp
 
-    
+
     #include "mediator.h"
     #include <iostream>
-    
+
     void UnitedNationsSecurityCouncil::SetUsa(Country *usa) {
       usa_ = usa;
     }
-    
+
     void UnitedNationsSecurityCouncil::SetIraq(Country *iraq) {
       iraq_ = iraq;
     }
-    
+
     void UnitedNationsSecurityCouncil::Declare(std::string message, Country * country) {
       if(country == usa_) {
         iraq_->GetMessage(message);
@@ -181,39 +153,39 @@ mediator.cpp
         usa_->GetMessage(message);
       }
     }
-    
+
     Country::Country(UnitedNations *mediator): mediator_(mediator) {}
-    
+
     Usa::Usa(UnitedNations *mediator): Country(mediator) {}
-    
+
     void Usa::Declare(std::string message) {
       mediator_->Declare(message, this);
     }
-    
+
     void Usa::GetMessage(std::string message) {
       std::cout << "USA gets: \"" << message << "\"" << std::endl;
     }
-    
+
     Iraq::Iraq(UnitedNations *mediator): Country(mediator) {}
-    
+
     void Iraq::Declare(std::string message) {
       mediator_->Declare(message, this);
     }
-    
+
     void Iraq::GetMessage(std::string message) {
       std::cout << "Iraq gets: \"" << message << "\"" << std::endl;
     }
-    
-    
+
+
 
 
 main.cpp
 
-    
+
     #include "mediator.h"
     #include <iostream>
-    
-    
+
+
     int main() {
         UnitedNationsSecurityCouncil *unsc_;
         Country *usa_;
@@ -228,7 +200,7 @@ main.cpp
         delete unsc_;
         delete usa_;
         delete iraq_;
-    
+
         return 0;
     }
 
@@ -277,6 +249,3 @@ Mediator模式还有一个很显著额特点就是将控制集中，集中的优
 
 
 # COMMENT
-
-
-

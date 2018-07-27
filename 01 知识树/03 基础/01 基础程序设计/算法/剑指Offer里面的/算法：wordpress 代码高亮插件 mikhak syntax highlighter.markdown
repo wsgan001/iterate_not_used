@@ -26,7 +26,7 @@ tags:
 
 
 
- 	
+
   1. [Google Code Prettify – 程式碼上色工具](http://blog.shihshih.com/google-code-prettify/)
 
 
@@ -38,7 +38,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -50,7 +50,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -96,16 +96,14 @@ tags:
 比如 Simple Code Highlighter 这个插件的效果：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af7b72142f12.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/lmIdacH3Kh.png?imageslim)
 
 效果非常好。但是没有什么自定义的选项。
 
 但是  mikhak syntax highlighter 的效果就不是很好了：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af7b7fba9725.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/LH20LAhc86.png?imageslim)
 
 但是可以定制，选择一些style，虽然这些style都不是很好。
 
@@ -122,18 +120,16 @@ tags:
 比如这样：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af7b4e0b569e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/5a5be31d44.png?imageslim)
 
 这个问题可以在 Appearance 下面的Custom CSS Code里面写入：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af7b55f56bdb.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/cbJaIC1leC.png?imageslim)
 
 
 
 
-    
     pre.prettyprint {
         padding: 2px;
     }
@@ -142,8 +138,7 @@ tags:
 来解决：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af7b5732c747.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/lF53beJcD6.png?imageslim)
 
 
 
@@ -170,6 +165,3 @@ tags:
 
 
 # COMMENT
-
-
-

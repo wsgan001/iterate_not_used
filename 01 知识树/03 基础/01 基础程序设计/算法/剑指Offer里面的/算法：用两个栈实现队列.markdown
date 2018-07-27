@@ -26,8 +26,8 @@ tags:
 
 
 
- 	
-  1. 
+
+  1.
 
 
 [CodingInterviews](https://github.com/gatieme/CodingInterviews)
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -56,7 +56,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -94,24 +94,23 @@ tags:
 
 
 
- 	
+
   * 入队时，将元素压入s1。
 
- 	
+
   * 出队时，将s1的元素逐个“倒入”（弹出并压入）s2，将s2的顶元素弹出作为出队元素，之后再将s2剩下的元素逐个“倒回”s1。
 
 
 见下面示意图：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5afa3d39a9420.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/gL4BcjIaBa.png?imageslim)
 
 嗯，上面的思路的确是可行的，有一个小小的优化的点可以提一下：
 
 
 
- 	
+
   * 在出队时，将s1的元素逐个“倒入”s2时，原在s1栈底的元素，不用 “倒入” s2（即只“倒”s1.Count()-1个），可直接弹出作为出队元素返回。这样可以减少一次压栈的操作。虽然只减少一次，但也是一个优化
 
 
@@ -125,10 +124,10 @@ tags:
 
 
 
- 	
+
   * 在下次入队时，先判断s1是否为空，如不为空，说明所有元素都在s1，此时将入队元素直接压入s1；如为空，要将s2的元素逐个“倒回”s1，再压入入队元素。
 
- 	
+
   * 在出队时，先判断s2是否为空，如不为空，直接弹出s2的顶元素并出队；如为空，将s1的元素逐个“倒入”s2，把最后一个元素弹出并出队。
 
 
@@ -144,10 +143,10 @@ tags:
 
 
 
- 	
+
   * 当入队时，我们就将元素压入s1，不管s1里面是空的还是有数据。
 
- 	
+
   * 出队时，我们首先判断s2是否为空，如不为空，则直接弹出顶元素；如为空，则将s1的元素逐个 “倒入” s2，把最后一个元素弹出并出队。
 
 
@@ -155,32 +154,32 @@ OK，这样的话直接没有倒回这一步了，而且倒入的步骤也只在
 
 完整代码如下：
 
-    
+
     #include <iostream>
     #include <stack>
     using namespace std;
-    
-    
+
+
     class Solution {
-    
+
     private:
     	stack<int> stackIn;
     	stack<int> stackOut;
-    
+
     public:
     	void push(int node) {
     		stackIn.push(node);
     	}
-    
+
     	int pop() {
     		int node = -1;
-    
+
     		//  两个栈都是NULL的时候，整个队列为空
     		if (this->checkEmpty() == true) {
     			cout << "整个队列为NULL" << endl;
     			return -1;
     		}
-    
+
     		// 如果输出为空  将输入栈中的元素倒入输出栈
     		if (stackOut.empty() == true) {
     			while (stackIn.empty() != true) {
@@ -190,27 +189,27 @@ OK，这样的话直接没有倒回这一步了，而且倒入的步骤也只在
     				cout << node << "导入输出栈" << endl;
     			}
     		}
-    
+
     		node = stackOut.top();
     		stackOut.pop();
-    
-    
+
+
     		return node;
     	}
-    
+
     	bool checkEmpty() {
     		return (stackIn.empty() == true && stackOut.empty() == true);
     	}
     };
-    
-    
+
+
     int main() {
     	Solution solu;
     	solu.push(1);
     	solu.push(2);
     	solu.push(3);
     	solu.push(4);
-    
+
     	int node;
     	while (solu.checkEmpty() != true) {
     		node = solu.pop();
@@ -222,7 +221,7 @@ OK，这样的话直接没有倒回这一步了，而且倒入的步骤也只在
 
 输出：
 
-    
+
     4导入输出栈
     3导入输出栈
     2导入输出栈
@@ -256,6 +255,3 @@ OK，这样的话直接没有倒回这一步了，而且倒入的步骤也只在
 
 
 # COMMENT
-
-
-

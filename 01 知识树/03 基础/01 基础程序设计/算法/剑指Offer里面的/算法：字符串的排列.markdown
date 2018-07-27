@@ -26,8 +26,8 @@ tags:
 
 
 
- 	
-  1. 
+
+  1.
 
 
 [CodingInterviews](https://github.com/gatieme/CodingInterviews)
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * **看来，STL 中的东西，尤其是各种容器和对容器的操作一定要掌握，比如方法二中的swap、sort和这里的 next_permutation。等。嗯，是必须要掌握的，因为很多的东西在别的类库里也有，知道了STL里的之后，别的类库也能大概知道会有什么功能。**
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -107,18 +107,18 @@ abc acb bac bca cab cba
 
 最先想到的就是全排列，依次从字符串中取出一个字符作为最终排列的第一个字符，然后对剩余字符组成的字符串递归生成全排列，最终结果为取出的字符和剩余子串全排列的组合。
 
-    
+
     #include <iostream>
     #include <algorithm>
     #include <vector>
     #include <string>
     using namespace std;
-    
-    
+
+
     class Solution {
     protected:
     	vector<string> m_res;
-    
+
     public:
     	vector<string> Permutation(string s) {
     		m_res.clear();
@@ -141,9 +141,9 @@ abc acb bac bca cab cba
     			}
     		}
     	}
-    
+
     };
-    
+
     int main() {
     	Solution solu;
     	vector<string> res;
@@ -157,7 +157,7 @@ abc acb bac bca cab cba
 
 输出：
 
-    
+
     abc
     acb
     bac
@@ -184,13 +184,13 @@ OK，我们可以看看这种方法：
 
 
 
- 	
+
   * 对于 abb，尝试交换 12：得到 bab；尝试交换 13： 得到 bba；尝试交换 23：都是b，就不用交换了。
 
- 	
+
   * 对于 bab，尝试交换 23：得到 bba。
 
- 	
+
   * 对于 bba，尝试交换 23：得到 bab。
 
 
@@ -198,10 +198,10 @@ OK，我们可以看看这种方法：
 
 OK，那么我们换种思维：
 
- 	
+
   * 对于 abb，尝试交换 12 ：得到 bab；尝试交换13 ：由于 3 和之前交换过的 2 相等，因此不交换；尝试交换23：由于2 与 3 本身相等因此不交换。
 
- 	
+
   * 对于 bab，尝试交换 23：得到 bba。
 
 
@@ -211,32 +211,32 @@ OK，看起来这种方式应该是可行的，那么怎么应用到程序中呢
 
 
 
- 	
+
   1. 首先，我们把第一个字符和它后面非重复出现的字符一一交换。如果这个被要求交换的字符在之前已经有过或者与第一个字符相同，那么就不进行交换。比如：abcba ，当第一个a与后面的每一个进行交换的时候，第二个b就不会被交换到，第二个a也不会被交换到。
 
- 	
+
   2. 交换之后，把第一个字符固定，然后按照步骤1一样，同样的处理后面的字符串。
 
- 	
+
   3. 以此类推
 
 
 **这个图不是很好，没有写出带重复字符的情况：**
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aff8658ea68e.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/AmjiJ1IClc.png?imageslim)
 
 程序如下：
 
-    
+
     #include <iostream>
     #include <algorithm>
     #include <vector>
     #include <string>
     using namespace std;
-    
-    
-    
-    
+
+
+
+
     class Solution {
     protected:
     	vector<string> m_res;
@@ -250,7 +250,7 @@ OK，看起来这种方式应该是可行的，那么怎么应用到程序中呢
     		sort(m_res.begin(), m_res.end());//竟然直接sort就行？要掌握下
     		return m_res;
     	}
-    
+
     	//递归实现
     	// 由于是直接传参，不是传指针，因此传递进去之后，里面的str就与这里的str没有关系了。
     	void PermutationRecursion(string str, int begin) {
@@ -269,7 +269,7 @@ OK，看起来这种方式应该是可行的，那么怎么应用到程序中呢
     					cout << "swap " << str[i] << "(" << i << ")"
     						<< " and " << str[begin] << "(" << begin << ")" << endl;
     					PermutationRecursion(str, begin + 1);		//继续递归后面的字符
-    					swap(str[i], str[begin]);		//再交换回来 因为下个循环我还要用到 str 
+    					swap(str[i], str[begin]);		//再交换回来 因为下个循环我还要用到 str
     				}
     			}
     		}
@@ -284,7 +284,7 @@ OK，看起来这种方式应该是可行的，那么怎么应用到程序中呢
     		return false;
     	}
     };
-    
+
     int main() {
     	Solution solu;
     	vector<string> res;
@@ -298,65 +298,65 @@ OK，看起来这种方式应该是可行的，那么怎么应用到程序中呢
 
 输出：
 
-    
+
     swap a(0) and a(0)
     swap b(1) and b(1)
     swap c(2) and c(2)
     swap a(3) and a(3)
     abca
-    
+
     swap c(3) and a(2)
     swap c(3) and c(3)
     abac
-    
+
     swap b(2) and c(1)
     swap b(2) and b(2)
     swap a(3) and a(3)
     acba
-    
+
     swap b(3) and a(2)
     swap b(3) and b(3)
     acab
-    
+
     swap b(3) and a(1)
     swap c(2) and c(2)
     swap b(3) and b(3)
     aacb
-    
+
     swap c(3) and b(2)
     swap c(3) and c(3)
     aabc
-    
+
     swap a(1) and b(0)
     swap a(1) and a(1)
     swap c(2) and c(2)
     swap a(3) and a(3)
     baca
-    
+
     swap c(3) and a(2)
     swap c(3) and c(3)
     baac
-    
+
     swap a(2) and c(1)
     swap a(2) and a(2)
     swap a(3) and a(3)
     bcaa
-    
+
     swap a(2) and c(0)
     swap b(1) and b(1)
     swap a(2) and a(2)
     swap a(3) and a(3)
     cbaa
-    
+
     swap b(2) and a(1)
     swap b(2) and b(2)
     swap a(3) and a(3)
     caba
-    
+
     swap b(3) and a(2)
     swap b(3) and b(3)
     caab
-    
+
     aabc
     aacb
     abac
@@ -381,15 +381,15 @@ OK，看起来这种方式应该是可行的，那么怎么应用到程序中呢
 
 代码如下：
 
-    
+
     #include <iostream>
     #include <algorithm>
     #include <vector>
     #include <string>
     using namespace std;
-    
-    
-    
+
+
+
     class Solution {
     public:
     	vector<string> Permutation(string str) {
@@ -404,7 +404,7 @@ OK，看起来这种方式应该是可行的，那么怎么应用到程序中呢
     		return res;
     	}
     };
-    
+
     int main() {
     	Solution solu;
     	vector<string> res;
@@ -418,7 +418,7 @@ OK，看起来这种方式应该是可行的，那么怎么应用到程序中呢
 
 输出：
 
-    
+
     aabc
     aacb
     abac
@@ -448,6 +448,3 @@ OK，看起来这种方式应该是可行的，那么怎么应用到程序中呢
 
 
 # COMMENT
-
-
-

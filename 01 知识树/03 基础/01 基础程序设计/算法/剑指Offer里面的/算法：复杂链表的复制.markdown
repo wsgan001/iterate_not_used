@@ -26,8 +26,8 @@ tags:
 
 
 
- 	
-  1. 
+
+  1.
 
 
 [CodingInterviews](https://github.com/gatieme/CodingInterviews)
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -83,8 +83,7 @@ tags:
 一个复杂链表类似如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5afe9919b3701.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/0GdDHJ8jfH.png?imageslim)
 
 
 
@@ -105,22 +104,22 @@ tags:
 
 
 
- 	
+
   * 复制正常的链表指针域 这个操作比较简单，因为链表的下一个指针为形成一个串的，我们从头开始即可遍历所有的结点
 
- 	
+
   * 复制随机的指针域 这个操作有点麻烦，由于指针是随机指向的，因此无法通过一趟遍历来实现，这里我们采用暴力的方式， 由于指针的位置是一一对应的，我们查找到原来的随机指针域在新链表中对应位置（\(O(N)\)），而我们遍历一遍将所有的随机指针都复制则需要 \(O(N^2)\)。
 
 
 代码如下：
 
-    
+
     #include <iostream>
     #include <vector>
     using namespace std;
-    
-    
-    
+
+
+
     struct RandomListNode {
     	int label;
     	struct RandomListNode *next;
@@ -129,15 +128,15 @@ tags:
     		label(x), next(NULL),random(NULL) {
     	}
     };
-    
-    
+
+
     class Solution {
     public:
-    
-    	RandomListNode* FindRandNodeInNewList(RandomListNode *oldHead, 
-    		RandomListNode *newHead, 
+
+    	RandomListNode* FindRandNodeInNewList(RandomListNode *oldHead,
+    		RandomListNode *newHead,
     		RandomListNode *randNode) {
-    
+
     		RandomListNode *oldNode = oldHead;
     		RandomListNode *newNode = newHead;
     		//开始往前遍历
@@ -148,21 +147,21 @@ tags:
     			oldNode = oldNode->next;
     			newNode = newNode->next;
     		}
-    
+
     		return NULL;
     	}
-    
-    
-    
+
+
+
     	// 复制链表  总体是两次遍历，但是实际上在查找random的时候，每个都要遍历依次
     	RandomListNode* Clone(RandomListNode* oldHead) {
     		if (oldHead == NULL) {
     			return NULL;
     		}
-    
+
     		RandomListNode *oldNode = oldHead;
     		RandomListNode *newHead = NULL, *preNode = NULL, *newNode = NULL;
-    
+
     		// 首先复制原链表的普通指针域, 一次遍历即可完成
     		while (oldNode != NULL) {
     			newNode = new RandomListNode(oldNode->label);
@@ -175,14 +174,14 @@ tags:
     			preNode = newNode;
     			oldNode = oldNode->next;
     		}
-    
+
     		//  接着复制随机指针域
     		oldNode = oldHead;
     		newNode = newHead;
     		while (oldNode != NULL && newNode != NULL) {
     			//设定node的random指针
-    			RandomListNode *oldRandNode = oldNode->random;                        
-    			RandomListNode *newRandNode = FindRandNodeInNewList(oldHead, newHead, oldRandNode);  
+    			RandomListNode *oldRandNode = oldNode->random;
+    			RandomListNode *newRandNode = FindRandNodeInNewList(oldHead, newHead, oldRandNode);
     			newNode->random = newRandNode;
     			// 往前移动
     			oldNode = oldNode->next;
@@ -190,9 +189,9 @@ tags:
     		}
     		return newHead;
     	}
-    
+
     };
-    
+
     void PrintNode(RandomListNode* root) {
     	RandomListNode *node = root;
     	while (node != NULL) {
@@ -206,39 +205,39 @@ tags:
     	}
     	cout << endl;
     }
-    
-    
+
+
     int main() {
     	//准备链表
     	RandomListNode node_list[5];
-    
+
     	node_list[0].label = 0;
     	node_list[0].next = &node_list[1];
     	node_list[0].random = &node_list[2];
-    
+
     	node_list[1].label = 1;
     	node_list[1].next = &node_list[2];
     	node_list[1].random = &node_list[4];
-    
+
     	node_list[2].label = 2;
     	node_list[2].next = &node_list[3];
     	node_list[2].random = NULL;
-    
+
     	node_list[3].label = 3;
     	node_list[3].next = &node_list[4];
     	node_list[3].random = &node_list[1];
-    
+
     	node_list[4].label = 4;
     	node_list[4].next = NULL;
     	node_list[4].random = &node_list[2];
-    
-    
+
+
     	//打印原始链表
     	cout << "原始链表："<<endl;
     	PrintNode(&node_list[0]);
-    
-    
-    
+
+
+
     	//打印复制的链表
     	Solution solu;
     	RandomListNode *root_new = solu.Clone(&node_list[0]);
@@ -246,12 +245,12 @@ tags:
     	PrintNode(root_new);
     	return 0;
     }
-    
+
 
 
 输出：
 
-    
+
     原始链表：
     0 ---> 1
     0 ---> 2
@@ -261,7 +260,7 @@ tags:
     3 ---> 4
     3 ---> 1
     4 ---> 2
-    
+
     复制的链表：
     0 ---> 1
     0 ---> 2
@@ -289,14 +288,14 @@ tags:
 
 由于新旧链表中的节点是一一对应的，因此我们可以用一个空间换时间的方法，用一个 map 或者 hashtable 在顺序遍历的时候，存储 oldNode 和 newNode 之间的这个映射关系。这样，我就能根据 oldNode 快速找到 newNode 。
 
-    
+
     #include <iostream>
     #include <vector>
     #include <map>
     using namespace std;
-    
-    
-    
+
+
+
     struct RandomListNode {
     	int label;
     	struct RandomListNode *next;
@@ -305,7 +304,7 @@ tags:
     		label(x), next(NULL), random(NULL) {
     	}
     };
-    
+
     class Solution {
     public:
     	RandomListNode* Clone(RandomListNode* oldHead) {
@@ -313,10 +312,10 @@ tags:
     			return NULL;
     		}
     		map<RandomListNode *, RandomListNode *> nodeMap;
-    
+
     		RandomListNode *oldNode = oldHead;
     		RandomListNode *newHead = NULL, *preNode = NULL, *newNode = NULL;
-    
+
     		//首先复制原链表的普通指针域, 一次遍历即可完成
     		while (oldNode != NULL) {
     			newNode = new RandomListNode(oldNode->label);
@@ -330,7 +329,7 @@ tags:
     			preNode = newNode;
     			oldNode = oldNode->next;
     		}
-    
+
     		//  接着复制随机指针域
     		oldNode = oldHead;
     		newNode = newHead;
@@ -339,7 +338,7 @@ tags:
     			//这里就不用查找了，直接从map里把oldNode对应的newNode拿出来就行。还是很厉害的
     			RandomListNode *newRandNode = nodeMap[oldRandNode];
     			newNode->random = newRandNode;
-    
+
     			//向前遍历
     			oldNode = oldNode->next;
     			newNode = newNode->next;
@@ -347,7 +346,7 @@ tags:
     		return newHead;
     	}
     };
-    
+
     void PrintNode(RandomListNode* root) {
     	RandomListNode *node = root;
     	while (node != NULL) {
@@ -361,39 +360,39 @@ tags:
     	}
     	cout << endl;
     }
-    
-    
+
+
     int main() {
     	//准备链表
     	RandomListNode node_list[5];
-    
+
     	node_list[0].label = 0;
     	node_list[0].next = &node_list[1];
     	node_list[0].random = &node_list[2];
-    
+
     	node_list[1].label = 1;
     	node_list[1].next = &node_list[2];
     	node_list[1].random = &node_list[4];
-    
+
     	node_list[2].label = 2;
     	node_list[2].next = &node_list[3];
     	node_list[2].random = NULL;
-    
+
     	node_list[3].label = 3;
     	node_list[3].next = &node_list[4];
     	node_list[3].random = &node_list[1];
-    
+
     	node_list[4].label = 4;
     	node_list[4].next = NULL;
     	node_list[4].random = &node_list[2];
-    
-    
+
+
     	//打印原始链表
     	cout << "原始链表：" << endl;
     	PrintNode(&node_list[0]);
-    
-    
-    
+
+
+
     	//打印复制的链表
     	Solution solu;
     	RandomListNode *root_new = solu.Clone(&node_list[0]);
@@ -405,7 +404,7 @@ tags:
 
 输出：
 
-    
+
     原始链表：
     0 ---> 1
     0 ---> 2
@@ -415,7 +414,7 @@ tags:
     3 ---> 4
     3 ---> 1
     4 ---> 2
-    
+
     复制的链表：
     0 ---> 1
     0 ---> 2
@@ -451,50 +450,47 @@ tags:
 
 
 
- 	
+
   1. 首先，我们遍历一遍原始链表，复制结点 N 对应的 N'，将其插入到结点 N 的后面，如下图所示
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5afeb2639db92.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/23Cjh1Ka2B.png?imageslim)
 
 
 
 
 
 
- 	
   2. 然后，确定每个随机指针的指向，只需遍历一遍链表即可确定每个结点的随机指针的指向，得到如下图结构 （**这个图是错的，但是文字意思是对的**）
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5afeb295f3591.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/5b87JJah3i.png?imageslim)
 
 
 
 
 
 
- 	
   3. 然后，再次遍历一遍，将原始链表和复制链表分开，奇数为原始链表，偶数为复制链表，得到如下图型
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5afeb2d14d4dd.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/D5fcA47c74.png?imageslim)
 
 
 完整代码如下：
 
-    
+
     #include <iostream>
     #include <vector>
     #include <map>
     using namespace std;
-    
-    
-    
+
+
+
     struct RandomListNode {
     	int label;
     	struct RandomListNode *next;
@@ -503,7 +499,7 @@ tags:
     		label(x), next(NULL), random(NULL) {
     	}
     };
-    
+
     class Solution {
     public:
     	//利害，三步走，很清晰
@@ -513,26 +509,26 @@ tags:
     		}
     		RandomListNode *oldNode = oldHead;
     		RandomListNode *newHead = NULL, *preNode = NULL, *newNode = NULL;
-    
-    		//首先复制原链表的普通指针域  
+
+    		//首先复制原链表的普通指针域
     		while (oldNode != NULL) {
     			newNode = new RandomListNode(oldNode->label);
-    
+
     			//将新的节点链接杂原来节点的末尾
     			newNode->next = oldNode->next;
     			oldNode->next = newNode;
-    
+
     			oldNode = newNode->next;//继续下一个
     		}
-    
-    
+
+
     		// 接着复制随机指针域
     		oldNode = oldHead;
     		while (oldNode != NULL) {
     			//准备好 oldRandNode 和 newNode 。
-    			RandomListNode *oldRandNode = oldNode->random; 
+    			RandomListNode *oldRandNode = oldNode->random;
     			RandomListNode *newNode = oldNode->next;
-    
+
     			//设定 newNode 的 random 指针
     			if (oldRandNode != NULL) {
     				newNode->random = oldRandNode->next;
@@ -543,7 +539,7 @@ tags:
     			// 继续向后移动
     			oldNode = newNode->next;
     		}
-    
+
     		// 将新旧链表拆分开来
     		oldNode = oldHead;
     		newNode = newHead = oldHead->next;
@@ -565,9 +561,9 @@ tags:
     		cout << endl;
     		return newHead;
     	}
-    
+
     };
-    
+
     void PrintNode(RandomListNode* root) {
     	RandomListNode *node = root;
     	while (node != NULL) {
@@ -581,38 +577,38 @@ tags:
     	}
     	cout << endl;
     }
-    
-    
+
+
     int main() {
     	//准备链表
     	RandomListNode node_list[5];
-    
+
     	node_list[0].label = 0;
     	node_list[0].next = &node_list[1];
     	node_list[0].random = &node_list[2];
-    
+
     	node_list[1].label = 1;
     	node_list[1].next = &node_list[2];
     	node_list[1].random = &node_list[4];
-    
+
     	node_list[2].label = 2;
     	node_list[2].next = &node_list[3];
     	node_list[2].random = NULL;
-    
+
     	node_list[3].label = 3;
     	node_list[3].next = &node_list[4];
     	node_list[3].random = &node_list[1];
-    
+
     	node_list[4].label = 4;
     	node_list[4].next = NULL;
     	node_list[4].random = &node_list[2];
-    
-    
+
+
     	//打印原始链表
     	cout << "原始链表：" << endl;
     	PrintNode(&node_list[0]);
-    
-    
+
+
     	//打印复制的链表
     	Solution solu;
     	RandomListNode *root_new = solu.Clone(&node_list[0]);
@@ -620,12 +616,12 @@ tags:
     	PrintNode(root_new);
     	return 0;
     }
-    
+
 
 
 输出如下：
 
-    
+
     原始链表：
     0 ---> 1
     0 ---> 2
@@ -635,13 +631,13 @@ tags:
     3 ---> 4
     3 ---> 1
     4 ---> 2
-    
+
     0 ,  0
     1 ,  1
     2 ,  2
     3 ,  3
     4 ,  4
-    
+
     复制的链表：
     0 ---> 1
     0 ---> 2
@@ -670,6 +666,3 @@ tags:
 
 
 # COMMENT
-
-
-

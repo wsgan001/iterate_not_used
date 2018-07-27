@@ -1,31 +1,6 @@
----
-author: evo
-comments: true
-date: 2018-04-03 15:13:02+00:00
-layout: post
-link: http://106.15.37.116/2018/04/03/queue/
-slug: queue
-title: 算法：队列
-wordpress_id: 2865
-categories:
-- 随想与反思
-tags:
-- '@todo'
----
-
-<!-- more -->
-
-[mathjax]
-
-
 # REF
 
-
-
-
-
- 	
-  * 七月在线 算法班
+* 七月在线 算法班
 
 
 
@@ -36,7 +11,7 @@ tags:
 
 
 
- 	
+
   * a
 
 
@@ -48,7 +23,7 @@ tags:
 
 
 
- 	
+
   * 对队列相关算法进行总结
 
 
@@ -72,25 +47,25 @@ tags:
 
 
 
- 	
+
   * 队列
 
- 	
+
     * 最短路径条数
 
- 	
+
     * 拓扑排序
 
 
 
 
- 	
+
   * 思考题：直方图矩形面积/收集雨水问题
 
 
 
 
-# 
+#
 
 
 链表其实不难，只是考察你的基本功
@@ -114,8 +89,7 @@ tags:
 给定如图所示的无向连通图，假定图中所有边的权值都为1，显然，从源点 A 到终点 T 的最短路径有很多条，那么这些最短路径的数目有多少？
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac399563abd2.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/228AbkiE6a.png?imageslim)
 
 到后面涉及到图论的时候，我们会知道，只要涉及到最短路径，往往涉及到广度有限搜索。
 
@@ -127,13 +101,13 @@ tags:
 
 
 
- 	
+
   * 到每一个结点的步数 step[0…N-1] ，初始化为0
 
- 	
+
   * 到每个结点的路径数目  pathNum[0…N-1]，初始化为0
 
- 	
+
   * pathNum[0] = 1 即到开始的结点只有1步。
 
 
@@ -141,22 +115,22 @@ OK，我们现在来分析当从结点 i 扩展到邻接点 j 的时候，发生
 
 
 
- 	
+
   * 若 step[j] 为 0，即，j 这个结点还从来没到过，则
 
- 	
+
     * step[j]=step[i]+1         即，到结点 j 的步数相当于到结点 i 的步数加 1 。
 
- 	
+
     * pathN[j] = pathN[i]     即，到结点 i 有多少种可能性，到结点 j 就有多少种可能性。
 
 
 
 
- 	
+
   * 若step[j]==step[i]+1，即，j 这个结点之前来到过，则
 
- 	
+
     * pathN[j] += pathN[i]    即：到 j 结点的路径又多了 pathN[i] 这么多条路径。
 
 
@@ -164,15 +138,14 @@ OK，我们现在来分析当从结点 i 扩展到邻接点 j 的时候，发生
 
 
 
- 	
+
   * 可考虑一旦扩展到结点N，则提前终止算法。
 
 
 代码如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac399ade5838.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/0ikikc84jb.png?imageslim)
 
 
 
@@ -185,52 +158,50 @@ OK，我们现在来分析当从结点 i 扩展到邻接点 j 的时候，发生
 一种可能的拓扑排序结果2->8->0->3->7->1->5->6->9->4->11->10->12
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3a4d85d687.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/EaGdaL20Hl.png?imageslim)
 
 拓扑排序的方法
 
 
 
- 	
+
   * 从有向图中选择一个没有前驱(即入度为0)的顶点并且输出它；
 
- 	
+
   * 从网中删去该顶点，并且删去从该顶点发出的全部有向边；
 
- 	
+
   * 重复上述两步，直到剩余的网中不再存在没有前趋的顶点为止。
 
 
 代码如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3a4f090949.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/7CAjh2Af56.png?imageslim)
 
 拓扑排序的进一步思考
 
 
 
- 	
+
   * 拓扑排序算法可以发现圈；其本质是不断输出入度为0的点；
 
- 	
+
   * 可以用队列(或者栈)保存入度为0的点，避免每次遍历所有点查找入度；
 
- 	
+
     * 排序列表中的点需要更新与之连接的点的入度。入度减小1之后，如果为0，放入队列(或者栈)中。
 
 
 
 
- 	
+
   * 拓扑排序其实是给定了结点的一组偏序关系。
 
- 	
+
   * “拓扑”一词的本意不限于此，在GIS中，它往往指点、线、面、体之间的相互邻接关系，即“橡皮泥集合”——通过揉捏几何形体而不受影响的空间相互关系。存储这些关系，往往能够对某些算法带来好处。
 
- 	
+
     * 如：计算不自交的空间曲面是否能够围成三维体——任意三维边都邻接两个三维曲面。
 
 
@@ -244,20 +215,17 @@ OK，我们现在来分析当从结点 i 扩展到邻接点 j 的时候，发生
 一种关系：如三维数据间的拓扑关系
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3a5262eba8.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/kKi0lK2eB0.png?imageslim)
 
 三维拓扑重建
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3a535971d9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/ajlEkLli5h.png?imageslim)
 
 视角再次放大——面面、面线的拓扑
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3a5441c751.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Bch9F0G0dI.png?imageslim)
 
 
 
@@ -271,43 +239,43 @@ OK，我们现在来分析当从结点 i 扩展到邻接点 j 的时候，发生
 
 
 
- 	
+
   * (()：2
 
- 	
+
   * ()()：4
 
- 	
+
   * ()(())：6
 
- 	
+
   * (()())：6
 
 
 算法分析
 
- 	
+
   * 记起始匹配位置start=-1；最大匹配长度ml=0：
 
- 	
+
   * 考察第i位字符c：
 
- 	
+
   * 如果c为左括号，压栈；
 
- 	
+
   * 如果c为右括号，它一定与栈顶左括号匹配；
 
- 	
+
     * 如果栈为空，表示没有匹配的左括号，start=i，为下一次可能的匹配做准备
 
- 	
+
     * 如果栈不空，出栈(因为和c匹配了)；
 
- 	
+
       * 如果栈为空，i-start即为当前找到的匹配长度，检查i-start是否比ml更大，使得ml得以更新；
 
- 	
+
       * 如果栈不空，则当前栈顶元素t是上次匹配的最后位置，检查i-t是否比ml更大，使得ml得以更新。
 
 
@@ -316,52 +284,48 @@ OK，我们现在来分析当从结点 i 扩展到邻接点 j 的时候，发生
 
 
 
- 	
+
   * 注：因为入栈的一定是左括号，显然没有必要将它们本身入栈，应该入栈的是该字符在字符串中的索引。
 
 
 代码如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3a5a0e5c41.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/CG1iLhG22e.png?imageslim)
 
 观察与思考
 
 
 
- 	
+
   * 经过分析算法得知，只有在右括号和左括号的发生匹配时，才有可能更新最终解；
 
- 	
+
   * 做记录前缀串p[0…i-1]中左括号数目与右括号数目的差x，若x为0时，考察是否最终解得以更新即可。这个差x，其实是入栈的数目，代码中用“深度”deep表达；
 
- 	
+
   * 由于可能出现左右括号不相等——尤其是左括号数目大于右括号数目，所以，再从右向前扫描一次。
 
- 	
+
   * 这样完成的代码，用deep值替换了stack栈，空间复杂度由O(N)降到O(1)。
 
 
 代码如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3a5c8e9d86.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/8ihmbdBGb0.png?imageslim)
 
 p="()(()))"
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3a5fa5a2a8.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/c0F751LIK4.png?imageslim)
 
 空间复杂度仅O(1)的最长括号匹配
 
 分析括号串p="(((()()))"：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3a6092f9e4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/8F4AH8h4jJ.png?imageslim)
 
 
 
@@ -377,35 +341,31 @@ p="()(()))"
 
 
 
- 	
+
   * 中缀表达式：a+(b-c)*d
 
- 	
+
   * 后缀表达式：abc-d*+
 
 
 运算与二叉树
 
- 	
+
   * 事实上，二元运算的前提下，中缀表达式可以对应一颗二叉树；逆波兰表达式即该二叉树后序遍历的结果。
 
- 	
+
   * 中缀表达式：a+(b-c)*d
 
- 	
+
   * 后缀表达式：abc-d*+
 
- 	
+
     * 该结论对多元运算也成立，如“非运算”等
 
 
 
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3a661c0b16.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/ijlgcAFfCh.png?imageslim)
 
 计算逆波兰表达式
 
@@ -413,25 +373,25 @@ p="()(()))"
 
 
 
- 	
+
   * "2", "1", "+", "3", "*"：9——(2+1)*3
 
- 	
+
   * "4", "13", "5", "/", "+"：6——4+(13/5)
 
 
 逆波兰表达式的计算方法
 
- 	
+
   * abc-d*+
 
- 	
+
   * 若当前字符是操作数，则压栈
 
- 	
+
   * 若当前字符是操作符，则弹出栈中的两个操作数，计算后仍然压入栈中
 
- 	
+
     * 若某次操作，栈内无法弹出两个操作数，则表达式有误。
 
 
@@ -441,50 +401,40 @@ p="()(()))"
 代码如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3a6944eec0.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/l1hbLdAbd1.png?imageslim)
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3a6895ed2f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/c21jBmi1EK.png?imageslim)
 
 逆波兰表达式
 
 
 
- 	
+
   * 计算数学表达式的最常用方法；
 
- 	
+
   * 在实践中，往往给出的不是立即数，而是变量名称；若经常计算且表达式本身不变，可以事先将中缀表达式转换成逆波兰表达式存储。
 
 
 计算器
 
- 	
+
   * 将中缀表达式转换成逆波兰表达式，然后正常计算。
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3a6bd6d632.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/AFAkf9lmdH.png?imageslim)
 
 逆波兰表达式的用途
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3a6cbcebf2.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/hhEk8DF7kc.png?imageslim)
 
 省级行政区中哪几个最接近圆形？
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3a6d667b82.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/6hHih3GBIm.png?imageslim)
 
 # 思考题：直方图矩形面积
 
@@ -492,8 +442,7 @@ p="()(()))"
 给定n个非负整数，表示直方图的方柱的高度，同时，每个方柱的宽度假定都为1；试找出直方图中最大的矩形面积。如：给定高度为：2,1,5,6,2,3，最大面积为10。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3a6e572875.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/4jH4Ihk99J.png?imageslim)
 
 
 
@@ -518,25 +467,25 @@ p="()(()))"
 
 
 
- 	
+
   * 一般而言，栈的重要度大于队列。
 
- 	
+
   * 栈的用途非常广泛，除了表达式求值，在深度优先遍历、保存现场等问题中常常出现。
 
- 	
+
   * 关于栈的话题不限于此。
 
- 	
+
     * 树、图的章节将继续讨论栈的内容。
 
 
 
 
- 	
+
   * 思考： 一个栈(无穷大)的进栈序列为1,2,3,..n,共多少种不同的出栈序列？
 
- 	
+
     * 该问题将在动态规划中继续讨论。
 
 
@@ -559,8 +508,5 @@ p="()(()))"
 
 
 
- 	
+
   1. 七月在线 算法
-
-
-
