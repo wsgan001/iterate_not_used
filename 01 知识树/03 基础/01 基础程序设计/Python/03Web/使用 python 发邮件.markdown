@@ -16,8 +16,7 @@
 登入自己的QQ邮箱，点击设置，点击账户，然后往下拉，看到如下地方，将POP3/SMTP服务点为开启，然后点击生成授权码
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5ab4f6318ec61.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/m1FaE0CEeG.png?imageslim)
 
 然后，QQ 邮箱 SMTP 服务器地址：smtp.qq.com，ssl 端口：465。
 

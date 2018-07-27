@@ -22,10 +22,10 @@ categories:
 
 
 
- 	
+
   1. [python基础教程 w3cschool](https://www.w3cschool.cn/python/)
 
- 	
+
   2. [Python 3 教程 菜鸟教程](http://www.runoob.com/python3/python3-tutorial.html)
 
 
@@ -37,7 +37,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -49,7 +49,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -74,11 +74,10 @@ Python语言与Perl，C和Java等语言有许多相似之处。但是，也存�
 
 
 
-用一张图概况Python学习![](https://img.w3cschool.cn/attachments/image/20160831/1472624770139693.png)![](https://img.w3cschool.cn/attachments/image/20160831/1472624770139693.png)
+用一张图概况Python学习
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aea6b83e16fe.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/63ACC8L3Eb.png?imageslim)
 
 
 
@@ -105,40 +104,39 @@ Python语言与Perl，C和Java等语言有许多相似之处。但是，也存�
 
 linux上你只需要在命令行中输入 Python 命令即可启动交互式编程,提示窗口如下：
 
-    
+
     $ python
     Python 2.4.3 (#1, Nov 11 2010, 13:34:43)
     [GCC 4.1.2 20080704 (Red Hat 4.1.2-48)] on linux2
     Type "help", "copyright", "credits" or "license" for more information.
     >>>
-    
+
 
 
 Window上在安装Python时已经安装了默认的交互式编程客户端，提示窗口如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aea6b9962326.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/CEEHFld91F.png?imageslim)
 
 在 python 提示符中输入以下文本信息，然后按 Enter 键查看运行效果：
 
-    
+
     >>> print "Hello, Python!";
-    
+
 
 
 在 Python 2.4.3 版本中,以上事例输出结果如下：
 
-    
+
     Hello, Python!
-    
+
 
 
 如果您运行的是新版本的Python，那么你就需要在print语句中使用括号如：
 
-    
+
     >>>  print ("Hello, Python!");
-    
+
 
 
 
@@ -150,47 +148,47 @@ Window上在安装Python时已经安装了默认的交互式编程客户端，�
 
 让我们写一个简单的Python脚本程序。所有Python文件将以.py为扩展名。将以下的源代码拷贝至test.py文件中。
 
-    
+
     print "Hello, Python!";
-    
+
 
 
 这里，假设你已经设置了Python解释器PATH变量。使用以下命令运行程序：
 
-    
+
     $ python test.py
-    
+
 
 
 输出结果：
 
-    
+
     Hello, Python!
-    
+
 
 
 让我们尝试另一种方式来执行Python脚本。修改test.py文件，如下所示：
 
-    
+
     #!/usr/bin/python
-    
+
     print "Hello, Python!";
-    
+
 
 
 这里，假定您的Python解释器在/usr/bin目录中，使用以下命令执行脚本：
 
-    
+
     $ chmod +x test.py     # 脚本文件添加可执行权限
     $./test.py
-    
+
 
 
 输出结果：
 
-    
+
     Hello, Python!
-    
+
 
 
 
@@ -359,21 +357,21 @@ python中的标识符是区分大小写的。
 
 缩进的空白数量是可变的，但是所有代码块语句必须包含相同的缩进空白数量，这个必须严格执行。如下所示：
 
-    
+
     if True:
         print "True"
     else:
       print "False"
-    
+
 
 
 以下代码将会执行错误：
 
-    
+
     #!/usr/bin/python
     # -*- coding: UTF-8 -*-
     # 文件名：test.py
-    
+
      if True:
         print "Answer"
         print "True"
@@ -385,8 +383,8 @@ python中的标识符是区分大小写的。
 
 执行以上代码，会出现如下错误提醒：
 
-    
-    $ python test.py  
+
+    $ python test.py
       File "test.py", line 5
         if True:
         ^
@@ -416,19 +414,19 @@ Python语句中一般以新行作为为语句的结束符。
 
 但是我们可以使用斜杠（ \）将一行的语句分为多行显示，如下所示：
 
-    
-     total = item_one + \ 
+
+     total = item_one + \
             item_two + \
             item_three
-    
+
 
 
 语句中包含[], {} 或 () 括号就不需要使用多行连接符。如下实例：
 
-    
+
      days = ['Monday', 'Tuesday', 'Wednesday',
             'Thursday', 'Friday']
-    
+
 
 
 
@@ -447,12 +445,12 @@ Python 使用单引号(' )，双引号(" )，三引号(''' """) 来表示字符�
 
 其中三引号可以由多行组成，编写多行文本的快捷语法，常用于文档字符串，在文件的特定地点，被当做注释。
 
-    
+
     word = 'word'
     sentence = "这是一个句子"
     paragraph = """这是一个段落
     包含了多个语句"""
-    
+
 
 
 
@@ -473,11 +471,11 @@ Python 使用单引号(' )，双引号(" )，三引号(''' """) 来表示字符�
 
 python中单行注释采用 # 开头。
 
-    
+
     #!/usr/bin/python
     # -*- coding: UTF-8 -*-
     # 文件名：test.py
-    
+
     # 第一个注释
     print "Hello, Python!";  # 第二个注释
 
@@ -487,31 +485,31 @@ python中单行注释采用 # 开头。
 
 输出结果：
 
-    
+
     Hello, Python!
-    
+
 
 
 注释可以在语句或表达式行末：
 
-    
+
     name = "Madisetti" # 这是一个注释
 
 
 python 中多行注释使用三个单引号(''')或三个双引号(""")。
 
-    
+
     #!/usr/bin/python
     # -*- coding: UTF-8 -*-
     # 文件名：test.py
-    
-    
+
+
     '''
     这是多行注释，使用单引号。
     这是多行注释，使用单引号。
     这是多行注释，使用单引号。
     '''
-    
+
     """
     这是多行注释，使用双引号。
     这是多行注释，使用双引号。
@@ -550,11 +548,11 @@ python 中多行注释使用三个单引号(''')或三个双引号(""")。
 
 下面的程序在按回车键后就会等待用户输入：
 
-    
+
     #!/usr/bin/python
-    
+
     raw_input("\n\nPress the enter key to exit.")
-    
+
 
 
 以上代码中 ，"\n\n"在结果输出前会输出两个新的空行。一旦用户按下键时，程序将退出。
@@ -571,9 +569,9 @@ python 中多行注释使用三个单引号(''')或三个双引号(""")。
 
 
 
-    
+
     #!/usr/bin/python
-    
+
     import sys; x = 'w3cschool'; sys.stdout.write(x + '\n')
 
 
@@ -583,7 +581,7 @@ python 中多行注释使用三个单引号(''')或三个双引号(""")。
 
 执行以上代码，输入结果为：
 
-    
+
     $ python test.py
     w3cschool
 
@@ -611,14 +609,14 @@ python 中多行注释使用三个单引号(''')或三个双引号(""")。
 
 如下实例：
 
-    
-    if expression : 
-       suite 
-    elif expression :  
-       suite  
-    else :  
-       suite 
-    
+
+    if expression :
+       suite
+    elif expression :
+       suite
+    else :
+       suite
+
 
 
 
@@ -635,15 +633,15 @@ python 中多行注释使用三个单引号(''')或三个双引号(""")。
 
 很多程序可以执行一些操作来查看一些基本信息，Python可以使用-h参数查看各参数帮助信息：
 
-    
-    $ python -h 
-    usage: python [option] ... [-c cmd | -m mod | file | -] [arg] ... 
-    Options and arguments (and corresponding environment variables): 
-    -c cmd : program passed in as string (terminates option list) 
-    -d     : debug output from parser (also PYTHONDEBUG=x) 
-    -E     : ignore environment variables (such as PYTHONPATH) 
-    -h     : print this help message and exit 
-     
+
+    $ python -h
+    usage: python [option] ... [-c cmd | -m mod | file | -] [arg] ...
+    Options and arguments (and corresponding environment variables):
+    -c cmd : program passed in as string (terminates option list)
+    -d     : debug output from parser (also PYTHONDEBUG=x)
+    -E     : ignore environment variables (such as PYTHONPATH)
+    -h     : print this help message and exit
+
     [ etc. ]
 
 
@@ -676,6 +674,3 @@ python 中多行注释使用三个单引号(''')或三个双引号(""")。
 
 
 # COMMENT
-
-
-

@@ -27,14 +27,14 @@ tags:
 
 
 
- 	
+
   1. [python基础教程 w3cschool](https://www.w3cschool.cn/python/)
 
- 	
+
   2. [Python 3 教程 菜鸟教程](http://www.runoob.com/python3/python3-tutorial.html)
 
- 	
-  3. 
+
+  3.
 
 
 
@@ -44,7 +44,7 @@ tags:
 
 
 
- 	
+
   * a
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * a
 
 
@@ -86,18 +86,18 @@ tags:
 
 Python2 中如果py文件中未指定编码，在涉及中文字符的时候，执行会报错：
 
-    
+
     #!/usr/bin/python
     print "你好，世界";
-    
+
 
 
 输出：
 
-    
+
       File "test.py", line 2
     SyntaxError: Non-ASCII character '\xe4' in file test.py on line 2, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
-    
+
 
 
 以上出错信息显示了我们未指定编码。
@@ -106,27 +106,27 @@ Python2 中如果py文件中未指定编码，在涉及中文字符的时候，�
 
 
 
- 	
+
   * # -*- coding: UTF-8 -*-
 
- 	
+
   * # coding=utf-8
 
 
 例子如下：
 
-    
-    #!/usr/bin/python 
+
+    #!/usr/bin/python
     # coding=utf-8
-    
+
     print "你好，世界";
 
 
 输出：
 
-    
+
     你好，世界
-    
+
 
 
 
@@ -145,15 +145,14 @@ Python2 中如果py文件中未指定编码，在涉及中文字符的时候，�
 
 
 
- 	
+
   * 进入 **file > Settings**，在输入框搜索 **encoding**。
 
- 	
+
   * 找到 **Editor > File encodings**，将 **IDE Encoding** 和 **Project Encoding** 设置为 utf-8。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aea6b1362ac1.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/aaJ4e3e2Be.png?imageslim)
 
 
 
@@ -229,6 +228,3 @@ Python3.X 的源码文件默认使用 utf-8 编码，所以可以正常解析中
 
 
 # COMMENT
-
-
-

@@ -47,8 +47,7 @@ CGI程序可以是Python脚本，PERL脚本，SHELL脚本，C或者C++程序等�
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aeae4d786136.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/AIJ9ehE4C3.png?imageslim)
 
 
 

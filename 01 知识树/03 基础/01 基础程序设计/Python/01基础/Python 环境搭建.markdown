@@ -22,10 +22,10 @@ categories:
 
 
 
- 	
+
   1. [python基础教程 w3cschool](https://www.w3cschool.cn/python/)
 
- 	
+
   2. [Python 3 教程 菜鸟教程](http://www.runoob.com/python3/python3-tutorial.html)
 
 
@@ -37,7 +37,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -49,7 +49,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -85,52 +85,52 @@ Windows 下直接下载最新版的 Python 2.7.9，安装的时候注意选择
 
 
 
- 	
+
   * Unix (Solaris, Linux, FreeBSD, AIX, HP/UX, SunOS, IRIX, 等等。)
 
- 	
+
   * Win 9x/NT/2000
 
- 	
+
   * Macintosh (Intel, PPC, 68K)
 
- 	
+
   * OS/2
 
- 	
+
   * DOS (多个DOS版本)
 
- 	
+
   * PalmOS
 
- 	
+
   * Nokia 移动手机
 
- 	
+
   * Windows CE
 
- 	
+
   * Acorn/RISC OS
 
- 	
+
   * BeOS
 
- 	
+
   * Amiga
 
- 	
+
   * VMS/OpenVMS
 
- 	
+
   * QNX
 
- 	
+
   * VxWorks
 
- 	
+
   * Psion
 
- 	
+
   * Python 同样可以移植到 Java 和 .NET 虚拟机上。
 
 
@@ -186,25 +186,25 @@ Python已经被移植在许多平台上（经过改动使它能够工作在不�
 
 
 
- 	
+
   * 打开WEB浏览器访问[http://www.python.org/download/](https://www.python.org/download/)
 
- 	
+
   * 选择适用于Unix/Linux的源码压缩包。
 
- 	
+
   * 下载及解压压缩包。
 
- 	
+
   * 如果你需要自定义一些选项修改_Modules/Setup_
 
- 	
+
   * **执行** ./configure 脚本
 
- 	
+
   * make
 
- 	
+
   * make install
 
 
@@ -218,16 +218,16 @@ Python已经被移植在许多平台上（经过改动使它能够工作在不�
 
 
 
- 	
+
   * 打开WEB浏览器访问[http://www.python.org/download/](https://www.python.org/download/)
 
- 	
+
   * 在下载列表中选择Window平台安装包，包格式为：_python-XYZ.msi_ 文件 ， XYZ 为你要安装的版本号。
 
- 	
+
   * 要使用安装程序 _python-XYZ.msi_, Windows系统必须支持Microsoft Installer 2.0搭配使用。只要保存安装文件到本地计算机，然后运行它，看看你的机器支持MSI。Windows XP和更高版本已经有MSI，很多老机器也可以安装MSI。
 
- 	
+
   * 下载后，双击下载包，进入Python安装向导，安装非常简单，你只需要使用默认的设置一直点击"下一步"直到安装完成即可。
 
 
@@ -266,28 +266,28 @@ Unix或Windows中路径变量为PATH（UNIX区分大小写，Windows不区分大
 
 
 
- 	
+
   * **在 csh shell:** 输入
 
-    
+
     setenv PATH "$PATH:/usr/local/bin/python"
 
 
 , 按下"Enter"。
 
- 	
+
   * **在 bash shell (Linux):** 输入
 
-    
+
     export PATH="$PATH:/usr/local/bin/python"
 
 
 ，按下"Enter"。
 
- 	
+
   * **在 sh 或者 ksh shell:** 输入
 
-    
+
     PATH="$PATH:/usr/local/bin/python"
 
 
@@ -302,7 +302,7 @@ Unix或Windows中路径变量为PATH（UNIX区分大小写，Windows不区分大
 
 在环境变量中添加Python目录：
 
-    
+
     path=%path%;C:\Python
 
 
@@ -314,28 +314,25 @@ Unix或Windows中路径变量为PATH（UNIX区分大小写，Windows不区分大
 
 
 
- 	
+
   * 右键点击"计算机"，然后点击"属性"
 
- 	
+
   * 然后点击"高级系统设置"
 
- 	
+
   * 选择"系统变量"窗口下面的"Path",双击即可！
 
- 	
-  * 
- 	
+
+  *
+
   * 然后在"Path"行，添加python安装路径即可(我的D:\Python32)，所以在后面，添加该路径即可。 **ps：记住，路径直接用分号"；"隔开！**
 
- 	
+
   * 最后设置成功以后，在cmd命令行，输入命令"python"，就可以有相关显示。
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aea6a654cfe9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/2A94eFBAhj.png?imageslim)
 
 
 
@@ -414,15 +411,15 @@ Unix或Windows中路径变量为PATH（UNIX区分大小写，Windows不区分大
 
 你可以在Unix，DOS或任何其他提供了命令行或者shell的系统进行python编码工作。
 
-    
-     $python # Unix/Linux 
-    
-     或者 
-    
-     python% # Unix/Linux 
-    
-     或者 
-    
+
+     $python # Unix/Linux
+
+     或者
+
+     python% # Unix/Linux
+
+     或者
+
      C:>python # Windows/DOS
 
 
@@ -498,15 +495,15 @@ Unix或Windows中路径变量为PATH（UNIX区分大小写，Windows不区分大
 
 在你的应用程序中通过引入解释器可以在命令行中执行Python脚本，如下所示：
 
-    
-    $python script.py # Unix/Linux 
-    
-     或者 
-    
-     python% script.py # Unix/Linux 
-    
-     或者 
-    
+
+    $python script.py # Unix/Linux
+
+     或者
+
+     python% script.py # Unix/Linux
+
+     或者
+
      C:>python script.py # Windows/DOS
 
 
@@ -523,13 +520,13 @@ Unix或Windows中路径变量为PATH（UNIX区分大小写，Windows不区分大
 
 
 
- 	
+
   * **Unix:** IDLE 是 UNIX 上最早的 Python IDE 。
 
- 	
+
   * **Windows:** PythonWin 是一个 Python 集成开发环境,在许多方面都比 IDE 优秀
 
- 	
+
   * **Macintosh:** Python 的 Mac 可以使用 IDLE IDE，你可以在网站上下载对应MAC的IDLE 。
 
 
@@ -566,6 +563,3 @@ Unix或Windows中路径变量为PATH（UNIX区分大小写，Windows不区分大
 
 
 # COMMENT
-
-
-

@@ -22,10 +22,10 @@ categories:
 
 
 
- 	
+
   1. [python基础教程 w3cschool](https://www.w3cschool.cn/python/)
 
- 	
+
   2. [Python 3 教程 菜鸟教程](http://www.runoob.com/python3/python3-tutorial.html)
 
 
@@ -37,7 +37,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -49,7 +49,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -72,29 +72,28 @@ Python条件语句是通过一条或多条语句的执行结果（True或者Fals
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aea9679ee929.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/j62kLg0kkd.png?imageslim)
 
 Python程序语言指定任何非0和非空（null）值为true，0 或者 null为false。
 
 Python 编程中 if 语句用于控制程序的执行，基本形式为：
 
-    
+
     if 判断条件：
         执行语句……
     else：
         执行语句……
-    
+
 
 
 其中"判断条件"成立时（非零），则执行后面的语句，而执行内容可以多行，以缩进来区分表示同一范围。
 
 else 为可选语句，当需要在条件不成立时执行内容则可以执行相关语句，具体例子如下：
 
-    
+
     # coding=utf8
     # 例1：if 基本用法
-    
+
     flag = False
     name = 'luren'
     if name == 'python':         # 判断变量否为'python'
@@ -102,21 +101,21 @@ else 为可选语句，当需要在条件不成立时执行内容则可以执行
         print 'welcome boss'    # 并输出欢迎信息
     else:
         print name              # 条件不成立时输出变量名称
-    
+
 
 
 输出结果为：
 
-    
+
     >>> luren         # 输出结果
-    
+
 
 
 if 语句的判断条件可以用>（大于）、=（大于等于）、<=（小于等于）来表示其关系。
 
 当判断条件为多个值是，可以使用以下形式：
 
-    
+
     if 判断条件1:
         执行语句1……
     elif 判断条件2:
@@ -125,18 +124,18 @@ if 语句的判断条件可以用>（大于）、=（大于等于）、<=（小�
         执行语句3……
     else:
         执行语句4……
-    
+
 
 
 实例如下：
 
-    
+
     # coding=utf8
     # 例2：elif用法
-    
-    num = 5     
+
+    num = 5
     if num == 3:            # 判断num的值
-        print 'boss'        
+        print 'boss'
     elif num == 2:
         print 'user'
     elif num == 1:
@@ -146,34 +145,34 @@ if 语句的判断条件可以用>（大于）、=（大于等于）、<=（小�
 
 输出结果为：
 
-    
+
     >>> roadman     # 输出结果
-    
+
 
 
 由于 python 并不支持 switch 语句，所以多个条件判断，只能用 elif 来实现，如果判断需要多个条件需同时判断时，可以使用 or （或），表示两个条件有一个成立时判断条件成功；使用 and （与）时，表示只有两个条件同时成立的情况下，判断条件才成功。
 
-    
+
     #!/usr/bin/python
     # -*- coding: UTF-8 -*-
-    
+
     # 例3：if语句多个条件
-    
+
     num = 9
     if num >= 0 and num <= 10:    # 判断值是否在0~10之间
         print 'hello'
     >>> hello		# 输出结果
-    
+
     num = 10
     if num < 0 or num > 10:    # 判断值是否在小于0或大于10
         print 'hello'
     else:
     	print 'undefine'
     >>> undefine		# 输出结果
-    
+
     num = 8
     # 判断值是否在0~5或者10~15之间
-    if (num >= 0 and num <= 5) or (num >= 10 and num <= 15):    
+    if (num >= 0 and num <= 5) or (num >= 10 and num <= 15):
         print 'hello'
     else:
         print 'undefine'
@@ -188,20 +187,20 @@ if 语句的判断条件可以用>（大于）、=（大于等于）、<=（小�
 
 你也可以在同一行的位置上使用if条件判断语句，如下实例：
 
-    
-    #!/usr/bin/python 
+
+    #!/usr/bin/python
     # -*- coding: UTF-8 -*-
-     
-    var = 100 
-     
-    if ( var  == 100 ) : print "变量 var 的值为100" 
-     
+
+    var = 100
+
+    if ( var  == 100 ) : print "变量 var 的值为100"
+
     print "Good bye!"
 
 
 以上代码执行输出结果如下：
 
-    
+
     变量 var 的值为100
     Good bye!
 
@@ -235,6 +234,3 @@ if 语句的判断条件可以用>（大于）、=（大于等于）、<=（小�
 
 
 # COMMENT
-
-
-
