@@ -1,36 +1,9 @@
----
-author: evo
-comments: true
-date: 2018-04-02 15:49:31+00:00
-layout: post
-link: http://106.15.37.116/2018/04/02/cv-neural-style/
-slug: cv-neural-style
-title: cv 风格迁移 Neural Style
-wordpress_id: 2545
-categories:
-- 随想与反思
-tags:
-- '@todo'
-- Computer Vision
-- project
----
-
-<!-- more -->
-
-[mathjax]
-
 
 # REF：
 
+1. 七月在线 深度学习
 
 
-
-
-
-  1. 七月在线 深度学习
-
-
-********************************************************************************
 
 
 # 缘由：
@@ -77,18 +50,15 @@ content_image + style_image=> output image
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac382e6c8841.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/3I0E5Eak1f.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac382f1e45f3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/aAjG9Gl1cF.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3834ec2ad8.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/eCg5BGEBga.png?imageslim)
 
 
 
@@ -100,13 +70,12 @@ content_image + style_image=> output image
 
 网络结构：
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac24de7e7ed5.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Jj6jgJb6bI.png?imageslim)
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/1iJ0al7meJ.png?imageslim)
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac24e889e0d7.png)
-
-
-在本文中，只使用了前5层的网络'conv1_1'(a)，'conv2_1'(b)，'conv3_1'(c)，'conv4_1'(d)，'conv5_1'(e)。VGG网络主要用来做内容识别，在实践中作者发现，使用前三层1，2，3已经能达到比较好的内容重建工作，4、5两层保留了一些比较高层的特征，丢失了一些细节。
+在本文中，只使用了前5层的网络 'conv1_1'(a)，'conv2_1'(b)，'conv3_1'(c)，'conv4_1'(d)，'conv5_1'(e)。VGG网络主要用来做内容识别，在实践中作者发现，使用前三层1，2，3已经能达到比较好的内容重建工作，4、5两层保留了一些比较高层的特征，丢失了一些细节。
 
 
 
@@ -116,27 +85,15 @@ content_image + style_image=> output image
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac24e889e0d7.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/90c4G755aF.png?imageslim)
 
 
 
-
-
-
-
-  * a:conv1-1
-
-
-  * b:conv1-1 and conv2-1
-
-
-  * c:conv1-1,conv2-1 and conv3-1
-
-
-  * d:conv1-1,conv2-1,conv3-1 and conv4-1
-
-
-  * e:conv1-1 conv2-1,conv3-1,conv4-1 and conv5-1
+* a:conv1-1
+* b:conv1-1 and conv2-1
+* c:conv1-1,conv2-1 and conv3-1
+* d:conv1-1,conv2-1,conv3-1 and conv4-1
+* e:conv1-1 conv2-1,conv3-1,conv4-1 and conv5-1
 
 
 
@@ -144,11 +101,7 @@ content_image + style_image=> output image
 ## 损失函数=内容重建+风格重建
 
 
-
-
-
-
-  * 内容重建损失函数：
+* 内容重建损失函数：
 
 
 \[L_{content}(\overrightarrow{p},\overrightarrow{x},l)=\frac{1}{2}\sum_{i,j}^{ }(F_{ij}^l-P_{ij}^l)^2\]
@@ -194,31 +147,22 @@ To generate the images that mix the content of a photograph withe the style of a
 1.对于同一张content对象，给style风格图片不同时，输出的图像不同。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac24f3242407.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/IhbD3lGifb.png?imageslim)
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac24f2f06703.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/CaGgE9ab35.png?imageslim)
 
 2.Total loss 中的\(\alpha /\beta \)不同。
 
+* 从上到下表示的时不同conv层的feature进行style，conv1->conv5是一个从整体到局部的过程。
 
-
-
-  * 从上到下表示的时不同conv层的feature进行style，conv1->conv5是一个从整体到局部的过程。
-
-
-  * 从左导游表示的时不同的\(\alpha /\beta \)的比例，\(10^{-5}->10^{-2}\)是指更注重style还是更强调content。**厉害**
+* 从左导游表示的时不同的\(\alpha /\beta \)的比例，\(10^{-5}->10^{-2}\)是指更注重style还是更强调content。**厉害**
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac24fe8ab8ca.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/mkDiab7gba.png?imageslim)
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac24feb529da.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/fL40DD470K.png?imageslim)
 
 
 
@@ -233,4 +177,4 @@ To generate the images that mix the content of a photograph withe the style of a
 **基本没明白，也没怎么细讲，要找个详细的自己做下来。**
 
 Neural Style
-(Caffe + Python)https://github.com/fzliu/style-transfer
+(Caffe + Python) https://github.com/fzliu/style-transfer

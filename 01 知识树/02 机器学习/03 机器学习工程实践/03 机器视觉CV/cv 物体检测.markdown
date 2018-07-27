@@ -625,12 +625,7 @@ rpn只有两类 前景和后景？ **什么？**
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/7F03EkdeEG.png?imageslim)
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22c8fa4af5.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/1K13Im20Ch.png?imageslim)
 
 
 ### Test 过程
@@ -642,71 +637,33 @@ rpn只有两类 前景和后景？ **什么？**
 
   1. 对于一张图，scale到某一尺度上(from 500 -> 800)
 
-
   2. Forward一遍，得出每个点的score, bbox_regressiontarget, 计算box大小，scale back to original image.
-
 
   3. NMS等后续过程，凝练出top_k个置信度很高的box, 计算recall, 得出结论。
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22ce10960d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/GhkiBfjI83.png?imageslim)
 
 
 
 
 ## RPN实验结果
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/E157Ch0iFJ.png?imageslim)
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22d1162e33.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22d1ade690.png)
-
-
-
-
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/dmHJF8774D.png?imageslim)
 
 
 
 # 最新方法概述：
 
 
-
-
-
-
   * Fast-RCNN
-
-
     * Counterparts (Grid-based CNN,RCNN minus R,etc.)
-
-
-
-
-
   * YOLO: Unified real-time object detection (cvpr'16)
-
-
   * SSD:Single-shot multi-box detector(eccv'16)
-
-
   * Inside-Outside Net (cvpr'16)
-
-
   * Adaptive Object Detection using Adjacency-Zoom Prediction
-
-
   * Region-based FCN (NIPS'16)
 
 
@@ -738,8 +695,7 @@ Region-based Fully Convolutional Networks
 Code available: [https://github.com/daijifengoo1/r-fcn](https://github.com/daijifeng001/r-fcn)
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22e92cba75.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/15Fc5ei52b.png?imageslim)
 
 每个颜色代表不同的位置选择区域。
 The bank of kxk score maps correspond to a kxk spatial grid describing relative positions.
@@ -747,8 +703,7 @@ The bank of kxk score maps correspond to a kxk spatial grid describing relative 
 The loss of training:
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22ee434f1c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/I1hmGAhG26.png?imageslim)
 
 
 
@@ -757,57 +712,44 @@ In particular, the classification loss:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22efc09019.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/mEg1aFJE5F.png?imageslim)
 
 问题1: RFCN跟DPM的关系，如何理解？
 
 Position-sensitive score maps and ROI pooling
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22f3551093.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/CHFKJK34eL.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22f3c911fd.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/EE3kJaHI4I.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22f2da544e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/HFkEK7JE1F.png?imageslim)
 
 Figure 1: a positive box of person class
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22f4ebffd8.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/KGmK5FllH5.png?imageslim)
 
 Figure 2: a negative box of person class
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22f54d90dc.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/AiJB7aL5eB.png?imageslim)
 
 问题2: RCNN, Fast-RCNN, RFCN 在feature-map 层面是如何联系起来的？
 
 
-
-
-  * RCNN是从一开始就把2000个框全部分开了，就是2000个框都是不同的feature。
-
-
-  * Fast-RCNN 包括 Faster-RCNN 是拦腰截断，从image的输入到中间这块，只有一张图，forward一次，然后通过ROI把2000个框分开了。
-
-
-  * RFCN 它在最后一层分开。在FastScale上效果还比较好，但是在ImageNet上效果比Fast-RCNN还差一些。
+* RCNN是从一开始就把2000个框全部分开了，就是2000个框都是不同的feature。
+* Fast-RCNN 包括 Faster-RCNN 是拦腰截断，从image的输入到中间这块，只有一张图，forward一次，然后通过ROI把2000个框分开了。
+* RFCN 它在最后一层分开。在FastScale上效果还比较好，但是在ImageNet上效果比Fast-RCNN还差一些。
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22fc7932e9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/HGie3a24kg.png?imageslim)
 
 
 
@@ -823,11 +765,7 @@ Figure 2: a negative box of person class
 
 ### Joint Training
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac22fe6de036.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/e5E6DDjH3E.png?imageslim)
 
 能不能一下把4个loss一起train？这样train好像效果不好。
 
@@ -840,27 +778,13 @@ Figure 2: a negative box of person class
 
 ### Stacked-Hourglass Architecture
 
+* 使用模块进行网络设计
+* 先降采样，再升采样的全卷积结构
+* 跳级结构辅助升采样
+* 中继监督训练
 
 
-
-
-
-  * 使用模块进行网络设计
-
-
-  * 先降采样，再升采样的全卷积结构
-
-
-  * 跳级结构辅助升采样
-
-
-  * 中继监督训练
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac2303573cf9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/6CFDEgfI8g.png?imageslim)
 
 能不能用高层信息来弥补低层的信息？先训练RCNN，后训练Fast-RCNN
 

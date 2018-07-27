@@ -56,7 +56,7 @@ OK，现在我们想求得这个w和b，使得 $f(x_i)\simeq y_i$。
 实际呢，这个欧氏距离其实就是对应的均方误差，而这其实是回归任务中最常用的性能度量。
 
 
-# OK，我们想将求一套w和b使得这个距离最小
+# OK，我们想将求一套 w 和 b 使得这个距离最小
 
 
 实际上，基于均方误差最小化来进行模型求解的方法被称为 "最小二乘法"(least squre method)。而求解 w 和 b 使![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180625/mLiK6B4GJI.png)最小化的过程，称为线性回归模型的最小二乘 "参数估计" (prameter estimation)。<span style="color:red;">最小二乘，需要再明确下，为什么叫最小二乘法？再总结下。</span>

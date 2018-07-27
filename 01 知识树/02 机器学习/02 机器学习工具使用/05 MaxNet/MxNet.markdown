@@ -45,18 +45,9 @@ http://mxnet.incubator.apache.org/index.html
 
 ### 定义网络
 
-
-
-
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Eh47G8LFJK.png?imageslim)
 
-
-
-
 ### 训练
-
-
-
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/K8mfl2ag5g.png?imageslim)
 

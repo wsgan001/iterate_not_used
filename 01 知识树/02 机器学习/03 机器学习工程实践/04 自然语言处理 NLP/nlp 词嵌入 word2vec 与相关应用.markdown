@@ -1,16 +1,5 @@
 # nlp 词嵌入/word2vec 与相关应用
 
-# REF：
-
-
-
-
-
-
-  1. 七月在线 深度学习
-
-
-********************************************************************************
 
 
 # 缘由：
@@ -100,8 +89,7 @@
 最细粒度的需要知道词是什么样的含义，这样就需要对词进行编码，编码成一个向量，你需要这些向量能够保持住词的一些信息，比如我希望它能保持住一些词的一些similarity，一些相似性，相关性。比如，下面的青蛙：这些词，实际上是有一些相关性的，我们希望这个在表示成最后的word vector的时候呢，希望它们能够保持这些相关性。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac302f072f50.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/DK2DGl8lhB.png?imageslim)
 
 
 
@@ -114,8 +102,7 @@
 左：英语                                                                              右：西班牙语
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac303293c571.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/6Ji2fEIF73.png?imageslim)
 
 
 
@@ -400,8 +387,7 @@ one-hot 有好处也有坏处，one-hot 会产生一种对句子的离散的表�
 而且模型参数数量与 n 的关系如下：如果是一篇20万词的文本：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac309f407995.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/8K5A5h3leF.png?imageslim)
 
 可见，维度不仅极度增长，而且增长之后是一个非常sparse 稀疏的一个情况。那么有没有更好的办法呢？
 
@@ -502,8 +488,7 @@ Bi-gram/2-gram 即只与它前面的这个词有依赖关系
 banking附近的词将会代表banking的含义：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac30cdae78ae.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/D32BD2Fdg5.png?imageslim)
 
 比如banking 就会牵涉到 government 等。
 
@@ -534,8 +519,7 @@ Word-Document 的共现矩阵主要用于发现主题(topic)，用于主题模�
 如I的左右两边分别看1个词，左边没有，右边是有2个like，有1个enjoy。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac30d787db50.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/A63A0h77lg.png?imageslim)
 
 可以看出，这个是一个对称的矩阵。
 
@@ -576,38 +560,28 @@ Word-Document 的共现矩阵主要用于发现主题(topic)，用于主题模�
 最直接的想法：用SVD对共现矩阵向量做降维
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac30dff1fe80.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/EHmhjEBD5l.png?imageslim)
 
 SVD分解的公式：**没明白？之前的SVD的分解没有学到。学了之后这里补充下。**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac30e1c94dd9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/77lAmEhi5a.png?imageslim)
 
 然后分解后做一个可视化，为了可视化，对于每个词而言，我只取了前两个维度的信息。**没明白？U是什么？前两个维度的信息指的是什么？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac30e46a320b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/mDjfl64J36.png?imageslim)
 
 从上面的图可发现：I与enjoy和like的距离好像是差不多的，而且距离like最近的好像就是enjoy。所以只是通过这样的简单的梳理，我就可以捕获到like和enjoy之间的similarity。**利害。但是看到这里，我就想知道那个window length 到底取多少比较好？一般取多少？而且，对于中文来说怎么处理？是分次之后像这样进行处理吗？**
 
 
 ## 那么SVD降维有没有什么问题呢？
 
+* 计算量随语料库和词典增长膨胀太快，对X(n,n)维的矩阵，计算量O(n^3)。 而对大型的语料库，n~400k，语料库大小1~60B token。**SVD降维的算法还是要自己实现的，而且要清楚计算量O。**
 
+* 难以为词典中新加入的词分配词向量。**为什么？是降维后的不能直接添加吗？**
 
-
-
-
-  * 计算量随语料库和词典增长膨胀太快，对X(n,n)维的矩阵，计算量O(n^3)。 而对大型的语料库，n~400k，语料库大小1~60B token。**SVD降维的算法还是要自己实现的，而且要清楚计算量O。**
-
-
-  * 难以为词典中新加入的词分配词向量。**为什么？是降维后的不能直接添加吗？**
-
-
-  * 与其他深度学习模型框架差异大。为什么呢？因为我们希望DL的模型是一个end-to-end的，即数据一喂进去就能拿到想要的结果，也就是说不想要额外的一些东西，一般来说是一个层级的结构。如果与DL的模型框架差异太大，就只能先抽出一些东西，再放到这个模型中去做。
+* 与其他深度学习模型框架差异大。为什么呢？因为我们希望DL的模型是一个end-to-end的，即数据一喂进去就能拿到想要的结果，也就是说不想要额外的一些东西，一般来说是一个层级的结构。如果与DL的模型框架差异太大，就只能先抽出一些东西，再放到这个模型中去做。
 
 
 那么还有没有更好的方法呢？
@@ -642,10 +616,9 @@ SVD分解的公式：**没明白？之前的SVD的分解没有学到。学了之
 是做什么的：我想用一个长度为N的滑动窗口在我的语料中滑动，当我每取出来N个连在一起的词的时候，我用前N-1个词去预测后面的一个词。所以如果文章很长，我就有很多的这种N个词的串，每个都可以进行一次训练。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac30fb109f76.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/gK221ffF00.png?imageslim)
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac30fe607696.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/K81j1g92cj.png?imageslim)
 
 look-up Table 是一个查找表
 
@@ -698,8 +671,7 @@ look-up Table 是一个查找表
 基本上是对上面的结构又介绍了下。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac30ffa66e38.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Kc2ki4e0bD.png?imageslim)
 
 每个训练样本的计算复杂度：\(N * D + N * D * H + H * V\)
 
@@ -716,36 +688,23 @@ look-up Table 是一个查找表
 先理解一下原理，使用的话，可以直接调用。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3107abc2e2.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/IBb4Il04kA.png?imageslim)
 
 
-
-
-
-
-
-  * 无隐层
-
-
-  * 使用双向上下文窗口
-
-
-  * 上下文词序无关 (BoW)
-
-
-  * 输入层直接使用低维稠密表示
-
-
-  * 投影层简化为求和(平均)
+* 无隐层
+* 使用双向上下文窗口
+* 上下文词序无关 (BoW)
+* 输入层直接使用低维稠密表示
+* 投影层简化为求和(平均)
 
 
 目标函数：
 
-\[J=\sum_{w\in corpus}^{ }P(w|context(w))\]
+$$J=\sum_{w\in corpus}^{ }P(w|context(w))$$
 
-\[J=\sum_{i\in corpus}^{ }log(\frac{exp(w_i^T\widetilde{w_I})}{\sum_{k=1}^{V}exp(w_i^T\widetilde{w_k})})\]
+$$J=\sum_{i\in corpus}^{ }log(\frac{exp(w_i^T\widetilde{w_I})}{\sum_{k=1}^{V}exp(w_i^T\widetilde{w_k})})$$
 
-\[J=\sum_{i\in corpus,j\in context(i)}^{ }log(\frac{exp(w_i^T\widetilde{w_I})}{\sum_{k=1}^{V}exp(w_i^T\widetilde{w_k})})\]
+$$J=\sum_{i\in corpus,j\in context(i)}^{ }log(\frac{exp(w_i^T\widetilde{w_I})}{\sum_{k=1}^{V}exp(w_i^T\widetilde{w_k})})$$
 
 
 ## CBOW：层次Softmax
@@ -754,8 +713,7 @@ look-up Table 是一个查找表
 W=“足球”时的相关记号示意图
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac311661c4df.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/AF70FBDJ91.png?imageslim)
 
 
 
@@ -773,8 +731,7 @@ W=“足球”时的相关记号示意图
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac316f044781.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/9EGhlK668l.png?imageslim)
 
 
 
@@ -833,8 +790,7 @@ P(w|context(w))： 一个正样本，V-1个负样本，对负样本做采样
 \(l_1,l_2,\cdots ,l_N\)组成了[0,1]间的剖分
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac31969eece9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/aIB2Ial3dK.png?imageslim)
 
 将[0,1]划分为M=10^8等分，每次随机生成一个[1,M-1]间的整数，看落在那个词对应的剖分上。
 
@@ -844,66 +800,39 @@ P(w|context(w))： 一个正样本，V-1个负样本，对负样本做采样
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac319ae64953.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/3B25hLK90F.png?imageslim)
 
 
-
-
-
-
-
-  * 无隐层
-
-
-  * 投影层也可省略
-
-
-  * 每个词向量作为log-linear模型的输入
+* 无隐层
+* 投影层也可省略
+* 每个词向量作为log-linear模型的输入
 
 
 目标函数：
 
-\[\frac{1}{T}\sum_{t=1}^{T}\sum_{-c\leq j\leq c,j\neq 0}^{ }log(p(w_{t+j}|w_t)\]
+$$\frac{1}{T}\sum_{t=1}^{T}\sum_{-c\leq j\leq c,j\neq 0}^{ }log(p(w_{t+j}|w_t)$$
 
 概率密度由Softmax给出：
 
-\[p(w_k|w_t)=\frac{exp(\widetilde{w}_k^Tw_t)}{\sum_{m=1}^{V}exp(\widetilde{w}_m^Tw_t)}\]
+$$p(w_k|w_t)=\frac{exp(\widetilde{w}_k^Tw_t)}{\sum_{m=1}^{V}exp(\widetilde{w}_m^Tw_t)}$$
 
 
 ## Word2Vec：存在的问题：
 
 
 
-
-
-
-  * 对每个local context window单独训练，没有利用包含在global co-currence矩阵中的统计信息
-
-
-  * 对多义词无法很好的表示和处理，因为使用了唯一的词向量
-
-
-
+* 对每个local context window单独训练，没有利用包含在global co-currence矩阵中的统计信息
+* 对多义词无法很好的表示和处理，因为使用了唯一的词向量
 
 
 ### 词嵌入可视化: 公司 — CEO
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac31a87ab74c.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/a4eEL8e23m.png?imageslim)
 
 
 ### 词嵌入可视化: 词向
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac31a91781b6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/95IhII0HEg.png?imageslim)
 
 
 
@@ -913,19 +842,14 @@ P(w|context(w))： 一个正样本，V-1个负样本，对负样本做采样
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac31a98ea096.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/2HCLadkEmC.png?imageslim)
 
 
 
 
 ### 词嵌入效果评估: 词类比任务
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac31aa085fc5.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/9fFjak9cAi.png?imageslim)
 
 19544个类比问题
 
@@ -945,32 +869,17 @@ P(w|context(w))： 一个正样本，V-1个负样本，对负样本做采样
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac31ab9cbe26.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/60KihC5hD3.png?imageslim)
 
 
-
-
-
-
-
-  * SVD：只保留出现次数最大的1万个词，记为\(X_{trunc}\)
-
-
-  * SVD-S：\(\sqrt{X_{trunc}}\)
-
-
-  * SVD-L：\(log(1+X_{trunc})\)
-
-
-
+* SVD：只保留出现次数最大的1万个词，记为\(X_{trunc}\)
+* SVD-S：\(\sqrt{X_{trunc}}\)
+* SVD-L：\(log(1+X_{trunc})\)
 
 ## 词嵌入效果评估: 作为特征用于CRF实体识别
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac31b1f1e6d7.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/cIlL7kfG62.png?imageslim)
 
 NER任务
 
@@ -993,8 +902,7 @@ NER任务
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac31b4c914d4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/J1mKbHJdlc.png?imageslim)
 
 GloVe随着迭代次数增加，精度提升
 
@@ -1087,18 +995,15 @@ Word2Vec未使用类似迭代次数的Epoch，用Negative Samples模拟
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac31bb10666d.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/H2f6ak8Jja.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac31bb65c19b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/HhjHimKjiL.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac31bbb52bde.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/C43dj1f98k.png?imageslim)
 
 
 
@@ -1110,49 +1015,18 @@ Word2Vec未使用类似迭代次数的Epoch，用Negative Samples模拟
 https://www.zybuluo.com/hanxiaoyang/note/472184
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac31bdfb51c8.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/g9JiGabKKB.png?imageslim)
 
 ## Word2vec+CNN做文本分类
 
 
-
-
-
-
   * 论文详见《Convolutional Neural Networks for Sentence Classification》
-
-
     * http://arxiv.org/abs/1408.5882
-
-
-
-
-
   * Theano完成的代码版本：
-
-
     * https://github.com/yoonkim/CNN_sentence
-
-
-
-
-
   * TensorFlow改写的代码版本：
-
-
     * https://github.com/dennybritz/cnn-text-classification-tf
-
-
-
-
-
   * 添加 分词和 中文词向量映射之后，可用于中文文本分类(情感分析)
-
-
 
 
 # 作业
@@ -1163,8 +1037,7 @@ https://www.zybuluo.com/hanxiaoyang/note/472184
 https://www.zybuluo.com/hanxiaoyang/note/472184
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac31c233bb82.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/j2B3IK4Am3.png?imageslim)
 
 搜狗全网新闻语料地址 ：
 http://www.sogou.com/labs/resource/ca.php
@@ -1186,3 +1059,9 @@ http://www.sogou.com/labs/resource/ca.php
 
 
 文本映射乘一个dense vector 这种思想不仅在词嵌入中用到，而且在很多地方会用到，one-hot 的表示形式有时是很难处理的。
+
+
+
+# REF：
+
+  1. 七月在线 深度学习

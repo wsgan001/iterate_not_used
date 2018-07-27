@@ -1,28 +1,6 @@
 
-# REF
 
-
-    1. [C++ 教程 w3cschool](https://www.w3cschool.cn/cpp/)
-
-  2. [C++ 教程 菜鸟教程](http://www.runoob.com/cplusplus/cpp-tutorial.html)
-
-
-
-
-# TODO
-
-
-  * aaa
-
-
-
-
-
-# C++ 循环
-
-
-
-
+## C++ 循环
 
 
 有的时候，可能需要多次执行同一块代码。一般情况下，语句是顺序执行的：函数中的第一个语句先执行，接着是第二个语句，依此类推。
@@ -31,65 +9,21 @@
 
 循环语句允许我们多次执行一个语句或语句组，下面是大多数编程语言中循环语句的一般形式：
 
-![](https://img.w3cschool.cn/attachments/image/20160829/1472440363761312.png)
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5ae9bf71d8e94.png)
-
-
-
-
-
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Ac2jAKEE2J.png?imageslim)
 
 
 ## 循环类型
 
 
 C++ 编程语言提供了以下几种循环类型。点击链接查看每个类型的细节。
-<table class="reference notranslate " >
-<tbody >
-<tr >
-循环类型
-描述
-</tr>
-<tr >
 
-<td >[while 循环](https://www.w3cschool.cn/cpp/cpp-while-loop.html)
-</td>
-
-<td >当给定条件为真时，重复语句或语句组。它会在执行循环主体之前测试条件。
-</td>
-</tr>
-<tr >
-
-<td >[for 循环](https://www.w3cschool.cn/cpp/cpp-for-loop.html)
-</td>
-
-<td >多次执行一个语句序列，简化管理循环变量的代码。
-</td>
-</tr>
-<tr >
-
-<td >[do...while 循环](https://www.w3cschool.cn/cpp/cpp-do-while-loop.html)
-</td>
-
-<td >除了它是在循环主体结尾测试条件外，其他与 while 语句类似。
-</td>
-</tr>
-<tr >
-
-<td >[嵌套循环](https://www.w3cschool.cn/cpp/cpp-nested-loops.html)
-</td>
-
-<td >您可以在 while、for 或 do..while 循环内使用一个或多个循环。
-</td>
-</tr>
-</tbody>
-</table>
+| 循环类型 | 描述 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [while 循环](https://www.w3cschool.cn/cpp/cpp-while-loop.html) | 当给定条件为真时，重复语句或语句组。它会在执行循环主体之前测试条件。 |
+| [for 循环](https://www.w3cschool.cn/cpp/cpp-for-loop.html)   | 多次执行一个语句序列，简化管理循环变量的代码。               |
+| [do...while 循环](https://www.w3cschool.cn/cpp/cpp-do-while-loop.html) | 除了它是在循环主体结尾测试条件外，其他与 while 语句类似。    |
+| [嵌套循环](https://www.w3cschool.cn/cpp/cpp-nested-loops.html) | 您可以在 while、for 或 do..while 循环内使用一个或多个循环。  |
 
 
 
@@ -142,15 +76,15 @@ C++ 提供了下列的控制语句。点击链接查看每个语句的细节。
 
     #include <iostream>
     using namespace std;
-     
+
     int main ()
     {
-    
+
        for( ; ; )
        {
           printf("This loop will run forever.\n");
        }
-    
+
        return 0;
     }
 
@@ -170,24 +104,7 @@ C++ 提供了下列的控制语句。点击链接查看每个语句的细节。
 
 
 
+## REF
 
-
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+1. [C++ 教程 w3cschool](https://www.w3cschool.cn/cpp/)
+2. [C++ 教程 菜鸟教程](http://www.runoob.com/cplusplus/cpp-tutorial.html)
