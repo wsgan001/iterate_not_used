@@ -22,7 +22,7 @@ categories:
 
 
 
- 	
+
   1. aaa
 
 
@@ -34,7 +34,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -46,7 +46,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -68,8 +68,7 @@ categories:
 个解。存在多于一个解但是少于无限多个解的情况是不可能发生的；因为如果 x 和y 都是某方程组的解，则：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae6c06b7c614.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/bDEL7HDJdf.png?imageslim)
 
 （其中 α 取任意实数）也是该方程组的解。
 
@@ -80,14 +79,12 @@ categories:
 为了分析方程有多少个解，我们可以将 A 的列向量看作从 原点（origin）（元素都是零的向量）出发的不同方向，确定有多少种方法可以到达向量 b。在这个观点下，向量 x 中的每个元素表示我们应该沿着这些方向走多远，即 xi 表示我们需要沿着第 i 个向量的方向走多远：**嗯，还可以这样理解**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae6c077e3304.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/BCLF73f2iK.png?imageslim)
 
 一般而言，这种操作被称为 线性组合（linear combination）。形式上，一组向量的线性组合，是指每个向量乘以对应标量系数之后的和，即：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae6c082b61ea.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/kldLc2G4K0.png?imageslim)
 
 
 
@@ -136,26 +133,6 @@ categories:
 目前为止，我们已经讨论了逆矩阵左乘。我们也可以定义逆矩阵右乘：**之前有讨论逆矩阵左乘吗？是指的\(\mathbf{x}=\mathbf{A}^{-1}\mathbf{b}\) 吗？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae6c0a3b784a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/EB0bLd22le.png?imageslim)
 
 对于方阵而言，它的左逆和右逆是相等的。
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-

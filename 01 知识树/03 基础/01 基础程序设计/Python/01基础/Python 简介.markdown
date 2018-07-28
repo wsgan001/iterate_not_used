@@ -22,10 +22,10 @@ categories:
 
 
 
- 	
+
   1. [python基础教程 w3cschool](https://www.w3cschool.cn/python/)
 
- 	
+
   2. [Python 3 教程 菜鸟教程](http://www.runoob.com/python3/python3-tutorial.html)
 
 
@@ -37,7 +37,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -49,7 +49,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -71,7 +71,6 @@ Python（英国发音：/ˈpaɪθən/ 美国发音：/ˈpaɪθɑːn/）, 是一�
 
 Python是纯粹的自由软件， 源代码和解释器CPython遵循 GPL(GNU General Public License)协议 。Python语法简洁清晰，特色之一是强制用空白符(white space)作为语句缩进。Python具有丰富和强大的库。它常被昵称为胶水语言，能够把用其他语言制作的各种模块（尤其是C/C++）很轻松地联结在一起。常见的一种应用情形是，使用Python快速生成程序的原型（有时甚至是程序的最终界面），然后对其中有特别要求的部分，用更合适的语言改写，比如3D游戏中的图形渲染模块，性能要求特别高，就可以用C/C++重写，而后封装为Python可以调用的扩展类库。需要注意的是在您使用扩展类库时可能需要考虑平台问题，某些可能不提供跨平台的实现。
 
-![](https://www.w3cschool.cn/attachments/image/20161031/1477907822466420.png)
 
 
 ## **Python编码风格**
@@ -202,67 +201,67 @@ Python标准库的主要功能有：
 
 
 
- 	
+
   * IDLE：Python内置IDE (随python安装包提供)
 
- 	
+
   * PyCharm  ：由著名的JetBrains公司开发，带有一整套可以帮助用户在使用Python语言开发时提高其效率的工 具，比如调试、语法高亮、Project管理、代码跳转、智能提示、自动完成、单元测试、版本控制。此外，该IDE提供了一些高级功能，以用于支持Django框架下的专业Web开发。
 
- 	
+
   * Komodo和Komodo Edit：后者是前者的免费精简版
 
- 	
+
   * PythonWin：ActivePython或pywin32均提供该IDE，仅适用于Windows
 
- 	
+
   * SPE（Stani's Python Editor）：功能较多的自由软件，基于wxPython
 
- 	
+
   * Ulipad：功能较全的自由软件，基于wxPython；作者是中国Python高手limodou
 
- 	
+
   * WingIDE：可能是功能最全的IDE，但不是自由软件(教育用户和开源用户可以申请免费key)
 
- 	
+
   * Eric：基于PyQt的自由软件，功能强大。全名是：The Eric Python IDE
 
- 	
+
   * DrPython
 
- 	
+
   * PyScripter：使用Delphi开发的轻量级的开源Python IDE， 支持Python2.6和3.0。
 
- 	
+
   * PyPE：一个开源的跨平台的PythonIDE。
 
- 	
+
   * bpython： 类Unix操作系统下使用curses库开发的轻量级的Python解释器。语法提示功能。
 
- 	
+
   * eclipse + pydev插件：方便调试程序
 
- 	
+
   * emacs：自带python支持，自动补全、refactor等功能需要插件支持
 
- 	
+
   * Vim: 最新7.3版编译时可以加入python支持，提供python代码自动提示支持
 
- 	
+
   * Visual Studio 2003 + VisualPython：仅适用Windows，已停止维护，功能较差
 
- 	
+
   * SlickEdit
 
- 	
+
   * Visual Studio 2010 + Python Tools for Visual Studio
 
- 	
+
   * TextMate
 
- 	
+
   * Netbeans IDE
 
- 	
+
   * Sublime
 
 
@@ -274,73 +273,73 @@ Python标准库的主要功能有：
 
 
 
- 	
+
   * Pylons-Web应用框架
 
- 	
+
   * Zope- 应用服务器
 
- 	
+
   * Plone- 内容管理系统
 
- 	
+
   * Django- 鼓励快速开发的Web应用框架
 
- 	
+
   * Uliweb- 国人开发的轻量级Web框架
 
- 	
+
   * TurboGears- 另一个Web应用快速开发框架
 
- 	
+
   * Twisted--Python的网络应用程序框架
 
- 	
+
   * Python Wikipedia Robot Framework- MediaWiki的机器人程序
 
- 	
+
   * MoinMoinWiki- Python写成的Wiki程序
 
- 	
+
   * flask- Python 微Web框架
 
- 	
+
   * tornado- 非阻塞式服务器
 
- 	
+
   * Webpy- Python 微Web框架
 
- 	
+
   * Bottle- Python 微Web框架
 
- 	
+
   * EVE- 网络游戏EVE大量使用Python进行开发
 
- 	
+
   * Reddit - 社交分享网站
 
- 	
+
   * Dropbox - 文件分享服务
 
- 	
+
   * Pylons - Web应用框架
 
- 	
+
   * TurboGears - 另一个Web应用快速开发框架
 
- 	
+
   * Fabric - 用于管理成百上千台Linux主机的程序库
 
- 	
+
   * Trac - 使用Python编写的BUG管理系统
 
- 	
+
   * Mailman - 使用Python编写的邮件列表软件
 
- 	
+
   * Mezzanine - 基于Django编写的内容管理系统
 
- 	
+
   * Blender - 以C与Python开发的开源3D绘图软件
 
 
@@ -379,16 +378,16 @@ Python的设计具有很强的可读性，相比其他语言经常使用英文�
 
 
 
- 	
+
   * **Python 是一种解释型语言：** 这意味着开发过程中没有了编译这个环节。类似于PHP和Perl语言。
 
- 	
+
   * **Python 是交互式语言：** 这意味着，您可以在一个Python提示符，直接互动执行写你的程序。
 
- 	
+
   * **Python 是面向对象语言:** 这意味着Python支持面向对象的风格或代码封装在对象的编程技术。
 
- 	
+
   * **Python是初学者的语言：**Python 对初级程序员而言，是一种伟大的语言，它支持广泛的应用程序开发，从简单的文字处理到 WWW 浏览器再到游戏。
 
 
@@ -430,34 +429,34 @@ Python 本身也是由诸多其他语言发展而来的,这包括 ABC、Modula-3
 
 
 
- 	
+
   * **1.易于学习：**Python有相对较少的关键字，结构简单，和一个明确定义的语法，学习起来更加简单。
 
- 	
+
   * **2.易于阅读：**Python代码定义的更清晰。
 
- 	
+
   * **3.易于维护：**Python的成功在于它的源代码是相当容易维护的。
 
- 	
+
   * **4.一个广泛的标准库：**Python的最大的优势之一是丰富的库，跨平台的，在UNIX，Windows和Macintosh兼容很好。
 
- 	
+
   * **5.互动模式：**互动模式的支持，您可以从终端输入并获得结果的语言，互动的测试和调试代码片断。
 
- 	
+
   * **6.便携式：**Python可以运行在多种硬件平台和所有平台上都具有相同的接口。
 
- 	
+
   * **7.可扩展：**可以添加低层次的模块到Python解释器。这些模块使程序员可以添加或定制自己的工具，更有效。
 
- 	
+
   * **8.数据库：**Python提供所有主要的商业数据库的接口。
 
- 	
+
   * **9.GUI编程：**Python支持GUI可以创建和移植到许多系统调用。
 
- 	
+
   * **10.可扩展性：**相比 shell 脚本，Python 提供了一个更好的结构，且支持大型程序。
 
 
@@ -484,6 +483,3 @@ Python 本身也是由诸多其他语言发展而来的,这包括 ABC、Modula-3
 
 
 # COMMENT
-
-
-

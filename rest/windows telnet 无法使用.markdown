@@ -32,7 +32,7 @@ categories:
 
 进入控制面板，点击“打开或关闭Windows功能”，找到"Telnet客户端"，勾选它，然后确定即可：
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abd9d7ca272f.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/J94IJLfkaD.png?imageslim)
 
 安装完成后，然后进入cmd，telnet可以使用了。
 
@@ -40,6 +40,3 @@ categories:
 
 
 # COMMENT：
-
-
-

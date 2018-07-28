@@ -6,16 +6,12 @@
 我比较喜欢wordpress的twentytwelve的主题模板，但是这个模板在博文很多的时候没有办法直接跳转到之前的博文的页面，即，没有这个：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abf167483cf6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/iLah170je3.png?imageslim)
 
 因此想添加这样的，方便跳转。
 
 
 # 要点：
-
-
-
 
 ## 1.插件的寻找和安装
 

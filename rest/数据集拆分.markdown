@@ -24,19 +24,19 @@ tags:
 
 
 
- 	
+
   1. [数据集拆分](https://feisky.xyz/machine-learning/basic/datasets.html)
 
- 	
+
   2. [Training, test, and validation sets](https://en.wikipedia.org/wiki/Training,_test,_and_validation_sets)
 
- 	
+
   3. [你混淆过验证集和测试集吗](https://www.jiqizhixin.com/articles/2017-07-24-8)
 
- 	
+
   4. [《机器学习，周志华》](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/MLbook2016.htm)
 
- 	
+
   5. [验证数据集](https://developers.google.com/machine-learning/crash-course/validation/video-lecture)
 
 
@@ -48,10 +48,10 @@ tags:
 
 
 
- 	
+
   * **上面的REF里面很多没有看的，要总结下**
 
- 	
+
   * **还有别的方法吗？比如书上介绍的分层采样？**
 
 
@@ -63,7 +63,7 @@ tags:
 
 
 
- 	
+
   * 对数据集拆分的各种方法进行总结
 
 
@@ -83,20 +83,17 @@ tags:
 
 
 
- 	
+
   * 训练数据集（train dataset）：用来构建机器学习模型
 
- 	
+
   * 验证数据集（validation dataset）：辅助构建模型，用于在构建过程中评估模型，为模型提供无偏估计，进而调整模型超参数 。**是什么意思？在什么情况下会要使用验证数据集？**
 
- 	
+
   * 测试数据集（test dataset）：用来评估训练好的最终模型的性能
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae4739b81fc5.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/dcI5B4J3Km.png?imageslim)
 
 **选择在验证集上获得最佳效果的模型？是一次要跑好几个模型吗？**
 
@@ -112,13 +109,13 @@ tags:
 
 
 
- 	
+
   * 数据集是随机抽取且独立同分布的
 
- 	
+
   * 分布是平稳的，不会随时间发生变化
 
- 	
+
   * 始终从同一个分布中抽取样本
 
 
@@ -140,22 +137,22 @@ Kuhn 和 Johnson 在「Data Splitting Recommendations」中指出使用单独的
 
 
 
- 	
+
   * 测试集是对模型的单次评估，无法完全展现评估结果的不确定性。
 
- 	
+
   * 将大的测试集划分成测试集和验证集会增加模型性能评估的偏差。
 
- 	
+
   * 分割的测试集样本规模太小。
 
- 	
+
   * 模型可能需要每一个可能存在的数据点来确定模型值。
 
- 	
+
   * 不同测试集生成的结果不同，这造成测试集具备极大的不确定性。
 
- 	
+
   * 重采样方法可对模型在未来样本上的性能进行更合理的预测。
 
 
@@ -190,6 +187,3 @@ k 通常取值 10，此时称为 10 折交叉验证。其他常用的 k 值�
 
 
 # COMMENT
-
-
-

@@ -25,11 +25,11 @@ tags:
 
 
 
- 	
+
   * 七月在线 机器学习
 
- 	
-  * 
+
+  *
 
 
 
@@ -39,20 +39,20 @@ tags:
 
 
 
- 	
+
   * **将几种聚类的方法拆开来，每个的代码都要写。**
 
- 	
+
   * **确定下还有没有欠缺的东西**
 
- 	
+
   * **很多东西理解的不够，比如哪些距离的计算方式，如果自己来写应该怎么写？**
 
- 	
+
   * **而且各种聚类的方式还是要代码实现一遍的，不然根本不能细致的理解。**
 
- 	
-  * 
+
+  *
 
 
 
@@ -62,7 +62,7 @@ tags:
 
 
 
- 	
+
   * 对聚类进行总结。
 
 
@@ -82,14 +82,14 @@ tags:
 
 
 
- 	
+
   * 实对称阵不同特征值的特征向量正交
 
 
 
 
 
-### 
+###
 
 
 
@@ -107,10 +107,10 @@ tags:
 
 
 
- 	
+
   1. 分组的标准怎么定？即怎么定义类内部的数据的相似度？类之间的数据的相似度？
 
- 	
+
   2. 怎么知道要把数据划分成几类？
 
 
@@ -128,8 +128,7 @@ tags:
 首先，其实不管两个样本到底是什么样本，有什么特征，它们之间总是可以考察距离的，不仅可以考察距离，还有很多考察的方法：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abd14f8c7f94.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/5D48kHDLH1.png?imageslim)
 
 在聚类这个PPT里面，凡是谈到距离就约等于不相似度，相似度就与等于距离近的程度。
 
@@ -154,20 +153,13 @@ tags:
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abd150e38f4c.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Aa4I0cak6A.png?imageslim)
 
 
 ## 余弦相似度 与 Pearson相似系数
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abd15308d5b6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/2EfkAiDKJG.png?imageslim)
 
 即如果，x的均值是0，y的均值是0，那么pearson相关系数就是我们的夹角的余弦，二者的关系非常紧密。
 
@@ -178,14 +170,12 @@ tags:
 首先我们要有个指标来评价聚类的效果。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae198237359c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/gFI1FBaBjG.png?imageslim)
 
 可见ai越小越好，bi越大越好。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae1982c7bf56.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/h7aKGHg744.png?imageslim)
 
 利害，所以选择k的时候，就可以先试试，得出不同的结果的轮廓系数，系数偏1，则就选择那个k。
 
@@ -201,10 +191,7 @@ tags:
 # 聚类的基本思想
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abd1540b263c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/mAEAaIKfKC.png?imageslim)
 
 这个也是一个贪心的思路。
 
@@ -220,39 +207,29 @@ tags:
 
 
 
- 	
+
   * 掌握K-means聚类的思路和使用条件
 
- 	
+
   * 了解层次聚类的思路和方法
 
- 	
+
   * 理解密度聚类并能够应用于实践
 
- 	
+
     * DBSCAN
 
- 	
+
     * 密度最大值聚类
 
 
 
 
- 	
+
   * 掌握谱聚类的算法
 
- 	
+
     * 考虑谱聚类和PCA的关系
-
-
-
-
-
-
-
-### 
-
-
 
 
 
@@ -266,5 +243,3 @@ tags:
 
 
 **感觉这个还是非常好的，要自己从理论到实践全面理解。**
-
-

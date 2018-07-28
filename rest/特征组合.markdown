@@ -25,10 +25,10 @@ tags:
 
 
 
- 	
+
   1. [特征工程](https://feisky.xyz/machine-learning/basic/feature-engineering.html)
 
- 	
+
   2. [表示 (Representation)：清理数据](https://developers.google.com/machine-learning/crash-course/representation/cleaning-data) **这个Google的课程还是要好好看下的。**
 
 
@@ -40,7 +40,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -52,7 +52,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -73,8 +73,7 @@ tags:
 比如，如下的问题显然是一个非线性问题：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae51111eb58c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/j43iJd9B7l.png?imageslim)
 
 但使用特征组合可以将其转换为一个线性模型，即创建一个新的特征：
 
@@ -89,13 +88,13 @@ tags:
 
 
 
- 	
+
   * [A X B]：将两个特征的值相乘形成的特征组合。
 
- 	
+
   * [A x B x C x D x E]：将五个特征的值相乘形成的特征组合。
 
- 	
+
   * [A x A]：对单个特征的值求平方形成的特征组合。
 
 
@@ -122,6 +121,3 @@ tags:
 
 
 # COMMENT
-
-
-

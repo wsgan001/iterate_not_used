@@ -1,55 +1,13 @@
----
-author: evo
-comments: true
-date: 2018-04-05 07:21:15+00:00
-layout: post
-link: http://106.15.37.116/2018/04/05/information-entropy/
-slug: information-entropy
-title: ai信息论-信息熵
-wordpress_id: 3360
-categories:
-- 随想与反思
-tags:
-- '@NULL'
----
-
-<!-- more -->
-
-[mathjax]
+# ai信息论-信息熵
 
 
-# REF
+TODO
 
-
-
-
-
- 	
-  1. 《机器学习 实践应用》
-
-
-
-
-# TODO
-
-
-
-
-
- 	
-  * **如果小狗生了一条小狗，那么信息熵比较小，如果小狗生了一匹小马，那么信息熵比较大？**
-
-
-
+* **如果小狗生了一条小狗，那么信息熵比较小，如果小狗生了一匹小马，那么信息熵比较大？**
 
 # MOTIVE
 
-
-
-
-
- 	
-  * 到底什么是信息熵？
+* 到底什么是信息熵？
 
 
 
@@ -70,8 +28,7 @@ tags:
 OK，举个例子来说明什么是信息熵：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae5515a46082.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/8lI6kj23dd.png?imageslim)
 
 OK，我们先来求特征列的信息熵，特征列功3种颜色，有5个样本，则，最终的特征列信息熵计算如下：
 
@@ -79,31 +36,6 @@ OK，我们先来求特征列的信息熵，特征列功3种颜色，有5个样�
 
 
 
+# REF
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
-
-
+1. 《机器学习 实践应用》

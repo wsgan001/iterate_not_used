@@ -24,7 +24,7 @@ tags:
 视频中讲到\(f(x)=x^x\)，x>0的最小值的时候，讲到了
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5ab9da57160b6.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/f8j4cGaBEi.png?imageslim)
 
 
 然后说计算机算法中的Skip-list的分析中，用到了这个常数，那么这个skip-list到底是什么？用在什么地方的？这个常数又是为什么使用的？
@@ -57,10 +57,3 @@ tags:
 
 
 # REF：
-
-
-
-
-
-
-

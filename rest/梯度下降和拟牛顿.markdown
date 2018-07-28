@@ -25,7 +25,7 @@ tags:
 
 
 
- 	
+
   1. 七月在线 机器学习
 
 
@@ -40,7 +40,7 @@ tags:
 \(\nabla\) 的符号是 nabla
 
 
-# 
+#
 
 
 
@@ -56,8 +56,7 @@ tags:
 实际上是可以求的，求出来是这样的：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acb12036eae8.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/ICE7jag41K.png?imageslim)
 
 
 
@@ -76,22 +75,22 @@ tags:
 
 
 
- 	
+
   * 学习率α如何确定？
 
- 	
+
   * 使用固定学习率还是变化学习率
 
- 	
+
   * 学习率设置多大比较好？
 
 
 下降方向的问题：
 
- 	
+
   * 处理梯度方向，其他方向是否可以？
 
- 	
+
   * 如果可以的话，可行的方向和梯度方向有何关系？
 
 
@@ -108,21 +107,13 @@ tags:
 \(y=x^2\) ，初值取x=1.5，学习率使用0.01
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb98b3e3662.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/h1G2i3dCe4.png?imageslim)
 
 
 
-
-
-
- 	
-  * 效果还不错
-
- 	
-  * 经过200次迭代，x=0.0258543；
-
- 	
-  * 经过1000次迭代，x=2.52445×10^-9
+* 效果还不错
+* 经过200次迭代，x=0.0258543；
+* 经过1000次迭代，x=2.52445×10^-9
 
 
 
@@ -133,20 +124,19 @@ tags:
 \(y=x^4\) ，初值取x=1.5，学习率使用0.01
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb98f24349b.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/heC63Kidga.png?imageslim)
 
 
 
 
 
 
- 	
   * 分析：效果不理想
 
- 	
+
   * 经过200次迭代，x=0.24436；
 
- 	
+
   * 经过1000次迭代，x=0.111275
 
 
@@ -160,19 +150,7 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb990c2d747.png)
-
-
-
-
-
-### 
-
-
-
-
-### 
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/6ddJHDG7a9.png?imageslim)
 
 
 
@@ -185,10 +163,10 @@ tags:
 
 
 
- 	
+
   * 在斜率(方向导数)大的地方，使用小学习率
 
- 	
+
   * 在斜率(方向导数)小的地方，使用大学习率 比如在\(y=x^4\) 中，x比较小的时候，y已经很小了，这个时候能不能用更大的学习率，使它降得更快呢？
 
 
@@ -298,23 +276,22 @@ tags:
 
 
 
- 	
+
   * x为当前值
 
- 	
+
   * d为x处的导数
 
- 	
+
   * a为输入学习率
 
- 	
+
   * 返回调整后的学习率
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb99a72b785.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/19afcdC8lg.png?imageslim)
 
 
 
@@ -325,26 +302,25 @@ tags:
 y=x^4 ，初值取x=1.5，回溯线性方法
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb99bb0970a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/1cmHh5CfAm.png?imageslim)
 
 效果还不错
 
 
 
- 	
+
   * 经过12次迭代，x=0.00010872；
 
- 	
+
   * 经过100次迭代，x=3.64905×10^-7
 
 
 试比较固定学习率时:
 
- 	
+
   * 经过200次迭代，x=0.24436；
 
- 	
+
   * 经过1000次迭代，x=0.111275
 
 
@@ -358,11 +334,7 @@ y=x^4 ，初值取x=1.5，回溯线性方法
 现在拥有的数据为：\(x_k\) 处的函数值\(f(x_k )\)及其导数\(f’(x_k )\) ，再加上第一次尝试的步长\(\alpha_0\) 。如果\(\alpha_0\)满足条件，显然算法退出；若\(\alpha_0\)不满足条件，则根据上述信息可以构造一个二次近似函数：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acb225dd3bb5.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/1DcL5e7dee.png?imageslim)
 
 ### 二次插值法求极值
 
@@ -370,8 +342,7 @@ y=x^4 ，初值取x=1.5，回溯线性方法
 显然，导数为0的最优值为：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acb227f55b45.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/54f62H6KJF.png?imageslim)
 
 若 \(\alpha_1\) 满足Armijo准则，则输出该学习率；否则，继续迭代。
 
@@ -387,23 +358,22 @@ y=x^4 ，初值取x=1.5，回溯线性方法
 
 
 
- 	
+
   * x为当前值
 
- 	
+
   * d为x处的导数
 
- 	
+
   * a为输入学习率
 
- 	
+
   * 返回调整后的学习率
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb9a22a0dbc.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/f5C14CGBHi.png?imageslim)
 
 
 
@@ -414,26 +384,25 @@ y=x^4 ，初值取x=1.5，回溯线性方法
 y=x^4 ，初值取x=1.5，二次插值线性搜索方法
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb9a33c4117.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/50kJ9c1El7.png?imageslim)
 
 效果还不错
 
 
 
- 	
+
   *  经过12次迭代，x=0.0000282229 ；
 
- 	
+
   *  经过100次迭代，x=3.61217×10^-7
 
 
 试比较回溯线性搜索时:
 
- 	
+
   *  经过12次迭代，x=0.00010872 ；
 
- 	
+
   *  经过1000次迭代，x=3.649×10^-7
 
 
@@ -448,10 +417,10 @@ y=x^4 ，初值取x=1.5，二次插值线性搜索方法
 
 
 
- 	
+
   * 可否在搜索过程中，随着信息的增多，使用三次或者更高次的函数曲线，从而得到更快的学习率收敛速度？
 
- 	
+
   * 为避免高次产生的震荡，可否使用三次 Hermite 多项式，在端点保证函数值和一阶导都相等，从而构造更光顺的简单低次函数？
 
 
@@ -476,8 +445,7 @@ y=x^4 ，初值取x=1.5，二次插值线性搜索方法
 思考：因为函数 二阶导数反应了函数的凸凹性；二阶导越大，一阶导的变化越大。在搜索中，可否用二阶导做些“修正”？如：二者相除？
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb9aa5f0fc6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/CdAKccJ2eB.png?imageslim)
 
 
 
@@ -488,14 +456,12 @@ y=x^4 ，初值取x=1.5，二次插值线性搜索方法
 在任意点x 0 处Taylor展开
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb9aba95168.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Leb66CIieE.png?imageslim)
 
 一般若干次(5、6次)迭代即可获得比较好的近似值
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb9ac7c9f16.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/LK7mKG4AE3.png?imageslim)
 
 
 
@@ -506,26 +472,25 @@ y=x^4 ，初值取x=1.5，二次插值线性搜索方法
 y=x^4 ，初值取x=1.5，负梯度除以二阶导
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb9adc0ea68.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/58cEjcFb96.png?imageslim)
 
 效果出奇的好！
 
 
 
- 	
+
   *  经过12次迭代，x=0.00770735；
 
- 	
+
   *  经过100次迭代，x=3.68948×10 -18
 
 
 试比较二次插值线性搜索时:
 
- 	
+
   *  经过12次迭代，x=0.0000282229；
 
- 	
+
   *  经过1000次迭代，x=3.61217×10 -7
 
 
@@ -536,8 +501,7 @@ y=x^4 ，初值取x=1.5，负梯度除以二阶导
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb9b0094f73.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/8idA3dl01l.png?imageslim)
 
 
 
@@ -550,11 +514,7 @@ y=x^4 ，初值取x=1.5，负梯度除以二阶导
 该方法可以直接推广到多维：用方向导数代替一阶导，用Hessian矩阵代替二阶导
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb9b1db59ff.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/2F4h8aIa22.png?imageslim)
 
 ### 牛顿法的特点
 
@@ -562,30 +522,28 @@ y=x^4 ，初值取x=1.5，负梯度除以二阶导
 
 
 
- 	
+
   * 经典牛顿法虽然具有二次收敛性，但是要求初始点需要尽量靠近极小点，否则有可能不收敛。
 
- 	
+
   *  计算过程中需要计算目标函数的二阶偏导数，难度较大。
 
- 	
+
   *  目标函数的Hessian矩阵无法保持正定，会导致算法产生的方向不能保证是f在x_k 处的下降方向，从而令牛顿法失效；
 
- 	
+
   *  如果Hessian矩阵奇异，牛顿方向可能根本是不存在的。
 
 
 二阶导非正定的情况(一维则为负数)
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb9b48eb052.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/a9FJLBfHE2.png?imageslim)
 
 修正牛顿方向
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb9b4f9e344.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/G7ijm0g8I1.png?imageslim)
 
 
 
@@ -597,10 +555,10 @@ y=x^4 ，初值取x=1.5，负梯度除以二阶导
 
 
 
- 	
+
   * BFGS / LBFGS
 
- 	
+
   * Broyden – Fletcher – Goldfarb - Shanno
 
 
@@ -611,24 +569,14 @@ y=x^4 ，初值取x=1.5，负梯度除以二阶导
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb9b70e9267.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/1JF1fd0KmE.png?imageslim)
 
 ### L-BFGS
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb9b7e6af1f.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/80H8kDJifl.png?imageslim)
 
 
 # COMMENT：
-
-
-

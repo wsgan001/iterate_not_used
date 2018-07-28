@@ -22,7 +22,7 @@ categories:
 
 
 
- 	
+
   1. 《深度学习》
 
 
@@ -34,7 +34,7 @@ categories:
 
 
 
- 	
+
   * **关于范数 仍然不清楚。要弄明白**
 
 
@@ -46,7 +46,7 @@ categories:
 
 
 
- 	
+
   * 一直不知道范数是什么？为什么可以作为正则项？
 
 
@@ -66,8 +66,7 @@ categories:
 有时我们需要衡量一个向量的大小。在机器学习中，我们经常使用被称为 范数（norm）的函数衡量向量大小。形式上，\(L^p\) 范数定义如下：**为什么范数可以衡量向量大小？怎么得来的？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae6c6a6ba6f9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/mKaJkckBh5.png?imageslim)
 
 其中\ (p\in \mathbb{R}\) ， \(p\geq 1\)。
 
@@ -78,8 +77,7 @@ categories:
 范数（包括\(L^p\) 范数）是将向量映射到非负值的函数。直观上来说，向量 x 的范数衡量从原点到点 x 的距离。更严格地说，范数是满足下列性质的任意函数：**向量 x 的范数衡量从原点到点 x 的距离，是这样吗？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae6c6d47686f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/C8c7DA2B46.png?imageslim)
 
 
 
@@ -104,8 +102,7 @@ categories:
 在这些情况下，我们转而使用在各个位置斜率相同，同时保持简单的数学形式的函数： \(L^1\) 范数。 \(L^1\) 范数可以简化如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae6c6e74cdb7.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/16C7GHhA6L.png?imageslim)
 
 当机器学习问题中零和非零元素之间的差异非常重要时，通常会使用 \(L^1\) 范数。每当 x 中某个元素从 0 增加 \(\epsilon\) ，对应的 \(L^1\) 范数也会增加 \(\epsilon\) 。
 
@@ -122,10 +119,7 @@ categories:
 另外一个经常在机器学习中出现的范数是 \(L^{\infty}\) 范数，也被称为 最大范数（max norm）。这个范数表示向量中具有最大幅值的元素的绝对值：**有些厉害，这个用在什么地方？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae6c6f34f7c7.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Hm91db8ik3.png?imageslim)
 
 
 # Frobenius  范数
@@ -134,8 +128,7 @@ categories:
 有时候我们可能也希望衡量矩阵的大小。在深度学习中，最常见的做法是使用 Frobenius 范数（Frobenius norm）：**为什么要衡量矩阵的大小？为什么这个可以衡量矩阵的大小？没明白？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae6c6fd3307b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/BK9iL0kmD9.png?imageslim)
 
 其类似于向量的 \(L^2\) 范数。
 
@@ -148,26 +141,6 @@ categories:
 两个向量的 点积（dot product）可以用范数来表示：**没想到，这个什么时候用？用来做什么？ 为什么要放在这里？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae6c70765f3f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/fIdIG1fmff.png?imageslim)
 
 其中 \(\theta\) 表示 x 和 y 之间的夹角。
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-

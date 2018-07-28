@@ -1,35 +1,10 @@
----
-author: evo
-comments: true
-date: 2018-04-03 08:20:51+00:00
-layout: post
-link: http://106.15.37.116/2018/04/03/rnn/
-slug: rnn
-title: rnn 循环神经网络
-wordpress_id: 2614
-categories:
-- 随想与反思
-tags:
-- '@todo'
-- '@want_to_know'
----
-
-<!-- more -->
-
-[mathjax]
+# rnn 循环神经网络
 
 
 # REF：
 
+1. 七月在线 深度学习
 
-
-
-
- 	
-  1. 七月在线 深度学习
-
-
-********************************************************************************
 
 
 # 缘由：
@@ -60,28 +35,19 @@ RNN一般在自然语言处理中用的比较多。其实只要是序列到序�
 模仿论文（连公式都格式很正确）
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac322bea22c1.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/1hE8H1BeCG.png?imageslim)
 
 模仿linux内核代码 “写程序”
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac322d8191d3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/fj7bL3iH4D.png?imageslim)
 
 它不能学到逻辑，但是能学到排布。
 
 模仿郭敬明的作品：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3230facb4c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/5Ef85F8h4F.png?imageslim)
 
 语言的风格。
 
@@ -96,8 +62,7 @@ bing用的就是SMT，google用的就是NMT。
 NMT就是RNN最擅长的事情：序列到序列的学习。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3233ab554d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/GJDgb05A3B.png?imageslim)
 
 
 
@@ -108,18 +73,7 @@ NMT就是RNN最擅长的事情：序列到序列的学习。
 会根据图片的内容来用文字进行描述。也可以对一个图片进行提问，然后会给出答案。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3234e81e52.png)
-
-
-
-
-
-# 
-
-
-
-
-# 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/HdlhIleF67.png?imageslim)
 
 
 
@@ -144,20 +98,19 @@ language model 指的是，有一个序列，我们知道了前n-1个element是�
 简单来看，把序列按照时间展开
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3246adbe5e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/K56eAIjEG6.png?imageslim)
 
 解释如下：**还是很清楚的**
 
 
 
- 	
+
   * \(X_t\) 是时间t处的输入。
 
- 	
+
   * \(S_t\) 是时间t处的记忆， \(S_t=f(UX_t+WS_{t-1})\) ，f 可以是 \(tanh\) 等。
 
- 	
+
   * \(O_T\) 是时间t处的出书，比如是预测下一个词的话，可能是 softmax 输出的属于每个候选词的概率， \(O_t=softmax(VS_t)\)。
 
 
@@ -183,35 +136,34 @@ language model 指的是，有一个序列，我们知道了前n-1个element是�
 有一个经典的例子是char-rnn，上面的文本的模仿的三个例子都是这个模型生成的。**这个就是char-rnn 吗？想看一下char-rnn。**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac325da71153.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/f7Kkib6199.png?imageslim)
 
 RNN生成模型模仿语言风格例子：
 
 
 
- 	
+
   * \(s_t=tanh(Ux_t+Ws_{t-1})\)
 
- 	
+
   * \(o_t=softmax(Vs_t)\)
 
- 	
+
   * \(x_t\in \mathbb{R}^8000\)
 
- 	
+
   * \(o_t\in \mathbb{R}^8000\)
 
- 	
+
   * \(s_t\in \mathbb{R}^100\)
 
- 	
+
   * \(U\in \mathbb{R}^{100\times 8000}\)
 
- 	
+
   * \(V\in \mathbb{R}^{8000\times 100}\)
 
- 	
+
   * \(W\in \mathbb{R}^{100\times 100}\)
 
 
@@ -238,8 +190,7 @@ RNN生成模型模仿语言风格例子：
 在有些情况下，当前的输入不只依赖于之前的序列元素，还可能依赖于之后的序列元素，比如说从一段话踢掉部分词，让你补全。那么这个时候，只用之前的RNN感觉就有点不足了，那么怎么办呢？可以用双向的RNN。当然，单向的RNN可以做的事情也可以用双向来做，可能会捕捉到更多的信息
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac326ce2c685.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/L77Bf8IllF.png?imageslim)
 
 上面的h是hidden的意思，对应于之前的RNN中的S。
 
@@ -254,13 +205,12 @@ Tensorflow中是有双向的RNN的。 MxNet里面也是有的。
 和双向RNN的区别是每一步/每个时间点我们设定多层结构
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac326ee5520c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/J1A76D0k80.png?imageslim)
 
 **说实话这个没听明白。为什么有这些隐层？训练的时候是什么样的？看一下相关的资料。**
 
 
-## 
+##
 
 
 
@@ -276,10 +226,7 @@ MLP（DNN）与CNN用BP算法求偏导，BPTT和BP是一个思路。**MLP（DNN�
 ## 举个例子：
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3274c26782.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/6GbL3BGHj3.png?imageslim)
 
 比如说，我依次输入的是："我"，“爱”，“北京“，”天安门“，”广场“，然后想要的输出是：“爱”，“北京“，”天安门“，”广场“。假设我的词典中有4万个词。即，每个输出都是一个4万*1的一个概率向量。
 
@@ -290,14 +237,12 @@ MLP（DNN）与CNN用BP算法求偏导，BPTT和BP是一个思路。**MLP（DNN�
 我们到每个时间点的时候都又一个输出，都会计算一个loss， 交叉熵损失 softmax ，**交叉熵损失函数是这样的吗？**：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ad349041eb38.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/fm92AGjEfh.png?imageslim)
 
 现在我要计算所有的loss，因此，沿着时间轴把所有的loss加在一起：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ad3492958396.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/KmdJ02FH4B.png?imageslim)
 
 
 
@@ -310,26 +255,22 @@ MLP（DNN）与CNN用BP算法求偏导，BPTT和BP是一个思路。**MLP（DNN�
 首先我们知道要求这么一个偏导：**为什么是针对W的？U和V不用管吗？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ad34a7617587.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/1LA4IAFG4F.png?imageslim)
 
 我们单独看一个位置的：**是的**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ad34a918ba80.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/8BCcD76JBJ.png?imageslim)
 
 但是呢：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ad34b09301fd.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/mlcJkI58L8.png?imageslim)
 
 我们发现，s3与s2还有关系，即，s3对于W的偏导我们没有办法直接求出，因此我们只能沿着时间轴把s2往前展开：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ad34c3cbb2a4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/2DDiKkIImJ.png?imageslim)
 
 
 
@@ -338,14 +279,12 @@ MLP（DNN）与CNN用BP算法求偏导，BPTT和BP是一个思路。**MLP（DNN�
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac32775e8409.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/CG1Hi0BHKL.png?imageslim)
 
 即可以写成：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac338a242825.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/hAKA7LmhkL.png?imageslim)
 
 那么这个就是BPTT，可见，与BP还是有本质的区别的，就是要涉及之前的各个状态的偏导。
 
@@ -367,14 +306,12 @@ MLP（DNN）与CNN用BP算法求偏导，BPTT和BP是一个思路。**MLP（DNN�
 我们找了一个Alexnet，输进去一张图片之后，会得到一个4096*1的向量。这个向量含有图片的很多的信息，相当于对这个图片抽取了特征信息。然后，我把这个向量也添加到我们的RNN中。如下图所示：即把我的4096*1的向量以一个新的权重\(W_{ih}\)叠加到我的RNN的公式中。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac338b2ab3b6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/J6b3CA9ECH.png?imageslim)
 
 实际上，上面这个公式写的有些不清楚，后面把图修一下，公式实际上就是：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ad34eafcf70b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Kl2dCihjih.png?imageslim)
 
 现在在括号中添加了 \(W_{ih}*v\) 这一项。
 
@@ -383,8 +320,7 @@ MLP（DNN）与CNN用BP算法求偏导，BPTT和BP是一个思路。**MLP（DNN�
 **但是我没有很明白，为什么这样直接的添加是有用的？为什么只在第一步的时候添加这一项？而且，起头的东西是什么？也就是说这个时候的\(x_0\)是什么？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac338bd7125c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/lh6B56BIgK.png?imageslim)
 
 这个是简单的一种image caption ，有更厉害的attention model，这个后面会讲到。**讲到之后我这个地方提一下。对比一下。**
 
@@ -395,14 +331,12 @@ MLP（DNN）与CNN用BP算法求偏导，BPTT和BP是一个思路。**MLP（DNN�
 有图片描述数据集 http://mscoco.org   里面有12w张图片，5句话描述每张图片。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac338deb9649.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/l1maJh0LGd.png?imageslim)
 
 下面是一些attention model 产生的结果：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3390fa3692.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/fAhc8CA7l2.png?imageslim)
 
 **最好自己试一下，最起码要找一个已经实现的代码看一遍。**
 

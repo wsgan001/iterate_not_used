@@ -25,11 +25,11 @@ tags:
 
 
 
- 	
+
   1. 七月在线 机器学习 邹博
 
- 	
-  2. 
+
+  2.
 
 
 
@@ -39,7 +39,7 @@ tags:
 
 
 
- 	
+
   * 讲东西，一定要注意实践的问题与我的理论模型相对应。不然讲了之后也不知道怎么用，也不知道什么时候会用到。
 
 
@@ -51,10 +51,10 @@ tags:
 
 
 
- 	
+
   * 对HMM进行总结
 
- 	
+
   * 面试笔试的时候老是会考Viterbi算法。这个要注意
 
 
@@ -74,7 +74,7 @@ tags:
 
 
 
- 	
+
   * 马尔科夫模型
 
 
@@ -86,7 +86,7 @@ tags:
 
 
 
-# 
+#
 
 
 
@@ -98,10 +98,10 @@ tags:
 
 
 
- 	
+
   * 可以用于中文分词：绿茶中我最喜欢信阳毛峰 分为：绿茶中/我最/喜欢/信/阳/毛峰 。这个过程中截断的地方我观测不到，是隐状态。但是这个句子的流我能观测到。
 
- 	
+
   * 也可用于语音识别：比如说我读dog， 肯定是先发d 的音，然后是o 然后是g 然后还有很多原音和辅音。好多这种东西是我观测不到的，但是我能观测到我说了很多话，这些是一维数据，而到底说了什么是我的隐状态。那么我能不能通过我说的话来预测我到底说了什么呢？这就完成了语音的识别。
 
 
@@ -122,14 +122,7 @@ HMM和明天要介绍的条件随机场CRF 是中文分词非常重要的两种�
 
 ## 马尔科夫模型
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf3adbd505.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/I1H9a344HJ.png?imageslim)
 
 ## 马尔科夫随机过程生成伪随机数
 
@@ -139,29 +132,23 @@ HMM和明天要介绍的条件随机场CRF 是中文分词非常重要的两种�
 伪随机：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf3cb5290b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/ebA3dmmGJ7.png?imageslim)
 
 辅助结构
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf3d6c86ef.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/hiKkcHj8AF.png?imageslim)
 
+先给定一个当前的种子。![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/l1HEgeJe6b.png?imageslim)
 
-先给定一个当前的种子。![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3b01d60d1d.png)
-
-也就是 holdrand 其实决定了返回值，而这个holdrand最初给定的是1：![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3b021d6cbd.png)。
+也就是 holdrand 其实决定了返回值，而这个holdrand最初给定的是1：![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/hlHh9d0DEb.png?imageslim)。
 
 
 
 
 ## 伪随机
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf40059dec.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/HKJi1id58i.png?imageslim)
 
 可见，rand函数符合的是马尔科夫模型，而不是真正的样本独立，它比独立弱了一点点，它样本间只有相邻元素是有相关关系的。
 
@@ -170,31 +157,21 @@ HMM和明天要介绍的条件随机场CRF 是中文分词非常重要的两种�
 伪随机的效果：产生二维随机数
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf40bb274a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/GmLkKKef7j.png?imageslim)
 
 伪随机效果：产生圆内随机数
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf41d7d75d.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/K3CJd3A4Kg.png?imageslim)
 
 ## 思考和发现
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf435a7f4b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/4E3lAI1lga.png?imageslim)
 
 马尔科夫过程版本的大数定理
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf4412f498.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/4B9ie389Fc.png?imageslim)
 
 大树定理里面，如果样本之间符合马尔科夫模型，也可以得到频率等于概率这个结论的。
 
@@ -207,8 +184,7 @@ HMM和明天要介绍的条件随机场CRF 是中文分词非常重要的两种�
 **MCMC在这个地方没有讲**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf44c8c8d2.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/IceII187mf.png?imageslim)
 
 除了之和前面一个有关之外，还有比如说与前面两个有关的，或者与前面三个有关的，这些都是高阶的马尔科夫模型。如果与前面所有状态都有关，那么就是一个全联通的图。
 
@@ -218,32 +194,16 @@ OK 我们还是把目光放在HMM上：
 
 
 
-
-
-
 # HMM
-
-
-
 
 ## HMM定义
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf45864267.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/28D42Ca8f2.png?imageslim)
 
 ## 隐马尔科夫模型的贝叶斯网络如下
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf465e4784.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/5iGlFhC3EH.png?imageslim)
 
 它的隐状态的序列是一个标准的马尔科夫模型，它的 x 叫做观测序列，z 叫做状态序列，状态序列是不可观测的。
 
@@ -267,10 +227,10 @@ HMM由初始概率分布π(向量)、状态转移概率分布A(矩阵)以及观�
 
 
 
- 	
+
   * 如果从zn到xn这一步是离散的，那么它就需要一个观测的概率分布矩阵来表达
 
- 	
+
   * 如果它是连续的，就需要若干个条件分布来表达。
 
 
@@ -281,19 +241,17 @@ HMM由初始概率分布π(向量)、状态转移概率分布A(矩阵)以及观�
 我们具体来看一下怎么做：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf47c17186.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/48I839G78B.png?imageslim)
 
 Q一定是离散的。但是从 z 到 x ，生成的 x 可能是连续的，也可能是离散的，
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf4869b75d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/cfl9EDaAKi.png?imageslim)
 
 这个地方注意一下，这个I和O是隐状态序列和观测到的状态序列，而Q和V是所有可能的状态，这不是同一个东西。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3b2470026b.png)表达的意思是：前一个隐状态是是第i个状态的时候，后一个隐状态是第j个状态的概率。
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/m5KhbHjaL2.png?imageslim)表达的意思是：前一个隐状态是是第i个状态的时候，后一个隐状态是第j个状态的概率。
 
 
 很显然，第 i 行表示的就是，前一个状态是第i个的时候，后一个状态各自是 q1q2。。。qN 的概率。因此，第 i 行的和一定是 1 。
@@ -301,21 +259,19 @@ Q一定是离散的。但是从 z 到 x ，生成的 x 可能是连续的，也�
 然后
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf49e744a5.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/fd5e44mKCb.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3b2697593a.png)这个的意思是：t 时刻的 隐状态是 qi 的时候，我观测到的状态是vk的概率  这个相当于第i行第k列。注意这个行数是N个，列是M个。
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/3Cj07Ggli7.png?imageslim)这个的意思是：t 时刻的 隐状态是 qi 的时候，我观测到的状态是vk的概率  这个相当于第i行第k列。注意这个行数是N个，列是M个。
 
 
 这个M列有可能是M个离散值，也可能就是N个条件分布。
 
-由于z1是最开始，那么这个最开始的时候的状态是什么呢？我们用![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3b26bbc032.png)来描述，
+由于z1是最开始，那么这个最开始的时候的状态是什么呢？我们用![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/aJ1iJHAfIf.png?imageslim)来描述，
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3b2706559a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/bAKJbchcBe.png?imageslim)
 
 所以，到这里，对 \[λ=(A,B,π)\] 的描述进行了讲解。
 
@@ -332,13 +288,11 @@ OK 我们继续：
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf4daeb2a3.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Agmce3d2dC.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf4e085d54.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/9D542m2AJE.png?imageslim)
 
 在所有的i和o的观测和状态都给定的情况下，zn这个结点位于第i_t号状态的概率只与i_t-1有关。
 
@@ -364,36 +318,34 @@ OK，我们看一下例子：
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf4ec840b8.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/j265kc3LmC.png?imageslim)
 
 该示例的各个参数
 
 
 
- 	
+
   * 状态集合：Q={盒子1，盒子2，盒子3}
 
- 	
+
   * 观测集合：V={红，白}
 
- 	
+
   * 状态序列和观测序列的长度T=5
 
- 	
+
   * 初始概率分布π：
 
- 	
+
   * 状态转移概率分布A：
 
- 	
+
   * 观测概率分布B：
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf51058b4f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/d92l5g7B8k.png?imageslim)
 
 注意：这个A是给定的。\pi 相当于是A的火车头。
 
@@ -407,20 +359,19 @@ OK，我们看一下例子：
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf52818e77.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/C9DB57H5JB.png?imageslim)
 
 OK 这个是HMM的三个基本问题。
 
 
 
- 	
+
   * 概率计算问题是核心，虽然不是重点。因为这个搞定了，另外两个的基础就有了。
 
- 	
+
   * 学习问题是：当这个模型的参数各自取什么的时候，是的这个观测序列出现的概率是最大的 ？
 
- 	
+
   * 预测问题是：我想来看一下在参数和O给定的情况下，哪一个隐状态i出现的概率是最大的。这个是最重要的内容，因为，平时我们的问题基本就是这种类型的问题，比如翻译、分词、等。
 
 
@@ -433,22 +384,22 @@ OK 这个是HMM的三个基本问题。
 
 
 
- 	
+
   * 直接算法
 
- 	
+
     * 暴力算法
 
 
 
 
- 	
+
   * 前向算法
 
- 	
+
   * 后向算法
 
- 	
+
     * 这二者是理解HMM的算法重点
 
 
@@ -463,20 +414,17 @@ OK 这个是HMM的三个基本问题。
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf5544b74b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/8jC6AlbC82.png?imageslim)
 
 是的，先算联合概率。给定\lambda 的时候：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf55c099dd.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/CkgaECkF41.png?imageslim)
 
 **为什么这个乘起来就是这个O？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf56b43169.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/6391I2F559.png?imageslim)
 
 我把所有的I的可能情况都拿出来。
 
@@ -487,34 +435,27 @@ I1 有n中不同的取之情况，I2 有n中不同的取值情况，。。一共
 直接计算法分析：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf579b329a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/LikgaEbJcC.png?imageslim)
 
 那么怎么做才能降低时间复杂度呢？
 
 
 ### 借鉴算法的优化思想
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf58544e6f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/i80DCl5EfL.png?imageslim)
 
 定义：前向-后向：
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf58d1a71c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/aGc7J8KDeL.png?imageslim)
 
 我们假定 qt 位于第 i 号状态的时候
 
 
 
- 	
+
   * 前向概率： 第t个时刻它位于 i 号状态，并且我观察到了前t个观测值。它的概率有多大。
 
- 	
+
   * 后向概率：t号时刻已经是第i号状态了，那么在这个条件之下，我能观测到后面这些结点的概率有多大。
 
 
@@ -525,38 +466,35 @@ q到底是几其实没有观测到，只是我们假定它位于第i号状态。
 前向算法
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf5954c653.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/G8dEe9E4Aj.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf59e49aed.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/2iibmf3JfC.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3b5f0e4367.png)就是第一个隐状态位于i的时候，我还观测到了o1。
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/bdLCHC3KKk.png?imageslim)就是第一个隐状态位于i的时候，我还观测到了o1。
 
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3b5f38f0b9.png)t+1时刻隐状态位于i号状态的概率。
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/jB9AHmeGdf.png?imageslim)t+1时刻隐状态位于i号状态的概率。
 
 
-在t时刻的时候，状态不知道，假定位于j号状态，不管j是多少，一定要转移到i号状态，因此是![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3b5f96dfcd.png)。然后对j积分。那么这个![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3b5fce9039.png)里面做完之后就表示已经到达t+1时刻的i号状态了。并且我们观测到了o1,o2...ot 没有看到o_{t+1},我们还需要让第i号状态看到o_{t+1} ，因此把第i号隐状态到t+1的输出乘一下。就得到了。**为什么这个时候前面的o1，o2。。。不用管？为什么要让t+1的时候的状态为第i号状态？嗯 知道了这个地方，这个状态i其实是无所谓的，因为我并不关心这个状态到底是什么，只要我的观测到的序列是我想要的序列就行。但是为什么这个时刻的和下个时刻的都是i？**
+在t时刻的时候，状态不知道，假定位于j号状态，不管j是多少，一定要转移到i号状态，因此是![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/83i07lg88B.png?imageslim)。然后对j积分。那么这个![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/73bJmi55DE.png?imageslim)里面做完之后就表示已经到达t+1时刻的i号状态了。并且我们观测到了o1,o2...ot 没有看到o_{t+1},我们还需要让第i号状态看到o_{t+1} ，因此把第i号隐状态到t+1的输出乘一下。就得到了。**为什么这个时候前面的o1，o2。。。不用管？为什么要让t+1的时候的状态为第i号状态？嗯 知道了这个地方，这个状态i其实是无所谓的，因为我并不关心这个状态到底是什么，只要我的观测到的序列是我想要的序列就行。但是为什么这个时刻的和下个时刻的都是i？**
 
 
 
-我们像![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3b60330ce7.png)这样把1号，2号。。。。到T-1号都做一遍 最终就能求出\alpha_T(i) .而这个![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3b607c4cf0.png) 是什么意思呢？这个意味着在T时刻我观测到了o1,o2,。。。oT ，并且隐状态已经是i号状态了，注意，隐状态是几我不关心，我只关心o1,o2,。。。oT这个序列。因此我把它积掉，得到：![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3b60bac9d6.png)
+我们像![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/eFH06Lklib.png?imageslim)这样把1号，2号。。。。到T-1号都做一遍 最终就能求出\alpha_T(i) .而这个![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/5Jg2jab5BF.png?imageslim)是什么意思呢？这个意味着在T时刻我观测到了o1,o2,。。。oT ，并且隐状态已经是i号状态了，注意，隐状态是几我不关心，我只关心o1,o2,。。。oT这个序列。因此我把它积掉，得到：![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/2LhDB1Bh3k.png?imageslim)
 
 
 
 利害的
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf5b0af08b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/kLLDd7m96H.png?imageslim)
 
 可见，这个的时间复杂度比之前硬算要好得多。
 
@@ -564,97 +502,62 @@ q到底是几其实没有观测到，只是我们假定它位于第i号状态。
 ## 举个例子：盒子球模型
 
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/khK14A4jA0.png?imageslim)
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/j9HgJFaiGj.png?imageslim)
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf5ba9a995.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/lKEG6abhl1.png?imageslim)
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf5c21835c.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf5ca29328.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf5d2c0d3a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/j6LdafGDK0.png?imageslim)
 
 那么仿照前向概率有后向概率：
 
 前向算法：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf5de98a02.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/GmaKkJK02H.png?imageslim)
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/7geAAc5CjH.png?imageslim)
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf5e950f63.png)
-
-
-嗯这个地方是从后往前类推的。![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3b8f11fa26.png)我们保证了t+2到T是观测到的， 我们再要求从第i号状态转移到第j号状态。**没明白？**
+嗯这个地方是从后往前类推的。![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/G0cC3bKK4m.png?imageslim)我们保证了t+2到T是观测到的， 我们再要求从第i号状态转移到第j号状态。**没明白？**
 
 后向算法的说明
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf5f3036c2.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/0l9Am0L8BL.png?imageslim)
 
 
 ## 前后向关系
 
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/eGmamHghCj.png?imageslim)
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf5fb889fc.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf5ff4690f.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/3H1FEfE9gg.png?imageslim)
 
 
 ## 单个状态的概率
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf603c44b8.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/j1Dm46megj.png?imageslim)
 
 单个状态的概率
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf60fd6c65.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/K600D39K23.png?imageslim)
 
 γ的意义
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf6185bb5f.png)
-
-
-两个状态的联合概率
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf621bad38.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/j9j9DiGJg5.png?imageslim)
 
 两个状态的联合概率
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf62c635fb.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/hHmB1khdDj.png?imageslim)
 
+两个状态的联合概率
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/bKd8Jb3Fd7.png?imageslim)
 
 \(P(i_t=q,i_{t+1}=q_j,O\mid \lambda)\)  我想去观测到O，要求是第t个时刻位于i号状态，\(\alpha_t(i)\) 就能保证再t时刻位于i号状态。并且我看到了 o1~ot
 
@@ -673,8 +576,7 @@ q到底是几其实没有观测到，只是我们假定它位于第i号状态。
 期望
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf637dfaf8.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/a5F3bmAmcb.png?imageslim)
 
 这个跟我们做参数学习无关，只是提了一下。
 
@@ -697,10 +599,10 @@ q到底是几其实没有观测到，只是我们假定它位于第i号状态。
 
 
 
- 	
+
   * 若训练数据包括观测序列和状态序列，则HMM的学习非常简单，是监督学习；
 
- 	
+
   * 若训练数据只有观测序列，则HMM的学习需要使用EM算法，是非监督学习。
 
 
@@ -711,13 +613,11 @@ q到底是几其实没有观测到，只是我们假定它位于第i号状态。
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf6527298f.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/g2HC2GF66K.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf672a8600.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/kG70F2hi6c.png?imageslim)
 
 a_{ij} 可以数出频数
 
@@ -732,8 +632,7 @@ a_{ij} 可以数出频数
 先看一下之前学习过的 EM 算法的框架：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf6761491b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/kAe4Eafi7A.png?imageslim)
 
 第一步就是看一下隐状态的条件概率
 
@@ -753,8 +652,7 @@ a_{ij} 可以数出频数
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf683db7d9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/EfmBgmdhlk.png?imageslim)
 
 注意这个地方的Q是想去求极大的那个东西，
 
@@ -769,8 +667,7 @@ a_{ij} 可以数出频数
 EM过程
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf6901c2d9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/49h0F51H5b.png?imageslim)
 
 这个\(\overline{\lambda}\)  是当前的估计值。\(\lambda\) 这个是未知的。把这个东西带进来，然后乘积转加和。
 
@@ -781,20 +678,17 @@ EM过程
 极大化
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf6985b5ad.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/jF3AlbjmGb.png?imageslim)
 
 初始状态概率
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf6a2d8c77.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/dfbBcaGiJH.png?imageslim)
 
 转移概率和观测概率
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf6b06c8f4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/ijdkk9Imac.png?imageslim)
 
 因此\pi 和a 和b都能球出来。
 
@@ -811,18 +705,17 @@ EM过程
 
 
 
- 	
+
   * 近似算法
 
- 	
+
   * Viterbi算法
 
 
 预测的近似算法
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf6ca784f4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/8b2c0Fm5Ck.png?imageslim)
 
 
 
@@ -833,10 +726,7 @@ EM过程
 给定m*n的矩阵，每个位置是一个非负整数，从左上角开始，每次只能朝右和下走，走到右下角，求总和最小的路径。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf6e5022ce.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/g9C1hj1BK4.png?imageslim)
 
 
 ### 问题分析
@@ -844,8 +734,7 @@ EM过程
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf6f986470.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/AGFJiGlB9f.png?imageslim)
 
 走的方向决定了同一个格子不会经过两次。
 
@@ -870,17 +759,9 @@ Viterbi算法实际是用动态规划解HMM预测问题，用DP求概率最大�
 定义变量\(δ_t(i))：在时刻t状态为i的所有路径中，概率的最大值。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf7429debb.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Ek53Dd328c.png?imageslim)
 
-
-
-
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3bc7a5c8cd.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/JaLH4j3hAe.png?imageslim)
 
 这个是，好比t-1时刻包括之前的都已经走完了，那么这个时候i1,i2....i_{t-1}都已经得到了，那么这个时候的t时刻 状态为i的概率的大小。
 
@@ -896,28 +777,23 @@ Viterbi算法实际是用动态规划解HMM预测问题，用DP求概率最大�
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf74ce7ef3.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/bHHKk0bBmK.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf7540b52a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/7haJ2h9JE9.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf75c48137.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/FmBke5BJm2.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf763c462d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/LID8k69E3g.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf76d32167.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Ff6JDf6dLL.png?imageslim)
 
 
 
@@ -927,49 +803,41 @@ Viterbi算法实际是用动态规划解HMM预测问题，用DP求概率最大�
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf775a314a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/d46Fkg2HjB.png?imageslim)
 
 Baum-Welch：主函数
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf77a12267.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/780Ce0GBaJ.png?imageslim)
 
 前向-后向
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf78da95ce.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/eBKFaJaebA.png?imageslim)
 
 隐状态概率 – 隐状态转移概率
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf7a25b0a6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/k9g2Fbk0Ee.png?imageslim)
 
 EM迭代
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf7ab1728c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/bBE1i784Il.png?imageslim)
 
 Viterbi
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf7b5559f6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Kl347kedah.png?imageslim)
 
 分词
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf7bd05f68.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/lIb1BFGjka.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdf7c8a9a95.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/HmJi5k4d6B.png?imageslim)
 
 
 
@@ -982,7 +850,3 @@ BW算法的代码：自己看一下。
 分词的代码也自己看一下，他分的是4个状态：BMES begin middle end single
 
 有很多东西没有懂，看来要再看一遍。
-
-
-
-

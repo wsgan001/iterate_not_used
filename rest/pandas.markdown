@@ -32,27 +32,27 @@ pandas经常用来对要学习的数据进行读取，然后整理，这个也�
 
 
 
-    
+
     # DataFrame的初始化相关
-    
+
     # numpy 是一个列表 但是pandans是一个字典
     # 因为每一行每一列都有一个名字
-    
+
     import pandas as pd
     import numpy as np
-    
+
     # 自动添加了序号
     s = pd.Series([1, 2, 3, 6, np.nan, 44, 1])
     print(s)
     print()
-    
+
     dates = pd.date_range('20160101', periods=6)
     print(dates)
-    
+
     # 用日期定义了行 用abcd定义了列
     df = pd.DataFrame(np.random.randn(6, 4), index=dates, columns=['a', 'b', 'c', 'd'])
     df1 = pd.DataFrame(np.arange(12).reshape((3, 4)))
-    
+
     print(df)
     print(df1)
     # 使用字典的方式，每个key-value对应一列 这个还是感觉比较特殊的
@@ -66,20 +66,20 @@ pandas经常用来对要学习的数据进行读取，然后整理，这个也�
     })
     print(df2)
     print(df2.dtypes)  # 打印出每一列的数据形式 可以查看每一列是那种形式的数字
-    
+
     print(df2.index)  # 输出所有的行的名字
     print(df2.columns)  # 输出所有的列的名字
-    
+
     print(df2.values)  # 输出所有的值
     print(type(df2.values))  # 格式是numpy.ndarray
-    
+
     # 对数据的列进行一些简单的计算
     print(df2.describe())
 
 
 输出：
 
-    
+
     0     1.0
     1     2.0
     2     3.0
@@ -88,7 +88,7 @@ pandas经常用来对要学习的数据进行读取，然后整理，这个也�
     5    44.0
     6     1.0
     dtype: float64
-    
+
     DatetimeIndex(['2016-01-01', '2016-01-02', '2016-01-03', '2016-01-04',
                    '2016-01-05', '2016-01-06'],
                   dtype='datetime64[ns]', freq='D')
@@ -130,28 +130,28 @@ pandas经常用来对要学习的数据进行读取，然后整理，这个也�
 
 
 
-    
+
     import pandas as pd
     import numpy as np
-    
+
     # 对数据的列进行一些简单的计算
     print(df2.describe())
-    
-    
+
+
     # 用到数学运算的画这个比较重要
     print(df2.T)
-    
+
     # 1就是行还是排序 ascending=False就是倒着排序
     print(df2.sort_index(axis=1, ascending=False))
     print(df2.sort_index(axis=0, ascending=False))
-    
+
     # 对列表中的值进行排序
     print(df2.sort_values(by='E'))
 
 
 输出：
 
-    
+
              A    C    D
     count  4.0  4.0  4.0
     mean   1.0  1.0  3.0
@@ -162,20 +162,20 @@ pandas经常用来对要学习的数据进行读取，然后整理，这个也�
     75%    1.0  1.0  3.0
     max    1.0  1.0  3.0
                          0                    1                    2  \
-    A                    1                    1                    1   
-    B  2013-01-01 00:00:00  2013-01-01 00:00:00  2013-01-01 00:00:00   
-    C                    1                    1                    1   
-    D                    3                    3                    3   
-    E                 test                train                 test   
-    F                  foo                  foo                  foo   
-    
-                         3  
-    A                    1  
-    B  2013-01-01 00:00:00  
-    C                    1  
-    D                    3  
-    E                train  
-    F                  foo  
+    A                    1                    1                    1
+    B  2013-01-01 00:00:00  2013-01-01 00:00:00  2013-01-01 00:00:00
+    C                    1                    1                    1
+    D                    3                    3                    3
+    E                 test                train                 test
+    F                  foo                  foo                  foo
+
+                         3
+    A                    1
+    B  2013-01-01 00:00:00
+    C                    1
+    D                    3
+    E                train
+    F                  foo
          F      E  D    C          B    A
     0  foo   test  3  1.0 2013-01-01  1.0
     1  foo  train  3  1.0 2013-01-01  1.0
@@ -199,42 +199,42 @@ pandas经常用来对要学习的数据进行读取，然后整理，这个也�
 
 
 
-    
+
     # 行列的筛选
-    
+
     import numpy as np
     import pandas as pd
-    
+
     dates = pd.date_range('20130101', periods=6)
     df = pd.DataFrame(np.arange(24).reshape((6, 4)),
                       index=dates,
                       columns=['A', 'B', 'C', 'D'])
     print(df)
-    
+
     # 选择列
     print(df['A'])
     print(df.A)  # 这两种写法是一样的
-    
+
     # 选择行
     print(df[0:3])
     print(df['20130102':'20130104'])  # 上面两种写法是一样的
-    
+
     # 更高级的选择
     # 纯标签筛选:loc->local
     print(df.loc['20130102'])  # 以标签来进行选择
     print(df.loc[:, ['A', 'B']])  # 选择所有的行，然后列的话选择的是A和B
     print(df.loc['20130102', 'A'])
     print(df.loc['20130102', ['A', 'B', 'C']])
-    
+
     # 纯index筛选 :iloc  i->index
     print(df.iloc[1, :])
     print(df.iloc[1:3, 1:3])
     print(df.iloc[[1, 3, 5], 1:3])
-    
+
     # 综合进行筛选 mixed selection :ix
     print(df.ix[:3, ['A', 'B']])
     print(df.ix[1, 'A'])
-    
+
     # Boolean indexing
     print(df[df.A > 8])  # 照出df中A大于8的行
     print(df[df.A > 8])
@@ -242,7 +242,7 @@ pandas经常用来对要学习的数据进行读取，然后整理，这个也�
 
 输出：
 
-    
+
                  A   B   C   D
     2013-01-01   0   1   2   3
     2013-01-02   4   5   6   7
@@ -322,24 +322,24 @@ pandas经常用来对要学习的数据进行读取，然后整理，这个也�
 
 
 
-    
+
     # 赋值，修改，添加列
-    
+
     import numpy as np
     import pandas as pd
-    
+
     dates = pd.date_range('20130101', periods=6)
     df = pd.DataFrame(np.arange(24).reshape(6, 4),
                       index=dates,
                       columns=['A', 'B', 'C', 'D'])
     print(df)
-    
+
     # 普通的修改方法
     df.iloc[2, 2] = 1111
     df.loc['20130101', ['A', 'B']] = 222
     df.ix[3, ['C']] = 333
     print(df)
-    
+
     # 通过设定范围来进行修改
     # 这几种方式经常用到
     # 将A大于10的全部设置为0
@@ -352,7 +352,7 @@ pandas经常用来对要学习的数据进行读取，然后整理，这个也�
     print(df2)
     df3[df3.A > 10] = 0  # 将A大于10的行的所有的值都设置为0
     print(df3)
-    
+
     # 添加一个空的列
     df['E'] = np.nan
     # 添加一个新的序列作为列 把列先定义好在加上去
@@ -363,7 +363,7 @@ pandas经常用来对要学习的数据进行读取，然后整理，这个也�
 
 输出：
 
-    
+
                  A   B   C   D
     2013-01-01   0   1   2   3
     2013-01-02   4   5   6   7
@@ -415,7 +415,7 @@ pandas经常用来对要学习的数据进行读取，然后整理，这个也�
 
 CSV文件如下：
 
-    
+
     Student ID,Name,Age,Gender
     1100,A,12,Male
     1101,Col,2,Male
@@ -433,19 +433,19 @@ CSV文件如下：
 
 代码如下：
 
-    
+
     # 数据的导入导出
-    
+
     # picke 是python自带的压缩的形式？
     # read_gbq 网络的形式
     # csv 格式可以直观的看到
-    
+
     import pandas as pd
-    
+
     data = pd.read_csv('student_info.csv')  # 会自动添加索引
     print(data)
     print(data.loc[:, ['Student ID', 'Gender']])
-    
+
     data.to_pickle('student_info.picke')  # 存储为pickle文件
 
 
@@ -456,21 +456,21 @@ CSV文件如下：
 
 
 
-    
+
     # 对nan的处理
-    
+
     import numpy as np
     import pandas as pd
-    
+
     dates = pd.date_range('20130101', periods=6)
     df = pd.DataFrame(np.arange(24).reshape((6, 4)),
                       index=dates,
                       columns=['A', 'B', 'C', 'D'])
     df.iloc[0, 1] = np.nan
     df.iloc[1, 2] = np.nan
-    
+
     print(df)
-    
+
     # 对含有nan的行或列的丢弃
     df1 = df.copy()
     df2 = df.copy()
@@ -481,22 +481,22 @@ CSV文件如下：
     print(df2.dropna(axis=0, how='all'))  # 只有这一行全部是nan才丢掉
     print(df3.dropna(axis=1, how='any'))
     print(df4.dropna(axis=1, how='all'))
-    
+
     # 对于nan的填充
     df1 = df.copy()
     print(df1.fillna(value=0))  # 将nan值填充为0
-    
+
     # 查看是否又丢失数据
     df1 = df.copy()
     print(df2.isnull())
-    
+
     # any 至少有一个
     print(np.any(df.isnull()) == True)
 
 
 输出：
 
-    
+
                  A     B     C   D
     2013-01-01   0   NaN   2.0   3
     2013-01-02   4   5.0   NaN   7
@@ -553,12 +553,12 @@ CSV文件如下：
 
 
 
-    
+
     # DataFrame的拼接以及行的追加
-    
+
     import pandas as pd
     import numpy as np
-    
+
     # concatenating
     df1 = pd.DataFrame(np.ones((3, 4)) * 0, columns=['a', 'b', 'c', 'd'])
     df2 = pd.DataFrame(np.ones((3, 4)) * 1, columns=['a', 'b', 'c', 'd'])
@@ -570,21 +570,21 @@ CSV文件如下：
     print(res)  # 合并之后row 的flag没有自动改变，
     res1 = pd.concat([df1, df2, df3], axis=0, ignore_index=True)  # 忽略之前的row的index
     print(res1)
-    
+
     # concat 中的 join 两种形式 ['inner','outer']
     # merge 没有讲
-    
+
     df1 = pd.DataFrame(np.ones((3, 4)) * 0, columns=['a', 'b', 'c', 'd'], index=[1, 2, 3])
     df2 = pd.DataFrame(np.ones((3, 4)) * 0, columns=['b', 'c', 'd', 'e'], index=[2, 3, 4])
     print(pd.concat([df1, df2], axis=0, join='outer', ignore_index=True))  # 没有的栏用NaN填充
     print(pd.concat([df1, df2], axis=0, join='inner', ignore_index=True))  # 把相同的东西合并在一起，不同的裁剪掉
-    
+
     # join_axes
     res1 = pd.concat([df1, df2], axis=1)
     res2 = pd.concat([df1, df2], axis=1, join_axes=[df1.index])  # 按照df1的index进行合并，df2中没有的用NaN填充
     print(res1)
     print(res2)
-    
+
     # append
     # 追加一个dataFrame作为行
     res1 = df1.append(df2, ignore_index=True)
@@ -599,7 +599,7 @@ CSV文件如下：
 
 输出：
 
-    
+
          a    b    c    d
     0  0.0  0.0  0.0  0.0
     1  0.0  0.0  0.0  0.0
@@ -685,13 +685,13 @@ CSV文件如下：
 
 
 
-    
+
     # merge
     # 比concatenate要稍微复杂点
     # join的功能与merge类似 这个地方没有讲
     import pandas as pd
     import numpy as np
-    
+
     # merging two df by key/keys. (may be used in database)
     # simple example
     left = pd.DataFrame({
@@ -706,12 +706,12 @@ CSV文件如下：
     })
     print(left)
     print(right)
-    
+
     res1 = pd.merge(left, right)
     res2 = pd.merge(left, right, on='key')  # 基于key进行合并
     print(res1)
     print(res2)
-    
+
     # consider two keys
     left = pd.DataFrame({
         'key1': ['K0', 'K0', 'K1', 'K2'],
@@ -740,7 +740,7 @@ CSV文件如下：
     print(pd.merge(left=left, right=right,
                    how='right',  # 以右边的为准，左边的没有的用NaN填充
                    on=['key1', 'key2']))
-    
+
     # indicator 会现实出每一行的合并情况
     df1 = pd.DataFrame({'col1': [0, 1], 'col_left': ['a', 'b']})
     df2 = pd.DataFrame({'col1': [1, 2, 2], 'col_right': [2, 2, 2]})
@@ -752,7 +752,7 @@ CSV文件如下：
     print(res1)
     print(res1.size)
     print(res2)
-    
+
     # merge by index  因为之前是通过的column来进行合并的，现在是通过index进行合并的
     left = pd.DataFrame({'A': ['A0', 'A1', 'A2'],
                          'B': ['B0', 'B1', 'B2']},
@@ -760,7 +760,7 @@ CSV文件如下：
     right = pd.DataFrame({'C': ['C0', 'C1', 'C2'],
                           'D': ['D0', 'D1', 'D2']},
                          index=['K0', 'K2', 'K3'])
-    
+
     print(left)
     print(right)
     res1 = pd.merge(left=left, right=right,
@@ -771,7 +771,7 @@ CSV文件如下：
                     right_index=True, how='inner')
     print(res1)
     print(res2)
-    
+
     # handle overlapping
     boys = pd.DataFrame({'k': ['K0', 'K1', 'K2'],
                          'age': [1, 2, 3]})
@@ -786,7 +786,7 @@ CSV文件如下：
 
 输出：
 
-    
+
         A   B key
     0  A0  B0  K0
     1  A1  B1  K1
@@ -885,21 +885,21 @@ CSV文件如下：
 
 
 
-    
+
     # plot
     # 关于pandas的画图看来还是要扩充一下 比如想知道箱图等
     import pandas as pd
     import numpy as np
-    
+
     import matplotlib.pyplot as plt
-    
+
     # plot data
     # Series 线性的数据
     data = pd.Series(np.random.randn(1000), index=np.arange(1000))
     data1 = data.cumsum()
     # data.plot()# 可以把数据这样显示出来
     # data1.plot()
-    
+
     # DataFrame
     data = pd.DataFrame(np.random.randn(1000, 4),
                         index=np.arange(1000),
@@ -908,7 +908,7 @@ CSV文件如下：
     print(data.head(3))  # 默认的是5
     # data.plot()  # 会有4条线
     # data1.plot()
-    
+
     # plot methods:
     # bar,hist,box,kde,area,scatter,hexbin,pie
     # 这个地方没明白？ax是什么参数？
@@ -922,7 +922,7 @@ CSV文件如下：
 
 输出：
 
-    
+
               A         B         C         D
     0  1.071231 -1.836988  0.051154  0.675617
     1 -1.078098  0.544506 -1.150166 -0.347396
@@ -931,8 +931,7 @@ CSV文件如下：
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5ab61863952c3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/kA2gd2kjfl.png?imageslim)
 
 
 
@@ -951,7 +950,5 @@ CSV文件如下：
 
 
 
- 	
+
   1. [数据 Numpy & Pandas](https://morvanzhou.github.io/tutorials/data-manipulation/np-pd/)  **（推荐入门看这个人的莫烦python）**
-
-

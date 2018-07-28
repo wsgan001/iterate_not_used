@@ -22,7 +22,7 @@ categories:
 
 
 
- 	
+
   1. aaa
 
 
@@ -34,7 +34,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -46,7 +46,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -76,8 +76,7 @@ categories:
 对称（symmetric）矩阵是转置和自己相等的矩阵：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae6cb4d4e367.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/f1H85mjBKL.png?imageslim)
 
 当某些不依赖参数顺序的双参数函数生成元素时，对称矩阵经常会出现。例如，如
 果 A 是一个距离度量矩阵， Ai;j 表示点 i 到点 j 的距离，那么 Ai;j = Aj;i，因为距
@@ -85,8 +84,7 @@ categories:
 单位向量（unit vector）是具有 单位范数（unit norm）的向量：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae6cb58bbd00.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/4cmbbfdD8I.png?imageslim)
 
 如果 x⊤y = 0，那么向量 x 和向量 y 互相 正交（orthogonal）。如果两个向量都
 有非零范数，那么这两个向量之间的夹角是 90 度。在 Rn 中，至多有 n 个范数非
@@ -96,36 +94,13 @@ categories:
 正交矩阵（orthogonal matrix）是指行向量和列向量是分别标准正交的方阵：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae6cb68840a4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/91DLDgKbiC.png?imageslim)
 
 这意味着
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae6cb716d743.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/02ldH01234.png?imageslim)
 
 所以正交矩阵受到关注是因为求逆计算代价小。我们需要注意正交矩阵的定义。违
 反直觉的是，正交矩阵的行向量不仅是正交的，还是标准正交的。对于行向量或列
 向量互相正交但不是标准正交的矩阵，没有对应的专有术语。
-
-
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-

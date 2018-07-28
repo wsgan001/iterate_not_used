@@ -1,55 +1,19 @@
----
-author: evo
-comments: true
-date: 2018-04-29 06:38:12+00:00
-layout: post
-link: http://106.15.37.116/2018/04/29/artificial-general-intelligence/
-slug: artificial-general-intelligence
-title: 强人工智能
-wordpress_id: 4583
-categories:
-- 人工智能学习
-tags:
-- '@todo'
----
-
-<!-- more -->
-
-[mathjax]
-
-
-# REF
-
-
-
-
-
- 	
-  1. [强人工智能 wiki](https://zh.wikipedia.org/wiki/%E5%BC%B7%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7)
-
- 	
-  2. [CCCF：周志华 | 关于强人工智能](https://www.leiphone.com/news/201801/i3y36GjA4SdwpGuC.html) **未总结**
-
- 	
-  3. 
-
-
-[强人工智能目前发展怎样，有希望实现吗？](https://www.zhihu.com/question/50049187)
-
-
-
-
-
+# 强人工智能
 
 
 # TODO
 
+* **需要好好想想**
 
 
 
 
- 	
-  * **需要好好想想**
+
+
+
+
+
+
 
 
 
@@ -60,7 +24,7 @@ tags:
 
 
 
- 	
+
   * 非常想知道，现在对于强人工智能的探索到什么程度了？前面的路有哪些？现有的方式和方法还差些什么？
 
 
@@ -93,22 +57,22 @@ tags:
 
 
 
- 	
+
   * 自动推理，使用一些策略来解决问题，在不确定性的环境中作出决策；
 
- 	
+
   * 知识表示，包括常识知识库；
 
- 	
+
   * 自动规划；
 
- 	
+
   * 学习；
 
- 	
+
   * 使用自然语言进行沟通；
 
- 	
+
   * 以及，整合以上这些手段来达到同一个的目标；
 
 
@@ -123,20 +87,10 @@ tags:
 
 
 
+# REF
 
+1. [强人工智能 wiki](https://zh.wikipedia.org/wiki/%E5%BC%B7%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7)
 
+2. [CCCF：周志华 | 关于强人工智能](https://www.leiphone.com/news/201801/i3y36GjA4SdwpGuC.html) **未总结**
 
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+3.[强人工智能目前发展怎样，有希望实现吗？](https://www.zhihu.com/question/50049187)

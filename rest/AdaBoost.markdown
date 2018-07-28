@@ -157,8 +157,7 @@ OK，这个过程基本就是AdaBoost算法的过程。
 AdaBoost 是一个在迭代中直接构造权重alpha的算法：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda92694d7f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/AhkB8BJm7C.png?imageslim)
 
 当加权错误率接近0的时候，a变得非常大
 
@@ -170,8 +169,7 @@ AdaBoost 是一个在迭代中直接构造权重alpha的算法：
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda95accb1d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/8B7EJ127mK.png?imageslim)
 
 **基本每怎么听明白，看书的话倒是比较快的就明白了。虽然看书也有一些疑问。还是看书吧。**
 
@@ -201,32 +199,24 @@ AdaBoost 是一个在迭代中直接构造权重alpha的算法：
 前向分步算法：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda997c9000.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/DibhHC4c66.png?imageslim)
 
 **什么是基函数。为什么这个是前向分布算法？**
 
 前向分步算法的含义：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda9a635848.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/I4Ch42f96c.png?imageslim)
 
 ### 前向分步算法的算法框架：
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda9b404271.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/ajelE1JgiL.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda9b831713.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/jAklc799L2.png?imageslim)
 
 
 
@@ -236,55 +226,45 @@ AdaBoost 是一个在迭代中直接构造权重alpha的算法：
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda9c5b2a50.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/dmgBg1c4KB.png?imageslim)
 
 证明：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda9cca132f.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Afd8m9bHFg.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda9d052213.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/K3H2441f5F.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda9d4b73fb.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/FfleDGf9hF.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda9d8b6cd1.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/FIa4dcmgLA.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda9de69363.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/04cE71Feai.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda9e3e5bfa.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/66E6e8LIK0.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda9e6213f1.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/h9lfJD93Lk.png?imageslim)
 
 图示：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdaa0202211.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Kf87fhm1bg.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdaa06477a5.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/KBIA6HdCK0.png?imageslim)
 
 
 
@@ -292,14 +272,7 @@ AdaBoost 是一个在迭代中直接构造权重alpha的算法：
 # 著名案例：
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdaa0fcac38.png)
-
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/hJmBidG303.png?imageslim)
 
 
 # AdaBoost 开发过程中要注意的
@@ -317,29 +290,17 @@ AdaBoost 的大部分时间都用在训练上，分类器将多次在同一数�
 
 优点：
 
-
-
-
   * 泛化（由具体的、个别的扩大为一般的）错误率低，
-
-
   * 易编码  **什么是易编码？**
-
-
   * 可以应用在大部分分类器上，
-
-
   * 无参数调节。**没有参数调节吗？**
 
 
 缺点：
 
-
   * 对离群点敏感。**为什么对离群点敏感？**
 
-
 适用数据类型：
-
 
   * 数值型和标称型数据。
 

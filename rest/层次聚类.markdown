@@ -24,10 +24,10 @@ categories:
 
 
 
- 	
+
   1. 七月在线 机器学习
 
- 	
+
   2. [聚类分析算法kmeans和KNN](https://www.jianshu.com/p/105535717e11)
 
 
@@ -39,7 +39,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -51,7 +51,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -74,10 +74,10 @@ categories:
 
 
 
- 	
+
   * 自底向上：初始时每个数据点组成一个单独的组，在接下来的迭代中，按一定的距离度量将相互邻近的组合并成一个组，直至所有的记录组成一个分组或者满足某个条件为止。 代表算法有：BIRCH，CURE，CHAMELEON ，AGNES 等。**这几种算法要看下。**
 
- 	
+
   * 自顶向下：它首先将所有对象置于一个组中，然后逐渐细分为越来越小的组，直到达到了某个终结条件。比如：DIANA算法 **还有吗？**
 
 
@@ -99,37 +99,4 @@ AGNES (AGglomerative NESting)算法最初将每个对象作为一个簇，然后
 
 DIANA (DIvisive ANAlysis)算法是上述过程的反过程，属于分裂的层次聚类，首先将所有的对象初始化到一个簇中，然后根据一些原则(比如最大的欧式距离)，将该簇分类。直到到达用户指定的簇数目或者两个簇之间的距离超过了某个阈值。
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abd1681e4368.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/DJ0jhH8CB8.png?imageslim)

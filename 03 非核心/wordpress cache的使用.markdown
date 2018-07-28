@@ -17,8 +17,7 @@
 设置如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abee2f56f10c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/Jm11BDLbkL.png?imageslim)
 
 **注意：submit之后其实是要过大概10分钟才会起作用**
 

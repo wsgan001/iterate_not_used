@@ -25,7 +25,7 @@ tags:
 
 
 
- 	
+
   1. 七月在线 机器学习
 
 
@@ -58,19 +58,19 @@ SVM的最重要的两点内容：
 
 
 
- 	
+
   1. 直觉上是安全的
 
- 	
+
   2. 如果我们在边界的位置发生了一个小错误（它在垂直方向上被颠倒），这给我们最小的错误分类机会。
 
- 	
+
   3. CV（Computer Vision 计算机视觉 - 这缩写看着可怕）很容易，因为该模型对任何非支持向量数据点的去除是免疫的。什么叫是免疫的？
 
- 	
+
   4. 有一些理论，这是一件好事。
 
- 	
+
   5. 通常它的工作非常好。
 
 
@@ -85,8 +85,7 @@ SVM的最重要的两点内容：
 从hard margin 到 soft margin
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcaa610e729.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/A9J5c4d1K5.png?imageslim)
 
 最大间隔是一种思路，使SVM具备不错的泛化能力的一种不错的思路。
 
@@ -94,10 +93,7 @@ SVM的最重要的两点内容：
 ## 引入"核函数"，解决线性不可分
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcaa6cb630f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/2lHH7eC84c.png?imageslim)
 
 然后就是要学习核技巧 kernel trick，以及怎么引入核函数，来使得从线性不可分到线性可分。
 
@@ -115,14 +111,12 @@ SVM的最重要的两点内容：
 \(R^3\) 空间里，一个平面可以由平面上一个点 \(P_0\) ，以及一个垂直平面的方向W向量确定
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcab043a018.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/hgBlibB9dg.png?imageslim)
 
 任意取平面上一个点P，从原点到P，P_0，做两个向量x,x0，由于W垂直平面的关系可以得到如下定义：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcab0842fb9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/8GdBJEk7lF.png?imageslim)
 
 红框框出来的式子中，x 向量就是指的平面上的任意一点对应的向量。所以，这个平面可以用wx+b来表示。**利害。没想到平面的公式还可以这么推出来。**
 
@@ -137,18 +131,12 @@ SVM的最重要的两点内容：
 按下一页计算可以得到，使用b来表示的两个平面的距离公式
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcab97d17d9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/fk2bbkl40b.png?imageslim)
 
 那么这个tw怎么计算呢？
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcabc5618cc.png)
-
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/hiE6Fa41Fg.png?imageslim)
 
 **利害，还是很清晰的，推到出来两个平行平面之间的距离。**
 
@@ -175,7 +163,7 @@ SVM的最重要的两点内容：
 
 注：这个+1和-1的设定是 SVM 里面所特有的。因为别的机器学习算法里面一般是0或1。
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcac3760200.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/22063k5g9G.png?imageslim)
 
 那么我们怎么找到这条分割线呢？**什么叫间隔最大？什么是正负样本之间的间隔？中心点距离？最近的两点间？**
 
@@ -184,19 +172,13 @@ SVM的最重要的两点内容：
 
 ## 首先想知道这个分割超平面大概是什么样子的
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/8539AihEg8.png?imageslim)
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcad0c75e36.png)
+1. 先固定w的方向，对正样本来说，可以找到一个平面 \(wx+b_{+1}=0\) ，并且满足所有样本都在线的一侧。同样对负样本也可以在相同的方向，找到另外一个平面 \(wx+b_{-1}=0\) 。
 
+2. 将 \(wx+b_{+1}=0\)  和 \(wx+b_{-1}=0\)  式子左右两边同时乘以或除以某个数，使最终满足 \(b_{+1}-b_{-1}=2\)，此时可以取 \(b=b_{+1}-b_{-1}-1\) 。就得到图中的三个平面。
 
-
- 	
-  1. 先固定w的方向，对正样本来说，可以找到一个平面 \(wx+b_{+1}=0\) ，并且满足所有样本都在线的一侧。同样对负样本也可以在相同的方向，找到另外一个平面 \(wx+b_{-1}=0\) 。
-
- 	
-  2. 将 \(wx+b_{+1}=0\)  和 \(wx+b_{-1}=0\)  式子左右两边同时乘以或除以某个数，使最终满足 \(b_{+1}-b_{-1}=2\)，此时可以取 \(b=b_{+1}-b_{-1}-1\) 。就得到图中的三个平面。
-
- 	
-  3. 中间的平面可以用来预测新数据。
+3. 中间的平面可以用来预测新数据。
 
 
 也就是说，只要W的方向是固定的，那么我一定能找到一个在这个方向上的 W，使得 (b_{+1}-b_{-1}=2\) ，那么这个时候，如果 \(b=b_{+1}-b_{-1}-1\) ，那么这个 Wx+b=0 就是中间的分割超平面 hyperplane。
@@ -205,22 +187,9 @@ SVM的最重要的两点内容：
 ## OK，开始计算最大间隔
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae12454838e9.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Cceh6DH84A.png?imageslim)
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae124581d52a.png)
-
-
-
-
-
-
-
-
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/je3kbhm03H.png?imageslim)
 
 
 可以计算出这两个平行的超平面之间的距离。
@@ -231,16 +200,15 @@ SVM的最重要的两点内容：
 ## OK，现在我们总结一下我们的目标和约束条件
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcada28a560.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/j8mBgLhEGh.png?imageslim)
 所以：
 
 
 
- 	
+
   * 最小化 \(\frac{1}{2}||w||^2\)
 
- 	
+
   * 约束条件：\(y_i(w^Tx_i+b)≥1\)
 
 
@@ -256,10 +224,10 @@ SVM的最重要的两点内容：
 
 
 
- 	
+
   * 当 x 的维度很大的时候，二次凸优化问题解起来不是很高效，
 
- 	
+
   * 如果只是这么求的话，那么没有办法引入我们后面说的核函数。那样SVM就只能解一些线性可分的问题了。
 
 
@@ -274,42 +242,39 @@ SVM的最重要的两点内容：
 我们先构造拉格朗日乘子
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcae24be144.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/BJ80G1eG9E.png?imageslim)
 
 原问题是极小极大，对偶问题是极大极小：**这个Lagrange方法还是要再熟悉一遍。**
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcae433c01f.png)        ![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcae45a4d5e.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/AFaB0L4Jba.png?imageslim)
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/14JAG3GIh2.png?imageslim)
 
 对 L(w,b,a) 分别对 w，b求偏导，令其为0：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcaeb2c2184.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/C7aiaLjFBE.png?imageslim)
 
 注意：这里的x是向量，y是标量，求出来的 w 还是一个向量 。对b求导得到了一个关于a的约束条件。
 
 有了这两个式子，我们可以化简之前的 Lagrange 函数：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcaec4a1f9b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/DIeJbFfaAl.png?imageslim)
 
 **嗯 还是很清楚的，但是一般不都是因为求偏导为0得到的方程带入到约束条件里面吗？为什么这个地方把它带入到 Lagrange 函数里面了？要明确下是不是经常带入到约束条件中？**
 
 OK，我们把我们的问题重新整理下：为什么这个时候开始求极大值了？
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcaed608c4c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/C7CAJ5clgk.png?imageslim)
 
 利害了，又可以转换成一个Lagrange函数，
 
 不过，我们先做一下总结，把问题重新定义一边：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcaee701c39.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/HcbIkE9kk9.png?imageslim)
 
 如果我们根据左边的目标和约束条件求出了\(\alpha\)，那么我们就可以求出w'和b'，（这个w'就是之前的Lagrange函数的对w求偏导时候得到的w的满足的方程）。同时也就可以知道这个超平面的方程了。**为什么\(\alpha_j\neq 0\)?**
 
@@ -334,7 +299,7 @@ OK，重新理解下问题
 ## 不是线性可分的时候怎么办呢？
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcb10b4311f.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/FfCKKGH3dg.png?imageslim)
 
 当数据不是线性可分的时候，怎么做呢？
 
@@ -344,10 +309,10 @@ OK，重新理解下问题
 
 
 
- 	
+
   * 最小化\(\frac{1}{2}\left \| w \right \|^2+C\sum_{i=1}^{n}\zeta_i\)
 
- 	
+
   * 满足约束条件 \(y_i(w^tx+b)≥1-ζ_i\)，\(ζ_i≥0\)
 
 
@@ -359,34 +324,29 @@ OK，重新理解下问题
 对偶问题形式：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcb123e2839.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/7gD3c2jLc8.png?imageslim)
 
 求解极大极小问题，首先求偏导w，b，ζ，并且带入L
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcb13e67bee.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/ie9la1el0f.png?imageslim)
 
 带入后化简为：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcb166ddd13.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/AGlC49Id6D.png?imageslim)
 
 可见，这个与之前的线性可分的那个是一样，但是约束条件变了：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcb177b033c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/36L5D2ALD1.png?imageslim)
 
 我们只需要求解\(\alpha_i\)就可以。
 
 重新定义后如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcb185e2216.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/jj5giFmkfm.png?imageslim)
 
 **为什么到这个地方就没有了？最小化的这个式子怎么求的？**
 
@@ -415,8 +375,7 @@ OK，重新理解下问题
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcb26d9af8f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/0Dh5HKc2K9.png?imageslim)
 
 提升维度，使得样本更加容易线性可分。当然并不是说一定线性可分。
 
@@ -426,8 +385,7 @@ OK，重新理解下问题
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcb2788ef33.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/fCfeC1KmFg.png?imageslim)
 
 第四个核函数，q很高的话，维度的提升就很大。
 
@@ -438,14 +396,12 @@ OK，重新理解下问题
 《机器学习实战》中说：最流行的核函数：径向基函数(radial basis function)，径向基函数的高斯版本，其具体的公式为： **要确认下。**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5af446fec9a5b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/6bHlK4A0bC.png?imageslim)
 
 特别的核函数，高斯核：**还需要在了解下高斯核。**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcb28303021.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Hkh9C2aLG8.png?imageslim)
 
 
 
@@ -457,31 +413,31 @@ OK，重新理解下问题
 
 
 
- 	
+
   * SMO用途：用于训练 SVM
 
- 	
+
   * SMO目标：求出一系列 alpha 和 b,一旦求出 alpha，就很容易计算出权重向量 w 并得到分隔超平面。
 
- 	
+
   * SMO思想：是将大优化问题分解为多个小优化问题来求解的。
 
- 	
+
   * SMO原理：每次循环选择两个 alpha 进行优化处理，一旦找出一对合适的 alpha，那么就增大一个同时减少一个。
 
- 	
+
     * 这里指的合适必须要符合一定的条件
 
- 	
+
       1. 这两个 alpha 必须要在间隔边界之外
 
- 	
+
       2. 这两个 alpha 还没有进行过区间化处理或者不在边界上。
 
 
 
 
- 	
+
     * 之所以要同时改变2个 alpha；原因是我们有一个约束条件：\(\sum_{i=1}^{m} a_i·label_i=0\)；如果只是修改一个 alpha，很可能导致约束条件失效。
 
 
@@ -504,8 +460,7 @@ OK，重新理解下问题
 不用核的线性SVM也是很常用的，因为最大间隔这个方式本身就已经由很好的泛化能力。因此，线性SVM在很多场合都是非常常用的。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcb2b344a78.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/je3eHdK0GI.png?imageslim)
 
 没想到可以这么化，penalty是什么意思？为什么前面是hingeloss？因为大于0的时候，是有值的，小于0的时候就取0 了。**厉害了**，
 
@@ -520,32 +475,15 @@ OK，重新理解下问题
 **这些都要了解下。需要补充**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcb2b7d0555.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/gbbDlLEHLG.png?imageslim)
 
 # SVM扩展
 
-
-
-
-
- 	
-  * 多问类的SVM算法
-
- 	
-  * SVR：支持向量回归问题
-
- 	
-  * 基于SVM的Novelty detection
-
- 	
-  * 支持向量聚类算法
-
- 	
-  * SVM分类的概率输出
+* 多问类的SVM算法
+* SVR：支持向量回归问题
+* 基于SVM的Novelty detection
+* 支持向量聚类算法
+* SVM分类的概率输出
 
 
 **怎么处理多分类？**
@@ -562,31 +500,17 @@ OK，重新理解下问题
 
 优点：
 
-
-
- 	
-  * 泛化（由具体的、个别的扩大为一般的，就是说：模型训练完后的新样本）错误率低，
-
- 	
-  * 计算开销不大，
-
- 	
-  * 结果易理解。
-
+* 泛化（由具体的、个别的扩大为一般的，就是说：模型训练完后的新样本）错误率低，
+* 计算开销不大，
+* 结果易理解。
 
 缺点：
 
- 	
-  * 对参数调节和核函数的选择敏感，
-
- 	
-  * 原始分类器不加修改仅适合于处理二分类问题。
-
+* 对参数调节和核函数的选择敏感，
+* 原始分类器不加修改仅适合于处理二分类问题。
 
 使用数据类型：
-
- 	
-  * 数值型和标称型数据。
+* 数值型和标称型数据。
 
 
 
@@ -604,7 +528,3 @@ OK，重新理解下问题
 **后面的老师讲的代码没有看，要再看下，先把之前的SVM的知识在补充一下，而且，讲的代码是JS的，最好能找个Python的看下。**
 
 **从SVM扩展来看还是由很多没有讲，而且代码的实现也没有讲**
-
-
-
-

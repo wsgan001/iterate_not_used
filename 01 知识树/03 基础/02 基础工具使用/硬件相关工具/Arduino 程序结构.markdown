@@ -24,7 +24,7 @@ categories:
 
 
 
- 	
+
   1. [Arduino教程](https://www.w3cschool.cn/arduino/)
 
 
@@ -36,7 +36,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -48,7 +48,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -71,72 +71,63 @@ Arduino程序可以分为三个主要部分：**结构，值**（变量和常量
 
 让我们从**结构**开始。软件结构包括两个主要函数：
 
-
-
- 	
   * Setup()函数
-
- 	
   * Loop()函数
 
 
+结构
 
-
-![结构](https://img.w3cschool.cn/attachments/tuploads/arduino/structure.jpg)
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aed557c9ff97.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/A2DLGHfc52.png?imageslim)
 
 
 
 
 
 
+```
+Void setup ( ) {
 
-    
-    Void setup ( ) {
-    
-    }
-    
-
+}
+```
 
 
 
 
- 	
+
+
   * **PURPOSE**- 草图启动时会调用** setup()**函数。使用它来初始化变量，引脚模式，启用库等。setup函数只能在Arduino板的每次上电或复位后运行一次。
 
- 	
+
   * **INPUT **- -
 
- 	
+
   * **OUTPUT **- -
 
- 	
+
   * **RETURN**- -
 
 
 
-    
+
     Void Loop ( ) {
-    
+
     }
-    
 
 
 
 
 
- 	
+
+
   * **PURPOSE**- 在创建了用于初始化并设置初始值的**setup()**函数后，**loop()** 函数，正如它的名称所指，允许你的程序连续循环的更改和响应。可以使用它来主动控制Arduino板。
 
- 	
+
   * **INPUT **- -
 
- 	
+
   * **OUTPUT **- -
 
- 	
+
   * **RETURN**- -
 
 
@@ -169,6 +160,3 @@ Arduino程序可以分为三个主要部分：**结构，值**（变量和常量
 
 
 # COMMENT
-
-
-

@@ -49,20 +49,18 @@
 OK 复习一下上次的：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3045e9ec09.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/1gGBLbbcmb.png?imageslim)
 
+Beta分布是二项分布的共轭先验分布，它的概率密度的定义是：![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/m6gmEam49m.png?imageslim)这个是归一化因子
 
-Beta分布是二项分布的共轭先验分布，它的概率密度的定义是：![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae304640983c.png)这个是归一化因子
-
-而这个B可以表示称一个Gamma函数的形式：![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae30467a2c7b.png)
+而这个B可以表示称一个Gamma函数的形式：![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/KiAhEiB5b4.png?imageslim)
 
 厉害了，没想到Beta分布还与Gamma函数有关。
 
 如果给定\alpha 和\beta 那么，这个x的期望是多少？ xf(x)
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3046c83339.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Ic4KjkbaL1.png?imageslim)
 
 厉害了，没想到这个Beta分布的期望可以写成这样。
 
@@ -98,8 +96,7 @@ Beta分布是二项分布的共轭先验分布，它的概率密度的定义是�
 产生二维随机数代码与效果
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abded207e3c4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/B8hEDmBJK0.png?imageslim)
 
 
 
@@ -109,14 +106,10 @@ Beta分布是二项分布的共轭先验分布，它的概率密度的定义是�
 
 给定定点\(O(x_0 ,y_0)\)和半径r，使得二维随机点(x,y)等概率落在圆内。
 
-分析：直接使用x=x_0 +r*cosθ，y=y_0 +r*sinθ是否可以呢？具体试验一下。
+分析：直接使用 $x=x_\theta +r*cos\theta$，$y=y_\theta +r*sin\theta$ 是否可以呢？具体试验一下。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abded63887f5.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/iJGADLLbe8.png?imageslim)
 
 ## 还有什么办法呢？
 
@@ -124,8 +117,7 @@ Beta分布是二项分布的共轭先验分布，它的概率密度的定义是�
 显然上述做法是不对的。但可以使用二维随机点的做法，若落在圆外，则重新生成点。即有选择的取点，结果如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abded9802dc9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/0fC5Hj6507.png?imageslim)
 
 这个就是一种带拒绝的采样分析。
 
@@ -137,8 +129,7 @@ Beta分布是二项分布的共轭先验分布，它的概率密度的定义是�
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdedd908185.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/eLkmj3gBa3.png?imageslim)
 
 关键是这个： sqrt(rand2500())
 
@@ -159,7 +150,7 @@ Rejection sampling
 
 在对某区域f(x,y)≤0抽样的过程中，若该区域f(x,y)≤0不容易直接求解，则寻找某容易采样的区域g(x,y)≤0 ， G为F的上界。当采样(x 0 ,y 0 )∈G且落在F内部时，接收该采样；否则拒绝之。
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdedc31d583.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/1ICA2I764L.png?imageslim)
 
 该例中， f(x,y)≤0是圆， g(x,y)≤0是该圆的外包围正方形。
 
@@ -175,7 +166,7 @@ MCMC是沿着这个思路走的。
 
 OK，现在我们想一下：上述抽样问题能否用来解决一般概率分布函数的抽样问题？如：根据均匀分布函数得到正态分布的抽样？
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdee15758c0.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/dGBh0iAJ1G.png?imageslim)
 
 比如说我们知道q(z)这种分布，然后乘以一个k之后kq(z)就比我的\(\widetilde{p}(z)\) 要大，那么我随机取一个点，在红色的时候就要，在黑色的时候就不要，这样我就可以把任何一种概率分布都去做采样了。
 
@@ -205,10 +196,7 @@ OK，现在我们想一下：上述抽样问题能否用来解决一般概率分
 假定朝上的概率为p，使用对数似然函数作为目标函数：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae308cdac442.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/bDa3c5mJkl.png?imageslim)
 
 
 ## 应用Bernoulli版本的大数定理
@@ -216,16 +204,14 @@ OK，现在我们想一下：上述抽样问题能否用来解决一般概率分
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdee3996a27.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/3g2d10jba8.png?imageslim)
 
 附：Bernoulli版本的大数定理
 
 **这个要拿到大数定理那里。**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdee44f12b9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/idEJm6kHea.png?imageslim)
 
 
 
@@ -237,12 +223,11 @@ OK，现在我们想一下：上述抽样问题能否用来解决一般概率分
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdee50e9e7c.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/7aDA13bj1F.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3099ff0acc.png)这个是能算出来的，我们可以按照这个概率去采样![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae309a31f8c9.png)这个函数，假设采样了L次，我们用这L次的采样的期望值来近似真正的值
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/f605D9l806.png?imageslim)这个是能算出来的，我们可以按照这个概率去采样![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/ciEjGcDcHL.png?imageslim)这个函数，假设采样了L次，我们用这L次的采样的期望值来近似真正的值
 
 
 这种就是MC-EM算法。
@@ -279,8 +264,7 @@ OK，在聊一下马尔科夫链这个问题：
 考虑某随机过程π，它的状态有n个，用1~n表示。记在当前时刻t时位于i状态，它在t+1时刻位于j状态的概率为P(i,j)=P(j|i)：即状态转移的概率只依赖于前一个状态。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdee6a04ab6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/3fCF8Cj0CK.png?imageslim)
 
 
 
@@ -290,25 +274,18 @@ OK，在聊一下马尔科夫链这个问题：
 
 假定按照经济状况将人群分成上、中、下三个阶层，用1、2、3表示。假定当前处于某阶层只和上一代有关，即：考察父代为第i阶层，则子代为第j阶层的概率。假定为如下转移概率矩阵：
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdee7dc016e.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/GFc2BejkmB.png?imageslim)
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdee8786556.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/aFca980cJj.png?imageslim)
 
 概率转移矩阵
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdee96155e4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/LB5Cg4H7cd.png?imageslim)
 
 不同初始概率时候的迭代结果：
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae30ae93238a.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/82IHEmBbli.png?imageslim)
 
 相当于这个稳定状态的分布与原始状态没有关系，与状态转移矩阵有关系。
 
@@ -321,22 +298,17 @@ OK，在聊一下马尔科夫链这个问题：
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdeeb1d6448.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Bc90EG4F94.png?imageslim)
 
 马尔科夫随机过程的平稳分布
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdeebd6bf2d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Igh513G34l.png?imageslim)
 
 也就是和说：如果状态转移矩阵确定了，求n次幂，归一到一个状态上去了，那么这个分布就是一个稳定分布
 
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae30b1f38243.png)这个x是一个行向量，这个非负解也就是P的特征值为1 的特征向量。
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/8HDk04Ca9D.png?imageslim)这个x是一个行向量，这个非负解也就是P的特征值为1 的特征向量。
 
 
 
@@ -358,8 +330,7 @@ OK，在聊一下马尔科夫链这个问题：
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdeed984fd6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/h9d9l4JhCk.png?imageslim)
 
 P(i,j)是从i号状态转移到j号状态的概率，它去乘以当前位于第i号状态的概率。
 
@@ -376,12 +347,11 @@ P(i,j)是从i号状态转移到j号状态的概率，它去乘以当前位于第
 细致平稳条件和平稳分布的关系
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdeee3f28e9.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/KFiCaEclEC.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae31fdf60f3d.png)这个是讲![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae31fe99861c.png)用细致平稳条件替换。而这个就是![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae31fedda037.png)的离散化版本。
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/bbHEff0A5K.png?imageslim)这个是讲![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/GGhJ8kh427.png?imageslim)用细致平稳条件替换。而这个就是![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/lFJFIl09Ij.png?imageslim)的离散化版本。
 
 
 也就是说，如果满足细致平稳条件，那么最终满足P收敛到\pi 这个分布上去了。
@@ -397,12 +367,11 @@ P(i,j)是从i号状态转移到j号状态的概率，它去乘以当前位于第
 设定接受率
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdef00cd426.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/4c3210Kl3L.png?imageslim)
 
 利害，还可以把不满足改造成满足这个相等条件的。
 
-厉害了![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3200354290.png)，这个的确是最简单的情况。
+厉害了![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/H10GjHcgbb.png?imageslim)，这个的确是最简单的情况。
 
 使用\alpha 改造对应的状态转移矩阵。嗯。改了之后，就能向细致平稳条件去接近。
 
@@ -415,10 +384,9 @@ P(i,j)是从i号状态转移到j号状态的概率，它去乘以当前位于第
 MCMC：Metropolis-Hastings算法
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdef0c44267.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/fkAchA8C3J.png?imageslim)
 
-
-我让\(a(i,j)\)，\(a(j,i)\) 这两个值，这个\alpha 是接受率，这个接受率肯定是小于1的一个数。所以我的\(a(i,j)\)就取![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3203749257.png)，而\(a(j,i)\) 就对应的就行？这个\(a(j,i)\) 是恒为1 还是什么？因为![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae3204835f0d.png)中的\(a(i,j)\)越小，比如之前的圆内均匀采样的时候，只有78.5%的概率成功。
+我让\(a(i,j)\)，\(a(j,i)\) 这两个值，这个\alpha 是接受率，这个接受率肯定是小于1的一个数。所以我的\(a(i,j)\)就取![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/DF60lDiLG4.png?imageslim)，而\(a(j,i)\) 就对应的就行？这个\(a(j,i)\) 是恒为1 还是什么？因为![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/jlI3ABB6B5.png?imageslim)中的\(a(i,j)\)越小，比如之前的圆内均匀采样的时候，只有78.5%的概率成功。
 
 
 
@@ -427,18 +395,16 @@ Metropolis  在模拟退火算法也是它的名字。**是这样吗？什么�
 Metropolis-Hastings算法
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdef166e6d7.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/haKe5gHbFi.png?imageslim)
 
 最终就能让这个马尔科夫过程得到我们想要的稳态
 
 改造MCMC算法
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdef20a185a.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/jLc248Ed4K.png?imageslim)
 
-
-如果把1看作当前的维度，2 看作其它的维度，就得到了![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae320b0a0bd7.png)
+如果把1看作当前的维度，2 看作其它的维度，就得到了![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/0259hh5liK.png?imageslim)
 
 
 ## 二维Gibbs采样算法
@@ -446,8 +412,7 @@ Metropolis-Hastings算法
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdef2a96bf0.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/gaeJjALGi3.png?imageslim)
 
 得到新的值之后，采样得到其它的值。
 
@@ -458,8 +423,7 @@ x_t固定的时候，算y的概率，y_{t+1}固定的时候，算x的概率
 将二维Gibbs采样推广到高维
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdef366a083.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/ej8AmcG68K.png?imageslim)
 
 可见，为什么要讲这个采样呢？因为它可以解释Gibbs采样
 
@@ -470,10 +434,6 @@ x_t固定的时候，算y的概率，y_{t+1}固定的时候，算x的概率
 **没有明白？基本没明白？**
 
 变分没有讲。重点是变分推导/似然下界变分推导和今天讲的Gibbs采样也有异曲同工之妙
-
-
-
-
 
 
 # COMMENT：

@@ -22,7 +22,7 @@ categories:
 
 
 
- 	
+
   1. 七月在线 机器学习
 
 
@@ -48,8 +48,7 @@ categories:
 朴素贝叶斯的分析
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdc786a4f84.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/7H202mH9K6.png?imageslim)
 
 因此加入主题这个隐变量。
 
@@ -57,9 +56,7 @@ categories:
 
 文档和主题：
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdc792c751f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/514Cd066k6.png?imageslim)
 
 不管是pLSA还是LDA，具体的做法都非常简单，但是困难的是中间的推理过程。
 
@@ -68,28 +65,20 @@ categories:
 先讲一些pLSA模型。
 
 
-
-
-
-
 # pLSA模型
 
 
 基于概率统计的pLSA模型(probabilistic Latent Semantic Analysis，概率隐语义分析)，增加了主题模型，形成简单的贝叶斯网络，可以使用EM算法学习模型参数。
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdc7a0b963c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/83bf1CGmJf.png?imageslim)
 
 这个就是增加主题的基本的网络模型。这么简单的一个贝叶斯网络就是pLSA模型，分析一下这个样的网络发生什么事情：
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdc7b29b532.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/IAgGGG3eKl.png?imageslim)
 
 每个文档在所有主题上服从多项分布，的意思是：
 
-比如![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2d8b17035d.png)第一篇文档除了是小说，还是关于民国的。
+比如![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/3h5B9H2mha.png?imageslim)第一篇文档除了是小说，还是关于民国的。
 
 每个主题在所有词项上服从多项分布：
 
@@ -107,12 +96,11 @@ categories:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdc7b937fdd.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/fL7KjCmlKF.png?imageslim)
 
+对于![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/be1Em9FKGb.png?imageslim)这个解释一下：
 
-对于![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2d901b5553.png)这个解释一下：
-
-由全概率公式得：\(p(w_j)=\sum_{k=1}^{K}p(w_j\mid z_k)*p(z_k)\) 而，这里都加了d而已，由于给定z得时候，d和w是head-to-tail 得关系，也就是说给定z的时候，d和w是独立的即![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2d906a9115.png)，因此![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2d90a5f1ea.png)这个里面的d就省略的。
+由全概率公式得：\(p(w_j)=\sum_{k=1}^{K}p(w_j\mid z_k)*p(z_k)\) 而，这里都加了d而已，由于给定z得时候，d和w是head-to-tail 得关系，也就是说给定z的时候，d和w是独立的即![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/macJe7IHKE.png?imageslim)，因此![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/5Kc018KG5g.png?imageslim)这个里面的d就省略的。
 
 
 
@@ -120,9 +108,7 @@ categories:
 
 正常而言，还是用极大似然估计
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdc7c14acac.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/94macfFgC6.png?imageslim)
 
 这个地方解释下，主题有K个，词有M个，文档有N个
 
@@ -131,18 +117,15 @@ categories:
 目标函数分析：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdc7cd400a0.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/b49Cb50KEa.png?imageslim)
 
 OK，我们先做第一步：写隐变量主题\(z_k\) 的后验概率:
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdc7e324c52.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/9fi6l32ha6.png?imageslim)
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2d941d8907.png)这个式子，把d去掉就能看明白了，然后在把d加上就可以理解了。，所以上面。这个就是给定样本之下的隐变量的后验概率
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/9AibdfJd68.png?imageslim)这个式子，把d去掉就能看明白了，然后在把d加上就可以理解了。，所以上面。这个就是给定样本之下的隐变量的后验概率
 
 
 
@@ -153,14 +136,12 @@ OK，我们先做第一步：写隐变量主题\(z_k\) 的后验概率:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdc7ee82e7d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/56BBE37mBA.png?imageslim)
 
 看看怎么求的：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdc7f5d03a9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/L19keeLgFa.png?imageslim)
 
 写开之后，后面的部分 \(P(d_i)\) 是文档的概率，\(n(d_i,w_j)\) 是联合起来的数出的个数，也就是说后面的部分是常数，因此只看前面的部分。l_{new}
 
@@ -172,49 +153,44 @@ OK，我们先做第一步：写隐变量主题\(z_k\) 的后验概率:
 ## 完成目标函数的建立：
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdc8076e7e7.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/hCFKb89ld3.png?imageslim)
 
 进行求解：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdc81853518.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/ikGjLGAI0i.png?imageslim)
 
 注意，我们这里求导的时候只关心第k个主题，第j个词，所以很多的求和符号就都没有了，因为i是文档的，所以要保留
 
 分析第一个等式得到：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdc85b2e79b.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/CB2kH0lJlA.png?imageslim)
 
+这个地方的![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/dl3kAFel7j.png?imageslim)带入到上面的![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/jb3m7DL02H.png?imageslim)里面，就得到了：![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/I3mH6a8K8F.png?imageslim)。
 
-这个地方的![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2da0caecb1.png)带入到上面的![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2da0fdecb2.png)里面，就得到了：![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2da1369d35.png)。
-
-注意这里的![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2da1ba5b8f.png)下面不是m而是j。
+注意这里的![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/35DJh1cL3G.png?imageslim)下面不是m而是j。
 
 利用这个等于0得到主题给定的情况下，词的分布。
 
 同理分析第二个等式
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdc8642152b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/kAE0j5i0j9.png?imageslim)
 
 上面这两个就是M过程。
 
-而![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2da492cbe5.png)
-就是刚刚在![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2da4e7315c.png)
+而![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/g4mKHag40l.png?imageslim)
+就是刚刚在![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/1HI7dm9L00.png?imageslim)
 这里算出来的，所以带入即可。
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2da521f6b2.png)![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2da56ce244.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/d8Iii37JDa.png?imageslim)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/BmCLmCJajI.png?imageslim)
 
 这个是给定的样本之下z_k这个主题出现的概率。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2da5a597c5.png)这个就是看一下d_i w_j出现的次数。
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/CC40a5ge7g.png?imageslim)这个就是看一下 $d_i$ $w_j$出现的次数。
 
 
 
@@ -240,32 +216,17 @@ OK，对于pLSA进一步思索：
 
 # pLSA进一步思考：
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdc88487db0.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/4LiHcc2E4i.png?imageslim)
 
 是的，是不需要先验信息，只需要数出
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2da8da389e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/i7e392ejEH.png?imageslim)
 
 就行了，其它的全都是假设的，然后迭代出来的。
 
 这个是它的优势，但是也是它的劣势，因为没办法人工干预他。
 
-
-
-而对它的进行的改进，就是这个著名的LDA。
-
-
-
-
+而对它的进行的改进，就是这个著名的 LDA。
 
 
 # COMMENT
-
-
-

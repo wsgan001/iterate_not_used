@@ -24,8 +24,8 @@ tags:
 
 
 
- 	
-  1. 
+
+  1.
 
 
 [一文简述ResNet及其多种变体](http://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650741211&idx=1&sn=fa2229f97a63977853d7ebcea7858076&chksm=871adda5b06d54b34389edac855f55b4163b81ffc25c38f26cc12e99822d87c3e28c459d78f9&mpshare=1&scene=1&srcid=04273YtoqbPBmH8wVdIiqoE7#rd)
@@ -58,13 +58,13 @@ tags:
 
 
 
- 	
+
   * ResNet 架构
 
- 	
+
   * 成功的原因
 
- 	
+
   * 有趣的 ResNet 变体
 
 
@@ -92,9 +92,9 @@ tags:
 
 但是，网络的深度提升不能通过层与层的简单堆叠来实现。由于臭名昭著的梯度消失问题，深层网络很难训练。因为梯度反向传播到前面的层，重复相乘可能使梯度无穷小。结果就是，随着网络的层数更深，其性能趋于饱和，甚至开始迅速下降。
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/C187jjjEAJ.png?imageslim)
 
-
-[caption id="" align="aligncenter" width="520"]![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae26ac98c2b8.png) 增加网络深度导致性能下降[/caption]
+增加网络深度导致性能下降
 
 
 ## 为了应对梯度消失做的一些尝试
@@ -116,16 +116,14 @@ ResNet 的核心思想是引入一个所谓的「恒等快捷连接」（identit
 ## 残差块：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae26be882acb.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/DkA7eJ4ll7.png?imageslim)
 
 ## ResNet 架构：
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae26bfac9efc.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/5iLbgjJ9a2.png?imageslim)
 
  [2] 的作者认为，堆叠层不应降低网络性能，因为我们可以简单地在当前网络上堆叠恒等映射（该层不做任何事情），得到的架构将执行相同的操作。这表明较深的模型所产生的训练误差不应该比较浅的模型高。他们假设让堆叠层适应残差映射比使它们直接适应所需的底层映射要容易一些。上图中的残差块明确表明，它可以做到这一点。
 
@@ -137,7 +135,7 @@ ResNet 的核心思想是引入一个所谓的「恒等快捷连接」（identit
 
 残差块的变体：
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae26c86c04bf.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/K9ElgFjf5A.png?imageslim)
 
 [7] 的作者在其论文中通过实验表明，他们可以训练出 1001 层的深度 ResNet，且性能超越较浅层的模型。他们的训练成果卓有成效，因而 ResNet 迅速成为多种计算机视觉任务中最流行的网络架构之一。
 
@@ -161,8 +159,7 @@ Xie et al. [8] 提出 ResNet 的一种变体 ResNeXt，它具备以下构建块�
 左：[2] 中 ResNet 的构建块；右：ResNeXt 的构建块，基数=32
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae273435ef3b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/2L78L2IL68.png?imageslim)
 
 ResNext 看起来和 [4] 中的 Inception 模块非常相似，它们都遵循了「分割-转换-合并」的范式。不过在 ResNext 中，不同路径的输出通过相加合并，而在 [4] 中它们是深度级联（depth concatenated）的。另外一个区别是，[4] 中的每一个路径互不相同（1x1、3x3 和 5x5 卷积），而在 ResNeXt 架构中，所有的路径都遵循相同的拓扑结构。
 
@@ -171,8 +168,7 @@ ResNext 看起来和 [4] 中的 Inception 模块非常相似，它们都遵循�
 这个全新的结构有三种等价形式：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2737aeb30f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/484F5IHIec.png?imageslim)
 
 在实际操作中，「分割-变换-合并」范式通常通过「逐点分组卷积层」来完成，这个卷积层将输入的特征映射分成几组，并分别执行正常的卷积操作，其输出被深度级联，然后馈送到一个 1x1 卷积层中。
 
@@ -183,22 +179,19 @@ ResNext 看起来和 [4] 中的 Inception 模块非常相似，它们都遵循�
 Huang 等人在论文 [9] 中提出一种新架构 DenseNet，进一步利用快捷连接，将所有层直接连接在一起。在这种新型架构中，每层的输入由所有之前层的特征映射组成，其输出将传输给每个后续层。这些特征映射通过深度级联聚合。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae274a5453d7.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/EEgbhhHCFD.png?imageslim)
 
 除了解决梯度消失问题，[8] 的作者称这个架构还支持特征重用，使得网络具备更高的参数效率。一个简单的解释是，在论文 [2] 和论文 [7] 中，恒等映射的输出被添加到下一个模块，如果两个层的特征映射有着非常不同的分布，那么这可能会阻碍信息流。因此，级联特征映射可以保留所有特征映射并增加输出的方差，从而促进特征重用。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2750ad9192.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/K8IFedD7Ia.png?imageslim)
 
 遵循该范式，我们知道第 l 层将具有 k *（l-1）+ k_0 个输入特征映射，其中 k_0 是输入图像的通道数目。作者使用一个叫作「增长率」的超参数 (k) 防止网络过宽，他们还用了一个 1*1 的卷积瓶颈层，在昂贵的 3*3 卷积前减少特征映射的数量。整体架构如下表所示：
 
 用于 ImageNet 的 DenseNet 架构
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2751f1182f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/LbG2ecJCIe.png?imageslim)
 
 
 
@@ -213,39 +206,33 @@ Huang 等人在论文 [9] 中提出一种新架构 DenseNet，进一步利用快
 从形式上来看，H_l 是第 l 个残差块的输出结果，f_l 是由第 l 个残差块的加权映射所决定的映射，b_l 是一个伯努利随机变量（用 1 或 0 反映该块是否被激活）。在训练中：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae275698550f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/ejEGfDFi6d.png?imageslim)
 
 当 b_l=1 时，该块为正常的残差块；当 b_l=0 时，上述公式为：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2757729973.png)既然我们已经知道了 H_(l-1) 是 ReLU 的输出，而且这个输出结果已经是非负的，所以上述方程可简化为将输入传递到下一层的 identity 层：
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/K391cm7AbK.png?imageslim)既然我们已经知道了 H_(l-1) 是 ReLU 的输出，而且这个输出结果已经是非负的，所以上述方程可简化为将输入传递到下一层的 identity 层：
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2758f209b4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/f3jC5m5AI0.png?imageslim)
 
 令 p_l 表示是第 l 层在训练中的生存概率，在测试过程中，我们得到：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae275a370260.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/0BCli9dhBL.png?imageslim)
 
 作者将线性衰减规律应用于每一层的生存概率，他们表示，由于较早的层提取的低级特征会被后面的层使用，所以不应频繁丢弃较早的层。这样，规则就变成：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae275b0e936b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/bdGHlK1mG9.png?imageslim)
 
 其中 L 表示块的总数，因此 p_L 就是最后一个残差块的生存概率，在整个实验中 p_L 恒为 0.5。请注意，在该设置中，输入被视为第一层 (l=0)，所以第一层永远不会被丢弃。随机深度训练的整体框架如下图所示：
 
 训练过程中，每一层都有一个生存概率：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae275bd8b4c2.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/lFBglEGmg8.png?imageslim)
 
 与 Dropout [11] 类似，训练随机深度的深度网络可被视为训练许多较小 ResNet 的集合。不同之处在于，上述方法随机丢弃一个层，而 Dropout 在训练中只丢弃一层中的部分隐藏单元。
 
@@ -260,8 +247,7 @@ Huang 等人在论文 [9] 中提出一种新架构 DenseNet，进一步利用快
 [14] 首先介绍了一个 ResNet 的分解图来使讨论更加清晰。在我们展开网络架构之后，很明显发现，一个有着 i 个残差块的 ResNet 架构有 2**i 个不同路径（因为每个残差块提供两个独立路径）。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae275f3547ab.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/7Hgjad6hEC.png?imageslim)
 
 根据上述发现，显然移除 ResNet 架构中的部分层对其性能影响不大，因为架构具备许多独立有效的路径，在移除了部分层之后大部分路径仍然保持完整无损。相反，VGG 网络只有一条有效路径，因此移除一个层会对该层的唯一路径产生影响。（如 [14] 中的实验所揭示的。）
 
@@ -270,16 +256,14 @@ Huang 等人在论文 [9] 中提出一种新架构 DenseNet，进一步利用快
 当被删除的层数增加时，误差值随之增长
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae2761a0a395.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/1ak2316Fde.png?imageslim)
 
 最终，作者研究了 ResNet 中路径的特征：
 
 很明显，路径的可能长度分布遵循二项分布，如下图 (a) 所示。大多数路径流经 19 到 35 个残差块。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae276396be14.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/209FgL7eia.png?imageslim)
 
 为了研究路径长度与经过路径的梯度大小之间的关系，得到长度为 k 的路径的梯度大小，作者首先向网络输入了一批数据，并随机采样 k 个残差块。当梯度被反向传播时，它们在采样残差块中仅通过权重层进行传播。(b) 表明随着路径长度的增加，梯度大小迅速下降。
 

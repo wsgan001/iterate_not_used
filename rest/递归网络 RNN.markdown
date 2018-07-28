@@ -1,35 +1,16 @@
----
-author: evo
-comments: true
-date: 2018-03-30 14:04:31+00:00
-layout: post
-link: http://106.15.37.116/2018/03/30/rnn-2/
-slug: rnn-2
-title: 递归网络 RNN
-wordpress_id: 2000
-categories:
-- 随想与反思
-tags:
-- '@todo'
-- '@want_to_know'
----
-
-<!-- more -->
-
-[mathjax]
+# 递归网络 RNN
 
 
+# TODO
 
+**关于RNN的部分没有看，要看完同时配合书或者文章梳理一下。**
+**很多东西需要补充和拆分。**
 **这部分的视频没有怎么看，也要整合到RNN那篇文章里面去。**
 
 
 
 
 # 递归网络（RNN）
-
-
-
-
 
 ## 为什么要用RNN
 
@@ -40,13 +21,13 @@ tags:
 
 
 
- 	
+
   * 序列分析（Tagging，Annotation)
 
- 	
+
   * 序列⽣生成，如语⾔言翻译，⾃自动⽂文本⽣生成
 
- 	
+
   * 内容提取（Content Extraction），如图像描述
 
 
@@ -60,26 +41,25 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe3ef9b08bc.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/1G3mgJECk2.png?imageslim)
 
 
 
 
 
 
- 	
   * one to one 分类 **没明白？**
 
- 	
+
   * one to many 信号的生成
 
- 	
+
   * many to one 序列的分类 输入一串序列，得到一个向量
 
- 	
+
   * many to many 有时延的多对多
 
- 	
+
   * many to many 没有时延的多对多
 
 
@@ -99,10 +79,10 @@ RNN学习出来的是程序，不是函数。**什么意思？ 神经网络前�
 
 
 
- 	
+
   * 真实的这个 f 是非常难以建模和观察的，因为它有内部状态，而我只有输入的向量。
 
- 	
+
   * 对长时间范围的场景 (context) 也是难以建模和观察
 
 
@@ -111,14 +91,12 @@ RNN学习出来的是程序，不是函数。**什么意思？ 神经网络前�
 即假设 \(x_{t+1 }\)  除了与之前的 x 有关，还与之前的状态变量 z 有关：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5adf07fc3ef73.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/16fclLFbF0.png?imageslim)
 
 而 z 本身也是与之前的 x 和隐含状态有关的：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5adf082747991.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/LiGEa3JCKl.png?imageslim)
 
 
 
@@ -134,24 +112,19 @@ RNN学习出来的是程序，不是函数。**什么意思？ 神经网络前�
 我们知道之前的模型是关于t的，但是我们可以按照时间为横坐标展开成一个固定的网络结构。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe3ff8e404a.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/722CL7970b.png?imageslim)
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe400d58e2a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/9jFg7iggEJ.png?imageslim)
 
 h_t里面的维度对应到全连接网络里面的hidden-unit number ，因此这个h的维度是与模型的复杂度直接相关的。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe401ae2483.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/dAGkLi9AA6.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe40266352a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/9EBKkc5H4a.png?imageslim)
 
 
 
@@ -166,13 +139,11 @@ h_t里面的维度对应到全连接网络里面的hidden-unit number ，因此�
 在后向计算的时候，同样相同的矩阵也会乘以多次
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe404724c07.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/FEAm5A4cj4.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe404b9fe70.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/i2f4lbgjaA.png?imageslim)
 
 
 
@@ -183,20 +154,17 @@ h_t里面的维度对应到全连接网络里面的hidden-unit number ，因此�
 RNN前向计算
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe406e4d912.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/GL7ImeJBC5.png?imageslim)
 
 计算W的偏导，需要把所有Time Step加起来
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe407695841.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Bjm63746Dj.png?imageslim)
 
 应⽤用链式规则
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe407e64564.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/B7K9gajflh.png?imageslim)
 
 
 
@@ -204,28 +172,22 @@ RNN前向计算
 ### BPTT算法：计算实现
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe4194a84d6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/15K3EjkJ5G.png?imageslim)
 
 BPTT算法：梯度 vanishing/exploding 现象分析
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe41a7af5ef.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/bd1iel08Ff.png?imageslim)
 
 BPTT算法：解决⽅方案
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe41b8115aa.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/6BFDkKAbBb.png?imageslim)
 
 Long Term Memory?
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe41c075f5e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/05ldJ5k5CG.png?imageslim)
 
 
 
@@ -236,13 +198,9 @@ Long Term Memory?
 应⽤用最为广泛、成功的RNN
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe41de0f9cf.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/l4BgjGJKfm.png?imageslim)
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe41e5882f1.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/bjfb5aCa4m.png?imageslim)
 
 
 
@@ -255,13 +213,9 @@ Long Term Memory?
 Layer 把 输入维度x变成输出维度h
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe420e57364.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/EE7hJ08HiH.png?imageslim)
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe4218470c4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/4HK93Fjhb8.png?imageslim)
 
 ×处为gate
 
@@ -273,48 +227,40 @@ Layer 把 输入维度x变成输出维度h
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe425f6c969.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/3ED4L1hgba.png?imageslim)
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe42637cba6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/1GBkCaK3Ld.png?imageslim)
 
 LSTM: update cell
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe426bccc8c.png)![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe42804f61d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/b0G678HfbF.png?imageslim)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/798mLm791I.png?imageslim)
 
 LSTM: output
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/2L76Ch6A5e.png?imageslim)
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe427324944.png)![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe429ad42e5.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/b7hIfgLh3L.png?imageslim)
 
 LSTM
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/a1HlagIj6K.png?imageslim)
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe42a696143.png)![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe42b7ee911.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/a1f3f4dcF2.png?imageslim)
 
 
-## LSTM其他变形
+
+
+## LSTM 其他变形
 
 
 
 
 ### Gated Recurrent Unit
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe42c83b176.png)
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/kc6I455fAA.png?imageslim)
 
 
 
@@ -328,55 +274,22 @@ LSTM 具备一定抑制梯度 vanishing/exploding 特性
 
 ## 使⽤用LSTM
 
+* 将多个LSTM单元组合为层
+* 网络中有多层
+* 复杂的结构能够处理更大范围的动态性
 
-
-
-
- 	
-  * 将多个LSTM单元组合为层
-
- 	
-  * 网络中有多层
-
- 	
-  * 复杂的结构能够处理更大范围的动态性
-
-
-
-
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe433c9519a.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/BdhDb6F7dG.png?imageslim)
 
 
 ## RNN算法应用
 
 
 
-
-
- 	
-  * 手写文字输出：
-
- 	
+* 手写文字输出：
     * http://www.cs.toronto.edu/~graves/handwriting.html
-
-
-
-
- 	
-  * 文本生成
-
- 	
-  * 机器翻译
-
- 	
-  * 非常好的介绍文章：http://karpathy.github.io/2015/05/21/rnn-effectiveness/
+* 文本生成
+* 机器翻译
+* 非常好的介绍文章：http://karpathy.github.io/2015/05/21/rnn-effectiveness/
 
 
 
@@ -384,24 +297,13 @@ LSTM 具备一定抑制梯度 vanishing/exploding 特性
 ## RNN实验1：基于Torch构建RNN网络
 
 
+* 使⽤用 nngraph 模块可以构造复杂的有向图
+* BPTT 算法依旧基于 nn 模块提供的 BP 算法
+* 各种 optim 算法依旧适用 RNN
 
 
 
- 	
-  * 使⽤用nngraph模块可以构造复杂的有向图
-
- 	
-  * BPTT算法依旧基于nn模块提供的BP算法
-
- 	
-  * 各种optim算法依旧适用RNN
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe438ce9132.png)
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/G56hj41jK5.png?imageslim)
 
 
 
@@ -411,28 +313,14 @@ LSTM 具备一定抑制梯度 vanishing/exploding 特性
 
 
 
- 	
+
   * 基于字符的⽂文本⽣生成⼯工具
 
- 	
+
     * https://github.com/karpathy/char-rnn
 
- 	
+
     * 生成汪峰⻛风格的歌词: https://github.com/phunterlau/wangfeng-rnn
 
- 	
+
     * 莫奈⻛风格绘画⽣生成：http://blog.manugarri.com/teaching-recurrent-neural-networks-about-monet/
-
-
-
-
-
-
-
-
-# COMMENT：
-
-
-**关于RNN的部分没有看，要看完同时配合书或者文章梳理一下。**
-
-**很多东西需要补充和拆分。**

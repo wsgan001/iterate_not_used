@@ -1,61 +1,8 @@
----
-author: evo
-comments: true
-date: 2018-05-05 06:58:39+00:00
-layout: post
-link: http://106.15.37.116/2018/05/05/arduino-%e5%be%aa%e7%8e%af/
-slug: arduino-%e5%be%aa%e7%8e%af
-title: Arduino 循环
-wordpress_id: 5283
-categories:
-- 基础工具使用
----
+# Arduino 循环
 
-<!-- more -->
+# REF
 
-[mathjax]
-
-**注：非原创，推荐直接看原文**
-
-
-# ORIGINAL
-
-
-
-
-
- 	
-  1. [Arduino教程](https://www.w3cschool.cn/arduino/)
-
-
-
-
-# TODO
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-# MOTIVE
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-
-* * *
+1. [Arduino教程](https://www.w3cschool.cn/arduino/)
 
 
 
@@ -64,11 +11,9 @@ categories:
 循环语句允许我们多次执行一个语句或一组语句，以下是大多数编程语言中循环语句的一般形式：
 
 
-![流程图](https://img.w3cschool.cn/attachments/tuploads/arduino/loop_architecture.jpg)
+流程图
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aed561d64497.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/hEHgdg6D73.png?imageslim)
 
 
 
@@ -162,6 +107,3 @@ C语言允许你在另一个循环内使用一个循环。下面的例子说明�
 
 
 # COMMENT
-
-
-

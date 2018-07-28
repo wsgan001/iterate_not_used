@@ -1,19 +1,4 @@
----
-author: evo
-comments: true
-date: 2018-04-04 23:31:20+00:00
-layout: post
-link: http://106.15.37.116/2018/04/05/horse-riding-board/
-slug: horse-riding-board
-title: 马踏棋盘
-wordpress_id: 3126
-categories:
-- 随想与反思
-tags:
-- '@todo'
----
-
-<!-- more -->
+# 马踏棋盘
 
 给定m×n的棋盘，将棋子“马”放在任意位置
 上，按照走棋规则将“马”移动，要求每个方
@@ -23,8 +8,7 @@ tags:
  如给定8×9的中国象棋棋盘(左)
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac55f30ae843.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/GjKF65kL3i.png?imageslim)
 
 
 
@@ -37,13 +21,11 @@ tags:
  深度优先搜索
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac55f53cd7f1.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/i3AB5JAEE1.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac55f6159c1c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/G7615C30eD.png?imageslim)
 
 启发式搜索
  若棋盘规模较大，则在较深的棋位才能发现“无路
@@ -58,35 +40,25 @@ tags:
 在后期无法跳转。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac55f82bad11.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/JkhL44fg3m.png?imageslim)
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/76J5gdjhFg.png?imageslim)
+
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/3glDCh250H.png?imageslim)
+
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/7m1dB2Jg0l.png?imageslim)
+
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/cmLcJIllfj.png?imageslim)
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac55f8de5e23.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac55f9511be8.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac55f9b363d1.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac55fa59f4e9.png)
-
-
-
-
-
-
-
-# COMMENT：
 
 
 
@@ -94,12 +66,4 @@ tags:
 
 # REF：
 
-
-
-
-
- 	
-  1. 七月在线 算法
-
-
-
+1. 七月在线 算法

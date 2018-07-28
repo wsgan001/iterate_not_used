@@ -18,22 +18,19 @@
 
 
 
-![](C:\Users\evo\Desktop\blog_gitserver\gittest\_images\img_5ac1eb0672de3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/0Fi75GGGgB.png?imageslim)
 
 
 
 速度对比：
 
 
-![](C:\Users\evo\Desktop\blog_gitserver\gittest\_images\img_5ac2124384f3e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/0BikjI4kCb.png?imageslim)
 
 训练截断消耗存储（batch=128）**这个图对吗？怎么是naive什么的？**
 
 
-![](C:\Users\evo\Desktop\blog_gitserver\gittest\_images\img_5ac2125e01409.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/F017I786Fl.png?imageslim)
 
 
 
@@ -71,8 +68,7 @@
 
 
 
-![](C:\Users\evo\Desktop\blog_gitserver\gittest\_images\img_5ac1f47fd2ce7.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/C5l874aedc.png?imageslim)
 
 基于层模型
 

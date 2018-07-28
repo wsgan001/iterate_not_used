@@ -25,7 +25,7 @@ tags:
 
 
 
- 	
+
   1. 七月在线 深度学习
 
 
@@ -54,22 +54,17 @@ tags:
 ## 线性分类器的得分函数
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac0c8fe5f40b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/HFga00H8FB.png?imageslim)
 
 即希望去根据矩阵判定它对应的每个类别的得分是多少。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac0c98ed07d7.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Gdfa569Hie.png?imageslim)
 
 输入的矩阵reshape为一个3072*1的一个向量，3072行，1列。W是一个10行，3072列的矩阵。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac0c97b0a3fb.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/H4kdchcfJA.png?imageslim)
 
 假如一张图片只有4个值。为了拿到3个类别的得分向量，那么W就是3*4，b就可以把y=Wx这条直线上下平移，现在这个结果中的cat的得分很低，那么我们要做的就是修正这个W，使得可以在一张图片过来之后，可以在正确的类别上有比较高的得分，在错误的类别上有比较低的得分。
 
@@ -93,8 +88,7 @@ tags:
 x每输入一张图片的时候，就能在三条直线上得到3个不同的得分值。**这个地方感觉有些奇怪，这个得分值于线对应的区域有关系吗？箭头指的是什么？而且图片的位置不是应该画在x这条水平线上面吗？而且这个直线是不是有范围的？如果没有范围的话deer岂不是始终取不到了？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac0c9b5043c8.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/86JGbeDBEB.png?imageslim)
 
 
 
@@ -107,8 +101,7 @@ x每输入一张图片的时候，就能在三条直线上得到3个不同的得
 这个是CIFAR-10的**W的每一行reshape为32*32*3的图像的显示**：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac0cb1b0d5ac.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Fbk880cFhe.png?imageslim)
 
 **？上面这个图是什么意思？是W的每一行reshape为32*32*3的图像的显示吗？相知道这个到底是什么？最好自己试验下。**
 
@@ -155,8 +148,7 @@ loss function
 \[L_i=\sum_{j\neq y_i}^{ } max(0,w_j^Tx_i-w_{y_i}^Tx_i+\Delta )\]
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac0d0e67aafd.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/bEKfij7iJm.png?imageslim)
 
 嗯 ，上面这个图的意思是：我有很多的类别的得分，然后我设置了一条警戒线，总是比正确类别小\(\Delta\)。如果警戒线之外，说明做得很好了，如果在警戒线之内，越过多少就把多少作为代价。**\(\Delta\)是否要归一化？**
 
@@ -216,17 +208,14 @@ Least squares (L2 loss)    \(L_i=||f-y_i||_2^2\)  **这个为什么没讲？*
 
 
 
- 	
+
   * 一个老师是设定了一个界限，然后要求正确的选项的得分至少比错误的选项的得分高\(\Delta\)。
 
- 	
+
   * 而另一个老师说：去做一个归一化，然后告诉我，你认为某个选项是标准答案的概率是多少？然后我这边是有一份正确的概率向量的，然后我会去评估这两个概率向量之间的距离。
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac0d4f330b56.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/EmJmHFfB4J.png?imageslim)
 
 **厉害的normalize，这样就sum为1，也就是说\(\sum_{j}^{ } e^{f_j}\)就是0，这样直接算\(-log(e^{f_{y_i}})\)就行。也就是说\(-log(0.353)\)就行，但是为什么是1.04？\(-log(0.353)\)不是0.45吗？**
 

@@ -5,7 +5,7 @@ date: 2018-05-03 10:47:27+00:00
 layout: post
 link: http://106.15.37.116/2018/05/03/python-virtualenv/
 slug: python-virtualenv
-title: 
+title:
 wordpress_id: 5025
 categories:
 - 基础程序设计
@@ -68,7 +68,7 @@ tags:
 
 
 
-  * 
+  *
 
 
 
@@ -107,7 +107,7 @@ virtualenv 创建的虚拟环境与主机的 Python 环境完全无关，
 
 
 
- 	
+
   * pip install virtualenv
 
 
@@ -120,21 +120,21 @@ virtualenv 创建的虚拟环境与主机的 Python 环境完全无关，
 
 
 
- 	
+
   * mkdir testenv
 
   * cd testenv  #进入一个希望创建虚拟 python 环境的文件夹下面
 
   * virtualenv venv #在这个文件夹里面创建了一个 venv 文件夹，里面就是建好的python 虚拟环境
 
-	
+
     * virtualenv venv --python=python3.6  **注意：如果安装了两个 python 版本，其中一个是3.6 ，现在想用3.6 创建虚拟环境，则需要这么写，式子中不是单引号，是波浪号按键对应的符号。而且是两个横杠，不是一个。**
 
 
 
 
- 	
-  * 
+
+  *
 
 
 
@@ -145,7 +145,7 @@ virtualenv 创建的虚拟环境与主机的 Python 环境完全无关，
 
 
 
- 	
+
   * dir
 
   * tree
@@ -160,7 +160,7 @@ virtualenv 创建的虚拟环境与主机的 Python 环境完全无关，
 
 
 
- 	
+
   * 进入venv目录
 
   * Scripts\activate    #激活
@@ -214,13 +214,13 @@ virtualenv 创建的虚拟环境与主机的 Python 环境完全无关，
 
   4. 在弹出的对话框中输入要配置的环境信息：
 
-	
+
         1. Name中输入名称，如 flask
 
-		
+
             2. Location选择：选择配置好的 virtualenv 的默认目录，如 /Users/oper/.virtualenvs/flask
 
-		
+
             3. Base interpreter：默认就好(我的是：/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python2.7）
 
 
@@ -257,7 +257,7 @@ virtualenv 是一个创建 Python 独立环境的包，virtualenvwrapper 使得v
 
     # 安装:
     (sudo) pip install virtualenv virtualenvwrapper
-    
+
     # 修改.bash_profile 或 .zshrc（如果你用 zsh 的话），添加以下语句
     export WORKON_HOME=$HOME/.virtualenvs
     export PROJECT_HOME=$HOME/workspace
@@ -285,8 +285,7 @@ virtualenv 是一个创建 Python 独立环境的包，virtualenvwrapper 使得v
 
 创建的环境是独立的，互不干扰，无需sudo权限即可使用 pip 来进行包的管理。
 
-![](https://img.w3cschool.cn/attachments/day_160930/201609302001211392.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/ELFI1Fbaja.png?imageslim)
 
 
 
@@ -316,6 +315,3 @@ virtualenv 是一个创建 Python 独立环境的包，virtualenvwrapper 使得v
 
 
 # COMMENT
-
-
-

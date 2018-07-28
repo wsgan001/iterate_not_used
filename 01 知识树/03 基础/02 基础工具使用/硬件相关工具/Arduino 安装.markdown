@@ -26,7 +26,7 @@ tags:
 
 
 
- 	
+
   1. [Arduino教程](https://www.w3cschool.cn/arduino/)
 
 
@@ -38,7 +38,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -50,7 +50,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -68,39 +68,25 @@ tags:
 **步骤1** - 首先，你必须有Arduino板（你可以选择你喜欢的板）和一根USB线。如果你使用Arduino UNO，Arduino Duemilanove，Nano，Arduino Mega 2560或Diecimila，你将需要一个标准USB线（A插头到B插头）。如下图所示为你将连接到USB打印机的类型。
 
 
-![标准USB电缆](https://img.w3cschool.cn/attachments/tuploads/arduino/usb_cable.jpg)
+标准USB电缆
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aed550e68252.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/aIK3F11FD6.png?imageslim)
 
 
 如果使用Arduino Nano，你将需要一条A到Mini-B线，如下图所示。
 
+A 到 Mini-B 电缆：
 
-![A到Mini-B电缆](https://img.w3cschool.cn/attachments/tuploads/arduino/mini_cable.jpg)
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aed551707147.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/FaFfg416JE.png?imageslim)
 
 
 **步骤2 - 下载Arduino IDE软件。**
 
 你可以从Arduino官方网站的[下载页面](https://www.arduino.cc/en/Main/Software)获得不同版本的Arduino IDE。你必须选择与你的操作系统（Windows，IOS或Linux）兼容的软件。文件下载完成后，解压缩文件。
 
+解压缩文件
 
-![解压缩文件](https://img.w3cschool.cn/attachments/tuploads/arduino/opening_arduino_nightly_windows.jpg)
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aed551ef3196.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/IlBD04KHG9.png?imageslim)
 
 
 
@@ -120,11 +106,10 @@ Arduino Uno，Mega，Duemilanove和Arduino Nano通过USB连接到计算机或外
 下载Arduino IDE软件后，需要解压缩该文件夹。在文件夹中，你可以找到带有无穷大标签(application.exe)的应用程序图标。双击该图标以启动IDE。
 
 
-![启动Arduino IDE](https://img.w3cschool.cn/attachments/tuploads/arduino/launch_arduino_ide.jpg)
+启动 Arduino IDE
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aed552b653f3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/5GHlH1mhmc.png?imageslim)
 
 
 
@@ -136,21 +121,18 @@ Arduino Uno，Mega，Duemilanove和Arduino Nano通过USB连接到计算机或外
 
 
 
- 	
+
   * 创建一个新项目。
 
- 	
+
   * 打开一个现有的项目示例。
 
 
 要创建新项目，请选择Flie→New。
 
+新建项目
 
-![新建项目](https://img.w3cschool.cn/attachments/tuploads/arduino/edit_file.jpg)
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aed553443724.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/F83fD8G5Cl.png?imageslim)
 
 
 
@@ -158,12 +140,9 @@ Arduino Uno，Mega，Duemilanove和Arduino Nano通过USB连接到计算机或外
 
 要打开现有项目示例，请选择File→Example→Basics→Blink。
 
+打开现有项目示例
 
-![打开现有项目示例](https://img.w3cschool.cn/attachments/tuploads/arduino/open_project.jpg)
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aed553a566de.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/2g5EBFfl2h.png?imageslim)
 
 
 
@@ -178,11 +157,9 @@ Arduino Uno，Mega，Duemilanove和Arduino Nano通过USB连接到计算机或外
 转到Tools→Board，然后选择你的板。
 
 
-![选择您的Arduino主板](https://img.w3cschool.cn/attachments/tuploads/arduino/select_board.jpg)
+选择您的Arduino主板
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aed5542cbd84.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/e3ccCIJmA9.png?imageslim)
 
 
 
@@ -195,11 +172,9 @@ Arduino Uno，Mega，Duemilanove和Arduino Nano通过USB连接到计算机或外
 选择Arduino板的串行设备。转到**Tools→Serial Port**菜单。这可能是COM3或更高（COM1和COM2通常保留为硬件串行端口）。要弄清楚的话，你可以断开你的Arduino板，并重新打开菜单，那么消失的条目应该是Arduino板。重新连接板并选择该串行端口。
 
 
-![选择串行端口。](https://img.w3cschool.cn/attachments/tuploads/arduino/serial_port.jpg)
+选择串行端口
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aed554c29ca0.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/jem0C0B0e4.png?imageslim)
 
 
 
@@ -210,27 +185,22 @@ Arduino Uno，Mega，Duemilanove和Arduino Nano通过USB连接到计算机或外
 在解释如何将我们的程序上传到板之前，我们必须演示Arduino IDE工具栏中出现的每个符号的功能。
 
 
-![将程序上传到您的主板](https://img.w3cschool.cn/attachments/tuploads/arduino/upload_program.jpg)
+将程序上传到您的主板
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aed5553a7709.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/F79lf6k1dc.png?imageslim)
 
 
 
-**A **- 用于检查是否存在任何编译错误。
 
-**B **- 用于将程序上传到Arduino板。
 
-**C **- 用于创建新草图的快捷方式。
 
-**D **- 用于直接打开示例草图之一。
-
-**E **- 用于保存草图。
-
-**F **- 用于从板接收串行数据并将串行数据发送到板的串行监视器。
+- **A** 用于检查是否存在任何编译错误。
+- **B** 用于将程序上传到Arduino板。
+- **C** 用于创建新草图的快捷方式。
+- **D** 用于直接打开示例草图之一。
+- **E** 用于保存草图。
+- **F** 用于从板接收串行数据并将串行数据发送到板的串行监视器。
 
 现在，只需点击环境中的“Upload”按钮。等待几秒钟，你将看到板上的RX和TX LED灯闪烁。如果上传成功，则状态栏中将显示“Done uploading”消息。
 
@@ -265,6 +235,3 @@ Arduino Uno，Mega，Duemilanove和Arduino Nano通过USB连接到计算机或外
 
 
 # COMMENT
-
-
-

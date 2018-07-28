@@ -39,14 +39,12 @@ tags:
 地址里面是python的很多unofficial库，因此加载时间比较长，要等一会。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5ab6e599a453e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/lkGF7d5C9I.png?imageslim)
 
 然后在pycharm中查看自己的python版本和对应的win32还是AMD64，我的是AMD64，python 3.6.0   ，  因此选择下载   opencv_python-3.4.1-cp36-cp36m-win_amd64.whl
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5ab6e5b7f1247.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/93AilD7B7E.png?imageslim)
 
 下载之后把文件复制到Anaconda3\Lib\site-packages 文件夹里面。
 按Win+R 输入cmd打开命令提示符窗口，进入到Anaconda3\Lib\site-packages文件夹下
@@ -55,13 +53,11 @@ tags:
 pip install opencv_python-3.4.1-cp36-cp36m-win_amd64.whl
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5ab6e5c052fc0.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/ejkI14kBEl.png?imageslim)
 
 测试一下，输python进入python，输入import cv2回车，不报错就说明安装配置成功了
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5ab6e5cca496a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/jbIdCGaH7H.png?imageslim)
 
 
 
@@ -79,13 +75,13 @@ pip install opencv_python-3.4.1-cp36-cp36m-win_amd64.whl
 
 
 
- 	
+
   1. 选择3.xx版本的，但是选择的时候需要注意：3.10版本以上的opencv需要对应不同的vc版本，比如 3.4版本的opencv 是对应vc14 和vc15 的 ，但是不对应的话会有什么问题不是很清楚。
 
- 	
+
   2. 可以在点击 win pack 进行下载时弹出的页面上看到所下的exe的名字，上面有写对应的时多少的vc版本，（如：opencv-3.4.0-vc14_vc15.exe）
 
- 	
+
   3. VS2013 对应的vc版本时vc12 ，因此找了下好像之后opencv3.10是没写多少vc版本，因此下的opencv3.10。（[VS与vc版本的对应关系](http://blog.csdn.net/hellokandy/article/details/53379724)）。
 
 
@@ -127,7 +123,7 @@ opencv_world310d.dll 或者 opencv_world310.dll
 
 
 
-    
+
     #include <cv.h>
     #include <highgui.h>
     using namespace std;
@@ -160,6 +156,3 @@ opencv_world310d.dll 或者 opencv_world310.dll
 
 
 ## REF：
-
-
-

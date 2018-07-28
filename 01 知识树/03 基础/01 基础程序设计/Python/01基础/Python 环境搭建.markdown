@@ -75,7 +75,7 @@ Python可应用于多平台包括 Linux 和 Mac OS X，这些系统已经自带p
 
 Windows 下直接下载最新版的 Python 2.7.9，安装的时候注意选择
 
-![](https://img.w3cschool.cn/attachments/image/20160930/1475236513833415.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/mkFlcLlE4d.png?imageslim)
 
 你可以通过终端窗口输入 "python" 命令来查看本地是否已经安装Python以及Python的安装版本。
 

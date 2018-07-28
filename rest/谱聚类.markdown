@@ -1,91 +1,17 @@
----
-author: evo
-comments: true
-date: 2018-05-06 13:13:07+00:00
-layout: post
-link: http://106.15.37.116/2018/05/06/spectral-clustering/
-slug: spectral-clustering
-title: 谱聚类
-wordpress_id: 5346
-categories:
-- 随想与反思
----
-
-<!-- more -->
-
-[mathjax]
-
-**注：非原创，推荐直接看原文**
-
-
-# ORIGINAL
-
-
-
-
-
- 	
-  1. aaa
-
-
-
-
-# TODO
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-# MOTIVE
-
-
-
-
-
- 	
-  * aaa
-
-
-
-
-
-* * *
-
-
-
-
-
-
 # 谱聚类
-
 
 这是一个非常重要的聚类
 
-
 ## 谱和谱聚类
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda224ab6b3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/09EH7AHl53.png?imageslim)
 
 谱就是一个方阵的所有特征值的全体，就是谱
 
 
 ## 谱分析的整体过程
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda22f29352.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/cm8LFKdbda.png?imageslim)
 
 小于阈值的清零。
 
@@ -99,62 +25,37 @@ categories:
 
 **这部分关于图的概念看看能不能抽出来单独总结**
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda23954d41.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/cfbifD6hBd.png?imageslim)
 
 W是一个邻接的对称阵
 
 第i号节点的所有的边的和叫做第i号节点的度，所以第一个样本的度，第二个样本的度等等写在对角线上就得到了一个度矩阵D。
 
-因此W和D都是对称的。
+因此 W 和 D 都是对称的。
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda2410a8a9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/9m80HaKEC6.png?imageslim)
 
 如何建立相似度的图呢？
 
 
 ## 相似度图G的建立方法
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda24b51e29.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/EhIII96dha.png?imageslim)
 
 ## 相似度图G的举例
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda2542d98f.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/4GFB7c92fF.png?imageslim)
 
 ## 权值比较
 
 
+* ε近邻图：ε=0.3，“月牙部分”非常紧的连接了，但“高斯部分”很多都没连接。当数据有不同的“密度”时，往往发生这种问题。
 
+* k近邻图：可以解决数据存在不同密度时有些无法连接的问题，甚至低密度的“高斯部分”与高密度的“月牙部分”也能够连接。同时，虽然两个“月牙部分”的距离比较近，但k近邻还可以把它们区分开。
 
+* 互k近邻图：它趋向于连接相同密度的部分，而不连接不同密度的部分。这种性质介于ε近邻图和k近邻图之间。如果需要聚类不同的密度，这个性质非常有用。
 
- 	
-  * ε近邻图：ε=0.3，“月牙部分”非常紧的连接了，但“高斯部分”很多都没连接。当数据有不同的“密度”时，往往发生这种问题。
-
- 	
-  * k近邻图：可以解决数据存在不同密度时有些无法连接的问题，甚至低密度的“高斯部分”与高密度的“月牙部分”也能够连接。同时，虽然两个“月牙部分”的距离比较近，但k近邻还可以把它们区分开。
-
- 	
-  * 互k近邻图：它趋向于连接相同密度的部分，而不连接不同密度的部分。这种性质介于ε近邻图和k近邻图之间。如果需要聚类不同的密度，这个性质非常有用。
-
- 	
-  * 全连接图：使用高斯相似度函数可以很好的建立权值矩阵。但缺点是建立的矩阵不是稀疏的。
+* 全连接图：使用高斯相似度函数可以很好的建立权值矩阵。但缺点是建立的矩阵不是稀疏的。
 
 
 总结：不知道如何选，就直接用k近邻。首先尝试使用k近邻图。
@@ -166,27 +67,17 @@ W是一个邻接的对称阵
 拉普拉斯矩阵及其性质
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda296cc460.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/BdGlBh3a2F.png?imageslim)
 
 事实上这样一个拉式矩阵，0一定是它的特征值，并且0有可能是k重的，k重的意思意味着这张图有k个联通分量。**什么是联通分量？**
 
 
 ## 拉普拉斯矩阵的定义
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/l6ilFiL0bk.png?imageslim)
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda2a36a055.png)
-
-
-
-
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae19d28e4c2d.png)但是wii我也是强制赋值为0，因为这个有好处，我把它再第i行加起来就能得到度。
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/aB6C83d01m.png?imageslim)但是wii我也是强制赋值为0，因为这个有好处，我把它再第i行加起来就能得到度。
 
 
 
@@ -207,11 +98,9 @@ W是一个邻接的对称阵
 
 谱聚类算法：未正则拉普拉斯矩阵
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/1HIIC7md6l.png?imageslim)
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda2af3c610.png)
-
-
-因为L这个拉式矩阵是n行n列的，所以 u_k是n行一列的。（注意，前k个特征向量，排列实际上是按照特征值的从小到大排列的。如果说两个联通分量，![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae19d527b9c5.png) 那么对于0这么一个特征值，它其实就会有两个特征向量，而，正好，可以进行聚类，所以谱聚类里面是从小到大的。）
+因为L这个拉式矩阵是n行n列的，所以 u_k是n行一列的。（注意，前k个特征向量，排列实际上是按照特征值的从小到大排列的。如果说两个联通分量，![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/gAgImh5I3I.png?imageslim)那么对于0这么一个特征值，它其实就会有两个特征向量，而，正好，可以进行聚类，所以谱聚类里面是从小到大的。）
 
 所以我可以组成矩阵U。然后我横着看，n个点，k维的行向量。用k-means进行聚类，最后的对应是：如果U中的第1行属于第三个簇，那么原始的第1个点也就属于第三个簇。
 
@@ -228,70 +117,40 @@ W是一个邻接的对称阵
 
 ## 谱聚类算法：随机游走拉普拉斯矩阵
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda2c065702.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/m5hLlCbg1k.png?imageslim)
 
 ## 谱聚类算法：对称拉普拉斯矩阵
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda2ccd5c37.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Kh2EFg99im.png?imageslim)
 
 那么这三个我选择哪一个呢？如果不知道选择哪一个，就选择随机游走拉式矩阵。
 
 
 ## 一个实例
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda2daaee80.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/F2e91b8c5b.png?imageslim)
 
 4个特征值对应了不同的特征向量
 
-如何自适应的去选择k值。![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae19e2ab5f20.png)从4到5跳的最大，谁的跳跃值越大，我们就选那个作为我们的k值的选取。一般而言，谱聚类可以这么选择k。
-
+如何自适应的去选择k值。![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/gBjcDJBL6A.png?imageslim)从4到5跳的最大，谁的跳跃值越大，我们就选那个作为我们的k值的选取。一般而言，谱聚类可以这么选择k。
 
 ## 代码如下
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda2f7eccb6.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/963Jmdd8G3.png?imageslim)
 
 
 ## 聚类情况
 
 
-谱聚类不是一定成功的：比如说k-means中的k选择不好，或者带宽选的不好
+谱聚类不是一定成功的：比如说 k-means 中的 k 选择不好，或者带宽选的不好
 
 成功的情况：
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda3205cca5.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/dk35k2EIla.png?imageslim)
 
 失败的情况：
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda32f9e58e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/eaF9AeEigB.png?imageslim)
 
 所以写好代码之后还是需要调参的，而且，对理论有深入的理解，那么调参就能把握住
 
@@ -300,156 +159,82 @@ W是一个邻接的对称阵
 
 ## 进一步思考
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda33977ae9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Kk266FhdG7.png?imageslim)
 
 随机游走和拉普拉斯矩阵的关系
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda3444c9ee.png)
-
-
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/iJm1J3gkdL.png?imageslim)
 
 # 谱聚类的理论推导：没有讲
 
-
-
-
 ## 拉普拉斯矩阵的性质：
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/aIfAfhJACi.png?imageslim)
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda39ec0932.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda3a8c3d52.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/2dkaFmB2HH.png?imageslim)
 
 正则拉普拉斯矩阵的性质
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda3b4ab61f.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/b9LK79cc5h.png?imageslim)
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda3c0a3ad1.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/KblKL1CE8e.png?imageslim)
 
 切割图
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda3caadf3a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/aHllbe5Blk.png?imageslim)
 
 修正目标函数
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda3d71b237.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/c068diabei.png?imageslim)
 
 分析分母对目标函数的影响
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda3e8a77d6.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/B77AKF5FdH.png?imageslim)
 
+当 k=2 时的 RatioCut
 
-当k=2时的RatioCut
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/6b3K8dbhhA.png?imageslim)
 
+RatioCut 与拉普拉斯矩阵的关系
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda3fb24555.png)
-
-
-RatioCut与拉普拉斯矩阵的关系
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda40d09702.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/F4KlBE26aH.png?imageslim)
 
 目标函数
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/ih00AF5I62.png?imageslim)
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda418509d0.png)
-
-
-考察f的性质
+考察 $f$ 的性质
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda422e549e.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/7JjG4a9BBC.png?imageslim)
+
+目标函数约束条件的放松 relaxation
 
 
-目标函数约束条件的放松relaxation
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda42cd7bb6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/IIaJfJAKei.png?imageslim)
 
 基于子图划分的结论
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda43903734.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/bf2BkEhAd4.png?imageslim)
 
 附：将子图划分从2扩展到k
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda442f2586.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/J0Ja6EC3La.png?imageslim)
 
 附：考察指示向量组成的矩阵
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda45016c3f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/dAFcli39Bg.png?imageslim)
 
 附：目标函数
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda4560a541.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/BE13l2c03d.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda4619b3a7.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/2a78gLig8h.png?imageslim)

@@ -26,7 +26,7 @@ tags:
 
 
 
- 	
+
   1. [Arduino教程](https://www.w3cschool.cn/arduino/)
 
 
@@ -38,7 +38,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -50,7 +50,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -68,11 +68,9 @@ tags:
 因此，数组C的元素是C[0]，C[1]，C[2]等等。数组C中的最高下标是10，其比数组中的元素数少1。数组名遵循与其他变量名相同的约定。
 
 
-![Elements of Array](https://img.w3cschool.cn/attachments/tuploads/arduino/elements_of_array.jpg)
+Elements of Array
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aed58b5137b5.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/3Fcb0aDilc.png?imageslim)
 
 
 
@@ -86,13 +84,13 @@ tags:
 
 要打印数组C的前三个元素中包含的值的总和，我们将写：
 
-    
+
     Serial.print (C[ 0 ] + C[ 1 ] + C[ 2 ] );
 
 
 要将C[6]的值除以2并将结果赋值给变量x，我们将写：
 
-    
+
     x = C[ 6 ] / 2;
 
 
@@ -103,13 +101,13 @@ tags:
 
 数组占用内存中的空间。要指定元素的类型和数组所需的元素数量，请使用以下形式的声明：
 
-    
+
     type arrayName [ arraySize ] ;
 
 
 编译器保留适当的内存量（回想一下，保留内存的声明更恰当地被称为定义）。arraySize必须是大于零的整数常量。例如，要告诉编译器为整数数组C保留11个元素，请使用声明：
 
-    
+
     int C[ 12 ]; // C is an array of 12 integers
 
 
@@ -129,13 +127,13 @@ tags:
 
 **示例**
 
-    
+
     int n[ 10 ] ; // n is an array of 10 integers
-    
+
     void setup () {
-    
+
     }
-    
+
     void loop () {
        for ( int i = 0; i < 10; ++i ) // initialize elements of array n to 0 {
           n[ i ] = 0; // set element at location i to 0
@@ -145,7 +143,7 @@ tags:
        for ( int j = 0; j < 10; ++j ) // output each array element's value {
           Serial.print (n[j]) ;
           Serial.print (‘\r’) ;
-       } 
+       }
     }
 
 
@@ -270,7 +268,7 @@ tags:
 </table>
 
 
-### 
+###
 示例2：使用初始化器列表在声明中初始化数组
 
 
@@ -278,14 +276,14 @@ tags:
 
 **示例**
 
-    
+
     // n is an array of 10 integers
     int n[ 10 ] = { 32, 27, 64, 18, 95, 14, 90, 70, 60, 37 } ;
-    
+
     void setup () {
-    
+
     }
-    
+
     void loop () {
        for ( int i = 0; i < 10; ++i ) // initialize elements of array n to 0 {
           Serial.print (i) ;
@@ -294,7 +292,7 @@ tags:
        for ( int j = 0; j < 10; ++j ) // output each array element's value {
           Serial.print (n[j]) ;
           Serial.print (‘\r’) ;
-       } 
+       }
     }
 
 
@@ -419,7 +417,7 @@ tags:
 </table>
 
 
-### 
+###
 示例3：对数组的元素求和
 
 
@@ -427,13 +425,13 @@ tags:
 
 **示例**
 
-    
+
     const int arraySize = 10; // constant variable indicating size of array
     int a[ arraySize ] = { 87, 68, 94, 100, 83, 78, 85, 91, 76, 87 };
     int total = 0;
-    
+
     void setup () {
-    
+
     }
     void loop () {
        // sum contents of array a
@@ -446,7 +444,7 @@ tags:
 
 **结果** - 它会产生以下结果：
 
-    
+
     Total of array elements: 849
 
 
@@ -504,6 +502,3 @@ tags:
 
 
 # COMMENT
-
-
-

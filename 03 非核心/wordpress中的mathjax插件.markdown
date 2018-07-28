@@ -13,8 +13,7 @@
 ## 1.使用方法：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5a9bfbb69bb18.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/aCiJhfBClH.png?imageslim)
 
 ## 2.在线的LaTeX编辑器，可以在那里可视化编辑好之后拷贝过来。
 

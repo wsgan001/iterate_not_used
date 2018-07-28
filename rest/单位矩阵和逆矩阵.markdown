@@ -22,7 +22,7 @@ categories:
 
 
 
- 	
+
   1. 《深度学习》
 
 
@@ -34,7 +34,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -46,7 +46,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -62,8 +62,7 @@ categories:
 为了描述矩阵逆，我们首先需要定义单位矩阵（identity matrix）的概念。任意向量和单位矩阵相乘，都不会改变。我们将保持 \(n\) 维向量不变的单位矩阵记作 \(\mathbf{I}_n\) 。形式上， \(\mathbf{I}_n\in \mathbb{R}^{n\times n}\) ，
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae6bce0089e4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/a3l2feA8D0.png?imageslim)
 
 **单位矩阵是为了描述矩阵逆才定义出来的吗？**
 
@@ -72,19 +71,16 @@ categories:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae6bceca603d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/60BLD5LaKB.png?imageslim)
 
 矩阵 \(mathbf{A}\) 的 矩阵逆（matrix inversion）记作 \(mathbf{A}^{-1}\) ，其定义的矩阵满足如下条件 ：
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae6bcfe640bc.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/7K57GKKFdE.png?imageslim)
 
 
 现在我们可以通过以下步骤求解 \(\mathbf{A}\mathbf{x} =\mathbf{ b}\)：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae6bd1033142.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/2Fd91K72mF.png?imageslim)
 
 当然，这取决于我们能否找到一个逆矩阵 \(mathbf{A}^{-1}\) 。在接下来的章节中，我们会讨论逆矩阵 \(mathbf{A}^{-1}\) 存在的条件。**嗯，这个逆矩阵存在的条件是什么？**
 
@@ -98,17 +94,4 @@ categories:
 
 
 
-
-
-
-
-* * *
-
-
-
-
-
 # COMMENT
-
-
-

@@ -65,23 +65,19 @@ DBSCAN (Density-Based Spatial Clustering ofApplications with Noise)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abd16c6d0420.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/h0fiE8K0l7.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abd16d440786.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/EA29aF94l3.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abd16d90a3d5.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/4CJDHgdljd.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abd16ddd87e2.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/6C1gF6Gfai.png?imageslim)
 
 怎么从核心对象寻找所有密度可达的所有对象？深度或者广度优先搜索可以吗？是可以的，但是使用并查集最好，并查集就是为了这个而生的，它做的就是生成多少个连通分量。**什么是并查集？**
 
@@ -90,14 +86,10 @@ DBSCAN (Density-Based Spatial Clustering ofApplications with Noise)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae19a19e41df.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/027FfAi6De.png?imageslim)
 
 
-
-
-
-
-  * 如果一个点p的ε-邻域包含多于m个对象，则创建一个p作为核心对象的新簇；
+  * 如果一个点p的 ε-邻域包含多于m个对象，则创建一个p作为核心对象的新簇；
 
   * 寻找并合并核心对象直接密度可达的对象；
 
@@ -109,8 +101,7 @@ DBSCAN (Density-Based Spatial Clustering ofApplications with Noise)
 ### 总结
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae19a2f99ba4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/KILB1Jal2K.png?imageslim)
 
 
 
@@ -121,7 +112,7 @@ DBSCAN (Density-Based Spatial Clustering ofApplications with Noise)
   * 包含过少对象的簇被认为是噪声。
 
 
-注意：对于![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae19aa5e0215.png) 这种数据，密度聚类只能聚出来一类，它不方便找到边。
+注意：对于![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/k4CiIF889I.png?imageslim) 这种数据，密度聚类只能聚出来一类，它不方便找到边。
 
 好，再介绍另外一种密度聚类的方法：
 
@@ -133,11 +124,7 @@ DBSCAN (Density-Based Spatial Clustering ofApplications with Noise)
 
 ### 密度最大值聚类介绍
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abd1742ab965.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/KKHma9gf6m.png?imageslim)
 
 什么叫每个点的邻居数为所有点的1%~2%？
 
@@ -147,47 +134,29 @@ DBSCAN (Density-Based Spatial Clustering ofApplications with Noise)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abd1751c49a4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/3G7JJiibJG.png?imageslim)
 
 ** 没有特别理解这个式子。 **
 
 
 ### 簇中心的识别
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abd175ee56cf.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/2DdFjHhJag.png?imageslim)
 
 
 ### 密度最大值聚类过程
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda19c0981f.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/DbfhJfdE1L.png?imageslim)
 
 ### 边界和噪声的重认识
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda1c201a2d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/EI835E98e3.png?imageslim)
 
 EM算法 高斯混合模型仍然会提到这个。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda1d814a55.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/0IcDcILHdJ.png?imageslim)
 
 嗯 关键是确定了类簇的中心 很厉害
 
@@ -195,37 +164,10 @@ EM算法 高斯混合模型仍然会提到这个。
 ### 不同数据下密度最大值聚类的效果
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abda1f54e765.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/5579c10H9E.png?imageslim)
 
 
 
 # REF
 
 1. 七月在线 机器学习
-

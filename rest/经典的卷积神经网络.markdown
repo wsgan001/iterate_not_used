@@ -22,7 +22,7 @@ tags:
 
 
 
- 	
+
   1. 七月在线 深度学习
 
 
@@ -41,7 +41,7 @@ tags:
 
 
 
-# 
+#
 
 
 
@@ -52,22 +52,22 @@ tags:
 
 
 
- 	
+
   * LeNet，这是最早用于数字识别的CNN ，沉寂和很长时间。
 
- 	
+
   * AlexNet，2012 ILSVRC比赛远超第2名的CNN，比LeNet更深，用多层小卷积层叠加替换单大卷积层。** 什么是小卷积层？**
 
- 	
+
   * ZF Net，2013 ILSVRC比赛冠军
 
- 	
+
   * GoogLeNet，2014 ILSVRC比赛冠军
 
- 	
+
   * VGGNet，2014 ILSVRC比赛中的模型，图像识别略差于GoogLeNet，但是在很多图像迁移学习问题(比如object detection)上效果很好。到VGG为止，都是层叠的模型。
 
- 	
+
   * ResNet，2015ILSVRC比赛冠军 152层，微软的，深度残差网络  Residual network  ，结构修正(残差学习)以适应深层次CNN训练。它造了一些高速通道，直接把前面的数据拉到后面，让后面的层次看到，它把传统的连乘的形式变成了加法，而连乘的形式复合函数会出现的那种梯度弥散的现象，在Residual network中被减缓了。**想更多的了解下，而且这两年的新的是什么样的？**
 
 
@@ -82,13 +82,11 @@ tags:
 Inner Product 就是点积  即全连接。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1e84244f8b.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/4JfEBm0mbc.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1e847ed810.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/0jdbg8DBaA.png?imageslim)
 
 还是很经典的
 
@@ -99,33 +97,28 @@ Inner Product 就是点积  即全连接。
 2012 Imagenet 比赛第一，Top5准确度超出第二10%。Top5准确度指的是，你给我5个结果，只要这5个结果有一个中了，我就认为你对了。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acee016560e6.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/gb00DDI0mD.png?imageslim)
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5acee20b94e82.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/IKeLaJ4bHa.png?imageslim)
 
 从上面看出：
 
 
 
- 	
+
   * pooling的时候的确也是用窗口的。
 
- 	
+
   * 而且为了防止信息丢失，他后面的CONV都是stride设为1。
 
- 	
+
   * 两个全连接层的目的是为了还原一部分信息，因为前面的池化会丢失一部分信息。
 
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1e8849b696.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/e2hE4fkj5j.png?imageslim)
 
 
 
@@ -136,39 +129,30 @@ Inner Product 就是点积  即全连接。
 相当于AlexNet并没有结构上的大变化。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1e8a06ed78.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/JCfaD3AF3L.png?imageslim)
 
 # VGG
 
 
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/gLAA86Ii4f.png?imageslim)
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1e8af8d88a.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1e8bbccabd.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/immc7hHGkG.png?imageslim)
 
 VGG是很厉害的，有很多种 VGG-16，VGG-19    **16，19指的是CONV的层数吗？是CONV和FC的层数。input 和maxpool和soft-max不算。**
 
 
 
- 	
+
   * 在那个时候还没有 batch normalization 这样的神器出现，这个batch normalization是google提出的可以帮助训练，保持训练稳定性。**什么是batch normalization？ 为什么提了下说8层的网络用batch normalization还是比较好训练的？**
 
- 	
+
   * 也没有 ResNet 这样的High-V 出现。
 
 
 在这样的情况下训练出了19层，是很难训练的。因为层数越多，复合函数求导越有可能是0，即梯度饱和。
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1e8ce34104.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/gHK51IB9d8.png?imageslim)
 
 上面的这个告诉你每一张图片需要消耗多大的显存，这是一个很重要的问题，比如你跑模型的时候batch太多，经常会报memory error。 **这个地方要着重再看下。**
 
@@ -180,18 +164,14 @@ VGG是很厉害的，有很多种 VGG-16，VGG-19    **16，19指的是CONV的
 # GoogLeNet
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1e8e7369ee.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/D1FD775i3B.png?imageslim)
 
 它是分了不同的阶段去训练的，
 
 这个网络的参数量非常非常小，相对于他的深度而言，是500万个
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1e8f6e3730.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/cJe8HEfkij.png?imageslim)
 
 他利害的地方在于：他把所有的全连接层全部换成了小卷积，比如说1*1的小卷积。**这个是什么样的卷积？W里面只有1个参数？要自己看下。**
 
@@ -204,27 +184,22 @@ VGG是很厉害的，有很多种 VGG-16，VGG-19    **16，19指的是CONV的
 微软亚洲研究院提出 ， ILSVRC 2015 冠军，比 VGG 还要深 8 倍，但是比VGG要好训练
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1e91466ea7.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/1Eejb11Lg0.png?imageslim)
 
 中间是一个plain model ，平铺的model，硬搭出来的。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1e923ad133.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/53Dd1GKJ7l.png?imageslim)
 
 **理解的不是很透彻。再看下相关的。**
 
 这个地方提一下，梯度往前传，我一直觉得梯度往前传其实不是很形象，尤其是这个地方的，说梯度有两个传的路径。实际上还不如直接说梯度是怎么计算的，然后导致了前面的w怎么被就改的。这样更加情绪点。
 
 
-## 
+##
 
 
 
 
 
 # COMMENT：
-
-
-

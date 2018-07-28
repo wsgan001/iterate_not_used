@@ -26,7 +26,7 @@ tags:
 
 
 
- 	
+
   1. [Arduino教程](https://www.w3cschool.cn/arduino/)
 
 
@@ -38,7 +38,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -50,7 +50,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -66,8 +66,7 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/05/img_5aed548112a5d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/LIEhH7B5Gd.png?imageslim)
 
 
 <table >
@@ -131,19 +130,19 @@ Arduino板可以通过将其连接到电影插口直接从交流电源供电。
 
 
 
- 	
+
   * 3.3V（6） - 提供3.3输出电压
 
- 	
+
   * 5V（7） - 提供5输出电压
 
- 	
+
   * 使用3.3伏和5伏电压，与Arduino板一起使用的大多数组件可以正常工作。
 
- 	
+
   * GND（8）（接地） - Arduino上有几个GND引脚，其中任何一个都可用于将电路接地。
 
- 	
+
   * VVin（9） - 此引脚也可用于从外部电源（如交流主电源）为Arduino板供电。
 
 
@@ -251,6 +250,3 @@ AREF代表模拟参考。它有时用于设置外部参考电压（0至5伏之�
 
 
 # COMMENT
-
-
-

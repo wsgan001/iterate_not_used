@@ -109,27 +109,25 @@ tags:
 分析：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdb0d7d6b58.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/iCbhIC8g1i.png?imageslim)
 
 分解：
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdb0e1b3e49.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/0IAI6GH0Fc.png?imageslim)
 
 注意：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae1b4c5a95cb.png)中的第二个等号用的就是特征是条件独立的。
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/67DmFCDaI0.png?imageslim)中的第二个等号用的就是特征是条件独立的。
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae1b4c867195.png)第二个等号成立的条件也是特征是独立的。
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/EHbGccB8Jk.png?imageslim)第二个等号成立的条件也是特征是独立的。
 
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae1b4cc22b98.png)就算出了这个邮件是垃圾的还是非垃圾的。
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/EgaGD86C5d.png?imageslim)就算出了这个邮件是垃圾的还是非垃圾的。
 
 
 之所以叫做朴素贝叶斯，因为它的假设：提特征独立，特征条件独立。
@@ -138,86 +136,57 @@ tags:
 
 但是这并不影响这种算法在实践中的重大应用
 
-
-
 其实还是OK的，但是如果遇到生词呢？
 
-
 ## 遇到生词怎么办？
-
 
 拉普拉斯平滑
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdb0ec3f8a4.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Bc2ekkdcJI.png?imageslim)
+
+是的呀，![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/b30951C8H0.png?imageslim)如果n_1=0，说明这个是新词，那么
 
 
-是的呀，![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae1b510696fa.png)如果n_1=0，说明这个是新词，那么
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae1b51abbb3c.png)也就等于0了，而且![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae1b51d41bac.png)也等于0，所以这个时候![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae1b5215f4d5.png)就是0/0.
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/EeAFCl5G8L.png?imageslim)也就等于0了，而且img_5ae1b51d41bac也等于0，所以这个时候![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/lGdmB1h5GC.png?imageslim)就是0/0.
 
 
 
 
-这个怎么解决呢？最简单的思路就是每个字出现的次数加上1，![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae1b525ebe50.png)
+这个怎么解决呢？最简单的思路就是每个字出现的次数加上1，![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/7k6cE7E1ei.png?imageslim)
 
 这样的变化还是很厉害的的，这样的思路叫做拉普拉斯平滑。
 
-这个地方给1还是几，这个就是所谓的先验分布了。
+这个地方给 1 还是几，这个就是所谓的先验分布了。
 
 实际上可以想象成：加个文档，所有的词都出现一次。
 
 后面遇到主题模型的LDA的时候仍然会谈到拉普拉斯平滑。到时候会如何计算平滑。
 
 
-
-
 ## 对朴素贝叶斯的思考
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abdb0f4d4ec1.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/AahDDj0898.png?imageslim)
 
 小数乘积下溢出怎么办？直接取对数来解决。
 
 **交叉验证还是不知道？**
 
-
 # 朴素贝叶斯 算法特点
-
 
 优点：
 
-
-
-
-  * 在数据较少的情况下仍然有效，
-
-
-  * 可以处理多类别问题。
-
+* 在数据较少的情况下仍然有效，
+* 可以处理多类别问题。
 
 缺点：
 
-
-  * 对于输入数据的准备方式较为敏感。**什么是准备方式？**
-
+* 对于输入数据的准备方式较为敏感。**什么是准备方式？**
 
 适用数据类型：
 
-
-  * 标称型数据。
-
-
-
-
-
-
+* 标称型数据。
 
 # COMMENT
-
 
 **需要修改及补充下。**

@@ -25,10 +25,10 @@ tags:
 
 
 
- 	
+
   * 七月在线 机器学习
 
- 	
+
   * 《机器学习》周志华
 
 
@@ -40,10 +40,10 @@ tags:
 
 
 
- 	
+
   * **机器学习书中的KL散度的东西需要添加下。**
 
- 	
+
   * **而且感觉这一篇太大了，要不要拆分下。**
 
 
@@ -55,7 +55,7 @@ tags:
 
 
 
- 	
+
   * a
 
 
@@ -95,10 +95,10 @@ tags:
 
 
 
- 	
+
   * 某事件发生的概率小，则该事件的信息量大。
 
- 	
+
   * 如果两个事件X和Y独立，即 p(xy)=p(x)p(y) ，假定X和Y的信息量分别为h(X)和h(Y)，则二者同时发生的信息量应该为 h(XY)=h(X)+h(Y)。
 
 
@@ -115,35 +115,21 @@ OK，这时候我们就介绍一下熵：
 
 ## 什么是熵？
 
-
 什么是熵呢？对随机事件的信息量求期望，就得到了熵的定义：
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb9e966eb0d.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/EdFbl0GDdd.png?imageslim)
 
 可见，熵是来定义这个随机事件的信息量的强弱大小的。**嗯，不错。**
 
 有两点需要注意：
 
-
-
- 	
-  1. 这个地方的 p(x) 是一个函数，不是一个数。
-
- 	
-  2. 在经典熵的定义，底数是 2，单位是 bit   。但是实际上有时候也用以 e 、10为底的，为什么可以改变这个底数呢？因为我们不关心这个信息量的值具体是什么，我们关心的是当一个事件的信息量取最大的时候，他的 p 应该取什么，即可以通过取什么参数来使信息量达到最大。在本例中，为分析方便使用底数 e，此时单位是 nat (奈特)。
-
-
-
+1. 这个地方的 p(x) 是一个函数，不是一个数。
+2. 在经典熵的定义，底数是 2，单位是 bit   。但是实际上有时候也用以 e 、10为底的，为什么可以改变这个底数呢？因为我们不关心这个信息量的值具体是什么，我们关心的是当一个事件的信息量取最大的时候，他的 p 应该取什么，即可以通过取什么参数来使信息量达到最大。在本例中，为分析方便使用底数 e，此时单位是 nat (奈特)。
 
 ## OK，我们来研究下熵里面的这个函数 f(x)=xlnx
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae03ef98b4e3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/AhCc5DcHBa.png?imageslim)
 
 由于在 x=0 的时候，lnx 是没有定义的，但 \(\underset{lim}{x\rightarrow 0}f(x)=0\) ，因此为了使这个函数连续，因此我们强制定义 \(f(0)=0\)。
 
@@ -154,23 +140,14 @@ OK，这时候我们就介绍一下熵：
 代码如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abba89ce82ec.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/87IB393edc.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abba8a8673ff.png)
-
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Kd7Da8I23l.png?imageslim)
 
 
 # OK，我们开始对熵进行学习
-
-
-
 
 ## 对熵的理解
 
@@ -179,12 +156,7 @@ OK，这时候我们就介绍一下熵：
 
 熵是随机变量不确定性的度量：
 
-
-
- 	
   * 随机变量的不确定性越大，熵值越大。
-
- 	
   * 若随机变量退化成定值，即若某一个事件以概率1发生。那么这件事的熵就是0，就是极小值。
 
 
@@ -202,8 +174,7 @@ OK，这时候我们就介绍一下熵：
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abba8cf2e138.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/m1h5HEF49E.png?imageslim)
 
 那么把两点分布变成三点分布呢？
 
@@ -211,15 +182,9 @@ OK，这时候我们就介绍一下熵：
 ## 三点分布的熵
 
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/0cGaE92gcE.png?imageslim)
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abba8f94b053.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae04c24ae5b5.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/8F3JGF2Bm3.png?imageslim)
 
 第一幅图的高度是熵，后面两幅都是旋转后的，可见，p1=p2=1/3的时候，三点的概率分布最大。**这幅图与dirichlet分布有关吗？**
 
@@ -239,30 +204,23 @@ OK，下面我们再从另外一个角度来探讨熵是什么？
 # 组合数的关系
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abba910e1a99.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/8lLIiKFKKb.png?imageslim)
 
 ## 推到
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc33cd23545.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/D7jH1jemb2.png?imageslim)
 
 其中 \(ln N!\rightarrow N(lnN-1)\) 的推导如下：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae04ccd578dd.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/bA83gebG5G.png?imageslim)
 
 对上面的推导进行解释：
 
 最后一步是因为ni/N 是频率，由大数定理，频率等于概率，因此当N无穷大的额时候，
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae04d0d7d3ad.png)就是熵。
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/EIlFI62k48.png?imageslim)就是熵。
 
 所以当N无穷大到无穷的时候：
 
@@ -270,26 +228,12 @@ OK，下面我们再从另外一个角度来探讨熵是什么？
 ## 自封闭系统的运动总是倒向均匀分布
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc33d9326b4.png)
-
-
-
-
-
-## 
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/K657Jl8k9C.png?imageslim)
 
 
 ## 下面我们继续思考：根据函数形式判断概率分布
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc33e4964b6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/IhkC6g6ege.png?imageslim)
 
 也就是说，正太分布的概率密度函数的对数形式是一个二次函数形式的。
 
@@ -298,19 +242,14 @@ OK，下面我们再从另外一个角度来探讨熵是什么？
 比如我们再看一下Gamma分布：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc33f174714.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/AcB78cg8dB.png?imageslim)
 
 这个地方提一下：二项分布的共轭分布就是Gamma分布，从2到n就是多形式分布，从Gamme分布到N就是directlit分布。
 
 
 ## 之前我们知道，均匀分布熵是最大的，那么给定条件呢？
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc33fd3459b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/kDAdf8hG3H.png?imageslim)
 
 利害，这怎么求？
 
@@ -319,26 +258,22 @@ OK，下面我们再从另外一个角度来探讨熵是什么？
 首先，我们先建立一个目标函数：我们不知道 p(x) 是什么样子的，我们想要做的就是将 H(x) 取极大，然后求出这个时候的 p(x)。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae04e07049f2.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/mDK7f1c8ae.png?imageslim)
 
 使用方差公式化简约束条件：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae04e3268656.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/dHC61mCD1e.png?imageslim)
 
 也就是说，我们现在知道了 x 的期望和 x^2 的期望。那么显然，这是一个带约束的极值问题，可以用Lagrange乘子法：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae04ec4ae3e3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/fCBja0CHGc.png?imageslim)
 
 求偏导得：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae04ed880779.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/3FaCF9cC22.png?imageslim)
 
 可见 p(x) 的对数形式是一个关于x得平方的。根据我们刚才的引理，这样的分布一定是一个正态分布。** 利害的。在看一下 之前相关的引理。**
 
@@ -371,27 +306,21 @@ OK，上面都是一个随机变量的问题，现在准备看下多个随机变
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc343100ca4.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/KkHLg1ke09.png?imageslim)
 
 解释一下：上面的对于 \(p(y)\) 写成 \(\sum_{x}^{ }p(x,y)\)的形式，是因为边缘分布等于各自的联合分布的和。
 
 OK，上面已经得到了条件熵的定义式，继续推导：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc343d28ed0.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/0jGElHdF5g.png?imageslim)
 
 解释一下：导数第二部的括号中的意思是：x取某一个值的时候p(y)的条件分布的熵。因此可以写成最后的形式。
 
 
 ## OK 我们现在可以提出相对熵的概念：
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae057445540f.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/GCd7ifBc35.png?imageslim)
 
 显然，上面的式子中的求和可以看作是在p(x)的分布下求这个式子的期望
 
@@ -411,52 +340,31 @@ OK，上面已经得到了条件熵的定义式，继续推导：
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc34581d6bb.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/kD7k5Efegl.png?imageslim)
 
 注意，P是存在的未知的一个东西，Q是假定的算出的简单的一个东西。所以两个KL散度还是不大一样的。
 
 
 ## 两个 KL 散度的区别
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc346555011.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Km4eHCKA2L.png?imageslim)
 
 如果KL=0，当且仅当p=q才可以。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc3475f0d7c.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/JgdDDGAK21.png?imageslim)
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc347dad442.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/JkL7l4BiLc.png?imageslim)
 
 
 
 OK，我们开始介绍互信息
 
-
-
-
-
-
 # 互信息
-
-
-
 
 ## 互信息得定义
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc3489deebe.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/6D2ff2ecjd.png?imageslim)
 
 如果 X，Y 是独立的，那么 p(x,y) 就等于p(x)p(y)，因此相等的时候互信息就是0，因此互信息表示的是二者之间的相关性的一种度量。
 
@@ -468,57 +376,38 @@ OK，我们开始介绍互信息
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae059056d465.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/33926I9dHE.png?imageslim)
 
 根据条件熵的定义式，可以得到
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc34b1919f3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/64ebJag228.png?imageslim)
 
 所以条件熵可以写成这两种形式：
 
 
 
- 	
+
   * H(X|Y) = H(X,Y) - H(Y)   条件熵定义
 
- 	
+
   * H(X|Y) = H(X) - I(X,Y)   根据互信息定义展开得到
 
 
 同样，可以衍生出：
 
- 	
-  * 对偶式
-
- 	
+* 对偶式
     * H(Y|X)= H(X,Y) - H(X)
-
- 	
     * H(Y|X)= H(Y) - I(X,Y)
-
-
-
-
- 	
-  * I(X,Y)= H(X) + H(Y) - H(X,Y)
-
- 	
-  * H(X|Y) ≤H(X) ， H(Y|X) ≤H(Y)
+* I(X,Y)= H(X) + H(Y) - H(X,Y)
+* H(X|Y) ≤H(X) ， H(Y|X) ≤H(Y)
 
 
 最后一个不等式 H(X|Y) ≤H(X) ， H(Y|X) ≤H(Y)  意味着：随着给定的条件越来越多，不确定性越来越少，最终走向确定性。
 
-Venn图可以说明上述的这些公式：
+Venn 图可以说明上述的这些公式：
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae059e482538.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/hb67lckbel.png?imageslim)
 
 ## 一道思考题：天平与假币
 
@@ -549,59 +438,28 @@ Venn图可以说明上述的这些公式：
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcb4476da81.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/h98cF0kC92.png?imageslim)
 
 ## 信息增益的计算方法
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcb45360b7a.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/kcjm3IL1jJ.png?imageslim)
 
 ## 经验条件熵H(D|A)
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcb45e4d126.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/7L5J8FF1HI.png?imageslim)
 
 
 ## 其他目标
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcb4682b323.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/DmDlA7G1gL.png?imageslim)
 
 
 ## 关于基尼指数的讨论(一家之言)
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abcb47360d4e.png)
-
-
-
-
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Jhd7gh39Hh.png?imageslim)
 
 
 
@@ -613,5 +471,3 @@ Venn图可以说明上述的这些公式：
 **看看还有什么需要补充的？**
 
 **并且，信息论里面还有什么需要掌握的？**
-
-

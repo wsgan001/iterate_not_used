@@ -17,8 +17,7 @@
 看到公式里有一个公式是这样的：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac3151096f39.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/IA1jmB89lK.png?imageslim)
 
 但是我找了下mathjax里面没有这中间的空心中括号的打法，latex里面倒是有：
 

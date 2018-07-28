@@ -25,10 +25,10 @@ tags:
 
 
 
- 	
+
   1. 七月在线 深度学习
 
- 	
+
   2. [多通道卷积计算](https://blog.csdn.net/yudiemiaomiao/article/details/72466402)
 
 
@@ -41,7 +41,7 @@ tags:
 对卷积神经网络 Convolution Neural Network 进行总结
 
 
-# 
+#
 
 
 
@@ -55,22 +55,22 @@ tags:
 
 
 
- 	
+
   1. 对于图像这种数据来说，图像的数据一开始要先resize，比如一张图片是227*227*3 这么维度就很高，如果直接用人工神经网络，每层这样乘下来，就有非常多的w，很快就会上亿，这样的话就需要消耗很多的计算资源。 而GPU的显存是非常有限的。即使用mini-batch ，比如64张，这样的全链接的 w 占用的显存也会爆掉。
 
- 	
+
   2. 而且w太多了不一定是好事，因为非常可能会过拟合。
 
 
 所以卷积神经网络就是为了解决参数过多的问题。
 
 
-## 
+##
 
 
 
 
-## 
+##
 
 
 
@@ -81,8 +81,7 @@ tags:
 保持了层级网络结构，不同层次有不同形式(运算)与功能
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1d7561bfff.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/KdK4gcgAmm.png?imageslim)
 
 
 
@@ -93,22 +92,22 @@ tags:
 
 
 
- 	
+
   * 数据输入层/ Input layer
 
- 	
+
   * 卷积计算层/ CONV layer
 
- 	
+
   * ReLU激励层 / ReLU layer
 
- 	
+
   * 池化层 / Pooling layer
 
- 	
+
   * 全连接层 / FC layer  这个与人工神经网络是一样的连接方式。
 
- 	
+
   *  Batch Normalization层 (可能有) 主要是训练用   **Batch Normalization  是什么？什么作用？**
 
 
@@ -121,31 +120,31 @@ tags:
 
 
 
- 	
+
   * 去均值
 
- 	
+
     * 把输入数据各个维度都中心化到0 把中心移动到 0 的位置。
 
 
 
 
- 	
+
   * 归一化
 
- 	
+
     * 幅度归一化到同样的范围，如果用LR的时候不做scaling，那么在SGD的时候会比较慢。**为什么？**
 
 
 
 
- 	
+
   * PCA / 白化 withen
 
- 	
+
     * 用PCA降维，相当是做一个投影
 
- 	
+
     * 白化是对数据每个特征轴上的幅度归一化，做完PCA之后每个维度的scale又不一样了，因此又要做归一化。**还是想确认下实际怎么做的**
 
 
@@ -158,10 +157,10 @@ tags:
 
 
 
- 	
+
   * Alexnet的做法：227*227*3的100万个矩阵加在一起再除以100万得到一个均值，然后每张图片与这个均值做减法。这个均值再Alexnet模型中是保存在文件中的。
 
- 	
+
   * VGG的做法：227*227*100万个像素点，取均值，得到的RGB三个数就是均值，所以它是一个3*1的向量，然后每个像素点分别减去对应的RGB均值。这三个数直接放在内存中就行。
 
 
@@ -170,10 +169,7 @@ tags:
 ### 去均值和归一化：
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1d838dc61e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Ld3kJjlhdH.png?imageslim)
 
 如果不做中心化，那么会非常容易饱和。
 
@@ -189,8 +185,7 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1d85b3b436.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/kLlgLgfKki.png?imageslim)
 
 原来是两个有关联的feature，但是我找到了另外一组基做投影，这样，新的维度互相之间已经没有关联了。而whiten是因为去相关会导致scale又不一样了。
 
@@ -228,7 +223,7 @@ whitened data：
 ### 把 RGB 三层中的 R 拿出来看
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1db57efc1e.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/l5GF9kKm4m.png?imageslim)
 
 比如说上面这个是一张 32*32*3 的彩色图片，之所以是3，是因为彩色图片有RGB三层。
 
@@ -238,7 +233,7 @@ OK，现在我们只看 R 层，我先找一个大小比如说为 3*3 的一个�
 
 OK，现在呢，对于我的一个神经元来说，我是对应一个 3*3 的图像块的，也就是说，我的这个神经元的 w 只有9个，而不是 32*32 个。
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1dd3ab11ed.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/92l8FcHBA4.png?imageslim)
 
 OK，现在把窗口在图片上开始滑动，比如以每次一个像素的速度滑动（stride），从左滑到右，在另起一行开始滑动，直到滑完了整个图片，每次滑动，我们都根据窗口看到的那一小块图像和我的 w 计算出一个值 Wx+b  。那么我现在就有了 30*30 个值，叫做 feature map。（提一下，相比FC来说，相当于参数共享了，所以叫参数共享机制。这个名字听起来高大上，但是挺令人感觉不明确的）
 
@@ -254,8 +249,7 @@ OK，我们把上面滑动的过程稍微做点调整，之前的图像是32*32�
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae002b92d73e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/I4DL9k8dgI.png?imageslim)
 
 实际上RGB三层可以看作三个通道（channel），那么对于一个 R 层我可以用一个滑动窗口，然后卷积核有 3*3 个参数，那么对于RGB三层，我就可以每个channel对应一个滑动窗口，而虽然我仍然用一个卷积核，但是我有的卷积核有 3*3*3 个参数，这最后一个 3 叫做卷积核的深度，它等于我的channel的个数。
 
@@ -274,13 +268,13 @@ OK，到这里，对于单个神经元来说，基本上就OK了。那么多个�
 
 
 
- 	
+
   * 每个神经元都会输出一个feature map，因此这个卷积层的 feature map 的个数肯定也等于神经元的个数。
 
- 	
+
   * 窗口每次滑动的长度就是滑动的步长 stride。**步长的设定有什么讲究吗？**
 
- 	
+
   * 补充的 0 值叫做填充值 zero-padding 。
 
 
@@ -293,7 +287,7 @@ OK，到这里，对于单个神经元来说，基本上就OK了。那么多个�
 
 
 
- 	
+
   * 因为，讲一个神经元的w值单独拿出来，它对应一个窗口，也会随着窗口的滑动生成一个feature map ，之前我们在学习神经网络的时候，知道，每个输出值对应的是W*x ，即W和x的内积，现在呢，W和图片上不同的窗口内的x做内积，而且随着窗口的滑动做很多次，这种方式就叫做卷积。**卷积再了解下。**
 
 
@@ -306,7 +300,7 @@ OK，到这里，对于单个神经元来说，基本上就OK了。那么多个�
 
 
 
- 	
+
   * 有的时候，Wx+b 是有 b 的，对于处理RGB图像的一个神经元来说，虽然w的个数是 3*3*3 ，但是 b 只有一个，而且，b是一个数值，而不是向量，再RGB 图像计算的时候，实际上是这样的：\(W_1x_1+W_2x_2+W_3x_3+b\)，即相当于给feature map的每个值多加了一个b。这个地方可以看一下动图：[cs231n.github.io/assets/conv-demo/index.html](http://cs231n.github.io/assets/conv-demo/index.html)
 
 
@@ -319,16 +313,16 @@ OK，到这里，对于单个神经元来说，基本上就OK了。那么多个�
 
 
 
- 	
+
   1. **图像是具备局部关联性的，比如说，图片上的蓝天的一个小蓝点周围有很大概率是蓝色的。这个局部关联性能作为窗口滑动的理论基础吗？只能解释窗口可以不是整张图片，但是没有办法解释W的固定性**吧？
 
- 	
+
   2. **为什么说固定每个神经元连接权重，可以看作模板？为什么说每个神经元只关注一个特性？什么叫关注一个特性？**
 
- 	
+
   3. **为什么可以把每个神经元看作一个filter？之前在普通的神经网络里面怎么没有这样看？**
 
- 	
+
   4. **还是没明白为什么这种固定的 w 来对应不同的滑动出的图片块这种方法是可行的？根本的原理是什么呢？**
 
 
@@ -350,16 +344,16 @@ OK，到这里，对于单个神经元来说，基本上就OK了。那么多个�
 
 
 
- 	
+
   * CNN尽量不要用sigmoid！不要用sigmoid！不要用sigmoid！
 
- 	
+
   * 首先试ReLU，因为快，但要小心点
 
- 	
+
   * 如果2失效，请用Leaky ReLU或者Maxout
 
- 	
+
   * 某些情况下tanh倒是有不错的结果，但是很少
 
 
@@ -382,29 +376,21 @@ OK，到这里，对于单个神经元来说，基本上就OK了。那么多个�
 这个采样会丢失信息的，但是会保留大部分信息。**怎么衡量是大部分信息？**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe3ce8356a8.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Gl9Eg41kfh.png?imageslim)
 
 那么怎么从激活层的输出保留大部分信息，而又使维度降下来呢？这里有两种 pooling 方式：**那种好？还有别的方法吗？**
 
-
-
- 	
-  *  Max pooling
-
- 	
-  * average pooling
+* Max pooling
+* average pooling
 
 
 这里要强调一点：虽然下面的图看起来是分成了4个块，但是这里仍然用的是一个2*2的滑动窗口，只不过步长也是2。窗口的大小和步长取决于你的下采样要做到什么程度。
 
 那么这两种pooling的方式怎么去选择呢？
 
- 	
-  * 一般在图像识别中，大部分用到Max Pooling 。
 
- 	
-  * 在另外的一些地方，比如Neural Style ，用的是average pooling。
+* 一般在图像识别中，大部分用到 Max Pooling 。
+* 在另外的一些地方，比如 Neural Style ，用的是 average pooling。<span style="color:red;">什么是 Neural Style ？</span>
 
 
 
@@ -412,7 +398,7 @@ OK，到这里，对于单个神经元来说，基本上就OK了。那么多个�
 ## 全连接层  FC layer
 
 
-full connect layer
+Full Connect layer
 
 两层之间所有神经元都有权重连接，通常全连接层在卷积神经网络尾部。之所以在尾部，是因为它的量级很大，如果放在前面，整体的维度就还是会很高。**为什么？**
 
@@ -427,8 +413,7 @@ full connect layer
 这样的写法是约定俗成的：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe3d144ef61.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/J4GiAldbhc.png?imageslim)
 
 注：ReLU 已经包含在 CONV  和 FC 层里面了，而且，最后一个 FC 是不接 ReLU 的，直接接Softmax。
 
@@ -436,52 +421,52 @@ full connect layer
 
 
 
- 	
+
   * 原始图像实际上是227*227的，这里使用的224*224作为输入，即输入的是一个224*224的随机滑动窗口所对应的图像。
 
 
 对第二行的解释：CONV3-64
 
- 	
+
   * CONV3-64:[224*224*64]   的意思是：我的卷积核的高度和宽度是3*3 ，因为我输入的图像是有RGB三层的，因此，实际上我的卷积核的深度也是3。因为我输入和输出的都是224*224的图像，所以，我的stride是1，而且padding也是1。64是我输出的 feature map 的个数。
 
- 	
+
   * memory：224*224*64=3.2M 由于我的输出的图像是224*224的，而且输出64个feature map 因此memory占用这么多。
 
- 	
+
   * params：（3*3*3）*64=1728 我的卷积核的高度、宽度、深度都是3。因此我有3*3*3 个参数，而由于我有64个个卷积核，因此是（3*3*3）*64=1728个参数。注意：我的一个卷积核虽然处理的是RGB三层，但是实际上输出的只是一个 feature map 。
 
 
 对第三行的解释：CONV3-64
 
- 	
+
   * 由于上一层的输出是64个feature map，因此相当于64个channel，因此这一层的卷积核的深度就是64。
 
 
 对于第四行的解释：POOL2
 
- 	
+
   * pooling 操作是没有参数的，但是这个每个窗口的最大值是需要记住的，因此占用memory
 
 
 导数第四行的解释：POOL2：
 
- 	
+
   * 这一层的输出是7*7*512
 
 
 导数第三行的解释：FC：
 
- 	
+
   * 实际上在做这个FC之前，POOL2过来的东西要先拉成一个1*25088 的一个行向量。这样才好与我这一层的神经元做全连接。
 
- 	
+
   * 这一层是一个全连接，因此参数非常多，上一层传过来的输入 x 是25088  个 ，而我这一层的神经元是4096个，因此总共的参数是 25088*4096=102,760,448 个。
 
 
 导数第一行的解释：FC：
 
- 	
+
   * 这一层有1000个神经元，把上一层过来的4096个输入降到1000，即输出1000个值，然后我们就可以把这1000个值会输入到我的softmax或者hingeloss里面。
 
 
@@ -513,37 +498,25 @@ full connect layer
 filters：每一个是一个神经元的权重画出来的样子
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1e24d85a34.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/f8Hi1l11k7.png?imageslim)
 
 data：每一个是一个神经元对应滑动窗口后输出的feature map的样子。
 
 相当于是神经元对原始图像的评价和关注，可能是轮廓，可能是深浅等。
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1e23ad4aec.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/9k4eIfBh1E.png?imageslim)
 
 ## CONV Layer 2:
-
 
 filters：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1e2971c664.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Ck82gF4Dgi.png?imageslim)
 
 data：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1e29f2b282.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/0fcghiE3Hd.png?imageslim)
 
 ## CONV Layer 3:
 
@@ -551,8 +524,7 @@ data：
 data：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1e2dd3e4d3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/5dj9cDh0dD.png?imageslim)
 
 
 
@@ -563,10 +535,9 @@ data：
 data：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1e2dd3e4d3.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/5dj9cDh0dD.png?imageslim)
 
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/61FC4mB76j.png?imageslim)
 
 
 ## CONV Layer 5：
@@ -575,8 +546,7 @@ data：
 data：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ac1e2fe97100.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/cG6KfAfbH3.png?imageslim)
 
 
 
@@ -592,57 +562,27 @@ data：
 ## 大概的层次：
 
 
-
-
-
- 	
-  1. INPUT
-
- 	
-  2. [[CONV -> RELU]*N -> POOL?]*M
-
- 	
-  3.  [FC -> RELU]*K
-
- 	
-  4. FC
-
+1. INPUT
+2. [[CONV -> RELU]*N -> POOL?]*M
+3. [FC -> RELU]*K
+4. FC
 
 
 
 ## 这些是针对图像而言总结出的一些规律：
 
 
-
-
-
- 	
-  * 尽量使用3×3尺寸的卷积核，甚至更小（2×2或者1×1），stride取1（除去第一层可以采用稍大尺寸的卷积核）。为什么要用这么小的卷积核？为什么stride要取1？为什么第一层可以采用稍大的卷积核？
-
- 	
-  * 使用Pooling（2×2）对网络进行1/4采样
-
- 	
-  * 采用多层架构，层要足够的过，如果太少那么性能就不太好。
-
- 	
-  * Pattern设计  （**注意最后一层FC，不采用ReLU激活函数**）因为最后一层的输出要送到SOFTMAX里面。 **这两种Pattern那种好？**
-
- 	
+* 尽量使用3×3尺寸的卷积核，甚至更小（2×2或者1×1），stride取1（除去第一层可以采用稍大尺寸的卷积核）。为什么要用这么小的卷积核？为什么stride要取1？为什么第一层可以采用稍大的卷积核？
+* 使用Pooling（2×2）对网络进行1/4采样
+* 采用多层架构，层要足够的过，如果太少那么性能就不太好。
+* Pattern设计  （**注意最后一层FC，不采用ReLU激活函数**）因为最后一层的输出要送到SOFTMAX里面。 **这两种Pattern那种好？**
     * [CONV-RELU-POOL]*N+[FC-RELU]*M+SOFTMAX
-
- 	
     * [CONV-RELU-CONV-RELU-POOL]*N+[FC-RELU]*M+SOFTMAX
-
-
-
 
 
 OK，我们来看一下这个例子
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe3dfa8dc51.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Kc4gmfbC4d.png?imageslim)
 
 可见单单去掉一个FC是可以的，两个FC会稍微好一点。
 
@@ -651,13 +591,7 @@ OK，我们来看一下这个例子
 实际上后面介绍的一些经典的著名的卷机网络都是通过很多的实验总结出来的。**想****不知道现在有什么进展？**
 
 
-
-
-
-
 # 使用已经训练好的网络训练自己的样本
-
-
 
 
 Transfer Learning with CNNs
@@ -667,28 +601,22 @@ Transfer Learning with CNNs
 有很多利害的网络已经被别人训练出来了，那么我们在做我们的东西的时候，可不可以拿过来用呢？怎么用呢？
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abe3e697a1a7.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/fLmCB5amdE.png?imageslim)
 
 比如说，我们已经有了一个在 ImageNet 上训练好的网络。有可能是别人的，也有可能是自己的。
 
 那么，如果我们自己的任务是识别一些东西，而这个时候自己要做的任务的样本和类别不是很多，那么我可以这样：
 
-
-
- 	
-  * 比如说我们自己的任务是识别交通标识，但是我手里的这些东西的样本和类别不是很多，比如只有8种。那么我们保持那个训练好的网络的绝大部分不动，而把后面的分类的两层去掉，比如说把原来的 FC-1000 和 SOFTMAX 换成 FC-8 和SOFTMAX 。这样我就可以拿别人训练好的 ImageNet ，很容易的训练出我自己的东西。**怎么把前面的参数固定住？ 老师说这个是利用的CNN Code，这个不能叫做 fine tuning 吗？**
-
+    * 比如说我们自己的任务是识别交通标识，但是我手里的这些东西的样本和类别不是很多，比如只有8种。那么我们保持那个训练好的网络的绝大部分不动，而把后面的分类的两层去掉，比如说把原来的 FC-1000 和 SOFTMAX 换成 FC-8 和SOFTMAX 。这样我就可以拿别人训练好的 ImageNet ，很容易的训练出我自己的东西。**怎么把前面的参数固定住？ 老师说这个是利用的CNN Code，这个不能叫做 fine tuning 吗？**
 
 那么假如说我的要训练的东西，实际上样本和类别还是比较多的，虽然没有说特别特别多，这个时候还能用别人的已经训练好的东西吗？
 
- 	
   * 比如说我们要训练的样本还是比较多的，那么我们就可以固定网络的前面的层次，只把后面的层次权重在原来的基础上进行训练就行，即 fine tune。那么到底选择后面多少层进行训练呢？这个要看样本的数量，样本的数量越大，需要训练的层次也就需要越多。有可能整个都要在原来的参数的基础上进行训练。要注意一点，这种 fine tuning 的时候学习率不能太高。**上面图片中关于学习率的设定的tips中的player 是什么意思？**
 
 
 很多时候只是做一个fine tune ，如果已经有好用的网络了，要用到自己的场景下，你就可以把他训练的参数拿过来做一个初始化。或者说 parameter transfer 参数迁移。这个不是transfer learning ，这个只是用别人的参数来初始化自己的model。
 
-AlexNet 虽然很老，但是还在用，比如说做电商某种小商品的分类，只有95种类型，就可以直接把AlexNet的最后的1000种换成95种，就是把4096*1000重新随机初始化为4096*95。前面的东西不动，并且把他前面的学习率调小。把后面的4096*95的学习率调高，这样的很开就有一个可用的模型。
+AlexNet 虽然很老，但是还在用，比如说做电商某种小商品的分类，只有95种类型，就可以直接把AlexNet的最后的1000种换成95种，就是把 `4096*1000` 重新随机初始化为 `4096*95` 。前面的东西不动，并且把他前面的学习率调小。把后面的4096*95的学习率调高，这样的很开就有一个可用的模型。
 
 在Caffe的Model-zoo里面可以拿到所有的模型。
 
@@ -708,13 +636,13 @@ AlexNet 虽然很老，但是还在用，比如说做电商某种小商品的分
 
 
 
- 	
+
   * 训练的时候，对图像增加随机噪声
 
- 	
+
   * 在257x257图像中，随机采样224x224的子图
 
- 	
+
   * 图像采用随机左右镜像，以及各种图像sync⽅方法，比如说对图像的亮度变换一下，色度变换一下，以及不同方向的拉伸 scale。
 
 
@@ -726,7 +654,7 @@ AlexNet 虽然很老，但是还在用，比如说做电商某种小商品的分
 
 
 
- 	
+
   * 在 FC 层之间使用Dropout技术，即在前向的时候有一部分是0，有一部分是正确的值，那么反向的时候只有不是0的那些才会被传播修改掉。通常我们dropout比率设定为0.5。**到底是怎么用的？再总结下。**
 
 
@@ -735,7 +663,7 @@ AlexNet 虽然很老，但是还在用，比如说做电商某种小商品的分
 
 
 
-## 
+##
 
 
 
@@ -751,13 +679,13 @@ AlexNet 虽然很老，但是还在用，比如说做电商某种小商品的分
 
 
 
- 	
+
   * 共享卷积核，对高维数据处理无压力。共享卷积核即共享的这组W
 
- 	
+
   * 无需手动选取特征，训练好权重，即得特征。比如说卷积神经网络接一个softmax，直接根据输出的特征进行分类。
 
- 	
+
   * 深层次的网络抽取图像信息丰富，表达效果好  。比如残差网络 Residual network 可以达到152层，或者1024层。确实可以学到更多的信息。**什么是Residual network？**
 
 
@@ -769,22 +697,22 @@ AlexNet 虽然很老，但是还在用，比如说做电商某种小商品的分
 
 
 
- 	
+
   * 需要调参，需要大样本量，训练最好要 GPU。需要大样本是因为小样本容易overfitting，大样本的情况下过拟合的程度会减缓，但是还是有可能存在。
 
- 	
+
   * 物理含义不明确。没办法解释你的神经元在看什么
 
 
 
 
 
-## 
+##
 
 
 
 
-## 
+##
 
 
 
@@ -812,18 +740,16 @@ AlexNet 虽然很老，但是还在用，比如说做电商某种小商品的分
 
 
 
- 	
+
   * 一个简单手势识别CNN实现演示
 
- 	
+
   * ImageNet 网络演示 看的是VGG16
 
- 	
+
   * Deep Dream 代码分析
 
 
 **这几个例子的代码没有找到。后续可以找一下类似的东西看一下。**
 
 **很多东西都可以拆分出来更系统的总结。要仔细看下。**
-
-

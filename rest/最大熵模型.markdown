@@ -25,7 +25,7 @@ tags:
 
 
 
- 	
+
   1. 七月在线 机器学习
 
 
@@ -56,43 +56,43 @@ tags:
 
 
 
- 	
+
   * 理解并掌握熵Entropy的定义
 
- 	
+
     * 理解 “Huffman编码是所有编码中总编码长度最短的” 熵含义
 
 
 
 
- 	
+
   * 理解联合熵H(X,Y)、相对熵D(X||Y) 、条件熵H(X|Y)、互信息I(X,Y)的定义和含义，并了解如下公式：
 
- 	
+
     * \(H(X\mid Y) = H(X,Y) - H(Y)=H(X) - I(X,Y)\)
 
- 	
+
     * \(H(Y\mid X) = H(X,Y) - H(X)=H(Y) – I(X,Y)\)
 
- 	
+
     * \(I(X,Y) = H(X) - H(X\mid Y) = H(X) + H(Y) - H(X,Y) \geq 0\)
 
 
 
 
- 	
+
   * 掌握最大熵模型 Maxent
 
- 	
+
   *  Maximum Entropy Models
 
- 	
+
   * 了解最大熵在自然语言处理NLP中的应用
 
- 	
+
   * 最大熵模型和极大似然估计MLE的关系
 
- 	
+
   * 副产品：了解数据分析、函数作图的一般步骤
 
 
@@ -107,13 +107,7 @@ tags:
 预备定理
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb9d7330d74.png)
-
-
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/F34f9GgC6g.png?imageslim)
 
 # 一个例子作为引子
 
@@ -150,8 +144,7 @@ tags:
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb9daadde4e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/jhhalEdh5f.png?imageslim)
 
 
 
@@ -175,13 +168,13 @@ tags:
 
 
 
- 	
+
   * 左边比右边轻
 
- 	
+
   * 右边比左边轻
 
- 	
+
   * 两边同样重
 
 
@@ -190,12 +183,9 @@ tags:
 
 ## 问题解答：
 
-
 称量方法如下图：
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ad9e2b924ef6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/fhKKFDmme6.png?imageslim)
 
 因此，答案为：至少称 2 次就可以找出假币。
 
@@ -245,10 +235,10 @@ OK，下面就是讲怎么知道2是称量来确保找到假币的下界的：
 
 
 
- 	
+
   * X的总不确定度是：\(H(x)=log\mid X\mid=log 5\)
 
- 	
+
   * Y的表达能力是：\(H(Y)=log\mid Y\mid=log3\)
 
 
@@ -303,16 +293,9 @@ OK，到这里，我们就大概知道了这种基本的称假币问题，所引
 
 ## 解释Huffman编码
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/l67ebbBLFA.png?imageslim)
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb9e3c70f8b.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb9e4266fdf.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/53gcC6H9EL.png?imageslim)
 
 先把至少的拿出来，再把其次的拿出来，因为这里面是天平，所以是三叉树，选三个最小的拿出来，得到结果之后再选三个最小的拿出来就得到了。**没明白？什么是Huffman编码？与这个地方有什么关系吗？**
 
@@ -323,34 +306,7 @@ OK，到这里，我们就大概知道了这种基本的称假币问题，所引
 **需要自己实现一遍**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abb9e4ba0656.png)
-
-
-
-
-
-### 
-
-
-
-
-### 
-
-
-
-
-### 
-
-
-
-
-### 
-
-
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/fGK8GebH8G.png?imageslim)
 
 
 熵的那部分我拿出来了。
@@ -370,10 +326,10 @@ Maximum Entropy
 
 
 
- 	
+
   * 承认已知事物(知识)
 
- 	
+
   * 对未知事物不做任何假设，没有任何偏见
 
 
@@ -384,19 +340,13 @@ Maximum Entropy
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc3510d0599.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/hmI7aAihKK.png?imageslim)
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc351e43ae9.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/14DLHmHIk2.png?imageslim)
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc3528c33ee.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Kl29cCIF61.png?imageslim)
 
 怎么解呢？
 
@@ -405,129 +355,92 @@ Maximum Entropy
 因此问题转化为：计算X和Y的分布，使 H(Y|X) 达到最大值，并且满足如下条件：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae05ae1b8427.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Be77lfh906.png?imageslim)
 
 即可以写成：
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc3545c3df6.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/3Cbh4dEiF2.png?imageslim)
 
 OK，这样就可以使用 Lagrange 方法。
 
 
 ## 而Maxent的一般式
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc355029b2b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/e0haI09mI4.png?imageslim)
 
 其中得特征(Feature)和样本(Sample)：
 
 特征：(x,y)
 
-
-
- 	
-  * y:这个特征中需要确定的信息
-
- 	
-  * x:这个特征中的上下文信息
+* y:这个特征中需要确定的信息
+* x:这个特征中的上下文信息
 
 
 样本：关于某个特征(x,y)的样本，特征所描述的语法现象在标准集合里的分布：
 
- 	
-  * (xi,yi)对
 
- 	
-  * yi 是 y 的一个实例
-
- 	
-  * xi 是 yi 的上下文
-
- 	
-  * (x1,y1)  (x2,y2)  (x3,y3) ……
+* (xi,yi)对
+* yi 是 y 的一个实例
+* xi 是 yi 的上下文
+* (x1,y1)  (x2,y2)  (x3,y3) ……
 
 
 特征函数
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc3563a5b8b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/JDA7Fig1BG.png?imageslim)
 
 条件 Constraints
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc356d1000a.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/a7aE0lhbJE.png?imageslim)
 
 那么我们想在这个模型熵取期望的话：
 
-特征 f 在模型中的期望值：
+特征 $f$ 在模型中的期望值：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae05be31be19.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/KGb0C38b4b.png?imageslim)
 
-
-其中 p(xi)替换为实验中给定的。
+其中 $p(xi)$ 替换为实验中给定的。
 
 
 ## 最大熵模型：最大条件熵
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc3580de209.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/cb5DJmfL69.png?imageslim)
 
 最大熵模型在NLP中的完整提法
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc358e3cb9b.png)
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/0A5IJkI8GH.png?imageslim)
 
 
 ## 最大熵模型总结
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc3599e9055.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/f5hBLLlGKa.png?imageslim)
 
 OK，这里做一些解释：为什么要求maxH(Y|X)，不求maxH(x,y) 因为我们给定了样本，给定了x去求y 。
 
 特征函数是什么？为额什么会有这些特征函数？
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae05c7fc51f6.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/5a7A3e5A07.png?imageslim)
 
 是样本上某个(x,y)的频率，可以近似于概率。
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae05c919d9e4.png)这个是实际的这个，想让它等于样本上的\(\widetilde{E}(f_i)\) 。
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/GgbDCH4hHK.png?imageslim)这个是实际的这个，想让它等于样本上的\(\widetilde{E}(f_i)\) 。
 
 
 
 因此可以列出Lagrange函数：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc35a500e6c.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/9gCFaAimdd.png?imageslim)
 
 最大熵模型MaxEnt的目标拉格朗日函数L
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc35b2822af.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/BHCdDhCAIi.png?imageslim)
 
 上面求偏导的过程比较麻烦，因为是一个函数对一个函数求导。
 
@@ -536,14 +449,12 @@ OK，这里做一些解释：为什么要求maxH(Y|X)，不求maxH(x,y) 因为�
 “泛函求导”** 泛函求导这部分可以单独拿出来。**
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc35c339b35.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/4BimLeg40I.png?imageslim)
 
 泛函求导——“类比”
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc35cfb5e91.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/h3LGdmmCK8.png?imageslim)
 
 嗯，补充完了，这个就说明了L的第一个括号里面求导之后的结果为什么是那样的。
 
@@ -552,20 +463,16 @@ OK，这里做一些解释：为什么要求maxH(Y|X)，不求maxH(x,y) 因为�
 最优解形式Exponential：求偏导，等于0
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc35dfba40e.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/fCbHAcL0eg.png?imageslim)
 
 这个地方解释一下：把\(exp(1-\lambda_0)\) 写成 \(Z_{\lambda}(x)\)，然后把得到的 \(p(y|x)\) 带回到约束条件\(\sum_{y\in Y}^{} p(y|x)=1\) 里面，让它加和等于去，这样的话就是：
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae05e34f1df1.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/hBBCHHkb7J.png?imageslim)
 
 由于是关于 y 的求和，而  \(Z_{\lambda}(x)\) 与 y 无关，因此，可以提出来，即：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae05e5b11384.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/H4Fld0ki4m.png?imageslim)
 
 
 
@@ -575,10 +482,7 @@ OK，这里做一些解释：为什么要求maxH(Y|X)，不求maxH(x,y) 因为�
 # 最大熵模型与 Logistic/Softmax 回归
 
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc35ee7cb17.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Jeh7Hf8A3F.png?imageslim)
 
 Logistic回归的这个式子不管c等于0还是1，都可以写成：
 
@@ -589,8 +493,7 @@ Logistic回归的这个式子不管c等于0还是1，都可以写成：
 直接推广可以得到：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/04/img_5ae05e9ad80bd.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/D2L3jCm32f.png?imageslim)
 
 底下是规划因子，上面就是这个e的某某，所以Logistic回归它给出的结论也是在那种情况之下的熵最大的情况，求得那个分界面，分割线，就是在那种情况下熵最大的一种分类。
 
@@ -599,18 +502,15 @@ Logistic回归的这个式子不管c等于0还是1，都可以写成：
 之前我们在讲极大似然估计的时候：说最大似然估计是：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc35fb21fee.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/4BAlIKcfEh.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc3606eadcc.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/lLg38GABJe.png?imageslim)
 
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc36114327b.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/bmbJC9DHd2.png?imageslim)
 
 上面第二个式子是二元情况。第二项是常数（因为凡是加一个横杠的指的是我们的样本空间），可以忽略，第一项就是一开始从其他方法求出的条件熵的定义式。
 
@@ -619,25 +519,21 @@ Logistic回归的这个式子不管c等于0还是1，都可以写成：
 也就是说：MLE与条件熵：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc361cc02f3.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Bgi8Jl4Iik.png?imageslim)
 
 求L的对偶函数
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc362b945f2.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/mE90I196jg.png?imageslim)
 
 
 
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc3635df859.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/D1iaBk1gGl.png?imageslim)
 
 最终得出的结论：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc364630012.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/AIAkEGfA86.png?imageslim)
 
 可以看出，熵和似然是通过两个思路看待同一个问题。
 
@@ -646,30 +542,21 @@ Logistic回归的这个式子不管c等于0还是1，都可以写成：
 
 ## λ的求解
 
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc365784316.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Lj7jLGBmKF.png?imageslim)
 
 IIS要了解下。
 
 另外 softmax目标函数是这个样子：
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc367892d0e.png)
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/jHgKjKAHmb.png?imageslim)
 
 # 再次强调一下：
 
 
 
 
-### ![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc369f950f0.png)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/3KIHl56jJC.png?imageslim)
 
 
 
@@ -678,13 +565,7 @@ IIS要了解下。
 
 最大熵模型出了与softmax是一直的，而且在NLP上还是用的很多的。
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc36ae80603.png)
-
-
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/2cj4mglG7d.png?imageslim)
 
 
 
@@ -701,42 +582,19 @@ IIS要了解下。
 假设最大熵模型当前的参数向量是λ，希望找到新的参数向量λ+δ，使得模型的对数似然函数值L增加。重复这一过程，直至找到对数似然函数的最大值。
 
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc36c43da08.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/dK0hadBjI2.png?imageslim)
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/CgDb6G4IEH.png?imageslim)
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/bEJfJck514.png?imageslim)
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/978dLh0839.png?imageslim)
 
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc36cbc58aa.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/jJH71HbegL.png?imageslim)
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/3K0KGGjD1k.png?imageslim)
 
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc36d0e8829.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc36da2a5f9.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc36e0d1096.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc36e8537f6.png)
-
-
-
-
-![](http://106.15.37.116/wp-content/uploads/2018/03/img_5abc36eeb4097.png)
-
-
-
-
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/edhGBD2HBj.png?imageslim)
 
 
 
@@ -748,25 +606,25 @@ IIS要了解下。
 
 
 
- 	
+
   * Elements of Information Theory (Cover & Thomas)
 
- 	
+
   * http://ufldl.stanford.edu/wiki/index.php/Softmax%E5%9B%9E%E5%BD%92
 
- 	
+
   * A maximum entropy approach to natural language processing (Adam Berger)
 
- 	
+
   * A Brief MaxEnt Tutorial (Adam Berger)
 
- 	
+
   * Learning to parse natural language with maximum entropy models (Adwait Ratnaparkhi)
 
- 	
+
   * A simple Introduction to Maximum Entropy Models for Natural Language Processing (Adwait Ratnaparkhi)
 
- 	
+
   * 统计学习方法，李航著，清华大学出版社，2012年
 
 
