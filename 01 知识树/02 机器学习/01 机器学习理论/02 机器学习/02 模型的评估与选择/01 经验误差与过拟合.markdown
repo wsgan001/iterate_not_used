@@ -1,85 +1,19 @@
----
-author: evo
-comments: true
-date: 2018-05-23 11:36:50+00:00
-layout: post
-link: http://106.15.37.116/2018/05/23/ml-%e7%bb%8f%e9%aa%8c%e8%af%af%e5%b7%ae%e4%b8%8e%e8%bf%87%e6%8b%9f%e5%90%88/
-slug: ml-%e7%bb%8f%e9%aa%8c%e8%af%af%e5%b7%ae%e4%b8%8e%e8%bf%87%e6%8b%9f%e5%90%88
-title:
-wordpress_id: 6343
-categories:
-- 人工智能学习
-tags:
-- Machine Learning
----
-
-<!-- more -->
-
-[mathjax]
-
-**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
-
-
-# ORIGINAL
+# 经验误差与过拟合
 
 
 
+## TODO
 
-
-
-  1. 《机器学习》周志华
-
-
-
-
-# TODO
-
-
-
-
-
-
-  * **并没有很详细的说，看看后面要怎么整合，或者拆分**
-
-
-
-
-
-* * *
-
-
-
-
-
-# INTRODUCTION
-
-
-
-
-
-
-  * aaa
-
-
-
-
+* **并没有很详细的说，看看后面要怎么整合，或者拆分**
 
 # 误差
 
-
-
-
 ## 错误率、精度
-
 
 比如说有 m 个样本，其中有 a 个样本分类错误。那么：
 
-
-
-
-  * 错误率 (error rate)：分类错误的样本数占样本总数的比例：E=a/m
-
-  * 精度 (accuracy) ：精度=1 - 错误率：  1 - a/m
+* 错误率 (error rate)：分类错误的样本数占样本总数的比例：$E=a/m$
+* 精度   ( accuracy )：精度= 1-错误率：  $1- a/m$
 
 
 
@@ -150,13 +84,6 @@ tags:
 
 
 
+# REF
 
-
-
-* * *
-
-
-
-
-
-# COMMENT
+1. 《机器学习》周志华
