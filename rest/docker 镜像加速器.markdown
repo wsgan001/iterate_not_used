@@ -1,72 +1,20 @@
----
-author: evo
-comments: true
-date: 2018-06-01 15:10:47+00:00
-layout: post
-link: http://106.15.37.116/2018/06/01/docker-%e9%95%9c%e5%83%8f%e5%8a%a0%e9%80%9f%e5%99%a8/
-slug: docker-%e9%95%9c%e5%83%8f%e5%8a%a0%e9%80%9f%e5%99%a8
-title: docker 镜像加速器
-wordpress_id: 7326
-categories:
-- 基础工具使用
----
-
-<!-- more -->
-
-[mathjax]
-
-**注：非原创，所有版权属于原作者，原文已列在 ORIGINAL 中。为了方便个人学习做了整合、修改，仅供个人学习使用。**
-
+# docker 镜像加速器
 
 # ORIGINAL
 
+1. [CentOS7安装Docker](https://www.jianshu.com/p/3a4cd73e3272)
 
-
-
-
-
-  1. [CentOS7安装Docker](https://www.jianshu.com/p/3a4cd73e3272)
-
-
-  2. [docker怎么修改拉取源从指定的国内仓库拉取镜像？](https://www.zhihu.com/question/55135855)
-
-
-
-
-# TODO
-
-
-
-
-
-
-  * aaa
-
-
-
-
-
-* * *
-
-
-
-
+2. [docker怎么修改拉取源从指定的国内仓库拉取镜像？](https://www.zhihu.com/question/55135855)
 
 # INTRODUCTION
 
-
-
-
-
-
-  * aaa
-
-
 Docker支持以下的CentOS版本：
-CentOS 7 (64-bit)
-CentOS 6.5 (64-bit) 或更高的版本
+
+- CentOS 7 (64-bit)
+- CentOS 6.5 (64-bit) 或更高的版本
 
 前提条件
+
 目前，CentOS 仅发行版本中的内核支持 Docker。
 Docker 运行在 CentOS 7 上，要求系统为64位、系统内核版本为 3.10 以上。
 Docker 运行在 CentOS-6.5 或更高的版本的 CentOS 上，要求系统为64位、系统内核版本为 2.6.32-431 或者更高版本。

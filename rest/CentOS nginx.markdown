@@ -6,63 +6,23 @@ TODO
 * **现在还是与 Django 比较相关的，后续全面总结一下。**
 
 
-
-
-
-* * *
-
-
-
-
-
-# INTRODUCTION
-
-
-
-
-
-
-  * aaa
-
-
-
-
-
-
-
-
-
 # 安装
 
-
-
-
-
-
-  * yun install nginx
-
-
-
+* yun install nginx
 
 ## 配置
 
 
 转到 nginx 路径下：
 
-
-
-
-  * cd /etc/nginx
-
+* cd /etc/nginx
 
 nginx 在 centos 上安装是没有 sites-availables 和 sites-enabled 两个文件夹的，因此需要创建：
 
 
-  * mkdir sites-availables
+* mkdir sites-availables
 
-
-  * mkdir sites-enabled
-
+* mkdir sites-enabled
 
 然后把 sites-enabled 这个文件夹添加到 nginx.conf 里面：
 
@@ -117,24 +77,13 @@ OK，现在才开始写配置文件：
 
 # 使用
 
+* sudo service nginx start
 
+* sudo service nginx stop
 
+* sudo service nginx restart
 
-
-
-  * sudo service nginx start
-
-
-  * sudo service nginx stop
-
-
-  * sudo service nginx restart
-
-
-  * systemctl status nginx.service # 查看 nginx 当前状态
-
-
-
+* systemctl status nginx.service # 查看 nginx 当前状态
 
 
 
