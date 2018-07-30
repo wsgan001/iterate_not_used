@@ -1,70 +1,4 @@
----
-author: evo
-comments: true
-date: 2018-05-24 11:51:03+00:00
-layout: post
-link: http://106.15.37.116/2018/05/24/ml-%e8%ae%a1%e7%ae%97%e5%ad%a6%e4%b9%a0%e7%90%86%e8%ae%ba-%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86/
-slug: ml-%e8%ae%a1%e7%ae%97%e5%ad%a6%e4%b9%a0%e7%90%86%e8%ae%ba-%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86
-title:
-wordpress_id: 6555
-categories:
-- 人工智能学习
-tags:
-- Machine Learning
----
-
-<!-- more -->
-
-[mathjax]
-
-**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
-
-
-# ORIGINAL
-
-
-
-
-
-
-  1. 《机器学习》周志华
-
-
-
-
-# TODO
-
-
-
-
-
-
-  * aaa
-
-
-
-
-
-* * *
-
-
-
-
-
-# INTRODUCTION
-
-
-
-
-
-
-  * aaa
-
-
-
-
-# 介绍一下计算学习
-
+# 基础知识
 
 
 
@@ -73,7 +7,7 @@ tags:
 
 计算学习理论 (computational learning theory) 研究的是关于通过 “计算 ” 来进行 “学习” 的理论，即关于机器学习的理论基础。
 
-其目的是分析学习任务的困难本质，为学习算法提供理论保证，并根据分析结果指导算法设计。**嗯利害，关于计算学习有更系统的书吗？想系统总结下。**
+其目的是分析学习任务的困难本质，为学习算法提供理论保证，并根据分析结果指导算法设计。<span style="color:red;">嗯利害，关于计算学习有更系统的书吗？想系统总结下。</span>
 
 
 
@@ -134,24 +68,6 @@ McDiarmid 不等式[McDiarmid, 1989]:若 吻,...,xm 为 m 个独立随 机变量
 
 
 
+## REF
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
+1. 《机器学习》周志华
