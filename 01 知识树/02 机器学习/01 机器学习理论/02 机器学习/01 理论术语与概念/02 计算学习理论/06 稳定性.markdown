@@ -1,78 +1,9 @@
----
-author: evo
-comments: true
-date: 2018-05-24 11:56:17+00:00
-layout: post
-link: http://106.15.37.116/2018/05/24/ml-%e8%ae%a1%e7%ae%97%e5%ad%a6%e4%b9%a0%e7%90%86%e8%ae%ba-%e7%a8%b3%e5%ae%9a%e6%80%a7/
-slug: ml-%e8%ae%a1%e7%ae%97%e5%ad%a6%e4%b9%a0%e7%90%86%e8%ae%ba-%e7%a8%b3%e5%ae%9a%e6%80%a7
-title: 
-wordpress_id: 6570
-categories:
-- 人工智能学习
-tags:
-- Machine Learning
----
-
-<!-- more -->
+# 稳定性
 
 
+TODO
 
-
-[mathjax]
-
-
-
-
-**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
-
-
-
-
-# ORIGINAL
-
-
-
-
-
-
-  1. 《机器学习》周志华
-
-
-
-
-# TODO
-
-
-
-
-
-
-  * aaa
-
-
-
-* * *
-
-
-
-
-# INTRODUCTION
-
-
-
-
-
-
-  * aaa
-
-
-
-
-
-
-
-
-
+- 这一章也没有整理
 
 
 
@@ -193,32 +124,9 @@ t e e = 2 5
 
 
 
+***
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-# COMMENT
-
-
+下面都是补充阅读
 
 
 [Valiant, 1984]提出PAC学习，由此产生了 “计算学习理论”这个机器学 习的分支领域.[Kearns and Vazirani, 1994]是一本很好的入门教材.该领域最
@@ -236,3 +144,9 @@ Rademacher 复杂度最早被［Koltchinskii and Panchenko, 2000］引入机器 
 
 本章介绍的内容都是关于确定性(deterministic)学习问题，即对于每个示 例®都有一个确定的标记y与之对应;大多数监督学习都属于确定性学习问题. 但还有一种随机性(stochastic)学习问题，其中示例的标记可认为是属性的后 验概率函数，而不再是简单确定地属于某一类.随机性学习问题的泛化误差界 分析可参见［Devroye et al., 1996］.
 
+
+
+
+## REF
+
+1. 《机器学习》周志华

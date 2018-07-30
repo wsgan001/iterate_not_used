@@ -1,82 +1,8 @@
----
-author: evo
-comments: true
-date: 2018-05-24 11:51:38+00:00
-layout: post
-link: http://106.15.37.116/2018/05/24/ml-%e8%ae%a1%e7%ae%97%e5%ad%a6%e4%b9%a0%e7%90%86%e8%ae%ba-pac%e5%ad%a6%e4%b9%a0/
-slug: ml-%e8%ae%a1%e7%ae%97%e5%ad%a6%e4%b9%a0%e7%90%86%e8%ae%ba-pac%e5%ad%a6%e4%b9%a0
-title:
-wordpress_id: 6566
-categories:
-- 人工智能学习
-tags:
-- Machine Learning
----
+# PCA 学习
 
-<!-- more -->
+TODO
 
-
-
-
-[mathjax]
-
-
-
-
-**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
-
-
-
-
-# ORIGINAL
-
-
-
-
-
-
-  1. 《机器学习》周志华
-
-
-
-
-# TODO
-
-
-
-
-
-
-  * aaa
-
-
-
-* * *
-
-
-
-
-# INTRODUCTION
-
-
-
-
-
-
-  * aaa
-
-
-
-
-
-
-
-
-
-
-
-
-
+- 这一章也没有整理。
 
 
 
@@ -128,25 +54,6 @@ P(E(h) < e) > 1 — d，    (12.9)
 
 
 
+## REF
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-# COMMENT
+1. 《机器学习》周志华

@@ -1,84 +1,8 @@
----
-author: evo
-comments: true
-date: 2018-05-24 11:55:13+00:00
-layout: post
-link: http://106.15.37.116/2018/05/24/ml-%e8%ae%a1%e7%ae%97%e5%ad%a6%e4%b9%a0%e7%90%86%e8%ae%ba-rademacher%e5%a4%8d%e6%9d%82%e5%ba%a6/
-slug: ml-%e8%ae%a1%e7%ae%97%e5%ad%a6%e4%b9%a0%e7%90%86%e8%ae%ba-rademacher%e5%a4%8d%e6%9d%82%e5%ba%a6
-title: 
-wordpress_id: 6568
-categories:
-- 人工智能学习
-tags:
-- Machine Learning
----
+# Rademacher 复杂度
 
-<!-- more -->
+TODO
 
-
-
-
-[mathjax]
-
-
-
-
-**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
-
-
-
-
-# ORIGINAL
-
-
-
-
-
-
-  1. 《机器学习》周志华
-
-
-
-
-# TODO
-
-
-
-
-
-
-  * aaa
-
-
-
-* * *
-
-
-
-
-# INTRODUCTION
-
-
-
-
-
-
-  * aaa
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- 这一章也没有整理
 
 12.5 Rademacher复杂度
 
@@ -310,31 +234,6 @@ V m
 
 
 
+## REF
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-# COMMENT
-
-
-
-
-
-
+1. 《机器学习》周志华

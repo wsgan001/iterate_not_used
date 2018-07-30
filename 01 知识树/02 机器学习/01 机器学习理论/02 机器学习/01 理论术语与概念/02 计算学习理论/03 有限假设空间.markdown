@@ -1,93 +1,10 @@
----
-author: evo
-comments: true
-date: 2018-05-24 11:52:38+00:00
-layout: post
-link: http://106.15.37.116/2018/05/24/ml-%e8%ae%a1%e7%ae%97%e5%ad%a6%e4%b9%a0%e7%90%86%e8%ae%ba-%e6%9c%89%e9%99%90%e5%81%87%e8%ae%be%e7%a9%ba%e9%97%b4/
-slug: ml-%e8%ae%a1%e7%ae%97%e5%ad%a6%e4%b9%a0%e7%90%86%e8%ae%ba-%e6%9c%89%e9%99%90%e5%81%87%e8%ae%be%e7%a9%ba%e9%97%b4
-title: 
-wordpress_id: 6567
-categories:
-- 人工智能学习
-tags:
-- Machine Learning
----
+# 有限假设空间
 
-<!-- more -->
 
 
+TODO
 
-
-[mathjax]
-
-
-
-
-**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
-
-
-
-
-# ORIGINAL
-
-
-
-
-
-
-  1. 《机器学习》周志华
-
-
-
-
-# TODO
-
-
-
-
-
-
-  * aaa
-
-
-
-* * *
-
-
-
-
-# INTRODUCTION
-
-
-
-
-
-
-  * aaa
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- 这一章也没有整理
 
 
 
@@ -180,18 +97,6 @@ P(五⑻—忠 E(h，、彡 e)彡 1 - d ,    (12.20)
 
 
 
+## REF
 
-
-
-* * *
-
-
-
-
-# COMMENT
-
-
-
-
-
-
+1. 《机器学习》周志华
