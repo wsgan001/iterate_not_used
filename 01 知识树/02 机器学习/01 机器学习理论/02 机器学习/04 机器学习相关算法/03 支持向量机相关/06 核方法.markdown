@@ -1,27 +1,30 @@
 
+# 核方法
+
+TODO
+
+- 基本没怎么看，也没看懂，还是要在之前的看懂的基础上看这个。
 
 
 
+回顾式(6.24)和(6.56)可发现，给定训练样本 $\{(x_1,y_1),(x_2,y_2),\cdots ,(x_m,y_m)\}$ ，若不考虑偏移项 $b$，则无论 SVM 还是 SVR，学得的模型总能表示成核函数 $\kappa(x,x_i)$ 的线性组合。
 
-核方法
+不仅如此，事实上我们有下面这个称为“表示定理”(representor theorem)的更一般的结论：
 
-回顾式(6.24)和(6.56)可发现，给定训练样本 $\{(x_1,y_1),(x_2,y_2),\cdots ,(x_m,y_m)\}$ ，若不考虑偏移项 b,则无论SVM还是SVR，学得的模型总能表示成核函数 $\kappa(x,x_i)$ 的线性组合.不仅如此，事实上我们有下面这个称为“表示定理”(representor theorem)的更一般的结论：
-
-
-定理6.2 (表示定理) 令 $\mathbb{H}$ 为核函数 $\kappa$ 对应的再生核希尔伯特空间，$||h||_{\mathbb{H}}$  表示 $\mathbb{H}$ 空间中关于 h 的范数，对于任意单调递増函数 $\Omega:[0,\infty]\mapsto \mathbb{R}$ 和任意非负损失函数 $\ell:\mathbb{R}^m\mapsto [0,\infty]$ ,优化问题
+定理6.2 (表示定理) 令 $\mathbb{H}$ 为核函数 $\kappa$ 对应的再生核希尔伯特空间，$||h||_{\mathbb{H}}$  表示 $\mathbb{H}$ 空间中关于 $h$ 的范数，对于任意单调递増函数 $\Omega:[0,\infty]\mapsto \mathbb{R}$ 和任意非负损失函数 $\ell:\mathbb{R}^m\mapsto [0,\infty]$ ，优化问题：
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/j0LCLC265G.png?imageslim)
 
-的解总可写为
+的解总可写为：
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180627/AfLc9C1lkK.png?imageslim)
 
 表示定理对损失函数没有限制，对正则化项仅要求单调递增，甚至不要求是凸函数，意味着对于一般的损失函数和正则化项，优化问题(6.57)的最优解 $h*(x)$ 都可表示为核函数 $\kappa(x,x_i)$ 的线性组合；这显示出核函数的巨大威力。
 
 
-人们发展出一系列基于核函数的学习方法，统称为“核方法” (kernel methods).最常见的，是通过“核化”(即引入核函数)来将线性学习器拓展为 非线性学习器。
+人们发展出一系列基于核函数的学习方法，统称为“核方法” (kernel methods)。最常见的，是通过“核化”(即引入核函数)来将线性学习器拓展为非线性学习器。
 
-下面我们以线性判别分析为例来演示如何通过核化来对其进行非线性拓展，从而得到 “核线性判别分析” (Kernelized Linear Discriminant Analysis，简称 KLDA).
+下面我们以线性判别分析为例来演示如何通过核化来对其进行非线性拓展，从而得到 “核线性判别分析” (Kernelized Linear Discriminant Analysis，简称 KLDA)。
 
 我们先假设可通过某种映射 $\phi:\mathcal{X}\mapsto \mathbb{F}$ 将样本映射到一个特征空间 $\mathbb{F}$ ，然后在 $\mathbb{F}$ 中执行线性判别分析，以求得
 
@@ -81,7 +84,7 @@
 
 
 
-# COMMENT
+## COMMENT
 
 下面是补充阅读
 
@@ -117,5 +120,6 @@ SVM已有很多软件包，比较著名的有LIBSVM [Chang and Lin, 2011]和 LIB
 
 
 
-# REF
+## REF
+
 1. 《机器学习》周志华
