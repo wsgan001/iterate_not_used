@@ -1,0 +1,511 @@
+# 支持向量机
+
+
+
+********************************************************************************
+
+
+# 缘由
+
+
+对SVM进行总结。
+
+
+
+\(W^T\) 即W的转置，读作：W transfer。
+
+s.t. 是subject to的所写，意思是：满足于如下条件
+
+
+
+
+# 先说一下SVM的重点和思路
+
+
+SVM的最重要的两点内容：
+
+
+# 为什么寻找最大间隔？
+
+
+
+
+
+
+  1. 直觉上是安全的
+
+
+  2. 如果我们在边界的位置发生了一个小错误（它在垂直方向上被颠倒），这给我们最小的错误分类机会。
+
+
+  3. CV（Computer Vision 计算机视觉 - 这缩写看着可怕）很容易，因为该模型对任何非支持向量数据点的去除是免疫的。什么叫是免疫的？
+
+
+  4. 有一些理论，这是一件好事。
+
+
+  5. 通常它的工作非常好。
+
+
+这里摘自地址：http://slideplayer.com/slide/8610144 (第12条信息) 看看有没有更权威的解释
+
+
+## 最大间隔
+
+
+最大"间隔"的方法，寻找支撑向量。
+
+从hard margin 到 soft margin
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/A9J5c4d1K5.png?imageslim)
+
+最大间隔是一种思路，使SVM具备不错的泛化能力的一种不错的思路。
+
+
+## 引入"核函数"，解决线性不可分
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/2lHH7eC84c.png?imageslim)
+
+然后就是要学习核技巧 kernel trick，以及怎么引入核函数，来使得从线性不可分到线性可分。
+
+
+
+
+# 首先我们准备一些数学知识：
+
+
+
+
+## 先定义一个平面：
+
+
+\(R^3\) 空间里，一个平面可以由平面上一个点 \(P_0\) ，以及一个垂直平面的方向W向量确定
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/hgBlibB9dg.png?imageslim)
+
+任意取平面上一个点P，从原点到P，P_0，做两个向量x,x0，由于W垂直平面的关系可以得到如下定义：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/8GdBJEk7lF.png?imageslim)
+
+红框框出来的式子中，x 向量就是指的平面上的任意一点对应的向量。所以，这个平面可以用wx+b来表示。**利害。没想到平面的公式还可以这么推出来。**
+
+
+## 再看一下两个平行平面的距离：
+
+
+在平面I上任意指定一个点x_1，我们按照w方向找到了x_2，x_2-x_1垂直于两个平面
+
+我们设定 x2-x1=tw，因为x2-x1方向就是w，不过长度需要重新计算，因此两个平面的距离为|tw|
+
+按下一页计算可以得到，使用b来表示的两个平面的距离公式
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/fk2bbkl40b.png?imageslim)
+
+那么这个tw怎么计算呢？
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/hiE6Fa41Fg.png?imageslim)
+
+**利害，还是很清晰的，推到出来两个平行平面之间的距离。**
+
+即：已经知道，平面可以用Wx+b=0来表示，两个平行平面之间的距离计算可以用 W 和 b 来计算。
+
+
+
+我们之前 已经学习了凸优化，因此现在吧凸优化与这个结合起来。
+
+
+
+
+# SVM 对应线性可分的数据
+
+
+
+
+## 想对线性可分的数据进行分类
+
+
+线性可分的情况又叫做，hard-margin linear SVM。
+
+为了使我后面公式推导方便，我把我的正样本和负样本的 label 值设定为+1和-1，然后我想找一个距离我的正样本和负样本的距离最大的平面。
+
+注：这个+1和-1的设定是 SVM 里面所特有的。因为别的机器学习算法里面一般是0或1。
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/22063k5g9G.png?imageslim)
+
+那么我们怎么找到这条分割线呢？**什么叫间隔最大？什么是正负样本之间的间隔？中心点距离？最近的两点间？**
+
+
+
+
+## 首先想知道这个分割超平面大概是什么样子的
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/8539AihEg8.png?imageslim)
+
+1. 先固定w的方向，对正样本来说，可以找到一个平面 \(wx+b_{+1}=0\) ，并且满足所有样本都在线的一侧。同样对负样本也可以在相同的方向，找到另外一个平面 \(wx+b_{-1}=0\) 。
+
+2. 将 \(wx+b_{+1}=0\)  和 \(wx+b_{-1}=0\)  式子左右两边同时乘以或除以某个数，使最终满足 \(b_{+1}-b_{-1}=2\)，此时可以取 \(b=b_{+1}-b_{-1}-1\) 。就得到图中的三个平面。
+
+3. 中间的平面可以用来预测新数据。
+
+
+也就是说，只要W的方向是固定的，那么我一定能找到一个在这个方向上的 W，使得 (b_{+1}-b_{-1}=2\) ，那么这个时候，如果 \(b=b_{+1}-b_{-1}-1\) ，那么这个 Wx+b=0 就是中间的分割超平面 hyperplane。
+
+
+## OK，开始计算最大间隔
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Cceh6DH84A.png?imageslim)
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/je3kbhm03H.png?imageslim)
+
+
+可以计算出这两个平行的超平面之间的距离。
+
+而我们想要的是什么呢？我们想要这个分割超平面能够尽可能的将样本分割开来，也就是想要最大化\(\frac{2}{||w||}\)，同时也等价于最小化：\(\frac{1}{2}||w||^2\)，之所以写成平方是为了计算简单。
+
+
+## OK，现在我们总结一下我们的目标和约束条件
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/j8mBgLhEGh.png?imageslim)
+所以：
+
+
+
+
+  * 最小化 \(\frac{1}{2}||w||^2\)
+
+
+  * 约束条件：\(y_i(w^Tx_i+b)≥1\)
+
+
+之所以约束条件可以写成：\(y_i(w^Tx_i+b)≥1\)  是因为之前我们规定正样本是+1，负样本是-1。i 是样本的编号。
+
+
+## OK，怎么求解上面这个问题呢？
+
+
+我们第一个想到的当然是Lagrange乘子法。因为这个在含有约束条件的求极值问题上经常用到。
+
+但是呢，这其实也是一个二次凸优化问题，因此也可以直接使用 QP 软件求解 w 和 b 。但是，如果用二次规划解决的话有几个问题：**什么是QP软件？怎么使用的？**
+
+
+
+
+  * 当 x 的维度很大的时候，二次凸优化问题解起来不是很高效，
+
+
+  * 如果只是这么求的话，那么没有办法引入我们后面说的核函数。那样SVM就只能解一些线性可分的问题了。
+
+
+因此，我们还是使用Lagrange乘子法。
+
+
+## 使用 Lagrange 乘子法解决这个问题
+
+
+也即求对偶问题的方法。
+
+我们先构造拉格朗日乘子
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/BJ80G1eG9E.png?imageslim)
+
+原问题是极小极大，对偶问题是极大极小：**这个Lagrange方法还是要再熟悉一遍。**
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/AFaB0L4Jba.png?imageslim)
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/14JAG3GIh2.png?imageslim)
+
+对 L(w,b,a) 分别对 w，b求偏导，令其为0：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/C7aiaLjFBE.png?imageslim)
+
+注意：这里的x是向量，y是标量，求出来的 w 还是一个向量 。对b求导得到了一个关于a的约束条件。
+
+有了这两个式子，我们可以化简之前的 Lagrange 函数：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/DIeJbFfaAl.png?imageslim)
+
+**嗯 还是很清楚的，但是一般不都是因为求偏导为0得到的方程带入到约束条件里面吗？为什么这个地方把它带入到 Lagrange 函数里面了？要明确下是不是经常带入到约束条件中？**
+
+OK，我们把我们的问题重新整理下：为什么这个时候开始求极大值了？
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/C7CAJ5clgk.png?imageslim)
+
+利害了，又可以转换成一个Lagrange函数，
+
+不过，我们先做一下总结，把问题重新定义一边：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/HcbIkE9kk9.png?imageslim)
+
+如果我们根据左边的目标和约束条件求出了\(\alpha\)，那么我们就可以求出w'和b'，（这个w'就是之前的Lagrange函数的对w求偏导时候得到的w的满足的方程）。同时也就可以知道这个超平面的方程了。**为什么\(\alpha_j\neq 0\)?**
+
+OK，重新理解下问题
+
+原问题是求解w，其维度和x是一致的，现在求解α，其维度和样本数目一致的，改变了求解问题的维度。**这一点有什么好处吗？**
+
+观察最优化目标函数，包含样本x的计算只有点积的形式，方便我们引入核函数。核函数也只能在对偶问题形式下才能引入。**为什么能方便引入核函数？通过核函数把样本的维度提高？怎么做到的？为什么扩展到高纬度，就有可能线性可分了？**
+
+**而且为什么到这里这个问题就解决完了？**
+
+
+
+
+
+
+# SVM 对应线性不可分的数据
+
+
+
+
+## 不是线性可分的时候怎么办呢？
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/FfCKKGH3dg.png?imageslim)
+
+当数据不是线性可分的时候，怎么做呢？
+
+在没办法完全可分的情况。我们可以允许过这条线一些。但是不能过太多，也就是所有分错的总和一定要小一些。这个C是人为指定的权重参数，但是是多少呢？
+
+我们可以引入松弛变量 ζ ，所以目标与约束变为：
+
+
+
+
+  * 最小化\(\frac{1}{2}\left \| w \right \|^2+C\sum_{i=1}^{n}\zeta_i\)
+
+
+  * 满足约束条件 \(y_i(w^tx+b)≥1-ζ_i\)，\(ζ_i≥0\)
+
+
+
+
+## 继续使用 Lagrange 乘子法
+
+
+对偶问题形式：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/7gD3c2jLc8.png?imageslim)
+
+求解极大极小问题，首先求偏导w，b，ζ，并且带入L
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/ie9la1el0f.png?imageslim)
+
+带入后化简为：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/AGlC49Id6D.png?imageslim)
+
+可见，这个与之前的线性可分的那个是一样，但是约束条件变了：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/36L5D2ALD1.png?imageslim)
+
+我们只需要求解\(\alpha_i\)就可以。
+
+重新定义后如下：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/jj5giFmkfm.png?imageslim)
+
+**为什么到这个地方就没有了？最小化的这个式子怎么求的？**
+
+
+
+
+# 核函数
+
+
+
+
+## 什么是核函数？
+
+
+在 Logistic 回归里面，有一种处理非线性的问题的方法：比如是有x1,x2两个特征，然后，我增加x1^2，x2^2，x1x2这三个维度，就提升了原来的数据的维度，由两维的提升为5维的，这样的方法就叫做维度提升函数。**这个Logistic里面有讲到过吗？就是这样简单的添加几个维度就行吗？**
+
+对于SVM问题也应用这个维度提升函数，即使我们用维度提升函数，但是在计算我们最优化问题的时候还是只用到了我们维度提升函数的内积。所以，我可以先设计一个维度提升函数，但是只需要知道函数的内积就可以了 \(k(x_i,x_j) = R^N×R^N->R\) 。跳过微度提升函数，而直接求得函数内积的这样一个函数叫做核函数。**？还是没明白？到底讲的什么？**
+
+如果要设计自己的核函数的时候，就要满足Mercer条件，否则无法使用QP来求解。**什么是Mercer条件？为什么不满足这个条件就无法使用QP来求解？怎么设计自己的核函数？**
+
+将 \(x_i^Tx_j\) 计算替换为 \(k(x_i,x_j)\) ，点积也被称为线性核。
+
+
+## 可以通过核函数提升特征维度
+
+
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/0Dh5HKc2K9.png?imageslim)
+
+提升维度，使得样本更加容易线性可分。当然并不是说一定线性可分。
+
+
+## 常用的核函数：
+
+
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/fCfeC1KmFg.png?imageslim)
+
+第四个核函数，q很高的话，维度的提升就很大。
+
+**但是这些核函数到底使用那个呢？难道一个一个试出来？**
+
+在用了核函数之后，也可以使用标准低QP软件进行求解。**为什么？**
+
+《机器学习实战》中说：最流行的核函数：径向基函数(radial basis function)，径向基函数的高斯版本，其具体的公式为： **要确认下。**
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/6bHlK4A0bC.png?imageslim)
+
+特别的核函数，高斯核：**还需要在了解下高斯核。**
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Hkh9C2aLG8.png?imageslim)
+
+
+
+
+## SMO算法：
+
+
+除了使用标准的QP软件进行求解，还由一些更快速的解法。常用的就是这个SMO，它的思想就是在约束条件下选取一对\(\alpha\)。**什么是SMO算法？**
+
+
+
+
+  * SMO用途：用于训练 SVM
+
+
+  * SMO目标：求出一系列 alpha 和 b,一旦求出 alpha，就很容易计算出权重向量 w 并得到分隔超平面。
+
+
+  * SMO思想：是将大优化问题分解为多个小优化问题来求解的。
+
+
+  * SMO原理：每次循环选择两个 alpha 进行优化处理，一旦找出一对合适的 alpha，那么就增大一个同时减少一个。
+
+
+    * 这里指的合适必须要符合一定的条件
+
+
+      1. 这两个 alpha 必须要在间隔边界之外
+
+
+      2. 这两个 alpha 还没有进行过区间化处理或者不在边界上。
+
+
+
+
+
+    * 之所以要同时改变2个 alpha；原因是我们有一个约束条件：\(\sum_{i=1}^{m} a_i·label_i=0\)；如果只是修改一个 alpha，很可能导致约束条件失效。
+
+
+
+
+
+**SMO也需要系统的总结**
+
+
+
+
+# 我们再回头看一下之前的线性SVM
+
+
+
+
+## 损失函数和惩罚项
+
+
+不用核的线性SVM也是很常用的，因为最大间隔这个方式本身就已经由很好的泛化能力。因此，线性SVM在很多场合都是非常常用的。
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/je3eHdK0GI.png?imageslim)
+
+没想到可以这么化，penalty是什么意思？为什么前面是hingeloss？因为大于0的时候，是有值的，小于0的时候就取0 了。**厉害了**，
+
+把前面的loss叫做合页损失，把后面的叫做惩罚项。**为什么叫做惩罚项？**
+
+于是我们就可以把线性的SVM归类到一个损失函数和一个模型复杂度的惩罚项这样一个框架里面。**厉害了。**
+
+
+## 类似的还有：
+
+
+**这些都要了解下。需要补充**
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/gbbDlLEHLG.png?imageslim)
+
+# SVM扩展
+
+* 多问类的SVM算法
+* SVR：支持向量回归问题
+* 基于SVM的Novelty detection
+* 支持向量聚类算法
+* SVM分类的概率输出
+
+
+**怎么处理多分类？**
+
+**这个扩展项里面的都没有讲。要自己补充进来。都需要掌握。**
+
+
+
+
+
+
+# SVM算法特点
+
+
+优点：
+
+* 泛化（由具体的、个别的扩大为一般的，就是说：模型训练完后的新样本）错误率低，
+* 计算开销不大，
+* 结果易理解。
+
+缺点：
+
+* 对参数调节和核函数的选择敏感，
+* 原始分类器不加修改仅适合于处理二分类问题。
+
+使用数据类型：
+* 数值型和标称型数据。
+
+
+
+
+
+
+
+
+
+
+
+# COMMENT：
+
+
+**后面的老师讲的代码没有看，要再看下，先把之前的SVM的知识在补充一下，而且，讲的代码是JS的，最好能找个Python的看下。**
+
+**从SVM扩展来看还是由很多没有讲，而且代码的实现也没有讲**
+
+
+
+
+
+## REF：
+
+1. 七月在线 机器学习

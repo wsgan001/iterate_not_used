@@ -1,0 +1,22 @@
+# 优化-半正定规划
+
+
+
+# MOTIVE
+
+*  半正定规划 (Semi-Definite Programming，简称SDP)是一类凸优化问题，
+
+
+
+
+
+
+
+
+
+
+
+
+## REF
+
+1. 《机器学习》周志华

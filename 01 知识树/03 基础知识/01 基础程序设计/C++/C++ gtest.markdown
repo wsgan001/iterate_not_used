@@ -1,23 +1,4 @@
----
-author: evo
-comments: true
-date: 2018-06-01 10:06:56+00:00
-layout: post
-link: http://106.15.37.116/2018/06/01/c-gtest/
-slug: c-gtest
-title: C++ gtest
-wordpress_id: 7309
-categories:
-- 基础程序设计
-tags:
-- '@NULL'
----
-
-<!-- more -->
-
-[mathjax]
-
-**注：非原创，所有版权属于原作者，原文已列在 ORIGINAL 中。为了方便个人学习做了整合、修改，仅供个人学习使用。**
+# C++ gtest
 
 
 # ORIGINAL

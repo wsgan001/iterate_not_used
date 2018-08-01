@@ -1,0 +1,22 @@
+# 优化-二次规划
+
+
+TODO
+
+
+# MOTIVE
+
+* 对二次规划进行总结，怪不得是QP，原来英文就是 Quadratic Programming
+
+
+
+
+
+
+
+
+
+
+## REF
+
+1. 《机器学习》 周志华

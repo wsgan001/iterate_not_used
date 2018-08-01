@@ -1,0 +1,139 @@
+# 梯度下降法
+
+
+# REF
+
+
+
+
+
+
+  1. 《机器学习》周志华
+
+
+
+
+# TODO
+
+
+
+
+
+
+  * aaa
+
+
+
+
+# MOTIVE
+
+
+
+
+
+
+  * 对梯度下降进行总结
+
+
+
+
+
+* * *
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+# COMMENT
+
+
+下面这个是从别的网站上复制过来的，不是书上的：
+
+代码如下：
+
+
+    import matplotlib
+    import numpy as np
+    import matplotlib.cm as cm
+    import matplotlib.mlab as mlab
+    import matplotlib.pyplot as plt
+
+    leafNode = dict(boxstyle="round4", fc="0.8")
+    arrow_args = dict(arrowstyle="<-")
+
+    matplotlib.rcParams['xtick.direction'] = 'out'
+    matplotlib.rcParams['ytick.direction'] = 'out'
+
+    delta = 0.025
+    x = np.arange(-2.0, 2.0, delta)
+    y = np.arange(-2.0, 2.0, delta)
+    X, Y = np.meshgrid(x, y)
+    Z1 = -((X-1)**2)
+    Z2 = -(Y**2)
+    #Z1 = mlab.bivariate_normal(X, Y, 1.0, 1.0, 0.0, 0.0)
+    #Z2 = mlab.bivariate_normal(X, Y, 1.5, 0.5, 1, 1)
+    # difference of Gaussians
+    Z = 1.0 * (Z2 + Z1)+5.0
+
+    # Create a simple contour plot with labels using default colors.  The
+    # inline argument to clabel will control whether the labels are draw
+    # over the line segments of the contour, removing the lines beneath
+    # the label
+    plt.figure()
+    CS = plt.contour(X, Y, Z)
+    plt.annotate('', xy=(0.05, 0.05),  xycoords='axes fraction',
+                 xytext=(0.2,0.2), textcoords='axes fraction',
+                 va="center", ha="center", bbox=leafNode, arrowprops=arrow_args )
+    plt.text(-1.9, -1.8, 'P0')
+    plt.annotate('', xy=(0.2,0.2),  xycoords='axes fraction',
+                 xytext=(0.35,0.3), textcoords='axes fraction',
+                 va="center", ha="center", bbox=leafNode, arrowprops=arrow_args )
+    plt.text(-1.35, -1.23, 'P1')
+    plt.annotate('', xy=(0.35,0.3),  xycoords='axes fraction',
+                 xytext=(0.45,0.35), textcoords='axes fraction',
+                 va="center", ha="center", bbox=leafNode, arrowprops=arrow_args )
+    plt.text(-0.7, -0.8, 'P2')
+    plt.text(-0.3, -0.6, 'P3')
+    plt.clabel(CS, inline=1, fontsize=10)
+    plt.title('Gradient Ascent')
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.show()
+
+
+输出图像如下：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/i44BCaJjhC.png?imageslim)
+
+上图展示的，梯度上升算法到达每个点后都会重新估计移动的方向。从 P0 开始，计算完该点的梯度，函数就根据梯度移动到下一点 P1。在 P1 点，梯度再次被重新计算，并沿着新的梯度方向移动到 P2 。如此循环迭代，直到满足停止条件。迭代过程中，梯度算子总是保证我们能选取到最佳的移动方向。
+
+上图中的梯度上升算法沿梯度方向移动了一步。可以看到，梯度算子总是指向函数值增长最快的方向。这里所说的是移动方向，而未提到移动量的大小。该量值称为步长，记作 α 。用向量来表示的话，梯度上升算法的迭代公式如下:
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/0kbdH3b3GI.png?imageslim)
+
+该公式将一直被迭代执行，直至达到某个停止条件为止，比如迭代次数达到某个指定值或者算法达到某个可以允许的误差范围。
+
+**Note:** 我们常听到的是梯度下降算法，它与这里的梯度上升算法是一样的，只是公式中的加法需要变成减法。因此，对应的公式可以写成
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/4cIIbl7HIj.png?imageslim)
+
+梯度上升算法用来求函数的最大值，而梯度下降算法用来求函数的最小值。

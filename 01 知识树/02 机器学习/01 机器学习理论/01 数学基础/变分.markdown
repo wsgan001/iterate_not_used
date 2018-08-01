@@ -1,0 +1,247 @@
+# 变分
+
+
+
+# TODO
+
+* 泛函要不要单独拿出来讲？
+
+
+
+
+# 变分 没讲
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/fEdl1AdLHJ.png?imageslim)
+
+另一个思路
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/2fdJAhD60h.png?imageslim)
+
+变分的提法
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/mghj5kL31k.png?imageslim)
+
+变分目标函数分析
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/DB44ABBf5D.png?imageslim)
+
+新目标函数的可行性
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/1j4838AC3H.png?imageslim)
+
+变分和EM的联系
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/DiAK936dJA.png?imageslim)
+
+思考：目标函数的物理含义
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/j3idhlhD4J.png?imageslim)
+
+思考：似然函数期望与目标函数
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/9eK6b54Bik.png?imageslim)
+
+两个KL散度的区别
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/gFgiHd6jbC.png?imageslim)
+
+
+
+### 两个KL散度的区别
+
+
+绿色曲线是真实分布p的等高线；红色曲线
+是使用近似\(p(z_1,z_2)=p(z_1)p(z_2))得到的等高线
+
+
+
+
+  * 左：KL(p||q)：zero avoiding
+
+
+  * 右：KL(q||p)：zero forcing
+
+
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/5231c12A37.png?imageslim)
+
+两个KL散度的区别
+
+色曲线是真实分布p的等高线；红色曲线是单模型近似分布q的等高线。
+
+
+
+
+  * 左：KL(p||q)：q趋向于覆盖p
+
+
+  * 中、右：KL(q||p)：q能够锁定某一个峰值
+
+
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/5B9D5b4gE4.png?imageslim)
+
+
+
+
+### 两个KL散度之间的联系
+
+
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/5a3Jl7DlEC.png?imageslim)
+
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/LB4m7A0eih.png?imageslim)
+
+Hellinger distance
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/0JcbiDdLA9.png?imageslim)
+
+该距离满足三角不等式，是对称、非负距离
+
+
+### 平均场方法(Mean field method)
+
+
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/K2d9dgCF3a.png?imageslim)
+
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/bHgaI2dKAe.png?imageslim)
+
+变分推导/似然下界L
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/78bi0I0025.png?imageslim)
+
+变分推导最终结论
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/86JjckgCac.png?imageslim)
+
+Ising model
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/F2Kh6L221d.png?imageslim)
+
+势函数的系数
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/KDIm1I4m10.png?imageslim)
+
+使用变分做图像去噪
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/bLBfD85khd.png?imageslim)
+
+后验概率
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/3H22197bl4.png?imageslim)
+
+近似概率
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/D1B109GkFB.png?imageslim)
+
+根据公式：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/c43abgc09g.png?imageslim)
+
+更新方程：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/c2d8FG9G4f.png?imageslim)
+
+迭代方程：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/Lj5iC4f2kB.png?imageslim)
+
+实际效果：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/4dc2DmFKfD.png?imageslim)
+
+变分贝叶斯(Variational Bayes,VB)
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/48JHgcD5G5.png?imageslim)
+
+高斯分布的变分贝叶斯 Variational Bayes
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/bjAgk2H18H.png?imageslim)
+
+未正则化的对数后验
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/LDAc98Hi21.png?imageslim)
+
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/IC6mHe4hfj.png?imageslim)
+
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/DhFcagEeH6.png?imageslim)
+
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/1b8j432EfD.png?imageslim)
+
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/JlAlaLK40b.png?imageslim)
+
+变分参数估计实例
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/61i2Aa5BLC.png?imageslim)
+
+变分总结
+
+
+
+
+  * 变分既能够推断隐变量的分布，也能推断未知参数的分布，是非常有力的参数学习工具。其难点在于公式演算略显复杂，和采样相对：一个容易计算但速度慢，一个不容易计算但运行效率高
+
+
+  * 平均场方法的变分推导，对离散和连续的隐变量都适用。在平均场方法的框架下，变分推导一次更新一个分布，其本质为坐标上升。可以使用模式搜索(pattern search)、基于参数的扩展(parameter expansion)等方案加速。
+
+
+  * 有时候，假定所有变量都是独立是不符合实际的，可以使用结构化平均场(structured mean field)，将变量分成若干组，每组之间是独立的。
+
+
+  * 变分除了能够和贝叶斯理论相配合得到VB，还能进一步与EM算法结合，得到VBEM，用于带隐变量和未知参数的推断。
+
+
+    * 如GMM、LDA
+
+
+
+
+
+## REF
+
+1. [该怎么理解泛函以及变分？](https://www.zhihu.com/question/26527625)
+2. [变分法 wiki](https://zh.wikipedia.org/wiki/%E5%8F%98%E5%88%86%E6%B3%95)
+3. [变分算法](https://blog.csdn.net/u012771351/article/details/53095658)
+4. [变分推断(variational inference)学习笔记(1)——概念介绍](https://blog.csdn.net/AiTODD1/article/details/41088131)

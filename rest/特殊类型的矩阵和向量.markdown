@@ -1,56 +1,7 @@
----
-author: evo
-comments: true
-date: 2018-04-30 08:23:13+00:00
-layout: post
-link: http://106.15.37.116/2018/04/30/special-types-of-matrices-and-vectors/
-slug: special-types-of-matrices-and-vectors
-title: 特殊类型的矩阵和向量
-wordpress_id: 4761
-categories:
-- 随想与反思
----
-
-<!-- more -->
-
-[mathjax]
+# 特殊类型的矩阵和向量
 
 
 # REFERENCE
-
-
-
-
-
-
-  1. aaa
-
-
-
-
-# TODO
-
-
-
-
-
-
-  * aaa
-
-
-
-
-# MOTIVE
-
-
-
-
-
-
-  * aaa
-
-
-
 
 
 * * *

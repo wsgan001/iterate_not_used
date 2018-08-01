@@ -1,0 +1,29 @@
+# 位操作
+
+
+TODO
+
+
+* 包括基本的：原码、补码、反码
+* 包括计算机的位数
+* C++中的各种位操作
+
+
+# INTRODUCTION
+
+* 一直对位相关的知识完全不清楚，即使看明白了，过一段时间再遇到类似的，还是发怵。因此还是要好好的总结下。
+
+
+
+
+
+
+
+
+
+
+
+## REF
+
+1. [位操作基础篇之位操作全面总结](https://blog.csdn.net/morewindows/article/details/7354571)
+2. [两个常见位操作面试题 不用加减乘除运算符计算两数之和及a=b*3](https://blog.csdn.net/morewindows/article/details/8710737)

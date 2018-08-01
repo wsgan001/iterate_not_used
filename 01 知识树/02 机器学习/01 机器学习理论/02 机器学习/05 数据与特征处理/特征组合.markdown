@@ -1,0 +1,48 @@
+# 特征组合
+
+
+
+## 为什么要有特征组合？
+
+
+特征组合（Feature Crosses）也称为特征交叉，指通过将两个或多个输入特征相乘来对特征空间中的非线性规律进行编码的合成特征。
+
+比如，如下的问题显然是一个非线性问题：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/j43iJd9B7l.png?imageslim)
+
+但使用特征组合可以将其转换为一个线性模型，即创建一个新的特征：
+
+\[x_3=x_1*x_2\]
+
+这样我们就可以使用：\(y=b+w_1x_1+w_2x_2+w_3x_3\)
+
+
+# 常见的特征组合方法
+
+
+* [A X B]：将两个特征的值相乘形成的特征组合。
+* [A x B x C x D x E]：将五个特征的值相乘形成的特征组合。
+* [A x A]：对单个特征的值求平方形成的特征组合。
+
+
+借助特征组合，线性学习器可以很好扩展到大量数据，并有助于构建复杂模型解决非线性问题。
+
+**那么到底选择什么作为特征呢？比如说有二次方、三次方等等。**
+
+
+**在哪些模型上会使用这个方法？效果怎么样？**
+
+
+
+
+
+
+
+
+
+## REF
+
+1. [特征工程](https://feisky.xyz/machine-learning/basic/feature-engineering.html)
+2. [表示 (Representation)：清理数据](https://developers.google.com/machine-learning/crash-course/representation/cleaning-data) **这个Google的课程还是要好好看下的。**

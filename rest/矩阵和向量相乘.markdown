@@ -1,60 +1,9 @@
----
-author: evo
-comments: true
-date: 2018-04-30 04:49:11+00:00
-layout: post
-link: http://106.15.37.116/2018/04/30/multiplication-of-matrix-and-vector/
-slug: multiplication-of-matrix-and-vector
-title: 矩阵和向量相乘
-wordpress_id: 4716
-categories:
-- 随想与反思
----
-
-<!-- more -->
-
-[mathjax]
+# 矩阵和向量相乘
 
 
-# REFERENCE
+# REF
 
-
-
-
-
-
-  1. 《深度学习》
-
-
-
-
-# TODO
-
-
-
-
-
-
-  * aaa
-
-
-
-
-# MOTIVE
-
-
-
-
-
-
-  * aaa
-
-
-
-
-
-* * *
-
+1. 《深度学习》
 
 
 

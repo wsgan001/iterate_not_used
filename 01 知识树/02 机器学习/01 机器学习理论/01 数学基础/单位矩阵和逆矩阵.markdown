@@ -1,0 +1,40 @@
+# 单位矩阵和逆矩阵
+
+
+
+线性代数提供了被称为 矩阵逆（matrix inversion）的强大工具。对于大多数矩阵 A，我们都能通过矩阵逆解析地求解式 \(\mathbf{A}\mathbf{x} =\mathbf{ b}\)。
+
+为了描述矩阵逆，我们首先需要定义单位矩阵（identity matrix）的概念。任意向量和单位矩阵相乘，都不会改变。我们将保持 \(n\) 维向量不变的单位矩阵记作 \(\mathbf{I}_n\) 。形式上， \(\mathbf{I}_n\in \mathbb{R}^{n\times n}\) ，
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/a3l2feA8D0.png?imageslim)
+
+**单位矩阵是为了描述矩阵逆才定义出来的吗？**
+
+单位矩阵的结构很简单：所有沿主对角线的元素都是 1，而所有其他位置的元素都是0。下图即是一个单位矩阵 \(\mathbf{I}_3\)：
+
+
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/60BLD5LaKB.png?imageslim)
+
+矩阵 \(mathbf{A}\) 的 矩阵逆（matrix inversion）记作 \(mathbf{A}^{-1}\) ，其定义的矩阵满足如下条件 ：
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/7K57GKKFdE.png?imageslim)
+
+
+现在我们可以通过以下步骤求解 \(\mathbf{A}\mathbf{x} =\mathbf{ b}\)：
+
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/2Fd91K72mF.png?imageslim)
+
+当然，这取决于我们能否找到一个逆矩阵 \(mathbf{A}^{-1}\) 。在接下来的章节中，我们会讨论逆矩阵 \(mathbf{A}^{-1}\) 存在的条件。**嗯，这个逆矩阵存在的条件是什么？**
+
+当逆矩阵 \(mathbf{A}^{-1}\) 存在时，有几种不同的算法都能找到它的闭解形式。**那些算法？**
+
+理论上，相同的逆矩阵可用于多次求解不同向量 b 的方程。然而，逆矩阵 \(mathbf{A}^{-1}\) 主要是作为理论工具使用的，并不会在大多数软件应用程序中实际使用。这是因为逆矩阵 \(mathbf{A}^{-1}\) 在数字计算机上只能表现出有限的精度，有效使用向量 b 的算法通常可以得到更精确的x。** 怎么有效使用向量b来得到精确的x的？**
+
+
+
+## REF
+
+1. 《深度学习》

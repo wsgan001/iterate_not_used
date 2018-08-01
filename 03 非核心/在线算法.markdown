@@ -1,0 +1,23 @@
+# 在线算法
+
+
+TODO
+
+* **要好好总结下**
+
+
+
+
+
+# 缘由
+
+
+今天看一道算法题，提到了 在线算法。查了一下才发现，有在线算法（Online Algorithm），离线算法（Offline Algorithm）和半在线算法（Semi-Online Algorithm），因此要总结下。
+
+
+
+
+## REF
+
+1. [在线算法 wiki](https://zh.wikipedia.org/wiki/%E7%B7%9A%E4%B8%8A%E6%BC%94%E7%AE%97%E6%B3%95)
+2. [请问半在线调度算法是什么意思，和在线算法有什么区别？](https://www.zhihu.com/question/20142996)

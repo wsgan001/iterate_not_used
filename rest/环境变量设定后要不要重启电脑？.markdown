@@ -1,18 +1,4 @@
----
-author: evo
-comments: true
-date: 2018-03-14 11:06:07+00:00
-layout: post
-link: http://106.15.37.116/2018/03/14/should-we-restart-computer-after-set-path/
-slug: should-we-restart-computer-after-set-path
-title: 环境变量设定后要不要重启电脑？
-wordpress_id: 399
-categories:
-- 基础计算机
----
-
-<!-- more -->
-
+# 环境变量设定后要不要重启电脑？
 
 ## 问题缘由：
 
