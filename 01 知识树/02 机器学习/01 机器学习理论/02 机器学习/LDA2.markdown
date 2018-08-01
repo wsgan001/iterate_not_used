@@ -1,83 +1,23 @@
----
-author: evo
-comments: true
-date: 2018-04-29 05:54:38+00:00
-layout: post
-link: http://106.15.37.116/2018/04/29/lda-linear-discriminant-analysis/
-slug: lda-linear-discriminant-analysis
-title: LDA
-wordpress_id: 4573
-categories:
-- 随想与反思
-tags:
-- '@todo'
----
+# LDA
 
-<!-- more -->
+## REF
 
-[mathjax]
-
-
-# REF
-
-
-
-
-
-
-  1. 七月在线 机器学习
-
-
-
-
-# TODO
-
-
-
-
-
-
-  * aaa
-
+1. 七月在线 机器学习
 
 
 
 # MOTIVE
 
+* 把LDA总结一下，注意这个LDA是 Linear Discriminant Analysis
 
 
 
+## 知识前提
 
-
-  * 把LDA总结一下，注意这个LDA是 Linear Discriminant Analysis
-
-
-
-
-
-* * *
-
-
-
-
-
-# 知识前提
-
-
-
-
-
-
-  * 熵的定义式等概念。
-
-
-  * 决策树学习的生成算法。
-
-
-  * [实对称阵不同特征值的特征向量正交](http://106.15.37.116/2018/03/31/ai-linear-algebra-matrix-transformation-and-eigenvalues/#i-8)
-
-
-  * 伪逆
+* 熵的定义式等概念。
+* 决策树学习的生成算法。
+* [实对称阵不同特征值的特征向量正交](http://106.15.37.116/2018/03/31/ai-linear-algebra-matrix-transformation-and-eigenvalues/#i-8)
+* 伪逆
 
 
 
