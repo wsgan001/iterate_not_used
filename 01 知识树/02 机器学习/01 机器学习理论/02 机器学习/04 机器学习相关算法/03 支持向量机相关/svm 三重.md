@@ -58,252 +58,224 @@ Logistic 回归就是要学习得到 $\theta$ ，使得正例的特征远大于 
 $$g(x)=\left\{\begin{matrix} 1 & z\geq 0 \\ -1 & z< 0 \end{matrix}\right.$$
 
 
-### *1.2*、线性分类的一个例子
+### 1.2、线性分类的一个例子
 
-​    下面举个简单的例子。如下图所示，现在有一个二维平面，平面上有两种不同的数据，分别用圈和叉表示。由于这些数据是线性可分的，所以可以用一条直线将这两类数据分开，这条直线就相当于一个超平面，超平面一边的数据点所对应的y全是-1 ，另一边所对应的y全是1。
+下面举个简单的例子。如下图所示，现在有一个二维平面，平面上有两种不同的数据，分别用圈和叉表示。由于这些数据是线性可分的，所以可以用一条直线将这两类数据分开，这条直线就相当于一个超平面，超平面一边的数据点所对应的 $y$ 全是 $-1$ ，另一边所对应的 $y$ 全是 $1$。
 
->
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180801/I211gIe3ji.png?imageslim)
 
-> > > ![img](https://img-blog.csdn.net/20140829134124453)
 
-​    这个超平面可以用分类函数![img](https://img-blog.csdn.net/20131107201211968)表示，当f(x) 等于0的时候，x便是位于超平面上的点，而f(x)大于0的点对应 y=1 的数据点，f(x)小于0的点对应y=-1的点，如下图所示：
+​这个超平面可以用分类函数 $f(x)=w^Tx+b$ 表示，当 $f(x)$ 等于 $0$ 的时候，$x$ 便是位于超平面上的点，而 $f(x)$ 大于 $0$ 的点对应 $y=1$ 的数据点，$f(x)$ 小于 $0$ 的点对应 $y=-1$ 的点，如下图所示：
 
-> > > ![img](https://img-blog.csdn.net/20140829134548371)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180801/57BA2HGcEL.png?imageslim)
 ​
 
-注：有的资料上定义特征到结果的输出函数![img](https://img-blog.csdn.net/20180514181903580)，与这里定义的![img](https://img-blog.csdn.net/20131107201211968)
+注：有的资料上定义特征到结果的输出函数 $u=\overrightarrow{w}\overrightarrow{x}-b$ ，与这里定义的 $f(x)=w^Tx+b$ 实质是一样的。为什么？因为无论是 $u=\overrightarrow{w}\overrightarrow{x}-b$ ，还是 $f(x)=w^Tx+b$ ，不影响最终优化结果。下文你将看到，当我们转化到优化 $max\frac{1}{||w||}$,$s.t.,y_i(w^Tx_i+b)\geq 1,i=1,2,\ldots ,n$ 的时候，为了求解方便，会把 $yf(x)$ 令为 $1$ ，即 $yf(x)$ 是 $y(w^Tx + b)$，还是 $y(w^Tx - b)$，对我们要优化的式子 $max\frac{1}/{||w||}$ 已无影响。
 
-实质是一样的。为什么？因为无论是![img](https://img-blog.csdn.net/20131120103601656)，还是![img](https://img-blog.csdn.net/20131107201211968)，不影响最终优化结果。下文你将看到，当我们转化到优化![img](http://img.my.csdn.net/uploads/201210/25/1351141837_7366.jpg)的时候，为了求解方便，会把yf(x)令为1，即yf(x)是y(w^x + b)，还是y(w^x - b)，对我们要优化的式子max1/||w||已无影响。
+​（有一朋友飞狗来自 Mare_Desiderii，看了上面的定义之后，问道：请教一下 SVM functional margin 为 $\hat{\gamma}=y(w^Tx+b)=yf(x)$ 中的 $y$ 是只取 $1$ 和 $-1$ 吗？ $y$ 的唯一作用就是确保 functional margin的非负性？真是这样的么？当然不是，详情请见本文评论下第43楼）<span style="color:red;">什么详情？</span>
 
-​    （有一朋友飞狗来自Mare_Desiderii，看了上面的定义之后，问道：请教一下SVM functional margin 为![img](https://img-blog.csdn.net/20131111154113734)=y(wTx+b)=yf(x)中的Y是只取1和-1 吗？y的唯一作用就是确保functional margin的非负性？真是这样的么？当然不是，详情请见本文评论下第43楼）
+换言之，在进行分类的时候，遇到一个新的数据点 $x$，将 $x$ 代入 $f(x)$ 中，如果 $f(x)$ 小于 $0$ 则将 $x$ 的类别赋为 $-1$ ，如果 $f(x)$ 大于 $0$ 则将 $x$ 的类别赋为 $1$。
 
-​    换言之，在进行分类的时候，遇到一个新的数据点x，将x代入f(x) 中，如果f(x)小于0则将x的类别赋为-1，如果f(x)大于0则将x的类别赋为1。
+接下来的问题是，如何确定这个超平面呢？从直观上而言，这个超平面应该是最适合分开两类数据的直线。而判定“最适合”的标准就是这条直线离直线两边的数据的间隔最大。**所以，得寻找有着最大间隔的超平面。**
 
-​    接下来的问题是，如何确定这个超平面呢？从直观上而言，这个超平面应该是最适合分开两类数据的直线。而判定“最适合”的标准就是这条直线离直线两边的数据的间隔最大。所以，得寻找有着最大间隔的超平面。
+### 1.3、函数间隔 Functional margin 与几何间隔 Geometrical margin
 
-### *1.3*、函数间隔Functional margin与几何间隔Geometrical margin
+​在超平面 $w^Tx+b=0$ 确定的情况下，$|w^Tx+b|$ 能够表示点 $x$ 到距离超平面的远近，而**通过观察 $w^Tx+b$ 的符号与类标记 $y$ 的符号是否一致可判断分类是否正确**，所以，可以用 $y*(w^Tx+b)$ 的正负性来判定或表示分类的正确性。于此，我们便引出了函数间隔（functional margin）的概念。
 
-​    在超平面w*x+b=0确定的情况下，|w*x+b|能够表示点x到距离超平面的远近，而**通过观察w\*x+b的符号与类标记y的符号是否一致可判断****分类是否正确**，所以，可以用(y*(w*x+b))的正负性来判定或表示分类的正确性。于此，我们便引出了函数间隔（functional margin）的概念。
+定义函数间隔（用 $\hat{\gamma}$ 表示）为：
 
-​    定义函数间隔（用![img](https://img-blog.csdn.net/20140829135049264)表示）为：
+$$\hat{\gamma}=y(w^Tx+b)=yf(x)$$
+
+而超平面 $(w，b)$ 关于 $T$ 中所有样本点 $(x_i，y_i)$ 的函数间隔最小值（其中，$x$ 是特征，$y$ 是结果标签，$i$ 表示第 $i$ 个样本），便为超平面 $(w, b)$ 关于训练数据集 $T$ 的函数间隔：
+
+$$\hat{\gamma}=min\hat{\gamma}_i\;i=1,\ldots ,n)$$
+
+但这样定义的函数间隔有问题，即如果成比例的改变 $w$ 和 $b$（如将它们改成 $2w$ 和 $2b$ ），则函数间隔的值 $f(x)$ 却变成了原来的 $2$ 倍（虽然此时超平面没有改变），所以只有函数间隔还远远不够。
+
+​事实上，我们可以对法向量 $w$ 加些约束条件，从而引出真正定义点到超平面的距离--几何间隔（geometrical margin）的概念。
+
+假定对于一个点 $x$ ，令其垂直投影到超平面上的对应点为 $x_0$ ，$w$ 是垂直于超平面的一个向量，$\gamma$ 为样本 $x$ 到超平面的距离，如下图所示：
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180801/75I0faHJkm.png?imageslim)
 
 
 
-​						![img](https://img-blog.csdn.net/20131107201248921)
+​根据平面几何知识，有
 
-​    而超平面(w，b)关于T中所有样本点(xi，yi)的函数间隔最小值（其中，x是特征，y是结果标签，i表示第i个样本），便为超平面(w, b)关于训练数据集T的函数间隔：
+$$x=x_0+\gamma\frac{w}{||w||}$$
 
-> >   	  ![img](https://img-blog.csdn.net/20131111154113734)= **min![img](https://img-blog.csdn.net/20131111154113734)**i  (i=1，...n)
+​其中 $||w||$ 为 $w$ 的二阶范数（范数是一个类似于模的表示长度的概念），$\frac{w}{||w||}$ 是单位向量（一个向量除以它的模称之为单位向量）。
 
-​    但这样定义的函数间隔有问题，即如果成比例的改变w和b（如将它们改成2w和2b），则函数间隔的值f(x)却变成了原来的2倍（虽然此时超平面没有改变），所以只有函数间隔还远远不够。
+又由于是超平面上的点，满足  ，代入超平面的方程 $w^Tx+b=0$ ，可得 $w^Tx_0+b=0$ ，即 $w^Tx_0=-b$ 。
 
-​    事实上，我们可以对法向量w加些约束条件，从而引出真正定义点到超平面的距离--几何间隔（geometrical margin）的概念。
+​随即让此式 $x=x_0+\gamma\frac{w}{||w||}$ 的两边同时乘以 $w^T$ ，再根据 $w^Tx_0=-b$ 和 $w^Tw=||w||^2$ ，即可算出 $\gamma$ ：
 
-​    假定对于一个点 x ，令其垂直投影到超平面上的对应点为 x0 ，w 是垂直于超平面的一个向量，![img](https://img-blog.csdn.net/20140829135315499)为样本x到超平面的距离，如下图所示：
+$$\gamma=\frac{w^Tx+b}{||w||}=\frac{f(x)}{||w||}$$
+​
+为了得到 $\gamma$ 的绝对值，令 $\gamma$ 乘上对应的类别 $y$，即可得出几何间隔（用 $\widetilde{\gamma}$ 表示）的定义：
 
-###
+$$\widetilde{\gamma}=y\gamma=\frac{\hat{\gamma}}{||w||}$$
 
-> > > > > > ![img](http://blog.pluskid.org/wp-content/uploads/2010/09/geometric_margin.png)
+​从上述函数间隔和几何间隔的定义可以看出：几何间隔就是函数间隔除以 $||w||$ ，而且函数间隔 $y*(w^Tx+b) = y*f(x)$ 实际上就是 $|f(x)|$ ，只是人为定义的一个间隔度量，而几何间隔 $|f(x)|/||w||$ 才是直观上的点到超平面的距离。
 
->
->
->
+### 1.4、最大间隔分类器 Maximum Margin Classifier 的定义
 
-​    根据平面几何知识，有
+对一个数据点进行分类，当超平面离数据点的“间隔”越大，分类的确信度（confidence）也越大。所以，为了使得分类的确信度尽量高，需要让所选择的超平面能够最大化这个“间隔”值。这个间隔就是下图中的 Gap 的一半。
 
-> > > > >
-> > > > >
-> > > > > > ![img](https://img-blog.csdn.net/20131107201720515)
-> > > > >
-> > > > >
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180801/k1HmGIj3Ck.png?imageslim)
 
-​    其中||w||为w的二阶范数（范数是一个类似于模的表示长度的概念），![img](https://img-blog.csdn.net/20160118171730323)是单位向量（一个向量除以它的模称之为单位向量）。
+通过由前面的分析可知：函数间隔不适合用来最大化间隔值，因为在超平面固定以后，可以等比例地缩放 $w$ 的长度和 $b$ 的值，这样可以使得 $f(x)=w^Tx+b$ 的值任意大，亦即函数间隔 $\hat{\gamma}$ 可以在超平面保持不变的情况下被取得任意大。但几何间隔因为除上了 $||w||$ ，使得在缩放 $w$ 和 $b$ 的时候几何间隔 $\widetilde{\gamma}$ 的值是不会改变的，它只随着超平面的变动而变动，因此，这是更加合适的一个间隔。换言之，这里要找的最大间隔分类超平面中的“间隔”指的是几何间隔。
 
-​    又由于  是超平面上的点，满足  ，代入超平面的方程![img](https://img-blog.csdn.net/20131107201104906)，可得![img](https://img-blog.csdn.net/20160117004048499)，即![img](https://img-blog.csdn.net/20160117004117802)。
+于是最大间隔分类器（maximum margin classifier）的目标函数可以定义为：
 
-​    随即让此式![img](https://img-blog.csdn.net/20131107201720515)的两边同时乘以![img](https://img-blog.csdn.net/20160117004629562)，再根据![img](https://img-blog.csdn.net/20160117004117802)和![img](https://img-blog.csdn.net/20160117004138049)，即可算出*γ*：
+同时需满足一些条件，根据间隔的定义，有
 
-​							![img](https://img-blog.csdn.net/20131107201759093)
+$$y_i(w^Tx_i+b)=\hat{\gamma}_i\geq \hat{\gamma},\;i=1,2,\ldots,n$$
 
-​    为了得到![img](https://img-blog.csdn.net/20140829135315499)的绝对值，令![img](https://img-blog.csdn.net/20140829135315499)乘上对应的类别 y，即可得出几何间隔（用![img](https://img-blog.csdn.net/20140829135609579)表示）的定义：
 
-​							![img](https://img-blog.csdn.net/20131107201919484)
+回顾下几何间隔的定义 $\widetilde{\gamma}=y\gamma=\frac{\hat{\gamma}}{||w||}$ ，可知：如果令函数间隔 $\hat{\gamma}$ 等于1（之所以令 $\hat{\gamma}$ 等于1，是为了方便推导和优化，且这样做对目标函数的优化没有影响，至于为什么，请见本文评论下第42楼回复），则有 $\hat{\gamma}= 1 / ||w||$ 且 $y_i(w^Tx_i+b)\geq 1,i=1,\ldots,n$ ，从而上述目标函数转化成了
 
-​    从上述函数间隔和几何间隔的定义可以看出：几何间隔就是函数间隔除以||w||，而且函数间隔y*(wx+b) = y*f(x)实际上就是|f(x)|，只是人为定义的一个间隔度量，而几何间隔|f(x)|/||w||才是直观上的点到超平面的距离。
+$$max\frac{1}{||w||},\;s.t.,y_i(w^Tx_i+b)\geq 1,i=1,2,\ldots,n$$
 
-### *1.4*、最大间隔分类器Maximum Margin Classifier的定义
 
-​    对一个数据点进行分类，当超平面离数据点的“间隔”越大，分类的确信度（confidence）也越大。所以，为了使得分类的确信度尽量高，需要让所选择的超平面能够最大化这个“间隔”值。这个间隔就是下图中的Gap的一半。
+相当于在相应的约束条件 $y_i(w^Tx_i+b)\geq 1,i=1,\ldots,n$ 下，最大化这个 $\frac{1}{||w||}$ 值，而 $\frac{1}{||w||}$ 便是几何间隔 $\widetilde{\gamma}$ 。
 
-> > > ![img](https://img-blog.csdn.net/20140829135959290)
+​如下图所示，中间的实线便是寻找到的最优超平面（Optimal Hyper Plane），其到两条虚线边界的距离相等，这个距离便是几何间隔   $\widetilde{\gamma}$ ，两条虚线间隔边界之间的距离等于 $2\widetilde{\gamma}$，而虚线**间隔边界上的点则是支持向量**。由于这些支持向量刚好在虚线间隔边界上，所以它们满足 $y(w^Tx+b)=1$ （还记得我们把 functional margin 定为 $1$ 了吗？上节中：处于方便推导和优化的目的，我们可以令 $\widetilde{\gamma}=1$ ），而对于所有不是支持向量的点，则显然有 $y(w^Tx+b)>1$ 。
 
-​    通过由前面的分析可知：函数间隔不适合用来最大化间隔值，因为在超平面固定以后，可以等比例地缩放w的长度和b的值，这样可以使得![img](https://img-blog.csdn.net/20131107201211968)的值任意大，亦即函数间隔![img](https://img-blog.csdn.net/20131111154113734)可以在超平面保持不变的情况下被取得任意大。但几何间隔因为除上了![img](https://img-blog.csdn.net/20131111154326078)，使得在缩放w和b的时候几何间隔![img](https://img-blog.csdn.net/20131111154137453)的值是不会改变的，它只随着超平面的变动而变动，因此，这是更加合适的一个间隔。换言之，这里要找的最大间隔分类超平面中的“间隔”指的是几何间隔。
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180801/lC16Abag6c.png?imageslim)> >
 
-   于是最大间隔分类器（maximum margin classifier）的目标函数可以定义为：
-
-​    同时需满足一些条件，根据间隔的定义，有
-
-> > > > ![img](http://img.my.csdn.net/uploads/201210/25/1351141813_4166.jpg)
-
-> >
-
-​    其中，s.t.，即subject to的意思，它导出的是约束条件。
-
-​    回顾下几何间隔的定义![img](https://img-blog.csdn.net/20131107201919484)，可知：如果令函数间隔![img](https://img-blog.csdn.net/20131111154113734)等于1（之所以令![img](https://img-blog.csdn.net/20131111154113734)等于1，是为了方便推导和优化，且这样做对目标函数的优化没有影响，至于为什么，请见本文评论下第42楼回复），则有![img](https://img-blog.csdn.net/20131111154137453) = 1 / ||w||且![img](https://img-blog.csdn.net/20140829140642940)，从而上述目标函数转化成了
-
-> > > ![img](http://img.my.csdn.net/uploads/201210/25/1351141837_7366.jpg)
-
-​    相当于在相应的约束条件![img](https://img-blog.csdn.net/20140829140642940)下，最大化这个1/||w||值，而1/||w||便是几何间隔![img](https://img-blog.csdn.net/20131111154137453)。
-
-​    如下图所示，中间的实线便是寻找到的最优超平面（Optimal Hyper Plane），其到两条虚线边界的距离相等，这个距离便是几何间隔![img](https://img-blog.csdn.net/20131111154137453)，两条虚线间隔边界之间的距离等于2![img](https://img-blog.csdn.net/20131111154137453)，而虚线**间隔边界上的点则是支持向量**。由于这些支持向量刚好在虚线间隔边界上，所以它们满足![img](https://img-blog.csdn.net/20131111155244218)（还记得我们把 functional margin 定为 1 了吗？上节中：处于方便推导和优化的目的，我们可以令![img](https://img-blog.csdn.net/20131111154113734)=1），而对于所有不是支持向量的点，则显然有![img](https://img-blog.csdn.net/20131111155205109)。
-
-> >
-> >
-> >
-
-> > ![img](https://img-blog.csdn.net/20140829141714944)
-
-​    OK，到此为止，算是了解到了SVM的第一层，对于那些只关心怎么用SVM的朋友便已足够，不必再更进一层深究其更深的原理。
+​OK，到此为止，算是了解到了SVM的第一层，对于那些只关心怎么用 SVM 的朋友便已足够，不必再更进一层深究其更深的原理。
 
 ## 第二层、深入SVM
 
-### *2.1*、从线性可分到线性不可分
+### 2.1、从线性可分到线性不可分
 
 #### 2.1.1、从原始问题到对偶问题的求解
 
-​    接着考虑之前得到的目标函数：
+​接着考虑之前得到的目标函数：
 
->
->
-> > ![img](http://img.my.csdn.net/uploads/201210/25/1351141975_6347.jpg)
+$$max\frac{1}{||w||},\;s.t.,y_i(w^Tx_i+b)\geq 1,i=1,2,\ldots,n$$
 
-​     由于求![img](http://img.my.csdn.net/uploads/201301/11/1357837136_7540.png)的最大值相当于求![img](http://img.my.csdn.net/uploads/201301/11/1357837152_4634.png)的最小值，所以上述目标函数等价于（w由分母变成分子，从而也有原来的max问题变为min问题，很明显，两者问题等价）：
 
-> > ![img](http://img.my.csdn.net/uploads/201210/25/1351141994_1802.jpg)
+由于求 $\frac{1}{||w||}$ 的最大值相当于求 $\frac{1}{2}||w||^2$ 的最小值，所以上述目标函数等价于（$w$ 由分母变成分子，从而也有原来的 $max$ 问题变为 $min$ 问题，很明显，两者问题等价）：
 
-​    因为现在的目标函数是二次的，约束条件是线性的，所以它是一个凸二次规划问题。这个问题可以用现成的[QP (Quadratic Programming)](http://en.wikipedia.org/wiki/Quadratic_programming) 优化包进行求解。一言以蔽之：在一定的约束条件下，目标最优，损失最小。
+$$min\frac{1}{2}||w||,\;s.t.,y_i(w^Tx_i+b)\geq 1,i=1,2,\ldots,n$$
 
-​    此外，由于这个问题的特殊结构，还可以通过拉格朗日对偶性（Lagrange Duality）变换到对偶变量 (dual variable) 的优化问题，即通过求解与原问题等价的对偶问题（dual problem）得到原始问题的最优解，这就是线性可分条件下支持向量机的对偶算法，这样做的优点在于：一者对偶问题往往更容易求解；二者可以自然的引入核函数，进而推广到非线性分类问题。
 
-​     那什么是拉格朗日对偶性呢？简单来讲，通过给每一个约束条件加上一个拉格朗日乘子（Lagrange multiplier）![img](https://img-blog.csdn.net/20131111195836468)，定义拉格朗日函数（通过拉格朗日函数将约束条件融合到目标函数里去，从而只用一个函数表达式便能清楚的表达出我们的问题）：
+​因为现在的目标函数是二次的，约束条件是线性的，所以它是一个凸二次规划问题。这个问题可以用现成的[QP (Quadratic Programming)]优化包进行求解。一言以蔽之：在一定的约束条件下，目标最优，损失最小。
 
-> > ![img](http://img.my.csdn.net/uploads/201210/25/1351142114_6643.jpg)
+​此外，由于这个问题的特殊结构，还可以通过拉格朗日对偶性（Lagrange Duality）变换到对偶变量 (dual variable) 的优化问题，即通过求解与原问题等价的对偶问题（dual problem）得到原始问题的最优解，这就是线性可分条件下支持向量机的对偶算法。
 
-​    然后令
+这样做的优点在于：
 
-> > > *![img](http://img.my.csdn.net/uploads/201210/25/1351142171_6289.jpg)*
+- 一者对偶问题往往更容易求解；
+- 二者可以自然的引入核函数，进而推广到非线性分类问题。
 
-​    容易验证，当某个约束条件不满足时，例如![img](https://img-blog.csdn.net/20131107202615937)，那么显然有![img](https://img-blog.csdn.net/20131107202642843)（只要令![img](https://img-blog.csdn.net/20131107202702265)即可）。而当所有约束条件都满足时，则最优值为![img](https://img-blog.csdn.net/20131111195433031)，亦即最初要最小化的量。
+​那什么是拉格朗日对偶性呢？简单来讲，通过给每一个约束条件加上一个拉格朗日乘子（Lagrange multiplier） $\alpha$ ，定义拉格朗日函数（通过拉格朗日函数将约束条件融合到目标函数里去，从而只用一个函数表达式便能清楚的表达出我们的问题）：
 
-​    因此，在要求约束条件得到满足的情况下最小化![img](https://img-blog.csdn.net/20131111195324546)，实际上等价于直接最小化![img](https://img-blog.csdn.net/20131111195552578)（当然，这里也有约束条件，就是![img](https://img-blog.csdn.net/20131111195824031)）   ，因为如果约束条件没有得到满足，![img](https://img-blog.csdn.net/20131111195552578)会等于无穷大，自然不会是我们所要求的最小值。
+$$\mathcal{L}(w,b,\alpha)=\frac{1}{2}||w||^2-\sum_{i=1}^{n}\alpha_i(y_i(w^Tx_i+b)-1)$$
 
-​    具体写出来，目标函数变成了：
 
->
->
-> > ![img](http://img.my.csdn.net/uploads/201210/25/1351142295_1902.jpg)
+然后令
 
-​    这里用![img](https://img-blog.csdn.net/20131107202721703)表示这个问题的最优值，且和最初的问题是等价的。如果直接求解，那么一上来便得面对w和b两个参数，而![img](https://img-blog.csdn.net/20131111195824031)又是不等式约束，这个求解过程不好做。不妨把最小和最大的位置交换一下，变成：
+$$\theta(w)=\underset{a_i\geq 0}{max}\mathcal{L}(w,b,\alpha)$$
 
->
->
-> > ![img](http://img.my.csdn.net/uploads/201210/25/1351142316_5141.jpg)
 
-​    交换以后的新问题是原始问题的对偶问题，这个新问题的最优值用![img](https://img-blog.csdn.net/20131107202736187)来表示。而且有![img](https://img-blog.csdn.net/20131107202736187)≤![img](https://img-blog.csdn.net/20131107202721703)，在满足某些条件的情况下，这两者相等，这个时候就可以通过求解对偶问题来间接地求解原始问题。
+容易验证，当某个约束条件不满足时，例如 $y_i(w^Tx_i+b)<1$ ，那么显然有 $\theta(w)=\infty$ （只要令 $\alpha_i=\infty$ 即可）。而当所有约束条件都满足时，则最优值为 $\theta(w)=\frac12||w||^2$ ，亦即最初要最小化的量。
 
-​    换言之，之所以从minmax的原始问题![img](https://img-blog.csdn.net/20131107202721703)，转化为maxmin的对偶问题![img](https://img-blog.csdn.net/20131107202736187)，一者因为![img](https://img-blog.csdn.net/20131107202736187)是![img](https://img-blog.csdn.net/20131107202721703)的近似解，二者，转化为对偶问题后，更容易求解。
+因此，在要求约束条件得到满足的情况下最小化 $\frac12||w||^2$ ，实际上等价于直接最小化 $\theta(w)$ （当然，这里也有约束条件，就是 $\alpha_i$ ），因为如果约束条件没有得到满足， $\theta(w)$ 会等于无穷大，自然不会是我们所要求的最小值。
 
-​    下面可以先求L 对w、b的极小，再求L 对![img](https://img-blog.csdn.net/20131111195836468)的极大。
+​具体写出来，目标函数变成了：
+
+
+
+$$\underset{w,b}{min}\,\theta(w)=\underset{w,b}{min}\,\underset{a_i\geq 0}{max}\,\mathcal{L}(w,b,\alpha)=p^*$$
+
+​这里用 $p^*$ 表示这个问题的最优值，且和最初的问题是等价的。如果直接求解，那么一上来便得面对 $w$ 和 $b$ 两个参数，而 $\alpha_i$ 又是不等式约束，这个求解过程不好做。不妨把最小和最大的位置交换一下，变成：
+
+$$\underset{a_i\geq 0}{max}\,\underset{w,b}{min}\,\mathcal{L}(w,b,\alpha)=d^*$$
+
+
+​交换以后的新问题是原始问题的对偶问题，这个新问题的最优值用 $d^*$ 来表示。而且有 $d^*\leq p^*$ ，在满足某些条件的情况下，这两者相等，这个时候就可以通过求解对偶问题来间接地求解原始问题。
+
+换言之，之所以从 min max 的原始问题 $p^*$ ，转化为maxmin的对偶问题 $d^*$ ，一者因为 $d^*$ 是 $p^*$ 的近似解，二者，转化为对偶问题后，更容易求解。
+
+下面可以先求 $L$ 对 $w$、$b$ 的极小，再求 $L$ 对 $\alpha$ 的极大。
 
 #### 2.1.2、KKT条件
 
-​    上文中提到“![img](https://img-blog.csdn.net/20131107202736187)≤![img](https://img-blog.csdn.net/20131107202721703)在满足某些条件的情况下，两者等价”，~~这所谓的“满足某些条件”就是要满足KKT~~~~条件~~。
+​上文中提到 “ $d^*\leq p^*$ 在满足某些条件的情况下，两者等价 ”，~~这所谓的“满足某些条件”就是要满足 KKT 条件~~。
 
-  **勘误**：经读者qq_28543029指出，这里的条件不应该是KKT条件，要让两者等价需满足strong duality （强对偶），而后有学者在强对偶下提出了KKT条件，且KKT条件的成立要满足constraint qualifications，而constraint qualifications之一就是Slater条件。所谓Slater 条件，即指：凸优化问题，如果存在一个点x，使得所有等式约束都成立，并且所有不等式约束都严格成立（即取严格不等号，而非等号），则满足Slater 条件。对于此处，Slater 条件成立，所以d*≤p*可以取等号。
+**勘误**：经读者qq_28543029指出，这里的条件不应该是KKT条件，要让两者等价需满足strong duality （强对偶），而后有学者在强对偶下提出了KKT条件，且KKT条件的成立要满足constraint qualifications，而constraint qualifications之一就是Slater条件。所谓Slater 条件，即指：凸优化问题，如果存在一个点x，使得所有等式约束都成立，并且所有不等式约束都严格成立（即取严格不等号，而非等号），则满足 Slater 条件。对于此处，Slater 条件成立，所以 $d^*\leq p^*$ 可以取等号。
 
-​    一般地，一个最优化数学模型能够表示成下列标准形式：
+一般地，一个最优化数学模型能够表示成下列标准形式：
 
-> >
-> >
-> > ![img](http://my.csdn.net/uploads/201206/08/1339126493_9056.jpg)
+$$\begin{align*} min. \;& f(x)\\ s.t. \; & h_j(x)=0,j=1,\ldots,p,\\ & g_k(x)\leq 0,k=1,\ldots,q,\\ & x\in X\subset \mathfrak{R}^n \end{align*}$$
 
-​    其中，f(x)是需要最小化的函数，h(x)是等式约束，g(x)是不等式约束，p和q分别为等式约束和不等式约束的数量。
 
-​    同时，得明白以下两点：
 
-- 凸优化的概念：![\mathcal{X} \subset \mathbb{R}^n](http://upload.wikimedia.org/math/d/0/1/d01e9255365440ae709190fafc071951.png) 为一凸集， ![f:\mathcal{X}\to \mathbb{R}](http://upload.wikimedia.org/math/3/4/5/345879b44bce56b80552389916fa67fe.png) 为一凸函数。凸优化就是要找出一点 ![x^\ast \in \mathcal{X}](http://upload.wikimedia.org/math/7/a/b/7ab2b524ce2a695903b81d45d27d5242.png) ，使得每一 ![x \in \mathcal{X}](http://upload.wikimedia.org/math/6/2/4/624cf12f420fb0f373cda9f7b216b2f3.png) 满足 ![f(x^\ast)\le f(x)](http://upload.wikimedia.org/math/d/a/0/da0d27822f8c98efc3d1a39ae37f30e1.png) 。
+​其中，$f(x)$ 是需要最小化的函数，$h(x)$ 是等式约束，$g(x)$ 是不等式约束，$p$ 和 $q$ 分别为等式约束和不等式约束的数量。
+
+​同时，得明白以下两点：
+
+- 凸优化的概念：$\mathcal{X} \subset \mathbb{R}^n$ 为一凸集， $f:\mathcal{X}\to \mathbb{R}$ 为一凸函数。凸优化就是要找出一点 $x^\ast \in \mathcal{X}$ ，使得每一 $x \in \mathcal{X}$ 满足 $f(x^\ast)\le f(x)$ 。
+
 - KKT条件的意义：它是一个非线性规划（Nonlinear Programming）问题能有最优化解法的必要和充分条件。
 
-​    而KKT条件就是指上面最优化数学模型的标准形式中的最小点 x* 必须满足下面的条件：
+​而 KKT 条件就是指上面最优化数学模型的标准形式中的最小点 $x^*$ 必须满足下面的条件：
 
-> >
-> >
-> > ![img](http://my.csdn.net/uploads/201206/08/1339126537_2336.jpg)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180801/AlhHe8ALIa.png?imageslim)
 
-​    经过论证，我们这里的问题是满足 KKT 条件的（首先已经满足Slater条件，再者f和gi也都是可微的，即L对w和b都可导），因此现在我们便转化为求解第二个问题。
 
-​    也就是说，原始问题通过满足KKT条件，已经转化成了对偶问题。而求解这个对偶学习问题，分为3个步骤：首先要让L(w，b，a) 关于 w 和 b 最小化，然后求对![img](https://img-blog.csdn.net/20131111195836468)的极大，最后利用SMO算法求解对偶问题中的拉格朗日乘子。
+​经过论证，我们这里的问题是满足 KKT 条件的（首先已经满足Slater条件，再者 $f$ 和 $g_i$ 也都是可微的，即 $L$ 对 $w$ 和 $b$ 都可导），因此现在我们便转化为求解第二个问题。
+
+​也就是说，原始问题通过满足 KKT 条件，已经转化成了对偶问题。而求解这个对偶学习问题，分为3个步骤：首先要让 $L(w，b，a)$ 关于 $w$ 和 $b$ 最小化，然后求对 $\alpha$ 的极大，最后利用 SMO 算法求解对偶问题中的拉格朗日乘子。
 
 #### 2.1.3、对偶问题求解的3个步骤
 
-​    **（1）**、首先固定*![img](https://img-blog.csdn.net/20131111195836468)，*要让 L 关于 w 和 b 最小化，我们分别对w，b求偏导数，即令 ∂L/∂w 和 ∂L/∂b 等于零（对w求导结果的解释请看本文评论下第45楼回复）：
+**（1）**、首先固定 $\alpha$ ，要让 $L$ 关于 $w$ 和 $b$ 最小化，我们分别对 $w$ ，$b$ 求偏导数，即令 $\partial{L}/\partial{w}$ 和 $\partial{L}/\partial{b}$ 等于零（对 $w$ 求导结果的解释请看本文评论下第45楼回复）：
 
-​								![img](https://img-blog.csdn.net/20131107202220500)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180801/ghcjI3g5j8.png?imageslim)
 
-​    将以上结果代入之前的L
+​将以上结果代入之前的 $L$
 
-> > >
-> > >
-> > > > ![img](http://img.my.csdn.net/uploads/201210/25/1351142114_6643.jpg)
-> > >
-> > >
+$$\mathcal{L}(w,b,\alpha)=\frac{1}{2}||w||^2-\sum_{i=1}^{n}\alpha_i(y_i(w^Tx_i+b)-1)$$
 
-​    得到：
 
->
->
-> ![img](http://img.my.csdn.net/uploads/201210/25/1351142449_6864.jpg)
+得到：
 
-​    提醒：有读者可能会问上述推导过程如何而来？说实话，其具体推导过程是比较复杂的，如下图所示：![img](http://img.my.csdn.net/uploads/201301/11/1357837605_5830.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180801/bGc1DEADI6.png?imageslim)
 
-​      最后，得到：
+提醒：有读者可能会问上述推导过程如何而来？说实话，其具体推导过程是比较复杂的，如下图所示：
 
-> ![img](http://img.my.csdn.net/uploads/201210/25/1351142449_6864.jpg)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180801/eG9kGckmHB.png?imageslim)
 
-​    如 jerrylead所说：“倒数第4步”推导到“倒数第3步”使用了线性代数的转置运算，由于ai和yi都是实数，因此转置后与自身一样。“倒数第3步”推导到“倒数第2步”使用了(a+b+c+…)(a+b+c+…)=aa+ab+ac+ba+bb+bc+…的乘法运算法则。最后一步是上一步的顺序调整。
 
-​    从上面的最后一个式子，我们可以看出，此时的拉格朗日函数只包含了一个变量，那就是![img](https://img-blog.csdn.net/20131111195824031)（求出了![img](https://img-blog.csdn.net/20131111195824031)便能求出w，和b，由此可见，上文第1.2节提出来的核心问题：分类函数**![img](https://img-blog.csdn.net/20131107201211968)**也就可以轻而易举的求出来了）。
+最后，得到：
 
-​    **（2）**、求对![img](https://img-blog.csdn.net/20131111195836468)的极大，即是关于对偶问题的最优化问题。经过上面第一个步骤的求w和b，得到的拉格朗日函数式子已经没有了变量w，b，只有![img](https://img-blog.csdn.net/20131111195836468)。从上面的式子得到：
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180801/L6bEe5aig7.png?imageslim)
 
-> ![img](http://my.csdn.net/uploads/201206/02/1338605996_4659.jpg)
+​如 jerrylead所说：“倒数第4步” 推导到 “倒数第3步” 使用了线性代数的转置运算，由于 $a_i$ 和 $y_i$ 都是实数，因此转置后与自身一样。“倒数第3步” 推导到 “倒数第2步” 使用了`(a+b+c+…)(a+b+c+…)=aa+ab+ac+ba+bb+bc+…` 的乘法运算法则。最后一步是上一步的顺序调整。
 
-​    这样，
+​从上面的最后一个式子，我们可以看出，此时的拉格朗日函数只包含了一个变量，那就是 $\alpha_i$ （求出了 $\alpha_i$ 便能求出 $w$，和 $b$，由此可见，上文第 1.2 节提出来的核心问题：分类函数 $f(x)=w^Tx+b$ 也就可以轻而易举的求出来了）。
 
-求出了![img](https://img-blog.csdn.net/20131111195824031)
+**（2）**、求对 $\alpha$ 的极大，即是关于对偶问题的最优化问题。经过上面第一个步骤的求 $w$ 和 $b$，得到的拉格朗日函数式子已经没有了变量 $w$，$b$，只有 $\alpha$ 。从上面的式子得到：
 
-，根据![img](http://img.my.csdn.net/uploads/201301/11/1357838666_9138.jpg)，
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180801/4BKgajK8i4.png?imageslim)
 
-即可求出w，
+​这样，求出了 $\alpha_i$ ，根据 $w=\sum_{i=1}^{m}\alpha_iy^{(i)}x^{(i)}$ ，即可求出 $w$，然后通过 $b^*=-\frac{max_{i:y^{(i)}=-1}w^{*T}x^{(i)}+min_{i:y^{(i)}=1}w^{*T}x^{(i)}}{2}$ ，即可求出 $b$，最终得出分离超平面和分类决策函数。
 
-然后通过![img](http://img.my.csdn.net/uploads/201301/11/1357838696_3314.png)，
+​**（3）** 在求得 $L(w, b, a)$ 关于 $w$ 和 $b$ 最小化，以及对 $\alpha$ 的极大之后，最后一步则可以利用 SMO 算法求解对偶问题中的拉格朗日乘子 $\alpha$ 。
 
-即可求出b，
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180801/cGbj0L2Kma.png?imageslim)
 
-最终得出分离超平面和分类决策函数。
+上述式子要解决的是在参数 $\{\alpha_1,\alpha_2,\ldots,\alpha_n\}$ 上求最大值 $W$ 的问题，至于 $x^{(i)}$ 和  $y^{(i)}$ 都是已知数。要了解这个SMO算法是如何推导的，请跳到下文第3.5节、SMO 算法。
 
-​    **（3）**在求得L(w, b, a) 关于 w 和 b 最小化，以及对![img](https://img-blog.csdn.net/20131111195836468)的极大之后，最后一步则可以利用SMO算法求解对偶问题中的拉格朗日乘子![img](https://img-blog.csdn.net/20131111195836468)。
-
-> ![img](http://my.csdn.net/uploads/201206/02/1338605996_4659.jpg)
-
-​       上述式子要解决的是在参数![img](http://img.my.csdn.net/uploads/201304/05/1365176671_1627.png)上求最大值W的问题，至于![img](http://img.my.csdn.net/uploads/201304/05/1365176682_4857.png)和![img](http://img.my.csdn.net/uploads/201304/05/1365176690_4143.png)都是已知数。要了解这个SMO算法是如何推导的，请跳到下文第3.5节、SMO算法。
-
-​    到目前为止，我们的 SVM 还比较弱，只能处理线性的情况，下面我们将引入核函数，进而推广到非线性分类问题。
+​到目前为止，我们的 SVM 还比较弱，只能处理线性的情况，下面我们将引入核函数，进而推广到非线性分类问题。
 
 #### 2.1.5、线性不可分的情况
 
-​    OK，为过渡到下节2.2节所介绍的核函数，让我们再来看看上述推导过程中得到的一些有趣的形式。首先就是关于我们的 hyper plane ，对于一个数据点  进行分类，实际上是通过把  带入到![img](https://img-blog.csdn.net/20131107201211968)算出结果然后根据其正负号来进行类别划分的。而前面的推导中我们得到
+​OK，为过渡到下节 2.2 节所介绍的核函数，让我们再来看看上述推导过程中得到的一些有趣的形式。首先就是关于我们的 hyper plane ，对于一个数据点  进行分类，实际上是通过把  带入到![img](https://img-blog.csdn.net/20131107201211968)算出结果然后根据其正负号来进行类别划分的。而前面的推导中我们得到
 
 > > > >
 > > > >
