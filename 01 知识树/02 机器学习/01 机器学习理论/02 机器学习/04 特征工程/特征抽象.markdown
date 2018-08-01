@@ -1,67 +1,13 @@
----
-author: evo
-comments: true
-date: 2018-04-29 03:24:26+00:00
-layout: post
-link: http://106.15.37.116/2018/04/29/abstract-features/
-slug: abstract-features
-title: 特征抽象
-wordpress_id: 4530
-categories:
-- 随想与反思
-tags:
-- '@todo'
-- '@want_to_know'
----
-
-<!-- more -->
-
-[mathjax]
-
-
-# REF
+# 特征抽象
 
 
 
 
+TODO
 
 
-  1. 《机器学习 实践应用》
-
-
-
-
-# TODO
-
-
-
-
-
-
-  * **对于文本、音频、图像 到底怎么处理？要单独拿出来说**
-
-
-  * **视频文件呢？带字幕的视频呢？**
-
-
-
-
-# MOTIVE
-
-
-
-
-
-
-  * aaa
-
-
-
-
-
-* * *
-
-
+* **对于文本、音频、图像 到底怎么处理？要单独拿出来说**
+* **视频文件呢？带字幕的视频呢？**
 
 
 
@@ -229,3 +175,12 @@ OK，理解了之后，我们来对这种形式总结一下：One-hot 编码的�
 
 
 **需补充**
+
+
+
+
+
+
+## REF
+
+1. 《机器学习 实践应用》
