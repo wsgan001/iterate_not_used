@@ -209,7 +209,7 @@ vim 键盘图：
 
 直接输入** vi 文件名 **就能够进入 vi 的命令模式了。请注意，记得 vi 后面一定要加文件名，不管该文件存在与否！
 
-![](https://img.w3cschool.cn/attachments/uploads/2014/07/vi1.jpg)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/GfAIcGmhda.png?imageslim)
 
 
 #### 按下 i 进入输入模式，开始编辑文字
@@ -221,7 +221,7 @@ vim 键盘图：
 
 这个时候，键盘上除了 [Esc] 这个按键之外，其他的按键都可以视作为一般的输入按钮了，所以你可以进行任何的编辑。
 
-![](https://img.w3cschool.cn/attachments/uploads/2014/07/vi2.jpg)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/m8c6e30Imf.png?imageslim)
 
 
 #### 按下 [ESC] 按钮回到命令模式
@@ -235,7 +235,7 @@ vim 键盘图：
 
 OK，我们要存档了，存盘并离开的指令很简单，输入『:wq』即可保存离开！
 
-![](https://img.w3cschool.cn/attachments/image/20161011/1476170083232886.jpg)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/07F1eDGA4i.png?imageslim)
 
 OK! 这样我们就成功创建了一个 test.txt 的文件。是不是很简单。
 

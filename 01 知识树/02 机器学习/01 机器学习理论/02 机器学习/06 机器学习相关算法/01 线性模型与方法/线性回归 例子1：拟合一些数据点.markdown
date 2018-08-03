@@ -69,13 +69,15 @@ categories:
 
 找出一些点的最佳拟合图像：
 
-![线性回归数据示例图](http://ml.apachecn.org/images/8.Regression/LinearR_2.png)
+线性回归数据示例图
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/f9AeKd7EFf.png?imageslim)
 
 ## 项目数据
 
 
-[download id="5599"]
+链接：https://pan.baidu.com/s/13SdRq_2eZn4YvWu9Ev_UdA 密码：w3ea
+
 
 数据格式为：
 

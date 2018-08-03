@@ -76,7 +76,7 @@ Boosting是一种迭代的方法，每一次训练会更关心上一次被分错
 
 ## 1.7 Stacking
 
-![Stacking](http://7xlo8f.com1.z0.glb.clouddn.com/blog-diagram-stacking.jpg)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/1c7K5i4iA2.png?imageslim)
 
 图片来自[Wille的博客](https://dnc1994.com/2016/04/rank-10-percent-in-first-kaggle-competition/)。
 

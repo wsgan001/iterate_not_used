@@ -26,7 +26,7 @@ tags:
 
 
 
- 	
+
   1. [SQL教程](https://www.w3cschool.cn/sql/)
 
 
@@ -38,7 +38,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -50,7 +50,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -72,43 +72,11 @@ SQL 是用于访问和处理数据库的标准的计算机语言。 在本教程
 
 
 
-[![SQL教程](https://www.w3cschool.cn/attachments/cover/cover_sql.png)](https://www.w3cschool.cn/sql)
-
-
-
-
+https://www.w3cschool.cn/sql
 
 
 
 # SQL教程
-
-
-
-
-[![](https://www.w3cschool.cn/attachments/avatar2/avatar_2.jpg) youj](https://www.w3cschool.cn/u/2)
-
-
-
-
-
-
-
-__ 阅读(3138k)__ 收藏__ 赞(456)__ 分享
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -119,13 +87,13 @@ __ 阅读(3138k)__ 收藏__ 赞(456)__ 分享
 
 
 
- 	
+
   * **在PC/MAC上查看：**下载w3cschool客户端，进入客户端后通过搜索当前教程手册的名称并下载，就可以查看当前离线教程文档。[下载SQL教程离线版客户端](https://www.w3cschool.cn/download/sql.html)
 
- 	
+
   * **在手机APP上查看：**请从各大安卓应用商店、苹果App Store搜索并下载w3cschool手机客户端，在App中搜索当前教程手册的名称查看。[下载w3cschool手机App端](https://www.w3cschool.cn/download/)
 
- 	
+
   * **在手机上查看文档：**[https://m.w3cschool.cn/sql/](https://m.w3cschool.cn/sql/)
 
 
@@ -292,16 +260,16 @@ SQL为结构化查询语言提供了独特的学习和数据库处理技术，�
 
 
 
- 	
+
   * SQL 发音为“sequel”。
 
- 	
+
   * SQL 指结构化查询语言，全称是 Structured Query Language（是最初由IBM开发）。
 
- 	
+
   * SQL 是关系数据库系统的标准语言。
 
- 	
+
   * SQL 是一种 ANSI（American National Standards Institute 美国国家标准化组织）标准的计算机语言。
 
 
@@ -320,37 +288,37 @@ SQL为结构化查询语言提供了独特的学习和数据库处理技术，�
 
 
 
- 	
+
   * SQL可以创建新的数据库及其对象（表，索引，视图，存储过程，函数和触发器）。
 
- 	
+
   * SQL可以修改现有数据库的结构。
 
- 	
+
   * SQL可以从数据库中删除（删除）对象。
 
- 	
+
   * SQL可以TRUNCATE（删除）表中的所有记录。
 
- 	
+
   * SQL可以对数据字典进行COMMENT。
 
- 	
+
   * SQL可以RENAME一个对象。
 
- 	
+
   * SQL可以从数据库中选择（检索）数据。
 
- 	
+
   * SQL可以将数据插入到表中。
 
- 	
+
   * SQL可以更新表中的现有数据。
 
- 	
+
   * SQL可以从数据库表中删除记录。
 
- 	
+
   * SQL可以在数据库中设置用户的GRANT和REVOKE权限。
 
 
@@ -369,19 +337,19 @@ SQL为结构化查询语言提供了独特的学习和数据库处理技术，�
 
 
 
- 	
+
   * SQL由IBM的Donald D. Chamberlin和Raymond F. Boyce于1970年开发。
 
- 	
+
   * 首先，开发版本最初被称为SEQUEL（结构化英语查询语言）。
 
- 	
+
   * 关系软件于1979年发布了第一个叫做System / R的商业产品。
 
- 	
+
   * 由于商标冲突问题，SEQUEL首字母缩略词后来更改为SQL。
 
- 	
+
   * 后来IBM基于System / R的原型开始在SQL上开发商业产品。
 
 
@@ -427,16 +395,16 @@ SQL为结构化查询语言提供了独特的学习和数据库处理技术，�
 
 
 
- 	
+
   * 一个RDBMS数据库程序（即MS Access，SQL Server，MySQL）。
 
- 	
+
   * 使用服务器端脚本语言，如PHP或ASP。
 
- 	
+
   * 使用SQL来获取所需的数据。
 
- 	
+
   * 使用HTML / CSS来设置页面的样式
 
 
@@ -462,7 +430,7 @@ RDBMS 中的数据存储在被称为表的数据库对象中。
 
 **代码示例：**
 
-    
+
     SELECT * FROM Customers;
 
 
@@ -497,6 +465,3 @@ RDBMS 中的数据存储在被称为表的数据库对象中。
 
 
 # COMMENT
-
-
-

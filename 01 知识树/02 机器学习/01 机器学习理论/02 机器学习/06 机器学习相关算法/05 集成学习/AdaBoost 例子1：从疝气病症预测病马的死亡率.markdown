@@ -5,7 +5,7 @@ date: 2018-05-12 07:32:40+00:00
 layout: post
 link: http://106.15.37.116/2018/05/12/adaboost-sample1/
 slug: adaboost-sample1
-title: 
+title:
 wordpress_id: 5564
 categories:
 - 随想与反思
@@ -27,7 +27,7 @@ tags:
 
 
 
-  1. 
+  1.
 
 
 [第7章 集成方法 ensemble method](http://ml.apachecn.org/mlia/ensemble-random-tree-adaboost/#_3)
@@ -80,7 +80,7 @@ tags:
 # 项目数据
 
 
-[download id="5502"]
+链接：https://pan.baidu.com/s/1_poe5mYSPGENdMHaEyAkfg 密码：rlci
 
 病马的训练数据已经给出来了，如下形式存储在文本文件中:
 
@@ -105,13 +105,13 @@ tags:
     import numpy as np
 
 
-​    
+​
     # 加载数据集
     def load_data_set(file_name):
         num_in_row = len(open(file_name).readline().strip().split('\t'))
         data_arr = []
         label_arr = []
-    
+
         fr = open(file_name)
         for line in fr.readlines():
             line_arr = []
@@ -123,7 +123,7 @@ tags:
         return data_arr, label_arr
 
 
-​    
+​
     # 将数据集，按照feature列的value进行 二分法切分比较来赋值分类
     def stump_classify(data_mat, column_index, thresh_value, inequal_flag):
         row_num, column_num = np.shape(data_mat)
@@ -137,7 +137,7 @@ tags:
         return label_pred
 
 
-​    
+​
     # weights_mat 每个样本的权重值
     # 建立决策树桩，这个比较重要
     def build_tree_stump(data_mat, label_mat, weights_mat):
@@ -146,7 +146,7 @@ tags:
         min_error = np.inf  # 错误率  无穷大
         best_stump = {}  # 最优的决策树桩
         best_label_pred = np.mat(np.zeros((row_num, 1)))  # 预测的最优结果
-    
+
         for column_index in range(column_num):
             # 找到这个特征的最小值和最大值
             min_feature = data_mat[:, column_index].min()
@@ -158,7 +158,7 @@ tags:
                     label_pred = stump_classify(data_mat, column_index, thresh_value, inequal_flag)  # 进行根据这个特征的这个值进行预测
                     # 预测正确的为0，预测错误的为1
                     error_arr = np.mat(np.zeros((row_num, 1)))
-    
+
                     error_arr[label_pred != label_mat] = 1
                     # 得到权重错误值，即 整体结果的错误率
                     # 为什么这个地方可以这么计算？
@@ -173,7 +173,7 @@ tags:
         return best_stump, min_error, best_label_pred
 
 
-​    
+​
     # 进行训练
     # classifier_num_limit: 分类器的个数极限，中间有可能因为error_rate已经是0了，就不用这么多
     def adaboost_train(data_mat, label_mat, classifier_num_limit=40):
@@ -195,7 +195,7 @@ tags:
             weights_mat = np.multiply(weights_mat, np.exp(expon))
             # OK，重新归一化样本的权重
             weights_mat = weights_mat / weights_mat.sum()
-    
+
             # 更新整体的predict_mat，将本次的预测结果按权重加进来
             predict_mat += alpha * label_pred
             # 每次都会看看这时候的error_rate怎么样了
@@ -211,14 +211,14 @@ tags:
         return weak_classifier_arr, predict_mat, error_rate
 
 
-​    
+​
     # 打印ROC曲线，并计算AUC的面积大小
     # 这个没有怎么看 要弄清楚？
     def plot_roc(predict_mat, label_mat):
         import matplotlib.pyplot as plt
         # variable to calculate AUC
         y_sum = 0.0
-    
+
         num_positive = np.sum(np.array(label_mat) == 1.0)  # 对正样本的进行求和
         y_step = 1 / float(num_positive)  # 正样本的权重
         x_step = 1 / float(len(label_mat) - num_positive)  # 负样本的权重
@@ -263,7 +263,7 @@ tags:
         print("the Area Under the Curve is: ", y_sum * x_step)
 
 
-​    
+​
     # 使用adaboost的弱分类器进行分类
     def adaboost_classify(data_mat, weak_class_arr):
         row_num = np.shape(data_mat)[0]
@@ -279,7 +279,7 @@ tags:
         return np.sign(pred_mat)  # 统一到 -1，0，1 上
 
 
-​    
+​
     if __name__ == '__main__':
         data_arr, label_arr = load_data_set('horseColicTraining.txt')
         data_mat = np.mat(data_arr)
@@ -290,10 +290,10 @@ tags:
         print("训练得到的弱分类器集合为：\n", weak_class_arr)
         print("此时的分类结果为： \n", predict_mat.T)
         print("此时的训练集错误率为： ", error_rate)
-    
+
         # 打印ROC曲线
         plot_roc(predict_mat, label_mat)
-    
+
         # 准备测试集上的数据
         data_arr_test, label_arr_test = load_data_set("horseColicTest.txt")
         data_mat_test = np.mat(data_arr_test)
@@ -334,7 +334,7 @@ tags:
     current error_rate:  0.224080267559
     训练得到的弱分类器集合为：
      [{'column_index': 9, 'thresh_value': 3.0, 'inequal_flag': 'gt', 'alpha': 0.4616623792657674}, {'column_index': 17, 'thresh_value': 52.5, 'inequal_flag': 'gt', 'alpha': 0.31248245042467104}, {'column_index': 3, 'thresh_value': 55.199999999999996, 'inequal_flag': 'gt', 'alpha': 0.2868097320169577}, {'column_index': 18, 'thresh_value': 62.300000000000004, 'inequal_flag': 'lt', 'alpha': 0.23297004638939506}, {'column_index': 10, 'thresh_value': 0.0, 'inequal_flag': 'lt', 'alpha': 0.19803846151213741}, {'column_index': 5, 'thresh_value': 2.0, 'inequal_flag': 'gt', 'alpha': 0.18847887349020634}, {'column_index': 12, 'thresh_value': 1.2, 'inequal_flag': 'lt', 'alpha': 0.15227368997476778}, {'column_index': 7, 'thresh_value': 1.2, 'inequal_flag': 'gt', 'alpha': 0.15510870821690512}, {'column_index': 5, 'thresh_value': 0.0, 'inequal_flag': 'lt', 'alpha': 0.13536197353359405}, {'column_index': 4, 'thresh_value': 28.799999999999997, 'inequal_flag': 'lt', 'alpha': 0.12521587326132078}, {'column_index': 11, 'thresh_value': 2.0, 'inequal_flag': 'gt', 'alpha': 0.1334764812820767}, {'column_index': 9, 'thresh_value': 4.0, 'inequal_flag': 'lt', 'alpha': 0.1418224325377107}, {'column_index': 14, 'thresh_value': 0.0, 'inequal_flag': 'gt', 'alpha': 0.10264268449708028}, {'column_index': 0, 'thresh_value': 1.0, 'inequal_flag': 'lt', 'alpha': 0.11883732872109484}, {'column_index': 4, 'thresh_value': 19.199999999999999, 'inequal_flag': 'gt', 'alpha': 0.09879216527106625}, {'column_index': 2, 'thresh_value': 36.719999999999999, 'inequal_flag': 'lt', 'alpha': 0.12029960885056867}, {'column_index': 3, 'thresh_value': 92.0, 'inequal_flag': 'lt', 'alpha': 0.10846927663989175}, {'column_index': 15, 'thresh_value': 0.0, 'inequal_flag': 'lt', 'alpha': 0.09652967982091411}, {'column_index': 3, 'thresh_value': 73.599999999999994, 'inequal_flag': 'gt', 'alpha': 0.08958515309272022}, {'column_index': 18, 'thresh_value': 8.9000000000000004, 'inequal_flag': 'lt', 'alpha': 0.09210361961272426}]
-    此时的分类结果为： 
+    此时的分类结果为：
      [[ -4.09543656e-01   5.26407952e-01   1.13744899e+00  -2.34841212e-01
        -6.32795606e-01   1.39898149e+00   1.14062312e+00   5.20947035e-01
        -8.68196335e-01   5.57328458e-01   2.46043468e-01   8.14261277e-01
@@ -429,8 +429,9 @@ tags:
 
 **需要补充下，这个图要重新整理到 AdaBoost 文章里去，然后在这里引用**
 
-**![AdaBoost算法权重计算公式](http://ml.apachecn.org/images/7.AdaBoost/adaboost_alpha.png)**
+AdaBoost算法权重计算公式
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/bFmfIlcLAl.png?imageslim)
 
 
 
@@ -482,6 +483,3 @@ tags:
 
 
 # COMMENT
-
-
-

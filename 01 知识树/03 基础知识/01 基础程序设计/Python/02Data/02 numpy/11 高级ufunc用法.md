@@ -7,7 +7,7 @@
 
 numpy的ufuncs有特别的方法用来进行特殊的向量化操作。下表进行了总结。这里我们给一些更具体的例子。
 
-![](http://oydgk2hgw.bkt.clouddn.com/pydata-book/w2spd.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/33ak1DaBfe.png?imageslim)
 
 reduce接受一个数组，并对其进行聚合，可以选择沿着哪个轴。例如，用np.add.reduce来对一个数组中的元素进行相加：
 
@@ -15,7 +15,7 @@ reduce接受一个数组，并对其进行聚合，可以选择沿着哪个轴�
 
 
 ```python
-import numpy as np 
+import numpy as np
 ```
 
 
@@ -359,7 +359,7 @@ arr = np.random.randn(10000)
 ```
 
     100 loops, best of 3: 2.54 ms per loop
-    
+
 
 
 ```python
@@ -368,6 +368,6 @@ arr = np.random.randn(10000)
 
     The slowest run took 37.36 times longer than the fastest. This could mean that an intermediate result is being cached.
     100000 loops, best of 3: 5.25 µs per loop
-    
+
 
 在这一章之后我们会介绍如何使用[Numba project](http://numba.pydata.org/)来构建更快的函数。

@@ -5,7 +5,7 @@ date: 2018-05-10 13:16:01+00:00
 layout: post
 link: http://106.15.37.116/2018/05/10/svm-sample2/
 slug: svm-sample2
-title: 
+title:
 wordpress_id: 5514
 categories:
 - 随想与反思
@@ -27,7 +27,7 @@ categories:
 
     1. [第6章 支持向量机](http://ml.apachecn.org/mlia/svm/)
 
-  2. 
+  2.
 
 
 
@@ -75,7 +75,9 @@ categories:
 # 项目数据
 
 
-仍然是之前的digits项目的数据 ： [download id="5402"]
+仍然是之前的digits项目的数据 ：
+
+链接：https://pan.baidu.com/s/1wc1ooDPns0Ciy4CiMkmcmQ 密码：uz3c
 
 里面每个txt文档都是32*32 的，内容类似：
 
@@ -125,7 +127,7 @@ categories:
     from time import sleep
 
 
-​    
+​
     def calc_Ws(alphas, data_arr, class_labels):
         X = np.mat(data_arr);
         labelMat = np.mat(class_labels).transpose()
@@ -136,7 +138,7 @@ categories:
         return w
 
 
-​    
+​
     def get_img_data(file_name):
         img_data = np.zeros((1, 1024))
         fr = open(file_name)
@@ -147,7 +149,7 @@ categories:
         return img_data
 
 
-​    
+​
     def load_images(dir_name):
         from os import listdir
         file_list = listdir(dir_name)  # load the training set
@@ -166,7 +168,7 @@ categories:
         return data_mats, labels
 
 
-​    
+​
     class opt_struct:
         def __init__(self, data_mat_in, class_labels, C, toler, kTup):  # Initialize the structure with the parameters
             self.X = data_mat_in
@@ -182,7 +184,7 @@ categories:
                 self.K[:, i] = kernel_trans(self.X, self.X[i, :], kTup)
 
 
-​    
+​
     # data_mat 数据集
     # row_mat data_mat数据集的第i行的数据
     # kTup  核函数的信息
@@ -202,14 +204,14 @@ categories:
         return K
 
 
-​    
+​
     def calc_Ek(oS, k):
         fXk = float(np.multiply(oS.alphas, oS.labelMat).T * oS.K[:, k] + oS.b)
         Ek = fXk - float(oS.labelMat[k])
         return Ek
 
 
-​    
+​
     def select_j_rand(i, m):
         j = i  # we want to select any J not equal to i
         while (j == i):
@@ -217,7 +219,7 @@ categories:
         return j
 
 
-​    
+​
     def clip_alpha(aj, H, L):
         if aj > H:
             aj = H
@@ -226,7 +228,7 @@ categories:
         return aj
 
 
-​    
+​
     def selectJ(i, oS, Ei):  # this is the second choice -heurstic, and calcs Ej
         max_k = -1;
         max_delta_e = 0;
@@ -249,13 +251,13 @@ categories:
         return j, Ej
 
 
-​    
+​
     def update_Ek(oS, k):  # after any alpha has changed update the new value in the cache
         Ek = calc_Ek(oS, k)
         oS.eCache[k] = [1, Ek]
 
 
-​    
+​
     def innerL(i, oS):
         Ei = calc_Ek(oS, i)
         if ((oS.labelMat[i] * Ei < -oS.tol) and (oS.alphas[i] < oS.C)) \
@@ -300,7 +302,7 @@ categories:
             return 0
 
 
-​    
+​
     # 完整SMO算法外循环，与smoSimple有些类似，但这里的循环退出条件更多一些
     def smoP(data_mat_in, class_labels, C, toler, max_iter, kTup=('lin', 0)):  # full Platt SMO
         oS = opt_struct(np.mat(data_mat_in),
@@ -337,7 +339,7 @@ categories:
         return oS.b, oS.alphas
 
 
-​    
+​
     def try_digits(kTup=('rbf', 10)):
         data_arr, label_arr = load_images('digits/trainingDigits')
         b, alphas = smoP(data_arr, label_arr, 200, 0.0001, 10000, kTup)
@@ -369,7 +371,7 @@ categories:
         print("the test error rate is: %f" % (float(error_count) / m))
 
 
-​    
+​
     if __name__ == "__main__":
         try_digits()
 
@@ -422,6 +424,3 @@ categories:
 
 
 # COMMENT
-
-
-

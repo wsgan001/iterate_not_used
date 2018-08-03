@@ -14,7 +14,11 @@
 
 而数据的列数就看你保留了多少个feature了，因人而异。我自己的train保留了 7+1（1是预测列）。
 
-在网上为数不多的stacking内容里，相信你早看过了这张图：![Kaggle机器学习之模型融合（stacking）心得](https://static.leiphone.com/uploads/new/article/pic/201709/71979ed976c68dcc834bfbe35ae73d79.jpg)
+在网上为数不多的stacking内容里，相信你早看过了这张图：
+
+Kaggle机器学习之模型融合（stacking）心得
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/g14emlcIeb.png?imageslim)
 
 这张图，如果你能一下子就能看懂，那就OK。
 
@@ -24,7 +28,9 @@
 
 我把图改了一下：
 
-![Kaggle机器学习之模型融合（stacking）心得](https://static.leiphone.com/uploads/new/article/pic/201709/cfb37e4250561177520f6f7af86d42f4.jpg)对于每一轮的 5-fold，Model 1都要做满5次的训练和预测。
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/2b7be562be.png?imageslim)
+
+对于每一轮的 5-fold，Model 1都要做满5次的训练和预测。
 
 Titanic 栗子：
 
@@ -63,7 +69,9 @@ Train Data有890行。(请对应图中的上层部分）
 
 最后 ，放出一张Python的Code，在网上为数不多的stacking内容里， 这个几行的code你也早就看过了吧，我之前一直卡在这里，现在加上一点点注解，希望对你有帮助：
 
-![Kaggle机器学习之模型融合（stacking）心得](https://static.leiphone.com/uploads/new/article/pic/201709/d9b737ad6edbc00ffa15aa082fa4bb19.png)
+Kaggle机器学习之模型融合（stacking）心得
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/8i7jKCkG3j.png?imageslim)
 
 雷锋网版权文章，未经授权禁止转载。详情见[转载须知](http://dwz.cn/4ErMxZ)。
 

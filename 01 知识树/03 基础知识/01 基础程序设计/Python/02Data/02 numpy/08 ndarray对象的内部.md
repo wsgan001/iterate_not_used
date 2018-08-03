@@ -18,7 +18,7 @@ ndarray之所以很灵活，是因为每一个数组对象是一块数据（a bl
 
 看下图显示了一个ndarray对象的内在构成：
 
-![](http://oydgk2hgw.bkt.clouddn.com/pydata-book/fv46r.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/kHekAHmg8e.png?imageslim)
 
 比如，一个10x5的数组，形状是(10, 5):
 
@@ -68,12 +68,12 @@ np.ones((3, 4, 5))
             [ 1.,  1.,  1.,  1.,  1.],
             [ 1.,  1.,  1.,  1.,  1.],
             [ 1.,  1.,  1.,  1.,  1.]],
-    
+
            [[ 1.,  1.,  1.,  1.,  1.],
             [ 1.,  1.,  1.,  1.,  1.],
             [ 1.,  1.,  1.,  1.,  1.],
             [ 1.,  1.,  1.,  1.,  1.]],
-    
+
            [[ 1.,  1.,  1.,  1.,  1.],
             [ 1.,  1.,  1.,  1.,  1.],
             [ 1.,  1.,  1.,  1.,  1.],
@@ -153,4 +153,4 @@ np.issubdtype(ints.dtype, np.number)
 
 大部分numpy用户不用非得记住这些，但是了解一下有时候会很方便。下面是一副关于dtype层级和父子关系的示意图：
 
-![](http://oydgk2hgw.bkt.clouddn.com/pydata-book/uh6jw.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/mkA90mL8D2.png?imageslim)

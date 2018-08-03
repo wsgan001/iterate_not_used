@@ -5,7 +5,7 @@ date: 2018-05-10 14:05:25+00:00
 layout: post
 link: http://106.15.37.116/2018/05/10/rf-sample1/
 slug: rf-sample1
-title: 
+title:
 wordpress_id: 5530
 categories:
 - 随想与反思
@@ -71,8 +71,7 @@ categories:
 # 项目数据
 
 
-[download id="5546"]
-
+链接：https://pan.baidu.com/s/1J7SfU1R0eMMq8QztzCzQew 密码：kwrg
 
 # 完整代码
 
@@ -84,7 +83,7 @@ categories:
     import math
 
 
-​    
+​
     # 导入csv文件
     def load_data_set(file_name):
         datas = []
@@ -108,7 +107,7 @@ categories:
         return datas
 
 
-​    
+​
     # 交叉采样 这个采样的方式的名字叫什么？忘记了
     # 数据集dataset分成n_flods份，每次都是从dataset中抽取一个dataset/n_folds大小的list，为了用于交叉验证
     # 抽出一个list的时候是又放回的还是无放回的？
@@ -127,7 +126,7 @@ categories:
         return dataset_split
 
 
-​    
+​
     # 尝试根据这一行的这个特征的特征值来划分 dataset
     def get_split_result_with_feature_value(feature_index, feature_value, dataset):
         # 根据每个样本对应的这个特征的特征值大于或者小于这个值，来划分为两个列表
@@ -140,7 +139,7 @@ categories:
         return left, right
 
 
-​    
+​
     # 为这一次的分割计算基尼指数
     def calc_gini_index(groups, labels):  # 个人理解：计算代价，分类越准确，则 gini 越小
         gini = 0.0
@@ -156,15 +155,15 @@ categories:
         return gini
 
 
-​    
+​
     # 找出分割数据集的最优特征，得到最优的特征 index，特征值 row[index]，以及分割完的数据 groups（left, right）
     def get_current_features_split_result(dataset, n_features):
         # 获得标记的set
         labels = list(set(row[-1] for row in dataset))  # class_values =[0, 1]
-    
+
         # b_index：最优的分类特征。b_value：分类特征值 。b_score：这里使用的是基尼系数。 b_groups：分类结果 ？
         b_index, b_value, b_score, b_groups = 999, 999, 999, None
-    
+
         # 开始选择出 n_features 个特征
         ifeatures = list()
         while len(ifeatures) < n_features:
@@ -184,7 +183,7 @@ categories:
         return {'index': b_index, 'value': b_value, 'groups': b_groups}
 
 
-​    
+​
     # 输出group中出现次数较多的标签
     def to_terminal(group):
         outcomes = [row[-1] for row in group]
@@ -193,7 +192,7 @@ categories:
         return max(set(outcomes), key=outcomes.count)
 
 
-​    
+​
     # 为一个结点创建子分割器，递归分类，直到分类结束
     # max_depth = 10, min_size = 1,
     def split(node, max_depth, min_size, n_features, current_depth):
@@ -229,7 +228,7 @@ categories:
             split(node['right'], max_depth, min_size, n_features, current_depth + 1)
 
 
-​    
+​
     # 创建一个决策树
     # max_depth       决策树深度不能太深，不然容易导致过拟合 为什么？
     # min_size        叶子节点的大小
@@ -241,7 +240,7 @@ categories:
         return root
 
 
-​    
+​
     # 简单投票法判断出该行所属分类
     def predict(tree, row):  # 预测模型分类结果
         if row[tree['index']] < tree['value']:
@@ -256,7 +255,7 @@ categories:
                 return tree['right']
 
 
-​    
+​
     # 使用一批树，对一行的结果进行预测
     def bagging_predict(trees, row):
         predictions = [predict(tree, row) for tree in trees]
@@ -264,7 +263,7 @@ categories:
         return max(set(predictions), key=predictions.count)
 
 
-​    
+​
     # 可放回的重复采样，创建数据集的随机子样本
     def sub_sample(dataset, ratio):
         sample = list()
@@ -276,7 +275,7 @@ categories:
         return sample
 
 
-​    
+​
     # 随机森林算法
     # train           训练数据集
     # test            测试数据集
@@ -298,7 +297,7 @@ categories:
         return predictions
 
 
-​    
+​
     # 根据预测值和实际值，计算精确度
     def calc_accuracy(actual, predicted):
         correct = 0
@@ -308,8 +307,8 @@ categories:
         return correct / float(len(actual)) * 100.0
 
 
-​    
-​    
+​
+​
     if __name__ == '__main__':
         # 加载数据
         dataset = load_data_set('sonar-all-data.txt')
@@ -328,7 +327,7 @@ categories:
             test_set = copy.deepcopy(fold)
             train_sets.append(train_set)
             test_sets.append(test_set)
-    
+
         max_depth = 15  # 调参（自己修改） #决策树深度不能太深，不然容易导致过拟合
         min_size = 1  # 决策树的叶子节点最少的元素数量
         sample_ratio = 0.8  # 做决策树时候的样本的比例
@@ -470,6 +469,3 @@ categories:
 
 
 # COMMENT
-
-
-

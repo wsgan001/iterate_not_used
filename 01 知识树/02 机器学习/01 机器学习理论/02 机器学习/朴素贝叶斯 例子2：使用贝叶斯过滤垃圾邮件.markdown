@@ -5,7 +5,7 @@ date: 2018-05-08 13:00:36+00:00
 layout: post
 link: http://106.15.37.116/2018/05/08/nb-sample2/
 slug: nb-sample2
-title: 
+title:
 wordpress_id: 5438
 categories:
 - 随想与反思
@@ -25,7 +25,7 @@ categories:
 
 
 
-  1. 
+  1.
 
 
 [第4章 基于概率论的分类方法：朴素贝叶斯](http://ml.apachecn.org/mlia/naive-bayes/)
@@ -86,7 +86,7 @@ categories:
 # 项目数据
 
 
-[download id="5444"]
+链接：https://pan.baidu.com/s/1CNCeOdKcR2ugAU5MXKLp6A 密码：vqaq
 
 里面包含了一些以txt文档形式存放的邮件，ham 文件夹里存放的是正常的邮件，spam 文件夹里村发给的是垃圾邮件。
 
@@ -94,11 +94,11 @@ categories:
 
 
     Hi Peter,
-    
+
     With Jose out of town, do you want to
     meet once in a while to keep things
     going and do some interesting stuff?
-    
+
     Let me know
     Eugene
 
@@ -115,8 +115,8 @@ categories:
     import codecs
 
 
-​    
-​    
+​
+​
     # 将文本内容切分成 word list
     def text_parse(content):
         import re
@@ -124,7 +124,7 @@ categories:
         return [tok.lower() for tok in list_of_words if len(tok) > 2]
 
 
-​    
+​
     # 根据样本中的词汇创建词汇表
     def create_vocabulary_list(data_set):
         vocabulary_set = set([])  # create empty set
@@ -133,8 +133,8 @@ categories:
         return list(vocabulary_set)
 
 
-​    
-​    
+​
+​
     #将文本转化成向量
     def convert_doc_to_vec(vocabulary_list, doc):
         doc_vec = [0] * len(vocabulary_list)
@@ -144,7 +144,7 @@ categories:
         return doc_vec
 
 
-​    
+​
     # 计算出概率值
     def calculate_probility(vec_data, label):
         doc_num = len(vec_data)
@@ -154,7 +154,7 @@ categories:
         vec_1 = np.ones(word_num)
         word_num_0 = 2.0  # 整个数据集单词出现总数   为什么不是0？
         word_num_1 = 2.0
-    
+
         for i in range(doc_num):
             if label[i] == 1:
                 vec_1 += vec_data[i]  # 如果是正样本，对正样本的向量进行加和
@@ -162,13 +162,13 @@ categories:
             else:
                 vec_0 += vec_data[i]
                 word_num_0 += sum(vec_data[i])
-    
+
         p_vec_0 = np.log(vec_0 / word_num_0)
         p_vec_1 = np.log(vec_1 / word_num_1)  # 即在正样本类别下，每个单词出现的概率   为什么使用log()？
         return p_vec_0, p_vec_1, p_1
 
 
-​    
+​
     def classify_NB(test_vec, p_vec_not_abusive, p_vec_abusive, p_abusive):
         p1 = sum(test_vec * p_vec_abusive) + np.log(p_abusive)  # element-wise mult
         p0 = sum(test_vec * p_vec_not_abusive) + np.log(1.0 - p_abusive)
@@ -176,7 +176,7 @@ categories:
             return 1
         else:
             return 0
-    
+
     if __name__=="__main__":
         # 将文本提取出来
         doc_list = []
@@ -190,7 +190,7 @@ categories:
             class_list.append(0)
         # 创建词汇表
         vocabulary_list = create_vocabulary_list(doc_list)
-    
+
         # 创建出训练集和测试集
         train_set = list(range(50))  # 创建训练集
         test_set = []  # 创建测试集
@@ -244,6 +244,3 @@ categories:
 
 
 # COMMENT
-
-
-

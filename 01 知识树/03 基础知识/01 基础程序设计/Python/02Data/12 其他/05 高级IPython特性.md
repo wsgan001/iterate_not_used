@@ -81,15 +81,15 @@ ipython shell的设置文件为`ipython_config.py`，通常位于主目录下的
 如果我们有一个ipython配置是针对某个项目的，我们可以新建一个配置文件：
 
     ipython profile create secret_project
-    
+
 新创建的配置文件在profile_secret_project目录下，我们可以按需要更改配置文件。然后按下面的方式启动ipython：
 
-![](http://oydgk2hgw.bkt.clouddn.com/pydata-book/v4ugs.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/l6hfm4Icj9.png?imageslim)
 
 创建jupyter的配置文件：
 
     jupyter notebook --generate-config
-    
+
 配置文件会保存到主目录下的`.jupyter/jupyter_notebook_config.py`。按需求更改配置文件后，可以重命名：
 
     mv ~/.jupyter/jupyter_notebook_config.py ~/.jupyter/my_custom_config.py

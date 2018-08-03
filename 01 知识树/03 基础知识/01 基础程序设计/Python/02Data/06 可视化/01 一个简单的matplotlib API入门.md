@@ -117,9 +117,9 @@ fig
 
 
 ```
-fig = plt.figure() 
-ax1 = fig.add_subplot(2, 2, 1) 
-ax2 = fig.add_subplot(2, 2, 2) 
+fig = plt.figure()
+ax1 = fig.add_subplot(2, 2, 1)
+ax2 = fig.add_subplot(2, 2, 2)
 ax3 = fig.add_subplot(2, 2, 3)
 
 # 下面出现交互式界面后，不要关闭，运行之后的命令，可以看到最后一副图中出现了线
@@ -213,14 +213,14 @@ axes
 
 这个操作是很有用的。axes能用一个二位数据来索引，例如，axes[0, 1]。我们可以使用sharex和sharey来指定不同subplot有相同的x-或y-axis（其实就是令坐标轴的范围相同），这能让我们在同一范围内进行数据之间的比较。不然的话，matplotlib会自动绘图的范围不一定是一样的。下面是pyplot.subplot选项：
 
-![](http://oydgk2hgw.bkt.clouddn.com/pydata-book/ezxsc.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/42gBa422D2.png?imageslim)
 
 ### Adjusting the spacing around subplots（调整subplot直接的间隔）
 
 默认情况下，matplotlib会在subplot之间留下一定间隔的边距，这取决于绘图的高度和跨度。所以如果我们调整绘图的大小，它会自动调整。我们可以用Figure对象下的subplots_adjust方法来更改间隔，当然，也可以用第一层级的函数：
 
     subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None)
-    
+
 wspace和hspace控制figure宽度和长度的百分比，可以用来控制subplot之间的间隔。这里有一个例子，我们让间隔为0：
 
 
@@ -230,7 +230,7 @@ fig, axes = plt.subplots(2, 2, sharex=True, sharey=True)
 for i in range(2):
     for j in range(2):
         axes[i, j].hist(np.random.randn(500), bins=50, color='k', alpha=0.5)
-plt.subplots_adjust(wspace=0, hspace=0)    
+plt.subplots_adjust(wspace=0, hspace=0)
 ```
 
 
@@ -308,7 +308,7 @@ data = np.random.randn(30).cumsum()
 
 
 ```
-plt.plot(data, 'k--', label='Default') 
+plt.plot(data, 'k--', label='Default')
 ```
 
 
@@ -564,10 +564,10 @@ crisis_data = [
 for date, label in crisis_data:
     ax.annotate(label, xy=(date, spx.asof(date) + 75),
                 xytext=(date, spx.asof(date) + 225),
-                arrowprops=dict(facecolor='black', headwidth=4, 
+                arrowprops=dict(facecolor='black', headwidth=4,
                                 width=2, headlength=4),
                 horizontalalignment='left', verticalalignment='top')
-    
+
 # Zoom in on 2007-2010
 ax.set_xlim(['1/1/2007', '1/1/2011'])
 ax.set_ylim([600, 1800])
@@ -642,7 +642,7 @@ ax.add_patch(pgon)
 比如我们想要得到一幅PNG图，有最小的空白，400 DPI，键入：
 
     plt.savefig('figpath.png', dpi=400, bbox_inches='tight')
-    
+
 savefig不仅可以写入磁盘，还可以导出为任意像是文件一样的对象，比如BytesIO：
 
     from io import BytesIO
@@ -652,19 +652,19 @@ savefig不仅可以写入磁盘，还可以导出为任意像是文件一样的�
 
 看下图关于savefig更多的选项：
 
-![](http://oydgk2hgw.bkt.clouddn.com/pydata-book/xc0am.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/JdjHd2fGbG.png?imageslim)
 
 # 6 matplotlib Configuration（matplotlib设置）
 
 matplotlib很多默认的设置是可以自己定义的，通过修改一些全局设定，比如图大小，subplot间隔，颜色，字体大小，网格样式等等。一种更累设定的方式是用rc方法，例如，想要设置全局的图大小为10 x 10，键入：
 
     plt.rc('figure', figsize=(10, 10))
-    
+
 rc中的第一个参数是我们想要自定义的组件，比如'figure', 'axes', 'xtick', 'ytick', 'grid', 'legend'，或其他。然后添加一个关键字来设定新的参数。一个比较方便的写法是把所有的设定写成一个dict：
 
     font_options = {'family': 'monospace',
                     'weight': 'bold',
                     'size'  : 'small'}
     plt.rc('font', **font_options)
-    
+
 更详细的设定可以去看一下文档，matplotlib影城而设置文件*matplotlibrc*，位于*matplotlib/mlp-data*文件夹下。如果按自己的方式修改这个文件，并把这个文件放在主目录下，更名为*.matplotlibrc*的话，在每次启动matplotlib的时候，会自动加载这个文件。

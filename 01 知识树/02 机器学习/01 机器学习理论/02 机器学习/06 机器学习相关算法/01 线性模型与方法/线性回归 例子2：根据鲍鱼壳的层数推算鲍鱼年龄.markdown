@@ -5,7 +5,7 @@ date: 2018-05-12 14:14:00+00:00
 layout: post
 link: http://106.15.37.116/2018/05/12/line-regression-sample2/
 slug: line-regression-sample2
-title: 
+title:
 wordpress_id: 5607
 categories:
 - 随想与反思
@@ -73,7 +73,8 @@ categories:
 # 项目数据
 
 
-[download id="5613"]
+链接：https://pan.baidu.com/s/1RbWaNrasuBSOcSiussLbWg 密码：yn77
+
 
 数据存储格式：
 
@@ -96,7 +97,7 @@ categories:
     import matplotlib.pylab as plt
 
 
-​    
+​
     # 加载数据集
     def load_data_set(file_name):
         feature_num = len(open(file_name).readline().split('\t')) - 1
@@ -117,7 +118,7 @@ categories:
         return data_mat, label_mat
 
 
-​    
+​
     # 还是不是很明白，要配合理论看一下
     # 局部加权线性回归，在待预测点附近的每个点赋予一定的权重，在子集上基于最小均方差来进行普通的回归。
     # 关于赋予权重矩阵的核的一个参数，与权重的衰减速率有关
@@ -144,7 +145,7 @@ categories:
         return label_pred
 
 
-​    
+​
     # k：控制核函数的衰减速率 要怎么确定？
     # 测试局部加权线性回归，对数据集中每个点调用 lwlr() 函数
     def lwlr(data_mat_for_pred, data_mat_for_train, label_mat, k=1.0):
@@ -155,7 +156,7 @@ categories:
         return label_pred_mat
 
 
-​    
+​
     # residual sum of squares error
     def rss_error(label_mat, label_pred_mat):
         # 这个地方如果是(label_mat- label_pred_mat)**2 则错误：
@@ -164,7 +165,7 @@ categories:
         return (np.square(label_mat - label_pred_mat)).sum()
 
 
-​    
+​
     # 标准线性回归
     def standard_lr(data_mat, label_mat):
         data_square = data_mat.T * data_mat
@@ -180,7 +181,7 @@ categories:
         return label_pred_mat, weights
 
 
-​    
+​
     if __name__ == "__main__":
         # 加载数据
         data_mat, label_mat = load_data_set("../../../input/8.Regression/abalone.txt")
@@ -189,11 +190,11 @@ categories:
         label_pred_mat_1 = lwlr(data_mat[0:99], data_mat[0:99], label_mat[0:99], 1)
         label_pred_mat_10 = lwlr(data_mat[0:99], data_mat[0:99], label_mat[0:99], 10)
         print("lwlr same pred train dataset :")
-    
+
         print("0.1: ", rss_error(label_mat[0:99], label_pred_mat_01),
               "1: ", rss_error(label_mat[0:99], label_pred_mat_1),
               "10: ", rss_error(label_mat[0:99], label_pred_mat_10))
-    
+
         # 训练集与预测集是不同的数据集
         label_pred_mat_01 = lwlr(data_mat[100:199],data_mat[0:99], label_mat[0:99], 0.1)
         label_pred_mat_1 = lwlr(data_mat[100:199],data_mat[0:99], label_mat[0:99], 1)
@@ -202,7 +203,7 @@ categories:
         print("0.1: ", rss_error(label_mat[100:199], label_pred_mat_01),
               "1: ", rss_error(label_mat[100:199], label_pred_mat_1),
               "10: ", rss_error(label_mat[100:199], label_pred_mat_10))
-    
+
         # 使用简单的 线性回归 进行预测，与上面的计算进行比较
         label_pred_mat, weights = standard_lr(data_mat[0:99], label_mat[0:99])
         label_pred_mat_d = data_mat[100:199] * weights
@@ -246,6 +247,3 @@ categories:
 
 
 # COMMENT
-
-
-

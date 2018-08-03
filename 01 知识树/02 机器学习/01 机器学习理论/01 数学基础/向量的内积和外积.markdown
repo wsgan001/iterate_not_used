@@ -25,12 +25,15 @@
 
 对于向量a和向量b：
 
-![](https://img-blog.csdn.net/20160902214136365)     ![](https://img-blog.csdn.net/20160902214125943)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/lil0jkKg7J.png?imageslim)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/Bbdme01D8g.png?imageslim)
+
+
 
 a和b的点积公式为：
 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/5J74i6Dejc.png?imageslim)
 
-![](https://img-blog.csdn.net/20160902214456788)
 
 
 
@@ -44,31 +47,32 @@ a和b的点积公式为：
 
 点乘的几何意义是可以用来表征或计算两个向量之间的夹角，以及在b向量在a向量方向上的投影，有公式：
 
-![](https://img-blog.csdn.net/20160902220238078)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/b7Jfajc3J1.png?imageslim)
+
 
 推导过程如下，首先看一下向量组成：
 
-![](https://img-blog.csdn.net/20160902222630016)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/DFifBk8IFB.png?imageslim)
 
 定义向量：
 
-![](https://img-blog.csdn.net/20160902222031821)
+$$c=a-b$$
 
 根据三角形余弦定理有：
 
-![](https://img-blog.csdn.net/20160902222059055)
+$$c^2=a^2+b^2-2|a||b|cos\theta$$
 
 根据关系c=a-b（a、b、c均为向量）有：
 
-![](https://img-blog.csdn.net/20160902222159946)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/C211EJI81L.png?imageslim)
 
 即：
 
-![](https://img-blog.csdn.net/20160902222236837)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/JjLj5f9Hh7.png?imageslim)
 
 向量a，b的长度都是可以计算的已知量，从而有a和b间的夹角θ：
 
-![](https://img-blog.csdn.net/20160902223248560)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/Ef68H093Hj.png?imageslim)
 
 根据这个公式就可以计算向量a和向量b之间的夹角。从而就可以进一步判断这两个向量是否是同一方向，是否正交(也就是垂直)等方向关系，具体对应关系为：
 
@@ -90,20 +94,20 @@ a和b的点积公式为：
 
 对于向量a和向量b：
 
-![](https://img-blog.csdn.net/20160902230539163)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/3BhJf2I0FI.png?imageslim)
 
 a和b的叉乘公式为：
 
-![](https://img-blog.csdn.net/20160902231520146)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/8K41gdikiK.png?imageslim)
 
 其中：
 
-![](https://img-blog.csdn.net/20160902231657984)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/4B2C0J7h9k.png?imageslim)
 
 根据i、j、k间关系，有：
 
 
-![](https://img-blog.csdn.net/20160902232255082)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/f25jBh6Ijm.png?imageslim)
 
 
 
@@ -121,7 +125,7 @@ a和b的叉乘公式为：
 
 在3D图像学中，叉乘的概念非常有用，可以通过两个向量的叉乘，生成第三个垂直于a，b的法向量，从而构建X、Y、Z坐标系。如下图所示：
 
-![](https://img-blog.csdn.net/20160902232814429)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/8k5egAjeBc.png?imageslim)
 
 在二维空间中，叉乘还有另外一个几何意义就是：aXb等于由向量a和向量b构成的平行四边形的面积。
 

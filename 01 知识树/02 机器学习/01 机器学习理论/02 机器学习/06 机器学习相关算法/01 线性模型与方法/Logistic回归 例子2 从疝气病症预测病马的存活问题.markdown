@@ -25,7 +25,7 @@ categories:
 
 
 
-  1. 
+  1.
 
 
 [第5章 Logistic回归](http://ml.apachecn.org/mlia/logistic-regress/)
@@ -78,7 +78,7 @@ categories:
 # 项目数据
 
 
-[download id="5502"]
+链接：https://pan.baidu.com/s/1uU8z1PDg6XxWzhDIy-lSCw 密码：4scn
 
 病马的训练数据已经给出来了，如下形式存储在文本文件中:
 
@@ -99,8 +99,8 @@ categories:
     import numpy as np
 
 
-​    
-​    
+​
+​
     def get_data(file_name):
         fs = open(file_name);
         # 获取训练数据
@@ -116,14 +116,14 @@ categories:
         return data,labels
 
 
-​    
-​    
-​    
+​
+​
+​
     def sigmoid(inX):
         return 1.0 / (1 + np.exp(-inX))
 
 
-​    
+​
     # 这也是一个随机梯度下降的方法，不过alpha是变动的
     def stoc_gradient_descent1(datas, labels, num_iter=150):
         data_mat = np.mat(datas)
@@ -142,7 +142,7 @@ categories:
                 if j % 10 == 0 and i == 0:
                     print(error)
         return weights
-    
+
     def classify_vec(inX, weights):
         data = np.array(inX)
         prob = sigmoid(sum(data * weights))
@@ -152,11 +152,11 @@ categories:
             return 0.0
 
 
-​    
+​
     def try_colic():
         train_data, train_labels=get_data('horseColicTraining.txt')
         test_data, test_labels=get_data('horseColicTest.txt')
-    
+
         # 进行训练
         weights = stoc_gradient_descent1(train_data, train_labels, 1000)
         print(weights)
@@ -171,14 +171,14 @@ categories:
         return error_rate
 
 
-​    
+​
     def multi_try_colic(num_tests = 10):
         error_sum = 0.0
         for k in range(num_tests):
             error_sum += try_colic()
         print("after %d iterations the average error rate is: %f" % (num_tests, error_sum / float(num_tests)))
         return error_sum
-    
+
     if __name__=="__main__":
         multi_try_colic()
 
@@ -207,6 +207,3 @@ categories:
 
 
 # COMMENT
-
-
-

@@ -43,7 +43,7 @@ s.plot()
 
 Series对象的index（索引），被matplotlib用来当做x轴，当然，我们也可以自己设定不这么做，use_index=False。x轴的ticks（标记）和limits（范围）能通过xticks和xlim选项来设定，而y轴的可以用yticks和ylim来设定。下面是关于plot的一些选项。
 
-![](http://oydgk2hgw.bkt.clouddn.com/pydata-book/ebgnj.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/BJ71dfCCcK.png?imageslim)
 
 大部分的pandas绘图方法接受一个ax参数，可以作为一个matplotlib subplot对象。这给我们更强的灵活性在gird layout（网格样式）中放置subplot。
 
@@ -77,7 +77,7 @@ plot属性中，包含一组方法，来画出不同类型的绘图。例如，d
 
 DataFrame有一些选项在处理列的时候提供了灵活性；例如，是否把所有列都画在一个子图中，或者把不同列画在不同的子图中。下图有更多的设定：
 
-![](http://oydgk2hgw.bkt.clouddn.com/pydata-book/tma2m.png)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/H8aij3LjGA.png?imageslim)
 
 # 2 Bar Plots（条形图）
 
