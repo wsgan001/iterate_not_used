@@ -31,122 +31,40 @@ TODO
 正则表达式
 
 
-
-
-
-
-  *
-
-
 调试工具
 
-
-
-
-    * ![ksmiletris](http://blog.knownsec.com/Knownsec_RD_Checklist/v2.2.html_files/icons/ksmiletris.png)
-
-
 Kodos
-
-
-
-    * ![idea](http://blog.knownsec.com/Knownsec_RD_Checklist/v2.2.html_files/icons/idea.png)
 
 
 RegexBuddy
 
 
-
-
-      *
-
-
 支持多种语言
-
-
-
-      *
-
 
 支持调试优化
 
 
-
-
-
-
-    * ![ksmiletris](http://blog.knownsec.com/Knownsec_RD_Checklist/v2.2.html_files/icons/ksmiletris.png)
-
-
-[http://www.regexper.com/](http://www.regexper.com/) [![User Link](http://blog.knownsec.com/Knownsec_RD_Checklist/v2.2.html_files/ilink.png)](http://www.regexper.com/)
-
-
-
-
-      *
+[http://www.regexper.com/](http://www.regexper.com/) 
 
 
 正则图解
 
 
 
+- [正则表达式30分钟入门教程：http://deerchao.net/tutorials/regex/regex.htm](http://deerchao.net/tutorials/regex/regex.htm) 
+
+
+- [http://wiki.ubuntu.org.cn/Python正则表达式操作指南](http://wiki.ubuntu.org.cn/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97) 
+
+
+- [regex/regularexpressions.pptx](http://blog.knownsec.com/Knownsec_RD_Checklist/regex/regularexpressions.pptx) 
+
+
+- [regex/正则表达式引擎浅析.txt](http://blog.knownsec.com/Knownsec_RD_Checklist/regex/about_regx_engine.txt) 
 
 
 
 
-
-
-  *
-
-
-[正则表达式30分钟入门教程：http://deerchao.net/tutorials/regex/regex.htm](http://deerchao.net/tutorials/regex/regex.htm) [![User Link](http://blog.knownsec.com/Knownsec_RD_Checklist/v2.2.html_files/ilink.png)](http://deerchao.net/tutorials/regex/regex.htm)
-
-
-
-  *
-
-
-[http://wiki.ubuntu.org.cn/Python正则表达式操作指南](http://wiki.ubuntu.org.cn/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97) [![User Link](http://blog.knownsec.com/Knownsec_RD_Checklist/v2.2.html_files/ilink.png)](http://wiki.ubuntu.org.cn/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97)
-
-
-
-  * ![attach](http://blog.knownsec.com/Knownsec_RD_Checklist/v2.2.html_files/icons/attach.png)
-
-
-[regex/regularexpressions.pptx](http://blog.knownsec.com/Knownsec_RD_Checklist/regex/regularexpressions.pptx) [![User Link](http://blog.knownsec.com/Knownsec_RD_Checklist/v2.2.html_files/ilink.png)](http://blog.knownsec.com/Knownsec_RD_Checklist/regex/regularexpressions.pptx)
-
-
-
-  * ![attach](http://blog.knownsec.com/Knownsec_RD_Checklist/v2.2.html_files/icons/attach.png)
-
-
-[regex/正则表达式引擎浅析.txt](http://blog.knownsec.com/Knownsec_RD_Checklist/regex/about_regx_engine.txt) [![User Link](http://blog.knownsec.com/Knownsec_RD_Checklist/v2.2.html_files/ilink.png)](http://blog.knownsec.com/Knownsec_RD_Checklist/regex/about_regx_engine.txt)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* * *
 
 
 

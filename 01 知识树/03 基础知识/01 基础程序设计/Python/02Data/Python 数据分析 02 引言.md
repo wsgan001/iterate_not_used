@@ -363,7 +363,7 @@ Windows
 
 1
 
- 
+
 
 tz
 
@@ -478,7 +478,7 @@ Data columns: user^id    1000209
 
 non-null values non-null values non-null values non-null values
 
- 
+
 
 movie^id    1000209
 
@@ -500,7 +500,7 @@ Out[339]：
 
 〈class •pandas.core.frame.DataFrame1 > Int64lndex: 1000209 entries, 0 to 1000208 Data columns:
 
- 
+
 
 user^id
 
@@ -522,7 +522,7 @@ title
 
 genres
 
- 
+
 
 1OOO2O9
 
@@ -544,7 +544,7 @@ genres
 
 1000209
 
- 
+
 
 non-null
 
@@ -566,7 +566,7 @@ non-null
 
 non-null
 
- 
+
 
 values
 
@@ -588,7 +588,7 @@ values
 
 values
 
- 
+
 
 dtypes: int64(6)， object(4)
 
@@ -610,7 +610,7 @@ age
 
 occupation zip title
 
- 
+
 
 1
 
@@ -628,15 +628,15 @@ F
 
 48067
 
- 
+
 
 genres Name: 0
 
- 
+
 
 Toy Story (1995) Animation|Children's!Comedy
 
- 
+
 
 现在，只要稍微熟悉一下pandas，就能轻松地根据任意个用户或电影属性对评分数据 进行聚合操作了。为了按性别计算每部电影的平均得分，我们可以使用pivotjtable 方法：
 
@@ -662,7 +662,7 @@ title
 
 3.828571
 
- 
+
 
 2.761905
 
@@ -674,7 +674,7 @@ title
 
 3.689024
 
- 
+
 
 $1,000,000 Duck (1971)
 
@@ -686,7 +686,7 @@ $1,000,000 Duck (1971)
 
 该操作产生了另一个DataFrame，其内容为电影平均得分，行标为电影名称，列标为性 别。现在，我打算过滤掉评分数据不够250条的电影(随便选的一个数字)。为了达到 这个目的，我先对title进行分组，然后利用size()得到一个含有各电影分组大小的Series 对象：
 
- 
+
 
 In [343]： ratingsby—title = data.groupby（'title'）.size（）
 
@@ -696,7 +696,7 @@ In [344]: ratingsby title[:10]
 
 title
 
- 
+
 
 $1,000,000 Duck （1971）
 
@@ -714,7 +714,7 @@ $1,000,000 Duck （1971）
 
 12 Angry Men （1957）
 
- 
+
 
 37
 
@@ -726,7 +726,7 @@ $1,000,000 Duck （1971）
 
 199
 
- 
+
 
 700
 
@@ -736,7 +736,7 @@ $1,000,000 Duck （1971）
 
 616
 
- 
+
 
 In [345]: active—titles = ratingsby一title.index[ratings_by一title >= 250]
 
@@ -750,11 +750,11 @@ Index（['burbs, The （1989）, 10 Things I Hate About You （1999）,
 
 Zero Effect （1998）， eXistenZ （1999）], dtype=object）
 
- 
+
 
 该索引中含有评分数据大于250条的电影名称，然后我们就可以据此从前面的mean ratings中选取所需的行了：
 
- 
+
 
 In [347]: mean^ratings = meanratings.ix[activetitles]
 
@@ -772,15 +772,15 @@ M    1216 non-null values
 
 dtypes: float64（2）
 
- 
+
 
 为f 了解女性观众最飪欢的电影，我们可以对F列降序排列:
 
- 
+
 
 In [350]: top femaleratings = mean_ratings.sort_index（by=,F*, ascending=False）
 
- 
+
 
 In [351]: top_female_ratings[:l0]
 
@@ -792,11 +792,11 @@ title
 
 Close Shave, A （1995）
 
- 
+
 
 4.644444 4.473795
 
- 
+
 
 Wrong Trousers, The （1993）
 
@@ -818,7 +818,7 @@ Wrong Trousers, The （1993）
 
 4.513317
 
- 
+
 
 4.478261
 
@@ -838,7 +838,7 @@ Wrong Trousers, The （1993）
 
 4.518248
 
- 
+
 
 Sunset Blvd. （a.k.a. Sunset Boulevard） （1950）
 
@@ -1094,7 +1094,7 @@ year
 
 dtypes:
 
- 
+
 
 1690784
 
@@ -1106,7 +1106,7 @@ dtypes:
 
 int64(2),
 
- 
+
 
 non-null
 
@@ -1118,7 +1118,7 @@ non-null
 
 object(2)
 
- 
+
 
 values
 
@@ -1128,7 +1128,7 @@ values
 
 values
 
- 
+
 
 有了这残数据之后，我们就吋以利用groupby或pivot_table在year和sex级别上对K•进行 聚合了，如图2-4所示：
 
@@ -1394,9 +1394,8 @@ letter—prop[.M'].plot(kind=,bar,, rot=0, ax=axes[O], title^'Male')
 
 letter_prop['F1].plot(kind='bar', rot=0, ax=axes[l], title=.Female., legend=False)
 
-![img](E:/11.ProgramFiles/Typora/2928Pythondb4c706e0690-13.jpg)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/EcakckiCcj.jpg?imageslim)
 
- 
 
 图2-8:男孩女孩名字中各个末字母的比例
 
@@ -1426,11 +1425,10 @@ In [4ll]: dnyts = letter_prop.ix[['d''n', *y'], 'M1].T
 
 0.080405
 
- 
 
-![img](E:/11.ProgramFiles/Typora/2928Pythondb4c706e0690-14.jpg)
 
- 
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/1mF9ClCgf9.jpg?imageslim)
+
 
 有了这个时间序列的DataFrame之后，就可以通过其plot方法绘制出一张趋势图了（如图 2-9所示）：
 

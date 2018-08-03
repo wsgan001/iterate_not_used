@@ -274,9 +274,7 @@ OK，到这里，对于单个神经元来说，基本上就OK了。那么多个�
 嗯，到这里，基本上是OK了，但是呢，实际上还有一个问题：
 
 
-
-
-  * 有的时候，Wx+b 是有 b 的，对于处理RGB图像的一个神经元来说，虽然w的个数是 3*3*3 ，但是 b 只有一个，而且，b是一个数值，而不是向量，再RGB 图像计算的时候，实际上是这样的：\(W_1x_1+W_2x_2+W_3x_3+b\)，即相当于给feature map的每个值多加了一个b。这个地方可以看一下动图：[cs231n.github.io/assets/conv-demo/index.html](http://cs231n.github.io/assets/conv-demo/index.html)
+* 有的时候，Wx+b 是有 b 的，对于处理RGB图像的一个神经元来说，虽然w的个数是 3*3*3 ，但是 b 只有一个，而且，b是一个数值，而不是向量，再RGB 图像计算的时候，实际上是这样的：\(W_1x_1+W_2x_2+W_3x_3+b\)，即相当于给feature map的每个值多加了一个b。这个地方可以看一下动图：[cs231n.github.io/assets/conv-demo/index.html](http://cs231n.github.io/assets/conv-demo/index.html)
 
 
 可见，虽然我们现在还不知道卷积层能不能起作用，但是我们已经看到这个使得用到的参数急剧下降。对于每个神经元来说，W 的参数量从全连接时候的 32*32*3 降到了 3*3*3

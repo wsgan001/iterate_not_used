@@ -368,21 +368,8 @@ SQL为结构化查询语言提供了独特的学习和数据库处理技术，�
 虽然 SQL 是一门 ANSI（American National Standards Institute 美国国家标准化组织）标准的计算机语言，但是仍然存在着多种不同版本的 SQL 语言。
 
 然而，为了与 ANSI 标准相兼容，它们必须以相似的方式共同地来支持一些主要的命令（比如 SELECT、UPDATE、DELETE、INSERT、WHERE 等等）。
-<table class="lamp" >
-<tbody >
-<tr >
-![lamp](https://img.w3cschool.cn/attachments/image/20150510/lamp.jpg)
 
-<td >**注释：**除SQL标准之外，大多数SQL数据库程序还具有自己的专有扩展名！
-</td>
-</tr>
-</tbody>
-</table>
-
-
-
-
-* * *
+**注释：**除SQL标准之外，大多数SQL数据库程序还具有自己的专有扩展名！
 
 
 

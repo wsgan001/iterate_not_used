@@ -136,12 +136,6 @@ Linux系统是一个可移植的操作系统，它的内核设计非常精巧，
 
 
 
-
-## ![linux](https://img.w3cschool.cn/attachments/image/20160902/1472795984574936.jpg)
-
-
-
-
 ## Linux 英文解释为 Linux is not Unix。
 
 

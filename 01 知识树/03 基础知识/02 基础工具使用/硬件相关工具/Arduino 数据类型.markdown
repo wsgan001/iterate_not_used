@@ -24,7 +24,7 @@ categories:
 
 
 
- 	
+
   1. [Arduino教程](https://www.w3cschool.cn/arduino/)
 
 
@@ -36,7 +36,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -48,7 +48,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -120,7 +120,7 @@ C中的数据类型是指用于声明不同类型的变量或函数的扩展系�
 </table>
 
 
-## 
+##
 void
 
 
@@ -128,7 +128,7 @@ void关键字仅用于函数声明。它表示该函数预计不会向调用它�
 
 **例子**
 
-    
+
     Void Loop ( ) {
        // rest of the code
     }
@@ -136,7 +136,7 @@ void关键字仅用于函数声明。它表示该函数预计不会向调用它�
 
 
 
-## 
+##
 
 
 
@@ -148,7 +148,7 @@ void关键字仅用于函数声明。它表示该函数预计不会向调用它�
 
 **例子**
 
-    
+
     boolean val = false ; // declaration of variable with type boolean and initialize it with false
     boolean state = true ; // declaration of variable with type boolean and initialize it with false
 
@@ -164,20 +164,16 @@ void关键字仅用于函数声明。它表示该函数预计不会向调用它�
 
 **例子**
 
-    
+
     Char chr_a = ‘a’ ;//declaration of variable with type char and initialize it with character a
     Char chr_c = 97 ;//declaration of variable with type char and initialize it with character 97
 
 
 
 
-![ASCII Char Table](https://img.w3cschool.cn/attachments/tuploads/arduino/ascii_char_table.jpg)
+ASCII Char Table
 
-
-
-
-## 
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/Ae9kIJFb1j.png?imageslim)
 
 
 
@@ -188,13 +184,13 @@ void关键字仅用于函数声明。它表示该函数预计不会向调用它�
 
 **例子**
 
-    
+
     Unsigned Char chr_y = 121 ; // declaration of variable with type Unsigned char and initialize it with character y
 
 
 
 
-## 
+##
 
 
 
@@ -206,7 +202,7 @@ void关键字仅用于函数声明。它表示该函数预计不会向调用它�
 
 **例子**
 
-    
+
     byte m = 25 ;//declaration of variable with type byte and initialize it with 25
 
 
@@ -221,13 +217,13 @@ void关键字仅用于函数声明。它表示该函数预计不会向调用它�
 
 **例子**
 
-    
+
     int counter = 32 ;// declaration of variable with type int and initialize it with 32
 
 
 
 
-## 
+##
 
 
 
@@ -239,14 +235,14 @@ unsigned int（无符号整数）与int相同，存储2字节。然而，它们�
 
 **例子**
 
-    
-    Unsigned int counter = 60 ; // declaration of variable with 
+
+    Unsigned int counter = 60 ; // declaration of variable with
        type unsigned int and initialize it with 60
 
 
 
 
-## 
+##
 
 
 
@@ -258,13 +254,13 @@ unsigned int（无符号整数）与int相同，存储2字节。然而，它们�
 
 **例子**
 
-    
+
     word w = 1000 ;//declaration of variable with type word and initialize it with 1000
 
 
 
 
-## 
+##
 
 
 
@@ -276,7 +272,7 @@ Long变量是用于数字存储的扩展大小变量，存储32位（4字节）�
 
 **例子**
 
-    
+
     Long velocity = 102346 ;//declaration of variable with type Long and initialize it with 102346
 
 
@@ -289,14 +285,14 @@ unsigned long变量是用于数字存储的扩展大小变量，并存储32位�
 
 **例子**
 
-    
-    Unsigned Long velocity = 101006 ;// declaration of variable with 
+
+    Unsigned Long velocity = 101006 ;// declaration of variable with
        type Unsigned Long and initialize it with 101006
 
 
 
 
-## 
+##
 
 
 
@@ -308,13 +304,13 @@ short是16位数据类型。在所有Arduinos（基于ATMega和ARM）上，一�
 
 **例子**
 
-    
+
     short val = 13 ;//declaration of variable with type short and initialize it with 13
 
 
 
 
-## 
+##
 
 
 
@@ -328,13 +324,13 @@ short是16位数据类型。在所有Arduinos（基于ATMega和ARM）上，一�
 
 **例子**
 
-    
+
     float num = 1.352;//declaration of variable with type float and initialize it with 1.352
 
 
 
 
-## 
+##
 
 
 
@@ -346,7 +342,7 @@ short是16位数据类型。在所有Arduinos（基于ATMega和ARM）上，一�
 
 **例子**
 
-    
+
     double num = 45.352 ;// declaration of variable with type double and initialize it with 45.352
 
 
@@ -379,6 +375,3 @@ short是16位数据类型。在所有Arduinos（基于ATMega和ARM）上，一�
 
 
 # COMMENT
-
-
-

@@ -23,9 +23,9 @@
 ## 2. 图片与链接
 
 图片:
-![leanote](http://leanote.com/images/logo/leanote_icon_blue.png)
-链接:
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/bi1FfEGkCL.png?imageslim)
 
+链接:
 [这是去往Leanote官方博客的链接](http://leanote.leanote.com)
 
 ## 3. 标题

@@ -26,7 +26,7 @@ tags:
 
 
 
- 	
+
   1. [SQL教程](https://www.w3cschool.cn/sql/)
 
 
@@ -38,7 +38,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -50,7 +50,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -92,25 +92,16 @@ UPDATE 语句用于更新表中已存在的记录。
 
 
 
-    
+
     UPDATE table_name
     SET column1 = value1, column2 = value2, ...
     WHERE condition;
 
 
-<table class="lamp" >
-<tbody >
-<tr >
-![lamp](https://img.w3cschool.cn/attachments/image/20150510/lamp.jpg)
-
-<td >**请注意
+**请注意
 ****更新表中的记录时要小心！****
 要注意SQL UPDATE 语句中的 WHERE 子句！**
 WHERE子句指定哪些记录需要更新。如果省略WHERE子句，所有记录都将更新！
-</td>
-</tr>
-</tbody>
-</table>
 
 
 
@@ -430,7 +421,7 @@ WHERE子句决定了将要更新的记录数量。
 
 以下SQL语句将把国家/地区为"Mexico"的所有记录的联系人姓名更新为“Juan”：
 
-    
+
     UPDATE Customers
     SET ContactName='Juan'
     WHERE Country='Mexico';
@@ -572,7 +563,7 @@ Country
 
 更新记录时要小心。如果您省略WHERE子句，所有记录将被更新！
 
-    
+
     UPDATE Customers
     SET ContactName='Juan';
 
@@ -741,6 +732,3 @@ Country
 
 
 # COMMENT
-
-
-

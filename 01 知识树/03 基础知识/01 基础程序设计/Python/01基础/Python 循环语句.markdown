@@ -71,7 +71,8 @@ categories:
 
 循环语句允许我们执行一个语句或语句组多次，下面是在大多数编程语言中的循环语句的一般形式：
 
-![loop_architecture](https://www.w3cschool.cn/attachments/uploads/2013/11/loop_architecture.jpg)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/dkKc1J2J6H.png?imageslim)
+
 
 Python提供了for循环和while循环（在Python中没有do..while循环）:
 <table class="reference" >

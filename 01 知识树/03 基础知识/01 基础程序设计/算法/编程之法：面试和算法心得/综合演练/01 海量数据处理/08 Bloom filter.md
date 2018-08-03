@@ -31,24 +31,24 @@ Bloom Filter，被译作称布隆过滤器，是一种空间效率很高的随�
 
 前面我们已经提到了，Bloom Filter在判断一个元素是否属于它表示的集合时会有一定的错误率（false positive rate），下面我们就来估计错误率的大小。在估计之前为了简化模型，我们假设kn<m且各个哈希函数是完全随机的。当集合S={x<sub>1</sub>, x<sub>2</sub>,…,x<sub>n</sub>}的所有元素都被k个哈希函数映射到m位的位数组中时，这个位数组中某一位还是0的概率是：
 
-![img](http://chart.apis.google.com/chart?cht=tx&chl=p'=\\left(1-\\frac{1}{m}\\right)^{kn}\\approx e^{-kn/m})
+$$\left(1-\frac{1}{m}\right)^{kn}\approx e^{-kn/m}$$
 
 其中1/m表示任意一个哈希函数选中这一位的概率（前提是哈希函数是完全随机的），(1-1/m)表示哈希一次没有选中这一位的概率。要把S完全映射到位数组中，需要做kn次哈希。某一位还是0意味着kn次哈希都没有选中它，因此这个概率就是（1-1/m）的kn次方。令p = e<sup>-kn/m</sup>是为了简化运算，这里用到了计算e时常用的近似：
 
-![img](http://chart.apis.google.com/chart?cht=tx&chl=\\lim\\limits_{x\\rightarrow\\infty}\\left(1-\\frac{1}{x}\\right)^{-x}=e)
+$$\lim\limits_{x\rightarrow\infty}\left(1-\frac{1}{x}\right)^{-x}=e$$
 
 
 令ρ为位数组中0的比例，则ρ的数学期望E(ρ)= p’。在ρ已知的情况下，要求的错误率（false positive rate）为：
 
-![img](http://chart.apis.google.com/chart?cht=tx&chl=(1-\\rho)^k\\approx(1-p')^k\\approx(1-p)^k)
+$$(1-\rho)^k\approx(1-p')^k\approx(1-p)^k$$
 
 (1-ρ)为位数组中1的比例，(1-ρ)<sup>k</sup>就表示k次哈希都刚好选中1的区域，即false positive rate。上式中第二步近似在前面已经提到了，现在来看第一步近似。p’只是ρ的数学期望，在实际中ρ的值有可能偏离它的数学期望值。M. Mitzenmacher已经证明<sup>[2]</sup> ，位数组中0的比例非常集中地分布在它的数学期望值的附近。因此，第一步的近似得以成立。分别将p和p’代入上式中，得：
 
-![img](http://chart.apis.google.com/chart?cht=tx&chl=f'=\\left(1-\\left(1-\\frac{1}{m}\\right)^{kn}\\right)^k=(1-p')^k)
+$$\left(1-\left(1-\frac{1}{m}\right)^{kn}\right)^k=(1-p')^k$$
 
-![img](http://chart.apis.google.com/chart?cht=tx&chl=f=\\left(1-e^{-kn/m}\\right)^k=(1-p)^k)
+$$\left(1-e^{-kn/m}\right)^k=(1-p)^k$$
 
-相比p’和f’，使用p和f通常在分析中更为方便。
+相比 $p'$ 和 $f'$ ，使用 $p$ 和 $f$ 通常在分析中更为方便。
 
 #### 1.3、最优的哈希函数个数
 

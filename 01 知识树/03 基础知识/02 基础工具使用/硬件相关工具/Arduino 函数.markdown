@@ -22,15 +22,9 @@
 定义函数的最常用的语法是：
 
 
-![定义函数](https://img.w3cschool.cn/attachments/tuploads/arduino/function.jpg)
-
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/bbA6k9BB17.png?imageslim)
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/4JcH8BgdEH.png?imageslim)
-
-
-
-
-
 
 
 ## 函数声明

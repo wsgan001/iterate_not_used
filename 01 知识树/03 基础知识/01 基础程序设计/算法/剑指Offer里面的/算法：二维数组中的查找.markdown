@@ -1,99 +1,31 @@
----
-author: evo
-comments: true
-date: 2018-05-14 23:32:17+00:00
-layout: post
-link: http://106.15.37.116/2018/05/15/%e7%ae%97%e6%b3%95%ef%bc%9a%e4%ba%8c%e7%bb%b4%e6%95%b0%e7%bb%84%e4%b8%ad%e7%9a%84%e6%9f%a5%e6%89%be/
-slug: '%e7%ae%97%e6%b3%95%ef%bc%9a%e4%ba%8c%e7%bb%b4%e6%95%b0%e7%bb%84%e4%b8%ad%e7%9a%84%e6%9f%a5%e6%89%be'
-title: 算法：二维数组中的查找
-wordpress_id: 5695
-categories:
-- 随想与反思
-tags:
-- NOT_ADD
----
-
-<!-- more -->
-
-[mathjax]
-
-**注：非原创，推荐直接看原文**
+# 算法：二维数组中的查找
 
 
-# ORIGINAL
+## REF
+
+1. [CodingInterviews](https://github.com/gatieme/CodingInterviews)
 
 
 
-
-
-
-  1.
-
-
-[CodingInterviews](https://github.com/gatieme/CodingInterviews)
-
-
-
-
-
-
-
-# TODO
-
-
-
-
-
-
-  * aaa
-
-
-
-
-# MOTIVE
-
-
-
-
-
-
-  * aaa
-
-
-
-
-
-* * *
-
-
-
-
-
-# 题目描述
-
+## 题目描述
 
 在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
 
-
-## 输入描述
+### 输入描述
 
 
 array： 待查找的二维数组 target：查找的数字
 
 
-## 输出描述
+### 输出描述
 
 
 查找到返回true，查找不到返回false
 
-
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/c5465m28H1.png?imageslim)
 
 
-
-
 # 问题解决
-
 
 
 
@@ -160,100 +92,33 @@ array： 待查找的二维数组 target：查找的数字
 但是这两个区域还有可能有重叠，比如右边或下边会在右下角有重叠。
 
 为了不重复的处理重叠的数据, 我们可以找几个特殊的起点, 比如：
-<table >
 
-<tr >
-起点
-性质
-可否作为起点
-</tr>
+| 起点   | 性质                                                         | 可否作为起点 |
+| ------ | ------------------------------------------------------------ | ------------ |
+| 左上角 | 没有上方元素(小)和左方元素(小) 只有下方元素(大)和右方元素(大) | 否           |
+| 右上角 | 没有上方元素(小), 和右方元素(大) 只有下方元素(大)和左方元素(小) | 是           |
+| 左下角 | 没有下方元素(大), 和左方元素(小) 只有上方元素(小)和右方元素(大) | 是           |
+| 右下角 | 没有下方元素(大), 和右方元素(大) 只有上方元素(小)和左方元素(小) | 否           |
 
-<tbody >
-<tr >
 
-<td align="center" >左上角
-</td>
-
-<td align="center" >没有上方元素(小)和左方元素(小)
-只有下方元素(大)和右方元素(大)
-</td>
-
-<td align="center" >否
-</td>
-</tr>
-<tr >
-
-<td align="center" >右上角
-</td>
-
-<td align="center" >没有上方元素(小), 和右方元素(大)
-只有下方元素(大)和左方元素(小)
-</td>
-
-<td align="center" >是
-</td>
-</tr>
-<tr >
-
-<td align="center" >左下角
-</td>
-
-<td align="center" >没有下方元素(大), 和左方元素(小)
-只有上方元素(小)和右方元素(大)
-</td>
-
-<td align="center" >是
-</td>
-</tr>
-<tr >
-
-<td align="center" >右下角
-</td>
-
-<td align="center" >没有下方元素(大), 和右方元素(大)
-只有上方元素(小)和左方元素(小)
-</td>
-
-<td align="center" >否
-</td>
-</tr>
-</tbody>
-</table>
 因此重叠问题的解决方法：
 
 
-
-
   * 如果查找从右上角开始，如果要查找的数字不在右上角，则每次可以剔除一列或一行。
-
-
   * 也可以从左下角开始
-
-
   * 但是不能从左上角或者右下角开始。
-
 
 因为如果选择右上角的元素，则如图，即是我们在二维数组中查找7的轨迹：
 
-![find7](https://github.com/gatieme/CodingInterviews/raw/master/003-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE/find7.jpg)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/2KGDcei5ik.png?imageslim)
 
 因此：
-
 
 ### 从右上角的元素出发，这时候
 
 
-
-
-
-
   * 比他小的数必定在它的左侧，就往左找
-
-
   * 比他大的数必定在它的下侧，就往下找
-
-
-
 
 代码如下：
 
@@ -261,67 +126,68 @@ array： 待查找的二维数组 target：查找的数字
 
 
 
-    #include <iostream>
-    #include <vector>
+```cpp
+#include <iostream>
+#include <vector>
 
-    using namespace std;
+using namespace std;
 
 
 
-    #define __main main
+#define __main main
 
-    class Solution
+class Solution
+{
+public:
+    bool Find(vector<vector<int> > array,int target)
     {
-    public:
-        bool Find(vector<vector<int> > array,int target)
+        bool res = false;
+        int row = array.size( );
+        int col = array[0].size( );
+
+        //  我们从右上角的元素找起来
+        //  如果查找的元素比当前位置元素小, 就向左走
+        //  如果查找的元素比当前位置元素大, 就向下走
+        for(int i = 0, j = col -1;
+            (i >=0 && i < row) && (j >= 0 && j < col);)
         {
-            bool res = false;
-            int row = array.size( );
-            int col = array[0].size( );
-
-            //  我们从右上角的元素找起来
-            //  如果查找的元素比当前位置元素小, 就向左走
-            //  如果查找的元素比当前位置元素大, 就向下走
-            for(int i = 0, j = col -1;
-                (i >=0 && i < row) && (j >= 0 && j < col);)
+            if(target == array[i][j])
             {
-                if(target == array[i][j])
-                {
-                    res = true;
-                    break;
-                }
-                else if(target < array[i][j])     // 小的元素在当前位置左侧
-                {
-                    cout <<target <<" < " <<array[i][j] <<" turn left" <<endl;
-                    j--;
-                }
-                else
-                {
-                    cout <<target <<" > " <<array[i][j] <<" turn down" <<endl;
-                    i++;
-                }
+                res = true;
+                break;
             }
-            return res;
+            else if(target < array[i][j])     // 小的元素在当前位置左侧
+            {
+                cout <<target <<" < " <<array[i][j] <<" turn left" <<endl;
+                j--;
+            }
+            else
+            {
+                cout <<target <<" > " <<array[i][j] <<" turn down" <<endl;
+                i++;
+            }
         }
-    };
-
-    int __main()
-    {
-        int a1[] = { 1, 2, 8, 9, };
-        int a2[] = { 2, 4, 9, 12, };
-        int a3[] = { 4, 7, 10, 13, };
-        int a4[] = { 6, 8, 11, 15, };
-        vector<vector<int>> array;
-        array.push_back(vector<int>(a1, a1 + 4));
-        array.push_back(vector<int>(a2, a2 + 4));
-        array.push_back(vector<int>(a3, a3 + 4));
-        array.push_back(vector<int>(a4, a4 + 4));
-
-        Solution solu;
-        cout <<solu.Find(array, 7) <<endl;
-        return 0;
+        return res;
     }
+};
 
+int __main()
+{
+    int a1[] = { 1, 2, 8, 9, };
+    int a2[] = { 2, 4, 9, 12, };
+    int a3[] = { 4, 7, 10, 13, };
+    int a4[] = { 6, 8, 11, 15, };
+    vector<vector<int>> array;
+    array.push_back(vector<int>(a1, a1 + 4));
+    array.push_back(vector<int>(a2, a2 + 4));
+    array.push_back(vector<int>(a3, a3 + 4));
+    array.push_back(vector<int>(a4, a4 + 4));
+
+    Solution solu;
+    cout <<solu.Find(array, 7) <<endl;
+    return 0;
+}
+```
 
 
 

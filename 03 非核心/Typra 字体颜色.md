@@ -1,12 +1,12 @@
 `print()` this is a test
 
-某些人用过了才知道[^注释]:Somebody that I used to know.  
+某些人用过了才知道[^注释]:Somebody that I used to know.
 
 Summary:
 Typora is a very good markdown editor, and today I'll show you how to use typora to set the color of the font, Example is as follow.
 Typora虽然是一款markdown编辑器，但是其实也可以设置字体颜色，因为typora集成了不少扩展，所以可以通过别的语句轻松设置字体颜色。为什么要设置颜色，因为颜色可以突出我们想表达的内容，尤其是公式，方程式等表达上，可以把一些参数凸显出来。下面先看下实例：
 
-![360截图20180107134249989.jpg](https://steemitimages.com/0x0/https://steemitimages.com/DQmQMhncfZfFNcgcCyMKGp9U9qz7KSVGMpAE5rWAyNYSEaa/360%E6%88%AA%E5%9B%BE20180107134249989.jpg)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/HKEI6Dm96a.png?imageslim)
 
 样例语句：
 
@@ -174,7 +174,7 @@ $\textcolor{Tan}{Tan}$
 $\textcolor{Gray}{Gray} $
 $\textcolor{Black}{Black}$
 
-![360截图20180107135121970.jpg](https://steemitimages.com/DQmeTjofde3Ykey2pM9TpYWiF4XZ8hLGGPmvUUMgFvh41Vk/360%E6%88%AA%E5%9B%BE20180107135121970.jpg)
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/d8L875eL6d.png?imageslim)
 
 ## 3.数学/方程式颜色设置
 
@@ -185,7 +185,8 @@ $ \textcolor{red}{\int_a^b}\textcolor{blue}{f(x)}\textcolor{green}{dx}\textcolor
 ```
 
 显示结果：
-![360截图20180107135311977.jpg](https://steemitimages.com/0x0/https://steemitimages.com/DQmSt1vVG2TeDUp8gcCBwJvASNBE8X1Xz5Xg5xPMmiJr8ZW/360%E6%88%AA%E5%9B%BE20180107135311977.jpg)
+
+![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180803/B3m27e42gb.png?imageslim)
 
 同样是使用textcolor混合在公式里面实现了 公式颜色设置，至于公式部分，可以参考：
 

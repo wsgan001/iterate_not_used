@@ -22,10 +22,10 @@ categories:
 
 
 
- 	
+
   1. [python基础教程 w3cschool](https://www.w3cschool.cn/python/)
 
- 	
+
   2. [Python 3 教程 菜鸟教程](http://www.runoob.com/python3/python3-tutorial.html)
 
 
@@ -37,7 +37,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -49,7 +49,7 @@ categories:
 
 
 
- 	
+
   * aaa
 
 
@@ -71,22 +71,21 @@ Sublime Text 的主要功能包括：拼写检查，书签，完整的 Python AP
 
 Sublime Text 是一个跨平台的编辑器，同时支持Windows、Linux、Mac OS X等操作系统。
 
-![sublimetext](https://www.w3cschool.cn/attachments/uploads/2014/05/sublimetext.jpg)
 
 使用Sublinme Text 2的插件扩展功能，你可以轻松的打造一款不错的Python IDE，以下推荐几款插件（你可以找到更多）：
 
 
 
- 	
+
   * CodeIntel：自动补全+成员/方法提示（强烈推荐）
 
- 	
+
   * SublimeREPL：用于运行和调试一些需要交互的程序（E.G. 使用了Input()的程序）
 
- 	
+
   * Bracket Highlighter：括号匹配及高亮
 
- 	
+
   * SublimeLinter：代码pep8格式检查
 
 
@@ -121,6 +120,3 @@ Sublime Text 是一个跨平台的编辑器，同时支持Windows、Linux、Mac 
 
 
 # COMMENT
-
-
-

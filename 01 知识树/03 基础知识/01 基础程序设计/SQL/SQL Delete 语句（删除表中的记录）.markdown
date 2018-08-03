@@ -26,7 +26,7 @@ tags:
 
 
 
- 	
+
   1. [SQL教程](https://www.w3cschool.cn/sql/)
 
 
@@ -38,7 +38,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -50,7 +50,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -85,16 +85,12 @@ DELETE 语句用于删除表中的行。
 
 
 
-    
+
     DELETE FROM table_name
     WHERE condition;
 
 
 
-<table class="lamp" >
-<tbody >
-<tr >
-![lamp](https://img.w3cschool.cn/attachments/image/20150510/lamp.jpg)
 
 <td >**请注意
 ****删除表格中的记录时要小心！****
@@ -402,13 +398,13 @@ Country
 
 您可以删除表中的所有行，而不需要删除该表。这意味着表的结构、属性和索引将保持不变：
 
-    
+
     DELETE FROM table_name;
 
 
 **或者**
 
-    
+
     DELETE * FROM table_name;
 
 
@@ -443,6 +439,3 @@ Country
 
 
 # COMMENT
-
-
-

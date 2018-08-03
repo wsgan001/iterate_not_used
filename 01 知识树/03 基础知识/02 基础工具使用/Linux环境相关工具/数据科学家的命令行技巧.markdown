@@ -4,7 +4,7 @@
 对于许多数据科学家来说，数据操作起始于Pandas或Tidyverse。从理论上看，这个概念没有错。毕竟，这是为什么这些工具首先存在的原因。然而，对于分隔符转换等简单任务来说，这些选项通常可能是过于重量级了。
 有意掌握命令行应该在每个开发人员的技能链上，特别是数据科学家。学习shell中的来龙去脉无可否认地会让你更高效。除此之外，命令行还在计算方面有一次伟大的历史记录。例如，awk - 一种数据驱动的脚本语言。Awk首次出现于1977年，它是在传奇的[K&R](https://en.wikipedia.org/wiki/The_C_Programming_Language)一书中的K，[Brian Kernighan](https://en.wikipedia.org/wiki/Brian_Kernighan)的帮助下出现的。在今天，大约50年之后，awk仍然与每年出现的[新书](https://www.amazon.com/Learning-AWK-Programming-cutting-edge-text-processing-ebook/dp/B07BT98HDS)保持相关联！ 因此，可以肯定的是，对命令行技术的投入不会很快贬值的。
 
-[![Tocy](https://static.oschina.net/uploads/user/367/734219_100.jpeg?t=1488431231000)](https://my.oschina.net/tocy)[Tocy](https://my.oschina.net/tocy)翻译于 3个月前0人顶
+于 3个月前0人顶
 
 顶 翻译得不错哦！
 
@@ -39,7 +39,6 @@ iconv -f ISO-8859-1 -t UTF-8 < input.txt > output.txt
 - - iconv -l 列出所有支持的编码
   - iconv -c 不作提示就丢弃无法转换的字符
 
-[![边城](https://static.oschina.net/uploads/user/581/1163532_100.jpeg?t=1485309551000)](https://my.oschina.net/jamesfancy)[边城](https://my.oschina.net/jamesfancy)翻译于 3个月前0人顶
 
 顶 翻译得不错哦！
 
@@ -62,9 +61,6 @@ head -n 3 filename.csv
 - - head -n 输出指定行
   - head -c 输出指定的字节
 
-[![Tocy](https://static.oschina.net/uploads/user/367/734219_100.jpeg?t=1488431231000)](https://my.oschina.net/tocy)[Tocy](https://my.oschina.net/tocy)翻译于 3个月前0人顶
-
-顶 翻译得不错哦！
 
 ### TR命令
 
@@ -114,9 +110,6 @@ cat filename.csv | tr '[A-Z]' '[a-z]'
   - \v垂直选项卡
   - \NNN八进制值为NNN的字符
 
-[![kevinlinkai](https://static.oschina.net/uploads/user/1133/2267262_100.png?t=1415328624000)](https://my.oschina.net/u/2267262)[kevinlinkai](https://my.oschina.net/u/2267262)翻译于 3个月前0人顶
-
-顶 翻译得不错哦！
 
 ## WC
 
@@ -136,12 +129,6 @@ wc -l gigantic_comma.csv
   - wc -m 打印字符数
   - wc -L 打印最长一行的长度
   - wc -w 打印字数
-
-[![边城](https://static.oschina.net/uploads/user/581/1163532_100.jpeg?t=1485309551000)](https://my.oschina.net/jamesfancy)[边城](https://my.oschina.net/jamesfancy)翻译于 3个月前0人顶
-
-顶 翻译得不错哦！
-
-[其它翻译版本(1)](javascript:show_other(63832,63856);)
 
 ## SPLIT命令
 
@@ -177,9 +164,6 @@ find . -type f -exec mv '{}' '{}'.csv \;
   - split -a生成长度为N的后缀
   - split -x使用十六进制后缀分割
 
-[![kevinlinkai](https://static.oschina.net/uploads/user/1133/2267262_100.png?t=1415328624000)](https://my.oschina.net/u/2267262)[kevinlinkai](https://my.oschina.net/u/2267262)翻译于 3个月前0人顶
-
-顶 翻译得不错哦！
 
 ## SORT & UNIQ
 
@@ -210,10 +194,6 @@ sort -t"," -k2nr,2 filename.csv
   - sort -R 乱序
   - uniq -c 计算出现次数
   - uniq -d 只打印重复行
-
-[![雪落无痕xdj](https://www.oschina.net/img/portrait.gif)](https://my.oschina.net/u/2560193)[雪落无痕xdj](https://my.oschina.net/u/2560193)翻译于 3个月前0人顶
-
-顶 翻译得不错哦！
 
 ## CUT命令
 
@@ -246,10 +226,6 @@ cat filename.csv | cut -d, -f 2 | sort | uniq | wc -l
 
 cat filename.csv | cut -d, -f 2 | sort | uniq -c | head
 ```
-
-[![kevinlinkai](https://static.oschina.net/uploads/user/1133/2267262_100.png?t=1415328624000)](https://my.oschina.net/u/2267262)[kevinlinkai](https://my.oschina.net/u/2267262)翻译于 3个月前0人顶
-
-顶 翻译得不错哦！
 
 ## PASTE
 
@@ -284,10 +260,6 @@ zach,developer
 
 关于更多 SQL_-esque 变体，请看下面。
 
-[![边城](https://static.oschina.net/uploads/user/581/1163532_100.jpeg?t=1485309551000)](https://my.oschina.net/jamesfancy)[边城](https://my.oschina.net/jamesfancy)翻译于 3个月前0人顶
-
-顶 翻译得不错哦！
-
 ## JOIN
 
 Join是一种简单的、准切向的SQL。最大的区别在于Join将返回所有列，匹配可能只发生在一个字段上。默认情况下，join将尝试使用第一列作为匹配键。对于不同的结果，需要以下语法：
@@ -315,10 +287,6 @@ join -t"," -1 2 -a 1 -a2 -e ' NULL' -o '0,1.1,2.2' first_file.txt second_file.tx
 - - join -a 打印未成对的行
   - join -e 替换缺失字段
   - join -j 等同于 -1 FIELD -2 FIELD
-
-[![雪落无痕xdj](https://www.oschina.net/img/portrait.gif)](https://my.oschina.net/u/2560193)[雪落无痕xdj](https://my.oschina.net/u/2560193)翻译于 3个月前0人顶
-
-顶 翻译得不错哦！
 
 
 
@@ -357,10 +325,6 @@ grep "first_value\|second_value" filename.csv
   - grep -w 仅匹配完整单词
   - grep -l 打印匹配文件的名称
   - grep -v 倒序匹配
-
-[![Tocy](https://static.oschina.net/uploads/user/367/734219_100.jpeg?t=1488431231000)](https://my.oschina.net/tocy)[Tocy](https://my.oschina.net/tocy)翻译于 3个月前1人顶
-
-顶 翻译得不错哦！
 
 [其它翻译版本(1)](javascript:show_other(63838,63874);)
 
@@ -410,10 +374,6 @@ sed -i '' '/jack/d' data.txt
 ```
 
 就像你所看到的，sed功能强大，但是乐趣不止于此。
-
-[![琪花亿草](https://static.oschina.net/uploads/user/73/146173_100.jpg?t=1371174718000)](https://my.oschina.net/u/146173)[琪花亿草](https://my.oschina.net/u/146173)翻译于 3个月前0人顶
-
-顶 翻译得不错哦！
 
 ### AWK
 
@@ -524,10 +484,6 @@ sed '1d;$d' filename.csv | awk 'NR%NUMBER_OF_LINES==1{x="filename-"++i".csv";}{p
 
 sed '1d;$d' big_data.csv | awk 'NR%100000==1{x="data_"++i".csv";}{print > x}'
 ```
-
-[![琪花亿草](https://static.oschina.net/uploads/user/73/146173_100.jpg?t=1371174718000)](https://my.oschina.net/u/146173)[琪花亿草](https://my.oschina.net/u/146173)翻译于 3个月前0人顶
-
-顶 翻译得不错哦！
 
 ### 结束前
 
