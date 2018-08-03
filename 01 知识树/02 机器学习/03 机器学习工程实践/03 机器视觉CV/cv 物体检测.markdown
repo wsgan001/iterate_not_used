@@ -1,35 +1,10 @@
----
-author: evo
-comments: true
-date: 2018-04-02 11:43:55+00:00
-layout: post
-link: http://106.15.37.116/2018/04/02/cv-object-detection/
-slug: cv-object-detection
-title: cv 物体检测
-wordpress_id: 2478
-categories:
-- 随想与反思
-tags:
-- Computer Vision
----
+# cv 物体检测
 
-<!-- more -->
+## REF：
 
-
-# REF：
-
-
-
-
-
-
-  1. 七月在线 深度学习
-
-
-  2. [DPM（Deformable Parts Model）](http://www.52ml.net/15680.html) **这个还没看**
-
-
-  3. [Selective Search](https://blog.csdn.net/szj_huhu/article/details/78157982)    **还没看 Region Proposal 相关的**
+1. 七月在线 深度学习
+2. [DPM（Deformable Parts Model）](http://www.52ml.net/15680.html) **这个还没看**
+3. [Selective Search](https://blog.csdn.net/szj_huhu/article/details/78157982)    **还没看 Region Proposal 相关的**
 
 
 ********************************************************************************

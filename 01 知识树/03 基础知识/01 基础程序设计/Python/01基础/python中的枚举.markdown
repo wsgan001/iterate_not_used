@@ -1,19 +1,5 @@
----
-author: evo
-comments: true
-date: 2018-03-22 13:07:10+00:00
-layout: post
-link: http://106.15.37.116/2018/03/22/python-enum/
-slug: python-enum
-title: python中的枚举
-wordpress_id: 570
-categories:
-- 随想与反思
-tags:
-- python
----
+# python中的枚举
 
-<!-- more -->
 
 
 ## 缘由：
@@ -27,25 +13,25 @@ tags:
 
 代码如下：
 
-    
+
     # 感觉python里面的enum与其他语言的又很大的不同
-    
+
     from enum import Enum
-    
+
     # 为什么这个地方还有一个Month？
     Month = Enum('Month', ('Jan', 'Feb', 'Mar', 'Apr'))
-    
+
     # value为什么是从1开始的？
     for name, member in Month.__members__.items():
         print(name, '=>', member, ',', member.value)
-    
+
     jan = Month.Jan
     print(jan)
 
 
 输出：
 
-    
+
     Jan => Month.Jan , 1
     Feb => Month.Feb , 2
     Mar => Month.Mar , 3
