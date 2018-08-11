@@ -30,6 +30,10 @@
 - $a \upvDash b$
 
 
+## 奇怪的前下标
+
+ - $_{B}^{A}\textrm{H}$ 这个是在 CV 里面三维空间的坐标变换的时候表示的从 B 空间变换到 A 空间的坐标变换。
+
 
 # REF：
 - [MathJax 快速参考](http://colobu.com/2014/08/17/MathJax-quick-reference/) 这个人总结的 MathJax 他常用的符号，非常好，的确是常用的 ，比如 $\ell$
