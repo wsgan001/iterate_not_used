@@ -1,30 +1,14 @@
 # LDA
 
-# REF：
-
-1. 七月在线 机器学习
-2. [隐含狄利克雷分布 wiki](https://zh.wikipedia.org/wiki/%E9%9A%90%E5%90%AB%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7%E5%88%86%E5%B8%83)
-3. [通俗理解LDA主题模型](https://blog.csdn.net/v_july_v/article/details/41209515)
-
-
-# TODO
-
-
-
-
-# MOTIVE
-
-
 对主题模型进行整理总结
 
 
-
-# 基础知识
+## 基础知识
 
 * 贝叶斯公式
 
 
-# 什么是LDA？
+## 什么是LDA？
 
 
 隐含狄利克雷分布（英语：Latent Dirichlet allocation，简称LDA），是一种主题模型，它可以将文档集中每篇文档的主题按照概率分布的形式给出。同时它是一种无监督学习算法，在训练时不需要手工标注的训练集，需要的仅仅是文档集以及指定主题的数量k即可。此外LDA的另一个优点则是，对于每一个主题均可找出一些词语来描述它。
@@ -33,20 +17,10 @@
 # LDA涉及的主要问题：
 
 
-
-
-
-
-  * 共轭先验分布
-
-
-  * Dirichlet 分布
-
-
-  * LDA 模型
-
-
-    * Gibbs 采样算法学习参数
+- 共轭先验分布
+- Dirichlet 分布
+- LDA 模型
+    - Gibbs 采样算法学习参数
 
 
 
@@ -901,4 +875,13 @@ LDA运行的时间还是很长的，比如决策树来处理一万个样本，�
 
 
 
-# COMMENT：
+
+
+
+
+
+## REF：
+
+1. 七月在线 机器学习
+2. [隐含狄利克雷分布 wiki](https://zh.wikipedia.org/wiki/%E9%9A%90%E5%90%AB%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7%E5%88%86%E5%B8%83)
+3. [通俗理解LDA主题模型](https://blog.csdn.net/v_july_v/article/details/41209515)

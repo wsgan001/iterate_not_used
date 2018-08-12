@@ -1,11 +1,14 @@
 # LightGBM 安装
 
 
-# 在Windows下的安装
+## 在Windows下的安装
+
 
 1.下载源代码
 
-`git clone --recursive https://github.com/Microsoft/LightGBM`
+```
+git clone --recursive https://github.com/Microsoft/LightGBM
+```
 
 2.编译DLL
 
@@ -18,7 +21,9 @@
 进入目录`python-package`  执行命令：
 
 
-    python setup.py install
+```
+python setup.py install
+```
 
 
 4.测试一下
@@ -36,7 +41,7 @@ python .\simple_example.py
 
 
 
-# REF
+## REF
 
 1. [ LightGBM 中文文档](http://lightgbm.apachecn.org/cn/latest/index.html)
 2. [在Windows下安装LightGBM的Python包](https://blog.csdn.net/jiaqiangbandongg/article/details/53814663)

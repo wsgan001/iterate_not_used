@@ -1,66 +1,5 @@
----
-author: evo
-comments: true
-date: 2018-05-07 13:55:27+00:00
-layout: post
-link: http://106.15.37.116/2018/05/07/knn-sample2/
-slug: knn-sample2
-title:
-wordpress_id: 5400
-categories:
-- 随想与反思
----
 
-<!-- more -->
-
-[mathjax]
-
-**注：非原创，推荐直接看原文**
-
-
-# ORIGINAL
-
-
-
-
-
-
-    1. [第2章 k-近邻算法](http://ml.apachecn.org/mlia/knn/)
-
-  2. 《机器学习实战》
-
-
-
-
-# TODO
-
-
-
-
-
-
-  * aaa
-
-
-
-
-# MOTIVE
-
-
-
-
-
-
-  * aaa
-
-
-
-
-
-* * *
-
-
-
+# KNN-例子2：手写数字识别系统
 
 
 # 项目要求
@@ -197,3 +136,10 @@ the total error rate is: 0.010571
 
 
 可见，knn的聚类还是很厉害的，错误率很低。**不知道对于复杂的任务来说什么效果？**
+
+
+
+## REF
+
+1. [第2章 k-近邻算法](http://ml.apachecn.org/mlia/knn/)
+2. 《机器学习实战》
