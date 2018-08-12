@@ -1,6 +1,9 @@
-# Dropout
+# 随机失活 Dropout
 
-# 4.Dropout（随机失活）
+TODO
+
+- 将参考文献的内容补充进来，这个讲的还是不明确。
+
 
 ## Dropout ( 随机失活) ： 别一次开启所有学习单元
 
@@ -57,16 +60,12 @@ H1是一个ReLU层，U1生成H1相同shape的随机数，并且随机数小于0.
 
 
 
-
 ## 需要补充的
-
-**将参考文献的内容补充进来，这个讲的还是不明确。**
 
 对 Dropout 想要有更细致的了解，参见：
 
-* 2014, Hinton, etc《 Dropout: A Simple Way to Prevent Neural Networks from Overfitting》
-
-* 2013, Stefan Wager, etc 《Dropout Training as Adaptive Regularization》
+- 2014, Hinton, etc《 Dropout: A Simple Way to Prevent Neural Networks from Overfitting》
+- 2013, Stefan Wager, etc 《Dropout Training as Adaptive Regularization》
 
 
 ## REF

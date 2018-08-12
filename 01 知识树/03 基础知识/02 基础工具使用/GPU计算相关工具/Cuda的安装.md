@@ -1,19 +1,4 @@
----
-author: evo
-comments: true
-date: 2018-03-24 15:00:47+00:00
-layout: post
-link: http://106.15.37.116/2018/03/24/install-cuda/
-slug: install-cuda
-title: Cuda的安装
-wordpress_id: 774
-categories:
-- 随想与反思
-tags:
-- Cuda
----
-
-<!-- more -->
+# Cuda的安装
 
 缘由：
 
@@ -22,7 +7,5 @@ tags:
 **WARINING：没有亲手实践过，而且这个手册存在过期的可能性**
 
 要点：
-
-
 
 [http://www.tensorfly.cn/tfdoc/get_started/os_setup.html#install_cuda](http://www.tensorfly.cn/tfdoc/get_started/os_setup.html#install_cuda)
