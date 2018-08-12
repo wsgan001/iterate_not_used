@@ -1,106 +1,27 @@
----
-author: evo
-comments: true
-date: 2018-03-30 09:06:46+00:00
-layout: post
-link: http://106.15.37.116/2018/03/30/crf/
-slug: crf
-title: 条件随机场CRF
-wordpress_id: 1950
-categories:
-- 随想与反思
-tags:
-- '@todo'
-- '@want_to_know'
----
-
-<!-- more -->
-
-[mathjax]
+# 条件随机场CRF
 
 
-# REF
+TODO
+
+* 有人搜了下： Conditional Random Fields as Recurrent Neural Networks  确认下，CRF是不是可以与 rnn 关联？
+* 视频要重新看一下啊，有很多的推理没有弄明白。
 
 
 
+对条件随机场进行总结
 
 
+## 前置知识
 
-  * 七月在线 机器学习
-
-
-  * [NLP —— 图模型（二）条件随机场（Conditional random field，CRF）](http://www.cnblogs.com/Determined22/p/6915730.html)
-
-
-
-
-# TODO
-
-
-
-
-
-
-  * **有人搜了下： Conditional Random Fields as Recurrent Neural Networks  确认下，CRF是不是可以与 rnn 关联？**
-
-
-  * **视频要重新看一下啊，有很多的推理没有弄明白。**
-
-
-  *
-
-
-
-# MOTIVE
-
-
-
-
-
-
-  * 对条件随机场进行总结
-
-
-
-
-
-* * *
-
-
-
-
-
-
-# 前置知识
-
-
-
-
-
-
-  * 贝叶斯网络
-
-
-  * 马尔科夫毯
-
-
-  * Logistic 回归
-
-
-  * 几率
-
-
+* 贝叶斯网络
+* 马尔科夫毯
+* Logistic 回归
+* 几率
 
 
 # CRF介绍
 
-
 Conditional random field  CRF
-
-
-
-
-
 
 # 贝叶斯网络与CRF有什么关系？
 
@@ -1083,16 +1004,8 @@ CRF的预测问题，是给定条件随机场P(Y|X)和输入序列(观测序列)
 
 
 
-# COMMENT：
 
-
-PPT里面的参考文献要看下。
-
-
-
-
-
-
+## 需要消化的：
 
 下面几篇可以看下：
 
@@ -1101,3 +1014,11 @@ PPT里面的参考文献要看下。
 [http://www.cnblogs.com/Determined22/p/6915730.html](http://www.cnblogs.com/Determined22/p/6915730.html)
 
 [https://blog.csdn.net/u014688145/article/details/58055750](https://blog.csdn.net/u014688145/article/details/58055750)
+
+
+
+
+## REF
+
+* 七月在线 机器学习
+* [NLP —— 图模型（二）条件随机场（Conditional random field，CRF）](http://www.cnblogs.com/Determined22/p/6915730.html)

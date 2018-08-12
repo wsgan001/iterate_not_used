@@ -6,11 +6,6 @@
 1. 七月在线 机器学习
 
 
-# TODO
-
-
-
-
 # MOTIVE
 
 对 pLSA 做总结，看下是如何把EM算法应用在pLSA上面的。
@@ -42,7 +37,7 @@
 # pLSA模型
 
 
-基于概率统计的pLSA模型(probabilistic Latent Semantic Analysis，概率隐语义分析)，增加了主题模型，形成简单的贝叶斯网络，可以使用EM算法学习模型参数。
+基于概率统计的 pLSA 模型(probabilistic Latent Semantic Analysis，概率隐语义分析)，增加了主题模型，形成简单的贝叶斯网络，可以使用EM算法学习模型参数。
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/83bf1CGmJf.png?imageslim)
 

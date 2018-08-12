@@ -1,37 +1,5 @@
----
-author: evo
-comments: true
-date: 2018-05-16 16:45:54+00:00
-layout: post
-link: http://106.15.37.116/2018/05/17/rl-%e5%bc%ba%e5%8c%96%e5%ad%a6%e4%b9%a0%e8%af%bb%e4%b9%a6%e7%ac%94%e8%ae%b0-14-%e5%bf%83%e7%90%86%e5%ad%a6/
-slug: rl-%e5%bc%ba%e5%8c%96%e5%ad%a6%e4%b9%a0%e8%af%bb%e4%b9%a6%e7%ac%94%e8%ae%b0-14-%e5%bf%83%e7%90%86%e5%ad%a6
-title: RL 心理学
-wordpress_id: 5899
-categories:
-- 人工智能学习
-tags:
-- NOT_ADD
-- Reinforcement Learning
----
+# RL 心理学
 
-<!-- more -->
-
-[mathjax]
-
-**注：非原创，只是按照自己的思路做了整合，修改。推荐直接看 ORIGINAL 中所列的原文。**
-
-
-# ORIGINAL
-
-
-
-
-
- 	
-  1. 
-
-
-# [强化学习读书笔记 - 14 - 心理学](http://www.cnblogs.com/steven-yang/p/6636358.html)
 
 
 
@@ -45,7 +13,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -64,7 +32,7 @@ tags:
 
 
 
- 	
+
   * aaa
 
 
@@ -97,55 +65,55 @@ tags:
 
 
 
- 	
+
   * reinforcement
 在心理学中，指动物接收到一个刺激（或者经历一个刺激的消失），行为和另一个刺激（或者反应）的关联模式得到了（强度或者频率上的）加强。
 
- 	
+
   * reinforcer - 强化刺激
 
- 	
+
   * reward - 奖赏
 让动物认知好行为的事物或者事件。
 
- 	
+
   * penalty - 惩罚
 让动物认知坏行为的事物或者事件。
 
- 	
+
   * reinforcement signal - 加强信号
 加强信号的一个例子：TD error。
 
- 	
+
   * action
 
- 	
+
   * control
 在强化学习中，控制是指本体影响它的环境，带来期望的状态或者事件。
 
- 	
+
   * stimulus-response learning - 刺激-反应学习
 
- 	
+
   * prediction algorithm
 
- 	
+
   * control algorithm
 Policy improvement algorithms
 
- 	
+
   * unconditioned responses
 
- 	
+
   * unconditioned stimulus
 
- 	
+
   * conditioned responses
 
- 	
+
   * conditioned stimulus
 
- 	
+
   * classical conditioning - 条件反射
 
 
@@ -173,10 +141,10 @@ Q-learning: An o-policy TD control algorithm
 Double Q-learning
 7
 n-step TD for estimating V  v
-n-step Sarsa for estimating Q  q, or Q  q for a given 
-O-policy n-step Sarsa for estimating Q  q, or Q  q for a given 
-n-step Tree Backup for estimating Q  q, or Q  q for a given 
-O-policy n-step Q() for estimating Q  q, or Q  q for a given 
+n-step Sarsa for estimating Q  q, or Q  q for a given
+O-policy n-step Sarsa for estimating Q  q, or Q  q for a given
+n-step Tree Backup for estimating Q  q, or Q  q for a given
+O-policy n-step Q() for estimating Q  q, or Q  q for a given
 8
 Random-sample one-step tabular Q-planning
 Tabular Dyna-Q
@@ -209,23 +177,6 @@ Actor-Critic with Eligibility Traces (continuing)
 
 
 
+## REF
 
-
-
-
-
-
-
-
-
-
-* * *
-
-
-
-
-
-# COMMENT
-
-
-
+- [强化学习读书笔记 - 14 - 心理学](http://www.cnblogs.com/steven-yang/p/6636358.html)

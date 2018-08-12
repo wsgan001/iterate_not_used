@@ -1,34 +1,6 @@
----
-author: evo
-comments: true
-date: 2018-05-12 10:24:37+00:00
-layout: post
-link: http://106.15.37.116/2018/05/12/adaboost-sample2/
-slug: adaboost-sample2
-title:
-wordpress_id: 5587
-categories:
-- 随想与反思
----
-
-<!-- more -->
-
-[mathjax]
-
-**注：非原创，推荐直接看原文**
+# AdaBoost 例子2：使用sklearn中的AdaBoost
 
 
-# ORIGINAL
-
-
-
-
-
-
-  1.
-
-
-[第7章 集成方法 ensemble method](http://ml.apachecn.org/mlia/ensemble-random-tree-adaboost/)
 
 
 
@@ -146,3 +118,9 @@ y_scores--- <class 'numpy.float64'> 4 [ 0.1   0.4   0.35  0.8 ]
 
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/LBaaCKALba.png?imageslim)
+
+
+
+## REF
+
+- [第7章 集成方法 ensemble method](http://ml.apachecn.org/mlia/ensemble-random-tree-adaboost/)
