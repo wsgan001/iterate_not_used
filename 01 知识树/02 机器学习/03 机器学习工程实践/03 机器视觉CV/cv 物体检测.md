@@ -1,15 +1,5 @@
 # cv 物体检测
 
-## REF：
-
-1. 七月在线 深度学习
-2. [DPM（Deformable Parts Model）](http://www.52ml.net/15680.html) **这个还没看**
-3. [Selective Search](https://blog.csdn.net/szj_huhu/article/details/78157982)    **还没看 Region Proposal 相关的**
-
-
-********************************************************************************
-
-
 # 缘由：
 
 
@@ -231,12 +221,6 @@ http://caffe.berkeleyvision.org/doxygen/classcaffe_1_1HingeLossLayer.html
 
 
 # 怎么用深度学习做物体检测
-
-
-
-
-#
-
 
 是怎么联系的？是怎么想到的？实际上一篇论文submit的时候就已经过时了，这时候你就要想对于这个论文，what can you do in the future。因此每一篇论文的motivation是怎么想到的，这个是比较重要的。
 
@@ -874,3 +858,13 @@ RFCN能不能满足real-time的？现在最快的应该是1s处理4帧，比Fast
 
 
 目标物体放在非常复杂的背景下，怎么解决？用COCO train 不要用VOC train
+
+
+
+
+
+## REF：
+
+1. 七月在线 深度学习
+2. [DPM（Deformable Parts Model）](http://www.52ml.net/15680.html) **这个还没看**
+3. [Selective Search](https://blog.csdn.net/szj_huhu/article/details/78157982)    **还没看 Region Proposal 相关的**
