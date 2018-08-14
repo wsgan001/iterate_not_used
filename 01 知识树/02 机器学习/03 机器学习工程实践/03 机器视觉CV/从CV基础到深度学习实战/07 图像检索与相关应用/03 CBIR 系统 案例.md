@@ -1,4 +1,9 @@
 
+
+TODO
+
+- 这个 VisualSearchServer、DeepVideoAnalytics 一定要看下。
+
 # CBIR 系统
 
 刚才我们说了 CBIR 这个系统用 ANN 怎么去做一个快速的检索。
@@ -202,11 +207,13 @@ def store_index(features,files,count,index_dir):
 
 # 这个是图像的特征抽取，
 def extract_features(image_data,sess):
+    # 我们先得到  pool3
     pool3 = sess.graph.get_tensor_by_name('incept/pool_3:0')
     features = []
     files = []
     for fname,data in image_data.iteritems():
         try:
+            # 我们对这幅图像做一个前项运算，就拿到了第三个池化层的 feature 然后，把这个向量存下啦。
             pool3_features = sess.run(pool3,{'incept/DecodeJpeg/contents:0': data})
             features.append(np.squeeze(pool3_features))
             files.append(fname)
@@ -214,7 +221,7 @@ def extract_features(image_data,sess):
             logging.error("error while processing fname {}".format(fname))
     return features,files
 
-
+# 他提供了计算好的数据给大家，可以从服务器上拉下来。
 def download(filename):
     if DEMO:
         command = 'aws s3api get-object --bucket aub3visualsearch --key "{}/{}" --request-payer requester appcode/static/examples/{}'.format(DEMO,filename,filename)
@@ -227,18 +234,9 @@ def download(filename):
 ```
 
 
+有的同学说，他也是直接抽取的 pooling 的输出作为特征，但是效果不是很好，这个老师说：这个网络是不是针对自己的场景训练的网络还是说直接 down 了一个 VGG 就直接用来抽特征。
+
+老师说：他只能告诉你，这套东西，电商在用。电商体系的一部分，这个效果还是可以的。
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-地址：https://github.com/kevinlin311tw/caffe-cvprw15/tree/master/examples
+<span style="color:red;">感觉这个项目还是很有必要自己搭建一下的，最好是使用的新的 DeepVideoAnalytics，最起码要fork 下来自己注释分析一遍，看看他的整个架构是怎么样的。因为我以后像这样的项目一定要部署到我自己的server 上的。</span>
