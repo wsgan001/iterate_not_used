@@ -110,7 +110,7 @@ content_image + style_image=> output image
 利用梯度下降，content loss对F求导：
 
 
-\[\frac{\partial L_{content}}{\partial F_{ij}^{l}}=\begin{cases}(F^l-P^l)_{ij} & \text{ if } F_{ij}^l>0 \\ 0 & \text{ if } F_{ij}^l<0\end{cases}\]
+$$\frac{\partial L_{content}}{\partial F_{ij}^{l}}=\begin{cases}(F^l-P^l)_{ij} & \text{ if } F_{ij}^l>0 \\ 0 & \text{ if } F_{ij}^l<0\end{cases}$$
 
 F is the activation of the i-th filter at position j in layer I.
 
@@ -119,7 +119,7 @@ P is the feature representation from the original image.
 
 
 
-  * 风格重建损失函数：
+* 风格重建损失函数：
 
 
 \[E_l=\frac{1}{4N_l^2M_l^2}\sum_{i,j}^{ }(G_{ij}^l-A_{ij}^l)^2\]
@@ -156,9 +156,6 @@ To generate the images that mix the content of a photograph withe the style of a
 * 从上到下表示的时不同conv层的feature进行style，conv1->conv5是一个从整体到局部的过程。
 
 * 从左导游表示的时不同的\(\alpha /\beta \)的比例，\(10^{-5}->10^{-2}\)是指更注重style还是更强调content。**厉害**
-
-
-
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180727/mkDiab7gba.png?imageslim)
 
