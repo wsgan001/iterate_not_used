@@ -73,3 +73,5 @@ Kalman filter will make a prediction of the state at next time frame according t
 Since the car has a constant acceleration, we can find a linear relation between the position and the velocity.
 
 We measure the position the car at the next time frame.This measurement will be used to update the Kalman filter so that the prediction will get better in the next frame if the filter converge
+
+<span style="color:red;">这部分老师不了解，也没有怎么说</span>
