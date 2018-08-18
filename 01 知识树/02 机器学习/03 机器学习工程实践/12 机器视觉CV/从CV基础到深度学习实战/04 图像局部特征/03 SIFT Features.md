@@ -145,3 +145,11 @@ Keypoint orientations
 
 
 基本听不懂了，从上面就听不懂了，从一开始的SIFT 就没明白。
+
+
+
+
+
+## REF
+
+- 七月在线 opencv计算机视觉

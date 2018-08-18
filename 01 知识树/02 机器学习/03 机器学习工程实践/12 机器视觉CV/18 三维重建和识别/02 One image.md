@@ -27,3 +27,12 @@ http://www.wisdom.weizmann.ac.il/~ronen/papers/
 Hassner Basri - Example Based 3D Reconstruction from Single 2D Images.pdf
 
 这个论文老师也没有看，老师说这个单个摄像头的这个不是重点。老师这个地方没有怎么讲，直接带过了。
+
+
+
+
+
+
+## REF
+
+- 七月在线 opencv计算机视觉

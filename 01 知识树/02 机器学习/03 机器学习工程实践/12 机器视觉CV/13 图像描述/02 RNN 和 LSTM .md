@@ -242,3 +242,10 @@ Vanishing	is	controlled	with	additive	interactions	(LSTM)
 
 
 OK，上面我们就把 RNN 和 LSTM 简单的说了下，下面我们看下基于 RNN 和LSTM 的 image captioning 的具体做法。
+
+
+
+
+## REF
+
+- 七月在线 opencv计算机视觉

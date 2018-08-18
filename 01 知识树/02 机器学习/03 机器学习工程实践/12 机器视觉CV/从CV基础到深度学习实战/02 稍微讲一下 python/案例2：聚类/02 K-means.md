@@ -210,3 +210,11 @@ with sns.axes_style('white'):
 Compare the input and output image: we've reduced the $256^3$ colors to just 64.
 
 <span style="color:red;">这种图像压缩还是很震撼的。</span>
+
+
+
+
+
+## REF
+
+- 七月在线 opencv计算机视觉

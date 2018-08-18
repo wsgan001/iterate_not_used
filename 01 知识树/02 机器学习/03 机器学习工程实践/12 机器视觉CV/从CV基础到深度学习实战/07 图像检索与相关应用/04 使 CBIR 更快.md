@@ -41,3 +41,12 @@ OK，我们回到我们的 PPT：
 -  http://mmlab.ie.cuhk.edu.hk/projects/DeepFashion.html
 
 这个是香港中文大学的paper 里面带的数据集，是百度云的。
+
+
+
+
+
+
+## REF
+
+- 七月在线 opencv计算机视觉

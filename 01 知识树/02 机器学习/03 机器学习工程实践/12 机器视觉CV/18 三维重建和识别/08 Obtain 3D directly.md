@@ -283,3 +283,12 @@ https://papers.nips.cc/paper/4773-convolutional-recursive-deeplearning-for-3d-ob
 - Shot boundary detection
 - Video data mining 基于 video 的。
 - Video classification
+
+
+
+
+
+
+## REF
+
+- 七月在线 opencv计算机视觉

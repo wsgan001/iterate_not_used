@@ -240,3 +240,12 @@ def download(filename):
 
 
 <span style="color:red;">感觉这个项目还是很有必要自己搭建一下的，最好是使用的新的 DeepVideoAnalytics，最起码要fork 下来自己注释分析一遍，看看他的整个架构是怎么样的。因为我以后像这样的项目一定要部署到我自己的server 上的。</span>
+
+
+
+
+
+
+## REF
+
+- 七月在线 opencv计算机视觉

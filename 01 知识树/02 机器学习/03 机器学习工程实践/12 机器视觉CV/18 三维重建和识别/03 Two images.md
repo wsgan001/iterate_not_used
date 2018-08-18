@@ -76,3 +76,11 @@ Another example
 
 http://www.lelaps.de/videos.html#VrKBNtAN03o (demo)
 http://www.lelaps.de/projects/freespace.html
+
+
+
+
+
+## REF
+
+- 七月在线 opencv计算机视觉
