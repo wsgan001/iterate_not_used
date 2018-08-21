@@ -1292,7 +1292,7 @@ var stack = [1,
 
 allowed = ["push", "pop", "length"]；
 
-return Proxy.create{{
+return Proxy.create{ {
 
 get: function(receiver, name){；
 

@@ -512,7 +512,7 @@ DAN的学习一共分为两大类参数：学习网络参数 \(\Theta\) 和MMD�
 学习 \(\beta\) 主要是为了确定多个kernel的权重。学习的时候，目标是：确保每个kernel生成的MMD距离的方差最小。也就是
 
 \begin{equation}
-\max_{k \in \mathcal{K}} d^2_k(\mathcal{D}^l_s,\mathcal{D}^l_t) \sigma^{-2}_k
+\max_{k \in \mathcal{K} } d^2_k(\mathcal{D}^l_s,\mathcal{D}^l_t) \sigma^{-2}_k
 \end{equation}
 
 这里的 \(\sigma^{-2}_k=E[g^2_k(\mathbf{z})]-[E(g_k(\mathbf{z}))]^2\) 是估计方差。实际求解的时候问题可以被规约成一个二次规划问题求解，具体可以参照文章。
@@ -689,7 +689,7 @@ DDC方法的作者、加州大学伯克利分校的Tzeng等人在2017年发表�
 
 作者提出了一个叫做 Selective Adversarial Networks (SAN)~\cite{cao2017partial} 的方法来处理partial transfer问题。在partial问题中，传统的对抗网络不再适用。所以就需要对进行一些修改，使得它能够适用于partial问题。
 
-因为不知道目标域的标签，也就没办法知道到底是源域中哪些类是目标域的。为了达到这个目的，作者对目标域按照类别分组，把原来的一整个判别器分成了 \(|\mathcal{C}_s|\) 个： \(G^k_d\) ，每一个子判别器都对它所在的第 \(k\) 个类进行判别。作者观察到了这样的事实：对于每个数据点 \(\mathbf{x}_i\) 来说，分类器的预测结果 \(\hat{\mathbf{y}}_i\) 其实是对于整个类别空间的一个概率分布。因此，在进行对抗时，需要考虑每个样本属于每个类别的影响。这个影响就是由概率来刻画。所以作者提出了一个概率权重的判别器：
+因为不知道目标域的标签，也就没办法知道到底是源域中哪些类是目标域的。为了达到这个目的，作者对目标域按照类别分组，把原来的一整个判别器分成了 \(|\mathcal{C}_s|\) 个： \(G^k_d\) ，每一个子判别器都对它所在的第 \(k\) 个类进行判别。作者观察到了这样的事实：对于每个数据点 \(\mathbf{x}_i\) 来说，分类器的预测结果 \(\hat{\mathbf{y} }_i\) 其实是对于整个类别空间的一个概率分布。因此，在进行对抗时，需要考虑每个样本属于每个类别的影响。这个影响就是由概率来刻画。所以作者提出了一个概率权重的判别器：
 
 \begin{equation}
 L'_d=\frac{1}{n_s+n_t} \sum_{k=1}^{|\mathcal{C}_s|} \sum_{\mathbf{x}_i \in \mathcal{D}_s + \mathcal{D}_t}^{} \hat{y}^k_i L^k_d(G^k_d(G_f(\mathbf{x}_i)),d_i)

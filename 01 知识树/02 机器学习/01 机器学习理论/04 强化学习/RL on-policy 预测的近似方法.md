@@ -36,7 +36,7 @@ where \\
 
 **价值均方误差（Mean Squared Value Error）**
 \[
-MSVE(\theta) = \sum_{s \in \mathcal{S}} d(s) [v_{\pi} - \hat{v}(s, \theta)]^2 \\
+MSVE(\theta) = \sum_{s \in \mathcal{S} } d(s) [v_{\pi} - \hat{v}(s, \theta)]^2 \\
 where \\
 d(s) \text{ - on-policy distribution, the fraction of time spent in s under the target policy } \pi \\
 \]
@@ -46,7 +46,7 @@ d(s) \text{ - on-policy distribution, the fraction of time spent in s under the 
 
   * 在情节性任务中
 \[
-\eta(s) = h(s) + \sum_{\bar{s}} \eta(\bar{s}) \sum_{a} \pi(a|\bar{s})p(s|\bar{s}, a), \ \forall s \in \mathcal{S} \\
+\eta(s) = h(s) + \sum_{\bar{s} } \eta(\bar{s}) \sum_{a} \pi(a|\bar{s})p(s|\bar{s}, a), \ \forall s \in \mathcal{S} \\
 d(s) = \frac{\eta(s)}{\sum_{s'} \eta(s')} \\
 where \\
 \eta(s) \text{ - the number of time steps spent in state s in a single episode} \\
@@ -61,7 +61,7 @@ d(s) = \text{ the stationary distribution under } \pi \\
 
 
 **解释：**
-\(\eta(s) = h(s) + \sum_{\bar{s}} \eta(\bar{s}) \sum_{a} \pi(a|\bar{s})p(s|\bar{s}, a), \ \forall s \in \mathcal{S}\)
+\(\eta(s) = h(s) + \sum_{\bar{s} } \eta(\bar{s}) \sum_{a} \pi(a|\bar{s})p(s|\bar{s}, a), \ \forall s \in \mathcal{S}\)
 状态s的发生时间（次数） = 在情节中状态s发生在开始的时间（次数） + 状态s发生在其它的时间（次数）
 
 
@@ -185,7 +185,7 @@ Until \(S'\) is terminal</blockquote>
 
 **多项式基方法的通用数学表达：**
 \[
-\phi_i(s) = \prod_{j=1}^d s_j^{C_{i,j}} \\
+\phi_i(s) = \prod_{j=1}^d s_j^{C_{i,j} } \\
 where \\
 s = (s_1,s_2,\cdots,s_d)^T \\
 \phi_i(s) \text{ - polynomials basis function}
@@ -219,17 +219,17 @@ c^i = (x_1^i, c_2^i, \cdots, c_d^i)^T, \ with \ c_j^i \in \{0, \cdots, N\} \ for
 
 <blockquote>Input: feature representation \(\phi(s) \in \mathbb{R}^n, \forall s \in \mathcal{S}, \phi(terminal) \doteq 0\)
 
-$\hat{A^{-1}} \gets \epsilon^{-1} I \qquad \text{An } n \times n matrix $
+$\hat{A^{-1} } \gets \epsilon^{-1} I \qquad \text{An } n \times n matrix $
 \(\hat{b} \gets 0\)
 Repeat (for each episode):
 Initialize S; obtain corresponding \(\phi\)
 Repeat (for each step of episode):
 Choose \(A \sim \pi(\dot \ | S)\)
 Take action \(A\), observer \(R, S'\); obtain corresponding \(\phi'\)
-\(v \gets \hat{A^{-1}}^T (\phi - \gamma \phi')\)
-\(\hat{A^{-1}} \gets \hat{A^{-1}} - (\hat{A^{-1}}\phi) v^T / (1+v^T\phi)\)
+\(v \gets \hat{A^{-1} }^T (\phi - \gamma \phi')\)
+\(\hat{A^{-1} } \gets \hat{A^{-1} } - (\hat{A^{-1} }\phi) v^T / (1+v^T\phi)\)
 \(\hat{b} \gets \hat{b} + R \phi\)
-\(\theta \gets \hat{A^{-1}} \hat{b}\)
+\(\theta \gets \hat{A^{-1} } \hat{b}\)
 \(S \gets S'; \phi \gets \phi'\)
 until S' is terminal</blockquote>
 

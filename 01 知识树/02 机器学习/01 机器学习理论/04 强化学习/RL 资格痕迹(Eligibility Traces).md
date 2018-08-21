@@ -201,7 +201,7 @@ Repeat (for each episode):
 
   For \(t = 0, 1, \cdots, T - 1\)  
 
-   \(\theta \gets \theta + \alpha [\color{Red}{G_t^{\lambda}} -\hat{v}(S_t, \theta)] \nabla \hat{v}(S_t, \theta)\)
+   \(\theta \gets \theta + \alpha [\color{Red}{G_t^{\lambda} } -\hat{v}(S_t, \theta)] \nabla \hat{v}(S_t, \theta)\)
 > 
 > 
 </blockquote>

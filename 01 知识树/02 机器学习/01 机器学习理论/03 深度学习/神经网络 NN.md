@@ -530,9 +530,9 @@ BP算法，也叫做\(\delta \)算法
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/imGl0AB54g.png?imageslim)
 
 
-\[\Delta \omega_{jk}=-\eta \frac{\partial E}{\partial \omega_{jk}}\; j=0,1,2,\cdots ,m;k=1,2,\cdots ,l\]
+\[\Delta \omega_{jk}=-\eta \frac{\partial E}{\partial \omega_{jk} }\; j=0,1,2,\cdots ,m;k=1,2,\cdots ,l\]
 
-\[\Delta v_{ij}=-\eta \frac{\partial E}{\partial v_{ij}}\; i=0,1,2,\cdots ,n;j=1,2,\cdots ,m\]
+\[\Delta v_{ij}=-\eta \frac{\partial E}{\partial v_{ij} }\; i=0,1,2,\cdots ,n;j=1,2,\cdots ,m\]
 
 上面的这个E对于\(\omega\)求导的时候由于是复合函数，因此使用的是链式法则
 
@@ -564,7 +564,7 @@ BP算法，也叫做\(\delta \)算法
 
 \[net_{h1}=0.15*0.05+0.2*0.1+0.35*1=0.3775\]
 
-\[out_{h1}=\frac{1}{1+e^{-net_{h1}}}=\frac{1}{1+e^{-0.3775}}=0.59326999\]
+\[out_{h1}=\frac{1}{1+e^{-net_{h1} } }=\frac{1}{1+e^{-0.3775} }=0.59326999\]
 
 \[out_{h2}=0.596884378\]
 
@@ -574,7 +574,7 @@ BP算法，也叫做\(\delta \)算法
 
 \[net_{o1}=0.4*0.59326999+0.45*0.596884378+0.6*1=1.105905967\]
 
-\[out_{o1}=\frac{1}{1+e^{-net_{o1}}}=\frac{1}{1+e^{-1.105905967}}=0.75136507\]
+\[out_{o1}=\frac{1}{1+e^{-net_{o1} } }=\frac{1}{1+e^{-1.105905967} }=0.75136507\]
 
 \[out_{o2}=0.772928465\]
 
@@ -597,7 +597,7 @@ BP算法，也叫做\(\delta \)算法
 
 也就是说 E 对于 \(\w_5\) 的偏导满足：
 
-\[\frac{\partial net_{o1}}{\partial w_5}*\frac{\partial out_{o1}}{\partial net_{o1}}*\frac{\partial E_{total}}{\partial out_{o1}}=\frac{\partial E_{total}}{\partial w_5}\]
+\[\frac{\partial net_{o1} }{\partial w_5}*\frac{\partial out_{o1} }{\partial net_{o1} }*\frac{\partial E_{total} }{\partial out_{o1} }=\frac{\partial E_{total} }{\partial w_5}\]
 
 那么开始挨个求：
 
@@ -605,23 +605,23 @@ BP算法，也叫做\(\delta \)算法
 \[E_{total}=\frac{1}{2}(target_{o1}-out_{o1})^2+\frac{1}{2}(target_{o2}-out_{o2})^2\]
 
 
-\[\frac{\partial E_{total}}{\partial out_{o1}}=2*\frac{1}{2}(target_{o1}-out{o1})^{2-1}*(-1)+0\]
+\[\frac{\partial E_{total} }{\partial out_{o1} }=2*\frac{1}{2}(target_{o1}-out{o1})^{2-1}*(-1)+0\]
 
-\[\frac{\partial E_{total}}{\partial out_{o1}}=-(target_{o1}-out_{o1})=-(0.01-0.75136507)=074136507\]
+\[\frac{\partial E_{total} }{\partial out_{o1} }=-(target_{o1}-out_{o1})=-(0.01-0.75136507)=074136507\]
 
-\[out_{o1}=\frac{1}{1+e^{-net_{o1}}}\]
+\[out_{o1}=\frac{1}{1+e^{-net_{o1} } }\]
 
-\[\frac{\partial out_{o1}}{\partial net_{o1}}=out_{o1}(1-out_{o1})=0.75136507(1-0.75136507)=0.186815602\]
+\[\frac{\partial out_{o1} }{\partial net_{o1} }=out_{o1}(1-out_{o1})=0.75136507(1-0.75136507)=0.186815602\]
 
 \[net_{o1}=w_5*out_{h1}+w_6*out_{h2}+b_2*1\]
 
-\[\frac{\partial net_{o1}}{\partial w_5}=1*out_{h1}*w_5^{(1-1)}+0+0=out_{h1}=0.593269992\]
+\[\frac{\partial net_{o1} }{\partial w_5}=1*out_{h1}*w_5^{(1-1)}+0+0=out_{h1}=0.593269992\]
 
-\[\begin{align*}\frac{\partial E_{total}}{\partial w_5}&=-(target_{o1}-out_{o1})*out_{o1}(1-out_{o1})*out_{h1}\\&=0.74136507*0.186815602*0.593269992=0.082167041\end{align*}\]
+\[\begin{align*}\frac{\partial E_{total} }{\partial w_5}&=-(target_{o1}-out_{o1})*out_{o1}(1-out_{o1})*out_{h1}\\&=0.74136507*0.186815602*0.593269992=0.082167041\end{align*}\]
 
 所以开始改变\(w_5\)：
 
-\[w_5^+=w_5-\eta *\frac{\partial E_{total}}{\partial w_5}=0.4-0.5*0.082167041=0.35891648\]
+\[w_5^+=w_5-\eta *\frac{\partial E_{total} }{\partial w_5}=0.4-0.5*0.082167041=0.35891648\]
 
 类似的：
 
@@ -641,9 +641,9 @@ BP算法，也叫做\(\delta \)算法
 
 这里要知道，\(E_{total}\)分成了两部分，而\(h_1\)的out与这两部分都有关系，因此要加在一起。
 
-\[\frac{\partial E_{total}}{\partial w_1}=(\sum_{o}^{ }\frac{\partial E_{total}}{\partial out_o}*\frac{\partial out_o}{\partial net_o}*\frac{\partial net_o}{\partial out_{h1}}）*\frac{\partial out_{h1}}{\partial net_{h1}}*\frac{\partial net_{h1}}{\partial w_1}\]
+\[\frac{\partial E_{total} }{\partial w_1}=(\sum_{o}^{ }\frac{\partial E_{total} }{\partial out_o}*\frac{\partial out_o}{\partial net_o}*\frac{\partial net_o}{\partial out_{h1} }）*\frac{\partial out_{h1} }{\partial net_{h1} }*\frac{\partial net_{h1} }{\partial w_1}\]
 
-\[w_1^+=w_1-\eta *\frac{\partial E_{total}}{\partial w_1}=0.15-0.5*0.000438568=0.149780716\]
+\[w_1^+=w_1-\eta *\frac{\partial E_{total} }{\partial w_1}=0.15-0.5*0.000438568=0.149780716\]
 
 **厉害的例子，最好自己手动算一下加深印象。而且，最好后面所有的网络都这么算一下。就比较厉害了。**
 

@@ -265,7 +265,7 @@ p(s', r | s, a) \doteq Pr \{S_{t+1} = s', R_{t+1} = r | S_t = s, A_t = a \}
 在状态\(s\)下，执行行动\(a\)的期望奖赏：  
 
 \[
-r(s,a) \doteq \mathbb{E}[R_{t+1} | S_t = s, A_t = a] = \sum_{r \in \mathcal{R}} r \sum_{s' \in \mathcal{S}} p(s', r|s,a)
+r(s,a) \doteq \mathbb{E}[R_{t+1} | S_t = s, A_t = a] = \sum_{r \in \mathcal{R} } r \sum_{s' \in \mathcal{S} } p(s', r|s,a)
 \]
 
 
@@ -274,7 +274,7 @@ r(s,a) \doteq \mathbb{E}[R_{t+1} | S_t = s, A_t = a] = \sum_{r \in \mathcal{R}} 
 在状态\(s\)下，执行行动\(a\)，转变为状态\(s'\)的可能性：  
 
 \[
-p(s' | s,a) \doteq Pr \{S_{t+1} = s' | S_t=s, A_t=a \} = \sum_{r \in \mathcal{R}} p(s',r | s,a)
+p(s' | s,a) \doteq Pr \{S_{t+1} = s' | S_t=s, A_t=a \} = \sum_{r \in \mathcal{R} } p(s',r | s,a)
 \]
 
 
@@ -283,7 +283,7 @@ p(s' | s,a) \doteq Pr \{S_{t+1} = s' | S_t=s, A_t=a \} = \sum_{r \in \mathcal{R}
 在状态\(s\)下，执行行动\(a\)，转变为状态\(s'\)的期望奖赏：  
 
 \[
-r(s,a,s') \doteq \mathbb{E}[R_{t+1} | S_t = s, A_t = a, S_{t+1} = s'] = \frac{\sum_{r \in \mathcal{R}} r  p(s',r|s,a)}{p(s'|s,a)}
+r(s,a,s') \doteq \mathbb{E}[R_{t+1} | S_t = s, A_t = a, S_{t+1} = s'] = \frac{\sum_{r \in \mathcal{R} } r  p(s',r|s,a)}{p(s'|s,a)}
 \]
 
 

@@ -89,7 +89,7 @@ tags:
 \(R_t\) - 第t步的实际奖赏(actual reward)。
 \(Q_t(a)\) - 行动 a 在第t次前（不包括第t次）的实际平均奖赏。
 \[
-Q_t(a) = \frac{\sum_{i=1}^{t-1} R_i \times 1_{A_i=a}}{N_t(a)}
+Q_t(a) = \frac{\sum_{i=1}^{t-1} R_i \times 1_{A_i=a} }{N_t(a)}
 \]
 \(H_t(a)\) - 对于行动a的学习到的倾向。
 \(\epsilon\) - 在ε-贪婪策略中，采用随机行动的概率\([0, 1)\)。
@@ -258,7 +258,7 @@ Q_t = Q_{t-1} + \alpha \left [ R_{t-1} - Q_{t-1} \right ]
 
 **算法**
 \[
-A_t = \underset{a}{argmax} \left [ Q_t(a) + c \sqrt{\frac{\log{t}}{N_t(a)}} \right ] \\
+A_t = \underset{a}{argmax} \left [ Q_t(a) + c \sqrt{\frac{\log{t} }{N_t(a)} } \right ] \\
 where \\
 c \text{ : > 0, controls the degree of exploration. bigger c means more exploration.} \\
 \text{if } N_t(a) = 0 \text{, then a is considered to be a maximizing action.}
@@ -280,7 +280,7 @@ c \text{ : > 0, controls the degree of exploration. bigger c means more explorat
 \(t\) - 第t次。
 \(\log{t}\) - 求t的指数。随着t变大，\(\log{t}\)变大的速度变慢。
 \(N_t(a)\) - 行动a被选择的次数。
-\(\left [ \sqrt{\frac{\log{t}}{N_t(a)}} \right ]\) - 由于\(\frac{\log{t}}{N_t(a)} < 1 \text{， when x > 7 }\)， 求平方根，反而是起了一个放缓、放大的作用。
+\(\left [ \sqrt{\frac{\log{t} }{N_t(a)} } \right ]\) - 由于\(\frac{\log{t} }{N_t(a)} < 1 \text{， when x > 7 }\)， 求平方根，反而是起了一个放缓、放大的作用。
 在没有奖赏的情况下：\(Q_t(a)\) 不变。\(\log{t}\)比\(N_t(a)\)变化的慢，因此总结果会变小。</blockquote>
 
 
@@ -293,7 +293,7 @@ c \text{ : > 0, controls the degree of exploration. bigger c means more explorat
 梯度算法是：通过发生的事件，根据**行动的倾向**\(H_t(a)\)，来决定选择哪个行动。
 （个人没看出有什么不同）。
 \[
-Pr\{A_t = a\} = \pi_t(a) = softmax(H_t(a)) = \frac{e^{H_t(a)}}{ \sum_{i=1}^k e^{H_t(a)}} \\
+Pr\{A_t = a\} = \pi_t(a) = softmax(H_t(a)) = \frac{e^{H_t(a)} }{ \sum_{i=1}^k e^{H_t(a)} } \\
 A_t = \underset{a}{argmax} (\pi_t(a)) \\
 \pi_t(a) \text{ for the probability of taking action a at time t.}
 \]

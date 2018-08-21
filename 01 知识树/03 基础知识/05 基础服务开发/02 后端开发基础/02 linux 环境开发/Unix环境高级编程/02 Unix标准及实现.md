@@ -701,7 +701,7 @@ printf("\tfputs(mesg, stdout);\n")
 
 printf("\terrno = 0;\n")
 
-printf("\tif {{val = sysconf(name)) < 0) {\n"J printf ("\t\tif {errno ! = 0) {\n*'} printf("\t\t\tif (errno == EINVAL)\n")
+printf("\tif { {val = sysconf(name)) < 0) {\n"J printf ("\t\tif {errno ! = 0) {\n*'} printf("\t\t\tif (errno == EINVAL)\n")
 
 printf("\t\t\t\tfputs(not supported)stdout);\n") printf("\t\t\telse\n")
 
@@ -1277,7 +1277,7 @@ ITI (9) _PC_VDISABLE引用的文件必须是一个终端文件。
 
 ! POS1X.1标准的早期版本定义7_P0SIX_S0URCE常量。在POSIX.1的2001版中，它被替换 ?为一P0SIX_C_S0URCEo
 
-常量_POSIXJ：_SOURCE 及」(0£>£14_501}}^£ 被称为功能测试宏(feature test macro)。所有 [57]功能测试宏都以下划线开始。当要使用它们时，通常在cc命令行中以下列方式定义：
+常量_POSIXJ：_SOURCE 及」(0£>£14_501} }^£ 被称为功能测试宏(feature test macro)。所有 [57]功能测试宏都以下划线开始。当要使用它们时，通常在cc命令行中以下列方式定义：
 
 cc -D_POSIX_C_SOURCE=200809L file.c
 

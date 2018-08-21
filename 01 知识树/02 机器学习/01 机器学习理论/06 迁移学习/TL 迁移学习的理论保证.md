@@ -84,13 +84,13 @@ tags:
 学习误差： 给定两个领域 \(\mathcal{D}_s,\mathcal{D}_t\) ， \(X\) 是定义在它们之上的数据，一个假设类 \(\mathcal{H}\) 。则两个领域 \(\mathcal{D}_s,\mathcal{D}_t\) 之间的 \(\mathcal{H}\) -divergence被定义为
 
 \begin{equation}
-\hat{d}_{\mathcal{H}}(\mathcal{D}_s,\mathcal{D}_t) = 2 \sup_{\eta \in \mathcal{H}} \left|\underset{\mathbf{x} \in \mathcal{D}_s}{P}[\eta(\mathbf{x}) = 1] - \underset{\mathbf{x} \in \mathcal{D}_t}{P}[\eta(\mathbf{x}) = 1] \right|
+\hat{d}_{\mathcal{H} }(\mathcal{D}_s,\mathcal{D}_t) = 2 \sup_{\eta \in \mathcal{H} } \left|\underset{\mathbf{x} \in \mathcal{D}_s}{P}[\eta(\mathbf{x}) = 1] - \underset{\mathbf{x} \in \mathcal{D}_t}{P}[\eta(\mathbf{x}) = 1] \right|
 \end{equation}
 
 因此，这个 \(\mathcal{H}\) -divergence依赖于假设 \(\mathcal{H}\) 来判别数据是来自于 \(\mathcal{D}_s\) 还是 \(\mathcal{D}_t\) 。作者证明了，对于一个对称的 \(\mathcal{H}\) ，我们可以通过如下的方式进行计算
 
 \begin{equation}
-d_\mathcal{H} (\mathcal{D}_s,\mathcal{D}_t) = 2 \left(1 - \min_{\eta \in \mathcal{H}} \left[\frac{1}{n_1} \sum_{i=1}^{n_1} I[\eta(\mathbf{x}_i)=0] + \frac{1}{n_2} \sum_{i=1}^{n_2} I[\eta(\mathbf{x}_i)=0]\right] \right)
+d_\mathcal{H} (\mathcal{D}_s,\mathcal{D}_t) = 2 \left(1 - \min_{\eta \in \mathcal{H} } \left[\frac{1}{n_1} \sum_{i=1}^{n_1} I[\eta(\mathbf{x}_i)=0] + \frac{1}{n_2} \sum_{i=1}^{n_2} I[\eta(\mathbf{x}_i)=0]\right] \right)
 \end{equation}
 其中 \(I[a]\) 为指示函数：当 \(a\) 成立时其值为1,否则其值为0。
 
@@ -99,11 +99,11 @@ d_\mathcal{H} (\mathcal{D}_s,\mathcal{D}_t) = 2 \left(1 - \min_{\eta \in \mathca
 假设 \(\mathcal{H}\) 为一个具有 \(d\) 个VC维的假设类，则对于任意的 \(\eta \in \mathcal{H}\) ，下面的不等式有 \(1 - \delta\) 的概率成立：
 
 \begin{equation}
-R_{\mathcal{D}_t}(\eta) \le R_s(\eta) + \sqrt{\frac{4}{n}(d \log \frac{2en}{d} + \log \frac{4}{\delta})} + \hat{d}_{\mathcal{H}}(\mathcal{D}_s,\mathcal{D}_t) + 4 \sqrt{\frac{4}{n}(d \log \frac{2n}{d} + \log \frac{4}{\delta})} + \beta
+R_{\mathcal{D}_t}(\eta) \le R_s(\eta) + \sqrt{\frac{4}{n}(d \log \frac{2en}{d} + \log \frac{4}{\delta})} + \hat{d}_{\mathcal{H} }(\mathcal{D}_s,\mathcal{D}_t) + 4 \sqrt{\frac{4}{n}(d \log \frac{2n}{d} + \log \frac{4}{\delta})} + \beta
 \end{equation}
 其中
 \begin{equation}
-\beta \ge \inf_{\eta^\star \in \mathcal{H}} [R_{\mathcal{D}_s}(\eta^\star) + R_{\mathcal{D}_t}(\eta^\star)]
+\beta \ge \inf_{\eta^\star \in \mathcal{H} } [R_{\mathcal{D}_s}(\eta^\star) + R_{\mathcal{D}_t}(\eta^\star)]
 \end{equation}
 并且
 \begin{equation}

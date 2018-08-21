@@ -267,7 +267,7 @@ OK，策略的定义如下：是用条件概率分布给出的
 
 当给定一个策略 \(\pi\) 时，我们就可以计算累积回报了。首先定义累积回报：
 
-\[ G_t=R_{t+1}+\gamma R_{t+2}+\cdots =\sum_{k=0}^{\infty}{\gamma^kR_{t+k+1}}\\\\\ \left(1.2\right) \]
+\[ G_t=R_{t+1}+\gamma R_{t+2}+\cdots =\sum_{k=0}^{\infty}{\gamma^kR_{t+k+1} }\\\\\ \left(1.2\right) \]
 
 当给定策略 \(\pi\) 时，假设从状态 \(s_1\) 出发，学生状态序列可能为：
 
@@ -329,7 +329,7 @@ OK，策略的定义如下：是用条件概率分布给出的
 
 图1.5B给出了状态值函数与状态-行为值函数的关系。图1.5C计算状态-行为值函数为：
 
-\[ q_{\pi}\left(s,a\right)=R_{s}^{a}+\gamma\sum_{s'}{P_{ss'}^{a}}\upsilon_{\pi}\left(s'\right)\\\\\left(1.8\right) \]
+\[ q_{\pi}\left(s,a\right)=R_{s}^{a}+\gamma\sum_{s'}{P_{ss'}^{a} }\upsilon_{\pi}\left(s'\right)\\\\\left(1.8\right) \]
 
 将(1.8)式带入到(1.7)式可以得到：
 
@@ -343,7 +343,7 @@ OK，策略的定义如下：是用条件概率分布给出的
 
 将(1.10)带入到(1.8)中，得到行为状态-行为值函数：
 
-\[ q_{\pi}\left(s,a\right)=R_{s}^{a}+\gamma\sum_{s'\in S}{P_{ss'}^{a}\sum_{a'\in A}{\pi\left(a'|s'\right)q_{\pi}\left(s',a'\right)}}\\\\\left(1.11\right) \]
+\[ q_{\pi}\left(s,a\right)=R_{s}^{a}+\gamma\sum_{s'\in S}{P_{ss'}^{a}\sum_{a'\in A}{\pi\left(a'|s'\right)q_{\pi}\left(s',a'\right)} }\\\\\left(1.11\right) \]
 
 公式(1.9)可以在图1.4中进行验证。选择状态 \(s_4\) 处。由图1.4知道 \(\upsilon\left(s_4\right)=7.4\) ，由公式(1.9)得：
 

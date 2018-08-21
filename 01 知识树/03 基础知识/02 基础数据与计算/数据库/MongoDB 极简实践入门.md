@@ -341,18 +341,18 @@ db.movie.find(
 还可以设置一个范围的搜索，比如找出50万人以上赞的电影：
 
 ```
-db.movie.find({'likes':{$gt:500000}}).pretty()
+db.movie.find({'likes':{$gt:500000} }).pretty()
 ```
 
 同样要注意略复杂的括号。注意，在这些查询里，key的单引号都是可选的，也就是说，上述语句也可以写成：
 ```
-db.movie.find({likes:{$gt:500000}}).pretty()
+db.movie.find({likes:{$gt:500000} }).pretty()
 ```
 
 类似地，少于二十万人赞的电影：
 
 ```
-db.movie.find({likes:{$lt:200000}}).pretty()
+db.movie.find({likes:{$lt:200000} }).pretty()
 ```
 
 类似的运算符还有：`$lte`:小于或等于；`$gte`:大于或等于；`$ne`:不等于。
@@ -420,20 +420,20 @@ db.movie.find({'tags':'drama'},{'debut':1,'title':1,'_id':0}).pretty()
 很多情况下你需要更新你的数据库，比如有人对某部电影点了个赞，那么你需要更新相应的数据库。比如有人对《七宗罪》点了个赞，而它本来的赞的个数是134370，那么你需要更新到134371。可以这样操作：
 
 ```
-db.movie.update({title:'Seven'}, {$set:{likes:134371}})
+db.movie.update({title:'Seven'}, {$set:{likes:134371} })
 ```
 
 第一个大括号里表明要选取的对象，第二个表明要改动的数据。请注意上述的操作相当不现实，因为你首先要知道之前的数字是多少，然后加一，但通常你不读取数据库的话，是不会知道这个数(134370)的。MongoDB提供了一种简便的方法，可以对现有条目进行增量操作。假设又有人对《七宗罪》点了两个赞，则可以：
 
 ```
-db.movie.update({title:'Seven'}, {$inc:{likes:2}})
+db.movie.update({title:'Seven'}, {$inc:{likes:2} })
 ```
 
 如果你查询的话，会发现点赞数变为134373了，这里用的是`$inc`。除了增量更新，MongoDB还提供了很多灵活的更新选项，具体可以看：http://docs.mongodb.org/manual/reference/operator/update-field/ 。
 
 注意如果有多部符合要求的电影。则默认只会更新第一个。如果要多个同时更新，要设置`{multi:true}`，像下面这样：
 ```
-db.movie.update({}, {$inc:{likes:10}},{multi:true})
+db.movie.update({}, {$inc:{likes:10} },{multi:true})
 ```
 
 所有电影的赞数都多了10.
@@ -441,7 +441,7 @@ db.movie.update({}, {$inc:{likes:10}},{multi:true})
 注意，以上的更新操作会替换掉原来的值，所以如果你是想在原有的值得基础上增加一个值的话，则应该用`$push`，比如，为《七宗罪》添加一个popular的tags。
 
 ```
-db.movie.update({'title':'Seven'}, {$push:{'tags':'popular'}})
+db.movie.update({'title':'Seven'}, {$push:{'tags':'popular'} })
 ```
 你会发现《七宗罪》现在有四个标签：
 
@@ -512,9 +512,9 @@ db.movie.dropIndex('index_name')
 MongoDB支持类似于SQL里面的`GROUP BY`操作。比如当有一张学生成绩的明细表时，我们可以找出每个分数段的学生各有多少。为了实现这个操作，我们需要稍加改动我们的数据库。执行以下三条命令：
 
 ```
-db.movie.update({title:'Seven'},{$set:{grade:1}})
-db.movie.update({title:'Forrest Gump'},{$set:{grade:1}})
-db.movie.update({title:'Fight Club'},{$set:{grade:2}})
+db.movie.update({title:'Seven'},{$set:{grade:1} })
+db.movie.update({title:'Forrest Gump'},{$set:{grade:1} })
+db.movie.update({title:'Fight Club'},{$set:{grade:2} })
 ```
 
 这几条是给每部电影加一个虚拟的分级，前两部是归类是一级，后一部是二级。
@@ -524,7 +524,7 @@ db.movie.update({title:'Fight Club'},{$set:{grade:2}})
 我们先通过聚合来找出总共有几种级别。
 
 ```
-db.movie.aggregate([{$group:{_id:'$grade'}}])
+db.movie.aggregate([{$group:{_id:'$grade'} }])
 ```
 
 输出：
@@ -537,7 +537,7 @@ db.movie.aggregate([{$group:{_id:'$grade'}}])
 注意这里的2和1是指级别，而不是每个级别的电影数。这个例子看得清楚些：
 
 ```
-db.movie.aggregate([{$group:{_id:'$directed_by'}}])
+db.movie.aggregate([{$group:{_id:'$directed_by'} }])
 ```
 
 这里按照导演名字进行聚合。输出：
@@ -550,7 +550,7 @@ db.movie.aggregate([{$group:{_id:'$directed_by'}}])
 接着我们要找出，每个导演的电影数分别有多少：
 
 ```
-db.movie.aggregate([{$group:{_id:'$directed_by',num_movie:{$sum:1}}}])
+db.movie.aggregate([{$group:{_id:'$directed_by',num_movie:{$sum:1} } }])
 ```
 
 将会输出：
@@ -563,7 +563,7 @@ db.movie.aggregate([{$group:{_id:'$directed_by',num_movie:{$sum:1}}}])
 注意$sum后面的1表示只是把电影数加起来，但我们也可以统计别的数据，比如两位导演谁的赞比较多：
 
 ```
- db.movie.aggregate([{$group:{_id:'$directed_by',num_likes:{$sum:'$likes'}}}])
+ db.movie.aggregate([{$group:{_id:'$directed_by',num_likes:{$sum:'$likes'} } }])
 ```
 
 输出：
@@ -577,13 +577,13 @@ db.movie.aggregate([{$group:{_id:'$directed_by',num_movie:{$sum:1}}}])
 
 除了`$sum`，还有其它一些操作。比如：
 ```
-db.movie.aggregate([{$group:{_id:'$directed_by',num_movie:{$avg:'$likes'}}}])
+db.movie.aggregate([{$group:{_id:'$directed_by',num_movie:{$avg:'$likes'} } }])
 ```
 
 统计平均的赞。
 
 ```
-db.movie.aggregate([{$group:{_id:'$directed_by',num_movie:{$first:'$likes'}}}])
+db.movie.aggregate([{$group:{_id:'$directed_by',num_movie:{$first:'$likes'} } }])
 ```
 
 返回每个导演的电影中的第一部的赞数。
@@ -599,7 +599,7 @@ MongoDB提供了`findAndModify`的方法来确保atomic operation。比如这样
 db.movie.findAndModify(
 			{
   			query:{'title':'Forrest Gump'},
-  			update:{$inc:{likes:10}}
+  			update:{$inc:{likes:10} }
 			}
 )
 
@@ -620,7 +620,7 @@ db.movie.ensureIndex({title:'text'})
 接着我们就可以对标题进行文本搜索了，比如，查找带有"Gump"的标题：
 
 ```
-db.movie.find({$text:{$search:"Gump"}}).pretty()
+db.movie.find({$text:{$search:"Gump"} }).pretty()
 ```
 
 注意text和search前面的$符号。
@@ -632,7 +632,7 @@ db.movie.find({$text:{$search:"Gump"}}).pretty()
 MongoDB还支持基于正则表达式的查询。如果不知道正则表达式是什么，可以参考<a href="http://en.wikipedia.org/wiki/Regular_expression">Wikipedia</a>。这里简单举几个例子。比如，查找标题以`b`结尾的电影信息：
 
 ```
-db.movie.find({title:{$regex:'.*b$'}}).pretty()
+db.movie.find({title:{$regex:'.*b$'} }).pretty()
 ```
 
 也可以写成：
@@ -650,7 +650,7 @@ db.movie.find({title:/Fight/}).pretty()
 注意以上匹配都是区分大小写的，如果你要让其不区分大小写，则可以：
 
 ```sql
-db.movie.find({title:{$regex:'fight.*b',$options:'$i'}}).pretty()
+db.movie.find({title:{$regex:'fight.*b',$options:'$i'} }).pretty()
 ```
 
 `$i`是insensitive的意思。这样的话，即使是小写的fight，也能搜到了。

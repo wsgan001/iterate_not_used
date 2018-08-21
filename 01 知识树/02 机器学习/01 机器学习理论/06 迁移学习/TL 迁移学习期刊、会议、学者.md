@@ -425,7 +425,7 @@ tags:
 
 现为老师，详细介绍见第二条。
 
-2). \href{https://sites.google.com/view/btan/home{Ben Tan}}
+2). \href{https://sites.google.com/view/btan/home{Ben Tan} }
 
 主要研究传递迁移学习(transitive transfer learning)，现在腾讯做高级研究员。代表文章：
 
@@ -433,7 +433,7 @@ Transitive Transfer Learning. KDD 2015.
 
 Distant Domain Transfer Learning. AAAI 2017.
 
-3). \href{https://scholar.google.com/citations?user=Ks81aO0AAAAJ&hl=zh-CN&oi=ao{Derek Hao Hu}}
+3). \href{https://scholar.google.com/citations?user=Ks81aO0AAAAJ&hl=zh-CN&oi=ao{Derek Hao Hu} }
 
 主要研究迁移学习与行为识别结合，目前在Snap公司。代表文章：
 
@@ -443,7 +443,7 @@ Cross-domain activity recognition via transfer learning. PMC 2011.
 
 Bridging domains using world wide knowledge for transfer learning. TKDE 2010.
 
-4). \href{https://sites.google.com/site/vincentwzheng/{Vencent Wencheng Zheng}}
+4). \href{https://sites.google.com/site/vincentwzheng/{Vencent Wencheng Zheng} }
 
 也做行为识别与迁移学习的结合，目前在新加坡一个研究所当研究科学家。代表文章：
 

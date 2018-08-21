@@ -98,7 +98,7 @@ data[0]
       'starred_url': 'https://api.github.com/users/rspadim/starred{/owner}{/repo}',
       'subscriptions_url': 'https://api.github.com/users/rspadim/subscriptions',
       'type': 'User',
-      'url': 'https://api.github.com/users/rspadim'}}
+      'url': 'https://api.github.com/users/rspadim'} }
 
 
 

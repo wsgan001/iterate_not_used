@@ -214,7 +214,7 @@ grunt> grouped_records = GROUP filtered_records BY year; grunt> DUMP grouped_rec
 
 grunt>DESCRIBE grouped—records;
 
-grouped_records: {group: chararray,filtered_records: {year: chararray^ temperature: int^quality: int}}
+grouped_records: {group: chararray,filtered_records: {year: chararray^ temperature: int^quality: int} }
 
 从输出结果可以看到，Pig给分组字段起了个别名group。第二个字段和被分组的 filtered^records关系的结构相同。根据这些信息，我们可以试着执行第四条 语句对数据进行变换：
 

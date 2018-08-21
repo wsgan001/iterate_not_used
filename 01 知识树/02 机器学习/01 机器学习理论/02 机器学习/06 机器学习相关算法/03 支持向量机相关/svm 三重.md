@@ -30,11 +30,11 @@ Logistic 回归目的是从特征学习出一个 0/1 分类模型，而这个模
 
 假设函数
 
-$$ h_\theta (x)=g(\theta^Tx)=\frac{1}{1+e^{-\theta^Tx}}$$
+$$ h_\theta (x)=g(\theta^Tx)=\frac{1}{1+e^{-\theta^Tx} }$$
 
 其中 $x$ 是 $n$ 维特征向量，函数 $g$ 就是logistic函数。
 
-而 $g(x)=\frac{1}{1+e^{-z}}$ 的图像是：
+而 $g(x)=\frac{1}{1+e^{-z} }$ 的图像是：
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180731/dDjJimALF8.png?imageslim)
 
@@ -114,7 +114,7 @@ $$\gamma=\frac{w^Tx+b}{||w||}=\frac{f(x)}{||w||}$$
 ​
 为了得到 $\gamma$ 的绝对值，令 $\gamma$ 乘上对应的类别 $y$，即可得出几何间隔（用 $\widetilde{\gamma}$ 表示）的定义：
 
-$$\widetilde{\gamma}=y\gamma=\frac{\hat{\gamma}}{||w||}$$
+$$\widetilde{\gamma}=y\gamma=\frac{\hat{\gamma} }{||w||}$$
 
 ​从上述函数间隔和几何间隔的定义可以看出：几何间隔就是函数间隔除以 $||w||$ ，而且函数间隔 $y*(w^Tx+b) = y*f(x)$ 实际上就是 $|f(x)|$ ，只是人为定义的一个间隔度量，而几何间隔 $|f(x)|/||w||$ 才是直观上的点到超平面的距离。
 
@@ -133,7 +133,7 @@ $$\widetilde{\gamma}=y\gamma=\frac{\hat{\gamma}}{||w||}$$
 $$y_i(w^Tx_i+b)=\hat{\gamma}_i\geq \hat{\gamma},\;i=1,2,\ldots,n$$
 
 
-回顾下几何间隔的定义 $\widetilde{\gamma}=y\gamma=\frac{\hat{\gamma}}{||w||}$ ，可知：如果令函数间隔 $\hat{\gamma}$ 等于1（之所以令 $\hat{\gamma}$ 等于1，是为了方便推导和优化，且这样做对目标函数的优化没有影响，至于为什么，请见本文评论下第42楼回复），则有 $\hat{\gamma}= 1 / ||w||$ 且 $y_i(w^Tx_i+b)\geq 1,i=1,\ldots,n$ ，从而上述目标函数转化成了
+回顾下几何间隔的定义 $\widetilde{\gamma}=y\gamma=\frac{\hat{\gamma} }{||w||}$ ，可知：如果令函数间隔 $\hat{\gamma}$ 等于1（之所以令 $\hat{\gamma}$ 等于1，是为了方便推导和优化，且这样做对目标函数的优化没有影响，至于为什么，请见本文评论下第42楼回复），则有 $\hat{\gamma}= 1 / ||w||$ 且 $y_i(w^Tx_i+b)\geq 1,i=1,\ldots,n$ ，从而上述目标函数转化成了
 
 $$max\frac{1}{||w||},\;s.t.,y_i(w^Tx_i+b)\geq 1,i=1,2,\ldots,n$$
 
@@ -263,7 +263,7 @@ $$\mathcal{L}(w,b,\alpha)=\frac{1}{2}||w||^2-\sum_{i=1}^{n}\alpha_i(y_i(w^Tx_i+b
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180801/4BKgajK8i4.png?imageslim)
 
-​这样，求出了 $\alpha_i$ ，根据 $w=\sum_{i=1}^{m}\alpha_iy^{(i)}x^{(i)}$ ，即可求出 $w$，然后通过 $b^*=-\frac{max_{i:y^{(i)}=-1}w^{*T}x^{(i)}+min_{i:y^{(i)}=1}w^{*T}x^{(i)}}{2}$ ，即可求出 $b$，最终得出分离超平面和分类决策函数。
+​这样，求出了 $\alpha_i$ ，根据 $w=\sum_{i=1}^{m}\alpha_iy^{(i)}x^{(i)}$ ，即可求出 $w$，然后通过 $b^*=-\frac{max_{i:y^{(i)}=-1}w^{*T}x^{(i)}+min_{i:y^{(i)}=1}w^{*T}x^{(i)} }{2}$ ，即可求出 $b$，最终得出分离超平面和分类决策函数。
 
 ​**（3）** 在求得 $L(w, b, a)$ 关于 $w$ 和 $b$ 最小化，以及对 $\alpha$ 的极大之后，最后一步则可以利用 SMO 算法求解对偶问题中的拉格朗日乘子 $\alpha$ 。
 

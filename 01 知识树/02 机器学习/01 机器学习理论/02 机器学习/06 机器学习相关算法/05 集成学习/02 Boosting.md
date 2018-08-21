@@ -65,7 +65,7 @@ AdaBoost算法在获得 $H_{t-1}$ 之后样本分布将进行调整，使下一�
 
 
 
-注意到 $\mathbb{E}_{x\sim \mathcal{D}}[e^{-f(x)H_{t-1}(x)}]$ 是一个常数。令 $\mathcal{D}_t$ 表示一个分布
+注意到 $\mathbb{E}_{x\sim \mathcal{D} }[e^{-f(x)H_{t-1}(x)}]$ 是一个常数。令 $\mathcal{D}_t$ 表示一个分布
 
 ![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180628/8Fd84BjHme.png?imageslim)
 

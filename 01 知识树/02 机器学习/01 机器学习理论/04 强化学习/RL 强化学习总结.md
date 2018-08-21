@@ -107,12 +107,12 @@ reward 奖赏
 \(p(s', r | s, a)\) 表示在状态s下，执行行动a，状态变成s'，并获得奖赏r的可能性。
 \(r(s, a)\) 在状态s下，执行行动a的期望奖赏。
 \[
-r(s,a) \doteq \mathbb{E}[R_{t+1} | S_t = s, A_t = a] = \sum_{r \in \mathcal{R}} r \sum_{s' \in \mathcal{S}} p(s', r|s,a)
+r(s,a) \doteq \mathbb{E}[R_{t+1} | S_t = s, A_t = a] = \sum_{r \in \mathcal{R} } r \sum_{s' \in \mathcal{S} } p(s', r|s,a)
 \]
 
 \(r(s, a, s')\) 在状态s下，执行行动a，状态变成s'的期望奖赏。
 \[
-r(s,a,s') \doteq \mathbb{E}[R_{t+1} | S_t = s, A_t = a, S_{t+1} = s'] = \frac{\sum_{r \in \mathcal{R}} r p(s',r|s,a)}{p(s'|s,a)}
+r(s,a,s') \doteq \mathbb{E}[R_{t+1} | S_t = s, A_t = a, S_{t+1} = s'] = \frac{\sum_{r \in \mathcal{R} } r p(s',r|s,a)}{p(s'|s,a)}
 \]
 
 \(\pi\) 策略\(\pi\)

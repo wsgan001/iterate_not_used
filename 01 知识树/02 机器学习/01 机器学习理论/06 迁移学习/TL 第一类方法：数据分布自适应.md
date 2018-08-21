@@ -82,7 +82,7 @@ OK，那么这么多种距离用哪个呢？TCA利用了一个经典的也算是
 
 \begin{equation}
 \label{eq-distribution-mmd}
-DISTANCE(\mathbf{x}_{s},\mathbf{x}_{t})= \begin{Vmatrix} \frac{1}{n_1} \sum \limits_{i=1}^{n_1} \phi(\mathbf{x}_{i}) - \frac{1}{n_2}\sum \limits _{j=1}^{n_2} \phi(\mathbf{x}_{j}) \end{Vmatrix}_{\mathcal{H}}
+DISTANCE(\mathbf{x}_{s},\mathbf{x}_{t})= \begin{Vmatrix} \frac{1}{n_1} \sum \limits_{i=1}^{n_1} \phi(\mathbf{x}_{i}) - \frac{1}{n_2}\sum \limits _{j=1}^{n_2} \phi(\mathbf{x}_{j}) \end{Vmatrix}_{\mathcal{H} }
 \end{equation}
 
 **式子右下角的 H 是什么意思？**
@@ -102,7 +102,7 @@ OK，事情到这里似乎也没什么进展：我们想求的 \(\phi\) 仍然�
 以及一个MMD矩阵 \(\mathbf{L}\) ，它的每个元素的计算方式为：**这个L矩阵是什么？**
 
 \begin{equation}
-l_{ij}=\begin{cases} \frac{1}{{n_1}^2} & \mathbf{x}_i,\mathbf{x}_j \in \mathcal{D}_s,\\ \frac{1}{{n_2}^2} & \mathbf{x}_i,\mathbf{x}_j \in \mathcal{D}_t,\\ -\frac{1}{n_1 n_2} & \text{otherwise} \end{cases}
+l_{ij}=\begin{cases} \frac{1}{ {n_1}^2} & \mathbf{x}_i,\mathbf{x}_j \in \mathcal{D}_s,\\ \frac{1}{ {n_2}^2} & \mathbf{x}_i,\mathbf{x}_j \in \mathcal{D}_t,\\ -\frac{1}{n_1 n_2} & \text{otherwise} \end{cases}
 \end{equation}
 
 这样的好处是，直接把那个难求的距离，变换成了下面的形式：**为什么？**
@@ -118,7 +118,7 @@ l_{ij}=\begin{cases} \frac{1}{{n_1}^2} & \mathbf{x}_i,\mathbf{x}_j \in \mathcal{
 他想出了用降维的方法去构造结果。用一个更低维度的矩阵 \(\mathbf{W}\) ：**后面没看了**
 
 \begin{equation}
-\widetilde{\mathbf{K}}=({\mathbf{K}}{\mathbf{K}}^{-1/2}\widetilde{\mathbf{W}})(\widetilde{\mathbf{W}}^{\top}{\mathbf{K}}^{-1/2}{\mathbf{K}})={\mathbf{K}}\mathbf{W} \mathbf{W}^{\top}{\mathbf{K}}
+\widetilde{\mathbf{K} }=({\mathbf{K} }{\mathbf{K} }^{-1/2}\widetilde{\mathbf{W} })(\widetilde{\mathbf{W} }^{\top}{\mathbf{K} }^{-1/2}{\mathbf{K} })={\mathbf{K} }\mathbf{W} \mathbf{W}^{\top}{\mathbf{K} }
 \end{equation}
 
 这里的 \(\mathbf{W}\) 矩阵是比 \(\mathbf{K}\) 更低维度的矩阵。最后的 \(\mathbf{W}\) 就是问题的解答了！
@@ -137,7 +137,7 @@ TCA要维持的是什么特征呢？文章中说是variance，但是实际是sca
 
 解决上面的优化问题时，作者又求了它的拉格朗日对偶。最后得出结论， \(\mathbf{W}\) 的解就是它的前 \(m\) 个特征值！简单不？数学美不美？
 
-好了，我们现在总结一下TCA方法的步骤。输入是两个特征矩阵，我们首先计算 \(\mathbf{L}\) 和 \(\mathbf{H}\) 矩阵，然后选择一些常用的核函数进行映射(比如线性核、高斯核)计算 \(\mathbf{K}\) ，接着求 \(({\mathbf{K}} \mathbf{L} {\mathbf{K}}+\mu \mathbf{I})^{-1}{\mathbf{K}} \mathbf{H}{\mathbf{K}}\) 的前 \(m\) 个特征值。仅此而已。然后，得到的就是源域和目标域的降维后的数据，我们就可以在上面用传统机器学习方法了。
+好了，我们现在总结一下TCA方法的步骤。输入是两个特征矩阵，我们首先计算 \(\mathbf{L}\) 和 \(\mathbf{H}\) 矩阵，然后选择一些常用的核函数进行映射(比如线性核、高斯核)计算 \(\mathbf{K}\) ，接着求 \(({\mathbf{K} } \mathbf{L} {\mathbf{K} }+\mu \mathbf{I})^{-1}{\mathbf{K} } \mathbf{H}{\mathbf{K} }\) 的前 \(m\) 个特征值。仅此而已。然后，得到的就是源域和目标域的降维后的数据，我们就可以在上面用传统机器学习方法了。
 
 为了形象地展示TCA方法的优势，我们借用~\cite{pan2011domain}中提供的可视化效果，在图中展示了对于源域和目标域数据(红色和蓝色)，分别由PCA(主成分分析)和TCA得到的分布结果。
 
@@ -324,10 +324,10 @@ D(\mathcal{D}_s,\mathcal{D}_t)=tr(\mathbf{A}^\top \mathbf{X} \mathbf{M}_0 \mathb
 我们还缺一个限制条件，不然这个问题无法解。限制条件是什么呢？和TCA一样，变换前后数据的方差要维持不变。怎么求数据的方差呢，还和TCA一样： \(\mathbf{A}^\top \mathbf{X} \mathbf{H} \mathbf{X}^\top \mathbf{A} = \mathbf{I}\) ，其中的 \(\mathbf{H}\) 也是中心矩阵， \(\mathbf{I}\) 是单位矩阵。也就是说，我们又添加了一个优化目标是要 \(\max \mathbf{A}^\top \mathbf{X} \mathbf{H} \mathbf{X}^\top \mathbf{A}\) (这一个步骤等价于PCA了)。和原来的优化目标合并，优化目标统一为：
 
 \begin{equation}
-\min \frac{\sum_{c=0}^{C}tr(\mathbf{A}^\top \mathbf{X} \mathbf{M}_c \mathbf{X}^\top \mathbf{A}) + \lambda \Vert \mathbf{A}\Vert^2_F}{ \mathbf{A}^\top \mathbf{X} \mathbf{H} \mathbf{X}^\top \mathbf{A}}
+\min \frac{\sum_{c=0}^{C}tr(\mathbf{A}^\top \mathbf{X} \mathbf{M}_c \mathbf{X}^\top \mathbf{A}) + \lambda \Vert \mathbf{A}\Vert^2_F}{ \mathbf{A}^\top \mathbf{X} \mathbf{H} \mathbf{X}^\top \mathbf{A} }
 \end{equation}
 
-这个式子实在不好求解。但是，有个东西叫做Rayleigh quotient~\footnote{\url{https://www.wikiwand.com/en/Rayleigh_quotient}}，上面两个一样的这种形式。因为 \(\mathbf{A}\) 是可以进行拉伸而不改改变最终结果的，而如果下面为0的话，整个式子就求不出来值了。所以，我们直接就可以让下面不变，只求上面。所以我们最终的优化问题形式搞成了
+这个式子实在不好求解。但是，有个东西叫做Rayleigh quotient~\footnote{\url{https://www.wikiwand.com/en/Rayleigh_quotient} }，上面两个一样的这种形式。因为 \(\mathbf{A}\) 是可以进行拉伸而不改改变最终结果的，而如果下面为0的话，整个式子就求不出来值了。所以，我们直接就可以让下面不变，只求上面。所以我们最终的优化问题形式搞成了
 
 \begin{equation}
 \min \quad \sum_{c=0}^{C}tr(\mathbf{A}^\top \mathbf{X} \mathbf{M}_c \mathbf{X}^\top \mathbf{A}) + \lambda \Vert \mathbf{A} \Vert ^2_F \quad \text{s.t.} \quad \mathbf{A}^\top \mathbf{X} \mathbf{H} \mathbf{X}^\top \mathbf{A} = \mathbf{I}

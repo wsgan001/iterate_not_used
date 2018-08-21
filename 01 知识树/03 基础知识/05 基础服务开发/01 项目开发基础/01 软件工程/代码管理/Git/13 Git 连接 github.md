@@ -124,7 +124,20 @@ Your public key has been saved in /c/Users/AlexYi/.ssh/id_rsa.pub
 ssh-rsa AAAAB3NzaC1yc2EAAAADA...
 ```
 
-
+> **注：这个地方有个问题**
+>
+> 在 github 中，这个key 是只能每个 repo 用一个的，因此，你想创建第二个项目repo 的时候，你就要创建一个新的key，比如 id_rsa_iterateself 注意，之前生成的 id_rsa 这个 key 不要覆盖了，因为你之前的项目还要使用。
+>
+> 在创建这个新的 key ，并加入到 github 上之后，你会发现还是不能 push，因为你要添加私钥：
+> ```
+> $ ssh-add ~/.ssh/id_rsa_iterateself
+> $ ssh-add /c/Users/xxx/.ssh/id_rsa_iterateself
+> ```
+> 如果执行ssh-add时提示"Could not open a connection to your authentication agent"，可以现执行命令：
+> ```
+> $ ssh-agent bash
+> ```
+> 然后再运行 ssh-add 命令。
 
 
 ## 把生成的 key 放到 github 上

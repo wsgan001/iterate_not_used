@@ -114,7 +114,7 @@ OK，我们从Logistic回归谈起：
 
 Logistic回归的特征 $x_1,x_2,\cdots ,x_n)$ 是 $\theta_1x1$ 和\theta_2x2 和\theta_nxn ，其实Logistic回归里面的特征是样本的所有的维度各自作为一个特称然后做一个加权的乘积，把它加起来。
 
-对于Logistic回归来说：   \(\frac{1}{1+e^{-\theta^Tx}}\) 上下同时乘以 \(e^{\theta^Tx}\)  那么下面就可以看作是一个归一化因子，上面可以看作是权值w与特征x的乘积，即一般形式为：![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/h5fe2AH0Ej.png?imageslim) w就是权值 F 就是与权值相关的特征
+对于Logistic回归来说：   \(\frac{1}{1+e^{-\theta^Tx} }\) 上下同时乘以 \(e^{\theta^Tx}\)  那么下面就可以看作是一个归一化因子，上面可以看作是权值w与特征x的乘积，即一般形式为：![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/h5fe2AH0Ej.png?imageslim) w就是权值 F 就是与权值相关的特征
 
 而这个里面的Z是可以表达出来的， 两边同时对y求加和， 左边对所有的y求加和是1 ，右边的话把Z(x,w)放到左边，就是：![mark](http://pacdb2bfr.bkt.clouddn.com/blog/image/180728/m6i43jhJd3.png?imageslim)
 

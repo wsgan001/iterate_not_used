@@ -122,7 +122,7 @@ if (argc != 2)
 
 err_quit("usage: Is directory_name");
 
-if {{dp = opendir(argv[1])) == NULL)
+if { {dp = opendir(argv[1])) == NULL)
 
 err_sys("can't open %s", argv[1]);
 
@@ -316,7 +316,7 @@ main(void)
 
 int    c;
 
-while {{c = getc(stdin))    != EOF)
+while { {c = getc(stdin))    != EOF)
 
 if (putc(c, stdout) == EOF)
 

@@ -110,7 +110,7 @@ content_image + style_image=> output image
 利用梯度下降，content loss对F求导：
 
 
-$$\frac{\partial L_{content}}{\partial F_{ij}^{l}}=\begin{cases}(F^l-P^l)_{ij} & \text{ if } F_{ij}^l>0 \\ 0 & \text{ if } F_{ij}^l<0\end{cases}$$
+$$\frac{\partial L_{content} }{\partial F_{ij}^{l} }=\begin{cases}(F^l-P^l)_{ij} & \text{ if } F_{ij}^l>0 \\ 0 & \text{ if } F_{ij}^l<0\end{cases}$$
 
 F is the activation of the i-th filter at position j in layer I.
 

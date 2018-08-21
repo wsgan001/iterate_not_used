@@ -125,7 +125,7 @@ G_t \doteq \sum_{k=0}^{T-t-1} \gamma^k R_{t+k+1} \\
 v_{\pi}(s) \doteq \mathbb{E}_{\pi} [G_t | S_t=s] = \mathbb{E}_{\pi} \left [ \sum_{k=0}^{\infty} \gamma^k R_{t+k+1}|S_t = s \right ] \\
 q_{\pi}(s,a) \doteq \mathbb{E}_{\pi} [G_t | S_t=s,A_t=a] = \mathbb{E}_{\pi} \left [ \sum_{k=0}^{\infty} \gamma^k
 R_{t+k+1}|S_t = s, A_t=a \right ] \\
-v_{\pi}(s) = \max_{a \in \mathcal{A}} q_{\pi}(s,a) \\
+v_{\pi}(s) = \max_{a \in \mathcal{A} } q_{\pi}(s,a) \\
 \pi(s) = \underset{a}{argmax} \ v_{\pi}(s' | s, a) \\
 \pi(s) \text{ is the action which can get the next state which has the max value.} \\
 \pi(s) = \underset{a}{argmax} \ q_{\pi}(s, a) \\
@@ -223,7 +223,7 @@ h（horizon）- 水平线h表示on-line当时可以模拟的数据步骤。\(t <
 \(Q_t(a)\) - 行动 a 在第t步前（不包括第t步）的实际平均奖赏。
 
 \[
-Q_t(a) = \frac{\sum_{i=1}^{t-1} R_i \times 1_{A_i=a}}{N_t(a)}
+Q_t(a) = \frac{\sum_{i=1}^{t-1} R_i \times 1_{A_i=a} }{N_t(a)}
 \]
 
 \(H_t(a)\) - 对于行动a的学习到的倾向(reference)。
@@ -252,7 +252,7 @@ Q_t(a) = \frac{\sum_{i=1}^{t-1} R_i \times 1_{A_i=a}}{N_t(a)}
 
 \(\mathbb{R}^n\) - n个元素的实数向量。
 
-\(\underset{a \in \mathcal{A}}{max} \ F(a)\) - 在所有的行动中，求最大值\(F(a)\)。
+\(\underset{a \in \mathcal{A} }{max} \ F(a)\) - 在所有的行动中，求最大值\(F(a)\)。
 
 \(\underset{c}{argmax} \ F(c)\) - 求当F(c)为最大值时，参数\(c\)的值。
 

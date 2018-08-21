@@ -66,7 +66,7 @@ d_{Mahalanobis}=\sqrt{(\mathbf{x}-\mathbf{y})^\top \Sigma^{-1} (\mathbf{x}-\math
 
 \begin{equation}
 \label{eq-dist-cosine}
-\cos (\mathbf{x},\mathbf{y}) = \frac{\mathbf{x} \cdot \mathbf{y}}{|\mathbf{x}|\cdot |\mathbf{y}|}
+\cos (\mathbf{x},\mathbf{y}) = \frac{\mathbf{x} \cdot \mathbf{y} }{|\mathbf{x}|\cdot |\mathbf{y}|}
 \end{equation}
 
 余弦相似度也被一些迁移学习研究所使用。比如发表在2009年UbiComp上的文章~\cite{zheng2009cross}。
@@ -197,7 +197,7 @@ HSIC(X,Y) = trace(HXHY)
 ### Wasserstein Distance
 
 
-Wasserstein Distance是一套用来衡量两个概率分部之间距离的度量方法。该距离在一个度量空间 \((M,\rho)\) 上定义，其中 \(\rho(x,y)\) 表示集合 \(M\) 中两个实例 \(x\) 和 \(y\) 的距离函数，比如欧几里得距离。两个概率分布 \(\mathbb{P}\) 和 \(\mathbb{Q}\) 之间的 \(p{\text{-th}}\) Wasserstein distance可以被定义为
+Wasserstein Distance是一套用来衡量两个概率分部之间距离的度量方法。该距离在一个度量空间 \((M,\rho)\) 上定义，其中 \(\rho(x,y)\) 表示集合 \(M\) 中两个实例 \(x\) 和 \(y\) 的距离函数，比如欧几里得距离。两个概率分布 \(\mathbb{P}\) 和 \(\mathbb{Q}\) 之间的 \(p{\text{-th} }\) Wasserstein distance可以被定义为
 
 \begin{equation}
 W_p(\mathbb{P}, \mathbb{Q}) = \Big(\inf_{\mu \in \Gamma(\mathbb{P}, \mathbb{Q}) } \int \rho(x,y)^p d\mu(x,y) \Big)^{1/p},
@@ -206,7 +206,7 @@ W_p(\mathbb{P}, \mathbb{Q}) = \Big(\inf_{\mu \in \Gamma(\mathbb{P}, \mathbb{Q}) 
 其中 \(\Gamma(\mathbb{P}, \mathbb{Q})\) 是在集合 \(M\times M\) 内所有的以 \(\mathbb{P}\) 和 \(\mathbb{Q}\) 为边缘分布的联合分布。著名的Kantorovich-Rubinstein定理表示当 \(M\) 是可分离的时候，第一Wasserstein distance可以等价地表示成一个积分概率度量(integral probability metric)的形式
 
 \begin{equation}
-W_1(\mathbb{P},\mathbb{Q})= \sup_{\left \| f \right \|_L \leq 1} \mathbb{E}_{x \sim \mathbb{P}}[f(x)] - \mathbb{E}_{x \sim \mathbb{Q}}[f(x)],
+W_1(\mathbb{P},\mathbb{Q})= \sup_{\left \| f \right \|_L \leq 1} \mathbb{E}_{x \sim \mathbb{P} }[f(x)] - \mathbb{E}_{x \sim \mathbb{Q} }[f(x)],
 \end{equation}
 其中 \(\left \| f \right \|_L = \sup{|f(x) - f(y)|} / \rho(x,y)\) 并且 \(\left \| f \right \|_L \leq 1\) 称为 \(1-\) 利普希茨条件。
 
